@@ -11,11 +11,80 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `account.Project` resource allows you to create and manage the Projects of a Scaleway Organization.
+//
+// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+//
+// ## Example Usage
+//
+// ### Create a Scaleway Project
+//
+// The following command allows you to create a project named `project`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := account.NewProject(ctx, "project", &account.ProjectArgs{
+//				Name: pulumi.String("project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Use a project in provider configuration
+//
+// If you want to use as default a project created in terraform you can use a temporary provider alias.
+// This project can then be used to configure your default provider.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := account.NewProject(ctx, "project", &account.ProjectArgs{
+//				Name: pulumi.String("my_project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = instance.NewServer(ctx, "server", &instance.ServerArgs{
+//				Image: pulumi.String("ubuntu_jammy"),
+//				Type:  pulumi.String("PRO2-XXS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Projects can be imported using the `id` argument, as shown below:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:account/project:Project project 11111111-1111-1111-1111-111111111111

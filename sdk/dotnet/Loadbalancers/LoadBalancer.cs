@@ -166,13 +166,11 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     /// 
     /// Load Balancers can be imported using `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:loadbalancers/loadBalancer:LoadBalancer main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// 
-    /// Be aware that you will also need to import the `scaleway_lb_ip` resource.
+    /// Be aware that you will also need to import the `scaleway.loadbalancers.Ip` resource.
     /// </summary>
     [ScalewayResourceType("scaleway:loadbalancers/loadBalancer:LoadBalancer")]
     public partial class LoadBalancer : global::Pulumi.CustomResource

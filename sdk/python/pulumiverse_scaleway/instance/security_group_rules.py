@@ -189,7 +189,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -224,15 +224,13 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
         ## Import
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
@@ -300,7 +298,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -335,15 +333,13 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
         ## Import
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111

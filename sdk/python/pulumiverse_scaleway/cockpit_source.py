@@ -331,8 +331,6 @@ class CockpitSource(pulumi.CustomResource):
 
         This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -377,8 +375,6 @@ class CockpitSource(pulumi.CustomResource):
         ## Import
 
         This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111

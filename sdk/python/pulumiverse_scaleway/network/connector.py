@@ -357,8 +357,6 @@ class Connector(pulumi.CustomResource):
 
         VPC connectors can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/connector:Connector main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -435,8 +433,6 @@ class Connector(pulumi.CustomResource):
         ## Import
 
         VPC connectors can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:network/connector:Connector main fr-par/11111111-1111-1111-1111-111111111111

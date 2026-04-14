@@ -706,13 +706,11 @@ class LoadBalancer(pulumi.CustomResource):
 
         Load Balancers can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/loadBalancer:LoadBalancer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
-        Be aware that you will also need to import the `scaleway_lb_ip` resource.
+        Be aware that you will also need to import the `loadbalancers.Ip` resource.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -830,13 +828,11 @@ class LoadBalancer(pulumi.CustomResource):
 
         Load Balancers can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/loadBalancer:LoadBalancer main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
-        Be aware that you will also need to import the `scaleway_lb_ip` resource.
+        Be aware that you will also need to import the `loadbalancers.Ip` resource.
 
         :param str resource_name: The name of the resource.
         :param LoadBalancerArgs args: The arguments to use to populate this resource's properties.

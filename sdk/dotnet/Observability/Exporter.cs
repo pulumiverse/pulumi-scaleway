@@ -23,7 +23,6 @@ namespace Pulumiverse.Scaleway.Observability
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -65,7 +64,6 @@ namespace Pulumiverse.Scaleway.Observability
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -113,8 +111,6 @@ namespace Pulumiverse.Scaleway.Observability
     /// ## Import
     /// 
     /// Import an exporter using the regional ID:
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111

@@ -258,8 +258,6 @@ class BlockedList(pulumi.CustomResource):
 
         Blocklists can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:tem/blockedList:BlockedList test fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -302,8 +300,6 @@ class BlockedList(pulumi.CustomResource):
         ## Import
 
         Blocklists can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:tem/blockedList:BlockedList test fr-par/11111111-1111-1111-1111-111111111111

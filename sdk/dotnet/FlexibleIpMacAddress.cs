@@ -43,7 +43,6 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -92,8 +91,6 @@ namespace Pulumiverse.Scaleway
     /// ## Import
     /// 
     /// Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111

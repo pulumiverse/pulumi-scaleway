@@ -21,7 +21,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -164,6 +164,7 @@ namespace Pulumiverse.Scaleway.Databases
     public sealed class GetPrivilegeResult
     {
         public readonly string DatabaseName;
+        public readonly string EffectivePermission;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -174,6 +175,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// , `Custom` and `None`.
         /// </summary>
         public readonly string Permission;
+        public readonly string PermissionStatus;
         public readonly string? Region;
         public readonly string UserName;
 
@@ -181,20 +183,26 @@ namespace Pulumiverse.Scaleway.Databases
         private GetPrivilegeResult(
             string databaseName,
 
+            string effectivePermission,
+
             string id,
 
             string instanceId,
 
             string permission,
 
+            string permissionStatus,
+
             string? region,
 
             string userName)
         {
             DatabaseName = databaseName;
+            EffectivePermission = effectivePermission;
             Id = id;
             InstanceId = instanceId;
             Permission = permission;
+            PermissionStatus = permissionStatus;
             Region = region;
             UserName = userName;
         }

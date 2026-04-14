@@ -11,6 +11,154 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+//
+// This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+//
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+//
+// ## Example Usage
+//
+// ### Basic usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
+//				ProjectId: pulumi.StringRef(project.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("grafanaUrl", main.GrafanaUrl)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Using with default project
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Uses the default project from provider configuration
+//			main, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("grafanaUrl", main.GrafanaUrl)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Complete example with Cockpit setup
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
+//				Name: pulumi.String("my-observability-project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainCockpit, err := observability.NewCockpit(ctx, "main", &observability.CockpitArgs{
+//				ProjectId: project.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			main := observability.GetGrafanaOutput(ctx, observability.GetGrafanaOutputArgs{
+//				ProjectId: mainCockpit.ProjectId,
+//			}, nil)
+//			ctx.Export("grafanaConnectionInfo", pulumi.StringMap{
+//				"url": main.ApplyT(func(main observability.GetGrafanaResult) (*string, error) {
+//					return &main.GrafanaUrl, nil
+//				}).(pulumi.StringPtrOutput),
+//				"projectId": main.ApplyT(func(main observability.GetGrafanaResult) (*string, error) {
+//					return &main.ProjectId, nil
+//				}).(pulumi.StringPtrOutput),
+//			})
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Using the Grafana Terraform provider
+//
+// When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `anonymous` mode.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			// Scaleway IAM secret key reused by the Grafana provider
+//			scalewaySecretKey := cfg.Require("scalewaySecretKey")
+//			_, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
+//				ProjectId: pulumi.StringRef(project.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+//
+// ## Authentication
+//
+// To access Grafana, use your Scaleway IAM credentials:
+//
+// 1. Navigate to the `grafanaUrl` provided by this data source
+// 2. Sign in using your Scaleway account (IAM authentication)
+// 3. Your access level is determined by your IAM permissions on the project
+//
+// For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
 func GetGrafana(ctx *pulumi.Context, args *GetGrafanaArgs, opts ...pulumi.InvokeOption) (*GetGrafanaResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGrafanaResult

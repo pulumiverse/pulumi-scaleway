@@ -58,10 +58,10 @@ import (
 //			}
 //			_, err = elasticmetal.NewServer(ctx, "my_server_ci", &elasticmetal.ServerArgs{
 //				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
+//				Offer: pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Os:    pulumi.String(pulumi.String(myOs.OsId)),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(mySshKey.Id),
+//					pulumi.String(pulumi.String(mySshKey.Id)),
 //				},
 //				CloudInit: invokeFile.Result,
 //			})
@@ -77,8 +77,6 @@ import (
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:elasticmetal/server:Server web fr-par-2/11111111-1111-1111-1111-111111111111
@@ -130,6 +128,7 @@ type Server struct {
 	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
@@ -147,6 +146,7 @@ type Server struct {
 	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrOutput `pulumi:"servicePassword"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 	ServicePasswordWo pulumi.StringPtrOutput `pulumi:"servicePasswordWo"`
 	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
 	ServicePasswordWoVersion pulumi.IntPtrOutput `pulumi:"servicePasswordWoVersion"`
@@ -264,6 +264,7 @@ type serverState struct {
 	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -281,6 +282,7 @@ type serverState struct {
 	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword *string `pulumi:"servicePassword"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 	ServicePasswordWo *string `pulumi:"servicePasswordWo"`
 	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
 	ServicePasswordWoVersion *int `pulumi:"servicePasswordWoVersion"`
@@ -341,6 +343,7 @@ type ServerState struct {
 	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -358,6 +361,7 @@ type ServerState struct {
 	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 	ServicePasswordWo pulumi.StringPtrInput
 	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
 	ServicePasswordWoVersion pulumi.IntPtrInput
@@ -406,6 +410,7 @@ type serverArgs struct {
 	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -423,6 +428,7 @@ type serverArgs struct {
 	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword *string `pulumi:"servicePassword"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 	ServicePasswordWo *string `pulumi:"servicePasswordWo"`
 	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
 	ServicePasswordWoVersion *int `pulumi:"servicePasswordWoVersion"`
@@ -468,6 +474,7 @@ type ServerArgs struct {
 	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -485,6 +492,7 @@ type ServerArgs struct {
 	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 	ServicePasswordWo pulumi.StringPtrInput
 	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
 	ServicePasswordWoVersion pulumi.IntPtrInput
@@ -685,6 +693,7 @@ func (o ServerOutput) Password() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
 func (o ServerOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
@@ -726,6 +735,7 @@ func (o ServerOutput) ServicePassword() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
 func (o ServerOutput) ServicePasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.ServicePasswordWo }).(pulumi.StringPtrOutput)
 }

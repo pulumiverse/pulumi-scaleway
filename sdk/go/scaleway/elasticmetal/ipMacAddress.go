@@ -70,7 +70,7 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("TestAccScalewayBaremetalServer_WithoutInstallConfig"),
-//				Offer:                  pulumi.String(myOffer.OfferId),
+//				Offer:                  pulumi.String(pulumi.String(myOffer.OfferId)),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -114,8 +114,6 @@ import (
 // ## Import
 //
 // Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:elasticmetal/ipMacAddress:IpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111

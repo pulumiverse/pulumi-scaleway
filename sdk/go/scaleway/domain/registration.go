@@ -175,13 +175,11 @@ import (
 //
 // To import an existing domain registration, use:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
 // ```
 //
-// You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
+// You can use the domain.Registration data source to look up the `taskId` and `projectId` by domain name.
 type Registration struct {
 	pulumi.CustomResourceState
 

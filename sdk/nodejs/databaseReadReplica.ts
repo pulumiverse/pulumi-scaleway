@@ -92,8 +92,6 @@ import * as utilities from "./utilities";
  *
  * Read Replicas can be imported using the `{region}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
  * ```

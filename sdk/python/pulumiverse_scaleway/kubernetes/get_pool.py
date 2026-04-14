@@ -153,6 +153,9 @@ class GetPoolResult:
     @_builtins.property
     @pulumi.getter(name="currentSize")
     def current_size(self) -> _builtins.int:
+        """
+        The size of the pool at the time the terraform state was updated.
+        """
         return pulumi.get(self, "current_size")
 
     @_builtins.property

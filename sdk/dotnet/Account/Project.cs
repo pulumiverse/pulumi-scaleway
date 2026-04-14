@@ -11,11 +11,62 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Account
 {
     /// <summary>
+    /// The `scaleway.account.Project` resource allows you to create and manage the Projects of a Scaleway Organization.
+    /// 
+    /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Create a Scaleway Project
+    /// 
+    /// The following command allows you to create a project named `Project`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "project",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Use a project in provider configuration
+    /// 
+    /// If you want to use as default a project created in terraform you can use a temporary provider alias.
+    /// This project can then be used to configure your default provider.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "my_project",
+    ///     });
+    /// 
+    ///     var server = new Scaleway.Instance.Server("server", new()
+    ///     {
+    ///         Image = "ubuntu_jammy",
+    ///         Type = "PRO2-XXS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// Projects can be imported using the `id` argument, as shown below:
-    /// 
-    /// bash
+    /// Projects can be imported using the `Id` argument, as shown below:
     /// 
     /// ```sh
     /// $ pulumi import scaleway:account/project:Project project 11111111-1111-1111-1111-111111111111

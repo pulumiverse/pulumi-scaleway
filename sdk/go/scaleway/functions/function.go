@@ -12,11 +12,197 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+//
+// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+//
+// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+//
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
+//				Name:        pulumi.String("main-function-namespace"),
+//				Description: pulumi.String("Main function namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
+//				NamespaceId: main.ID(),
+//				Runtime:     pulumi.String("go124"),
+//				Handler:     pulumi.String("Handle"),
+//				Privacy:     pulumi.String("private"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With sources and deploy
+//
+// You can easily create a zip file containing your function (ex: `zip function.zip -r go.mod go.sum handler.go`) to deploy it with Terraform seamlessly. Refer to our [dedicated documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/package-function-dependencies-in-zip/) for more information on how to package a function into a zip file.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
+//				Name:        pulumi.String("main-function-namespace"),
+//				Description: pulumi.String("Main function namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFilesha256, err := std.Filesha256(ctx, map[string]interface{}{
+//				"input": "function.zip",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
+//				NamespaceId: main.ID(),
+//				Description: pulumi.String("function with zip file"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("tag1"),
+//					pulumi.String("tag2"),
+//				},
+//				Runtime: pulumi.String("go124"),
+//				Handler: pulumi.String("Handle"),
+//				Privacy: pulumi.String("private"),
+//				Timeout: pulumi.Int(10),
+//				ZipFile: pulumi.String("function.zip"),
+//				ZipHash: invokeFilesha256.Result,
+//				Deploy:  pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Managing authentication of private functions with IAM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Project to be referenced in the IAM policy
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// IAM resources
+//			funcAuth, err := iam.NewApplication(ctx, "func_auth", &iam.ApplicationArgs{
+//				Name: pulumi.String("function-auth"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewPolicy(ctx, "access_private_funcs", &iam.PolicyArgs{
+//				ApplicationId: funcAuth.ID(),
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
+//						ProjectIds: pulumi.StringArray{
+//							pulumi.String(_default.Id),
+//						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("FunctionsPrivateAccess"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
+//				ApplicationId: funcAuth.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Function resources
+//			private, err := functions.NewNamespace(ctx, "private", &functions.NamespaceArgs{
+//				Name: pulumi.String("private-function-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFilesha256, err := std.Filesha256(ctx, map[string]interface{}{
+//				"input": "function.zip",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			privateFunction, err := functions.NewFunction(ctx, "private", &functions.FunctionArgs{
+//				NamespaceId: private.ID(),
+//				Runtime:     pulumi.String("go124"),
+//				Handler:     pulumi.String("Handle"),
+//				Privacy:     pulumi.String("private"),
+//				ZipFile:     pulumi.String("function.zip"),
+//				ZipHash:     invokeFilesha256.Result,
+//				Deploy:      pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("secretKey", apiKey.SecretKey)
+//			ctx.Export("functionEndpoint", privateFunction.DomainName)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Then you can access your private function using the API key:
+//
+// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+//
 // ## Import
 //
 // Functions can be imported using, `{region}/{id}`, as shown below:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:functions/function:Function main fr-par/11111111-1111-1111-1111-111111111111
@@ -25,8 +211,9 @@ type Function struct {
 	pulumi.CustomResourceState
 
 	// The CPU limit in mVCPU for your function.
-	CpuLimit pulumi.IntOutput     `pulumi:"cpuLimit"`
-	Deploy   pulumi.BoolPtrOutput `pulumi:"deploy"`
+	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
+	// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the function.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The native domain name of the function.
@@ -73,7 +260,7 @@ type Function struct {
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Path to the zip file containing your function sources to upload.
 	ZipFile pulumi.StringPtrOutput `pulumi:"zipFile"`
-	// The hash of your source zip file, changing it will re-apply function. Can be any string
+	// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 	ZipHash pulumi.StringPtrOutput `pulumi:"zipHash"`
 }
 
@@ -133,8 +320,9 @@ func GetFunction(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
 	// The CPU limit in mVCPU for your function.
-	CpuLimit *int  `pulumi:"cpuLimit"`
-	Deploy   *bool `pulumi:"deploy"`
+	CpuLimit *int `pulumi:"cpuLimit"`
+	// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+	Deploy *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
 	// The native domain name of the function.
@@ -181,14 +369,15 @@ type functionState struct {
 	Timeout *int `pulumi:"timeout"`
 	// Path to the zip file containing your function sources to upload.
 	ZipFile *string `pulumi:"zipFile"`
-	// The hash of your source zip file, changing it will re-apply function. Can be any string
+	// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 	ZipHash *string `pulumi:"zipHash"`
 }
 
 type FunctionState struct {
 	// The CPU limit in mVCPU for your function.
 	CpuLimit pulumi.IntPtrInput
-	Deploy   pulumi.BoolPtrInput
+	// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+	Deploy pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
 	// The native domain name of the function.
@@ -235,7 +424,7 @@ type FunctionState struct {
 	Timeout pulumi.IntPtrInput
 	// Path to the zip file containing your function sources to upload.
 	ZipFile pulumi.StringPtrInput
-	// The hash of your source zip file, changing it will re-apply function. Can be any string
+	// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 	ZipHash pulumi.StringPtrInput
 }
 
@@ -244,6 +433,7 @@ func (FunctionState) ElementType() reflect.Type {
 }
 
 type functionArgs struct {
+	// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
@@ -287,12 +477,13 @@ type functionArgs struct {
 	Timeout *int `pulumi:"timeout"`
 	// Path to the zip file containing your function sources to upload.
 	ZipFile *string `pulumi:"zipFile"`
-	// The hash of your source zip file, changing it will re-apply function. Can be any string
+	// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 	ZipHash *string `pulumi:"zipHash"`
 }
 
 // The set of arguments for constructing a Function resource.
 type FunctionArgs struct {
+	// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
 	Deploy pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
@@ -336,7 +527,7 @@ type FunctionArgs struct {
 	Timeout pulumi.IntPtrInput
 	// Path to the zip file containing your function sources to upload.
 	ZipFile pulumi.StringPtrInput
-	// The hash of your source zip file, changing it will re-apply function. Can be any string
+	// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 	ZipHash pulumi.StringPtrInput
 }
 
@@ -432,6 +623,7 @@ func (o FunctionOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
 
+// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
 func (o FunctionOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -545,7 +737,7 @@ func (o FunctionOutput) ZipFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.ZipFile }).(pulumi.StringPtrOutput)
 }
 
-// The hash of your source zip file, changing it will re-apply function. Can be any string
+// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
 func (o FunctionOutput) ZipHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.ZipHash }).(pulumi.StringPtrOutput)
 }

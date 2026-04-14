@@ -67,8 +67,6 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     /// 
     /// Load Balancer backends can be imported using `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:loadbalancers/backend:Backend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

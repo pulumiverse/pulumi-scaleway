@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
  *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
- *     cloudInit: std.index.file({
+ *     cloudInit: std.file({
  *         input: "userdata.yaml",
  *     }).result,
  * });
@@ -41,8 +41,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Baremetal servers can be imported using the `{zone}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
@@ -160,6 +158,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
     /**
@@ -193,6 +192,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     declare public readonly servicePassword: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
      */
     declare public readonly servicePasswordWo: pulumi.Output<string | undefined>;
     /**
@@ -400,6 +400,7 @@ export interface BaremetalServerState {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
      */
     passwordWo?: pulumi.Input<string>;
     /**
@@ -433,6 +434,7 @@ export interface BaremetalServerState {
     servicePassword?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
      */
     servicePasswordWo?: pulumi.Input<string>;
     /**
@@ -514,6 +516,7 @@ export interface BaremetalServerArgs {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
      */
     passwordWo?: pulumi.Input<string>;
     /**
@@ -547,6 +550,7 @@ export interface BaremetalServerArgs {
     servicePassword?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
      */
     servicePasswordWo?: pulumi.Input<string>;
     /**

@@ -63,7 +63,7 @@ import (
 //				ContainerId: mainContainer.ID(),
 //				Name:        pulumi.String("my-cron-name"),
 //				Schedule:    pulumi.String("5 4 1 * *"),
-//				Args:        pulumi.String(json0),
+//				Args:        pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -77,8 +77,6 @@ import (
 // ## Import
 //
 // Container Cron can be imported using `{region}/{id}`, as shown below:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:containers/cron:Cron main fr-par/11111111-1111-1111-1111-111111111111

@@ -568,11 +568,39 @@ class VpcPublicGateway(pulumi.CustomResource):
             ])
         ```
 
+        ### With bastion
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        key1 = scaleway.iam.SshKey("key1",
+            name="key1",
+            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+        key2 = scaleway.iam.SshKey("key2",
+            name="key2",
+            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
+        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            input=[
+                key1.public_key,
+                key2.public_key,
+            ])["result"])["result"]
+        main = scaleway.network.PublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            bastion_enabled=True,
+            bastion_port=61000,
+            refresh_ssh_keys=ssh_keys_hash)
+        ```
+
         ## Import
 
         Public Gateways can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
@@ -620,11 +648,39 @@ class VpcPublicGateway(pulumi.CustomResource):
             ])
         ```
 
+        ### With bastion
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        key1 = scaleway.iam.SshKey("key1",
+            name="key1",
+            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+        key2 = scaleway.iam.SshKey("key2",
+            name="key2",
+            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
+        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            input=[
+                key1.public_key,
+                key2.public_key,
+            ])["result"])["result"]
+        main = scaleway.network.PublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            bastion_enabled=True,
+            bastion_port=61000,
+            refresh_ssh_keys=ssh_keys_hash)
+        ```
+
         ## Import
 
         Public Gateways can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111

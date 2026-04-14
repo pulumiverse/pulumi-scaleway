@@ -391,8 +391,6 @@ class VpcRoute(pulumi.CustomResource):
 
         Routes can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -497,8 +495,6 @@ class VpcRoute(pulumi.CustomResource):
         ## Import
 
         Routes can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111

@@ -13,6 +13,12 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class EdgeServicesRouteStageRuleRuleHttpMatchArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+        /// </summary>
+        [Input("hostFilter")]
+        public Input<Inputs.EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs>? HostFilter { get; set; }
+
         [Input("methodFilters")]
         private InputList<string>? _methodFilters;
 

@@ -7,11 +7,92 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Creates and manages Scaleway OpenSearch deployments.
+ * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+ *
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.opensearch.Deployment("main", {
+ *     name: "my-opensearch-cluster",
+ *     version: "2.0",
+ *     nodeAmount: 1,
+ *     nodeType: "SEARCHDB-SHARED-2C-8G",
+ *     password: "ThisIsASecurePassword123!",
+ *     volume: {
+ *         type: "sbs_5k",
+ *         sizeInGb: 5,
+ *     },
+ * });
+ * ```
+ *
+ * ### Production Setup with High Availability
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const prod = new scaleway.opensearch.Deployment("prod", {
+ *     name: "logs-prod-cluster",
+ *     version: "2.0",
+ *     nodeAmount: 3,
+ *     nodeType: "SEARCHDB-DEDICATED-2C-8G",
+ *     password: opensearchPassword,
+ *     tags: [
+ *         "production",
+ *         "logs",
+ *     ],
+ *     volume: {
+ *         type: "sbs_15k",
+ *         sizeInGb: 100,
+ *     },
+ * });
+ * export const opensearchUrl = prod.endpoints.apply(endpoints => endpoints[0].services?.[0]?.url);
+ * ```
+ *
+ * ### With Tags for Organization
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const analytics = new scaleway.opensearch.Deployment("analytics", {
+ *     name: "analytics-cluster",
+ *     version: "2.0",
+ *     nodeAmount: 1,
+ *     nodeType: "SEARCHDB-SHARED-4C-16G",
+ *     password: opensearchPassword,
+ *     tags: [
+ *         "analytics",
+ *         "dev",
+ *         "team-data",
+ *     ],
+ *     volume: {
+ *         type: "sbs_5k",
+ *         sizeInGb: 10,
+ *     },
+ * });
+ * ```
+ *
+ * ## Upgrade Notes
+ *
+ * ### Changing Resources
+ *
+ * Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
+ *
+ * 1. Create a snapshot of your data (manual process)
+ * 2. Modify the `nodeType` in your Terraform configuration
+ * 3. Apply the changes (will destroy and recreate)
+ * 4. Restore your data from the snapshot
+ *
  * ## Import
  *
  * OpenSearch deployments can be imported using the `{region}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111

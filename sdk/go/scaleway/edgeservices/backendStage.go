@@ -131,8 +131,6 @@ import (
 //
 // Backend stages can be imported using the `{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:edgeservices/backendStage:BackendStage basic 11111111-1111-1111-1111-111111111111
 // ```

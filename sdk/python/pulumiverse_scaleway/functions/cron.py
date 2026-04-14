@@ -261,8 +261,6 @@ class Cron(pulumi.CustomResource):
 
         Function Cron can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:functions/cron:Cron main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -321,8 +319,6 @@ class Cron(pulumi.CustomResource):
         ## Import
 
         Function Cron can be imported using `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:functions/cron:Cron main fr-par/11111111-1111-1111-1111-111111111111

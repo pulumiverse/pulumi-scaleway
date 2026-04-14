@@ -11,11 +11,136 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Instance
 {
     /// <summary>
+    /// Creates and manages Scaleway compute Instance security groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var allowAll = new Scaleway.Instance.SecurityGroup("allow_all");
+    /// 
+    ///     var web = new Scaleway.Instance.SecurityGroup("web", new()
+    ///     {
+    ///         InboundDefaultPolicy = "drop",
+    ///         InboundRules = new[]
+    ///         {
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 22,
+    ///                 IpRange = "212.47.225.64/32",
+    ///             },
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 80,
+    ///             },
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Protocol = "UDP",
+    ///                 PortRange = "22-23",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Web server with banned IP and restricted internet access
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var web = new Scaleway.Instance.SecurityGroup("web", new()
+    ///     {
+    ///         InboundDefaultPolicy = "drop",
+    ///         OutboundDefaultPolicy = "drop",
+    ///         InboundRules = new[]
+    ///         {
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "drop",
+    ///                 IpRange = "1.1.1.1/32",
+    ///             },
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 22,
+    ///                 IpRange = "212.47.225.64/32",
+    ///             },
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 443,
+    ///             },
+    ///         },
+    ///         OutboundRules = new[]
+    ///         {
+    ///             new Scaleway.Instance.Inputs.SecurityGroupOutboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 IpRange = "8.8.8.8/32",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Trusted IP for SSH access (using for_each)
+    /// 
+    /// If you use terraform &gt;= 0.12.6, you can leverage the `ForEach` feature with this resource.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var trusted = new[]
+    ///     {
+    ///         "192.168.0.1",
+    ///         "192.168.0.2",
+    ///         "192.168.0.3",
+    ///     };
+    /// 
+    ///     var dummy = new Scaleway.Instance.SecurityGroup("dummy", new()
+    ///     {
+    ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         {
+    ///             return new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
+    ///             {
+    ///                 Action = "accept",
+    ///                 Port = 22,
+    ///                 IpRange = entry.Value,
+    ///             };
+    ///         }).ToList(),
+    ///         InboundDefaultPolicy = "drop",
+    ///         OutboundDefaultPolicy = "accept",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Instance security group can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:instance/securityGroup:SecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111

@@ -5,11 +5,109 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * The `scaleway.functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ *
+ * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+ *
+ * For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+ *
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.functions.Namespace("main", {
+ *     name: "main-function-namespace",
+ *     description: "Main function namespace",
+ * });
+ * const mainFunction = new scaleway.functions.Function("main", {
+ *     namespaceId: main.id,
+ *     runtime: "go124",
+ *     handler: "Handle",
+ *     privacy: "private",
+ * });
+ * ```
+ *
+ * ### With sources and deploy
+ *
+ * You can easily create a zip file containing your function (ex: `zip function.zip -r go.mod go.sum handler.go`) to deploy it with Terraform seamlessly. Refer to our [dedicated documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/package-function-dependencies-in-zip/) for more information on how to package a function into a zip file.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const main = new scaleway.functions.Namespace("main", {
+ *     name: "main-function-namespace",
+ *     description: "Main function namespace",
+ * });
+ * const mainFunction = new scaleway.functions.Function("main", {
+ *     namespaceId: main.id,
+ *     description: "function with zip file",
+ *     tags: [
+ *         "tag1",
+ *         "tag2",
+ *     ],
+ *     runtime: "go124",
+ *     handler: "Handle",
+ *     privacy: "private",
+ *     timeout: 10,
+ *     zipFile: "function.zip",
+ *     zipHash: std.filesha256({
+ *         input: "function.zip",
+ *     }).result,
+ *     deploy: true,
+ * });
+ * ```
+ *
+ * ### Managing authentication of private functions with IAM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * // Project to be referenced in the IAM policy
+ * const _default = scaleway.account.getProject({
+ *     name: "default",
+ * });
+ * // IAM resources
+ * const funcAuth = new scaleway.iam.Application("func_auth", {name: "function-auth"});
+ * const accessPrivateFuncs = new scaleway.iam.Policy("access_private_funcs", {
+ *     applicationId: funcAuth.id,
+ *     rules: [{
+ *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["FunctionsPrivateAccess"],
+ *     }],
+ * });
+ * const apiKey = new scaleway.iam.ApiKey("api_key", {applicationId: funcAuth.id});
+ * // Function resources
+ * const _private = new scaleway.functions.Namespace("private", {name: "private-function-namespace"});
+ * const privateFunction = new scaleway.functions.Function("private", {
+ *     namespaceId: _private.id,
+ *     runtime: "go124",
+ *     handler: "Handle",
+ *     privacy: "private",
+ *     zipFile: "function.zip",
+ *     zipHash: std.filesha256({
+ *         input: "function.zip",
+ *     }).result,
+ *     deploy: true,
+ * });
+ * export const secretKey = apiKey.secretKey;
+ * export const functionEndpoint = privateFunction.domainName;
+ * ```
+ *
+ * Then you can access your private function using the API key:
+ *
+ * Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+ *
  * ## Import
  *
  * Functions can be imported using, `{region}/{id}`, as shown below:
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
@@ -50,6 +148,9 @@ export class Function extends pulumi.CustomResource {
      * The CPU limit in mVCPU for your function.
      */
     declare public /*out*/ readonly cpuLimit: pulumi.Output<number>;
+    /**
+     * Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+     */
     declare public readonly deploy: pulumi.Output<boolean | undefined>;
     /**
      * The description of the function.
@@ -140,7 +241,7 @@ export class Function extends pulumi.CustomResource {
      */
     declare public readonly zipFile: pulumi.Output<string | undefined>;
     /**
-     * The hash of your source zip file, changing it will re-apply function. Can be any string
+     * The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
      */
     declare public readonly zipHash: pulumi.Output<string | undefined>;
 
@@ -238,6 +339,9 @@ export interface FunctionState {
      * The CPU limit in mVCPU for your function.
      */
     cpuLimit?: pulumi.Input<number>;
+    /**
+     * Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.
@@ -328,7 +432,7 @@ export interface FunctionState {
      */
     zipFile?: pulumi.Input<string>;
     /**
-     * The hash of your source zip file, changing it will re-apply function. Can be any string
+     * The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
      */
     zipHash?: pulumi.Input<string>;
 }
@@ -337,6 +441,9 @@ export interface FunctionState {
  * The set of arguments for constructing a Function resource.
  */
 export interface FunctionArgs {
+    /**
+     * Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.
@@ -419,7 +526,7 @@ export interface FunctionArgs {
      */
     zipFile?: pulumi.Input<string>;
     /**
-     * The hash of your source zip file, changing it will re-apply function. Can be any string
+     * The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
      */
     zipHash?: pulumi.Input<string>;
 }

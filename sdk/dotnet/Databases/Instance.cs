@@ -11,6 +11,12 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Databases
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Instances.
+    /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// 
+    /// &gt; **Security Best Practice:**
+    /// For enhanced security, we recommend using the `PasswordWo` write-only argument instead of the regular `Password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -69,8 +75,6 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:databases/instance:Instance rdb01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
@@ -127,7 +131,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<int> EndpointPort { get; private set; } = null!;
 
         /// <summary>
-        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        /// Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+        /// 
+        /// &gt; **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `Engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `&gt;= 2.61.0` before upgrading your Database Instance engine version.
+        /// 
+        /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
+        /// 
+        /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
@@ -189,6 +199,7 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Database Instance in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
@@ -364,7 +375,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<bool>? EncryptionAtRest { get; set; }
 
         /// <summary>
-        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        /// Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+        /// 
+        /// &gt; **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `Engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `&gt;= 2.61.0` before upgrading your Database Instance engine version.
+        /// 
+        /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
+        /// 
+        /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -439,6 +456,7 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Database Instance in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -597,7 +615,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<int>? EndpointPort { get; set; }
 
         /// <summary>
-        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        /// Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+        /// 
+        /// &gt; **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `Engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `&gt;= 2.61.0` before upgrading your Database Instance engine version.
+        /// 
+        /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
+        /// 
+        /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -678,6 +702,7 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Database Instance in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {

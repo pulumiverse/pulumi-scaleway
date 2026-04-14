@@ -31,7 +31,11 @@ class BucketWebsiteConfigurationArgs:
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input['BucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input['BucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -83,7 +87,11 @@ class BucketWebsiteConfigurationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -119,7 +127,11 @@ class _BucketWebsiteConfigurationState:
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input['BucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
         :param pulumi.Input['BucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
         :param pulumi.Input[_builtins.str] website_domain: The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
         :param pulumi.Input[_builtins.str] website_endpoint: The website endpoint.
@@ -179,7 +191,11 @@ class _BucketWebsiteConfigurationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -300,17 +316,12 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
 
         Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -321,7 +332,11 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
         :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
         """
         ...
@@ -394,17 +409,12 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
 
         Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -479,7 +489,11 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
         :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
         :param pulumi.Input[_builtins.str] website_domain: The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
         :param pulumi.Input[_builtins.str] website_endpoint: The website endpoint.
@@ -525,7 +539,11 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 

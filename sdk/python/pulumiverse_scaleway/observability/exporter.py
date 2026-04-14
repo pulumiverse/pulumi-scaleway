@@ -415,8 +415,6 @@ class Exporter(pulumi.CustomResource):
 
         Import an exporter using the regional ID:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -500,8 +498,6 @@ class Exporter(pulumi.CustomResource):
         ## Import
 
         Import an exporter using the regional ID:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111

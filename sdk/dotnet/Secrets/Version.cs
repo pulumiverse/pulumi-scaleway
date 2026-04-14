@@ -11,6 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Secrets
 {
     /// <summary>
+    /// The `scaleway.secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+    /// 
+    /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+    /// 
+    /// &gt; **Security Best Practice:**
+    /// For enhanced security, we recommend using the `DataWo` write-only argument instead of the regular `Data` argument. This ensures your sensitive data is never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+    /// 
     /// ## Example Usage
     /// 
     /// ### Create a secret and a version
@@ -53,9 +60,7 @@ namespace Pulumiverse.Scaleway.Secrets
     /// 
     /// This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
     /// 
-    /// ~&gt; **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
-    /// 
-    /// bash
+    /// &gt; **Important:** Keep in mind that if you import with the `Latest` revision, you will overwrite the previous version you might have been using.
     /// 
     /// ```sh
     /// $ pulumi import scaleway:secrets/version:Version main fr-par/11111111-1111-1111-1111-111111111111/2

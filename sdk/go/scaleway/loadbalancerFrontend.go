@@ -165,8 +165,6 @@ import (
 //
 // Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```

@@ -271,8 +271,6 @@ class RegistryNamespace(pulumi.CustomResource):
 
         Namespaces can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -314,8 +312,6 @@ class RegistryNamespace(pulumi.CustomResource):
         ## Import
 
         Namespaces can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111

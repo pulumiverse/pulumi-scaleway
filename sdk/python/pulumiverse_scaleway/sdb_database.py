@@ -252,11 +252,45 @@ class SdbDatabase(pulumi.CustomResource):
             max_cpu=8)
         ```
 
+        ### With IAM Application
+
+        This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
+
+        > **Note:** For more information, see [How to connect to a Serverless SQL Database](https://www.scaleway.com/en/docs/serverless-sql-databases/how-to/connect-to-a-database/)
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        default = scaleway.account.get_project(name="default")
+        app = scaleway.iam.Application("app", name="my app")
+        db_access = scaleway.iam.Policy("db_access",
+            name="my policy",
+            description="gives app access to serverless database in project",
+            application_id=app.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ServerlessSQLDatabaseReadWrite"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=app.id)
+        database = scaleway.databases.ServerlessDatabase("database",
+            name="my-database",
+            min_cpu=0,
+            max_cpu=8)
+        pulumi.export("databaseConnectionString", std.format(input="postgres://%s:%s@%s",
+            args=[
+                app.id,
+                api_key.secret_key,
+                std.trimprefix(input=database.endpoint,
+                    prefix="postgres://")["result"],
+            ])["result"])
+        ```
+
         ## Import
 
         Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111
@@ -297,11 +331,45 @@ class SdbDatabase(pulumi.CustomResource):
             max_cpu=8)
         ```
 
+        ### With IAM Application
+
+        This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
+
+        > **Note:** For more information, see [How to connect to a Serverless SQL Database](https://www.scaleway.com/en/docs/serverless-sql-databases/how-to/connect-to-a-database/)
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        default = scaleway.account.get_project(name="default")
+        app = scaleway.iam.Application("app", name="my app")
+        db_access = scaleway.iam.Policy("db_access",
+            name="my policy",
+            description="gives app access to serverless database in project",
+            application_id=app.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ServerlessSQLDatabaseReadWrite"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=app.id)
+        database = scaleway.databases.ServerlessDatabase("database",
+            name="my-database",
+            min_cpu=0,
+            max_cpu=8)
+        pulumi.export("databaseConnectionString", std.format(input="postgres://%s:%s@%s",
+            args=[
+                app.id,
+                api_key.secret_key,
+                std.trimprefix(input=database.endpoint,
+                    prefix="postgres://")["result"],
+            ])["result"])
+        ```
+
         ## Import
 
         Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111

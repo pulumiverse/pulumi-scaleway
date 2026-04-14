@@ -38,8 +38,6 @@ namespace Pulumiverse.Scaleway.Applesilicon
     /// 
     /// Runner can be imported using the `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:applesilicon/runner:Runner main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

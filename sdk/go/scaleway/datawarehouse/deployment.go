@@ -138,8 +138,6 @@ import (
 //
 // Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
 // ```
@@ -157,6 +155,7 @@ type Deployment struct {
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
@@ -253,6 +252,7 @@ type deploymentState struct {
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -294,6 +294,7 @@ type DeploymentState struct {
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -337,6 +338,7 @@ type deploymentArgs struct {
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -371,6 +373,7 @@ type DeploymentArgs struct {
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -507,6 +510,7 @@ func (o DeploymentOutput) Password() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
 func (o DeploymentOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }

@@ -426,8 +426,6 @@ class SnsTopicSubscription(pulumi.CustomResource):
 
         SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/snsTopicSubscription:SnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
         ```
@@ -491,8 +489,6 @@ class SnsTopicSubscription(pulumi.CustomResource):
         ## Import
 
         SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mnq/snsTopicSubscription:SnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111

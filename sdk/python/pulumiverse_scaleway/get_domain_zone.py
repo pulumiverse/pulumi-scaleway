@@ -155,7 +155,25 @@ def get_domain_zone(domain: Optional[_builtins.str] = None,
                     subdomain: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainZoneResult:
     """
-    Use this data source to access information about an existing resource.
+    The `domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+    ## Example Usage
+
+    ### Query a domain zone
+
+    The following command allows you to retrieve information about the DNS zone for the subdomain `test` within the domain `scaleway-terraform.com`.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get zone
+    main = scaleway.domain.get_zone(domain="scaleway-terraform.com",
+        subdomain="test")
+    ```
+
 
     :param _builtins.str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
     :param _builtins.str project_id: ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.
@@ -185,7 +203,25 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[_builtins.str]
                            subdomain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainZoneResult]:
     """
-    Use this data source to access information about an existing resource.
+    The `domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+    ## Example Usage
+
+    ### Query a domain zone
+
+    The following command allows you to retrieve information about the DNS zone for the subdomain `test` within the domain `scaleway-terraform.com`.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get zone
+    main = scaleway.domain.get_zone(domain="scaleway-terraform.com",
+        subdomain="test")
+    ```
+
 
     :param _builtins.str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
     :param _builtins.str project_id: ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.

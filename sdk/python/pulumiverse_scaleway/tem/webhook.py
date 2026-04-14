@@ -363,8 +363,6 @@ class Webhook(pulumi.CustomResource):
 
         Webhooks can be imported using the {region}/{id}, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:tem/webhook:Webhook main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -464,8 +462,6 @@ class Webhook(pulumi.CustomResource):
         ## Import
 
         Webhooks can be imported using the {region}/{id}, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:tem/webhook:Webhook main fr-par/11111111-1111-1111-1111-111111111111

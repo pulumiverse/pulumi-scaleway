@@ -26,11 +26,50 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With bastion
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const key1 = new scaleway.iam.SshKey("key1", {
+ *     name: "key1",
+ *     publicKey: std.file({
+ *         input: "~/.ssh/id_rsa.pub",
+ *     }).result,
+ * });
+ * const key2 = new scaleway.iam.SshKey("key2", {
+ *     name: "key2",
+ *     publicKey: std.file({
+ *         input: "~/.ssh/another_key.pub",
+ *     }).result,
+ * });
+ * const sshKeysHash = std.sha256({
+ *     input: std.join({
+ *         separator: ",",
+ *         input: [
+ *             key1.publicKey,
+ *             key2.publicKey,
+ *         ],
+ *     }).result,
+ * }).result;
+ * const main = new scaleway.network.PublicGateway("main", {
+ *     name: "public_gateway_demo",
+ *     type: "VPC-GW-S",
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
+ *     bastionEnabled: true,
+ *     bastionPort: 61000,
+ *     refreshSshKeys: sshKeysHash,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Public Gateways can be imported using `{zone}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:network/publicGateway:PublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111

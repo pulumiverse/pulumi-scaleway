@@ -40,7 +40,6 @@ namespace Pulumiverse.Scaleway.Mnq
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -62,8 +61,6 @@ namespace Pulumiverse.Scaleway.Mnq
     /// ## Import
     /// 
     /// SNS status can be imported using `{region}/{project_id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:mnq/sns:Sns main fr-par/11111111111111111111111111111111

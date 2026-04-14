@@ -660,8 +660,6 @@ class Domain(pulumi.CustomResource):
 
         Domains can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:tem/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -769,8 +767,6 @@ class Domain(pulumi.CustomResource):
         ## Import
 
         Domains can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:tem/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111

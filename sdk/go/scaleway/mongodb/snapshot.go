@@ -47,8 +47,6 @@ import (
 //
 // MongoDB® snapshots can be imported using the `{region}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
 // ```

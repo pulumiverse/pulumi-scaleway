@@ -509,8 +509,6 @@ class Hosting(pulumi.CustomResource):
 
         Hostings can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:hosting/hosting:Hosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -558,8 +556,6 @@ class Hosting(pulumi.CustomResource):
         ## Import
 
         Hostings can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:hosting/hosting:Hosting hosting01 fr-par/11111111-1111-1111-1111-111111111111

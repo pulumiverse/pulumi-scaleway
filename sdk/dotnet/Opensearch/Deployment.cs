@@ -11,11 +11,121 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Opensearch
 {
     /// <summary>
+    /// Creates and manages Scaleway OpenSearch deployments.
+    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Opensearch.Deployment("main", new()
+    ///     {
+    ///         Name = "my-opensearch-cluster",
+    ///         Version = "2.0",
+    ///         NodeAmount = 1,
+    ///         NodeType = "SEARCHDB-SHARED-2C-8G",
+    ///         Password = "ThisIsASecurePassword123!",
+    ///         Volume = new Scaleway.Opensearch.Inputs.DeploymentVolumeArgs
+    ///         {
+    ///             Type = "sbs_5k",
+    ///             SizeInGb = 5,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Production Setup with High Availability
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var prod = new Scaleway.Opensearch.Deployment("prod", new()
+    ///     {
+    ///         Name = "logs-prod-cluster",
+    ///         Version = "2.0",
+    ///         NodeAmount = 3,
+    ///         NodeType = "SEARCHDB-DEDICATED-2C-8G",
+    ///         Password = opensearchPassword,
+    ///         Tags = new[]
+    ///         {
+    ///             "production",
+    ///             "logs",
+    ///         },
+    ///         Volume = new Scaleway.Opensearch.Inputs.DeploymentVolumeArgs
+    ///         {
+    ///             Type = "sbs_15k",
+    ///             SizeInGb = 100,
+    ///         },
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["opensearchUrl"] = prod.Endpoints.Apply(endpoints =&gt; endpoints[0].Services[0]?.Url),
+    ///     };
+    /// });
+    /// ```
+    /// 
+    /// ### With Tags for Organization
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var analytics = new Scaleway.Opensearch.Deployment("analytics", new()
+    ///     {
+    ///         Name = "analytics-cluster",
+    ///         Version = "2.0",
+    ///         NodeAmount = 1,
+    ///         NodeType = "SEARCHDB-SHARED-4C-16G",
+    ///         Password = opensearchPassword,
+    ///         Tags = new[]
+    ///         {
+    ///             "analytics",
+    ///             "dev",
+    ///             "team-data",
+    ///         },
+    ///         Volume = new Scaleway.Opensearch.Inputs.DeploymentVolumeArgs
+    ///         {
+    ///             Type = "sbs_5k",
+    ///             SizeInGb = 10,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Upgrade Notes
+    /// 
+    /// ### Changing Resources
+    /// 
+    /// Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
+    /// 
+    /// 1. Create a snapshot of your data (manual process)
+    /// 2. Modify the `NodeType` in your Terraform configuration
+    /// 3. Apply the changes (will destroy and recreate)
+    /// 4. Restore your data from the snapshot
+    /// 
     /// ## Import
     /// 
     /// OpenSearch deployments can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111

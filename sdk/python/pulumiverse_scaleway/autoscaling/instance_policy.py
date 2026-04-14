@@ -380,8 +380,6 @@ class InstancePolicy(pulumi.CustomResource):
 
         Autoscaling instance policies can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:autoscaling/instancePolicy:InstancePolicy main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -450,8 +448,6 @@ class InstancePolicy(pulumi.CustomResource):
         ## Import
 
         Autoscaling instance policies can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:autoscaling/instancePolicy:InstancePolicy main fr-par-1/11111111-1111-1111-1111-111111111111

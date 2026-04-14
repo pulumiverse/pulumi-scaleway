@@ -441,6 +441,33 @@ class IamPolicy(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a permission for multiple users using a group
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = [
+            "user1@mail.com",
+            "user2@mail.com",
+        ]
+        project_name = "default"
+        project = scaleway.account.get_project(name=project_name)
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        with_users = scaleway.iam.Group("with_users",
+            name="developers",
+            user_ids=[user.id for user in users_get_user.values()])
+        iam_tf_storage_policy = scaleway.iam.Policy("iam_tf_storage_policy",
+            name="developers permissions",
+            group_id=with_users.id,
+            rules=[{
+                "project_ids": [project.id],
+                "permission_set_names": ["InstancesReadOnly"],
+            }])
+        ```
+
         ### Create a policy with a particular condition
 
         IAM policy rule can use a condition to be applied.
@@ -467,8 +494,6 @@ class IamPolicy(pulumi.CustomResource):
         ## Import
 
         Policies can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
@@ -537,6 +562,33 @@ class IamPolicy(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a permission for multiple users using a group
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = [
+            "user1@mail.com",
+            "user2@mail.com",
+        ]
+        project_name = "default"
+        project = scaleway.account.get_project(name=project_name)
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        with_users = scaleway.iam.Group("with_users",
+            name="developers",
+            user_ids=[user.id for user in users_get_user.values()])
+        iam_tf_storage_policy = scaleway.iam.Policy("iam_tf_storage_policy",
+            name="developers permissions",
+            group_id=with_users.id,
+            rules=[{
+                "project_ids": [project.id],
+                "permission_set_names": ["InstancesReadOnly"],
+            }])
+        ```
+
         ### Create a policy with a particular condition
 
         IAM policy rule can use a condition to be applied.
@@ -563,8 +615,6 @@ class IamPolicy(pulumi.CustomResource):
         ## Import
 
         Policies can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111

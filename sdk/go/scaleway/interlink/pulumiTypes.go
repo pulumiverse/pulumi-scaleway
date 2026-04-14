@@ -164,9 +164,182 @@ func (o GetPartnersPartnerArrayOutput) Index(i pulumi.IntInput) GetPartnersPartn
 	}).(GetPartnersPartnerOutput)
 }
 
+type GetPopsPop struct {
+	// Physical address of the PoP.
+	Address string `pulumi:"address"`
+	// List of available bandwidth options in Mbps.
+	AvailableLinkBandwidthsMbps []int `pulumi:"availableLinkBandwidthsMbps"`
+	// City where the PoP is located.
+	City string `pulumi:"city"`
+	// Human-readable display name.
+	DisplayName string `pulumi:"displayName"`
+	// Hosting provider name to filter for.
+	HostingProviderName string `pulumi:"hostingProviderName"`
+	// ID of the PoP.
+	Id string `pulumi:"id"`
+	// URL of the PoP's logo.
+	LogoUrl string `pulumi:"logoUrl"`
+	// PoP name to filter for.
+	Name string `pulumi:"name"`
+	// `region`) The region to list PoPs from.
+	Region string `pulumi:"region"`
+}
+
+// GetPopsPopInput is an input type that accepts GetPopsPopArgs and GetPopsPopOutput values.
+// You can construct a concrete instance of `GetPopsPopInput` via:
+//
+//	GetPopsPopArgs{...}
+type GetPopsPopInput interface {
+	pulumi.Input
+
+	ToGetPopsPopOutput() GetPopsPopOutput
+	ToGetPopsPopOutputWithContext(context.Context) GetPopsPopOutput
+}
+
+type GetPopsPopArgs struct {
+	// Physical address of the PoP.
+	Address pulumi.StringInput `pulumi:"address"`
+	// List of available bandwidth options in Mbps.
+	AvailableLinkBandwidthsMbps pulumi.IntArrayInput `pulumi:"availableLinkBandwidthsMbps"`
+	// City where the PoP is located.
+	City pulumi.StringInput `pulumi:"city"`
+	// Human-readable display name.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Hosting provider name to filter for.
+	HostingProviderName pulumi.StringInput `pulumi:"hostingProviderName"`
+	// ID of the PoP.
+	Id pulumi.StringInput `pulumi:"id"`
+	// URL of the PoP's logo.
+	LogoUrl pulumi.StringInput `pulumi:"logoUrl"`
+	// PoP name to filter for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `region`) The region to list PoPs from.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetPopsPopArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPopsPop)(nil)).Elem()
+}
+
+func (i GetPopsPopArgs) ToGetPopsPopOutput() GetPopsPopOutput {
+	return i.ToGetPopsPopOutputWithContext(context.Background())
+}
+
+func (i GetPopsPopArgs) ToGetPopsPopOutputWithContext(ctx context.Context) GetPopsPopOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPopsPopOutput)
+}
+
+// GetPopsPopArrayInput is an input type that accepts GetPopsPopArray and GetPopsPopArrayOutput values.
+// You can construct a concrete instance of `GetPopsPopArrayInput` via:
+//
+//	GetPopsPopArray{ GetPopsPopArgs{...} }
+type GetPopsPopArrayInput interface {
+	pulumi.Input
+
+	ToGetPopsPopArrayOutput() GetPopsPopArrayOutput
+	ToGetPopsPopArrayOutputWithContext(context.Context) GetPopsPopArrayOutput
+}
+
+type GetPopsPopArray []GetPopsPopInput
+
+func (GetPopsPopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPopsPop)(nil)).Elem()
+}
+
+func (i GetPopsPopArray) ToGetPopsPopArrayOutput() GetPopsPopArrayOutput {
+	return i.ToGetPopsPopArrayOutputWithContext(context.Background())
+}
+
+func (i GetPopsPopArray) ToGetPopsPopArrayOutputWithContext(ctx context.Context) GetPopsPopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPopsPopArrayOutput)
+}
+
+type GetPopsPopOutput struct{ *pulumi.OutputState }
+
+func (GetPopsPopOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPopsPop)(nil)).Elem()
+}
+
+func (o GetPopsPopOutput) ToGetPopsPopOutput() GetPopsPopOutput {
+	return o
+}
+
+func (o GetPopsPopOutput) ToGetPopsPopOutputWithContext(ctx context.Context) GetPopsPopOutput {
+	return o
+}
+
+// Physical address of the PoP.
+func (o GetPopsPopOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// List of available bandwidth options in Mbps.
+func (o GetPopsPopOutput) AvailableLinkBandwidthsMbps() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetPopsPop) []int { return v.AvailableLinkBandwidthsMbps }).(pulumi.IntArrayOutput)
+}
+
+// City where the PoP is located.
+func (o GetPopsPopOutput) City() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.City }).(pulumi.StringOutput)
+}
+
+// Human-readable display name.
+func (o GetPopsPopOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Hosting provider name to filter for.
+func (o GetPopsPopOutput) HostingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.HostingProviderName }).(pulumi.StringOutput)
+}
+
+// ID of the PoP.
+func (o GetPopsPopOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// URL of the PoP's logo.
+func (o GetPopsPopOutput) LogoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.LogoUrl }).(pulumi.StringOutput)
+}
+
+// PoP name to filter for.
+func (o GetPopsPopOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `region`) The region to list PoPs from.
+func (o GetPopsPopOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetPopsPopArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPopsPopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPopsPop)(nil)).Elem()
+}
+
+func (o GetPopsPopArrayOutput) ToGetPopsPopArrayOutput() GetPopsPopArrayOutput {
+	return o
+}
+
+func (o GetPopsPopArrayOutput) ToGetPopsPopArrayOutputWithContext(ctx context.Context) GetPopsPopArrayOutput {
+	return o
+}
+
+func (o GetPopsPopArrayOutput) Index(i pulumi.IntInput) GetPopsPopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPopsPop {
+		return vs[0].([]GetPopsPop)[vs[1].(int)]
+	}).(GetPopsPopOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPartnersPartnerInput)(nil)).Elem(), GetPartnersPartnerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPartnersPartnerArrayInput)(nil)).Elem(), GetPartnersPartnerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPopsPopInput)(nil)).Elem(), GetPopsPopArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPopsPopArrayInput)(nil)).Elem(), GetPopsPopArray{})
 	pulumi.RegisterOutputType(GetPartnersPartnerOutput{})
 	pulumi.RegisterOutputType(GetPartnersPartnerArrayOutput{})
+	pulumi.RegisterOutputType(GetPopsPopOutput{})
+	pulumi.RegisterOutputType(GetPopsPopArrayOutput{})
 }

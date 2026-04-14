@@ -11,11 +11,166 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// The `scaleway.functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// 
+    /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+    /// 
+    /// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
+    ///     {
+    ///         Name = "main-function-namespace",
+    ///         Description = "Main function namespace",
+    ///     });
+    /// 
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Runtime = "go124",
+    ///         Handler = "Handle",
+    ///         Privacy = "private",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With sources and deploy
+    /// 
+    /// You can easily create a zip file containing your function (ex: `zip function.zip -r go.mod go.sum handler.go`) to deploy it with Terraform seamlessly. Refer to our [dedicated documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/package-function-dependencies-in-zip/) for more information on how to package a function into a zip file.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
+    ///     {
+    ///         Name = "main-function-namespace",
+    ///         Description = "Main function namespace",
+    ///     });
+    /// 
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Description = "function with zip file",
+    ///         Tags = new[]
+    ///         {
+    ///             "tag1",
+    ///             "tag2",
+    ///         },
+    ///         Runtime = "go124",
+    ///         Handler = "Handle",
+    ///         Privacy = "private",
+    ///         Timeout = 10,
+    ///         ZipFile = "function.zip",
+    ///         ZipHash = Std.Index.Filesha256.Invoke(new()
+    ///         {
+    ///             Input = "function.zip",
+    ///         }).Result,
+    ///         Deploy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Managing authentication of private functions with IAM
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Project to be referenced in the IAM policy
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // IAM resources
+    ///     var funcAuth = new Scaleway.Iam.Application("func_auth", new()
+    ///     {
+    ///         Name = "function-auth",
+    ///     });
+    /// 
+    ///     var accessPrivateFuncs = new Scaleway.Iam.Policy("access_private_funcs", new()
+    ///     {
+    ///         ApplicationId = funcAuth.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
+    ///             {
+    ///                 ProjectIds = new[]
+    ///                 {
+    ///                     @default.Apply(@default =&gt; @default.Apply(getProjectResult =&gt; getProjectResult.Id)),
+    ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "FunctionsPrivateAccess",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var apiKey = new Scaleway.Iam.ApiKey("api_key", new()
+    ///     {
+    ///         ApplicationId = funcAuth.Id,
+    ///     });
+    /// 
+    ///     // Function resources
+    ///     var @private = new Scaleway.Functions.Namespace("private", new()
+    ///     {
+    ///         Name = "private-function-namespace",
+    ///     });
+    /// 
+    ///     var privateFunction = new Scaleway.Functions.Function("private", new()
+    ///     {
+    ///         NamespaceId = @private.Id,
+    ///         Runtime = "go124",
+    ///         Handler = "Handle",
+    ///         Privacy = "private",
+    ///         ZipFile = "function.zip",
+    ///         ZipHash = Std.Index.Filesha256.Invoke(new()
+    ///         {
+    ///             Input = "function.zip",
+    ///         }).Result,
+    ///         Deploy = true,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["secretKey"] = apiKey.SecretKey,
+    ///         ["functionEndpoint"] = privateFunction.DomainName,
+    ///     };
+    /// });
+    /// ```
+    /// 
+    /// Then you can access your private function using the API key:
+    /// 
+    /// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+    /// 
     /// ## Import
     /// 
     /// Functions can be imported using, `{region}/{id}`, as shown below:
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
@@ -31,6 +186,9 @@ namespace Pulumiverse.Scaleway
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
 
+        /// <summary>
+        /// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
 
@@ -165,7 +323,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> ZipFile { get; private set; } = null!;
 
         /// <summary>
-        /// The hash of your source zip file, changing it will re-apply function. Can be any string
+        /// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         /// </summary>
         [Output("zipHash")]
         public Output<string?> ZipHash { get; private set; } = null!;
@@ -221,6 +379,9 @@ namespace Pulumiverse.Scaleway
 
     public sealed class FunctionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
@@ -365,7 +526,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ZipFile { get; set; }
 
         /// <summary>
-        /// The hash of your source zip file, changing it will re-apply function. Can be any string
+        /// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         /// </summary>
         [Input("zipHash")]
         public Input<string>? ZipHash { get; set; }
@@ -384,6 +545,9 @@ namespace Pulumiverse.Scaleway
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
+        /// <summary>
+        /// Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
@@ -540,7 +704,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ZipFile { get; set; }
 
         /// <summary>
-        /// The hash of your source zip file, changing it will re-apply function. Can be any string
+        /// The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         /// </summary>
         [Input("zipHash")]
         public Input<string>? ZipHash { get; set; }

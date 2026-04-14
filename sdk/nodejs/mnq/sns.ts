@@ -39,8 +39,6 @@ import * as utilities from "../utilities";
  *
  * SNS status can be imported using `{region}/{project_id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:mnq/sns:Sns main fr-par/11111111111111111111111111111111
  * ```

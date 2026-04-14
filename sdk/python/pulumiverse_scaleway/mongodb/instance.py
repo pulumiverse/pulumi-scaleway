@@ -50,6 +50,7 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
@@ -172,6 +173,7 @@ class InstanceArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -396,6 +398,7 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
@@ -540,6 +543,7 @@ class _InstanceState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -781,6 +785,12 @@ class Instance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway MongoDB® instance.
+        For more information, see the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -802,8 +812,6 @@ class Instance(pulumi.CustomResource):
 
         MongoDB® instance can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mongodb/instance:Instance main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -816,6 +824,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
@@ -839,6 +848,12 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway MongoDB® instance.
+        For more information, see the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -859,8 +874,6 @@ class Instance(pulumi.CustomResource):
         ## Import
 
         MongoDB® instance can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mongodb/instance:Instance main fr-par/11111111-1111-1111-1111-111111111111
@@ -991,6 +1004,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
@@ -1092,6 +1106,7 @@ class Instance(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

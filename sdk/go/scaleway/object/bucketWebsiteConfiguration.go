@@ -111,7 +111,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
 //				Bucket: main.ID(),
-//				Policy: pulumi.String(json0),
+//				Policy: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -135,17 +135,12 @@ import (
 //
 // Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket
 // ```
 //
-// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
 // If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -159,7 +154,11 @@ type BucketWebsiteConfiguration struct {
 	ErrorDocument BucketWebsiteConfigurationErrorDocumentPtrOutput `pulumi:"errorDocument"`
 	// The name of the index file for the website detailed below.
 	IndexDocument BucketWebsiteConfigurationIndexDocumentOutput `pulumi:"indexDocument"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -217,7 +216,11 @@ type bucketWebsiteConfigurationState struct {
 	ErrorDocument *BucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
 	// The name of the index file for the website detailed below.
 	IndexDocument *BucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -234,7 +237,11 @@ type BucketWebsiteConfigurationState struct {
 	ErrorDocument BucketWebsiteConfigurationErrorDocumentPtrInput
 	// The name of the index file for the website detailed below.
 	IndexDocument BucketWebsiteConfigurationIndexDocumentPtrInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -255,7 +262,11 @@ type bucketWebsiteConfigurationArgs struct {
 	ErrorDocument *BucketWebsiteConfigurationErrorDocument `pulumi:"errorDocument"`
 	// The name of the index file for the website detailed below.
 	IndexDocument BucketWebsiteConfigurationIndexDocument `pulumi:"indexDocument"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -269,7 +280,11 @@ type BucketWebsiteConfigurationArgs struct {
 	ErrorDocument BucketWebsiteConfigurationErrorDocumentPtrInput
 	// The name of the index file for the website detailed below.
 	IndexDocument BucketWebsiteConfigurationIndexDocumentInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -381,7 +396,11 @@ func (o BucketWebsiteConfigurationOutput) IndexDocument() BucketWebsiteConfigura
 	}).(BucketWebsiteConfigurationIndexDocumentOutput)
 }
 
-// The projectId you want to attach the resource to
+// `projectId`) The ID of the project the bucket is associated with.
+//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 func (o BucketWebsiteConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketWebsiteConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

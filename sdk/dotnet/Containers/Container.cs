@@ -82,7 +82,6 @@ namespace Pulumiverse.Scaleway.Containers
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -149,7 +148,6 @@ namespace Pulumiverse.Scaleway.Containers
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -317,8 +315,6 @@ namespace Pulumiverse.Scaleway.Containers
     /// ## Import
     /// 
     /// Containers can be imported using, `{region}/{id}`, as shown below:
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:containers/container:Container main fr-par/11111111-1111-1111-1111-111111111111

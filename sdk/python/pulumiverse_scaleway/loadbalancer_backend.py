@@ -1093,8 +1093,6 @@ class LoadbalancerBackend(pulumi.CustomResource):
 
         Load Balancer backends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -1180,8 +1178,6 @@ class LoadbalancerBackend(pulumi.CustomResource):
         ## Import
 
         Load Balancer backends can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111

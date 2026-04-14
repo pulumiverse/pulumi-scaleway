@@ -12,6 +12,12 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `databases.User` resource creates and manages database users.
+// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+//
+// > **Security Best Practice:**
+// For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+//
 // ## Example Usage
 //
 // ```go
@@ -74,8 +80,6 @@ import (
 //
 // Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
 // ```
@@ -105,6 +109,7 @@ type DatabaseUser struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
@@ -177,6 +182,7 @@ type databaseUserState struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -206,6 +212,7 @@ type DatabaseUserState struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -239,6 +246,7 @@ type databaseUserArgs struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -269,6 +277,7 @@ type DatabaseUserArgs struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -396,6 +405,7 @@ func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 func (o DatabaseUserOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }

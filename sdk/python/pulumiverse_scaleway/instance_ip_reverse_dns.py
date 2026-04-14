@@ -169,8 +169,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
 
         IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -214,8 +212,6 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         ## Import
 
         IPs reverse DNS can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111

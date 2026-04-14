@@ -23,7 +23,6 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -98,6 +97,73 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a permission for multiple users using a group
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var users = new[]
+    ///     {
+    ///         "user1@mail.com",
+    ///         "user2@mail.com",
+    ///     };
+    /// 
+    ///     var projectName = "default";
+    /// 
+    ///     var project = Scaleway.Account.GetProject.Invoke(new()
+    ///     {
+    ///         Name = projectName,
+    ///     });
+    /// 
+    ///     var usersGetUser = .ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key;
+    ///     }, item =&gt; {
+    ///         var __value = item.Value;
+    ///         return Scaleway.Iam.GetUser.Invoke(new()
+    ///         {
+    ///             Email = __value,
+    ///         });
+    ///     });
+    /// 
+    ///     var withUsers = new Scaleway.Iam.Group("with_users", new()
+    ///     {
+    ///         Name = "developers",
+    ///         UserIds = (usersGetUser).Values.Select(user =&gt; 
+    ///         {
+    ///             return user.Id;
+    ///         }).ToList(),
+    ///     });
+    /// 
+    ///     var iamTfStoragePolicy = new Scaleway.Iam.Policy("iam_tf_storage_policy", new()
+    ///     {
+    ///         Name = "developers permissions",
+    ///         GroupId = withUsers.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
+    ///             {
+    ///                 ProjectIds = new[]
+    ///                 {
+    ///                     project.Apply(getProjectResult =&gt; getProjectResult.Id),
+    ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "InstancesReadOnly",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Create a policy with a particular condition
     /// 
     /// IAM policy rule can use a condition to be applied.
@@ -139,8 +205,6 @@ namespace Pulumiverse.Scaleway
     /// ## Import
     /// 
     /// Policies can be imported using the `{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111

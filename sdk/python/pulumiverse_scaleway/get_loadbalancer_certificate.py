@@ -184,7 +184,7 @@ def get_loadbalancer_certificate(certificate_id: Optional[_builtins.str] = None,
             "common_name": pulumi.Output.all(
                 ip_address=main_load_balancer.ip_address,
                 region=main_load_balancer.region
-    ).apply(lambda resolved_outputs: f"{std.index.replace(text=resolved_outputs['ip_address'],
+    ).apply(lambda resolved_outputs: f"{std.replace(text=resolved_outputs['ip_address'],
                 search='.',
                 replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
     ,
@@ -255,7 +255,7 @@ def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Op
             "common_name": pulumi.Output.all(
                 ip_address=main_load_balancer.ip_address,
                 region=main_load_balancer.region
-    ).apply(lambda resolved_outputs: f"{std.index.replace(text=resolved_outputs['ip_address'],
+    ).apply(lambda resolved_outputs: f"{std.replace(text=resolved_outputs['ip_address'],
                 search='.',
                 replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
     ,

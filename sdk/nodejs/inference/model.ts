@@ -7,6 +7,11 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * The scaleway.inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any scaleway.inference.Deployment resource.
+ *
+ * > **Security Best Practice:**
+ * For enhanced security, we recommend using the `secretWo` write-only argument instead of the regular `secret` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -58,8 +63,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * Models can be imported using, `{region}/{id}`, as shown below:
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
@@ -131,6 +134,7 @@ export class Model extends pulumi.CustomResource {
     declare public readonly secret: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
      */
     declare public readonly secretWo: pulumi.Output<string | undefined>;
     /**
@@ -258,6 +262,7 @@ export interface ModelState {
     secret?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
      */
     secretWo?: pulumi.Input<string>;
     /**
@@ -308,6 +313,7 @@ export interface ModelArgs {
     secret?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
      */
     secretWo?: pulumi.Input<string>;
     /**

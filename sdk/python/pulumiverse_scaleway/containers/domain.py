@@ -215,8 +215,6 @@ class Domain(pulumi.CustomResource):
 
         Container domain binding can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:containers/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -295,8 +293,6 @@ class Domain(pulumi.CustomResource):
         ## Import
 
         Container domain binding can be imported using `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:containers/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111

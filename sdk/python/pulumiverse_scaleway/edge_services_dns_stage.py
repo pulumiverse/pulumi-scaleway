@@ -325,8 +325,6 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
 
         DNS stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage basic 11111111-1111-1111-1111-111111111111
         ```
@@ -365,8 +363,6 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         ## Import
 
         DNS stages can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage basic 11111111-1111-1111-1111-111111111111

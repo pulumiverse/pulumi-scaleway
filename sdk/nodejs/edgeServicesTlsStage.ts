@@ -42,8 +42,6 @@ import * as utilities from "./utilities";
  *
  * TLS stages can be imported using the `{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage basic 11111111-1111-1111-1111-111111111111
  * ```

@@ -52,6 +52,38 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Create a permission for multiple users using a group
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const users = [
+ *     "user1@mail.com",
+ *     "user2@mail.com",
+ * ];
+ * const projectName = "default";
+ * const project = scaleway.account.getProject({
+ *     name: projectName,
+ * });
+ * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: scaleway.iam.getUser({
+ *     email: __value,
+ * }) }), {});
+ * const withUsers = new scaleway.iam.Group("with_users", {
+ *     name: "developers",
+ *     userIds: Object.values(usersGetUser).map(user => (user.id)),
+ * });
+ * const iamTfStoragePolicy = new scaleway.iam.Policy("iam_tf_storage_policy", {
+ *     name: "developers permissions",
+ *     groupId: withUsers.id,
+ *     rules: [{
+ *         projectIds: [project.then(project => project.id)],
+ *         permissionSetNames: ["InstancesReadOnly"],
+ *     }],
+ * });
+ * ```
+ *
  * ### Create a policy with a particular condition
  *
  * IAM policy rule can use a condition to be applied.
@@ -79,8 +111,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * Policies can be imported using the `{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:iam/policy:Policy main 11111111-1111-1111-1111-111111111111

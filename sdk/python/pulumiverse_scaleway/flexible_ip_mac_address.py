@@ -288,8 +288,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
 
         Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -353,8 +351,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         ## Import
 
         Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111

@@ -126,7 +126,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///         Size = 1,
     ///     });
     /// 
-    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
+    ///     var kubeconfig = new Null.Index.Resource("kubeconfig", new()
     ///     {
     ///         Triggers = 
     ///         {
@@ -218,7 +218,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// 
     ///     // The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
     ///     // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
+    ///     var kubeconfig = new Null.Index.Resource("kubeconfig", new()
     ///     {
     ///         Triggers = 
     ///         {
@@ -335,8 +335,6 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// ## Import
     /// 
     /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:kubernetes/cluster:Cluster mycluster fr-par/11111111-1111-1111-1111-111111111111

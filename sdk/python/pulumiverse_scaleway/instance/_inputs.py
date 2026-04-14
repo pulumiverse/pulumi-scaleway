@@ -341,7 +341,9 @@ if not MYPY:
         """
         port_range: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -364,7 +366,9 @@ class SecurityGroupInboundRuleArgs:
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.int] port: The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
-        :param pulumi.Input[_builtins.str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param pulumi.Input[_builtins.str] port_range: Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param pulumi.Input[_builtins.str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -435,7 +439,9 @@ class SecurityGroupInboundRuleArgs:
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -611,7 +617,9 @@ if not MYPY:
         """
         port_range: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -634,7 +642,9 @@ class SecurityGroupRulesInboundRuleArgs:
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.int] port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param pulumi.Input[_builtins.str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param pulumi.Input[_builtins.str] port_range: Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param pulumi.Input[_builtins.str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -705,7 +715,9 @@ class SecurityGroupRulesInboundRuleArgs:
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 

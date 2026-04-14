@@ -60,6 +60,86 @@ import (
 //
 // ```
 //
+// ### Host-based routing
+//
+// Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
+//				Name:        pulumi.String("my-pipeline"),
+//				Description: pulumi.String("Multi-host pipeline with host-based routing"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			api, err := object.NewBucket(ctx, "api", &object.BucketArgs{
+//				Name: pulumi.String("my-api-bucket"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			static, err := object.NewBucket(ctx, "static", &object.BucketArgs{
+//				Name: pulumi.String("my-static-site"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			apiBackendStage, err := edgeservices.NewBackendStage(ctx, "api", &edgeservices.BackendStageArgs{
+//				PipelineId: main.ID(),
+//				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
+//					BucketName:   api.Name,
+//					BucketRegion: pulumi.String("fr-par"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			staticBackendStage, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
+//				PipelineId: main.ID(),
+//				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
+//					BucketName:   static.Name,
+//					BucketRegion: pulumi.String("fr-par"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
+//				PipelineId:     main.ID(),
+//				BackendStageId: staticBackendStage.ID(),
+//				Rules: edgeservices.RouteStageRuleArray{
+//					&edgeservices.RouteStageRuleArgs{
+//						BackendStageId: apiBackendStage.ID(),
+//						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
+//							HostFilter: &edgeservices.RouteStageRuleRuleHttpMatchHostFilterArgs{
+//								HostFilterType: pulumi.String("regex"),
+//								Value:          pulumi.String("api\\.example\\.com"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Default to backend with selective WAF protection
 //
 // Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -143,8 +223,6 @@ import (
 // ## Import
 //
 // Route stages can be imported using the `{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:edgeservices/routeStage:RouteStage basic 11111111-1111-1111-1111-111111111111

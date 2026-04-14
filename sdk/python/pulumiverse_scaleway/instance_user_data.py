@@ -232,7 +232,7 @@ class InstanceUserData(pulumi.CustomResource):
             value="bar")
         # User Data with many keys.
         data = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
+        for range in [{"key": k, "value": v} for [k, v] in (user_data).items()]:
             data.append(scaleway.instance.UserData(f"data-{range['key']}",
                 server_id=main_server.id,
                 key=range["key"],
@@ -242,8 +242,6 @@ class InstanceUserData(pulumi.CustomResource):
         ## Import
 
         User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
@@ -306,7 +304,7 @@ class InstanceUserData(pulumi.CustomResource):
             value="bar")
         # User Data with many keys.
         data = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
+        for range in [{"key": k, "value": v} for [k, v] in (user_data).items()]:
             data.append(scaleway.instance.UserData(f"data-{range['key']}",
                 server_id=main_server.id,
                 key=range["key"],
@@ -316,8 +314,6 @@ class InstanceUserData(pulumi.CustomResource):
         ## Import
 
         User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111

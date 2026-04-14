@@ -56,6 +56,78 @@ namespace Pulumiverse.Scaleway.Edgeservices
     /// });
     /// ```
     /// 
+    /// ### Host-based routing
+    /// 
+    /// Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Edgeservices.Pipeline("main", new()
+    ///     {
+    ///         Name = "my-pipeline",
+    ///         Description = "Multi-host pipeline with host-based routing",
+    ///     });
+    /// 
+    ///     var api = new Scaleway.Object.Bucket("api", new()
+    ///     {
+    ///         Name = "my-api-bucket",
+    ///     });
+    /// 
+    ///     var @static = new Scaleway.Object.Bucket("static", new()
+    ///     {
+    ///         Name = "my-static-site",
+    ///     });
+    /// 
+    ///     var apiBackendStage = new Scaleway.Edgeservices.BackendStage("api", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         S3BackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageS3BackendConfigArgs
+    ///         {
+    ///             BucketName = api.Name,
+    ///             BucketRegion = "fr-par",
+    ///         },
+    ///     });
+    /// 
+    ///     var staticBackendStage = new Scaleway.Edgeservices.BackendStage("static", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         S3BackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageS3BackendConfigArgs
+    ///         {
+    ///             BucketName = @static.Name,
+    ///             BucketRegion = "fr-par",
+    ///         },
+    ///     });
+    /// 
+    ///     var mainRouteStage = new Scaleway.Edgeservices.RouteStage("main", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         BackendStageId = staticBackendStage.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Edgeservices.Inputs.RouteStageRuleArgs
+    ///             {
+    ///                 BackendStageId = apiBackendStage.Id,
+    ///                 RuleHttpMatch = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchArgs
+    ///                 {
+    ///                     HostFilter = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchHostFilterArgs
+    ///                     {
+    ///                         HostFilterType = "regex",
+    ///                         Value = "api\\.example\\.com",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Default to backend with selective WAF protection
     /// 
     /// Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -132,8 +204,6 @@ namespace Pulumiverse.Scaleway.Edgeservices
     /// ## Import
     /// 
     /// Route stages can be imported using the `{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:edgeservices/routeStage:RouteStage basic 11111111-1111-1111-1111-111111111111

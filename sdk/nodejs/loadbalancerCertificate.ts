@@ -7,11 +7,39 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Load Balancer certificates.
+ *
+ * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+ *
+ * ## Example Usage
+ *
+ * ### Custom Certificate
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const cert01 = new scaleway.loadbalancers.Certificate("cert01", {
+ *     lbId: lb01.id,
+ *     name: "custom-cert",
+ *     customCertificate: {
+ *         certificateChain: "CERTIFICATE_CHAIN_CONTENTS\n",
+ *     },
+ * });
+ * ```
+ *
+ * ## Additional notes
+ *
+ * * Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+ *   You can achieve this by creating a DNS record through Terraform pointing to  the `ipAddress` property of the `lbBeta` entity.
+ * * If there are any issues with the certificate, you will receive a `400` error from the `apply` operation.
+ *   Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
+ * * Wildcards are not yet supported with Let's Encrypt.
+ * * Use `lifecycle` instruction with `createBeforeDestroy = true` to permit correct certificate replacement and prevent a `400` error from the `apply` operation.
+ *
  * ## Import
  *
  * Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111

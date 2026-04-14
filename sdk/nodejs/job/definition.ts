@@ -69,8 +69,6 @@ import * as utilities from "../utilities";
  *
  * Serverless Jobs can be imported using the `{region}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:job/definition:Definition job fr-par/11111111-1111-1111-1111-111111111111
  * ```

@@ -225,8 +225,6 @@ import * as utilities from "../utilities";
  *
  * Instance servers can be imported using the `{zone}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:instance/server:Server web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
@@ -365,7 +363,9 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly rootVolume: pulumi.Output<outputs.instance.ServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     *
+     * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
     declare public readonly securityGroupId: pulumi.Output<string>;
     /**
@@ -589,7 +589,9 @@ export interface ServerState {
      */
     rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     *
+     * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
     securityGroupId?: pulumi.Input<string>;
     /**
@@ -726,7 +728,9 @@ export interface ServerArgs {
      */
     rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume>;
     /**
-     * The security group the server is attached to
+     * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+     *
+     * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
     securityGroupId?: pulumi.Input<string>;
     /**

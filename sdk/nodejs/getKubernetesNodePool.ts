@@ -95,6 +95,9 @@ export interface GetKubernetesNodePoolResult {
      * The creation date of the pool.
      */
     readonly createdAt: string;
+    /**
+     * The size of the pool at the time the terraform state was updated.
+     */
     readonly currentSize: number;
     /**
      * The provider-assigned unique ID for this managed resource.

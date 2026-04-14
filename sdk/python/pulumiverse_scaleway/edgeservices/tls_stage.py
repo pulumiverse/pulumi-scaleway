@@ -386,8 +386,6 @@ class TlsStage(pulumi.CustomResource):
 
         TLS stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:edgeservices/tlsStage:TlsStage basic 11111111-1111-1111-1111-111111111111
         ```
@@ -442,8 +440,6 @@ class TlsStage(pulumi.CustomResource):
         ## Import
 
         TLS stages can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:edgeservices/tlsStage:TlsStage basic 11111111-1111-1111-1111-111111111111

@@ -45,7 +45,7 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("MyServer"),
-//				Offer:                  pulumi.String(myOffer.OfferId),
+//				Offer:                  pulumi.String(pulumi.String(myOffer.OfferId)),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {

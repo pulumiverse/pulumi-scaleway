@@ -32,8 +32,6 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     /// IPs can be imported using the `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:instance/ip:Ip server_ip fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

@@ -5,11 +5,74 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Deprecated:** This resource is deprecated and will be removed on **January 1st, 2026**.
+ *
+ * > **Migration Guide:** Grafana authentication is now managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/). To access your Grafana instance, use the `scaleway.observability.getGrafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+ *
+ * The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+ *
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Migration to IAM Authentication
+ *
+ * Instead of managing Grafana users, retrieve your Grafana URL using the data source:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Old approach (deprecated)
+ * // resource "scaleway_cockpit_grafana_user" "main" {
+ * //   project_id = scaleway_account_project.project.id
+ * //   login      = "my-awesome-user"
+ * //   role       = "editor"
+ * // }
+ * // New approach - Use IAM authentication
+ * const main = scaleway.observability.getGrafana({
+ *     projectId: project.id,
+ * });
+ * export const grafanaUrl = main.then(main => main.grafanaUrl);
+ * ```
+ *
+ * ### Programmatic access with the Grafana provider
+ *
+ * To automate Grafana configuration (e.g., dashboards, alerting) with Terraform, reuse your Scaleway IAM secret as an `X-Auth-Token` header. The Grafana provider must run in `anonymous` mode because user/password authentication is deprecated.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const config = new pulumi.Config();
+ * // Scaleway IAM secret key used for both the Scaleway and Grafana providers
+ * const scalewaySecretKey = config.require("scalewaySecretKey");
+ * const main = scaleway.observability.getGrafana({
+ *     projectId: project.id,
+ * });
+ * ```
+ *
+ * The header `X-Auth-Token` is mandatory when Grafana users are disabled. Store the IAM secret key securely (environment variable, secrets manager, etc.) and avoid committing it to version control.
+ *
+ * ### Create a Grafana user (Deprecated)
+ *
+ * The following command allows you to create a Grafana user within a specific Scaleway Project.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = new scaleway.account.Project("project", {name: "test project grafana user"});
+ * const main = new scaleway.observability.GrafanaUser("main", {
+ *     projectId: project.id,
+ *     login: "my-awesome-user",
+ *     role: "editor",
+ * });
+ * ```
+ *
  * ## Import
  *
  * This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2

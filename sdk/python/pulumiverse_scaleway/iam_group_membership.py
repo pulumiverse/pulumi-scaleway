@@ -171,15 +171,35 @@ class IamGroupMembership(pulumi.CustomResource):
             application_id=app.id)
         ```
 
+        ### Users membership
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        group = scaleway.iam.Group("group",
+            name="my_group",
+            external_membership=True)
+        members = []
+        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+                group_id=group.id,
+                user_id=range["value"].id))
+        ```
+
         ## Import
 
         IAM group memberships can be imported using two format:
 
         - For user: `{group_id}/user/{user_id}`
-
         - For application: `{group_id}/app/{application_id}`
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
@@ -220,15 +240,35 @@ class IamGroupMembership(pulumi.CustomResource):
             application_id=app.id)
         ```
 
+        ### Users membership
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        group = scaleway.iam.Group("group",
+            name="my_group",
+            external_membership=True)
+        members = []
+        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+                group_id=group.id,
+                user_id=range["value"].id))
+        ```
+
         ## Import
 
         IAM group memberships can be imported using two format:
 
         - For user: `{group_id}/user/{user_id}`
-
         - For application: `{group_id}/app/{application_id}`
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111

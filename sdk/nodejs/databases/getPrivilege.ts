@@ -58,6 +58,7 @@ export interface GetPrivilegeArgs {
  */
 export interface GetPrivilegeResult {
     readonly databaseName: string;
+    readonly effectivePermission: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -68,6 +69,7 @@ export interface GetPrivilegeResult {
      * , `custom` and `none`.
      */
     readonly permission: string;
+    readonly permissionStatus: string;
     readonly region?: string;
     readonly userName: string;
 }

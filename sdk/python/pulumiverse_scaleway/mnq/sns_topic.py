@@ -400,8 +400,6 @@ class SnsTopic(pulumi.CustomResource):
 
         SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/snsTopic:SnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
@@ -454,8 +452,6 @@ class SnsTopic(pulumi.CustomResource):
         ## Import
 
         SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mnq/snsTopic:SnsTopic main fr-par/11111111111111111111111111111111/my-topic

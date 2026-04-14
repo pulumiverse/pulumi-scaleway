@@ -46,15 +46,62 @@ namespace Pulumiverse.Scaleway.Iam
     /// });
     /// ```
     /// 
+    /// ### Users membership
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Threading.Tasks;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(async() =&gt; 
+    /// {
+    ///     var users = Std.Index.Toset.Invoke(new()
+    ///     {
+    ///         Input = new[]
+    ///         {
+    ///             "user1@mail.com",
+    ///             "user2@mail.com",
+    ///         },
+    ///     }).Result;
+    /// 
+    ///     var usersGetUser = .ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key;
+    ///     }, item =&gt; {
+    ///         var __value = item.Value;
+    ///         return await Scaleway.Iam.GetUser.InvokeAsync(new()
+    ///         {
+    ///             Email = __value,
+    ///         });
+    ///     });
+    /// 
+    ///     var @group = new Scaleway.Iam.Group("group", new()
+    ///     {
+    ///         Name = "my_group",
+    ///         ExternalMembership = true,
+    ///     });
+    /// 
+    ///     var members = new List&lt;Scaleway.Iam.GroupMembership&gt;();
+    ///     foreach (var range in usersGetUser.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         members.Add(new Scaleway.Iam.GroupMembership($"members-{range.Key}", new()
+    ///         {
+    ///             GroupId = @group.Id,
+    ///             UserId = range.Value.Id,
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IAM group memberships can be imported using two format:
     /// 
     /// - For user: `{group_id}/user/{user_id}`
-    /// 
     /// - For application: `{group_id}/app/{application_id}`
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:iam/groupMembership:GroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111

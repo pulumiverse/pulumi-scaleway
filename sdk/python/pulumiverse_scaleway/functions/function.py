@@ -48,6 +48,7 @@ class FunctionArgs:
                > **Important** Updating the `name` argument will recreate the function.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
+        :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         :param pulumi.Input[_builtins.str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
@@ -65,7 +66,7 @@ class FunctionArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
-        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
+        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         pulumi.set(__self__, "handler", handler)
         pulumi.set(__self__, "namespace_id", namespace_id)
@@ -159,6 +160,9 @@ class FunctionArgs:
     @_builtins.property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -351,7 +355,7 @@ class FunctionArgs:
     @pulumi.getter(name="zipHash")
     def zip_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The hash of your source zip file, changing it will re-apply function. Can be any string
+        The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         return pulumi.get(self, "zip_hash")
 
@@ -390,6 +394,7 @@ class _FunctionState:
         """
         Input properties used for looking up and filtering Function resources.
         :param pulumi.Input[_builtins.int] cpu_limit: The CPU limit in mVCPU for your function.
+        :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         :param pulumi.Input[_builtins.str] description: The description of the function.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
@@ -415,7 +420,7 @@ class _FunctionState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
-        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
+        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         if cpu_limit is not None:
             pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -481,6 +486,9 @@ class _FunctionState:
     @_builtins.property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -747,7 +755,7 @@ class _FunctionState:
     @pulumi.getter(name="zipHash")
     def zip_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The hash of your source zip file, changing it will re-apply function. Can be any string
+        The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         return pulumi.get(self, "zip_hash")
 
@@ -785,11 +793,98 @@ class Function(pulumi.CustomResource):
                  zip_hash: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+        For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            runtime="go124",
+            handler="Handle",
+            privacy="private")
+        ```
+
+        ### With sources and deploy
+
+        You can easily create a zip file containing your function (ex: `zip function.zip -r go.mod go.sum handler.go`) to deploy it with Terraform seamlessly. Refer to our [dedicated documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/package-function-dependencies-in-zip/) for more information on how to package a function into a zip file.
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            description="function with zip file",
+            tags=[
+                "tag1",
+                "tag2",
+            ],
+            runtime="go124",
+            handler="Handle",
+            privacy="private",
+            timeout=10,
+            zip_file="function.zip",
+            zip_hash=std.filesha256(input="function.zip")["result"],
+            deploy=True)
+        ```
+
+        ### Managing authentication of private functions with IAM
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        # Project to be referenced in the IAM policy
+        default = scaleway.account.get_project(name="default")
+        # IAM resources
+        func_auth = scaleway.iam.Application("func_auth", name="function-auth")
+        access_private_funcs = scaleway.iam.Policy("access_private_funcs",
+            application_id=func_auth.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["FunctionsPrivateAccess"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=func_auth.id)
+        # Function resources
+        private = scaleway.functions.Namespace("private", name="private-function-namespace")
+        private_function = scaleway.functions.Function("private",
+            namespace_id=private.id,
+            runtime="go124",
+            handler="Handle",
+            privacy="private",
+            zip_file="function.zip",
+            zip_hash=std.filesha256(input="function.zip")["result"],
+            deploy=True)
+        pulumi.export("secretKey", api_key.secret_key)
+        pulumi.export("functionEndpoint", private_function.domain_name)
+        ```
+
+        Then you can access your private function using the API key:
+
+        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+
         ## Import
 
         Functions can be imported using, `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:functions/function:Function main fr-par/11111111-1111-1111-1111-111111111111
@@ -797,6 +892,7 @@ class Function(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         :param pulumi.Input[_builtins.str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         :param pulumi.Input[_builtins.str] handler: Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
@@ -820,7 +916,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
-        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
+        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         ...
     @overload
@@ -829,11 +925,98 @@ class Function(pulumi.CustomResource):
                  args: FunctionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+        For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            runtime="go124",
+            handler="Handle",
+            privacy="private")
+        ```
+
+        ### With sources and deploy
+
+        You can easily create a zip file containing your function (ex: `zip function.zip -r go.mod go.sum handler.go`) to deploy it with Terraform seamlessly. Refer to our [dedicated documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/package-function-dependencies-in-zip/) for more information on how to package a function into a zip file.
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main",
+            name="main-function-namespace",
+            description="Main function namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            description="function with zip file",
+            tags=[
+                "tag1",
+                "tag2",
+            ],
+            runtime="go124",
+            handler="Handle",
+            privacy="private",
+            timeout=10,
+            zip_file="function.zip",
+            zip_hash=std.filesha256(input="function.zip")["result"],
+            deploy=True)
+        ```
+
+        ### Managing authentication of private functions with IAM
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        # Project to be referenced in the IAM policy
+        default = scaleway.account.get_project(name="default")
+        # IAM resources
+        func_auth = scaleway.iam.Application("func_auth", name="function-auth")
+        access_private_funcs = scaleway.iam.Policy("access_private_funcs",
+            application_id=func_auth.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["FunctionsPrivateAccess"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=func_auth.id)
+        # Function resources
+        private = scaleway.functions.Namespace("private", name="private-function-namespace")
+        private_function = scaleway.functions.Function("private",
+            namespace_id=private.id,
+            runtime="go124",
+            handler="Handle",
+            privacy="private",
+            zip_file="function.zip",
+            zip_hash=std.filesha256(input="function.zip")["result"],
+            deploy=True)
+        pulumi.export("secretKey", api_key.secret_key)
+        pulumi.export("functionEndpoint", private_function.domain_name)
+        ```
+
+        Then you can access your private function using the API key:
+
+        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+
         ## Import
 
         Functions can be imported using, `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:functions/function:Function main fr-par/11111111-1111-1111-1111-111111111111
@@ -962,6 +1145,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cpu_limit: The CPU limit in mVCPU for your function.
+        :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         :param pulumi.Input[_builtins.str] description: The description of the function.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
@@ -987,7 +1171,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
-        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
+        :param pulumi.Input[_builtins.str] zip_hash: The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1030,6 +1214,9 @@ class Function(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def deploy(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
+        """
         return pulumi.get(self, "deploy")
 
     @_builtins.property
@@ -1208,7 +1395,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="zipHash")
     def zip_hash(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The hash of your source zip file, changing it will re-apply function. Can be any string
+        The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         return pulumi.get(self, "zip_hash")
 

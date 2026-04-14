@@ -225,15 +225,13 @@ class Acl(pulumi.CustomResource):
             acl_rules=[{
                 "ip": entry["key"],
                 "description": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips.items()]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 
         ## Import
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:databases/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111
@@ -326,15 +324,13 @@ class Acl(pulumi.CustomResource):
             acl_rules=[{
                 "ip": entry["key"],
                 "description": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips.items()]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 
         ## Import
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:databases/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111

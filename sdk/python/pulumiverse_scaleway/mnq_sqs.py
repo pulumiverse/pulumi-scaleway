@@ -163,8 +163,6 @@ class MnqSqs(pulumi.CustomResource):
 
         SQS status can be imported using the `{region}/{project_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
         ```
@@ -213,8 +211,6 @@ class MnqSqs(pulumi.CustomResource):
         ## Import
 
         SQS status can be imported using the `{region}/{project_id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111

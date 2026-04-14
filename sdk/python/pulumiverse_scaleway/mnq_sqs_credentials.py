@@ -238,8 +238,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
 
         SQS credentials can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
         ```
@@ -284,8 +282,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
         ## Import
 
         SQS credentials can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111

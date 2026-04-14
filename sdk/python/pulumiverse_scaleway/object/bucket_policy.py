@@ -25,9 +25,15 @@ class BucketPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketPolicy resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input[_builtins.str] policy: The text of the policy.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
+        :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -41,7 +47,7 @@ class BucketPolicyArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -53,7 +59,7 @@ class BucketPolicyArgs:
     @pulumi.getter
     def policy(self) -> pulumi.Input[_builtins.str]:
         """
-        The text of the policy.
+        The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
         """
         return pulumi.get(self, "policy")
 
@@ -65,7 +71,13 @@ class BucketPolicyArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+
+        > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -95,9 +107,15 @@ class _BucketPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketPolicy resources.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input[_builtins.str] policy: The text of the policy.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
+        :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
         """
         if bucket is not None:
@@ -113,7 +131,7 @@ class _BucketPolicyState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -125,7 +143,7 @@ class _BucketPolicyState:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The text of the policy.
+        The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
         """
         return pulumi.get(self, "policy")
 
@@ -137,7 +155,13 @@ class _BucketPolicyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+
+        > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -314,17 +338,12 @@ class BucketPolicy(pulumi.CustomResource):
 
         Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -332,9 +351,15 @@ class BucketPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input[_builtins.str] policy: The text of the policy.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
+        :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
         """
         ...
@@ -488,17 +513,12 @@ class BucketPolicy(pulumi.CustomResource):
 
         Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -563,9 +583,15 @@ class BucketPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input[_builtins.str] policy: The text of the policy.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
+        :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -582,7 +608,7 @@ class BucketPolicy(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -590,7 +616,7 @@ class BucketPolicy(pulumi.CustomResource):
     @pulumi.getter
     def policy(self) -> pulumi.Output[_builtins.str]:
         """
-        The text of the policy.
+        The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
         """
         return pulumi.get(self, "policy")
 
@@ -598,7 +624,13 @@ class BucketPolicy(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+
+        > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 

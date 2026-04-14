@@ -48,8 +48,8 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewExporter(ctx, "main", &observability.ExporterArgs{
-//				ProjectId:    pulumi.String(project.Id),
-//				DatasourceId: pulumi.String(scalewayMetrics.Sources[0].Id),
+//				ProjectId:    pulumi.String(pulumi.String(project.Id)),
+//				DatasourceId: pulumi.String(pulumi.String(scalewayMetrics.Sources[0].Id)),
 //				Name:         pulumi.String("my-datadog-exporter"),
 //				ExportedProducts: pulumi.StringArray{
 //					pulumi.String("all"),
@@ -98,7 +98,7 @@ import (
 //				return err
 //			}
 //			otlpTarget, err := observability.NewSource(ctx, "otlp_target", &observability.SourceArgs{
-//				ProjectId:     pulumi.String(project.Id),
+//				ProjectId:     pulumi.String(pulumi.String(project.Id)),
 //				Name:          pulumi.String("otlp-target"),
 //				Type:          pulumi.String("metrics"),
 //				RetentionDays: pulumi.Int(31),
@@ -107,8 +107,8 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewExporter(ctx, "main", &observability.ExporterArgs{
-//				ProjectId:    pulumi.String(project.Id),
-//				DatasourceId: pulumi.String(scalewayMetrics.Sources[0].Id),
+//				ProjectId:    pulumi.String(pulumi.String(project.Id)),
+//				DatasourceId: pulumi.String(pulumi.String(scalewayMetrics.Sources[0].Id)),
 //				Name:         pulumi.String("my-otlp-exporter"),
 //				ExportedProducts: pulumi.StringArray{
 //					pulumi.String("lb"),
@@ -131,8 +131,6 @@ import (
 // ## Import
 //
 // Import an exporter using the regional ID:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111

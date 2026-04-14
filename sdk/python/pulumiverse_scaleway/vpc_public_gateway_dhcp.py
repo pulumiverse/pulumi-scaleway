@@ -623,8 +623,6 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -675,8 +673,6 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         ## Import
 
         Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111

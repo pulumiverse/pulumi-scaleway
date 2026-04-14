@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// using Std = Pulumi.Std;
     /// 
@@ -63,8 +62,6 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     /// ## Import
     /// 
     /// Baremetal servers can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:elasticmetal/server:Server web fr-par-2/11111111-1111-1111-1111-111111111111
@@ -190,6 +187,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the installation in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. May be required depending on used os.
         /// </summary>
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
@@ -239,6 +237,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the service to install in write-only mode. Only one of `ServicePassword` or `ServicePasswordWo` should be specified. `ServicePasswordWo` will not be set in the Terraform state. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`. May be required depending on used os.
         /// </summary>
         [Output("servicePasswordWo")]
         public Output<string?> ServicePasswordWo { get; private set; } = null!;
@@ -425,6 +424,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the installation in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. May be required depending on used os.
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -506,6 +506,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the service to install in write-only mode. Only one of `ServicePassword` or `ServicePasswordWo` should be specified. `ServicePasswordWo` will not be set in the Terraform state. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`. May be required depending on used os.
         /// </summary>
         public Input<string>? ServicePasswordWo
         {
@@ -727,6 +728,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the installation in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. May be required depending on used os.
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -808,6 +810,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password used for the service to install in write-only mode. Only one of `ServicePassword` or `ServicePasswordWo` should be specified. `ServicePasswordWo` will not be set in the Terraform state. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`. May be required depending on used os.
         /// </summary>
         public Input<string>? ServicePasswordWo
         {

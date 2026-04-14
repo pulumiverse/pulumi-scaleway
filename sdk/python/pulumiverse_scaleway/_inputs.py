@@ -93,6 +93,8 @@ __all__ = [
     'EdgeServicesRouteStageRuleArgsDict',
     'EdgeServicesRouteStageRuleRuleHttpMatchArgs',
     'EdgeServicesRouteStageRuleRuleHttpMatchArgsDict',
+    'EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs',
+    'EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict',
     'EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs',
     'EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict',
     'EdgeServicesTlsStageSecretArgs',
@@ -3483,6 +3485,10 @@ class EdgeServicesRouteStageRuleArgs:
 
 if not MYPY:
     class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
+        host_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict']]
+        """
+        Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+        """
         method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
@@ -3497,16 +3503,32 @@ elif False:
 @pulumi.input_type
 class EdgeServicesRouteStageRuleRuleHttpMatchArgs:
     def __init__(__self__, *,
+                 host_filter: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs']] = None,
                  method_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path_filter: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']] = None):
         """
+        :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs'] host_filter: Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] method_filters: HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
         :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs'] path_filter: HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
         """
+        if host_filter is not None:
+            pulumi.set(__self__, "host_filter", host_filter)
         if method_filters is not None:
             pulumi.set(__self__, "method_filters", method_filters)
         if path_filter is not None:
             pulumi.set(__self__, "path_filter", path_filter)
+
+    @_builtins.property
+    @pulumi.getter(name="hostFilter")
+    def host_filter(self) -> Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs']]:
+        """
+        Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+        """
+        return pulumi.get(self, "host_filter")
+
+    @host_filter.setter
+    def host_filter(self, value: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs']]):
+        pulumi.set(self, "host_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="methodFilters")
@@ -3531,6 +3553,56 @@ class EdgeServicesRouteStageRuleRuleHttpMatchArgs:
     @path_filter.setter
     def path_filter(self, value: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']]):
         pulumi.set(self, "path_filter", value)
+
+
+if not MYPY:
+    class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict(TypedDict):
+        host_filter_type: pulumi.Input[_builtins.str]
+        """
+        The type of filter to match for the host. Use the `regex` type.
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to be matched for the host.
+        """
+elif False:
+    EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs:
+    def __init__(__self__, *,
+                 host_filter_type: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] host_filter_type: The type of filter to match for the host. Use the `regex` type.
+        :param pulumi.Input[_builtins.str] value: The value to be matched for the host.
+        """
+        pulumi.set(__self__, "host_filter_type", host_filter_type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostFilterType")
+    def host_filter_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of filter to match for the host. Use the `regex` type.
+        """
+        return pulumi.get(self, "host_filter_type")
+
+    @host_filter_type.setter
+    def host_filter_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "host_filter_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to be matched for the host.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
 
 
 if not MYPY:
@@ -4468,7 +4540,9 @@ if not MYPY:
         """
         port_range: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4491,7 +4565,9 @@ class InstanceSecurityGroupInboundRuleArgs:
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.int] port: The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
-        :param pulumi.Input[_builtins.str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param pulumi.Input[_builtins.str] port_range: Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param pulumi.Input[_builtins.str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -4562,7 +4638,9 @@ class InstanceSecurityGroupInboundRuleArgs:
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -4738,7 +4816,9 @@ if not MYPY:
         """
         port_range: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4761,7 +4841,9 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.str] ip_range: The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         :param pulumi.Input[_builtins.int] port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param pulumi.Input[_builtins.str] port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param pulumi.Input[_builtins.str] port_range: Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param pulumi.Input[_builtins.str] protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -4832,7 +4914,9 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
     @pulumi.getter(name="portRange")
     def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -6226,7 +6310,9 @@ if not MYPY:
     class IpamIpReverseArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The IP corresponding to the hostname
+        Request a specific IP in the specified source pool.
+
+        > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         hostname: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -6241,7 +6327,9 @@ class IpamIpReverseArgs:
                  address: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] address: The IP corresponding to the hostname
+        :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
+               
+               > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] hostname: The reverse domain name.
         """
         if address is not None:
@@ -6253,7 +6341,9 @@ class IpamIpReverseArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The IP corresponding to the hostname
+        Request a specific IP in the specified source pool.
+
+        > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
 

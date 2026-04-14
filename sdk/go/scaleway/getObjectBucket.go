@@ -92,6 +92,7 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketArgs struct {
+	// The name of the bucket, or its terraform ID (`{region}/{name}`)
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project with which the bucket is associated.
 	ProjectId *string `pulumi:"projectId"`
@@ -129,6 +130,7 @@ func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutput
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketOutputArgs struct {
+	// The name of the bucket, or its terraform ID (`{region}/{name}`)
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `projectId`) The ID of the project with which the bucket is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`

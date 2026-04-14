@@ -11,11 +11,144 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Kubernetes
 {
     /// <summary>
+    /// The `scaleway.kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
+    /// 
+    /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Kubernetes.Cluster("main", new()
+    ///     {
+    ///         Version = "1.32.3",
+    ///         Cni = "cilium",
+    ///     });
+    /// 
+    ///     var mainPool = new Scaleway.Kubernetes.Pool("main", new()
+    ///     {
+    ///         ClusterId = main.Id,
+    ///         NodeType = "DEV1-M",
+    ///         Size = 3,
+    ///         MinSize = 0,
+    ///         MaxSize = 10,
+    ///         Autoscaling = true,
+    ///         Autohealing = true,
+    ///         ContainerRuntime = "containerd",
+    ///         PlacementGroupId = "1267e3fd-a51c-49ed-ad12-857092ee3a3d",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Zone
+    /// 
+    /// The option `Zone` indicate where you the resource of your pool should be created, and it could be different from `Region`
+    /// 
+    /// Please note that a pool belongs to only one cluster, in the same region.`Region`.
+    /// 
+    /// ## Placement Group
+    /// 
+    /// If you are working with cluster type `Multicloud` please set the `Zone` where your placement group is e.g:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var placementGroup = new Scaleway.Instance.PlacementGroup("placement_group", new()
+    ///     {
+    ///         Name = "pool-placement-group",
+    ///         PolicyType = "max_availability",
+    ///         PolicyMode = "optional",
+    ///         Zone = "nl-ams-1",
+    ///     });
+    /// 
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
+    ///     {
+    ///         Name = "placement_group",
+    ///         Cni = "kilo",
+    ///         Version = "1.32.3",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform-test",
+    ///             "scaleway_k8s_cluster",
+    ///             "placement_group",
+    ///         },
+    ///         Region = "fr-par",
+    ///         Type = "multicloud",
+    ///     });
+    /// 
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
+    ///     {
+    ///         Name = "placement_group",
+    ///         ClusterId = cluster.Id,
+    ///         NodeType = "gp1_xs",
+    ///         PlacementGroupId = placementGroup.Id,
+    ///         Size = 1,
+    ///         Region = cluster.Region,
+    ///         Zone = placementGroup.Zone,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Changing the node-type of a pool
+    /// 
+    /// As your needs evolve, you can migrate your workflow from one pool to another.
+    /// Pools have a unique name, and they also have an immutable node type.
+    /// Just changing the pool node type will recreate a new pool which could lead to service disruption.
+    /// To migrate your application with as little downtime as possible we recommend using the following workflow:
+    /// 
+    /// ### General workflow to upgrade a pool
+    /// 
+    /// - Create a new pool with a different name and the type you target.
+    /// - Use [`kubectl drain`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#drain) on nodes composing your old pool to drain the remaining workflows of this pool.
+    ///   Normally it should transfer your workflows to the new pool. Check out the official documentation about [how to safely drain your nodes](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
+    /// - Delete the old pool from your terraform configuration.
+    /// 
+    /// ### Using a composite name to force creation of a new pool when a variable updates
+    /// 
+    /// If you want to have a new pool created when a variable changes, you can use a name derived from node type such as:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var kubernetesClusterWorkers1 = new Scaleway.Kubernetes.Pool("kubernetes_cluster_workers_1", new()
+    ///     {
+    ///         ClusterId = kubernetesCluster.Id,
+    ///         Name = $"{kubernetesClusterId}_{nodeType}_1",
+    ///         NodeType = nodeType,
+    ///         Autoscaling = true,
+    ///         Autohealing = true,
+    ///         Size = 5,
+    ///         MinSize = 5,
+    ///         MaxSize = 10,
+    ///         WaitForPoolReady = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Thanks to [@deimosfr](https://github.com/deimosfr) for the contribution.
+    /// 
     /// ## Import
     /// 
     /// Kubernetes pools can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:kubernetes/pool:Pool mypool fr-par/11111111-1111-1111-1111-111111111111
@@ -59,7 +192,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The actual size of the pool
+        /// The size of the pool at the time the terraform state was updated.
         /// </summary>
         [Output("currentSize")]
         public Output<int> CurrentSize { get; private set; } = null!;
@@ -442,7 +575,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The actual size of the pool
+        /// The size of the pool at the time the terraform state was updated.
         /// </summary>
         [Input("currentSize")]
         public Input<int>? CurrentSize { get; set; }

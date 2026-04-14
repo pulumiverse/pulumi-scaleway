@@ -971,7 +971,7 @@ class Cluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = helm.index.Release("nginx_ingress",
+        nginx_ingress = helm.Release("nginx_ingress",
             name=nginx-ingress,
             namespace=kube-system,
             repository=https://kubernetes.github.io/ingress-nginx,
@@ -1092,8 +1092,6 @@ class Cluster(pulumi.CustomResource):
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:kubernetes/cluster:Cluster mycluster fr-par/11111111-1111-1111-1111-111111111111
@@ -1236,7 +1234,7 @@ class Cluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = helm.index.Release("nginx_ingress",
+        nginx_ingress = helm.Release("nginx_ingress",
             name=nginx-ingress,
             namespace=kube-system,
             repository=https://kubernetes.github.io/ingress-nginx,
@@ -1357,8 +1355,6 @@ class Cluster(pulumi.CustomResource):
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:kubernetes/cluster:Cluster mycluster fr-par/11111111-1111-1111-1111-111111111111

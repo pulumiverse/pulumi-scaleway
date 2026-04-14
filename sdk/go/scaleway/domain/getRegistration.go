@@ -11,6 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `taskId` and `projectId` needed for importing a domain registration into Terraform state.
+//
+// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+//
 // ## Example Usage
 //
 // ### Get taskId for import
@@ -19,8 +23,6 @@ import (
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"

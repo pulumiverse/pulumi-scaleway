@@ -398,8 +398,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -523,8 +521,6 @@ class LoadbalancerRoute(pulumi.CustomResource):
         ## Import
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111

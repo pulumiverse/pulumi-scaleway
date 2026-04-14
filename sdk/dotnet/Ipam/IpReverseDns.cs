@@ -21,7 +21,6 @@ namespace Pulumiverse.Scaleway.Ipam
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// using Std = Pulumi.Std;
     /// 
@@ -85,8 +84,6 @@ namespace Pulumiverse.Scaleway.Ipam
     /// ## Import
     /// 
     /// IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:ipam/ipReverseDns:IpReverseDns main fr-par/11111111-1111-1111-1111-111111111111

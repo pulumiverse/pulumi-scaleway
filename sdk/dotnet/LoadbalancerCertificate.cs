@@ -11,11 +11,48 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Load Balancer certificates.
+    /// 
+    /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Custom Certificate
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cert01 = new Scaleway.Loadbalancers.Certificate("cert01", new()
+    ///     {
+    ///         LbId = lb01.Id,
+    ///         Name = "custom-cert",
+    ///         CustomCertificate = new Scaleway.Loadbalancers.Inputs.CertificateCustomCertificateArgs
+    ///         {
+    ///             CertificateChain = @"CERTIFICATE_CHAIN_CONTENTS
+    /// ",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Additional notes
+    /// 
+    /// * Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+    ///   You can achieve this by creating a DNS record through Terraform pointing to  the `IpAddress` property of the `LbBeta` entity.
+    /// * If there are any issues with the certificate, you will receive a `400` error from the `Apply` operation.
+    ///   Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
+    /// * Wildcards are not yet supported with Let's Encrypt.
+    /// * Use `Lifecycle` instruction with `CreateBeforeDestroy = true` to permit correct certificate replacement and prevent a `400` error from the `Apply` operation.
+    /// 
     /// ## Import
     /// 
     /// Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111

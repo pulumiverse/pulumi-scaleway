@@ -186,8 +186,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// IPAM IPs can be imported using `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
     /// ```
@@ -197,7 +195,9 @@ namespace Pulumiverse.Scaleway
     public partial class IpamIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool
+        /// Request a specific IP in the specified source pool.
+        /// 
+        /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
@@ -322,7 +322,9 @@ namespace Pulumiverse.Scaleway
     public sealed class IpamIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool
+        /// Request a specific IP in the specified source pool.
+        /// 
+        /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
@@ -390,7 +392,9 @@ namespace Pulumiverse.Scaleway
     public sealed class IpamIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool
+        /// Request a specific IP in the specified source pool.
+        /// 
+        /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }

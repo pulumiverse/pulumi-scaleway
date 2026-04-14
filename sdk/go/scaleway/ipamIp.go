@@ -216,8 +216,6 @@ import (
 //
 // IPAM IPs can be imported using `{region}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
 // ```
@@ -226,7 +224,9 @@ import (
 type IpamIp struct {
 	pulumi.CustomResourceState
 
-	// Request a specific IP in the requested source pool
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringOutput `pulumi:"address"`
 	// the IP address in CIDR notation.
 	AddressCidr pulumi.StringOutput `pulumi:"addressCidr"`
@@ -287,7 +287,9 @@ func GetIpamIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpamIp resources.
 type ipamIpState struct {
-	// Request a specific IP in the requested source pool
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address *string `pulumi:"address"`
 	// the IP address in CIDR notation.
 	AddressCidr *string `pulumi:"addressCidr"`
@@ -316,7 +318,9 @@ type ipamIpState struct {
 }
 
 type IpamIpState struct {
-	// Request a specific IP in the requested source pool
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringPtrInput
 	// the IP address in CIDR notation.
 	AddressCidr pulumi.StringPtrInput
@@ -349,7 +353,9 @@ func (IpamIpState) ElementType() reflect.Type {
 }
 
 type ipamIpArgs struct {
-	// Request a specific IP in the requested source pool
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address *string `pulumi:"address"`
 	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources []IpamIpCustomResource `pulumi:"customResources"`
@@ -367,7 +373,9 @@ type ipamIpArgs struct {
 
 // The set of arguments for constructing a IpamIp resource.
 type IpamIpArgs struct {
-	// Request a specific IP in the requested source pool
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringPtrInput
 	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources IpamIpCustomResourceArrayInput
@@ -470,7 +478,9 @@ func (o IpamIpOutput) ToIpamIpOutputWithContext(ctx context.Context) IpamIpOutpu
 	return o
 }
 
-// Request a specific IP in the requested source pool
+// Request a specific IP in the specified source pool.
+//
+// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 func (o IpamIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }

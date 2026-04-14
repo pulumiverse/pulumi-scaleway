@@ -79,11 +79,11 @@ import (
 //
 // ```
 //
+// ### With users
+//
 // ## Import
 //
 // IAM groups can be imported using the `{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111

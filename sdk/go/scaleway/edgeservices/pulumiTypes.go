@@ -748,6 +748,8 @@ func (o RouteStageRuleArrayOutput) Index(i pulumi.IntInput) RouteStageRuleOutput
 }
 
 type RouteStageRuleRuleHttpMatch struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+	HostFilter *RouteStageRuleRuleHttpMatchHostFilter `pulumi:"hostFilter"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 	MethodFilters []string `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
@@ -766,6 +768,8 @@ type RouteStageRuleRuleHttpMatchInput interface {
 }
 
 type RouteStageRuleRuleHttpMatchArgs struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+	HostFilter RouteStageRuleRuleHttpMatchHostFilterPtrInput `pulumi:"hostFilter"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 	MethodFilters pulumi.StringArrayInput `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
@@ -849,6 +853,11 @@ func (o RouteStageRuleRuleHttpMatchOutput) ToRouteStageRuleRuleHttpMatchPtrOutpu
 	}).(RouteStageRuleRuleHttpMatchPtrOutput)
 }
 
+// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+func (o RouteStageRuleRuleHttpMatchOutput) HostFilter() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyT(func(v RouteStageRuleRuleHttpMatch) *RouteStageRuleRuleHttpMatchHostFilter { return v.HostFilter }).(RouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
 // HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 func (o RouteStageRuleRuleHttpMatchOutput) MethodFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RouteStageRuleRuleHttpMatch) []string { return v.MethodFilters }).(pulumi.StringArrayOutput)
@@ -883,6 +892,16 @@ func (o RouteStageRuleRuleHttpMatchPtrOutput) Elem() RouteStageRuleRuleHttpMatch
 	}).(RouteStageRuleRuleHttpMatchOutput)
 }
 
+// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+func (o RouteStageRuleRuleHttpMatchPtrOutput) HostFilter() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyT(func(v *RouteStageRuleRuleHttpMatch) *RouteStageRuleRuleHttpMatchHostFilter {
+		if v == nil {
+			return nil
+		}
+		return v.HostFilter
+	}).(RouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
 // HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 func (o RouteStageRuleRuleHttpMatchPtrOutput) MethodFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RouteStageRuleRuleHttpMatch) []string {
@@ -901,6 +920,162 @@ func (o RouteStageRuleRuleHttpMatchPtrOutput) PathFilter() RouteStageRuleRuleHtt
 		}
 		return v.PathFilter
 	}).(RouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+type RouteStageRuleRuleHttpMatchHostFilter struct {
+	// The type of filter to match for the host. Use the `regex` type.
+	HostFilterType string `pulumi:"hostFilterType"`
+	// The value to be matched for the host.
+	Value string `pulumi:"value"`
+}
+
+// RouteStageRuleRuleHttpMatchHostFilterInput is an input type that accepts RouteStageRuleRuleHttpMatchHostFilterArgs and RouteStageRuleRuleHttpMatchHostFilterOutput values.
+// You can construct a concrete instance of `RouteStageRuleRuleHttpMatchHostFilterInput` via:
+//
+//	RouteStageRuleRuleHttpMatchHostFilterArgs{...}
+type RouteStageRuleRuleHttpMatchHostFilterInput interface {
+	pulumi.Input
+
+	ToRouteStageRuleRuleHttpMatchHostFilterOutput() RouteStageRuleRuleHttpMatchHostFilterOutput
+	ToRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Context) RouteStageRuleRuleHttpMatchHostFilterOutput
+}
+
+type RouteStageRuleRuleHttpMatchHostFilterArgs struct {
+	// The type of filter to match for the host. Use the `regex` type.
+	HostFilterType pulumi.StringInput `pulumi:"hostFilterType"`
+	// The value to be matched for the host.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteStageRuleRuleHttpMatchHostFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i RouteStageRuleRuleHttpMatchHostFilterArgs) ToRouteStageRuleRuleHttpMatchHostFilterOutput() RouteStageRuleRuleHttpMatchHostFilterOutput {
+	return i.ToRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Background())
+}
+
+func (i RouteStageRuleRuleHttpMatchHostFilterArgs) ToRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteStageRuleRuleHttpMatchHostFilterOutput)
+}
+
+func (i RouteStageRuleRuleHttpMatchHostFilterArgs) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutput() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return i.ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (i RouteStageRuleRuleHttpMatchHostFilterArgs) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteStageRuleRuleHttpMatchHostFilterOutput).ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx)
+}
+
+// RouteStageRuleRuleHttpMatchHostFilterPtrInput is an input type that accepts RouteStageRuleRuleHttpMatchHostFilterArgs, RouteStageRuleRuleHttpMatchHostFilterPtr and RouteStageRuleRuleHttpMatchHostFilterPtrOutput values.
+// You can construct a concrete instance of `RouteStageRuleRuleHttpMatchHostFilterPtrInput` via:
+//
+//	        RouteStageRuleRuleHttpMatchHostFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type RouteStageRuleRuleHttpMatchHostFilterPtrInput interface {
+	pulumi.Input
+
+	ToRouteStageRuleRuleHttpMatchHostFilterPtrOutput() RouteStageRuleRuleHttpMatchHostFilterPtrOutput
+	ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Context) RouteStageRuleRuleHttpMatchHostFilterPtrOutput
+}
+
+type routeStageRuleRuleHttpMatchHostFilterPtrType RouteStageRuleRuleHttpMatchHostFilterArgs
+
+func RouteStageRuleRuleHttpMatchHostFilterPtr(v *RouteStageRuleRuleHttpMatchHostFilterArgs) RouteStageRuleRuleHttpMatchHostFilterPtrInput {
+	return (*routeStageRuleRuleHttpMatchHostFilterPtrType)(v)
+}
+
+func (*routeStageRuleRuleHttpMatchHostFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i *routeStageRuleRuleHttpMatchHostFilterPtrType) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutput() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return i.ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *routeStageRuleRuleHttpMatchHostFilterPtrType) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
+type RouteStageRuleRuleHttpMatchHostFilterOutput struct{ *pulumi.OutputState }
+
+func (RouteStageRuleRuleHttpMatchHostFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) ToRouteStageRuleRuleHttpMatchHostFilterOutput() RouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) ToRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutput() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RouteStageRuleRuleHttpMatchHostFilter) *RouteStageRuleRuleHttpMatchHostFilter {
+		return &v
+	}).(RouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
+// The type of filter to match for the host. Use the `regex` type.
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) HostFilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteStageRuleRuleHttpMatchHostFilter) string { return v.HostFilterType }).(pulumi.StringOutput)
+}
+
+// The value to be matched for the host.
+func (o RouteStageRuleRuleHttpMatchHostFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteStageRuleRuleHttpMatchHostFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteStageRuleRuleHttpMatchHostFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteStageRuleRuleHttpMatchHostFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterPtrOutput) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutput() RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterPtrOutput) ToRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) RouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o
+}
+
+func (o RouteStageRuleRuleHttpMatchHostFilterPtrOutput) Elem() RouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o.ApplyT(func(v *RouteStageRuleRuleHttpMatchHostFilter) RouteStageRuleRuleHttpMatchHostFilter {
+		if v != nil {
+			return *v
+		}
+		var ret RouteStageRuleRuleHttpMatchHostFilter
+		return ret
+	}).(RouteStageRuleRuleHttpMatchHostFilterOutput)
+}
+
+// The type of filter to match for the host. Use the `regex` type.
+func (o RouteStageRuleRuleHttpMatchHostFilterPtrOutput) HostFilterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteStageRuleRuleHttpMatchHostFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.HostFilterType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The value to be matched for the host.
+func (o RouteStageRuleRuleHttpMatchHostFilterPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteStageRuleRuleHttpMatchHostFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.StringPtrOutput)
 }
 
 type RouteStageRuleRuleHttpMatchPathFilter struct {
@@ -1750,6 +1925,8 @@ func (o GetRouteStageRuleArrayOutput) Index(i pulumi.IntInput) GetRouteStageRule
 }
 
 type GetRouteStageRuleRuleHttpMatch struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided
+	HostFilters []GetRouteStageRuleRuleHttpMatchHostFilter `pulumi:"hostFilters"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
 	MethodFilters []string `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
@@ -1768,6 +1945,8 @@ type GetRouteStageRuleRuleHttpMatchInput interface {
 }
 
 type GetRouteStageRuleRuleHttpMatchArgs struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided
+	HostFilters GetRouteStageRuleRuleHttpMatchHostFilterArrayInput `pulumi:"hostFilters"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
 	MethodFilters pulumi.StringArrayInput `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
@@ -1825,6 +2004,13 @@ func (o GetRouteStageRuleRuleHttpMatchOutput) ToGetRouteStageRuleRuleHttpMatchOu
 	return o
 }
 
+// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided
+func (o GetRouteStageRuleRuleHttpMatchOutput) HostFilters() GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatch) []GetRouteStageRuleRuleHttpMatchHostFilter {
+		return v.HostFilters
+	}).(GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput)
+}
+
 // HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
 func (o GetRouteStageRuleRuleHttpMatchOutput) MethodFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatch) []string { return v.MethodFilters }).(pulumi.StringArrayOutput)
@@ -1855,6 +2041,112 @@ func (o GetRouteStageRuleRuleHttpMatchArrayOutput) Index(i pulumi.IntInput) GetR
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteStageRuleRuleHttpMatch {
 		return vs[0].([]GetRouteStageRuleRuleHttpMatch)[vs[1].(int)]
 	}).(GetRouteStageRuleRuleHttpMatchOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchHostFilter struct {
+	// The type of filter to match for the host path
+	HostFilterType string `pulumi:"hostFilterType"`
+	// The value to be matched for the host path
+	Value string `pulumi:"value"`
+}
+
+// GetRouteStageRuleRuleHttpMatchHostFilterInput is an input type that accepts GetRouteStageRuleRuleHttpMatchHostFilterArgs and GetRouteStageRuleRuleHttpMatchHostFilterOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchHostFilterInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchHostFilterArgs{...}
+type GetRouteStageRuleRuleHttpMatchHostFilterInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchHostFilterOutput() GetRouteStageRuleRuleHttpMatchHostFilterOutput
+	ToGetRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchHostFilterOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchHostFilterArgs struct {
+	// The type of filter to match for the host path
+	HostFilterType pulumi.StringInput `pulumi:"hostFilterType"`
+	// The value to be matched for the host path
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRouteStageRuleRuleHttpMatchHostFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchHostFilterArgs) ToGetRouteStageRuleRuleHttpMatchHostFilterOutput() GetRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchHostFilterArgs) ToGetRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchHostFilterOutput)
+}
+
+// GetRouteStageRuleRuleHttpMatchHostFilterArrayInput is an input type that accepts GetRouteStageRuleRuleHttpMatchHostFilterArray and GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchHostFilterArrayInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchHostFilterArray{ GetRouteStageRuleRuleHttpMatchHostFilterArgs{...} }
+type GetRouteStageRuleRuleHttpMatchHostFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutput() GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput
+	ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchHostFilterArray []GetRouteStageRuleRuleHttpMatchHostFilterInput
+
+func (GetRouteStageRuleRuleHttpMatchHostFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchHostFilterArray) ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutput() GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchHostFilterArray) ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchHostFilterOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchHostFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchHostFilterOutput) ToGetRouteStageRuleRuleHttpMatchHostFilterOutput() GetRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchHostFilterOutput) ToGetRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+// The type of filter to match for the host path
+func (o GetRouteStageRuleRuleHttpMatchHostFilterOutput) HostFilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatchHostFilter) string { return v.HostFilterType }).(pulumi.StringOutput)
+}
+
+// The value to be matched for the host path
+func (o GetRouteStageRuleRuleHttpMatchHostFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatchHostFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput) ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutput() GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput) ToGetRouteStageRuleRuleHttpMatchHostFilterArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput) Index(i pulumi.IntInput) GetRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteStageRuleRuleHttpMatchHostFilter {
+		return vs[0].([]GetRouteStageRuleRuleHttpMatchHostFilter)[vs[1].(int)]
+	}).(GetRouteStageRuleRuleHttpMatchHostFilterOutput)
 }
 
 type GetRouteStageRuleRuleHttpMatchPathFilter struct {
@@ -2082,6 +2374,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleArrayInput)(nil)).Elem(), RouteStageRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchHostFilterInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchHostFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchHostFilterPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchHostFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPathFilterInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretInput)(nil)).Elem(), TlsStageSecretArgs{})
@@ -2098,6 +2392,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleArrayInput)(nil)).Elem(), GetRouteStageRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchHostFilterInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchHostFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchHostFilterArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchHostFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretInput)(nil)).Elem(), GetTlsStageSecretArgs{})
@@ -2114,6 +2410,8 @@ func init() {
 	pulumi.RegisterOutputType(RouteStageRuleArrayOutput{})
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchOutput{})
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPtrOutput{})
+	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchHostFilterOutput{})
+	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchHostFilterPtrOutput{})
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPathFilterOutput{})
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretOutput{})
@@ -2130,6 +2428,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRouteStageRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchOutput{})
 	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchHostFilterOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchHostFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchPathFilterOutput{})
 	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsStageSecretOutput{})

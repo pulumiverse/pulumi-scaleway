@@ -24,11 +24,52 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With IAM Application
+ *
+ * This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
+ *
+ * > **Note:** For more information, see [How to connect to a Serverless SQL Database](https://www.scaleway.com/en/docs/serverless-sql-databases/how-to/connect-to-a-database/)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const _default = scaleway.account.getProject({
+ *     name: "default",
+ * });
+ * const app = new scaleway.iam.Application("app", {name: "my app"});
+ * const dbAccess = new scaleway.iam.Policy("db_access", {
+ *     name: "my policy",
+ *     description: "gives app access to serverless database in project",
+ *     applicationId: app.id,
+ *     rules: [{
+ *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["ServerlessSQLDatabaseReadWrite"],
+ *     }],
+ * });
+ * const apiKey = new scaleway.iam.ApiKey("api_key", {applicationId: app.id});
+ * const database = new scaleway.databases.ServerlessDatabase("database", {
+ *     name: "my-database",
+ *     minCpu: 0,
+ *     maxCpu: 8,
+ * });
+ * export const databaseConnectionString = std.format({
+ *     input: "postgres://%s:%s@%s",
+ *     args: [
+ *         app.id,
+ *         apiKey.secretKey,
+ *         std.trimprefix({
+ *             input: database.endpoint,
+ *             prefix: "postgres://",
+ *         }).result,
+ *     ],
+ * }).result;
+ * ```
+ *
  * ## Import
  *
  * Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:databases/serverlessDatabase:ServerlessDatabase database fr-par/11111111-1111-1111-1111-111111111111

@@ -57,7 +57,14 @@ func LookupObjectBucketPolicy(ctx *pulumi.Context, args *LookupObjectBucketPolic
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyArgs struct {
 	// The name of the bucket.
-	Bucket    string  `pulumi:"bucket"`
+	Bucket string `pulumi:"bucket"`
+	// `projectId`) The ID of the project with which the bucket is associated.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+	//
+	// For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region *string `pulumi:"region"`
@@ -86,7 +93,14 @@ func LookupObjectBucketPolicyOutput(ctx *pulumi.Context, args LookupObjectBucket
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyOutputArgs struct {
 	// The name of the bucket.
-	Bucket    pulumi.StringInput    `pulumi:"bucket"`
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// `projectId`) The ID of the project with which the bucket is associated.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+	//
+	// For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`

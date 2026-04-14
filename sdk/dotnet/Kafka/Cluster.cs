@@ -111,8 +111,6 @@ namespace Pulumiverse.Scaleway.Kafka
     /// 
     /// Kafka clusters can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:kafka/cluster:Cluster main fr-par/11111111-1111-1111-1111-111111111111
     /// ```

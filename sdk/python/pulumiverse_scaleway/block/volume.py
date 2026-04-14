@@ -346,8 +346,6 @@ class Volume(pulumi.CustomResource):
 
         This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:block/volume:Volume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -412,8 +410,6 @@ class Volume(pulumi.CustomResource):
         ## Import
 
         This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:block/volume:Volume block_volume fr-par-1/11111111-1111-1111-1111-111111111111

@@ -233,8 +233,6 @@ class SnsCredentials(pulumi.CustomResource):
 
         SNS credentials can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/snsCredentials:SnsCredentials main fr-par/11111111111111111111111111111111
         ```
@@ -279,8 +277,6 @@ class SnsCredentials(pulumi.CustomResource):
         ## Import
 
         SNS credentials can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mnq/snsCredentials:SnsCredentials main fr-par/11111111111111111111111111111111

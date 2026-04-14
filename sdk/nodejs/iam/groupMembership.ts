@@ -27,15 +27,43 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Users membership
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * export = async () => {
+ *     const users = std.toset({
+ *         input: [
+ *             "user1@mail.com",
+ *             "user2@mail.com",
+ *         ],
+ *     }).result;
+ *     const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: await scaleway.iam.getUser({
+ *         email: __value,
+ *     }) }), {});
+ *     const group = new scaleway.iam.Group("group", {
+ *         name: "my_group",
+ *         externalMembership: true,
+ *     });
+ *     const members: scaleway.iam.GroupMembership[] = [];
+ *     for (const range of Object.entries(usersGetUser).map(([k, v]) => ({key: k, value: v}))) {
+ *         members.push(new scaleway.iam.GroupMembership(`members-${range.key}`, {
+ *             groupId: group.id,
+ *             userId: range.value.id,
+ *         }));
+ *     }
+ * }
+ * ```
+ *
  * ## Import
  *
  * IAM group memberships can be imported using two format:
  *
  * - For user: `{group_id}/user/{user_id}`
- *
  * - For application: `{group_id}/app/{application_id}`
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:iam/groupMembership:GroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111

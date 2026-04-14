@@ -36,6 +36,7 @@ class ModelArgs:
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         """
         pulumi.set(__self__, "url", url)
@@ -117,6 +118,7 @@ class ModelArgs:
     def secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         """
         return pulumi.get(self, "secret_wo")
 
@@ -168,6 +170,7 @@ class _ModelState:
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         :param pulumi.Input[_builtins.int] size_bytes: Total size, in bytes, of the model archive.
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
@@ -321,6 +324,7 @@ class _ModelState:
     def secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         """
         return pulumi.get(self, "secret_wo")
 
@@ -416,6 +420,11 @@ class Model(pulumi.CustomResource):
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `secret_wo` write-only argument instead of the regular `secret` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -463,8 +472,6 @@ class Model(pulumi.CustomResource):
         ## Import
 
         Models can be imported using, `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
@@ -477,6 +484,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
@@ -487,6 +495,11 @@ class Model(pulumi.CustomResource):
                  args: ModelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `secret_wo` write-only argument instead of the regular `secret` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -534,8 +547,6 @@ class Model(pulumi.CustomResource):
         ## Import
 
         Models can be imported using, `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
@@ -635,6 +646,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         :param pulumi.Input[_builtins.int] size_bytes: Total size, in bytes, of the model archive.
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
@@ -741,6 +753,7 @@ class Model(pulumi.CustomResource):
     def secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Authentication token used to pull the model from a private or gated URL in write-only mode. `secret_wo` will not be stored in the Terraform state. Only one of `secret` or `secret_wo` should be specified. Requires `secret_wo_version` to be set.
         """
         return pulumi.get(self, "secret_wo")
 

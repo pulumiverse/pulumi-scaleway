@@ -12,11 +12,54 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway Load Balancer certificates.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+//
+// ## Example Usage
+//
+// ### Custom Certificate
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := loadbalancers.NewCertificate(ctx, "cert01", &loadbalancers.CertificateArgs{
+//				LbId: pulumi.Any(lb01.Id),
+//				Name: pulumi.String("custom-cert"),
+//				CustomCertificate: &loadbalancers.CertificateCustomCertificateArgs{
+//					CertificateChain: pulumi.String("CERTIFICATE_CHAIN_CONTENTS\n"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Additional notes
+//
+//   - Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+//     You can achieve this by creating a DNS record through Terraform pointing to  the `ipAddress` property of the `lbBeta` entity.
+//   - If there are any issues with the certificate, you will receive a `400` error from the `apply` operation.
+//     Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
+//   - Wildcards are not yet supported with Let's Encrypt.
+//   - Use `lifecycle` instruction with `createBeforeDestroy = true` to permit correct certificate replacement and prevent a `400` error from the `apply` operation.
+//
 // ## Import
 //
 // Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:loadbalancers/certificate:Certificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111

@@ -168,8 +168,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -212,8 +210,6 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         ## Import
 
         Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111

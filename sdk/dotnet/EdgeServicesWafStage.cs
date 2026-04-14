@@ -39,8 +39,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// WAF stages can be imported using the `{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
     /// ```

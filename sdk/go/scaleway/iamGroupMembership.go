@@ -57,15 +57,14 @@ import (
 //
 // ```
 //
+// ### Users membership
+//
 // ## Import
 //
 // IAM group memberships can be imported using two format:
 //
 // - For user: `{group_id}/user/{user_id}`
-//
 // - For application: `{group_id}/app/{application_id}`
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111

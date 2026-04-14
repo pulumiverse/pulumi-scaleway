@@ -441,8 +441,6 @@ class Namespace(pulumi.CustomResource):
 
         Containers namespaces can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:containers/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -493,8 +491,6 @@ class Namespace(pulumi.CustomResource):
         ## Import
 
         Containers namespaces can be imported using `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:containers/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111

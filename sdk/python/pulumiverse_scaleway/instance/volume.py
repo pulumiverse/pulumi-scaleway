@@ -362,8 +362,6 @@ class Volume(pulumi.CustomResource):
 
         volumes can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/volume:Volume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -406,8 +404,6 @@ class Volume(pulumi.CustomResource):
         ## Import
 
         volumes can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:instance/volume:Volume server_volume fr-par-1/11111111-1111-1111-1111-111111111111

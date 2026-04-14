@@ -305,6 +305,13 @@ class Version(pulumi.CustomResource):
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `data_wo` write-only argument instead of the regular `data` argument. This ensures your sensitive data is never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ### Create a secret and a version
@@ -335,9 +342,7 @@ class Version(pulumi.CustomResource):
 
         This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
 
-        ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
-
-        bash
+        > **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
 
         ```sh
         $ pulumi import scaleway:secrets/version:Version main fr-par/11111111-1111-1111-1111-111111111111/2
@@ -360,6 +365,13 @@ class Version(pulumi.CustomResource):
                  args: VersionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `data_wo` write-only argument instead of the regular `data` argument. This ensures your sensitive data is never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ### Create a secret and a version
@@ -390,9 +402,7 @@ class Version(pulumi.CustomResource):
 
         This section explains how to import a secret version using the `{region}/{id}/{revision}` format.
 
-        ~> **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
-
-        bash
+        > **Important:** Keep in mind that if you import with the `latest` revision, you will overwrite the previous version you might have been using.
 
         ```sh
         $ pulumi import scaleway:secrets/version:Version main fr-par/11111111-1111-1111-1111-111111111111/2

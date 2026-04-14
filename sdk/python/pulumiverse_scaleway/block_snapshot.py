@@ -344,8 +344,6 @@ class BlockSnapshot(pulumi.CustomResource):
 
         This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -432,8 +430,6 @@ class BlockSnapshot(pulumi.CustomResource):
         ## Import
 
         This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111

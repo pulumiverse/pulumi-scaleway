@@ -120,8 +120,6 @@ import * as utilities from "../utilities";
  *
  * Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:loadbalancers/frontend:Frontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```

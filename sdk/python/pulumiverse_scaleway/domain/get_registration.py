@@ -192,6 +192,10 @@ def get_registration(domain_name: Optional[_builtins.str] = None,
                      project_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistrationResult:
     """
+    The `domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `task_id` and `project_id` needed for importing a domain registration into Terraform state.
+
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
     ## Example Usage
 
     ### Get task_id for import
@@ -242,6 +246,10 @@ def get_registration_output(domain_name: Optional[pulumi.Input[_builtins.str]] =
                             project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistrationResult]:
     """
+    The `domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `task_id` and `project_id` needed for importing a domain registration into Terraform state.
+
+    Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
     ## Example Usage
 
     ### Get task_id for import

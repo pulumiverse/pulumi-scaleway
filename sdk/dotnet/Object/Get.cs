@@ -25,7 +25,6 @@ namespace Pulumiverse.Scaleway.Object
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -67,7 +66,6 @@ namespace Pulumiverse.Scaleway.Object
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -109,7 +107,6 @@ namespace Pulumiverse.Scaleway.Object
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -142,6 +139,9 @@ namespace Pulumiverse.Scaleway.Object
 
     public sealed class GetArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the bucket, or its terraform ID (`{region}/{name}`)
+        /// </summary>
         [Input("bucket", required: true)]
         public string Bucket { get; set; } = null!;
 
@@ -171,6 +171,9 @@ namespace Pulumiverse.Scaleway.Object
 
     public sealed class GetInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the bucket, or its terraform ID (`{region}/{name}`)
+        /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 

@@ -101,8 +101,6 @@ import * as utilities from "../utilities";
  *
  * IPAM IPs can be imported using `{region}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:ipam/ip:Ip ip_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
@@ -136,7 +134,9 @@ export class Ip extends pulumi.CustomResource {
     }
 
     /**
-     * Request a specific IP in the requested source pool
+     * Request a specific IP in the specified source pool.
+     *
+     * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     declare public readonly address: pulumi.Output<string>;
     /**
@@ -245,7 +245,9 @@ export class Ip extends pulumi.CustomResource {
  */
 export interface IpState {
     /**
-     * Request a specific IP in the requested source pool
+     * Request a specific IP in the specified source pool.
+     *
+     * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address?: pulumi.Input<string>;
     /**
@@ -303,7 +305,9 @@ export interface IpState {
  */
 export interface IpArgs {
     /**
-     * Request a specific IP in the requested source pool
+     * Request a specific IP in the specified source pool.
+     *
+     * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address?: pulumi.Input<string>;
     /**

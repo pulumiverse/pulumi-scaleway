@@ -302,8 +302,6 @@ class CockpitAlertManager(pulumi.CustomResource):
 
         This section explains how to import alert managers using the ID of the Project associated with Cockpit.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -388,8 +386,6 @@ class CockpitAlertManager(pulumi.CustomResource):
         ## Import
 
         This section explains how to import alert managers using the ID of the Project associated with Cockpit.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111

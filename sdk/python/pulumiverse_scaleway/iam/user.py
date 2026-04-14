@@ -42,6 +42,7 @@ class UserArgs:
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
@@ -162,6 +163,7 @@ class UserArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -270,6 +272,7 @@ class _UserState:
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
@@ -474,6 +477,7 @@ class _UserState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -611,6 +615,13 @@ class User(pulumi.CustomResource):
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway IAM [Users](https://www.scaleway.com/en/docs/iam/concepts/#member).
+
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -650,8 +661,6 @@ class User(pulumi.CustomResource):
         ## Import
 
         IAM users can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/user:User basic 11111111-1111-1111-1111-111111111111
@@ -666,6 +675,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
@@ -680,6 +690,13 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway IAM [Users](https://www.scaleway.com/en/docs/iam/concepts/#member).
+
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -719,8 +736,6 @@ class User(pulumi.CustomResource):
         ## Import
 
         IAM users can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/user:User basic 11111111-1111-1111-1111-111111111111
@@ -845,6 +860,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
@@ -984,6 +1000,7 @@ class User(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password for first access in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

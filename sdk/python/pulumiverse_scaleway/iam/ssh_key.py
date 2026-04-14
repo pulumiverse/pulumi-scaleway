@@ -257,8 +257,6 @@ class SshKey(pulumi.CustomResource):
 
         SSH keys can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iam/sshKey:SshKey main 11111111-1111-1111-1111-111111111111
         ```
@@ -295,8 +293,6 @@ class SshKey(pulumi.CustomResource):
         ## Import
 
         SSH keys can be imported using the `id`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/sshKey:SshKey main 11111111-1111-1111-1111-111111111111

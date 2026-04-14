@@ -38,8 +38,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// MongoDB® snapshots can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par/11111111-1111-1111-1111-111111111111
     /// ```

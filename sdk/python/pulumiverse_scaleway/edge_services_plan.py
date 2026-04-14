@@ -128,8 +128,6 @@ class EdgeServicesPlan(pulumi.CustomResource):
 
         Plans can be imported using `{project_id}/{plan_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
         ```
@@ -162,8 +160,6 @@ class EdgeServicesPlan(pulumi.CustomResource):
         ## Import
 
         Plans can be imported using `{project_id}/{plan_name}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter

@@ -54,8 +54,6 @@ namespace Pulumiverse.Scaleway.Edgeservices
     /// 
     /// Head stages can be imported using the `{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:edgeservices/headStage:HeadStage main 11111111-1111-1111-1111-111111111111
     /// ```

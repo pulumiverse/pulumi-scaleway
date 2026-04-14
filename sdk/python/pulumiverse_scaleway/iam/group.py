@@ -334,11 +334,28 @@ class Group(pulumi.CustomResource):
             user_ids=[])
         ```
 
+        ### With users
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        with_users = scaleway.iam.Group("with_users",
+            name="iam_group_with_app",
+            application_ids=[],
+            user_ids=[user.id for user in users_get_user.values()])
+        ```
+
         ## Import
 
         IAM groups can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111
@@ -392,11 +409,28 @@ class Group(pulumi.CustomResource):
             user_ids=[])
         ```
 
+        ### With users
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        with_users = scaleway.iam.Group("with_users",
+            name="iam_group_with_app",
+            application_ids=[],
+            user_ids=[user.id for user in users_get_user.values()])
+        ```
+
         ## Import
 
         IAM groups can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111

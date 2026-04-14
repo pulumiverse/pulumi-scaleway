@@ -8,4 +8,6 @@ import typing
 # Export this package's modules as members:
 from .get_partner import *
 from .get_partners import *
+from .get_pop import *
+from .get_pops import *
 from . import outputs

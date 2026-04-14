@@ -34,8 +34,6 @@ import * as utilities from "./utilities";
  *
  * Head stages can be imported using the `{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
  * ```

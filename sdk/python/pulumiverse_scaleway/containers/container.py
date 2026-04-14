@@ -1244,8 +1244,6 @@ class Container(pulumi.CustomResource):
 
         Containers can be imported using, `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:containers/container:Container main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -1492,8 +1490,6 @@ class Container(pulumi.CustomResource):
         ## Import
 
         Containers can be imported using, `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:containers/container:Container main fr-par/11111111-1111-1111-1111-111111111111

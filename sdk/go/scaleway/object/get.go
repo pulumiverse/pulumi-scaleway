@@ -66,6 +66,7 @@ func Get(ctx *pulumi.Context, args *GetArgs, opts ...pulumi.InvokeOption) (*GetR
 
 // A collection of arguments for invoking get.
 type GetArgs struct {
+	// The name of the bucket, or its terraform ID (`{region}/{name}`)
 	Bucket string `pulumi:"bucket"`
 	// The key (path or filename) of the object within the bucket.
 	Key string `pulumi:"key"`
@@ -106,6 +107,7 @@ func GetOutput(ctx *pulumi.Context, args GetOutputArgs, opts ...pulumi.InvokeOpt
 
 // A collection of arguments for invoking get.
 type GetOutputArgs struct {
+	// The name of the bucket, or its terraform ID (`{region}/{name}`)
 	Bucket pulumi.StringInput `pulumi:"bucket"`
 	// The key (path or filename) of the object within the bucket.
 	Key pulumi.StringInput `pulumi:"key"`

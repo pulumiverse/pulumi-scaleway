@@ -11,11 +11,111 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway compute Instance security groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
+//
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := instance.NewSecurityGroup(ctx, "allow_all", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = instance.NewSecurityGroup(ctx, "web", &instance.SecurityGroupArgs{
+//				InboundDefaultPolicy: pulumi.String("drop"),
+//				InboundRules: instance.SecurityGroupInboundRuleArray{
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action:  pulumi.String("accept"),
+//						Port:    pulumi.Int(22),
+//						IpRange: pulumi.String("212.47.225.64/32"),
+//					},
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(80),
+//					},
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action:    pulumi.String("accept"),
+//						Protocol:  pulumi.String("UDP"),
+//						PortRange: pulumi.String("22-23"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Web server with banned IP and restricted internet access
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := instance.NewSecurityGroup(ctx, "web", &instance.SecurityGroupArgs{
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("drop"),
+//				InboundRules: instance.SecurityGroupInboundRuleArray{
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action:  pulumi.String("drop"),
+//						IpRange: pulumi.String("1.1.1.1/32"),
+//					},
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action:  pulumi.String("accept"),
+//						Port:    pulumi.Int(22),
+//						IpRange: pulumi.String("212.47.225.64/32"),
+//					},
+//					&instance.SecurityGroupInboundRuleArgs{
+//						Action: pulumi.String("accept"),
+//						Port:   pulumi.Int(443),
+//					},
+//				},
+//				OutboundRules: instance.SecurityGroupOutboundRuleArray{
+//					&instance.SecurityGroupOutboundRuleArgs{
+//						Action:  pulumi.String("accept"),
+//						IpRange: pulumi.String("8.8.8.8/32"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Trusted IP for SSH access (using for_each)
+//
+// If you use terraform >= 0.12.6, you can leverage the `forEach` feature with this resource.
+//
 // ## Import
 //
 // Instance security group can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:instance/securityGroup:SecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111

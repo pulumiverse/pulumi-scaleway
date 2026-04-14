@@ -119,13 +119,11 @@ import (
 //
 // Api keys can be imported using the `{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
 // ```
 //
-// ~> **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+// > **Warning**: While an `iamApiKey` can be imported, its `secretKey` is a secret that is not exposed. An imported API key will have `null` as its secret key.
 //
 // Deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey
 type IamApiKey struct {

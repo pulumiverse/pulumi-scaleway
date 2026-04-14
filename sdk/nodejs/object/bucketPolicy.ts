@@ -160,17 +160,12 @@ import * as utilities from "../utilities";
  *
  * Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket
  * ```
  *
- * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
- *
+ * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
  * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -205,15 +200,21 @@ export class BucketPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     declare public readonly bucket: pulumi.Output<string>;
     /**
-     * The text of the policy.
+     * The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
      */
     declare public readonly policy: pulumi.Output<string>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -263,15 +264,21 @@ export class BucketPolicy extends pulumi.CustomResource {
  */
 export interface BucketPolicyState {
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     bucket?: pulumi.Input<string>;
     /**
-     * The text of the policy.
+     * The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
      */
     policy?: pulumi.Input<string>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -285,15 +292,21 @@ export interface BucketPolicyState {
  */
 export interface BucketPolicyArgs {
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     bucket: pulumi.Input<string>;
     /**
-     * The text of the policy.
+     * The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
      */
     policy: pulumi.Input<string>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**

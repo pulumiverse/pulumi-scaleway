@@ -13,6 +13,10 @@ namespace Pulumiverse.Scaleway.Domain
     public static class GetRegistration
     {
         /// <summary>
+        /// The `scaleway.domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `TaskId` and `ProjectId` needed for importing a domain registration into Terraform state.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Get TaskId for import
@@ -21,7 +25,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -48,7 +52,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -65,6 +69,10 @@ namespace Pulumiverse.Scaleway.Domain
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistrationResult>("scaleway:domain/getRegistration:getRegistration", args ?? new GetRegistrationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// The `scaleway.domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `TaskId` and `ProjectId` needed for importing a domain registration into Terraform state.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Get TaskId for import
@@ -73,7 +81,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -100,7 +108,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -117,6 +125,10 @@ namespace Pulumiverse.Scaleway.Domain
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistrationResult>("scaleway:domain/getRegistration:getRegistration", args ?? new GetRegistrationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// The `scaleway.domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `TaskId` and `ProjectId` needed for importing a domain registration into Terraform state.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Get TaskId for import
@@ -125,7 +137,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -152,7 +164,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {

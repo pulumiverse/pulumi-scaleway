@@ -72,11 +72,50 @@ import (
 //
 // ```
 //
+// ## Permission Drift Management
+//
+// ### Understanding Permission Drift
+//
+// When you configure a privilege (e.g., `readwrite`), Scaleway applies it to **database objects that exist at that moment**. If new tables, views, or sequences are created later, they won't automatically inherit these permissions. In that case, the API may return `custom`.
+//
+// **Example:**
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := databases.NewPrivilege(ctx, "app", &databases.PrivilegeArgs{
+//				InstanceId:   pulumi.Any(main.Id),
+//				UserName:     pulumi.String("app_user"),
+//				DatabaseName: pulumi.String("mydb"),
+//				Permission:   pulumi.String("readwrite"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Handling Permission Drift
+//
+// Run `pulumi up` to reapply the configured permission to all objects (existing and new):
+//
+// The plan will typically show:
+//
 // ## Import
 //
 // The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:databases/privilege:Privilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
@@ -86,10 +125,14 @@ type Privilege struct {
 
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
+	// The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+	EffectivePermission pulumi.StringOutput `pulumi:"effectivePermission"`
 	// UUID of the Database Instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+	// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringOutput `pulumi:"permission"`
+	// Permission synchronization status. Possible values:
+	PermissionStatus pulumi.StringOutput `pulumi:"permissionStatus"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Name of the user (e.g. `my-db-user`).
@@ -146,10 +189,14 @@ func GetPrivilege(ctx *pulumi.Context,
 type privilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName *string `pulumi:"databaseName"`
+	// The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+	EffectivePermission *string `pulumi:"effectivePermission"`
 	// UUID of the Database Instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+	// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission *string `pulumi:"permission"`
+	// Permission synchronization status. Possible values:
+	PermissionStatus *string `pulumi:"permissionStatus"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
 	// Name of the user (e.g. `my-db-user`).
@@ -159,10 +206,14 @@ type privilegeState struct {
 type PrivilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringPtrInput
+	// The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+	EffectivePermission pulumi.StringPtrInput
 	// UUID of the Database Instance.
 	InstanceId pulumi.StringPtrInput
-	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+	// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringPtrInput
+	// Permission synchronization status. Possible values:
+	PermissionStatus pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
 	// Name of the user (e.g. `my-db-user`).
@@ -178,7 +229,7 @@ type privilegeArgs struct {
 	DatabaseName string `pulumi:"databaseName"`
 	// UUID of the Database Instance.
 	InstanceId string `pulumi:"instanceId"`
-	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+	// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission string `pulumi:"permission"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -192,7 +243,7 @@ type PrivilegeArgs struct {
 	DatabaseName pulumi.StringInput
 	// UUID of the Database Instance.
 	InstanceId pulumi.StringInput
-	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+	// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -292,14 +343,24 @@ func (o PrivilegeOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Privilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+// The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+func (o PrivilegeOutput) EffectivePermission() pulumi.StringOutput {
+	return o.ApplyT(func(v *Privilege) pulumi.StringOutput { return v.EffectivePermission }).(pulumi.StringOutput)
+}
+
 // UUID of the Database Instance.
 func (o PrivilegeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Privilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+// Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 func (o PrivilegeOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v *Privilege) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
+}
+
+// Permission synchronization status. Possible values:
+func (o PrivilegeOutput) PermissionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Privilege) pulumi.StringOutput { return v.PermissionStatus }).(pulumi.StringOutput)
 }
 
 // `region`) The region in which the resource exists.

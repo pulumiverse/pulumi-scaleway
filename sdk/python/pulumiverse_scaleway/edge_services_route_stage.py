@@ -273,6 +273,45 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
             }])
         ```
 
+        ### Host-based routing
+
+        Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Multi-host pipeline with host-based routing")
+        api = scaleway.object.Bucket("api", name="my-api-bucket")
+        static = scaleway.object.Bucket("static", name="my-static-site")
+        api_backend_stage = scaleway.edgeservices.BackendStage("api",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": api.name,
+                "bucket_region": "fr-par",
+            })
+        static_backend_stage = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": static.name,
+                "bucket_region": "fr-par",
+            })
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static_backend_stage.id,
+            rules=[{
+                "backend_stage_id": api_backend_stage.id,
+                "rule_http_match": {
+                    "host_filter": {
+                        "host_filter_type": "regex",
+                        "value": "api\\\\.example\\\\.com",
+                    },
+                },
+            }])
+        ```
+
         ### Default to backend with selective WAF protection
 
         Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -320,8 +359,6 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         ## Import
 
         Route stages can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
@@ -372,6 +409,45 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
             }])
         ```
 
+        ### Host-based routing
+
+        Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Multi-host pipeline with host-based routing")
+        api = scaleway.object.Bucket("api", name="my-api-bucket")
+        static = scaleway.object.Bucket("static", name="my-static-site")
+        api_backend_stage = scaleway.edgeservices.BackendStage("api",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": api.name,
+                "bucket_region": "fr-par",
+            })
+        static_backend_stage = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": static.name,
+                "bucket_region": "fr-par",
+            })
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static_backend_stage.id,
+            rules=[{
+                "backend_stage_id": api_backend_stage.id,
+                "rule_http_match": {
+                    "host_filter": {
+                        "host_filter_type": "regex",
+                        "value": "api\\\\.example\\\\.com",
+                    },
+                },
+            }])
+        ```
+
         ### Default to backend with selective WAF protection
 
         Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -419,8 +495,6 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         ## Import
 
         Route stages can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111

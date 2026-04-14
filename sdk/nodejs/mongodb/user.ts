@@ -7,6 +7,11 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+ *
+ * > **Security Best Practice:**
+ * For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -84,8 +89,6 @@ import * as utilities from "../utilities";
  *
  * MongoDB® users can be imported using the `{region}/{instance_id}/{name}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
  * ```
@@ -132,6 +135,7 @@ export class User extends pulumi.CustomResource {
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password of the MongoDB® user in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
     /**
@@ -205,6 +209,7 @@ export interface UserState {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password of the MongoDB® user in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**
@@ -239,6 +244,7 @@ export interface UserArgs {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password of the MongoDB® user in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**

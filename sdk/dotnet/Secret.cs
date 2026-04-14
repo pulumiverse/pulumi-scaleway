@@ -11,11 +11,72 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// The `scaleway.secrets.Secret` resource allows you to create and manage secrets in Scaleway Secret Manager.
+    /// 
+    /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Create a secret
+    /// 
+    /// The following command allows you to create a secret named `Foo` with a description (`Barr`), and tags (`Foo` and `Terraform`).
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Secrets.Secret("main", new()
+    ///     {
+    ///         Name = "foo",
+    ///         Description = "barr",
+    ///         Tags = new[]
+    ///         {
+    ///             "foo",
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Apply the ephemeral policy on a secret
+    /// 
+    /// The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `Foo`.
+    /// 
+    /// In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ephemeral = new Scaleway.Secrets.Secret("ephemeral", new()
+    ///     {
+    ///         Name = "foo",
+    ///         EphemeralPolicies = new[]
+    ///         {
+    ///             new Scaleway.Secrets.Inputs.SecretEphemeralPolicyArgs
+    ///             {
+    ///                 Ttl = "24h",
+    ///                 ExpiresOnceAccessed = true,
+    ///                 Action = "disable",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import a secret using the `{region}/{id}` format.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
@@ -62,7 +123,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         /// </summary>
         [Output("protected")]
         public Output<bool?> Protected { get; private set; } = null!;
@@ -194,7 +255,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         /// </summary>
         [Input("protected")]
         public Input<bool>? Protected { get; set; }
@@ -275,7 +336,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        /// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         /// </summary>
         [Input("protected")]
         public Input<bool>? Protected { get; set; }

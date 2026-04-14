@@ -31,7 +31,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Computed port range for this rule (e.g: 1-1024, 22-22)
+        /// Need terraform &gt;= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+        /// If no `Port` nor `PortRange` are specified, rule will apply to all port.
+        /// Only one of `Port` and `PortRange` should be specified.
         /// </summary>
         public readonly string? PortRange;
         /// <summary>

@@ -202,22 +202,20 @@ class IpamIpReverseDns(pulumi.CustomResource):
             dns_zone="example.com",
             name="",
             type="AAAA",
-            data=std.index.cidrhost(input=ipam01.address_cidr,
+            data=std.cidrhost(input=ipam01.address_cidr,
                 host=42)["result"],
             ttl=3600,
             priority=1)
         base = scaleway.ipam.IpReverseDns("base",
             ipam_ip_id=ipam01.id,
             hostname="example.com",
-            address=std.index.cidrhost(input=ipam01.address_cidr,
+            address=std.cidrhost(input=ipam01.address_cidr,
                 host=42)["result"])
         ```
 
         ## Import
 
         IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111
@@ -265,22 +263,20 @@ class IpamIpReverseDns(pulumi.CustomResource):
             dns_zone="example.com",
             name="",
             type="AAAA",
-            data=std.index.cidrhost(input=ipam01.address_cidr,
+            data=std.cidrhost(input=ipam01.address_cidr,
                 host=42)["result"],
             ttl=3600,
             priority=1)
         base = scaleway.ipam.IpReverseDns("base",
             ipam_ip_id=ipam01.id,
             hostname="example.com",
-            address=std.index.cidrhost(input=ipam01.address_cidr,
+            address=std.cidrhost(input=ipam01.address_cidr,
                 host=42)["result"])
         ```
 
         ## Import
 
         IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111

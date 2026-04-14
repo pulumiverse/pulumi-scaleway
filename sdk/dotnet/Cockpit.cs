@@ -11,15 +11,132 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// &gt; **Important:** The resource `scaleway.observability.Cockpit` has been deprecated and will no longer be supported after January 1st, 2025. Instead, use the new specialized resources:
+    /// 
+    /// - `scaleway.observability.Source` for managing data sources (metrics, logs, traces)
+    /// - `scaleway.observability.AlertManager` for managing alert manager
+    /// - `scaleway.observability.getGrafana` data source for accessing Grafana (authentication via IAM)
+    /// 
+    /// For detailed migration instructions, see the Cockpit Migration Guide.
+    /// 
+    /// &gt; **Note:**
+    /// As of September 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+    /// If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
+    /// 
+    /// &gt; **Note:**
+    /// From January 1st 2025, Cockpit plans have been deprecated. You can now edit the retention period for all your datasources (metrics, logs, and traces) separately. Refer to our product documentation for more information on [possible retention values](https://www.scaleway.com/en/docs/cockpit/concepts/#retention) and [pricing](https://www.scaleway.com/en/docs/cockpit/faq/#how-am-i-billed-for-increasing-data-retention-period).
+    /// 
+    /// &gt; **Note:** The `scaleway.observability.GrafanaUser` resource is deprecated. Use the `scaleway.observability.getGrafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+    /// 
+    /// The `scaleway.observability.Cockpit` resource allows you to create and manage Scaleway Cockpit instances.
+    /// 
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Manage Cockpit in the Scaleway default Project
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Activate Cockpit in the default Project
+    ///     var main = new Scaleway.Observability.Cockpit("main");
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Manage Cockpit in a specific Project
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Activate Cockpit in a specific Project
+    ///     var main = new Scaleway.Observability.Cockpit("main", new()
+    ///     {
+    ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Choose a specific pricing plan for Cockpit
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Observability.Cockpit("main", new()
+    ///     {
+    ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+    ///         Plan = "premium",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Use the Grafana Terraform provider (Deprecated)
+    /// 
+    /// &gt; **Note:** This example is deprecated. Use the `scaleway.observability.getGrafana` data source with IAM authentication instead.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Old approach (deprecated) - Using scaleway_cockpit_grafana_user
+    ///     // resource "scaleway_cockpit_grafana_user" "main" {
+    ///     //   project_id = scaleway_cockpit.main.project_id
+    ///     //   login      = "example"
+    ///     //   role       = "editor"
+    ///     // }
+    ///     //
+    ///     // provider "grafana" {
+    ///     //   url  = scaleway_cockpit.main.endpoints.0.grafana_url
+    ///     //   auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
+    ///     // }
+    ///     // New approach - Use scaleway_cockpit_grafana data source with IAM auth
+    ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+    ///     {
+    ///         ProjectId = mainScalewayCockpit.ProjectId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Migration
+    /// 
+    /// This resource is deprecated and will be removed after January 1st, 2025. To migrate to the new infrastructure, please refer to the Cockpit Migration Guide which provides step-by-step instructions for transitioning to:
+    /// 
+    /// - `scaleway.observability.Source` for managing data sources (metrics, logs, traces)
+    /// - `scaleway.observability.AlertManager` for managing alert manager
+    /// - `scaleway.observability.getGrafana` data source for accessing Grafana (with IAM authentication)
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import a Cockpit using its `{project_id}`.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
     /// ```
+    /// 
+    /// &gt; **Note:** Import functionality will be removed when this resource is deprecated.
     /// </summary>
     [Obsolete(@"scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit")]
     [ScalewayResourceType("scaleway:index/cockpit:Cockpit")]

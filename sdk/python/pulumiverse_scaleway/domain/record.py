@@ -624,8 +624,6 @@ class Record(pulumi.CustomResource):
 
         This section explains how to import a record using the `{dns_zone}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:domain/record:Record www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
@@ -840,8 +838,6 @@ class Record(pulumi.CustomResource):
         ## Import
 
         This section explains how to import a record using the `{dns_zone}/{id}` format.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:domain/record:Record www subdomain.domain.tld/11111111-1111-1111-1111-111111111111

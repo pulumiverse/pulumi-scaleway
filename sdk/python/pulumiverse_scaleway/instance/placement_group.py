@@ -285,8 +285,6 @@ class PlacementGroup(pulumi.CustomResource):
 
         Placement groups can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/placementGroup:PlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -321,8 +319,6 @@ class PlacementGroup(pulumi.CustomResource):
         ## Import
 
         Placement groups can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:instance/placementGroup:PlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111

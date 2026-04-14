@@ -197,6 +197,13 @@ class Acl(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `scaleway_k8s_cluster_acl` resource allows you to create and manage Scaleway Kubernetes Cluster authorized IPs.
+
+        Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+        > **Important:** When creating a Cluster, it comes with a default ACL rule allowing all ranges `0.0.0.0/0`.
+        Defining custom ACLs with Terraform will overwrite this rule, but it will be recreated automatically when deleting the ACL resource.
+
         ## Example Usage
 
         ```python
@@ -245,8 +252,6 @@ class Acl(pulumi.CustomResource):
         ## Import
 
         Kubernetes ACLs can be imported using the `{region}/{cluster-id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:kubernetes/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111
@@ -272,6 +277,13 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `scaleway_k8s_cluster_acl` resource allows you to create and manage Scaleway Kubernetes Cluster authorized IPs.
+
+        Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+        > **Important:** When creating a Cluster, it comes with a default ACL rule allowing all ranges `0.0.0.0/0`.
+        Defining custom ACLs with Terraform will overwrite this rule, but it will be recreated automatically when deleting the ACL resource.
+
         ## Example Usage
 
         ```python
@@ -320,8 +332,6 @@ class Acl(pulumi.CustomResource):
         ## Import
 
         Kubernetes ACLs can be imported using the `{region}/{cluster-id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:kubernetes/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111

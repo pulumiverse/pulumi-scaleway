@@ -68,8 +68,6 @@ namespace Pulumiverse.Scaleway.Network
     /// 
     /// VPCs can be imported using `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:network/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
     /// ```

@@ -57,8 +57,6 @@ import (
 //
 // SQS credentials can be imported using `{region}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:mnq/sqsCredentials:SqsCredentials main fr-par/11111111111111111111111111111111
 // ```

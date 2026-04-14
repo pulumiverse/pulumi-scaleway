@@ -188,8 +188,6 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         Namespaces can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
         ```
@@ -228,8 +226,6 @@ class MnqNatsAccount(pulumi.CustomResource):
         ## Import
 
         Namespaces can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111

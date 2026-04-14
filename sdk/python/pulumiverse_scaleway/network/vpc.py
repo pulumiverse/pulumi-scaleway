@@ -341,8 +341,6 @@ class Vpc(pulumi.CustomResource):
 
         VPCs can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -401,8 +399,6 @@ class Vpc(pulumi.CustomResource):
         ## Import
 
         VPCs can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:network/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111

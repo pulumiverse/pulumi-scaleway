@@ -268,8 +268,6 @@ class Token(pulumi.CustomResource):
 
         This section explains how to import a Cockpit token using the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/token:Token main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -333,8 +331,6 @@ class Token(pulumi.CustomResource):
         ## Import
 
         This section explains how to import a Cockpit token using the `{region}/{id}` format.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:observability/token:Token main fr-par/11111111-1111-1111-1111-111111111111

@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway.Instance
     ///         SizeInGb = 15,
     ///     });
     /// 
-    ///     var terraformInstanceFilesystem = new Scaleway.FileFilesystem("terraform_instance_filesystem", new()
+    ///     var terraformInstanceFilesystem = new Scaleway.Index.FileFilesystem("terraform_instance_filesystem", new()
     ///     {
     ///         Name = "filesystem-instance-terraform",
     ///         SizeInGb = 100,
@@ -268,7 +268,6 @@ namespace Pulumiverse.Scaleway.Instance
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -337,8 +336,6 @@ namespace Pulumiverse.Scaleway.Instance
     /// ## Import
     /// 
     /// Instance servers can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:instance/server:Server web fr-par-1/11111111-1111-1111-1111-111111111111
@@ -493,7 +490,9 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<Outputs.ServerRootVolume> RootVolume { get; private set; } = null!;
 
         /// <summary>
-        /// The security group the server is attached to
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// 
+        /// &gt; **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
@@ -759,7 +758,9 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<Inputs.ServerRootVolumeArgs>? RootVolume { get; set; }
 
         /// <summary>
-        /// The security group the server is attached to
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// 
+        /// &gt; **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
@@ -1006,7 +1007,9 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<Inputs.ServerRootVolumeGetArgs>? RootVolume { get; set; }
 
         /// <summary>
-        /// The security group the server is attached to
+        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// 
+        /// &gt; **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }

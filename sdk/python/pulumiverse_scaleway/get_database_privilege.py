@@ -28,10 +28,13 @@ class GetDatabasePrivilegeResult:
     """
     A collection of values returned by getDatabasePrivilege.
     """
-    def __init__(__self__, database_name=None, id=None, instance_id=None, permission=None, region=None, user_name=None):
+    def __init__(__self__, database_name=None, effective_permission=None, id=None, instance_id=None, permission=None, permission_status=None, region=None, user_name=None):
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
         pulumi.set(__self__, "database_name", database_name)
+        if effective_permission and not isinstance(effective_permission, str):
+            raise TypeError("Expected argument 'effective_permission' to be a str")
+        pulumi.set(__self__, "effective_permission", effective_permission)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,6 +44,9 @@ class GetDatabasePrivilegeResult:
         if permission and not isinstance(permission, str):
             raise TypeError("Expected argument 'permission' to be a str")
         pulumi.set(__self__, "permission", permission)
+        if permission_status and not isinstance(permission_status, str):
+            raise TypeError("Expected argument 'permission_status' to be a str")
+        pulumi.set(__self__, "permission_status", permission_status)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -52,6 +58,11 @@ class GetDatabasePrivilegeResult:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> _builtins.str:
         return pulumi.get(self, "database_name")
+
+    @_builtins.property
+    @pulumi.getter(name="effectivePermission")
+    def effective_permission(self) -> _builtins.str:
+        return pulumi.get(self, "effective_permission")
 
     @_builtins.property
     @pulumi.getter
@@ -76,6 +87,11 @@ class GetDatabasePrivilegeResult:
         return pulumi.get(self, "permission")
 
     @_builtins.property
+    @pulumi.getter(name="permissionStatus")
+    def permission_status(self) -> _builtins.str:
+        return pulumi.get(self, "permission_status")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "region")
@@ -93,9 +109,11 @@ class AwaitableGetDatabasePrivilegeResult(GetDatabasePrivilegeResult):
             yield self
         return GetDatabasePrivilegeResult(
             database_name=self.database_name,
+            effective_permission=self.effective_permission,
             id=self.id,
             instance_id=self.instance_id,
             permission=self.permission,
+            permission_status=self.permission_status,
             region=self.region,
             user_name=self.user_name)
 
@@ -137,9 +155,11 @@ def get_database_privilege(database_name: Optional[_builtins.str] = None,
 
     return AwaitableGetDatabasePrivilegeResult(
         database_name=pulumi.get(__ret__, 'database_name'),
+        effective_permission=pulumi.get(__ret__, 'effective_permission'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         permission=pulumi.get(__ret__, 'permission'),
+        permission_status=pulumi.get(__ret__, 'permission_status'),
         region=pulumi.get(__ret__, 'region'),
         user_name=pulumi.get(__ret__, 'user_name'))
 def get_database_privilege_output(database_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -178,8 +198,10 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[_builtins
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getDatabasePrivilege:getDatabasePrivilege', __args__, opts=opts, typ=GetDatabasePrivilegeResult)
     return __ret__.apply(lambda __response__: GetDatabasePrivilegeResult(
         database_name=pulumi.get(__response__, 'database_name'),
+        effective_permission=pulumi.get(__response__, 'effective_permission'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
         permission=pulumi.get(__response__, 'permission'),
+        permission_status=pulumi.get(__response__, 'permission_status'),
         region=pulumi.get(__response__, 'region'),
         user_name=pulumi.get(__response__, 'user_name')))

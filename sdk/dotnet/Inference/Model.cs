@@ -11,6 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inference
 {
     /// <summary>
+    /// The scaleway.inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any scaleway.inference.Deployment resource.
+    /// 
+    /// &gt; **Security Best Practice:**
+    /// For enhanced security, we recommend using the `SecretWo` write-only argument instead of the regular `Secret` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -87,8 +92,6 @@ namespace Pulumiverse.Scaleway.Inference
     /// 
     /// Models can be imported using, `{region}/{id}`, as shown below:
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
     /// ```
@@ -152,6 +155,7 @@ namespace Pulumiverse.Scaleway.Inference
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Authentication token used to pull the model from a private or gated URL in write-only mode. `SecretWo` will not be stored in the Terraform state. Only one of `Secret` or `SecretWo` should be specified. Requires `SecretWoVersion` to be set.
         /// </summary>
         [Output("secretWo")]
         public Output<string?> SecretWo { get; private set; } = null!;
@@ -283,6 +287,7 @@ namespace Pulumiverse.Scaleway.Inference
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Authentication token used to pull the model from a private or gated URL in write-only mode. `SecretWo` will not be stored in the Terraform state. Only one of `Secret` or `SecretWo` should be specified. Requires `SecretWoVersion` to be set.
         /// </summary>
         public Input<string>? SecretWo
         {
@@ -389,6 +394,7 @@ namespace Pulumiverse.Scaleway.Inference
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Authentication token used to pull the model from a private or gated URL in write-only mode. `SecretWo` will not be stored in the Terraform state. Only one of `Secret` or `SecretWo` should be specified. Requires `SecretWoVersion` to be set.
         /// </summary>
         public Input<string>? SecretWo
         {

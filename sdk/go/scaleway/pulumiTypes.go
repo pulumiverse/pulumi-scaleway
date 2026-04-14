@@ -5698,6 +5698,8 @@ func (o EdgeServicesRouteStageRuleArrayOutput) Index(i pulumi.IntInput) EdgeServ
 }
 
 type EdgeServicesRouteStageRuleRuleHttpMatch struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+	HostFilter *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter `pulumi:"hostFilter"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 	MethodFilters []string `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
@@ -5716,6 +5718,8 @@ type EdgeServicesRouteStageRuleRuleHttpMatchInput interface {
 }
 
 type EdgeServicesRouteStageRuleRuleHttpMatchArgs struct {
+	// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+	HostFilter EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput `pulumi:"hostFilter"`
 	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 	MethodFilters pulumi.StringArrayInput `pulumi:"methodFilters"`
 	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
@@ -5799,6 +5803,13 @@ func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) ToEdgeServicesRouteStageR
 	}).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
 }
 
+// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) HostFilter() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatch) *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+		return v.HostFilter
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
 // HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) MethodFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatch) []string { return v.MethodFilters }).(pulumi.StringArrayOutput)
@@ -5835,6 +5846,16 @@ func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) Elem() EdgeServicesRou
 	}).(EdgeServicesRouteStageRuleRuleHttpMatchOutput)
 }
 
+// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) HostFilter() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatch) *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+		if v == nil {
+			return nil
+		}
+		return v.HostFilter
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
 // HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
 func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) MethodFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatch) []string {
@@ -5853,6 +5874,162 @@ func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) PathFilter() EdgeServi
 		}
 		return v.PathFilter
 	}).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilter struct {
+	// The type of filter to match for the host. Use the `regex` type.
+	HostFilterType string `pulumi:"hostFilterType"`
+	// The value to be matched for the host.
+	Value string `pulumi:"value"`
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchHostFilterInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs and EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchHostFilterInput` via:
+//
+//	EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs{...}
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilterInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs struct {
+	// The type of filter to match for the host. Use the `regex` type.
+	HostFilterType pulumi.StringInput `pulumi:"hostFilterType"`
+	// The value to be matched for the host.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput)
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput).ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs, EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtr and EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput` via:
+//
+//	        EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput
+}
+
+type edgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrType EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs
+
+func EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtr(v *EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput {
+	return (*edgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrType)(v)
+}
+
+func (*edgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+		return &v
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput)
+}
+
+// The type of filter to match for the host. Use the `regex` type.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) HostFilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) string { return v.HostFilterType }).(pulumi.StringOutput)
+}
+
+// The value to be matched for the host.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatchHostFilter)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) Elem() EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesRouteStageRuleRuleHttpMatchHostFilter
+		return ret
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput)
+}
+
+// The type of filter to match for the host. Use the `regex` type.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) HostFilterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.HostFilterType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The value to be matched for the host.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchHostFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.StringPtrOutput)
 }
 
 type EdgeServicesRouteStageRuleRuleHttpMatchPathFilter struct {
@@ -7526,7 +7703,9 @@ type InstanceSecurityGroupInboundRule struct {
 	IpRange *string `pulumi:"ipRange"`
 	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port *int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange *string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol *string `pulumi:"protocol"`
@@ -7554,7 +7733,9 @@ type InstanceSecurityGroupInboundRuleArgs struct {
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
 	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -7633,7 +7814,9 @@ func (o InstanceSecurityGroupInboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o InstanceSecurityGroupInboundRuleOutput) PortRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
@@ -7822,7 +8005,9 @@ type InstanceSecurityGroupRulesInboundRule struct {
 	IpRange *string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port *int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange *string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol *string `pulumi:"protocol"`
@@ -7850,7 +8035,9 @@ type InstanceSecurityGroupRulesInboundRuleArgs struct {
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -7929,7 +8116,9 @@ func (o InstanceSecurityGroupRulesInboundRuleOutput) Port() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o InstanceSecurityGroupRulesInboundRuleOutput) PortRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecurityGroupRulesInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
@@ -10506,7 +10695,9 @@ func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput
 }
 
 type IpamIpReverse struct {
-	// The IP corresponding to the hostname
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address *string `pulumi:"address"`
 	// The reverse domain name.
 	Hostname *string `pulumi:"hostname"`
@@ -10524,7 +10715,9 @@ type IpamIpReverseInput interface {
 }
 
 type IpamIpReverseArgs struct {
-	// The IP corresponding to the hostname
+	// Request a specific IP in the specified source pool.
+	//
+	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The reverse domain name.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
@@ -10581,7 +10774,9 @@ func (o IpamIpReverseOutput) ToIpamIpReverseOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The IP corresponding to the hostname
+// Request a specific IP in the specified source pool.
+//
+// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 func (o IpamIpReverseOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -34274,6 +34469,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleArrayInput)(nil)).Elem(), EdgeServicesRouteStageRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchHostFilterInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilterInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesTlsStageSecretInput)(nil)).Elem(), EdgeServicesTlsStageSecretArgs{})
@@ -34751,6 +34948,8 @@ func init() {
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleArrayOutput{})
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchOutput{})
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchHostFilterPtrOutput{})
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput{})
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(EdgeServicesTlsStageSecretOutput{})

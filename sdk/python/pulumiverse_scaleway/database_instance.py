@@ -59,7 +59,13 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+               
+               > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+               
+               > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+               
+               > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -69,6 +75,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
@@ -218,7 +225,13 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+
+        > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+
+        > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+
+        > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
 
@@ -305,6 +318,7 @@ class DatabaseInstanceArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -495,7 +509,13 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[_builtins.int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
-        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+               
+               > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+               
+               > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+               
+               > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -512,6 +532,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['DatabaseInstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
@@ -703,7 +724,13 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+
+        > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+
+        > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+
+        > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
 
@@ -819,6 +846,7 @@ class _DatabaseInstanceState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -1027,6 +1055,12 @@ class DatabaseInstance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Database Instances.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -1066,8 +1100,6 @@ class DatabaseInstance(pulumi.CustomResource):
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -1079,7 +1111,13 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+               
+               > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+               
+               > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+               
+               > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -1095,6 +1133,7 @@ class DatabaseInstance(pulumi.CustomResource):
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
@@ -1120,6 +1159,12 @@ class DatabaseInstance(pulumi.CustomResource):
                  args: DatabaseInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Database Instances.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -1158,8 +1203,6 @@ class DatabaseInstance(pulumi.CustomResource):
         ## Import
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
@@ -1306,7 +1349,13 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[_builtins.int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
-        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+               
+               > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+               
+               > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+               
+               > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -1323,6 +1372,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
@@ -1450,7 +1500,13 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def engine(self) -> pulumi.Output[_builtins.str]:
         """
-        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+        Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+
+        > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+
+        > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
+
+        > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
 
@@ -1530,6 +1586,7 @@ class DatabaseInstance(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

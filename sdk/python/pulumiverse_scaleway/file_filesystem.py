@@ -319,8 +319,6 @@ class FileFilesystem(pulumi.CustomResource):
 
         File Storage filesystems can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/fileFilesystem:FileFilesystem main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -365,8 +363,6 @@ class FileFilesystem(pulumi.CustomResource):
         ## Import
 
         File Storage filesystems can be imported using the `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/fileFilesystem:FileFilesystem main fr-par/11111111-1111-1111-1111-111111111111

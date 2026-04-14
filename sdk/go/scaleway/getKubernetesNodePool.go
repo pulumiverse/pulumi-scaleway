@@ -103,8 +103,9 @@ type LookupKubernetesNodePoolResult struct {
 	// The container runtime of the pool.
 	ContainerRuntime string `pulumi:"containerRuntime"`
 	// The creation date of the pool.
-	CreatedAt   string `pulumi:"createdAt"`
-	CurrentSize int    `pulumi:"currentSize"`
+	CreatedAt string `pulumi:"createdAt"`
+	// The size of the pool at the time the terraform state was updated.
+	CurrentSize int `pulumi:"currentSize"`
 	// The provider-assigned unique ID for this managed resource.
 	Id          string            `pulumi:"id"`
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
@@ -207,6 +208,7 @@ func (o LookupKubernetesNodePoolResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The size of the pool at the time the terraform state was updated.
 func (o LookupKubernetesNodePoolResultOutput) CurrentSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) int { return v.CurrentSize }).(pulumi.IntOutput)
 }

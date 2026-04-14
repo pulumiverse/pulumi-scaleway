@@ -34,6 +34,7 @@ class UserArgs:
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
@@ -93,6 +94,7 @@ class UserArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -153,6 +155,7 @@ class _UserState:
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
@@ -213,6 +216,7 @@ class _UserState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -272,6 +276,11 @@ class User(pulumi.CustomResource):
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
                  __props__=None):
         """
+        Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -343,8 +352,6 @@ class User(pulumi.CustomResource):
         ## Import
 
         MongoDB® users can be imported using the `{region}/{instance_id}/{name}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
@@ -356,6 +363,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
@@ -367,6 +375,11 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -438,8 +451,6 @@ class User(pulumi.CustomResource):
         ## Import
 
         MongoDB® users can be imported using the `{region}/{instance_id}/{name}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
@@ -515,6 +526,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
@@ -561,6 +573,7 @@ class User(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

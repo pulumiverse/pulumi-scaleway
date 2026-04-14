@@ -386,8 +386,6 @@ class Route(pulumi.CustomResource):
 
         Routes can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/route:Route main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -492,8 +490,6 @@ class Route(pulumi.CustomResource):
         ## Import
 
         Routes can be imported using `{region}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:network/route:Route main fr-par/11111111-1111-1111-1111-111111111111

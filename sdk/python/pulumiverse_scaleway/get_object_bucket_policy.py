@@ -112,6 +112,13 @@ def get_object_bucket_policy(bucket: Optional[_builtins.str] = None,
 
 
     :param _builtins.str bucket: The name of the bucket.
+    :param _builtins.str project_id: `project_id`) The ID of the project with which the bucket is associated.
+           
+           > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+           If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+           like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+           
+           For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
     :param _builtins.str region: `region`) The region in which the Object Storage exists.
     """
     pulumi.log.warn("""get_object_bucket_policy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy""")
@@ -150,6 +157,13 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[_builtins.str]
 
 
     :param _builtins.str bucket: The name of the bucket.
+    :param _builtins.str project_id: `project_id`) The ID of the project with which the bucket is associated.
+           
+           > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+           If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+           like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+           
+           For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
     :param _builtins.str region: `region`) The region in which the Object Storage exists.
     """
     pulumi.log.warn("""get_object_bucket_policy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy""")

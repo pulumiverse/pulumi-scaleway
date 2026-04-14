@@ -217,8 +217,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
@@ -234,13 +232,13 @@ import (
 //			// The DNS Zone used for testing records.
 //			dnsZone := cfg.Require("dnsZone")
 //			publicIp, err := instance.NewIp(ctx, "public_ip", &instance.IpArgs{
-//				ProjectId: pulumi.String(projectId),
+//				ProjectId: pulumi.String(pulumi.String(projectId)),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			web, err := instance.NewServer(ctx, "web", &instance.ServerArgs{
-//				ProjectId: pulumi.String(projectId),
+//				ProjectId: pulumi.String(pulumi.String(projectId)),
 //				Type:      pulumi.String("DEV1-S"),
 //				Image:     pulumi.String("ubuntu_jammy"),
 //				Tags: pulumi.StringArray{
@@ -256,7 +254,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "web_A", &domain.RecordArgs{
-//				DnsZone: pulumi.String(dnsZone),
+//				DnsZone: pulumi.String(pulumi.String(dnsZone)),
 //				Name:    pulumi.String("web"),
 //				Type:    pulumi.String("A"),
 //				Data:    web.PublicIp,
@@ -266,7 +264,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "web_cname", &domain.RecordArgs{
-//				DnsZone: pulumi.String(dnsZone),
+//				DnsZone: pulumi.String(pulumi.String(dnsZone)),
 //				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("CNAME"),
 //				Data:    pulumi.Sprintf("web.%v.", dnsZone),
@@ -276,7 +274,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "web_alias", &domain.RecordArgs{
-//				DnsZone: pulumi.String(dnsZone),
+//				DnsZone: pulumi.String(pulumi.String(dnsZone)),
 //				Name:    pulumi.String(""),
 //				Type:    pulumi.String("ALIAS"),
 //				Data:    pulumi.Sprintf("web.%v.", dnsZone),
@@ -300,8 +298,6 @@ import (
 // ## Import
 //
 // This section explains how to import a record using the `{dns_zone}/{id}` format.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:domain/record:Record www subdomain.domain.tld/11111111-1111-1111-1111-111111111111

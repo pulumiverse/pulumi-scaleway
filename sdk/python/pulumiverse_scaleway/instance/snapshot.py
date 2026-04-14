@@ -390,8 +390,6 @@ class Snapshot(pulumi.CustomResource):
 
         Snapshots can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -472,8 +470,6 @@ class Snapshot(pulumi.CustomResource):
         ## Import
 
         Snapshots can be imported using the `{zone}/{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:instance/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111

@@ -260,8 +260,6 @@ class EdgeServicesWafStage(pulumi.CustomResource):
 
         WAF stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
         ```
@@ -300,8 +298,6 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         ## Import
 
         WAF stages can be imported using the `{id}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111

@@ -85,17 +85,12 @@ namespace Pulumiverse.Scaleway.Object
     /// 
     /// Server-side encryption configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name
     /// ```
     /// 
-    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with S3 products because the S3 API is scoped by project.
-    /// 
+    /// &gt; **Important:** The `ProjectId` attribute has a particular behavior with S3 products because the S3 API is scoped by project.
     /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111

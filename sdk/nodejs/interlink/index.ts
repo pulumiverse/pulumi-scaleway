@@ -14,3 +14,13 @@ export const getPartners: typeof import("./getPartners").getPartners = null as a
 export const getPartnersOutput: typeof import("./getPartners").getPartnersOutput = null as any;
 utilities.lazyLoad(exports, ["getPartners","getPartnersOutput"], () => require("./getPartners"));
 
+export { GetPopArgs, GetPopResult, GetPopOutputArgs } from "./getPop";
+export const getPop: typeof import("./getPop").getPop = null as any;
+export const getPopOutput: typeof import("./getPop").getPopOutput = null as any;
+utilities.lazyLoad(exports, ["getPop","getPopOutput"], () => require("./getPop"));
+
+export { GetPopsArgs, GetPopsResult, GetPopsOutputArgs } from "./getPops";
+export const getPops: typeof import("./getPops").getPops = null as any;
+export const getPopsOutput: typeof import("./getPops").getPopsOutput = null as any;
+utilities.lazyLoad(exports, ["getPops","getPopsOutput"], () => require("./getPops"));
+

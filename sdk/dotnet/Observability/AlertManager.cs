@@ -25,7 +25,6 @@ namespace Pulumiverse.Scaleway.Observability
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -134,8 +133,6 @@ namespace Pulumiverse.Scaleway.Observability
     /// ## Import
     /// 
     /// This section explains how to import alert managers using the ID of the Project associated with Cockpit.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:observability/alertManager:AlertManager main fr-par/11111111-1111-1111-1111-111111111111

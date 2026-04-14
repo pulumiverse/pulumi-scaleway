@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = hosting.NewHosting(ctx, "main", &hosting.HostingArgs{
-//				OfferId: pulumi.String(byName.OfferId),
+//				OfferId: pulumi.String(pulumi.String(byName.OfferId)),
 //				Email:   pulumi.String("your@email.com"),
 //				Domain:  pulumi.String("yourdomain.com"),
 //				Tags: pulumi.StringArray{
@@ -58,8 +58,6 @@ import (
 // ## Import
 //
 // Hostings can be imported using the `{region}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111

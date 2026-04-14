@@ -396,7 +396,9 @@ type SecurityGroupInboundRule struct {
 	IpRange *string `pulumi:"ipRange"`
 	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port *int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange *string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol *string `pulumi:"protocol"`
@@ -424,7 +426,9 @@ type SecurityGroupInboundRuleArgs struct {
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
 	// The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -503,7 +507,9 @@ func (o SecurityGroupInboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecurityGroupInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o SecurityGroupInboundRuleOutput) PortRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityGroupInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }
@@ -692,7 +698,9 @@ type SecurityGroupRulesInboundRule struct {
 	IpRange *string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port *int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange *string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol *string `pulumi:"protocol"`
@@ -720,7 +728,9 @@ type SecurityGroupRulesInboundRuleArgs struct {
 	IpRange pulumi.StringPtrInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringPtrInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -799,7 +809,9 @@ func (o SecurityGroupRulesInboundRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecurityGroupRulesInboundRule) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o SecurityGroupRulesInboundRuleOutput) PortRange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecurityGroupRulesInboundRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
 }

@@ -38,8 +38,6 @@ import * as utilities from "./utilities";
  *
  * Function domain binding can be imported using `{region}/{id}`, as shown below:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```

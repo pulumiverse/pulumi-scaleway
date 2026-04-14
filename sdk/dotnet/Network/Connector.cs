@@ -115,8 +115,6 @@ namespace Pulumiverse.Scaleway.Network
     /// 
     /// VPC connectors can be imported using `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:network/connector:Connector main fr-par/11111111-1111-1111-1111-111111111111
     /// ```

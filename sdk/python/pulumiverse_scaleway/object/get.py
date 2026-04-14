@@ -204,6 +204,7 @@ def get(bucket: Optional[_builtins.str] = None,
     ```
 
 
+    :param _builtins.str bucket: The name of the bucket, or its terraform ID (`{region}/{name}`)
     :param _builtins.str key: The key (path or filename) of the object within the bucket.
     :param _builtins.str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param _builtins.str region: `region`) The region in which the bucket exists.
@@ -261,6 +262,7 @@ def get_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
     ```
 
 
+    :param _builtins.str bucket: The name of the bucket, or its terraform ID (`{region}/{name}`)
     :param _builtins.str key: The key (path or filename) of the object within the bucket.
     :param _builtins.str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param _builtins.str region: `region`) The region in which the bucket exists.

@@ -405,8 +405,6 @@ class FunctionNamespace(pulumi.CustomResource):
 
         Functions namespaces can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
@@ -456,8 +454,6 @@ class FunctionNamespace(pulumi.CustomResource):
         ## Import
 
         Functions namespaces can be imported using `{region}/{id}`, as shown below:
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111

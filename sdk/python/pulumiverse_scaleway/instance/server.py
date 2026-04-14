@@ -92,7 +92,9 @@ class ServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[_builtins.bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['ServerRootVolumeArgs'] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[_builtins.str] security_group_id: The security group the server is attached to
+        :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+               
+               > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: The user data associated with the server.
@@ -425,7 +427,9 @@ class ServerArgs:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The security group the server is attached to
+        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+
+        > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -559,7 +563,9 @@ class _ServerState:
         :param pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[_builtins.bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['ServerRootVolumeArgs'] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[_builtins.str] security_group_id: The security group the server is attached to
+        :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+               
+               > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
@@ -910,7 +916,9 @@ class _ServerState:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The security group the server is attached to
+        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+
+        > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -1225,8 +1233,6 @@ class Server(pulumi.CustomResource):
 
         Instance servers can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/server:Server web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -1271,7 +1277,9 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[_builtins.bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[_builtins.str] security_group_id: The security group the server is attached to
+        :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+               
+               > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
@@ -1498,8 +1506,6 @@ class Server(pulumi.CustomResource):
 
         Instance servers can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/server:Server web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
@@ -1668,7 +1674,9 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]] public_ips: The list of public IPs of the server.
         :param pulumi.Input[_builtins.bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']] root_volume: Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
-        :param pulumi.Input[_builtins.str] security_group_id: The security group the server is attached to
+        :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+               
+               > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
@@ -1910,7 +1918,9 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The security group the server is attached to
+        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+
+        > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         """
         return pulumi.get(self, "security_group_id")
 
