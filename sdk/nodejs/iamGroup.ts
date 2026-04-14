@@ -38,11 +38,32 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With users
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const users = std.toset({
+ *     input: [
+ *         "user1@mail.com",
+ *         "user2@mail.com",
+ *     ],
+ * }).result;
+ * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: scaleway.iam.getUser({
+ *     email: __value,
+ * }) }), {});
+ * const withUsers = new scaleway.iam.Group("with_users", {
+ *     name: "iam_group_with_app",
+ *     applicationIds: [],
+ *     userIds: Object.values(usersGetUser).map(user => (user.id)),
+ * });
+ * ```
+ *
  * ## Import
  *
  * IAM groups can be imported using the `{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111

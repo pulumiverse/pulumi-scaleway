@@ -59,8 +59,6 @@ import (
 //
 // Functions can be imported using, `{region}/{id}`, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:inference/deployment:Deployment deployment fr-par/11111111-1111-1111-1111-111111111111
 // ```

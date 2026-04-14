@@ -151,7 +151,9 @@ class IpReverse(dict):
                  address: Optional[_builtins.str] = None,
                  hostname: Optional[_builtins.str] = None):
         """
-        :param _builtins.str address: The IP corresponding to the hostname
+        :param _builtins.str address: Request a specific IP in the specified source pool.
+               
+               > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param _builtins.str hostname: The reverse domain name.
         """
         if address is not None:
@@ -163,7 +165,9 @@ class IpReverse(dict):
     @pulumi.getter
     def address(self) -> Optional[_builtins.str]:
         """
-        The IP corresponding to the hostname
+        Request a specific IP in the specified source pool.
+
+        > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
 

@@ -35,20 +35,15 @@ __all__ = [
     'ReadReplicaPrivateNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AclAclRuleArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A text describing this rule. Default description: `IP allowed`
-        """
-elif False:
-    AclAclRuleArgsDict: TypeAlias = Mapping[str, Any]
+class AclAclRuleArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A text describing this rule. Default description: `IP allowed`
+    """
 
 @pulumi.input_type
 class AclAclRuleArgs:
@@ -88,30 +83,27 @@ class AclAclRuleArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class InstanceLoadBalancerArgsDict(TypedDict):
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-elif False:
-    InstanceLoadBalancerArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceLoadBalancerArgsDict(TypedDict):
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
 
 @pulumi.input_type
 class InstanceLoadBalancerArgs:
@@ -200,18 +192,15 @@ class InstanceLoadBalancerArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class InstanceLogsPolicyArgsDict(TypedDict):
-        max_age_retention: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The max age (in days) of remote logs to keep on the Database Instance
-        """
-        total_disk_retention: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The max disk size of remote logs to keep on the Database Instance.
-        """
-elif False:
-    InstanceLogsPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceLogsPolicyArgsDict(TypedDict):
+    max_age_retention: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The max age (in days) of remote logs to keep on the Database Instance
+    """
+    total_disk_retention: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The max disk size of remote logs to keep on the Database Instance.
+    """
 
 @pulumi.input_type
 class InstanceLogsPolicyArgs:
@@ -252,18 +241,15 @@ class InstanceLogsPolicyArgs:
         pulumi.set(self, "total_disk_retention", value)
 
 
-if not MYPY:
-    class InstancePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version ID to use in upgrade requests.
-        """
-elif False:
-    InstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version ID to use in upgrade requests.
+    """
 
 @pulumi.input_type
 class InstancePrivateIpArgs:
@@ -304,46 +290,43 @@ class InstancePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstancePrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The private network ID
-        """
-        enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether or not the private network endpoint should be configured with IPAM
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        ip_net: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP with the given mask within the private subnet
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The zone you want to attach the resource to
-        """
-elif False:
-    InstancePrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The private network ID
+    """
+    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether or not the private network endpoint should be configured with IPAM
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    ip_net: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP with the given mask within the private subnet
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The zone you want to attach the resource to
+    """
 
 @pulumi.input_type
 class InstancePrivateNetworkArgs:
@@ -495,22 +478,19 @@ class InstancePrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class InstanceReadReplicaArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-elif False:
-    InstanceReadReplicaArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceReadReplicaArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
 
 @pulumi.input_type
 class InstanceReadReplicaArgs:
@@ -567,26 +547,23 @@ class InstanceReadReplicaArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class InstanceUpgradableVersionArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version ID to use in upgrade requests.
-        """
-        minor_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Minor version string (e.g., `15.5.0`).
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version string (e.g., `15.5`).
-        """
-elif False:
-    InstanceUpgradableVersionArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceUpgradableVersionArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version ID to use in upgrade requests.
+    """
+    minor_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Minor version string (e.g., `15.5.0`).
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version string (e.g., `15.5`).
+    """
 
 @pulumi.input_type
 class InstanceUpgradableVersionArgs:
@@ -659,30 +636,27 @@ class InstanceUpgradableVersionArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ReadReplicaDirectAccessArgsDict(TypedDict):
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint of the Read Replica.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint. Only one of IP and hostname may be set.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    ReadReplicaDirectAccessArgsDict: TypeAlias = Mapping[str, Any]
+class ReadReplicaDirectAccessArgsDict(TypedDict):
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint of the Read Replica.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint. Only one of IP and hostname may be set.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class ReadReplicaDirectAccessArgs:
@@ -771,48 +745,45 @@ class ReadReplicaDirectAccessArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ReadReplicaPrivateNetworkArgsDict(TypedDict):
-        private_network_id: pulumi.Input[_builtins.str]
-        """
-        UUID of the Private Netork to be connected to the Read Replica.
-        """
-        enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+class ReadReplicaPrivateNetworkArgsDict(TypedDict):
+    private_network_id: pulumi.Input[_builtins.str]
+    """
+    UUID of the Private Netork to be connected to the Read Replica.
+    """
+    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
-        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint of the Read Replica.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint. Only one of IP and hostname may be set.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-        service_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private network zone
-        """
-elif False:
-    ReadReplicaPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint of the Read Replica.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint. Only one of IP and hostname may be set.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
+    service_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private network zone
+    """
 
 @pulumi.input_type
 class ReadReplicaPrivateNetworkArgs:

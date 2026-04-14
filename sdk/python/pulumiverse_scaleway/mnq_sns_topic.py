@@ -30,6 +30,7 @@ class MnqSnsTopicArgs:
                  sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqSnsTopic resource.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
@@ -184,6 +185,7 @@ class _MnqSnsTopicState:
                  sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqSnsTopic resources.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] arn: The ARN of the topic
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
@@ -405,11 +407,10 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -460,11 +461,10 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MnqSnsTopicArgs args: The arguments to use to populate this resource's properties.

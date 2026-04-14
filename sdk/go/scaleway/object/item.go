@@ -62,17 +62,12 @@ import (
 //
 // Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:object/item:Item some_object fr-par/some-bucket/some-file
 // ```
 //
-// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
 // If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:object/item:Item some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -80,7 +75,7 @@ import (
 type Item struct {
 	pulumi.CustomResourceState
 
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
@@ -98,7 +93,11 @@ type Item struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -161,7 +160,7 @@ func GetItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Item resources.
 type itemState struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket *string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -179,7 +178,11 @@ type itemState struct {
 	Key *string `pulumi:"key"`
 	// Map of metadata used for the object (keys must be lowercase).
 	Metadata map[string]string `pulumi:"metadata"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
@@ -194,7 +197,7 @@ type itemState struct {
 }
 
 type ItemState struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringPtrInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -212,7 +215,11 @@ type ItemState struct {
 	Key pulumi.StringPtrInput
 	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
@@ -231,7 +238,7 @@ func (ItemState) ElementType() reflect.Type {
 }
 
 type itemArgs struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -249,7 +256,11 @@ type itemArgs struct {
 	Key string `pulumi:"key"`
 	// Map of metadata used for the object (keys must be lowercase).
 	Metadata map[string]string `pulumi:"metadata"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
 	Region *string `pulumi:"region"`
@@ -265,7 +276,7 @@ type itemArgs struct {
 
 // The set of arguments for constructing a Item resource.
 type ItemArgs struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -283,7 +294,11 @@ type ItemArgs struct {
 	Key pulumi.StringInput
 	// Map of metadata used for the object (keys must be lowercase).
 	Metadata pulumi.StringMapInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region the bucket resides in.
 	Region pulumi.StringPtrInput
@@ -384,7 +399,7 @@ func (o ItemOutput) ToItemOutputWithContext(ctx context.Context) ItemOutput {
 	return o
 }
 
-// The bucket's name or regional ID.
+// The name of the bucket, or its Terraform ID.
 func (o ItemOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -426,7 +441,11 @@ func (o ItemOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
-// The projectId you want to attach the resource to
+// `projectId`) The ID of the project the bucket is associated with.
+//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 func (o ItemOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

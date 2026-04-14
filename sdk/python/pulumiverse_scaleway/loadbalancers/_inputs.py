@@ -45,20 +45,15 @@ __all__ = [
     'LoadBalancerPrivateNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AclActionArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        The action type. Possible values are: `allow` or `deny` or `redirect`.
-        """
-        redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgsDict']]]]
-        """
-        Redirect parameters when using an ACL with `redirect` action.
-        """
-elif False:
-    AclActionArgsDict: TypeAlias = Mapping[str, Any]
+class AclActionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The action type. Possible values are: `allow` or `deny` or `redirect`.
+    """
+    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgsDict']]]]
+    """
+    Redirect parameters when using an ACL with `redirect` action.
+    """
 
 @pulumi.input_type
 class AclActionArgs:
@@ -98,22 +93,19 @@ class AclActionArgs:
         pulumi.set(self, "redirects", value)
 
 
-if not MYPY:
-    class AclActionRedirectArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        """
-        target: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The redirect type. Possible values are: `location` or `scheme`.
-        """
-elif False:
-    AclActionRedirectArgsDict: TypeAlias = Mapping[str, Any]
+class AclActionRedirectArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+    """
+    target: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The redirect type. Possible values are: `location` or `scheme`.
+    """
 
 @pulumi.input_type
 class AclActionRedirectArgs:
@@ -170,37 +162,34 @@ class AclActionRedirectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class AclMatchArgsDict(TypedDict):
-        http_filter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
-        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        """
-        http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
-        """
-        http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
-        """
-        invert: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set to `true`, the condition will be of type "unless".
-        """
-        ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-        ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-elif False:
-    AclMatchArgsDict: TypeAlias = Mapping[str, Any]
+class AclMatchArgsDict(TypedDict):
+    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+    It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+    Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+    """
+    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+    """
+    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of possible values to match for the given HTTP filter.
+    Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+    """
+    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set to `true`, the condition will be of type "unless".
+    """
+    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
+    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
 
 @pulumi.input_type
 class AclMatchArgs:
@@ -311,26 +300,23 @@ class AclMatchArgs:
         pulumi.set(self, "ips_edge_services", value)
 
 
-if not MYPY:
-    class BackendHealthCheckHttpArgsDict(TypedDict):
-        uri: pulumi.Input[_builtins.str]
-        """
-        The HTTP endpoint URL to call for HC requests
-        """
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The expected HTTP status code
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP host header to use for HC requests
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP method to use for HC requests
-        """
-elif False:
-    BackendHealthCheckHttpArgsDict: TypeAlias = Mapping[str, Any]
+class BackendHealthCheckHttpArgsDict(TypedDict):
+    uri: pulumi.Input[_builtins.str]
+    """
+    The HTTP endpoint URL to call for HC requests
+    """
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expected HTTP status code
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP host header to use for HC requests
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP method to use for HC requests
+    """
 
 @pulumi.input_type
 class BackendHealthCheckHttpArgs:
@@ -402,30 +388,27 @@ class BackendHealthCheckHttpArgs:
         pulumi.set(self, "method", value)
 
 
-if not MYPY:
-    class BackendHealthCheckHttpsArgsDict(TypedDict):
-        uri: pulumi.Input[_builtins.str]
-        """
-        The HTTPS endpoint URL to call for HC requests
-        """
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The expected HTTP status code
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP host header to use for HC requests
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP method to use for HC requests
-        """
-        sni: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The SNI to use for HC requests over SSL
-        """
-elif False:
-    BackendHealthCheckHttpsArgsDict: TypeAlias = Mapping[str, Any]
+class BackendHealthCheckHttpsArgsDict(TypedDict):
+    uri: pulumi.Input[_builtins.str]
+    """
+    The HTTPS endpoint URL to call for HC requests
+    """
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expected HTTP status code
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP host header to use for HC requests
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP method to use for HC requests
+    """
+    sni: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The SNI to use for HC requests over SSL
+    """
 
 @pulumi.input_type
 class BackendHealthCheckHttpsArgs:
@@ -513,11 +496,8 @@ class BackendHealthCheckHttpsArgs:
         pulumi.set(self, "sni", value)
 
 
-if not MYPY:
-    class BackendHealthCheckTcpArgsDict(TypedDict):
-        pass
-elif False:
-    BackendHealthCheckTcpArgsDict: TypeAlias = Mapping[str, Any]
+class BackendHealthCheckTcpArgsDict(TypedDict):
+    pass
 
 @pulumi.input_type
 class BackendHealthCheckTcpArgs:
@@ -525,14 +505,11 @@ class BackendHealthCheckTcpArgs:
         pass
 
 
-if not MYPY:
-    class CertificateCustomCertificateArgsDict(TypedDict):
-        certificate_chain: pulumi.Input[_builtins.str]
-        """
-        The full PEM-formatted certificate chain
-        """
-elif False:
-    CertificateCustomCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateCustomCertificateArgsDict(TypedDict):
+    certificate_chain: pulumi.Input[_builtins.str]
+    """
+    The full PEM-formatted certificate chain
+    """
 
 @pulumi.input_type
 class CertificateCustomCertificateArgs:
@@ -556,18 +533,15 @@ class CertificateCustomCertificateArgs:
         pulumi.set(self, "certificate_chain", value)
 
 
-if not MYPY:
-    class CertificateLetsencryptArgsDict(TypedDict):
-        common_name: pulumi.Input[_builtins.str]
-        """
-        Main domain of the certificate
-        """
-        subject_alternative_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The alternative domain names of the certificate
-        """
-elif False:
-    CertificateLetsencryptArgsDict: TypeAlias = Mapping[str, Any]
+class CertificateLetsencryptArgsDict(TypedDict):
+    common_name: pulumi.Input[_builtins.str]
+    """
+    Main domain of the certificate
+    """
+    subject_alternative_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The alternative domain names of the certificate
+    """
 
 @pulumi.input_type
 class CertificateLetsencryptArgs:
@@ -607,34 +581,31 @@ class CertificateLetsencryptArgs:
         pulumi.set(self, "subject_alternative_names", value)
 
 
-if not MYPY:
-    class FrontendAclArgsDict(TypedDict):
-        action: pulumi.Input['FrontendAclActionArgsDict']
-        """
-        Action to undertake when an ACL filter matches.
-        """
-        match: pulumi.Input['FrontendAclMatchArgsDict']
-        """
-        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the frontend was created.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description of the ACL
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ACL name. If not provided it will be randomly generated.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the frontend resource was updated.
-        """
-elif False:
-    FrontendAclArgsDict: TypeAlias = Mapping[str, Any]
+class FrontendAclArgsDict(TypedDict):
+    action: pulumi.Input['FrontendAclActionArgsDict']
+    """
+    Action to undertake when an ACL filter matches.
+    """
+    match: pulumi.Input['FrontendAclMatchArgsDict']
+    """
+    The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the frontend was created.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the ACL
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ACL name. If not provided it will be randomly generated.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the frontend resource was updated.
+    """
 
 @pulumi.input_type
 class FrontendAclArgs:
@@ -737,18 +708,15 @@ class FrontendAclArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class FrontendAclActionArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        The action type. Possible values are: `allow` or `deny` or `redirect`.
-        """
-        redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgsDict']]]]
-        """
-        Redirect parameters when using an ACL with `redirect` action.
-        """
-elif False:
-    FrontendAclActionArgsDict: TypeAlias = Mapping[str, Any]
+class FrontendAclActionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The action type. Possible values are: `allow` or `deny` or `redirect`.
+    """
+    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgsDict']]]]
+    """
+    Redirect parameters when using an ACL with `redirect` action.
+    """
 
 @pulumi.input_type
 class FrontendAclActionArgs:
@@ -788,22 +756,19 @@ class FrontendAclActionArgs:
         pulumi.set(self, "redirects", value)
 
 
-if not MYPY:
-    class FrontendAclActionRedirectArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        """
-        target: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The redirect type. Possible values are: `location` or `scheme`.
-        """
-elif False:
-    FrontendAclActionRedirectArgsDict: TypeAlias = Mapping[str, Any]
+class FrontendAclActionRedirectArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+    """
+    target: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The redirect type. Possible values are: `location` or `scheme`.
+    """
 
 @pulumi.input_type
 class FrontendAclActionRedirectArgs:
@@ -860,37 +825,34 @@ class FrontendAclActionRedirectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class FrontendAclMatchArgsDict(TypedDict):
-        http_filter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
-        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        """
-        http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
-        """
-        http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
-        """
-        invert: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set to `true`, the condition will be of type "unless".
-        """
-        ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-        ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-elif False:
-    FrontendAclMatchArgsDict: TypeAlias = Mapping[str, Any]
+class FrontendAclMatchArgsDict(TypedDict):
+    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+    It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+    Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+    """
+    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+    """
+    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of possible values to match for the given HTTP filter.
+    Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+    """
+    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set to `true`, the condition will be of type "unless".
+    """
+    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
+    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
 
 @pulumi.input_type
 class FrontendAclMatchArgs:
@@ -1001,18 +963,15 @@ class FrontendAclMatchArgs:
         pulumi.set(self, "ips_edge_services", value)
 
 
-if not MYPY:
-    class LoadBalancerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    LoadBalancerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class LoadBalancerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class LoadBalancerPrivateIpArgs:
@@ -1053,35 +1012,32 @@ class LoadBalancerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class LoadBalancerPrivateNetworkArgsDict(TypedDict):
-        private_network_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the Private Network to attach to.
-        - > **Important:** Updates to `private_network` will recreate the attachment.
-        """
-        dhcp_config: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to let DHCP assign IP addresses
-        """
-        ipam_ids: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        """
-        static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the private network connection.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone of the Load Balancer.
-        """
-elif False:
-    LoadBalancerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class LoadBalancerPrivateNetworkArgsDict(TypedDict):
+    private_network_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Private Network to attach to.
+    - > **Important:** Updates to `private_network` will recreate the attachment.
+    """
+    dhcp_config: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to let DHCP assign IP addresses
+    """
+    ipam_ids: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+    """
+    static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the private network connection.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone of the Load Balancer.
+    """
 
 @pulumi.input_type
 class LoadBalancerPrivateNetworkArgs:

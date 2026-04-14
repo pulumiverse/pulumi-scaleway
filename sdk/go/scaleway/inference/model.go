@@ -12,6 +12,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
+//
+// > **Security Best Practice:**
+// For enhanced security, we recommend using the `secretWo` write-only argument instead of the regular `secret` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+//
 // ## Example Usage
 //
 // ```go
@@ -112,8 +117,6 @@ import (
 //
 // Models can be imported using, `{region}/{id}`, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
 // ```
@@ -139,6 +142,7 @@ type Model struct {
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 	SecretWo pulumi.StringPtrOutput `pulumi:"secretWo"`
 	// The version of the write-only secret. Required when using `secretWo`.
 	SecretWoVersion pulumi.IntPtrOutput `pulumi:"secretWoVersion"`
@@ -217,6 +221,7 @@ type modelState struct {
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret *string `pulumi:"secret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 	SecretWo *string `pulumi:"secretWo"`
 	// The version of the write-only secret. Required when using `secretWo`.
 	SecretWoVersion *int `pulumi:"secretWoVersion"`
@@ -252,6 +257,7 @@ type ModelState struct {
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 	SecretWo pulumi.StringPtrInput
 	// The version of the write-only secret. Required when using `secretWo`.
 	SecretWoVersion pulumi.IntPtrInput
@@ -281,6 +287,7 @@ type modelArgs struct {
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret *string `pulumi:"secret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 	SecretWo *string `pulumi:"secretWo"`
 	// The version of the write-only secret. Required when using `secretWo`.
 	SecretWoVersion *int `pulumi:"secretWoVersion"`
@@ -299,6 +306,7 @@ type ModelArgs struct {
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 	SecretWo pulumi.StringPtrInput
 	// The version of the write-only secret. Required when using `secretWo`.
 	SecretWoVersion pulumi.IntPtrInput
@@ -439,6 +447,7 @@ func (o ModelOutput) Secret() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
 func (o ModelOutput) SecretWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.SecretWo }).(pulumi.StringPtrOutput)
 }

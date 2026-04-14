@@ -11,11 +11,36 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Domain
 {
     /// <summary>
+    /// The `scaleway.domain.Zone` resource allows you to create and manage Scaleway DNS zones.
+    /// 
+    /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Create a DNS zone
+    /// 
+    /// The following command allows you to create a DNS zone for the `test.scaleway-terraform.com` subdomain.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Scaleway.Domain.Zone("test", new()
+    ///     {
+    ///         Domain = "scaleway-terraform.com",
+    ///         Subdomain = "test",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import a zone using the `{subdomain}.{domain}` format.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:domain/zone:Zone test test.scaleway-terraform.com

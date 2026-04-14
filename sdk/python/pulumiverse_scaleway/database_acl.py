@@ -26,6 +26,7 @@ class DatabaseAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabaseAcl resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
@@ -88,6 +89,7 @@ class _DatabaseAclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabaseAcl resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
@@ -230,7 +232,7 @@ class DatabaseAcl(pulumi.CustomResource):
             acl_rules=[{
                 "ip": entry["key"],
                 "description": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips.items()]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 
@@ -238,11 +240,10 @@ class DatabaseAcl(pulumi.CustomResource):
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,7 +332,7 @@ class DatabaseAcl(pulumi.CustomResource):
             acl_rules=[{
                 "ip": entry["key"],
                 "description": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips.items()]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 
@@ -339,11 +340,10 @@ class DatabaseAcl(pulumi.CustomResource):
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabaseAclArgs args: The arguments to use to populate this resource's properties.

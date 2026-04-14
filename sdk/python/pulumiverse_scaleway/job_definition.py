@@ -38,6 +38,7 @@ class JobDefinitionArgs:
                  timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a JobDefinition resource.
+
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
         :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
@@ -286,6 +287,7 @@ class _JobDefinitionState:
                  timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering JobDefinition resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
@@ -606,11 +608,10 @@ class JobDefinition(pulumi.CustomResource):
 
         Serverless Jobs can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -697,11 +698,10 @@ class JobDefinition(pulumi.CustomResource):
 
         Serverless Jobs can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param JobDefinitionArgs args: The arguments to use to populate this resource's properties.

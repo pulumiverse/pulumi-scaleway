@@ -26,6 +26,7 @@ class UserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] deployment_id: ID of the Data Warehouse deployment to which this user belongs.
         :param pulumi.Input[_builtins.str] password: Password for the ClickHouse user.
         :param pulumi.Input[_builtins.bool] is_admin: Whether the user has administrator privileges. Defaults to `false`.
@@ -112,6 +113,7 @@ class _UserState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] deployment_id: ID of the Data Warehouse deployment to which this user belongs.
         :param pulumi.Input[_builtins.bool] is_admin: Whether the user has administrator privileges. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the ClickHouse user.
@@ -253,11 +255,10 @@ class User(pulumi.CustomResource):
 
         Data Warehouse users can be imported using the `{region}/{deployment_id}/{name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -324,11 +325,10 @@ class User(pulumi.CustomResource):
 
         Data Warehouse users can be imported using the `{region}/{deployment_id}/{name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

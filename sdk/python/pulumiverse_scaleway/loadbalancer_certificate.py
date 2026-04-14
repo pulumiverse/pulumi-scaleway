@@ -27,6 +27,7 @@ class LoadbalancerCertificateArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerCertificate resource.
+
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
         :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input['LoadbalancerCertificateLetsencryptArgs'] letsencrypt: The Let's Encrypt type certificate configuration
@@ -104,6 +105,7 @@ class _LoadbalancerCertificateState:
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerCertificate resources.
+
         :param pulumi.Input[_builtins.str] common_name: Main domain of the certificate
         :param pulumi.Input['LoadbalancerCertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[_builtins.str] fingerprint: The identifier (SHA-1) of the certificate
@@ -274,15 +276,43 @@ class LoadbalancerCertificate(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Load Balancer certificates.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+
+        ## Example Usage
+
+        ### Custom Certificate
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cert01 = scaleway.loadbalancers.Certificate("cert01",
+            lb_id=lb01["id"],
+            name="custom-cert",
+            custom_certificate={
+                "certificate_chain": "CERTIFICATE_CHAIN_CONTENTS\\n",
+            })
+        ```
+
+        ## Additional notes
+
+        * Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+          You can achieve this by creating a DNS record through Terraform pointing to  the `ip_address` property of the `lb_beta` entity.
+        * If there are any issues with the certificate, you will receive a `400` error from the `apply` operation.
+          Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
+        * Wildcards are not yet supported with Let's Encrypt.
+        * Use `lifecycle` instruction with `create_before_destroy = true` to permit correct certificate replacement and prevent a `400` error from the `apply` operation.
+
         ## Import
 
         Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,15 +328,43 @@ class LoadbalancerCertificate(pulumi.CustomResource):
                  args: LoadbalancerCertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Load Balancer certificates.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+
+        ## Example Usage
+
+        ### Custom Certificate
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cert01 = scaleway.loadbalancers.Certificate("cert01",
+            lb_id=lb01["id"],
+            name="custom-cert",
+            custom_certificate={
+                "certificate_chain": "CERTIFICATE_CHAIN_CONTENTS\\n",
+            })
+        ```
+
+        ## Additional notes
+
+        * Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+          You can achieve this by creating a DNS record through Terraform pointing to  the `ip_address` property of the `lb_beta` entity.
+        * If there are any issues with the certificate, you will receive a `400` error from the `apply` operation.
+          Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
+        * Wildcards are not yet supported with Let's Encrypt.
+        * Use `lifecycle` instruction with `create_before_destroy = true` to permit correct certificate replacement and prevent a `400` error from the `apply` operation.
+
         ## Import
 
         Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerCertificateArgs args: The arguments to use to populate this resource's properties.

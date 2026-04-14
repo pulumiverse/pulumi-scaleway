@@ -16,6 +16,7 @@ from .. import _utilities
 
 __all__ = [
     'GetPartnersPartnerResult',
+    'GetPopsPopResult',
 ]
 
 @pulumi.output_type
@@ -100,5 +101,111 @@ class GetPartnersPartnerResult(dict):
         Last update date.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetPopsPopResult(dict):
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 available_link_bandwidths_mbps: Sequence[_builtins.int],
+                 city: _builtins.str,
+                 display_name: _builtins.str,
+                 hosting_provider_name: _builtins.str,
+                 id: _builtins.str,
+                 logo_url: _builtins.str,
+                 name: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str address: Physical address of the PoP.
+        :param Sequence[_builtins.int] available_link_bandwidths_mbps: List of available bandwidth options in Mbps.
+        :param _builtins.str city: City where the PoP is located.
+        :param _builtins.str display_name: Human-readable display name.
+        :param _builtins.str hosting_provider_name: Hosting provider name to filter for.
+        :param _builtins.str id: ID of the PoP.
+        :param _builtins.str logo_url: URL of the PoP's logo.
+        :param _builtins.str name: PoP name to filter for.
+        :param _builtins.str region: `region`) The region to list PoPs from.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "available_link_bandwidths_mbps", available_link_bandwidths_mbps)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "hosting_provider_name", hosting_provider_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "logo_url", logo_url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        Physical address of the PoP.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="availableLinkBandwidthsMbps")
+    def available_link_bandwidths_mbps(self) -> Sequence[_builtins.int]:
+        """
+        List of available bandwidth options in Mbps.
+        """
+        return pulumi.get(self, "available_link_bandwidths_mbps")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> _builtins.str:
+        """
+        City where the PoP is located.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Human-readable display name.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hostingProviderName")
+    def hosting_provider_name(self) -> _builtins.str:
+        """
+        Hosting provider name to filter for.
+        """
+        return pulumi.get(self, "hosting_provider_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the PoP.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="logoUrl")
+    def logo_url(self) -> _builtins.str:
+        """
+        URL of the PoP's logo.
+        """
+        return pulumi.get(self, "logo_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        PoP name to filter for.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`) The region to list PoPs from.
+        """
+        return pulumi.get(self, "region")
 
 

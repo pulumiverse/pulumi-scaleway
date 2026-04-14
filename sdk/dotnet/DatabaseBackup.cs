@@ -76,8 +76,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Databases can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:index/databaseBackup:DatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
     /// ```

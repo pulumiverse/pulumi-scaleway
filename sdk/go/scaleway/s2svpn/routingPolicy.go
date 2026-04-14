@@ -88,8 +88,6 @@ import (
 //
 // Routing Policies can be imported using `{region}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:s2svpn/routingPolicy:RoutingPolicy main fr-par/11111111-1111-1111-1111-111111111111
 // ```

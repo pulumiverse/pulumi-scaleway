@@ -26,6 +26,7 @@ class CockpitSourceArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CockpitSource resource.
+
         :param pulumi.Input[_builtins.int] retention_days: The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
         :param pulumi.Input[_builtins.str] name: The name of the data source.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the data source is associated with.
@@ -119,6 +120,7 @@ class _CockpitSourceState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CockpitSource resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time the data source was created (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: The name of the data source.
         :param pulumi.Input[_builtins.str] origin: The origin of the Cockpit data source.
@@ -331,11 +333,10 @@ class CockpitSource(pulumi.CustomResource):
 
         This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -378,11 +379,10 @@ class CockpitSource(pulumi.CustomResource):
 
         This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CockpitSourceArgs args: The arguments to use to populate this resource's properties.

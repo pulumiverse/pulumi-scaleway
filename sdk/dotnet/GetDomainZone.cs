@@ -13,12 +13,99 @@ namespace Pulumiverse.Scaleway
     [Obsolete(@"scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone")]
     public static class GetDomainZone
     {
+        /// <summary>
+        /// The `scaleway.domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Query a domain zone
+        /// 
+        /// The following command allows you to retrieve information about the DNS zone for the subdomain `Test` within the domain `scaleway-terraform.com`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get zone
+        ///     var main = Scaleway.Domain.GetZone.Invoke(new()
+        ///     {
+        ///         Domain = "scaleway-terraform.com",
+        ///         Subdomain = "test",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetDomainZoneResult> InvokeAsync(GetDomainZoneArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDomainZoneResult>("scaleway:index/getDomainZone:getDomainZone", args ?? new GetDomainZoneArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `scaleway.domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Query a domain zone
+        /// 
+        /// The following command allows you to retrieve information about the DNS zone for the subdomain `Test` within the domain `scaleway-terraform.com`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get zone
+        ///     var main = Scaleway.Domain.GetZone.Invoke(new()
+        ///     {
+        ///         Domain = "scaleway-terraform.com",
+        ///         Subdomain = "test",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetDomainZoneResult> Invoke(GetDomainZoneInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainZoneResult>("scaleway:index/getDomainZone:getDomainZone", args ?? new GetDomainZoneInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `scaleway.domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+        /// 
+        /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Query a domain zone
+        /// 
+        /// The following command allows you to retrieve information about the DNS zone for the subdomain `Test` within the domain `scaleway-terraform.com`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get zone
+        ///     var main = Scaleway.Domain.GetZone.Invoke(new()
+        ///     {
+        ///         Domain = "scaleway-terraform.com",
+        ///         Subdomain = "test",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetDomainZoneResult> Invoke(GetDomainZoneInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainZoneResult>("scaleway:index/getDomainZone:getDomainZone", args ?? new GetDomainZoneInvokeArgs(), options.WithDefaults());
     }

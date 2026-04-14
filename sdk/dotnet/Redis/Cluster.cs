@@ -11,6 +11,12 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Redis
 {
     /// <summary>
+    /// Creates and manages Scaleway Redis™ clusters.
+    /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+    /// 
+    /// &gt; **Security Best Practice:**
+    /// For enhanced security, we recommend using the `PasswordWo` write-only argument instead of the regular `Password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -52,8 +58,6 @@ namespace Pulumiverse.Scaleway.Redis
     /// ## Import
     /// 
     /// Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:redis/cluster:Cluster main fr-par-1/11111111-1111-1111-1111-111111111111
@@ -124,6 +128,7 @@ namespace Pulumiverse.Scaleway.Redis
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Redis™ cluster in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
@@ -335,6 +340,7 @@ namespace Pulumiverse.Scaleway.Redis
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Redis™ cluster in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -535,6 +541,7 @@ namespace Pulumiverse.Scaleway.Redis
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the Redis™ cluster in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {

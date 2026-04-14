@@ -107,8 +107,6 @@ import (
 //
 // This section explains how to import alert managers using the ID of the Project associated with Cockpit.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:observability/alertManager:AlertManager main fr-par/11111111-1111-1111-1111-111111111111
 // ```

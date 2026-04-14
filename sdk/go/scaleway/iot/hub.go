@@ -12,6 +12,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+//
+// Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot).
+//
 // ## Example Usage
 //
 // ### Basic
@@ -44,8 +48,6 @@ import (
 // ## Import
 //
 // IoT Hubs can be imported using the `{region}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:iot/hub:Hub hub01 fr-par/11111111-1111-1111-1111-111111111111

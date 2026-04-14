@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = mnq.NewSqs(ctx, "for_project", &mnq.SqsArgs{
-//				ProjectId: pulumi.String(project.Id),
+//				ProjectId: pulumi.String(pulumi.String(project.Id)),
 //			})
 //			if err != nil {
 //				return err
@@ -79,8 +79,6 @@ import (
 // ## Import
 //
 // SQS status can be imported using the `{region}/{project_id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:mnq/sqs:Sqs main fr-par/11111111111111111111111111111111

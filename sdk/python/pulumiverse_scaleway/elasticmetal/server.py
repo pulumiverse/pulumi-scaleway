@@ -48,6 +48,7 @@ class ServerArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[_builtins.str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
@@ -66,6 +67,7 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -75,6 +77,7 @@ class ServerArgs:
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
@@ -264,6 +267,7 @@ class ServerArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "password_wo")
 
@@ -361,6 +365,7 @@ class ServerArgs:
     def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "service_password_wo")
 
@@ -479,6 +484,7 @@ class _ServerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] domain: The domain of the server.
@@ -505,6 +511,7 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -514,6 +521,7 @@ class _ServerState:
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
@@ -816,6 +824,7 @@ class _ServerState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "password_wo")
 
@@ -913,6 +922,7 @@ class _ServerState:
     def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "service_password_wo")
 
@@ -1046,18 +1056,17 @@ class Server(pulumi.CustomResource):
             offer=my_offer.offer_id,
             os=my_os.os_id,
             ssh_key_ids=[my_ssh_key.id],
-            cloud_init=std.index.file(input="userdata.yaml")["result"])
+            cloud_init=std.file(input="userdata.yaml")["result"])
         ```
 
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/server:Server web fr-par-2/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1079,6 +1088,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -1088,6 +1098,7 @@ class Server(pulumi.CustomResource):
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
@@ -1122,18 +1133,17 @@ class Server(pulumi.CustomResource):
             offer=my_offer.offer_id,
             os=my_os.os_id,
             ssh_key_ids=[my_ssh_key.id],
-            cloud_init=std.index.file(input="userdata.yaml")["result"])
+            cloud_init=std.file(input="userdata.yaml")["result"])
         ```
 
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/server:Server web fr-par-2/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.
@@ -1299,6 +1309,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -1308,6 +1319,7 @@ class Server(pulumi.CustomResource):
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
@@ -1510,6 +1522,7 @@ class Server(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "password_wo")
 
@@ -1575,6 +1588,7 @@ class Server(pulumi.CustomResource):
     def service_password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
         """
         return pulumi.get(self, "service_password_wo")
 

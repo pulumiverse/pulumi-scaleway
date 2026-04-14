@@ -31,6 +31,7 @@ class IotHubArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IotHub resource.
+
         :param pulumi.Input[_builtins.str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
                
                > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
@@ -215,6 +216,7 @@ class _IotHubState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IotHub resources.
+
         :param pulumi.Input[_builtins.int] connected_device_count: The current number of connected devices in the Hub.
         :param pulumi.Input[_builtins.str] created_at: The date and time the Hub was created.
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
@@ -534,6 +536,10 @@ class IotHub(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot).
+
         ## Example Usage
 
         ### Basic
@@ -551,11 +557,10 @@ class IotHub(pulumi.CustomResource):
 
         IoT Hubs can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -581,6 +586,10 @@ class IotHub(pulumi.CustomResource):
                  args: IotHubArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot).
+
         ## Example Usage
 
         ### Basic
@@ -598,11 +607,10 @@ class IotHub(pulumi.CustomResource):
 
         IoT Hubs can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IotHubArgs args: The arguments to use to populate this resource's properties.

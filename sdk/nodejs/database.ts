@@ -35,8 +35,6 @@ import * as utilities from "./utilities";
  *
  * RDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
  * ```

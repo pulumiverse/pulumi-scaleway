@@ -26,6 +26,7 @@ class NetworkArgs:
                  topic_prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Network resource.
+
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
@@ -115,6 +116,7 @@ class _NetworkState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time the Network was created.
         :param pulumi.Input[_builtins.str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
@@ -251,6 +253,18 @@ class Network(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Networks. For more information, see the following:
+
+        - [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+        - [Product documentation](https://www.scaleway.com/en/docs/iot-hub/)
+
+        For more step-by-step instructions on how to setup the networks on the external providers backends, you can follow these guides:
+
+        - [Configuring the Sigfox backend](https://www.scaleway.com/en/docs/iot-hub/how-to/setup-use-sigfox-network/)
+        - [Using the Rest Network](https://www.scaleway.com/en/docs/iot-hub/how-to/setup-use-rest-network/)
+
         ## Example Usage
 
         ```python
@@ -270,11 +284,10 @@ class Network(pulumi.CustomResource):
 
         IoT Networks can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/network:Network net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -291,6 +304,18 @@ class Network(pulumi.CustomResource):
                  args: NetworkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Networks. For more information, see the following:
+
+        - [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+        - [Product documentation](https://www.scaleway.com/en/docs/iot-hub/)
+
+        For more step-by-step instructions on how to setup the networks on the external providers backends, you can follow these guides:
+
+        - [Configuring the Sigfox backend](https://www.scaleway.com/en/docs/iot-hub/how-to/setup-use-sigfox-network/)
+        - [Using the Rest Network](https://www.scaleway.com/en/docs/iot-hub/how-to/setup-use-rest-network/)
+
         ## Example Usage
 
         ```python
@@ -310,11 +335,10 @@ class Network(pulumi.CustomResource):
 
         IoT Networks can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/network:Network net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NetworkArgs args: The arguments to use to populate this resource's properties.

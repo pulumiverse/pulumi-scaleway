@@ -32,12 +32,13 @@ class SecretArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Secret resource.
+
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
-        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
@@ -126,7 +127,7 @@ class SecretArgs:
     @pulumi.getter
     def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         """
         return pulumi.get(self, "protected")
 
@@ -191,13 +192,14 @@ class _SecretState:
                  versions: Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
-        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[_builtins.str] status: The status of the secret.
@@ -312,7 +314,7 @@ class _SecretState:
     @pulumi.getter
     def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         """
         return pulumi.get(self, "protected")
 
@@ -423,15 +425,56 @@ class Secret(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `secrets.Secret` resource allows you to create and manage secrets in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+
+        ## Example Usage
+
+        ### Create a secret
+
+        The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.secrets.Secret("main",
+            name="foo",
+            description="barr",
+            tags=[
+                "foo",
+                "terraform",
+            ])
+        ```
+
+        ### Apply the ephemeral policy on a secret
+
+        The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
+
+        In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ephemeral = scaleway.secrets.Secret("ephemeral",
+            name="foo",
+            ephemeral_policies=[{
+                "ttl": "24h",
+                "expires_once_accessed": True,
+                "action": "disable",
+            }])
+        ```
+
         ## Import
 
         This section explains how to import a secret using the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:secrets/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -440,7 +483,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
-        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
@@ -453,15 +496,56 @@ class Secret(pulumi.CustomResource):
                  args: Optional[SecretArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `secrets.Secret` resource allows you to create and manage secrets in Scaleway Secret Manager.
+
+        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+
+        ## Example Usage
+
+        ### Create a secret
+
+        The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.secrets.Secret("main",
+            name="foo",
+            description="barr",
+            tags=[
+                "foo",
+                "terraform",
+            ])
+        ```
+
+        ### Apply the ephemeral policy on a secret
+
+        The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
+
+        In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ephemeral = scaleway.secrets.Secret("ephemeral",
+            name="foo",
+            ephemeral_policies=[{
+                "ttl": "24h",
+                "expires_once_accessed": True,
+                "action": "disable",
+            }])
+        ```
+
         ## Import
 
         This section explains how to import a secret using the `{region}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:secrets/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretArgs args: The arguments to use to populate this resource's properties.
@@ -549,7 +633,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
-        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
         :param pulumi.Input[_builtins.str] status: The status of the secret.
@@ -631,7 +715,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter
     def protected(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+        True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         """
         return pulumi.get(self, "protected")
 

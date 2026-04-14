@@ -125,7 +125,7 @@ import (
 //				Name:            pulumi.String("TestAccServerRunner"),
 //				Type:            pulumi.String("M2-L"),
 //				PublicBandwidth: pulumi.Int(1000000000),
-//				OsId:            pulumi.String(byName.Id),
+//				OsId:            pulumi.String(pulumi.String(byName.Id)),
 //				RunnerIds: pulumi.StringArray{
 //					main.ID(),
 //				},
@@ -142,8 +142,6 @@ import (
 // ## Import
 //
 // Instance servers can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111

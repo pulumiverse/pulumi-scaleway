@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *     bucket: someBucket.id,
  *     key: "object_path",
  *     file: "myfile",
- *     hash: std.index.filemd5({
+ *     hash: std.filemd5({
  *         input: "myfile",
  *     }).result,
  * });
@@ -31,17 +31,12 @@ import * as utilities from "./utilities";
  *
  * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
  * ```
  *
- * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
- *
+ * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
  * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -79,7 +74,7 @@ export class ObjectItem extends pulumi.CustomResource {
     }
 
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     declare public readonly bucket: pulumi.Output<string>;
     /**
@@ -113,7 +108,11 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -202,7 +201,7 @@ export class ObjectItem extends pulumi.CustomResource {
  */
 export interface ObjectItemState {
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     bucket?: pulumi.Input<string>;
     /**
@@ -236,7 +235,11 @@ export interface ObjectItemState {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -266,7 +269,7 @@ export interface ObjectItemState {
  */
 export interface ObjectItemArgs {
     /**
-     * The bucket's name or regional ID.
+     * The name of the bucket, or its Terraform ID.
      */
     bucket: pulumi.Input<string>;
     /**
@@ -300,7 +303,11 @@ export interface ObjectItemArgs {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
     projectId?: pulumi.Input<string>;
     /**

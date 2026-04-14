@@ -4,6 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * The `scaleway.domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+ *
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Query a domain zone
+ *
+ * The following command allows you to retrieve information about the DNS zone for the subdomain `test` within the domain `scaleway-terraform.com`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get zone
+ * const main = scaleway.domain.getZone({
+ *     domain: "scaleway-terraform.com",
+ *     subdomain: "test",
+ * });
+ * ```
+ */
 export function getZone(args?: GetZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetZoneResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -68,6 +90,28 @@ export interface GetZoneResult {
      */
     readonly updatedAt: string;
 }
+/**
+ * The `scaleway.domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+ *
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Query a domain zone
+ *
+ * The following command allows you to retrieve information about the DNS zone for the subdomain `test` within the domain `scaleway-terraform.com`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get zone
+ * const main = scaleway.domain.getZone({
+ *     domain: "scaleway-terraform.com",
+ *     subdomain: "test",
+ * });
+ * ```
+ */
 export function getZoneOutput(args?: GetZoneOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetZoneResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

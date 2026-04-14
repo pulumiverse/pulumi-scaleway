@@ -33,6 +33,7 @@ class KeyArgs:
                  unprotected: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Key resource.
+
         :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
@@ -212,6 +213,7 @@ class _KeyState:
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Key resources.
+
         :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] created_at: The date and time when the key was created.
@@ -568,6 +570,7 @@ class Key(pulumi.CustomResource):
         $ pulumi import scaleway:keymanager/key:Key main fr-par/11111111-2222-3333-4444-555555555555
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
@@ -664,6 +667,7 @@ class Key(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:keymanager/key:Key main fr-par/11111111-2222-3333-4444-555555555555
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeyArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class TokenArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Token resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the token.
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the token.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
@@ -123,6 +124,7 @@ class _TokenState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Token resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the token.
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the token.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
@@ -268,11 +270,10 @@ class Token(pulumi.CustomResource):
 
         Tokens can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:functions/token:Token main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -324,11 +325,10 @@ class Token(pulumi.CustomResource):
 
         Tokens can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:functions/token:Token main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TokenArgs args: The arguments to use to populate this resource's properties.

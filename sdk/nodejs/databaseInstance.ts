@@ -7,6 +7,12 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Database Instances.
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ *
+ * > **Security Best Practice:**
+ * For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -47,8 +53,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Database Instance can be imported using the `{region}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
@@ -122,7 +126,13 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpointPort: pulumi.Output<number>;
     /**
-     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+     * Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+     *
+     * > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+     *
+     * > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
+     *
+     * > **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     declare public readonly engine: pulumi.Output<string>;
     /**
@@ -166,6 +176,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Database Instance in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
     /**
@@ -359,7 +370,13 @@ export interface DatabaseInstanceState {
      */
     endpointPort?: pulumi.Input<number>;
     /**
-     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+     * Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+     *
+     * > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+     *
+     * > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
+     *
+     * > **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     engine?: pulumi.Input<string>;
     /**
@@ -403,6 +420,7 @@ export interface DatabaseInstanceState {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Database Instance in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**
@@ -490,7 +508,13 @@ export interface DatabaseInstanceArgs {
      */
     encryptionAtRest?: pulumi.Input<boolean>;
     /**
-     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
+     * Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
+     *
+     * > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
+     *
+     * > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
+     *
+     * > **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     engine?: pulumi.Input<string>;
     /**
@@ -530,6 +554,7 @@ export interface DatabaseInstanceArgs {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Database Instance in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**

@@ -43,6 +43,9 @@ export function get(args: GetArgs, opts?: pulumi.InvokeOptions): Promise<GetResu
  * A collection of arguments for invoking get.
  */
 export interface GetArgs {
+    /**
+     * The name of the bucket, or its terraform ID (`{region}/{name}`)
+     */
     bucket: string;
     /**
      * The key (path or filename) of the object within the bucket.
@@ -120,6 +123,9 @@ export function getOutput(args: GetOutputArgs, opts?: pulumi.InvokeOutputOptions
  * A collection of arguments for invoking get.
  */
 export interface GetOutputArgs {
+    /**
+     * The name of the bucket, or its terraform ID (`{region}/{name}`)
+     */
     bucket: pulumi.Input<string>;
     /**
      * The key (path or filename) of the object within the bucket.

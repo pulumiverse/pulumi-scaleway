@@ -27,6 +27,7 @@ class BlockedListArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BlockedList resource.
+
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain affected by the blocklist. Must be in the format `{region}/{domain_id}`.
         :param pulumi.Input[_builtins.str] email: The email address to block.
         :param pulumi.Input[_builtins.str] type: Type of the blocklist. Possible values are:
@@ -128,6 +129,7 @@ class _BlockedListState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BlockedList resources.
+
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain affected by the blocklist. Must be in the format `{region}/{domain_id}`.
         :param pulumi.Input[_builtins.str] email: The email address to block.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project this blocklist belongs to. Defaults to the provider's project ID.
@@ -258,11 +260,10 @@ class BlockedList(pulumi.CustomResource):
 
         Blocklists can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:tem/blockedList:BlockedList test fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -303,11 +304,10 @@ class BlockedList(pulumi.CustomResource):
 
         Blocklists can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:tem/blockedList:BlockedList test fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BlockedListArgs args: The arguments to use to populate this resource's properties.

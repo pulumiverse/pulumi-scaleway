@@ -69,8 +69,6 @@ import (
 //
 // Tokens can be imported using `{region}/{id}`, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:containers/token:Token main fr-par/11111111-1111-1111-1111-111111111111
 // ```

@@ -24,6 +24,7 @@ class DatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Database resource.
+
         :param pulumi.Input[_builtins.str] deployment_id: ID of the Data Warehouse deployment to which this database belongs.
         :param pulumi.Input[_builtins.str] name: Name of the database.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the database should be created.
@@ -80,6 +81,7 @@ class _DatabaseState:
                  size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+
         :param pulumi.Input[_builtins.str] deployment_id: ID of the Data Warehouse deployment to which this database belongs.
         :param pulumi.Input[_builtins.str] name: Name of the database.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the database should be created.
@@ -182,11 +184,10 @@ class Database(pulumi.CustomResource):
 
         Data Warehouse databases can be imported using the `{region}/{deployment_id}/{name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/database:Database main fr-par/11111111-1111-1111-1111-111111111111/my_database
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,11 +230,10 @@ class Database(pulumi.CustomResource):
 
         Data Warehouse databases can be imported using the `{region}/{deployment_id}/{name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/database:Database main fr-par/11111111-1111-1111-1111-111111111111/my_database
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabaseArgs args: The arguments to use to populate this resource's properties.

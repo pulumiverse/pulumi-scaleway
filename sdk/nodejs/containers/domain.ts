@@ -68,8 +68,6 @@ import * as utilities from "../utilities";
  *
  * Container domain binding can be imported using `{region}/{id}`, as shown below:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:containers/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111
  * ```

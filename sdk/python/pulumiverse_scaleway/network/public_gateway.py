@@ -33,6 +33,7 @@ class PublicGatewayArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PublicGateway resource.
+
         :param pulumi.Input[_builtins.str] type: The gateway type.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_ranges: Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         :param pulumi.Input[_builtins.bool] bastion_enabled: Enable SSH bastion on the gateway.
@@ -242,6 +243,7 @@ class _PublicGatewayState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PublicGateway resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_ranges: Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         :param pulumi.Input[_builtins.int] bandwidth: The bandwidth available of the gateway
         :param pulumi.Input[_builtins.bool] bastion_enabled: Enable SSH bastion on the gateway.
@@ -563,15 +565,44 @@ class PublicGateway(pulumi.CustomResource):
             ])
         ```
 
+        ### With bastion
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        key1 = scaleway.iam.SshKey("key1",
+            name="key1",
+            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+        key2 = scaleway.iam.SshKey("key2",
+            name="key2",
+            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
+        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            input=[
+                key1.public_key,
+                key2.public_key,
+            ])["result"])["result"]
+        main = scaleway.network.PublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            bastion_enabled=True,
+            bastion_port=61000,
+            refresh_ssh_keys=ssh_keys_hash)
+        ```
+
         ## Import
 
         Public Gateways can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/publicGateway:PublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -615,15 +646,44 @@ class PublicGateway(pulumi.CustomResource):
             ])
         ```
 
+        ### With bastion
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        key1 = scaleway.iam.SshKey("key1",
+            name="key1",
+            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+        key2 = scaleway.iam.SshKey("key2",
+            name="key2",
+            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
+        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            input=[
+                key1.public_key,
+                key2.public_key,
+            ])["result"])["result"]
+        main = scaleway.network.PublicGateway("main",
+            name="public_gateway_demo",
+            type="VPC-GW-S",
+            tags=[
+                "demo",
+                "terraform",
+            ],
+            bastion_enabled=True,
+            bastion_port=61000,
+            refresh_ssh_keys=ssh_keys_hash)
+        ```
+
         ## Import
 
         Public Gateways can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/publicGateway:PublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PublicGatewayArgs args: The arguments to use to populate this resource's properties.

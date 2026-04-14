@@ -55,8 +55,6 @@ import * as utilities from "../utilities";
  *
  * This section explains how to import a Cockpit token using the `{region}/{id}` format.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:observability/token:Token main fr-par/11111111-1111-1111-1111-111111111111
  * ```

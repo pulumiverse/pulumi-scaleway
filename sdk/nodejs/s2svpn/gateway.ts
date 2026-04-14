@@ -37,8 +37,6 @@ import * as utilities from "../utilities";
  *
  * VPN Gateways can be imported using `{region}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:s2svpn/gateway:Gateway main fr-par/11111111-1111-1111-1111-111111111111
  * ```

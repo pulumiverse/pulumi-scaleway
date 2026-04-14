@@ -24,6 +24,7 @@ class AccountProjectArgs:
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccountProject resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
@@ -82,6 +83,7 @@ class _AccountProjectState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountProject resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the Project.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
@@ -176,15 +178,46 @@ class AccountProject(pulumi.CustomResource):
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `account.Project` resource allows you to create and manage the Projects of a Scaleway Organization.
+
+        Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+        ## Example Usage
+
+        ### Create a Scaleway Project
+
+        The following command allows you to create a project named `project`.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project", name="project")
+        ```
+
+        ### Use a project in provider configuration
+
+        If you want to use as default a project created in terraform you can use a temporary provider alias.
+        This project can then be used to configure your default provider.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project", name="my_project")
+        server = scaleway.instance.Server("server",
+            image="ubuntu_jammy",
+            type="PRO2-XXS")
+        ```
+
         ## Import
 
         Projects can be imported using the `id` argument, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -199,15 +232,46 @@ class AccountProject(pulumi.CustomResource):
                  args: Optional[AccountProjectArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `account.Project` resource allows you to create and manage the Projects of a Scaleway Organization.
+
+        Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+        ## Example Usage
+
+        ### Create a Scaleway Project
+
+        The following command allows you to create a project named `project`.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project", name="project")
+        ```
+
+        ### Use a project in provider configuration
+
+        If you want to use as default a project created in terraform you can use a temporary provider alias.
+        This project can then be used to configure your default provider.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project", name="my_project")
+        server = scaleway.instance.Server("server",
+            image="ubuntu_jammy",
+            type="PRO2-XXS")
+        ```
+
         ## Import
 
         Projects can be imported using the `id` argument, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountProjectArgs args: The arguments to use to populate this resource's properties.

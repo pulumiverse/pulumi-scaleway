@@ -59,6 +59,9 @@ export function getBucket(args?: GetBucketArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getBucket.
  */
 export interface GetBucketArgs {
+    /**
+     * The name of the bucket, or its terraform ID (`{region}/{name}`)
+     */
     name?: string;
     /**
      * `projectId`) The ID of the project with which the bucket is associated.
@@ -147,6 +150,9 @@ export function getBucketOutput(args?: GetBucketOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getBucket.
  */
 export interface GetBucketOutputArgs {
+    /**
+     * The name of the bucket, or its terraform ID (`{region}/{name}`)
+     */
     name?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project with which the bucket is associated.

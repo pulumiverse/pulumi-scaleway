@@ -29,16 +29,11 @@ __all__ = [
     'TokenScopesArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AlertManagerContactPointArgsDict(TypedDict):
-        email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Email addresses for the alert receivers
-        """
-elif False:
-    AlertManagerContactPointArgsDict: TypeAlias = Mapping[str, Any]
+class AlertManagerContactPointArgsDict(TypedDict):
+    email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Email addresses for the alert receivers
+    """
 
 @pulumi.input_type
 class AlertManagerContactPointArgs:
@@ -63,30 +58,27 @@ class AlertManagerContactPointArgs:
         pulumi.set(self, "email", value)
 
 
-if not MYPY:
-    class CockpitEndpointArgsDict(TypedDict):
-        alertmanager_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        """
-        grafana_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for Grafana.
-        """
-        logs_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        metrics_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        traces_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-elif False:
-    CockpitEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitEndpointArgsDict(TypedDict):
+    alertmanager_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+    """
+    grafana_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for Grafana.
+    """
+    logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
+    metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
+    traces_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
 
 @pulumi.input_type
 class CockpitEndpointArgs:
@@ -175,18 +167,15 @@ class CockpitEndpointArgs:
         pulumi.set(self, "traces_url", value)
 
 
-if not MYPY:
-    class CockpitPushUrlArgsDict(TypedDict):
-        push_logs_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Push URL for logs (Grafana Loki)
-        """
-        push_metrics_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Push URL for metrics (Grafana Mimir)
-        """
-elif False:
-    CockpitPushUrlArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitPushUrlArgsDict(TypedDict):
+    push_logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Push URL for logs (Grafana Loki)
+    """
+    push_metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Push URL for metrics (Grafana Mimir)
+    """
 
 @pulumi.input_type
 class CockpitPushUrlArgs:
@@ -227,18 +216,15 @@ class CockpitPushUrlArgs:
         pulumi.set(self, "push_metrics_url", value)
 
 
-if not MYPY:
-    class ExporterDatadogDestinationArgsDict(TypedDict):
-        api_key: pulumi.Input[_builtins.str]
-        """
-        Datadog API key. Sensitive.
-        """
-        endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
-        """
-elif False:
-    ExporterDatadogDestinationArgsDict: TypeAlias = Mapping[str, Any]
+class ExporterDatadogDestinationArgsDict(TypedDict):
+    api_key: pulumi.Input[_builtins.str]
+    """
+    Datadog API key. Sensitive.
+    """
+    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+    """
 
 @pulumi.input_type
 class ExporterDatadogDestinationArgs:
@@ -278,18 +264,15 @@ class ExporterDatadogDestinationArgs:
         pulumi.set(self, "endpoint", value)
 
 
-if not MYPY:
-    class ExporterOtlpDestinationArgsDict(TypedDict):
-        endpoint: pulumi.Input[_builtins.str]
-        """
-        OTLP endpoint URL.
-        """
-        headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Headers to include in requests.
-        """
-elif False:
-    ExporterOtlpDestinationArgsDict: TypeAlias = Mapping[str, Any]
+class ExporterOtlpDestinationArgsDict(TypedDict):
+    endpoint: pulumi.Input[_builtins.str]
+    """
+    OTLP endpoint URL.
+    """
+    headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Headers to include in requests.
+    """
 
 @pulumi.input_type
 class ExporterOtlpDestinationArgs:
@@ -329,46 +312,43 @@ class ExporterOtlpDestinationArgs:
         pulumi.set(self, "headers", value)
 
 
-if not MYPY:
-    class TokenScopesArgsDict(TypedDict):
-        query_logs: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query logs.
-        """
-        query_metrics: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query metrics.
-        """
-        query_traces: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query traces.
-        """
-        setup_alerts: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up alerts.
-        """
-        setup_logs_rules: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up logs rules.
-        """
-        setup_metrics_rules: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up metrics rules.
-        """
-        write_logs: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write logs.
-        """
-        write_metrics: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write metrics.
-        """
-        write_traces: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write traces.
-        """
-elif False:
-    TokenScopesArgsDict: TypeAlias = Mapping[str, Any]
+class TokenScopesArgsDict(TypedDict):
+    query_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query logs.
+    """
+    query_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query metrics.
+    """
+    query_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query traces.
+    """
+    setup_alerts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up alerts.
+    """
+    setup_logs_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up logs rules.
+    """
+    setup_metrics_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up metrics rules.
+    """
+    write_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write logs.
+    """
+    write_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write metrics.
+    """
+    write_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write traces.
+    """
 
 @pulumi.input_type
 class TokenScopesArgs:

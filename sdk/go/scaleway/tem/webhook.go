@@ -91,14 +91,14 @@ import (
 //				return err
 //			}
 //			cr01, err := tem.NewDomain(ctx, "cr01", &tem.DomainArgs{
-//				Name:      pulumi.String(domainName),
+//				Name:      pulumi.String(pulumi.String(domainName)),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
-//				DnsZone: pulumi.String(domainName),
+//				DnsZone: pulumi.String(pulumi.String(domainName)),
 //				Type:    pulumi.String("TXT"),
 //				Data: cr01.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
 //					return fmt.Sprintf("v=spf1 %v -all", spfConfig), nil
@@ -108,7 +108,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
-//				DnsZone: pulumi.String(domainName),
+//				DnsZone: pulumi.String(pulumi.String(domainName)),
 //				Name: cr01.ProjectId.ApplyT(func(projectId string) (string, error) {
 //					return fmt.Sprintf("%v._domainkey", projectId), nil
 //				}).(pulumi.StringOutput),
@@ -119,7 +119,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
-//				DnsZone: pulumi.String(domainName),
+//				DnsZone: pulumi.String(pulumi.String(domainName)),
 //				Type:    pulumi.String("MX"),
 //				Data:    pulumi.String("."),
 //			})
@@ -127,7 +127,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dmarc", &domain.RecordArgs{
-//				DnsZone: pulumi.String(domainName),
+//				DnsZone: pulumi.String(pulumi.String(domainName)),
 //				Name:    cr01.DmarcName,
 //				Type:    pulumi.String("TXT"),
 //				Data:    cr01.DmarcConfig,
@@ -167,8 +167,6 @@ import (
 // ## Import
 //
 // Webhooks can be imported using the {region}/{id}, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:tem/webhook:Webhook main fr-par/11111111-1111-1111-1111-111111111111

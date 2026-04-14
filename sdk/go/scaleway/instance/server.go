@@ -337,7 +337,7 @@ import (
 //				return err
 //			}
 //			fromSnapshot, err := block.NewVolume(ctx, "from_snapshot", &block.VolumeArgs{
-//				SnapshotId: pulumi.String(snapshot.Id),
+//				SnapshotId: pulumi.String(pulumi.String(snapshot.Id)),
 //				Iops:       pulumi.Int(5000),
 //			})
 //			if err != nil {
@@ -406,8 +406,6 @@ import (
 // ## Import
 //
 // Instance servers can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:instance/server:Server web fr-par-1/11111111-1111-1111-1111-111111111111
@@ -478,7 +476,9 @@ type Server struct {
 	ReplaceOnTypeChange pulumi.BoolPtrOutput `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume ServerRootVolumeOutput `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	//
+	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringOutput `pulumi:"state"`
@@ -604,7 +604,9 @@ type serverState struct {
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *ServerRootVolume `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	//
+	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -692,7 +694,9 @@ type ServerState struct {
 	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume ServerRootVolumePtrInput
-	// The security group the server is attached to
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	//
+	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -780,7 +784,9 @@ type serverArgs struct {
 	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume *ServerRootVolume `pulumi:"rootVolume"`
-	// The security group the server is attached to
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	//
+	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
@@ -865,7 +871,9 @@ type ServerArgs struct {
 	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
 	RootVolume ServerRootVolumePtrInput
-	// The security group the server is attached to
+	// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+	//
+	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
@@ -1102,7 +1110,9 @@ func (o ServerOutput) RootVolume() ServerRootVolumeOutput {
 	return o.ApplyT(func(v *Server) ServerRootVolumeOutput { return v.RootVolume }).(ServerRootVolumeOutput)
 }
 
-// The security group the server is attached to
+// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+//
+// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 func (o ServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }

@@ -28,6 +28,7 @@ class EdgeServicesRouteStageArgs:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesRouteStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
@@ -117,6 +118,7 @@ class _EdgeServicesRouteStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesRouteStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -273,6 +275,45 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
             }])
         ```
 
+        ### Host-based routing
+
+        Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Multi-host pipeline with host-based routing")
+        api = scaleway.object.Bucket("api", name="my-api-bucket")
+        static = scaleway.object.Bucket("static", name="my-static-site")
+        api_backend_stage = scaleway.edgeservices.BackendStage("api",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": api.name,
+                "bucket_region": "fr-par",
+            })
+        static_backend_stage = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": static.name,
+                "bucket_region": "fr-par",
+            })
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static_backend_stage.id,
+            rules=[{
+                "backend_stage_id": api_backend_stage.id,
+                "rule_http_match": {
+                    "host_filter": {
+                        "host_filter_type": "regex",
+                        "value": "api\\\\.example\\\\.com",
+                    },
+                },
+            }])
+        ```
+
         ### Default to backend with selective WAF protection
 
         Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -321,11 +362,10 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
 
         Route stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,6 +412,45 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
             }])
         ```
 
+        ### Host-based routing
+
+        Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Multi-host pipeline with host-based routing")
+        api = scaleway.object.Bucket("api", name="my-api-bucket")
+        static = scaleway.object.Bucket("static", name="my-static-site")
+        api_backend_stage = scaleway.edgeservices.BackendStage("api",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": api.name,
+                "bucket_region": "fr-par",
+            })
+        static_backend_stage = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": static.name,
+                "bucket_region": "fr-par",
+            })
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static_backend_stage.id,
+            rules=[{
+                "backend_stage_id": api_backend_stage.id,
+                "rule_http_match": {
+                    "host_filter": {
+                        "host_filter_type": "regex",
+                        "value": "api\\\\.example\\\\.com",
+                    },
+                },
+            }])
+        ```
+
         ### Default to backend with selective WAF protection
 
         Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -420,11 +499,10 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
 
         Route stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesRouteStageArgs args: The arguments to use to populate this resource's properties.

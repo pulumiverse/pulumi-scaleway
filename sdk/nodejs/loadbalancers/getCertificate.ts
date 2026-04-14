@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  *     lbId: mainLoadBalancer.id,
  *     name: "data-test-lb-cert",
  *     letsencrypt: {
- *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.index.replace({
+ *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.replace({
  *             text: ipAddress,
  *             search: ".",
  *             replace: "-",
@@ -124,7 +124,7 @@ export interface GetCertificateResult {
  *     lbId: mainLoadBalancer.id,
  *     name: "data-test-lb-cert",
  *     letsencrypt: {
- *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.index.replace({
+ *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.replace({
  *             text: ipAddress,
  *             search: ".",
  *             replace: "-",

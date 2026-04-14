@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -107,6 +107,15 @@ namespace Pulumiverse.Scaleway
         [Input("bucket", required: true)]
         public string Bucket { get; set; } = null!;
 
+        /// <summary>
+        /// `ProjectId`) The ID of the project with which the bucket is associated.
+        /// 
+        /// &gt; **Important:** The `ProjectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        /// If you are using a project different from the default one, you have to specify the `ProjectId` for every child resource of the bucket,
+        /// like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+        /// 
+        /// For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
+        /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
@@ -130,6 +139,15 @@ namespace Pulumiverse.Scaleway
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
+        /// <summary>
+        /// `ProjectId`) The ID of the project with which the bucket is associated.
+        /// 
+        /// &gt; **Important:** The `ProjectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        /// If you are using a project different from the default one, you have to specify the `ProjectId` for every child resource of the bucket,
+        /// like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+        /// 
+        /// For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 

@@ -31,6 +31,7 @@ class SnsTopicSubscriptionArgs:
                  topic_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnsTopicSubscription resource.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] protocol: Protocol of the SNS topic subscription.
         :param pulumi.Input[_builtins.str] secret_key: The secret key of the SNS credentials.
@@ -199,6 +200,7 @@ class _SnsTopicSubscriptionState:
                  topic_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnsTopicSubscription resources.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] arn: The ARN of the topic subscription
         :param pulumi.Input[_builtins.str] endpoint: Endpoint of the subscription
@@ -426,11 +428,10 @@ class SnsTopicSubscription(pulumi.CustomResource):
 
         SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/snsTopicSubscription:SnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -492,11 +493,10 @@ class SnsTopicSubscription(pulumi.CustomResource):
 
         SNS topic subscriptions can be imported using `{region}/{project-id}/{topic-name}/{subscription-id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/snsTopicSubscription:SnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnsTopicSubscriptionArgs args: The arguments to use to populate this resource's properties.

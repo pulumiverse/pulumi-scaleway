@@ -7,11 +7,116 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * The `scaleway.kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.kubernetes.Cluster("main", {
+ *     version: "1.32.3",
+ *     cni: "cilium",
+ * });
+ * const mainPool = new scaleway.kubernetes.Pool("main", {
+ *     clusterId: main.id,
+ *     nodeType: "DEV1-M",
+ *     size: 3,
+ *     minSize: 0,
+ *     maxSize: 10,
+ *     autoscaling: true,
+ *     autohealing: true,
+ *     containerRuntime: "containerd",
+ *     placementGroupId: "1267e3fd-a51c-49ed-ad12-857092ee3a3d",
+ * });
+ * ```
+ *
+ * ## Zone
+ *
+ * The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
+ *
+ * Please note that a pool belongs to only one cluster, in the same region.`region`.
+ *
+ * ## Placement Group
+ *
+ * If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const placementGroup = new scaleway.instance.PlacementGroup("placement_group", {
+ *     name: "pool-placement-group",
+ *     policyType: "max_availability",
+ *     policyMode: "optional",
+ *     zone: "nl-ams-1",
+ * });
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
+ *     name: "placement_group",
+ *     cni: "kilo",
+ *     version: "1.32.3",
+ *     tags: [
+ *         "terraform-test",
+ *         "scaleway_k8s_cluster",
+ *         "placement_group",
+ *     ],
+ *     region: "fr-par",
+ *     type: "multicloud",
+ * });
+ * const pool = new scaleway.kubernetes.Pool("pool", {
+ *     name: "placement_group",
+ *     clusterId: cluster.id,
+ *     nodeType: "gp1_xs",
+ *     placementGroupId: placementGroup.id,
+ *     size: 1,
+ *     region: cluster.region,
+ *     zone: placementGroup.zone,
+ * });
+ * ```
+ *
+ * ## Changing the node-type of a pool
+ *
+ * As your needs evolve, you can migrate your workflow from one pool to another.
+ * Pools have a unique name, and they also have an immutable node type.
+ * Just changing the pool node type will recreate a new pool which could lead to service disruption.
+ * To migrate your application with as little downtime as possible we recommend using the following workflow:
+ *
+ * ### General workflow to upgrade a pool
+ *
+ * - Create a new pool with a different name and the type you target.
+ * - Use [`kubectl drain`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#drain) on nodes composing your old pool to drain the remaining workflows of this pool.
+ *   Normally it should transfer your workflows to the new pool. Check out the official documentation about [how to safely drain your nodes](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
+ * - Delete the old pool from your terraform configuration.
+ *
+ * ### Using a composite name to force creation of a new pool when a variable updates
+ *
+ * If you want to have a new pool created when a variable changes, you can use a name derived from node type such as:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const kubernetesClusterWorkers1 = new scaleway.kubernetes.Pool("kubernetes_cluster_workers_1", {
+ *     clusterId: kubernetesCluster.id,
+ *     name: `${kubernetesClusterId}_${nodeType}_1`,
+ *     nodeType: nodeType,
+ *     autoscaling: true,
+ *     autohealing: true,
+ *     size: 5,
+ *     minSize: 5,
+ *     maxSize: 10,
+ *     waitForPoolReady: true,
+ * });
+ * ```
+ *
+ * Thanks to [@deimosfr](https://github.com/deimosfr) for the contribution.
+ *
  * ## Import
  *
  * Kubernetes pools can be imported using the `{region}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
@@ -73,7 +178,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * The actual size of the pool
+     * The size of the pool at the time the terraform state was updated.
      */
     declare public /*out*/ readonly currentSize: pulumi.Output<number>;
     /**
@@ -285,7 +390,7 @@ export interface KubernetesNodePoolState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The actual size of the pool
+     * The size of the pool at the time the terraform state was updated.
      */
     currentSize?: pulumi.Input<number>;
     /**

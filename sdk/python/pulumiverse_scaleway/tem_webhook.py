@@ -27,6 +27,7 @@ class TemWebhookArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TemWebhook resource.
+
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain the webhook is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_types: A list of event types that trigger the webhook.
         :param pulumi.Input[_builtins.str] sns_arn: The Amazon Resource Name (ARN) of the SNS topic.
@@ -131,6 +132,7 @@ class _TemWebhookState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TemWebhook resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the webhook's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain the webhook is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_types: A list of event types that trigger the webhook.
@@ -368,11 +370,10 @@ class TemWebhook(pulumi.CustomResource):
 
         Webhooks can be imported using the {region}/{id}, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/temWebhook:TemWebhook main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -470,11 +471,10 @@ class TemWebhook(pulumi.CustomResource):
 
         Webhooks can be imported using the {region}/{id}, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/temWebhook:TemWebhook main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TemWebhookArgs args: The arguments to use to populate this resource's properties.

@@ -32,6 +32,7 @@ class PolicyArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Policy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['PolicyRuleArgs']]] rules: List of rules in the policy.
         :param pulumi.Input[_builtins.str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[_builtins.str] description: The description of the IAM policy.
@@ -190,6 +191,7 @@ class _PolicyState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
+
         :param pulumi.Input[_builtins.str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the policy.
         :param pulumi.Input[_builtins.str] description: The description of the IAM policy.
@@ -436,6 +438,33 @@ class Policy(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a permission for multiple users using a group
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = [
+            "user1@mail.com",
+            "user2@mail.com",
+        ]
+        project_name = "default"
+        project = scaleway.account.get_project(name=project_name)
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        with_users = scaleway.iam.Group("with_users",
+            name="developers",
+            user_ids=[user.id for user in users_get_user.values()])
+        iam_tf_storage_policy = scaleway.iam.Policy("iam_tf_storage_policy",
+            name="developers permissions",
+            group_id=with_users.id,
+            rules=[{
+                "project_ids": [project.id],
+                "permission_set_names": ["InstancesReadOnly"],
+            }])
+        ```
+
         ### Create a policy with a particular condition
 
         IAM policy rule can use a condition to be applied.
@@ -463,11 +492,10 @@ class Policy(pulumi.CustomResource):
 
         Policies can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iam/policy:Policy main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -532,6 +560,33 @@ class Policy(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a permission for multiple users using a group
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = [
+            "user1@mail.com",
+            "user2@mail.com",
+        ]
+        project_name = "default"
+        project = scaleway.account.get_project(name=project_name)
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        with_users = scaleway.iam.Group("with_users",
+            name="developers",
+            user_ids=[user.id for user in users_get_user.values()])
+        iam_tf_storage_policy = scaleway.iam.Policy("iam_tf_storage_policy",
+            name="developers permissions",
+            group_id=with_users.id,
+            rules=[{
+                "project_ids": [project.id],
+                "permission_set_names": ["InstancesReadOnly"],
+            }])
+        ```
+
         ### Create a policy with a particular condition
 
         IAM policy rule can use a condition to be applied.
@@ -559,11 +614,10 @@ class Policy(pulumi.CustomResource):
 
         Policies can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iam/policy:Policy main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PolicyArgs args: The arguments to use to populate this resource's properties.

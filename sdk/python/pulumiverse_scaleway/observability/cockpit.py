@@ -25,6 +25,7 @@ class CockpitArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cockpit resource.
+
         :param pulumi.Input[_builtins.str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
                > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
                
@@ -78,6 +79,7 @@ class _CockpitState:
                  push_urls: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         :param pulumi.Input[_builtins.str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
                > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
@@ -188,15 +190,101 @@ class Cockpit(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Important:** The resource `observability.Cockpit` has been deprecated and will no longer be supported after January 1st, 2025. Instead, use the new specialized resources:
+
+        - `observability.Source` for managing data sources (metrics, logs, traces)
+        - `observability.AlertManager` for managing alert manager
+        - `observability_get_grafana` data source for accessing Grafana (authentication via IAM)
+
+        For detailed migration instructions, see the Cockpit Migration Guide.
+
+        > **Note:**
+        As of September 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+        If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
+
+        > **Note:**
+        From January 1st 2025, Cockpit plans have been deprecated. You can now edit the retention period for all your datasources (metrics, logs, and traces) separately. Refer to our product documentation for more information on [possible retention values](https://www.scaleway.com/en/docs/cockpit/concepts/#retention) and [pricing](https://www.scaleway.com/en/docs/cockpit/faq/#how-am-i-billed-for-increasing-data-retention-period).
+
+        > **Note:** The `observability.GrafanaUser` resource is deprecated. Use the `observability_get_grafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+
+        The `observability.Cockpit` resource allows you to create and manage Scaleway Cockpit instances.
+
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+        ## Example Usage
+
+        ### Manage Cockpit in the Scaleway default Project
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Activate Cockpit in the default Project
+        main = scaleway.observability.Cockpit("main")
+        ```
+
+        ### Manage Cockpit in a specific Project
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Activate Cockpit in a specific Project
+        main = scaleway.observability.Cockpit("main", project_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ### Choose a specific pricing plan for Cockpit
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.observability.Cockpit("main",
+            project_id="11111111-1111-1111-1111-111111111111",
+            plan="premium")
+        ```
+
+        ### Use the Grafana Terraform provider (Deprecated)
+
+        > **Note:** This example is deprecated. Use the `observability_get_grafana` data source with IAM authentication instead.
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+
+        # Old approach (deprecated) - Using scaleway_cockpit_grafana_user
+        # resource "scaleway_cockpit_grafana_user" "main" {
+        #   project_id = scaleway_cockpit.main.project_id
+        #   login      = "example"
+        #   role       = "editor"
+        # }
+        #
+        # provider "grafana" {
+        #   url  = scaleway_cockpit.main.endpoints.0.grafana_url
+        #   auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
+        # }
+        # New approach - Use scaleway_cockpit_grafana data source with IAM auth
+        main = scaleway.observability.get_grafana(project_id=main_scaleway_cockpit["projectId"])
+        ```
+
+        ## Migration
+
+        This resource is deprecated and will be removed after January 1st, 2025. To migrate to the new infrastructure, please refer to the Cockpit Migration Guide which provides step-by-step instructions for transitioning to:
+
+        - `observability.Source` for managing data sources (metrics, logs, traces)
+        - `observability.AlertManager` for managing alert manager
+        - `observability_get_grafana` data source for accessing Grafana (with IAM authentication)
+
         ## Import
 
         This section explains how to import a Cockpit using its `{project_id}`.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
         ```
+
+        > **Note:** Import functionality will be removed when this resource is deprecated.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -213,15 +301,101 @@ class Cockpit(pulumi.CustomResource):
                  args: Optional[CockpitArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Important:** The resource `observability.Cockpit` has been deprecated and will no longer be supported after January 1st, 2025. Instead, use the new specialized resources:
+
+        - `observability.Source` for managing data sources (metrics, logs, traces)
+        - `observability.AlertManager` for managing alert manager
+        - `observability_get_grafana` data source for accessing Grafana (authentication via IAM)
+
+        For detailed migration instructions, see the Cockpit Migration Guide.
+
+        > **Note:**
+        As of September 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+        If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
+
+        > **Note:**
+        From January 1st 2025, Cockpit plans have been deprecated. You can now edit the retention period for all your datasources (metrics, logs, and traces) separately. Refer to our product documentation for more information on [possible retention values](https://www.scaleway.com/en/docs/cockpit/concepts/#retention) and [pricing](https://www.scaleway.com/en/docs/cockpit/faq/#how-am-i-billed-for-increasing-data-retention-period).
+
+        > **Note:** The `observability.GrafanaUser` resource is deprecated. Use the `observability_get_grafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+
+        The `observability.Cockpit` resource allows you to create and manage Scaleway Cockpit instances.
+
+        Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+        ## Example Usage
+
+        ### Manage Cockpit in the Scaleway default Project
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Activate Cockpit in the default Project
+        main = scaleway.observability.Cockpit("main")
+        ```
+
+        ### Manage Cockpit in a specific Project
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Activate Cockpit in a specific Project
+        main = scaleway.observability.Cockpit("main", project_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ### Choose a specific pricing plan for Cockpit
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.observability.Cockpit("main",
+            project_id="11111111-1111-1111-1111-111111111111",
+            plan="premium")
+        ```
+
+        ### Use the Grafana Terraform provider (Deprecated)
+
+        > **Note:** This example is deprecated. Use the `observability_get_grafana` data source with IAM authentication instead.
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+
+        # Old approach (deprecated) - Using scaleway_cockpit_grafana_user
+        # resource "scaleway_cockpit_grafana_user" "main" {
+        #   project_id = scaleway_cockpit.main.project_id
+        #   login      = "example"
+        #   role       = "editor"
+        # }
+        #
+        # provider "grafana" {
+        #   url  = scaleway_cockpit.main.endpoints.0.grafana_url
+        #   auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
+        # }
+        # New approach - Use scaleway_cockpit_grafana data source with IAM auth
+        main = scaleway.observability.get_grafana(project_id=main_scaleway_cockpit["projectId"])
+        ```
+
+        ## Migration
+
+        This resource is deprecated and will be removed after January 1st, 2025. To migrate to the new infrastructure, please refer to the Cockpit Migration Guide which provides step-by-step instructions for transitioning to:
+
+        - `observability.Source` for managing data sources (metrics, logs, traces)
+        - `observability.AlertManager` for managing alert manager
+        - `observability_get_grafana` data source for accessing Grafana (with IAM authentication)
+
         ## Import
 
         This section explains how to import a Cockpit using its `{project_id}`.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
         ```
+
+        > **Note:** Import functionality will be removed when this resource is deprecated.
+
 
         :param str resource_name: The name of the resource.
         :param CockpitArgs args: The arguments to use to populate this resource's properties.

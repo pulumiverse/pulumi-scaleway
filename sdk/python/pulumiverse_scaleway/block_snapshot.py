@@ -30,6 +30,7 @@ class BlockSnapshotArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BlockSnapshot resource.
+
         :param pulumi.Input['BlockSnapshotExportArgs'] export: Use this block to export the volume as a QCOW file to Object Storage.
         :param pulumi.Input['BlockSnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
@@ -150,6 +151,7 @@ class _BlockSnapshotState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BlockSnapshot resources.
+
         :param pulumi.Input['BlockSnapshotExportArgs'] export: Use this block to export the volume as a QCOW file to Object Storage.
         :param pulumi.Input['BlockSnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
@@ -344,11 +346,10 @@ class BlockSnapshot(pulumi.CustomResource):
 
         This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -433,11 +434,10 @@ class BlockSnapshot(pulumi.CustomResource):
 
         This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BlockSnapshotArgs args: The arguments to use to populate this resource's properties.

@@ -37,6 +37,7 @@ class DeploymentArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
+
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
@@ -45,6 +46,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
@@ -167,6 +169,7 @@ class DeploymentArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         """
         return pulumi.get(self, "password_wo")
 
@@ -272,12 +275,14 @@ class _DeploymentState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
+
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
@@ -395,6 +400,7 @@ class _DeploymentState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         """
         return pulumi.get(self, "password_wo")
 
@@ -639,11 +645,10 @@ class Deployment(pulumi.CustomResource):
 
         Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -652,6 +657,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
@@ -739,11 +745,10 @@ class Deployment(pulumi.CustomResource):
 
         Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.
@@ -854,6 +859,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
@@ -938,6 +944,7 @@ class Deployment(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         """
         return pulumi.get(self, "password_wo")
 

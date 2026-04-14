@@ -24,6 +24,7 @@ class GroupMembershipArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMembership resource.
+
         :param pulumi.Input[_builtins.str] group_id: ID of the group to add members to.
         :param pulumi.Input[_builtins.str] application_id: The ID of the application that will be added to the group.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user that will be added to the group
@@ -83,6 +84,7 @@ class _GroupMembershipState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMembership resources.
+
         :param pulumi.Input[_builtins.str] application_id: The ID of the application that will be added to the group.
         :param pulumi.Input[_builtins.str] group_id: ID of the group to add members to.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user that will be added to the group
@@ -166,19 +168,40 @@ class GroupMembership(pulumi.CustomResource):
             application_id=app.id)
         ```
 
+        ### Users membership
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        group = scaleway.iam.Group("group",
+            name="my_group",
+            external_membership=True)
+        members = []
+        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+                group_id=group.id,
+                user_id=range["value"].id))
+        ```
+
         ## Import
 
         IAM group memberships can be imported using two format:
 
         - For user: `{group_id}/user/{user_id}`
-
         - For application: `{group_id}/app/{application_id}`
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/groupMembership:GroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -215,19 +238,40 @@ class GroupMembership(pulumi.CustomResource):
             application_id=app.id)
         ```
 
+        ### Users membership
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        group = scaleway.iam.Group("group",
+            name="my_group",
+            external_membership=True)
+        members = []
+        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+                group_id=group.id,
+                user_id=range["value"].id))
+        ```
+
         ## Import
 
         IAM group memberships can be imported using two format:
 
         - For user: `{group_id}/user/{user_id}`
-
         - For application: `{group_id}/app/{application_id}`
-
-        bash
 
         ```sh
         $ pulumi import scaleway:iam/groupMembership:GroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupMembershipArgs args: The arguments to use to populate this resource's properties.

@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  *     dnsZone: "example.com",
  *     name: "",
  *     type: "AAAA",
- *     data: std.index.cidrhost({
+ *     data: std.cidrhost({
  *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
  *         host: 42,
  *     }).result,
@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * const base = new scaleway.ipam.IpReverseDns("base", {
  *     ipamIpId: ipam01.apply(ipam01 => ipam01.id),
  *     hostname: "example.com",
- *     address: std.index.cidrhost({
+ *     address: std.cidrhost({
  *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
  *         host: 42,
  *     }).result,
@@ -55,8 +55,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111

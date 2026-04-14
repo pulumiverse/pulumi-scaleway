@@ -26,9 +26,10 @@ class DatabasePrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabasePrivilege resource.
+
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
-        :param pulumi.Input[_builtins.str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission: Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[_builtins.str] user_name: Name of the user (e.g. `my-db-user`).
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
         """
@@ -67,7 +68,7 @@ class DatabasePrivilegeArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[_builtins.str]:
         """
-        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -104,24 +105,33 @@ class DatabasePrivilegeArgs:
 class _DatabasePrivilegeState:
     def __init__(__self__, *,
                  database_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 effective_permission: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  permission: Optional[pulumi.Input[_builtins.str]] = None,
+                 permission_status: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabasePrivilege resources.
+
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[_builtins.str] effective_permission: The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
-        :param pulumi.Input[_builtins.str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission: Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission_status: Permission synchronization status. Possible values:
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[_builtins.str] user_name: Name of the user (e.g. `my-db-user`).
         """
         if database_name is not None:
             pulumi.set(__self__, "database_name", database_name)
+        if effective_permission is not None:
+            pulumi.set(__self__, "effective_permission", effective_permission)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if permission is not None:
             pulumi.set(__self__, "permission", permission)
+        if permission_status is not None:
+            pulumi.set(__self__, "permission_status", permission_status)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if user_name is not None:
@@ -140,6 +150,18 @@ class _DatabasePrivilegeState:
         pulumi.set(self, "database_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="effectivePermission")
+    def effective_permission(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+        """
+        return pulumi.get(self, "effective_permission")
+
+    @effective_permission.setter
+    def effective_permission(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "effective_permission", value)
+
+    @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -155,13 +177,25 @@ class _DatabasePrivilegeState:
     @pulumi.getter
     def permission(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
     @permission.setter
     def permission(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "permission", value)
+
+    @_builtins.property
+    @pulumi.getter(name="permissionStatus")
+    def permission_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Permission synchronization status. Possible values:
+        """
+        return pulumi.get(self, "permission_status")
+
+    @permission_status.setter
+    def permission_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "permission_status", value)
 
     @_builtins.property
     @pulumi.getter
@@ -238,21 +272,45 @@ class DatabasePrivilege(pulumi.CustomResource):
             permission="all")
         ```
 
+        ## Permission Drift Management
+
+        ### Understanding Permission Drift
+
+        When you configure a privilege (e.g., `readwrite`), Scaleway applies it to **database objects that exist at that moment**. If new tables, views, or sequences are created later, they won't automatically inherit these permissions. In that case, the API may return `custom`.
+
+        **Example:**
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        app = scaleway.databases.Privilege("app",
+            instance_id=main["id"],
+            user_name="app_user",
+            database_name="mydb",
+            permission="readwrite")
+        ```
+
+        ### Handling Permission Drift
+
+        Run `pulumi up` to reapply the configured permission to all objects (existing and new):
+
+        The plan will typically show:
+
         ## Import
 
         The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
-        :param pulumi.Input[_builtins.str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission: Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[_builtins.str] user_name: Name of the user (e.g. `my-db-user`).
         """
@@ -295,15 +353,39 @@ class DatabasePrivilege(pulumi.CustomResource):
             permission="all")
         ```
 
+        ## Permission Drift Management
+
+        ### Understanding Permission Drift
+
+        When you configure a privilege (e.g., `readwrite`), Scaleway applies it to **database objects that exist at that moment**. If new tables, views, or sequences are created later, they won't automatically inherit these permissions. In that case, the API may return `custom`.
+
+        **Example:**
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        app = scaleway.databases.Privilege("app",
+            instance_id=main["id"],
+            user_name="app_user",
+            database_name="mydb",
+            permission="readwrite")
+        ```
+
+        ### Handling Permission Drift
+
+        Run `pulumi up` to reapply the configured permission to all objects (existing and new):
+
+        The plan will typically show:
+
         ## Import
 
         The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.
@@ -348,6 +430,8 @@ class DatabasePrivilege(pulumi.CustomResource):
             if user_name is None and not opts.urn:
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
+            __props__.__dict__["effective_permission"] = None
+            __props__.__dict__["permission_status"] = None
         super(DatabasePrivilege, __self__).__init__(
             'scaleway:index/databasePrivilege:DatabasePrivilege',
             resource_name,
@@ -359,8 +443,10 @@ class DatabasePrivilege(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             database_name: Optional[pulumi.Input[_builtins.str]] = None,
+            effective_permission: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             permission: Optional[pulumi.Input[_builtins.str]] = None,
+            permission_status: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             user_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatabasePrivilege':
         """
@@ -371,8 +457,10 @@ class DatabasePrivilege(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[_builtins.str] effective_permission: The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
-        :param pulumi.Input[_builtins.str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission: Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[_builtins.str] permission_status: Permission synchronization status. Possible values:
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[_builtins.str] user_name: Name of the user (e.g. `my-db-user`).
         """
@@ -381,8 +469,10 @@ class DatabasePrivilege(pulumi.CustomResource):
         __props__ = _DatabasePrivilegeState.__new__(_DatabasePrivilegeState)
 
         __props__.__dict__["database_name"] = database_name
+        __props__.__dict__["effective_permission"] = effective_permission
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["permission"] = permission
+        __props__.__dict__["permission_status"] = permission_status
         __props__.__dict__["region"] = region
         __props__.__dict__["user_name"] = user_name
         return DatabasePrivilege(resource_name, opts=opts, __props__=__props__)
@@ -396,6 +486,14 @@ class DatabasePrivilege(pulumi.CustomResource):
         return pulumi.get(self, "database_name")
 
     @_builtins.property
+    @pulumi.getter(name="effectivePermission")
+    def effective_permission(self) -> pulumi.Output[_builtins.str]:
+        """
+        The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+        """
+        return pulumi.get(self, "effective_permission")
+
+    @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[_builtins.str]:
         """
@@ -407,9 +505,17 @@ class DatabasePrivilege(pulumi.CustomResource):
     @pulumi.getter
     def permission(self) -> pulumi.Output[_builtins.str]:
         """
-        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionStatus")
+    def permission_status(self) -> pulumi.Output[_builtins.str]:
+        """
+        Permission synchronization status. Possible values:
+        """
+        return pulumi.get(self, "permission_status")
 
     @_builtins.property
     @pulumi.getter

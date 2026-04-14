@@ -117,8 +117,6 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     /// Snapshots can be imported using the `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:instance/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

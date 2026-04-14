@@ -34,6 +34,7 @@ class RecordArgs:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
         """
         The set of arguments for constructing a Record resource.
+
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[_builtins.str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
@@ -217,6 +218,7 @@ class _RecordState:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
         """
         Input properties used for looking up and filtering Record resources.
+
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[_builtins.str] fqdn: The FQDN of the record.
@@ -624,11 +626,10 @@ class Record(pulumi.CustomResource):
 
         This section explains how to import a record using the `{dns_zone}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:domain/record:Record www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -841,11 +842,10 @@ class Record(pulumi.CustomResource):
 
         This section explains how to import a record using the `{dns_zone}/{id}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:domain/record:Record www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RecordArgs args: The arguments to use to populate this resource's properties.

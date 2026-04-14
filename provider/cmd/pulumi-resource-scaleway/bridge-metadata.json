@@ -755,6 +755,9 @@
                                     "maxItemsOne": true,
                                     "elem": {
                                         "fields": {
+                                            "host_filter": {
+                                                "maxItemsOne": true
+                                            },
                                             "method_filters": {
                                                 "maxItemsOne": false
                                             },
@@ -3366,6 +3369,9 @@
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
+                                            "host_filter": {
+                                                "maxItemsOne": false
+                                            },
                                             "method_filters": {
                                                 "maxItemsOne": false
                                             },
@@ -3832,6 +3838,31 @@
                     },
                     "pop_ids": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_interlink_pop": {
+                "current": "scaleway:interlink/getPop:getPop",
+                "majorVersion": 1,
+                "fields": {
+                    "available_link_bandwidths_mbps": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_interlink_pops": {
+                "current": "scaleway:interlink/getPops:getPops",
+                "majorVersion": 1,
+                "fields": {
+                    "pops": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "available_link_bandwidths_mbps": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -6560,6 +6591,8 @@
             "scaleway:instance/getVolume:getVolume": 0,
             "scaleway:interlink/getPartner:getPartner": 0,
             "scaleway:interlink/getPartners:getPartners": 0,
+            "scaleway:interlink/getPop:getPop": 0,
+            "scaleway:interlink/getPops:getPops": 0,
             "scaleway:iot/getDevice:getDevice": 0,
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,

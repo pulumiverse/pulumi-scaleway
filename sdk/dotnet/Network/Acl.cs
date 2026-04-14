@@ -59,8 +59,6 @@ namespace Pulumiverse.Scaleway.Network
     /// 
     /// ACLs can be imported using `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:network/acl:Acl main fr-par/11111111-1111-1111-1111-111111111111
     /// ```

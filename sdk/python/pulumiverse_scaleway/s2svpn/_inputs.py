@@ -31,24 +31,19 @@ __all__ = [
     'GatewayPublicConfigArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ConnectionBgpConfigIpv4ArgsDict(TypedDict):
-        routing_policy_id: pulumi.Input[_builtins.str]
-        """
-        The routing policy ID used for this BGP session.
-        """
-        peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on customer side (within the tunnel).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on Scaleway side (within the tunnel).
-        """
-elif False:
-    ConnectionBgpConfigIpv4ArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionBgpConfigIpv4ArgsDict(TypedDict):
+    routing_policy_id: pulumi.Input[_builtins.str]
+    """
+    The routing policy ID used for this BGP session.
+    """
+    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on customer side (within the tunnel).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on Scaleway side (within the tunnel).
+    """
 
 @pulumi.input_type
 class ConnectionBgpConfigIpv4Args:
@@ -104,22 +99,19 @@ class ConnectionBgpConfigIpv4Args:
         pulumi.set(self, "private_ip", value)
 
 
-if not MYPY:
-    class ConnectionBgpConfigIpv6ArgsDict(TypedDict):
-        routing_policy_id: pulumi.Input[_builtins.str]
-        """
-        The routing policy ID used for this BGP session.
-        """
-        peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on customer side (within the tunnel).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on Scaleway side (within the tunnel).
-        """
-elif False:
-    ConnectionBgpConfigIpv6ArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionBgpConfigIpv6ArgsDict(TypedDict):
+    routing_policy_id: pulumi.Input[_builtins.str]
+    """
+    The routing policy ID used for this BGP session.
+    """
+    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on customer side (within the tunnel).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on Scaleway side (within the tunnel).
+    """
 
 @pulumi.input_type
 class ConnectionBgpConfigIpv6Args:
@@ -175,22 +167,19 @@ class ConnectionBgpConfigIpv6Args:
         pulumi.set(self, "private_ip", value)
 
 
-if not MYPY:
-    class ConnectionBgpSessionIpv4ArgsDict(TypedDict):
-        peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on customer side (within the tunnel).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on Scaleway side (within the tunnel).
-        """
-        routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The routing policy ID used for this BGP session.
-        """
-elif False:
-    ConnectionBgpSessionIpv4ArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionBgpSessionIpv4ArgsDict(TypedDict):
+    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on customer side (within the tunnel).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on Scaleway side (within the tunnel).
+    """
+    routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The routing policy ID used for this BGP session.
+    """
 
 @pulumi.input_type
 class ConnectionBgpSessionIpv4Args:
@@ -247,22 +236,19 @@ class ConnectionBgpSessionIpv4Args:
         pulumi.set(self, "routing_policy_id", value)
 
 
-if not MYPY:
-    class ConnectionBgpSessionIpv6ArgsDict(TypedDict):
-        peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on customer side (within the tunnel).
-        """
-        private_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The BGP peer IP on Scaleway side (within the tunnel).
-        """
-        routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The routing policy ID used for this BGP session.
-        """
-elif False:
-    ConnectionBgpSessionIpv6ArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionBgpSessionIpv6ArgsDict(TypedDict):
+    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on customer side (within the tunnel).
+    """
+    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The BGP peer IP on Scaleway side (within the tunnel).
+    """
+    routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The routing policy ID used for this BGP session.
+    """
 
 @pulumi.input_type
 class ConnectionBgpSessionIpv6Args:
@@ -319,22 +305,19 @@ class ConnectionBgpSessionIpv6Args:
         pulumi.set(self, "routing_policy_id", value)
 
 
-if not MYPY:
-    class ConnectionEspCipherArgsDict(TypedDict):
-        encryption: pulumi.Input[_builtins.str]
-        """
-        The encryption algorithm
-        """
-        dh_group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Diffie-Hellman group
-        """
-        integrity: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The integrity/hash algorithm
-        """
-elif False:
-    ConnectionEspCipherArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionEspCipherArgsDict(TypedDict):
+    encryption: pulumi.Input[_builtins.str]
+    """
+    The encryption algorithm
+    """
+    dh_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Diffie-Hellman group
+    """
+    integrity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The integrity/hash algorithm
+    """
 
 @pulumi.input_type
 class ConnectionEspCipherArgs:
@@ -390,22 +373,19 @@ class ConnectionEspCipherArgs:
         pulumi.set(self, "integrity", value)
 
 
-if not MYPY:
-    class ConnectionIkev2CipherArgsDict(TypedDict):
-        encryption: pulumi.Input[_builtins.str]
-        """
-        The encryption algorithm
-        """
-        dh_group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Diffie-Hellman group
-        """
-        integrity: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The integrity/hash algorithm
-        """
-elif False:
-    ConnectionIkev2CipherArgsDict: TypeAlias = Mapping[str, Any]
+class ConnectionIkev2CipherArgsDict(TypedDict):
+    encryption: pulumi.Input[_builtins.str]
+    """
+    The encryption algorithm
+    """
+    dh_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Diffie-Hellman group
+    """
+    integrity: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The integrity/hash algorithm
+    """
 
 @pulumi.input_type
 class ConnectionIkev2CipherArgs:
@@ -461,18 +441,15 @@ class ConnectionIkev2CipherArgs:
         pulumi.set(self, "integrity", value)
 
 
-if not MYPY:
-    class GatewayPublicConfigArgsDict(TypedDict):
-        ipam_ipv4_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
-        """
-        ipam_ipv6_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
-        """
-elif False:
-    GatewayPublicConfigArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayPublicConfigArgsDict(TypedDict):
+    ipam_ipv4_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+    """
+    ipam_ipv6_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+    """
 
 @pulumi.input_type
 class GatewayPublicConfigArgs:

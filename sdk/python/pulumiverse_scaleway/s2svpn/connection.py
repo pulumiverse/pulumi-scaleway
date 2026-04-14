@@ -36,6 +36,7 @@ class ConnectionArgs:
                  vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Connection resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]] bgp_config_ipv4s: BGP configuration for IPv4. See BGP Config below.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]] bgp_config_ipv6s: BGP configuration for IPv6. See BGP Config below.
         :param pulumi.Input[_builtins.str] customer_gateway_id: The ID of the customer gateway to attach to the connection.
@@ -264,6 +265,7 @@ class _ConnectionState:
                  vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]] bgp_config_ipv4s: BGP configuration for IPv4. See BGP Config below.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]] bgp_config_ipv6s: BGP configuration for IPv6. See BGP Config below.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]] bgp_session_ipv4s: The BGP IPv4 session information. See BGP Session below.
@@ -722,11 +724,10 @@ class Connection(pulumi.CustomResource):
 
         Connections can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/connection:Connection main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -810,11 +811,10 @@ class Connection(pulumi.CustomResource):
 
         Connections can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/connection:Connection main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionArgs args: The arguments to use to populate this resource's properties.

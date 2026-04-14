@@ -36,6 +36,7 @@ class InstanceTemplateArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceTemplate resource.
+
         :param pulumi.Input[_builtins.str] commercial_type: The name of Instance commercial type.
         :param pulumi.Input[_builtins.str] cloud_init: The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         :param pulumi.Input[_builtins.str] image_id: The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
@@ -254,6 +255,7 @@ class _InstanceTemplateState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceTemplate resources.
+
         :param pulumi.Input[_builtins.str] cloud_init: The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         :param pulumi.Input[_builtins.str] commercial_type: The name of Instance commercial type.
         :param pulumi.Input[_builtins.str] created_at: Date and time of Instance group's creation (RFC 3339 format).
@@ -552,11 +554,10 @@ class InstanceTemplate(pulumi.CustomResource):
 
         Autoscaling Instance templates can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:autoscaling/instanceTemplate:InstanceTemplate main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -615,11 +616,10 @@ class InstanceTemplate(pulumi.CustomResource):
 
         Autoscaling Instance templates can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:autoscaling/instanceTemplate:InstanceTemplate main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceTemplateArgs args: The arguments to use to populate this resource's properties.

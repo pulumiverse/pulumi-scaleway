@@ -61,7 +61,7 @@ import (
 //				Name:       pulumi.String("test-cron"),
 //				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 0 * * *"),
-//				Args:       pulumi.String(json0),
+//				Args:       pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -76,7 +76,7 @@ import (
 //			_, err = functions.NewCron(ctx, "func", &functions.CronArgs{
 //				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 1 * * *"),
-//				Args:       pulumi.String(json1),
+//				Args:       pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -90,8 +90,6 @@ import (
 // ## Import
 //
 // Function Cron can be imported using `{region}/{id}`, as shown below:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111

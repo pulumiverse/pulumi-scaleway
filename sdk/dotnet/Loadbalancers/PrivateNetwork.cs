@@ -73,8 +73,6 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     /// 
     /// Private Network attachments can be imported using `{zone}/{lb-id}/{private-network-id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:loadbalancers/privateNetwork:PrivateNetwork lbpn01 fr-par-1/11111111-1111-1111-1111-111111111111/11111111-1111-1111-1111-111111111111
     /// ```

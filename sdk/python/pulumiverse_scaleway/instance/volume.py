@@ -29,6 +29,7 @@ class VolumeArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Volume resource.
+
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[_builtins.bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
@@ -170,6 +171,7 @@ class _VolumeState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
+
         :param pulumi.Input[_builtins.str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[_builtins.bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided it will be randomly generated.
@@ -362,11 +364,10 @@ class Volume(pulumi.CustomResource):
 
         volumes can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/volume:Volume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -407,11 +408,10 @@ class Volume(pulumi.CustomResource):
 
         volumes can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/volume:Volume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.

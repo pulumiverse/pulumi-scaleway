@@ -69,8 +69,6 @@ import * as utilities from "./utilities";
  *
  * Backend stages can be imported using the `{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
  * ```

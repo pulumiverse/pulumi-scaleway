@@ -28,6 +28,7 @@ class IpArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Ip resource.
+
         :param pulumi.Input[_builtins.str] description: A description of the flexible IP.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether the flexible IP has an IPv6 address.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Flexible IP is associated with.
@@ -153,6 +154,7 @@ class _IpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Ip resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Flexible IP (Format ISO 8601).
         :param pulumi.Input[_builtins.str] description: A description of the flexible IP.
         :param pulumi.Input[_builtins.str] ip_address: The IP address of the Flexible IP.
@@ -415,11 +417,10 @@ class Ip(pulumi.CustomResource):
 
         Flexible IPs can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/ip:Ip main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -502,11 +503,10 @@ class Ip(pulumi.CustomResource):
 
         Flexible IPs can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/ip:Ip main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpArgs args: The arguments to use to populate this resource's properties.

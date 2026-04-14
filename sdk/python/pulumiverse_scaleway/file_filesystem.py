@@ -26,6 +26,7 @@ class FileFilesystemArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FileFilesystem resource.
+
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
@@ -124,6 +125,7 @@ class _FileFilesystemState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FileFilesystem resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time when the File Storage filesystem was created.
         :param pulumi.Input[_builtins.str] name: The name of the filesystem. If not provided, a random name will be generated.
         :param pulumi.Input[_builtins.int] number_of_attachments: The number of active attachments (mounts) on the filesystem.
@@ -319,11 +321,10 @@ class FileFilesystem(pulumi.CustomResource):
 
         File Storage filesystems can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/fileFilesystem:FileFilesystem main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -366,11 +367,10 @@ class FileFilesystem(pulumi.CustomResource):
 
         File Storage filesystems can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/fileFilesystem:FileFilesystem main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FileFilesystemArgs args: The arguments to use to populate this resource's properties.

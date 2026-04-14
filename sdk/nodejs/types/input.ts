@@ -677,6 +677,10 @@ export interface EdgeServicesRouteStageRule {
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatch {
     /**
+     * Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+     */
+    hostFilter?: pulumi.Input<inputs.EdgeServicesRouteStageRuleRuleHttpMatchHostFilter>;
+    /**
      * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
      */
     methodFilters?: pulumi.Input<pulumi.Input<string>[]>;
@@ -684,6 +688,17 @@ export interface EdgeServicesRouteStageRuleRuleHttpMatch {
      * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
      */
     pathFilter?: pulumi.Input<inputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilter>;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+    /**
+     * The type of filter to match for the host. Use the `regex` type.
+     */
+    hostFilterType: pulumi.Input<string>;
+    /**
+     * The value to be matched for the host.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
@@ -961,7 +976,9 @@ export interface InstanceSecurityGroupInboundRule {
      */
     port?: pulumi.Input<number>;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange?: pulumi.Input<string>;
     /**
@@ -1019,7 +1036,9 @@ export interface InstanceSecurityGroupRulesInboundRule {
      */
     port?: pulumi.Input<number>;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange?: pulumi.Input<string>;
     /**
@@ -1322,7 +1341,9 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * The IP corresponding to the hostname
+     * Request a specific IP in the specified source pool.
+     *
+     * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address?: pulumi.Input<string>;
     /**
@@ -3595,6 +3616,10 @@ export namespace edgeservices {
 
     export interface RouteStageRuleRuleHttpMatch {
         /**
+         * Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+         */
+        hostFilter?: pulumi.Input<inputs.edgeservices.RouteStageRuleRuleHttpMatchHostFilter>;
+        /**
          * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
          */
         methodFilters?: pulumi.Input<pulumi.Input<string>[]>;
@@ -3602,6 +3627,17 @@ export namespace edgeservices {
          * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
          */
         pathFilter?: pulumi.Input<inputs.edgeservices.RouteStageRuleRuleHttpMatchPathFilter>;
+    }
+
+    export interface RouteStageRuleRuleHttpMatchHostFilter {
+        /**
+         * The type of filter to match for the host. Use the `regex` type.
+         */
+        hostFilterType: pulumi.Input<string>;
+        /**
+         * The value to be matched for the host.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface RouteStageRuleRuleHttpMatchPathFilter {
@@ -4046,7 +4082,9 @@ export namespace instance {
          */
         port?: pulumi.Input<number>;
         /**
-         * Computed port range for this rule (e.g: 1-1024, 22-22)
+         * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+         * If no `port` nor `portRange` are specified, rule will apply to all port.
+         * Only one of `port` and `portRange` should be specified.
          */
         portRange?: pulumi.Input<string>;
         /**
@@ -4104,7 +4142,9 @@ export namespace instance {
          */
         port?: pulumi.Input<number>;
         /**
-         * Computed port range for this rule (e.g: 1-1024, 22-22)
+         * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+         * If no `port` nor `portRange` are specified, rule will apply to all port.
+         * Only one of `port` and `portRange` should be specified.
          */
         portRange?: pulumi.Input<string>;
         /**
@@ -4474,7 +4514,9 @@ export namespace ipam {
 
     export interface IpReverse {
         /**
-         * The IP corresponding to the hostname
+         * Request a specific IP in the specified source pool.
+         *
+         * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
          */
         address?: pulumi.Input<string>;
         /**

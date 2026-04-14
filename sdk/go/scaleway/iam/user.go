@@ -12,6 +12,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway IAM [Users](https://www.scaleway.com/en/docs/iam/concepts/#member).
+//
+// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
+//
+// > **Security Best Practice:**
+// For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+//
 // ## Example Usage
 //
 // ```go
@@ -50,6 +57,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
@@ -72,8 +81,8 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := iam.NewUser(ctx, fmt.Sprintf("users-%v", key0), &iam.UserArgs{
-//					Email:    pulumi.String(users[val0].Email),
-//					Username: pulumi.String(users[val0].Username),
+//					Email:    pulumi.String(users[val0]["email"].(string)),
+//					Username: pulumi.String(users[val0]["username"].(string)),
 //				})
 //				if err != nil {
 //					return err
@@ -89,8 +98,6 @@ import (
 // ## Import
 //
 // IAM users can be imported using the `{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:iam/user:User basic 11111111-1111-1111-1111-111111111111
@@ -123,6 +130,7 @@ type User struct {
 	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
@@ -222,6 +230,7 @@ type userState struct {
 	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -269,6 +278,7 @@ type UserState struct {
 	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -308,6 +318,7 @@ type userArgs struct {
 	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo *string `pulumi:"passwordWo"`
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
@@ -338,6 +349,7 @@ type UserArgs struct {
 	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWo pulumi.StringPtrInput
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
@@ -501,6 +513,7 @@ func (o UserOutput) Password() pulumi.StringPtrOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 func (o UserOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }

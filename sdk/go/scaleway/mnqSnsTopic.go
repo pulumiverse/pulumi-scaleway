@@ -64,8 +64,6 @@ import (
 //
 // SNS topics can be imported using `{region}/{project-id}/{topic-name}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
 // ```

@@ -28,7 +28,6 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// using Std = Pulumi.Std;
         /// 
@@ -95,7 +94,6 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// using Std = Pulumi.Std;
         /// 
@@ -162,7 +160,6 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// using Std = Pulumi.Std;
         /// 

@@ -12,12 +12,378 @@ namespace Pulumiverse.Scaleway.Observability
 {
     public static class GetGrafana
     {
+        /// <summary>
+        /// Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+        /// 
+        /// This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using with default project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Uses the default project from provider configuration
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Complete example with Cockpit setup
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var project = new Scaleway.Account.Project("project", new()
+        ///     {
+        ///         Name = "my-observability-project",
+        ///     });
+        /// 
+        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = mainCockpit.ProjectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaConnectionInfo"] = 
+        ///         {
+        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
+        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using the Grafana Terraform provider
+        /// 
+        /// When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `Anonymous` mode.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Config();
+        ///     // Scaleway IAM secret key reused by the Grafana provider
+        ///     var scalewaySecretKey = config.Require("scalewaySecretKey");
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+        /// 
+        /// ## Authentication
+        /// 
+        /// To access Grafana, use your Scaleway IAM credentials:
+        /// 
+        /// 1. Navigate to the `GrafanaUrl` provided by this data source
+        /// 2. Sign in using your Scaleway account (IAM authentication)
+        /// 3. Your access level is determined by your IAM permissions on the project
+        /// 
+        /// For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// </summary>
         public static Task<GetGrafanaResult> InvokeAsync(GetGrafanaArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGrafanaResult>("scaleway:observability/getGrafana:getGrafana", args ?? new GetGrafanaArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+        /// 
+        /// This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using with default project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Uses the default project from provider configuration
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Complete example with Cockpit setup
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var project = new Scaleway.Account.Project("project", new()
+        ///     {
+        ///         Name = "my-observability-project",
+        ///     });
+        /// 
+        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = mainCockpit.ProjectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaConnectionInfo"] = 
+        ///         {
+        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
+        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using the Grafana Terraform provider
+        /// 
+        /// When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `Anonymous` mode.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Config();
+        ///     // Scaleway IAM secret key reused by the Grafana provider
+        ///     var scalewaySecretKey = config.Require("scalewaySecretKey");
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+        /// 
+        /// ## Authentication
+        /// 
+        /// To access Grafana, use your Scaleway IAM credentials:
+        /// 
+        /// 1. Navigate to the `GrafanaUrl` provided by this data source
+        /// 2. Sign in using your Scaleway account (IAM authentication)
+        /// 3. Your access level is determined by your IAM permissions on the project
+        /// 
+        /// For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// </summary>
         public static Output<GetGrafanaResult> Invoke(GetGrafanaInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGrafanaResult>("scaleway:observability/getGrafana:getGrafana", args ?? new GetGrafanaInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+        /// 
+        /// This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Basic usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using with default project
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Uses the default project from provider configuration
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Complete example with Cockpit setup
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var project = new Scaleway.Account.Project("project", new()
+        ///     {
+        ///         Name = "my-observability-project",
+        ///     });
+        /// 
+        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = mainCockpit.ProjectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["grafanaConnectionInfo"] = 
+        ///         {
+        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
+        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///         },
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Using the Grafana Terraform provider
+        /// 
+        /// When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `Anonymous` mode.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Config();
+        ///     // Scaleway IAM secret key reused by the Grafana provider
+        ///     var scalewaySecretKey = config.Require("scalewaySecretKey");
+        ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+        ///     {
+        ///         ProjectId = project.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+        /// 
+        /// ## Authentication
+        /// 
+        /// To access Grafana, use your Scaleway IAM credentials:
+        /// 
+        /// 1. Navigate to the `GrafanaUrl` provided by this data source
+        /// 2. Sign in using your Scaleway account (IAM authentication)
+        /// 3. Your access level is determined by your IAM permissions on the project
+        /// 
+        /// For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+        /// </summary>
         public static Output<GetGrafanaResult> Invoke(GetGrafanaInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetGrafanaResult>("scaleway:observability/getGrafana:getGrafana", args ?? new GetGrafanaInvokeArgs(), options.WithDefaults());
     }

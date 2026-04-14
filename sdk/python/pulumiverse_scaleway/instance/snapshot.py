@@ -30,6 +30,7 @@ class SnapshotArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
+
         :param pulumi.Input['SnapshotImportArgs'] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the snapshot is
@@ -159,6 +160,7 @@ class _SnapshotState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+
         :param pulumi.Input[_builtins.str] created_at: The snapshot creation time.
         :param pulumi.Input['SnapshotImportArgs'] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided it will be randomly generated.
@@ -390,11 +392,10 @@ class Snapshot(pulumi.CustomResource):
 
         Snapshots can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -473,11 +474,10 @@ class Snapshot(pulumi.CustomResource):
 
         Snapshots can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.

@@ -48,11 +48,80 @@ import (
 //
 // ```
 //
+// ### With bastion
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "~/.ssh/id_rsa.pub",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			key1, err := iam.NewSshKey(ctx, "key1", &iam.SshKeyArgs{
+//				Name:      pulumi.String("key1"),
+//				PublicKey: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//				"input": "~/.ssh/another_key.pub",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			key2, err := iam.NewSshKey(ctx, "key2", &iam.SshKeyArgs{
+//				Name:      pulumi.String("key2"),
+//				PublicKey: invokeFile1.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			sshKeysHash := std.Sha256(ctx, map[string]interface{}{
+//				"input": std.Join(ctx, map[string]interface{}{
+//					"separator": ",",
+//					"input": pulumi.StringArray{
+//						key1.PublicKey,
+//						key2.PublicKey,
+//					},
+//				}, nil).Result,
+//			}, nil).Result
+//			_, err = network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
+//				Name: pulumi.String("public_gateway_demo"),
+//				Type: pulumi.String("VPC-GW-S"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("demo"),
+//					pulumi.String("terraform"),
+//				},
+//				BastionEnabled: pulumi.Bool(true),
+//				BastionPort:    pulumi.Int(61000),
+//				RefreshSshKeys: pulumi.Any(sshKeysHash),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Public Gateways can be imported using `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:network/publicGateway:PublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111

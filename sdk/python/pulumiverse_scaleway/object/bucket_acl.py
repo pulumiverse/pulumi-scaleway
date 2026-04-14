@@ -29,11 +29,16 @@ class BucketAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketAcl resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input['BucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -52,7 +57,7 @@ class BucketAclArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -100,7 +105,11 @@ class BucketAclArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -132,11 +141,16 @@ class _BucketAclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketAcl resources.
+
         :param pulumi.Input['BucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         if access_control_policy is not None:
@@ -180,7 +194,7 @@ class _BucketAclState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -204,7 +218,11 @@ class _BucketAclState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -239,6 +257,14 @@ class BucketAcl(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `object.BucketAcl` resource allows you to create and manage Access Control Lists (ACLs) for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-operations/#putbucketacl) for more information on ACLs.
+
+        > **Note:** `terraform destroy` does not delete the ACL but does remove the resource from the Terraform state.
+
+        > **Note:** [Account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) are not supported by Scaleway.
+
         ## Example Usage
 
         ```python
@@ -330,29 +356,29 @@ class BucketAcl(pulumi.CustomResource):
 
         Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketAcl:BucketAcl some_bucket fr-par/some-bucket/private
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketAcl:BucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         ...
@@ -362,6 +388,14 @@ class BucketAcl(pulumi.CustomResource):
                  args: BucketAclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `object.BucketAcl` resource allows you to create and manage Access Control Lists (ACLs) for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-operations/#putbucketacl) for more information on ACLs.
+
+        > **Note:** `terraform destroy` does not delete the ACL but does remove the resource from the Terraform state.
+
+        > **Note:** [Account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) are not supported by Scaleway.
+
         ## Example Usage
 
         ```python
@@ -453,21 +487,17 @@ class BucketAcl(pulumi.CustomResource):
 
         Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:object/bucketAcl:BucketAcl some_bucket fr-par/some-bucket/private
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:object/bucketAcl:BucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketAclArgs args: The arguments to use to populate this resource's properties.
@@ -534,9 +564,13 @@ class BucketAcl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -571,7 +605,7 @@ class BucketAcl(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -587,7 +621,11 @@ class BucketAcl(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 

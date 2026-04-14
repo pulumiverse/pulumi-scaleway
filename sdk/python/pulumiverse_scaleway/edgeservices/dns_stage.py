@@ -27,6 +27,7 @@ class DnsStageArgs:
                  tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DnsStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
@@ -134,6 +135,7 @@ class _DnsStageState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DnsStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the DNS stage.
@@ -320,11 +322,10 @@ class DnsStage(pulumi.CustomResource):
 
         DNS stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:edgeservices/dnsStage:DnsStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -361,11 +362,10 @@ class DnsStage(pulumi.CustomResource):
 
         DNS stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:edgeservices/dnsStage:DnsStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnsStageArgs args: The arguments to use to populate this resource's properties.

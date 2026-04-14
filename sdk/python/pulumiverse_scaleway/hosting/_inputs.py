@@ -25,20 +25,15 @@ __all__ = [
     'HostingRecordArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class HostingCpanelUrlArgsDict(TypedDict):
-        dashboard: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Dashboard.
-        """
-        webmail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Webmail interface.
-        """
-elif False:
-    HostingCpanelUrlArgsDict: TypeAlias = Mapping[str, Any]
+class HostingCpanelUrlArgsDict(TypedDict):
+    dashboard: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Dashboard.
+    """
+    webmail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Webmail interface.
+    """
 
 @pulumi.input_type
 class HostingCpanelUrlArgs:
@@ -79,22 +74,19 @@ class HostingCpanelUrlArgs:
         pulumi.set(self, "webmail", value)
 
 
-if not MYPY:
-    class HostingNameServerArgsDict(TypedDict):
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the server
-        """
-        is_default: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether or not the webhosting is the default one
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The hosting status.
-        """
-elif False:
-    HostingNameServerArgsDict: TypeAlias = Mapping[str, Any]
+class HostingNameServerArgsDict(TypedDict):
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the server
+    """
+    is_default: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether or not the webhosting is the default one
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The hosting status.
+    """
 
 @pulumi.input_type
 class HostingNameServerArgs:
@@ -151,18 +143,15 @@ class HostingNameServerArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class HostingOptionArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option name.
-        """
-elif False:
-    HostingOptionArgsDict: TypeAlias = Mapping[str, Any]
+class HostingOptionArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option name.
+    """
 
 @pulumi.input_type
 class HostingOptionArgs:
@@ -203,34 +192,31 @@ class HostingOptionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class HostingRecordArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option name.
-        """
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Priority of DNS records associated with the webhosting.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The hosting status.
-        """
-        ttl: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Time to live in seconds of the record
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of the DNS record
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Value of the DNS record
-        """
-elif False:
-    HostingRecordArgsDict: TypeAlias = Mapping[str, Any]
+class HostingRecordArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option name.
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Priority of DNS records associated with the webhosting.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The hosting status.
+    """
+    ttl: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Time to live in seconds of the record
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of the DNS record
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Value of the DNS record
+    """
 
 @pulumi.input_type
 class HostingRecordArgs:

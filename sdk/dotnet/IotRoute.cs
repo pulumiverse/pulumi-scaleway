@@ -11,6 +11,13 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// &gt; **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+    /// 
+    /// Creates and manages Scaleway IoT Routes. For more information, see the following:
+    /// 
+    /// - [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+    /// - [Product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/)
+    /// 
     /// ## Example Usage
     /// 
     /// ### Database Route
@@ -147,8 +154,6 @@ namespace Pulumiverse.Scaleway
     /// ## Import
     /// 
     /// IoT Routes can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111

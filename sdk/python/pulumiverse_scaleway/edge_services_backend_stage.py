@@ -27,6 +27,7 @@ class EdgeServicesBackendStageArgs:
                  s3_backend_config: Optional[pulumi.Input['EdgeServicesBackendStageS3BackendConfigArgs']] = None):
         """
         The set of arguments for constructing a EdgeServicesBackendStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
@@ -100,6 +101,7 @@ class _EdgeServicesBackendStageState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesBackendStage resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the backend stage.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -267,11 +269,10 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
 
         Backend stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -344,11 +345,10 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
 
         Backend stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesBackendStageArgs args: The arguments to use to populate this resource's properties.

@@ -23,6 +23,7 @@ class SqsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Sqs resource.
+
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region
                in which SQS will be enabled.
@@ -66,6 +67,7 @@ class _SqsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Sqs resources.
+
         :param pulumi.Input[_builtins.str] endpoint: The endpoint of the SQS service for this Project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SQS will be enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region
@@ -158,11 +160,10 @@ class Sqs(pulumi.CustomResource):
 
         SQS status can be imported using the `{region}/{project_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/sqs:Sqs main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -209,11 +210,10 @@ class Sqs(pulumi.CustomResource):
 
         SQS status can be imported using the `{region}/{project_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mnq/sqs:Sqs main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SqsArgs args: The arguments to use to populate this resource's properties.

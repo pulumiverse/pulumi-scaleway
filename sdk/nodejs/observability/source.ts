@@ -32,8 +32,6 @@ import * as utilities from "../utilities";
  *
  * This section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:observability/source:Source main fr-par/11111111-1111-1111-1111-111111111111
  * ```

@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+ *
+ * Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot).
+ *
  * ## Example Usage
  *
  * ### Basic
@@ -22,8 +26,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * IoT Hubs can be imported using the `{region}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111

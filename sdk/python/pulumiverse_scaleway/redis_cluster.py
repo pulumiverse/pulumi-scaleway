@@ -40,6 +40,7 @@ class RedisClusterArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RedisCluster resource.
+
         :param pulumi.Input[_builtins.str] node_type: The type of Redis™ cluster you want to create (e.g. `RED1-M`).
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
@@ -69,6 +70,7 @@ class RedisClusterArgs:
         :param pulumi.Input[_builtins.str] name: The name of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -228,6 +230,7 @@ class RedisClusterArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -376,6 +379,7 @@ class _RedisClusterState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RedisCluster resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[_builtins.str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[_builtins.int] cluster_size: The number of nodes in the Redis™ cluster.
@@ -402,6 +406,7 @@ class _RedisClusterState:
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -573,6 +578,7 @@ class _RedisClusterState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -765,6 +771,12 @@ class RedisCluster(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Redis™ clusters.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -794,11 +806,10 @@ class RedisCluster(pulumi.CustomResource):
 
         Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -826,6 +837,7 @@ class RedisCluster(pulumi.CustomResource):
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -855,6 +867,12 @@ class RedisCluster(pulumi.CustomResource):
                  args: RedisClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Redis™ clusters.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -884,11 +902,10 @@ class RedisCluster(pulumi.CustomResource):
 
         Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedisClusterArgs args: The arguments to use to populate this resource's properties.
@@ -1023,6 +1040,7 @@ class RedisCluster(pulumi.CustomResource):
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -1151,6 +1169,7 @@ class RedisCluster(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

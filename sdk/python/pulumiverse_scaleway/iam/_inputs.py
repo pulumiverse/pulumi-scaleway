@@ -21,36 +21,31 @@ __all__ = [
     'SamlServiceProviderArgsDict',
 ]
 
-MYPY = False
+class PolicyRuleArgsDict(TypedDict):
+    permission_set_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Names of permission sets bind to the rule.
+    """
+    condition: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The condition of the rule.
 
-if not MYPY:
-    class PolicyRuleArgsDict(TypedDict):
-        permission_set_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Names of permission sets bind to the rule.
-        """
-        condition: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The condition of the rule.
+    **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
-        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+    ```shell
+    scw iam permission-set list
+    ```
+    """
+    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+    """
+    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of project IDs scoped to the rule.
 
-        ```shell
-        scw iam permission-set list
-        ```
-        """
-        organization_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
-        """
-        project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of project IDs scoped to the rule.
-
-        > **Important** One `organization_id` or `project_ids` must be set per rule.
-        """
-elif False:
-    PolicyRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important** One `organization_id` or `project_ids` must be set per rule.
+    """
 
 @pulumi.input_type
 class PolicyRuleArgs:
@@ -138,18 +133,15 @@ class PolicyRuleArgs:
         pulumi.set(self, "project_ids", value)
 
 
-if not MYPY:
-    class SamlServiceProviderArgsDict(TypedDict):
-        assertion_consumer_service_url: pulumi.Input[_builtins.str]
-        """
-        (Computed) The assertion consumer service URL of the Service Provider.
-        """
-        entity_id: pulumi.Input[_builtins.str]
-        """
-        (Computed) The entity ID of the Service Provider.
-        """
-elif False:
-    SamlServiceProviderArgsDict: TypeAlias = Mapping[str, Any]
+class SamlServiceProviderArgsDict(TypedDict):
+    assertion_consumer_service_url: pulumi.Input[_builtins.str]
+    """
+    (Computed) The assertion consumer service URL of the Service Provider.
+    """
+    entity_id: pulumi.Input[_builtins.str]
+    """
+    (Computed) The entity ID of the Service Provider.
+    """
 
 @pulumi.input_type
 class SamlServiceProviderArgs:

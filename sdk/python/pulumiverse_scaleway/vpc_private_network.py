@@ -33,6 +33,7 @@ class VpcPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPrivateNetwork resource.
+
         :param pulumi.Input[_builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets to associate with the private network.
@@ -212,6 +213,7 @@ class _VpcPrivateNetworkState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPrivateNetwork resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the subnet.
         :param pulumi.Input[_builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
@@ -489,11 +491,10 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         Private Networks can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -563,11 +564,10 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         Private Networks can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPrivateNetworkArgs args: The arguments to use to populate this resource's properties.

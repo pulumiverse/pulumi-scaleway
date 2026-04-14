@@ -26,6 +26,7 @@ class LoadbalancerIpArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerIp resource.
+
         :param pulumi.Input[_builtins.bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain associated with this IP.
@@ -118,6 +119,7 @@ class _LoadbalancerIpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerIp resources.
+
         :param pulumi.Input[_builtins.str] ip_address: The IP address
         :param pulumi.Input[_builtins.bool] is_ipv6: If true, creates a flexible IP with an IPv6 address.
         :param pulumi.Input[_builtins.str] lb_id: The associated Load Balancer ID if any
@@ -302,11 +304,10 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         IPs can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -351,11 +352,10 @@ class LoadbalancerIp(pulumi.CustomResource):
 
         IPs can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerIpArgs args: The arguments to use to populate this resource's properties.

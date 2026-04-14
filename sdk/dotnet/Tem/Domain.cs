@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway.Tem
     /// using System.Linq;
     /// using Pulumi;
     /// using GitLab = Pulumi.GitLab;
-    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -126,19 +126,19 @@ namespace Pulumiverse.Scaleway.Tem
     ///         Name = domainName,
     ///     });
     /// 
-    ///     var smtpAuthUser = new GitLab.ProjectVariable("smtp_auth_user", new()
+    ///     var smtpAuthUser = new GitLab.Index.ProjectVariable("smtp_auth_user", new()
     ///     {
     ///         Key = "SMTP_AUTH_USER",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsAuthUser),
     ///     });
     /// 
-    ///     var smtpPort = new GitLab.ProjectVariable("smtp_port", new()
+    ///     var smtpPort = new GitLab.Index.ProjectVariable("smtp_port", new()
     ///     {
     ///         Key = "SMTP_PORT",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsPort),
     ///     });
     /// 
-    ///     var smtpHost = new GitLab.ProjectVariable("smtp_host", new()
+    ///     var smtpHost = new GitLab.Index.ProjectVariable("smtp_host", new()
     ///     {
     ///         Key = "SMTP_HOST",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsHost),
@@ -150,8 +150,6 @@ namespace Pulumiverse.Scaleway.Tem
     /// ## Import
     /// 
     /// Domains can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:tem/domain:Domain main fr-par/11111111-1111-1111-1111-111111111111

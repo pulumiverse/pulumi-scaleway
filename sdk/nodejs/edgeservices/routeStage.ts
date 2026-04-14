@@ -38,6 +38,49 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Host-based routing
+ *
+ * Routes requests to different backends based on the hostname, allowing a single pipeline to serve multiple domains.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.edgeservices.Pipeline("main", {
+ *     name: "my-pipeline",
+ *     description: "Multi-host pipeline with host-based routing",
+ * });
+ * const api = new scaleway.object.Bucket("api", {name: "my-api-bucket"});
+ * const static = new scaleway.object.Bucket("static", {name: "my-static-site"});
+ * const apiBackendStage = new scaleway.edgeservices.BackendStage("api", {
+ *     pipelineId: main.id,
+ *     s3BackendConfig: {
+ *         bucketName: api.name,
+ *         bucketRegion: "fr-par",
+ *     },
+ * });
+ * const staticBackendStage = new scaleway.edgeservices.BackendStage("static", {
+ *     pipelineId: main.id,
+ *     s3BackendConfig: {
+ *         bucketName: static.name,
+ *         bucketRegion: "fr-par",
+ *     },
+ * });
+ * const mainRouteStage = new scaleway.edgeservices.RouteStage("main", {
+ *     pipelineId: main.id,
+ *     backendStageId: staticBackendStage.id,
+ *     rules: [{
+ *         backendStageId: apiBackendStage.id,
+ *         ruleHttpMatch: {
+ *             hostFilter: {
+ *                 hostFilterType: "regex",
+ *                 value: "api\\.example\\.com",
+ *             },
+ *         },
+ *     }],
+ * });
+ * ```
+ *
  * ### Default to backend with selective WAF protection
  *
  * Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
@@ -89,8 +132,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * Route stages can be imported using the `{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:edgeservices/routeStage:RouteStage basic 11111111-1111-1111-1111-111111111111

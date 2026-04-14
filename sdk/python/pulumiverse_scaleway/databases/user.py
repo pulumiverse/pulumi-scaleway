@@ -28,6 +28,7 @@ class UserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
@@ -45,6 +46,7 @@ class UserArgs:
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
@@ -127,6 +129,7 @@ class UserArgs:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -171,6 +174,7 @@ class _UserState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
@@ -188,6 +192,7 @@ class _UserState:
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
@@ -271,6 +276,7 @@ class _UserState:
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 
@@ -318,6 +324,12 @@ class User(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `databases.User` resource creates and manages database users.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -334,7 +346,7 @@ class User(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.index.Password("db_password",
+        db_password = random.Password("db_password",
             length=20,
             special=True,
             upper=True,
@@ -356,11 +368,10 @@ class User(pulumi.CustomResource):
 
         Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:databases/user:User admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -381,6 +392,7 @@ class User(pulumi.CustomResource):
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
@@ -391,6 +403,12 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `databases.User` resource creates and manages database users.
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+
+        > **Security Best Practice:**
+        For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+
         ## Example Usage
 
         ```python
@@ -407,7 +425,7 @@ class User(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.index.Password("db_password",
+        db_password = random.Password("db_password",
             length=20,
             special=True,
             upper=True,
@@ -429,11 +447,10 @@ class User(pulumi.CustomResource):
 
         Database users can be imported using `{region}/{instance_id}/{user_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:databases/user:User admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.
@@ -520,6 +537,7 @@ class User(pulumi.CustomResource):
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
@@ -585,6 +603,7 @@ class User(pulumi.CustomResource):
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Database user password in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo")
 

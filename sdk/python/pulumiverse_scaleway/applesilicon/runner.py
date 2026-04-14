@@ -27,6 +27,7 @@ class RunnerArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Runner resource.
+
         :param pulumi.Input[_builtins.str] ci_provider: The CI/CD provider for the runner. Must be either 'github' or 'gitlab'
         :param pulumi.Input[_builtins.str] token: The token used to authenticate the runner to run
         :param pulumi.Input[_builtins.str] url: The URL of the runner to run
@@ -131,6 +132,7 @@ class _RunnerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Runner resources.
+
         :param pulumi.Input[_builtins.str] ci_provider: The CI/CD provider for the runner. Must be either 'github' or 'gitlab'
         :param pulumi.Input[_builtins.str] error_message: The error message if the runner is in error state
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] labels: A list of labels applied to the runner. Only for github provider
@@ -302,11 +304,10 @@ class Runner(pulumi.CustomResource):
 
         Runner can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:applesilicon/runner:Runner main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -343,11 +344,10 @@ class Runner(pulumi.CustomResource):
 
         Runner can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:applesilicon/runner:Runner main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RunnerArgs args: The arguments to use to populate this resource's properties.

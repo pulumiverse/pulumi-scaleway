@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var file = new Scaleway.FileFilesystem("file", new()
+    ///     var file = new Scaleway.Index.FileFilesystem("file", new()
     ///     {
     ///         Name = "my-nfs-filesystem",
     ///         SizeInGb = 100,
@@ -41,8 +41,6 @@ namespace Pulumiverse.Scaleway
     /// ## Import
     /// 
     /// File Storage filesystems can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/fileFilesystem:FileFilesystem main fr-par/11111111-1111-1111-1111-111111111111

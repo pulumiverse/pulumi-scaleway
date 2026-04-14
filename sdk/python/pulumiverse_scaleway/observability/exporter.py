@@ -31,6 +31,7 @@ class ExporterArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Exporter resource.
+
         :param pulumi.Input[_builtins.str] datasource_id: ID of the data source linked to the data export. Use `observability_get_sources` to find available data sources.
         :param pulumi.Input['ExporterDatadogDestinationArgs'] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
         :param pulumi.Input[_builtins.str] description: Description of the data export.
@@ -169,6 +170,7 @@ class _ExporterState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Exporter resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of creation (RFC 3339 format).
         :param pulumi.Input['ExporterDatadogDestinationArgs'] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
         :param pulumi.Input[_builtins.str] datasource_id: ID of the data source linked to the data export. Use `observability_get_sources` to find available data sources.
@@ -415,11 +417,10 @@ class Exporter(pulumi.CustomResource):
 
         Import an exporter using the regional ID:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -501,11 +502,10 @@ class Exporter(pulumi.CustomResource):
 
         Import an exporter using the regional ID:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExporterArgs args: The arguments to use to populate this resource's properties.

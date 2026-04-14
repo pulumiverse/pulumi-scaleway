@@ -25,6 +25,7 @@ class IamApplicationArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a IamApplication resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the iam application.
         :param pulumi.Input[_builtins.str] name: The name of the iam application.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the application is associated with.
@@ -100,6 +101,7 @@ class _IamApplicationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IamApplication resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the application.
         :param pulumi.Input[_builtins.str] description: The description of the iam application.
         :param pulumi.Input[_builtins.bool] editable: Whether the application is editable.
@@ -242,11 +244,10 @@ class IamApplication(pulumi.CustomResource):
 
         Applications can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -279,11 +280,10 @@ class IamApplication(pulumi.CustomResource):
 
         Applications can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IamApplicationArgs args: The arguments to use to populate this resource's properties.

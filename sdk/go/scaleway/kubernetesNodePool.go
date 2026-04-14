@@ -12,11 +12,171 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
+//
+// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := kubernetes.NewCluster(ctx, "main", &kubernetes.ClusterArgs{
+//				Version: pulumi.String("1.32.3"),
+//				Cni:     pulumi.String("cilium"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewPool(ctx, "main", &kubernetes.PoolArgs{
+//				ClusterId:        main.ID(),
+//				NodeType:         pulumi.String("DEV1-M"),
+//				Size:             pulumi.Int(3),
+//				MinSize:          pulumi.Int(0),
+//				MaxSize:          pulumi.Int(10),
+//				Autoscaling:      pulumi.Bool(true),
+//				Autohealing:      pulumi.Bool(true),
+//				ContainerRuntime: pulumi.String("containerd"),
+//				PlacementGroupId: pulumi.String("1267e3fd-a51c-49ed-ad12-857092ee3a3d"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Zone
+//
+// The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
+//
+// Please note that a pool belongs to only one cluster, in the same region.`region`.
+//
+// ## Placement Group
+//
+// If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			placementGroup, err := instance.NewPlacementGroup(ctx, "placement_group", &instance.PlacementGroupArgs{
+//				Name:       pulumi.String("pool-placement-group"),
+//				PolicyType: pulumi.String("max_availability"),
+//				PolicyMode: pulumi.String("optional"),
+//				Zone:       pulumi.String("nl-ams-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
+//				Name:    pulumi.String("placement_group"),
+//				Cni:     pulumi.String("kilo"),
+//				Version: pulumi.String("1.32.3"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform-test"),
+//					pulumi.String("scaleway_k8s_cluster"),
+//					pulumi.String("placement_group"),
+//				},
+//				Region: pulumi.String("fr-par"),
+//				Type:   pulumi.String("multicloud"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
+//				Name:             pulumi.String("placement_group"),
+//				ClusterId:        cluster.ID(),
+//				NodeType:         pulumi.String("gp1_xs"),
+//				PlacementGroupId: placementGroup.ID(),
+//				Size:             pulumi.Int(1),
+//				Region:           cluster.Region,
+//				Zone:             placementGroup.Zone,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Changing the node-type of a pool
+//
+// As your needs evolve, you can migrate your workflow from one pool to another.
+// Pools have a unique name, and they also have an immutable node type.
+// Just changing the pool node type will recreate a new pool which could lead to service disruption.
+// To migrate your application with as little downtime as possible we recommend using the following workflow:
+//
+// ### General workflow to upgrade a pool
+//
+//   - Create a new pool with a different name and the type you target.
+//   - Use [`kubectl drain`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#drain) on nodes composing your old pool to drain the remaining workflows of this pool.
+//     Normally it should transfer your workflows to the new pool. Check out the official documentation about [how to safely drain your nodes](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
+//   - Delete the old pool from your terraform configuration.
+//
+// ### Using a composite name to force creation of a new pool when a variable updates
+//
+// If you want to have a new pool created when a variable changes, you can use a name derived from node type such as:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kubernetes.NewPool(ctx, "kubernetes_cluster_workers_1", &kubernetes.PoolArgs{
+//				ClusterId:        pulumi.Any(kubernetesCluster.Id),
+//				Name:             pulumi.Sprintf("%v_%v_1", kubernetesClusterId, nodeType),
+//				NodeType:         pulumi.Any(nodeType),
+//				Autoscaling:      pulumi.Bool(true),
+//				Autohealing:      pulumi.Bool(true),
+//				Size:             pulumi.Int(5),
+//				MinSize:          pulumi.Int(5),
+//				MaxSize:          pulumi.Int(10),
+//				WaitForPoolReady: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Thanks to [@deimosfr](https://github.com/deimosfr) for the contribution.
+//
 // ## Import
 //
 // Kubernetes pools can be imported using the `{region}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
@@ -40,7 +200,7 @@ type KubernetesNodePool struct {
 	ContainerRuntime pulumi.StringPtrOutput `pulumi:"containerRuntime"`
 	// The creation date of the pool.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The actual size of the pool
+	// The size of the pool at the time the terraform state was updated.
 	CurrentSize pulumi.IntOutput `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapOutput `pulumi:"kubeletArgs"`
@@ -151,7 +311,7 @@ type kubernetesNodePoolState struct {
 	ContainerRuntime *string `pulumi:"containerRuntime"`
 	// The creation date of the pool.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The actual size of the pool
+	// The size of the pool at the time the terraform state was updated.
 	CurrentSize *int `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
@@ -224,7 +384,7 @@ type KubernetesNodePoolState struct {
 	ContainerRuntime pulumi.StringPtrInput
 	// The creation date of the pool.
 	CreatedAt pulumi.StringPtrInput
-	// The actual size of the pool
+	// The size of the pool at the time the terraform state was updated.
 	CurrentSize pulumi.IntPtrInput
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapInput
@@ -525,7 +685,7 @@ func (o KubernetesNodePoolOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The actual size of the pool
+// The size of the pool at the time the terraform state was updated.
 func (o KubernetesNodePoolOutput) CurrentSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.CurrentSize }).(pulumi.IntOutput)
 }

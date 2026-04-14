@@ -102,17 +102,12 @@ import * as utilities from "../utilities";
  *
  * Buckets can be imported using the `{region}/{bucketName}` identifier, as shown below:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket
  * ```
  *
- * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
- *
+ * > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
  * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111

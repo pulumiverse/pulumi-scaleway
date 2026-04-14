@@ -28,6 +28,7 @@ class RoutingPolicyArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RoutingPolicy resource.
+
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether the routing policy is for IPv6 prefixes. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the routing policy. If not provided, it will be randomly generated.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prefix_filter_ins: List of IP prefixes (in CIDR notation) to accept from the peer gateway. These are the routes that the customer gateway can announce to Scaleway.
@@ -151,6 +152,7 @@ class _RoutingPolicyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RoutingPolicy resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the routing policy (RFC 3339 format).
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether the routing policy is for IPv6 prefixes. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the routing policy. If not provided, it will be randomly generated.
@@ -360,11 +362,10 @@ class RoutingPolicy(pulumi.CustomResource):
 
         Routing Policies can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/routingPolicy:RoutingPolicy main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -424,11 +425,10 @@ class RoutingPolicy(pulumi.CustomResource):
 
         Routing Policies can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/routingPolicy:RoutingPolicy main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RoutingPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -61,8 +61,6 @@ import (
 //
 // Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:loadbalancers/acl:Acl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```

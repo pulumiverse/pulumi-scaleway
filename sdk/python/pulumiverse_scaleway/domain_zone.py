@@ -24,6 +24,7 @@ class DomainZoneArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainZone resource.
+
         :param pulumi.Input[_builtins.str] domain: The main domain where the DNS zone will be created.
         :param pulumi.Input[_builtins.str] subdomain: The name of the subdomain (zone name) to create within the domain.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project associated with the domain.
@@ -84,6 +85,7 @@ class _DomainZoneState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DomainZone resources.
+
         :param pulumi.Input[_builtins.str] domain: The main domain where the DNS zone will be created.
         :param pulumi.Input[_builtins.str] message: Message.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ns: The list of same servers for the zone.
@@ -238,15 +240,33 @@ class DomainZone(pulumi.CustomResource):
                  subdomain: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The `domain.Zone` resource allows you to create and manage Scaleway DNS zones.
+
+        Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+        ## Example Usage
+
+        ### Create a DNS zone
+
+        The following command allows you to create a DNS zone for the `test.scaleway-terraform.com` subdomain.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.domain.Zone("test",
+            domain="scaleway-terraform.com",
+            subdomain="test")
+        ```
+
         ## Import
 
         This section explains how to import a zone using the `{subdomain}.{domain}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,15 +281,33 @@ class DomainZone(pulumi.CustomResource):
                  args: DomainZoneArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `domain.Zone` resource allows you to create and manage Scaleway DNS zones.
+
+        Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+
+        ## Example Usage
+
+        ### Create a DNS zone
+
+        The following command allows you to create a DNS zone for the `test.scaleway-terraform.com` subdomain.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.domain.Zone("test",
+            domain="scaleway-terraform.com",
+            subdomain="test")
+        ```
+
         ## Import
 
         This section explains how to import a zone using the `{subdomain}.{domain}` format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainZoneArgs args: The arguments to use to populate this resource's properties.

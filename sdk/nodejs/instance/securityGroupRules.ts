@@ -104,8 +104,6 @@ import * as utilities from "../utilities";
  *
  * Instance security group rules can be imported using the `{zone}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```

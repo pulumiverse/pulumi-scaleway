@@ -11,11 +11,85 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `secrets.Secret` resource allows you to create and manage secrets in Scaleway Secret Manager.
+//
+// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+//
+// ## Example Usage
+//
+// ### Create a secret
+//
+// The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
+//				Name:        pulumi.String("foo"),
+//				Description: pulumi.String("barr"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("foo"),
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Apply the ephemeral policy on a secret
+//
+// The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
+//
+// In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSecret(ctx, "ephemeral", &secrets.SecretArgs{
+//				Name: pulumi.String("foo"),
+//				EphemeralPolicies: secrets.SecretEphemeralPolicyArray{
+//					&secrets.SecretEphemeralPolicyArgs{
+//						Ttl:                 pulumi.String("24h"),
+//						ExpiresOnceAccessed: pulumi.Bool(true),
+//						Action:              pulumi.String("disable"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // This section explains how to import a secret using the `{region}/{id}` format.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:secrets/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
@@ -35,7 +109,7 @@ type Secret struct {
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
@@ -102,7 +176,7 @@ type secretState struct {
 	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
-	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 	Protected *bool `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
@@ -134,7 +208,7 @@ type SecretState struct {
 	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
-	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 	Protected pulumi.BoolPtrInput
 	// `region`) The region
 	// in which the resource exists.
@@ -168,7 +242,7 @@ type secretArgs struct {
 	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
-	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 	Protected *bool `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
@@ -191,7 +265,7 @@ type SecretArgs struct {
 	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
-	// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+	// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 	Protected pulumi.BoolPtrInput
 	// `region`) The region
 	// in which the resource exists.
@@ -319,7 +393,7 @@ func (o SecretOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+// True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
 func (o SecretOutput) Protected() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.Protected }).(pulumi.BoolPtrOutput)
 }

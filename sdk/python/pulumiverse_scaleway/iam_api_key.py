@@ -26,6 +26,7 @@ class IamApiKeyArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IamApiKey resource.
+
         :param pulumi.Input[_builtins.str] application_id: ID of the application attached to the API key.
         :param pulumi.Input[_builtins.str] default_project_id: The default Project ID to use with Object Storage.
         :param pulumi.Input[_builtins.str] description: The description of the API key.
@@ -124,6 +125,7 @@ class _IamApiKeyState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IamApiKey resources.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the IAM API key.
         :param pulumi.Input[_builtins.str] application_id: ID of the application attached to the API key.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the IAM API key.
@@ -349,7 +351,7 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi_time as time
         import pulumiverse_scaleway as scaleway
 
-        rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
+        rotate_after_a_year = time.Rotating("rotate_after_a_year", rotation_years=1)
         main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             expires_at=rotate_after_a_year["rotationRfc3339"])
@@ -359,13 +361,12 @@ class IamApiKey(pulumi.CustomResource):
 
         Api keys can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
 
-        ~> **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+        > **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -419,7 +420,7 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi_time as time
         import pulumiverse_scaleway as scaleway
 
-        rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
+        rotate_after_a_year = time.Rotating("rotate_after_a_year", rotation_years=1)
         main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             expires_at=rotate_after_a_year["rotationRfc3339"])
@@ -429,13 +430,12 @@ class IamApiKey(pulumi.CustomResource):
 
         Api keys can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
 
-        ~> **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+        > **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+
 
         :param str resource_name: The name of the resource.
         :param IamApiKeyArgs args: The arguments to use to populate this resource's properties.

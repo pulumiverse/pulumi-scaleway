@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class EdgeServicesRouteStageRuleRuleHttpMatch
     {
         /// <summary>
+        /// Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+        /// </summary>
+        public readonly Outputs.EdgeServicesRouteStageRuleRuleHttpMatchHostFilter? HostFilter;
+        /// <summary>
         /// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `Get`, `Post`, `Put`, `Patch`, `Delete`, `Head`, `Options`. All methods will match if none is provided.
         /// </summary>
         public readonly ImmutableArray<string> MethodFilters;
@@ -25,10 +29,13 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private EdgeServicesRouteStageRuleRuleHttpMatch(
+            Outputs.EdgeServicesRouteStageRuleRuleHttpMatchHostFilter? hostFilter,
+
             ImmutableArray<string> methodFilters,
 
             Outputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilter? pathFilter)
         {
+            HostFilter = hostFilter;
             MethodFilters = methodFilters;
             PathFilter = pathFilter;
         }

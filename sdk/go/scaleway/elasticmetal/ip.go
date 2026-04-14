@@ -136,8 +136,8 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
-//				Offer:     pulumi.String(myOffer.OfferId),
-//				Os:        pulumi.String(byId.OsId),
+//				Offer:     pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Os:        pulumi.String(pulumi.String(byId.OsId)),
 //				SshKeyIds: main.ID(),
 //			})
 //			if err != nil {
@@ -159,8 +159,6 @@ import (
 // ## Import
 //
 // Flexible IPs can be imported using the `{zone}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:elasticmetal/ip:Ip main fr-par-1/11111111-1111-1111-1111-111111111111

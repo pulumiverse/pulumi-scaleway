@@ -31,6 +31,7 @@ class ImageArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Image resource.
+
         :param pulumi.Input[_builtins.str] root_volume_id: The ID of the snapshot of the volume to be used as root in the image.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
@@ -173,6 +174,7 @@ class _ImageState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Image resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[Sequence[pulumi.Input['ImageAdditionalVolumeArgs']]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
@@ -476,11 +478,10 @@ class Image(pulumi.CustomResource):
 
         Images can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/image:Image main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -559,11 +560,10 @@ class Image(pulumi.CustomResource):
 
         Images can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/image:Image main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ImageArgs args: The arguments to use to populate this resource's properties.

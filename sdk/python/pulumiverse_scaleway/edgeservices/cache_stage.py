@@ -32,6 +32,7 @@ class CacheStageArgs:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CacheStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[_builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
@@ -185,6 +186,7 @@ class _CacheStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CacheStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the cache stage.
         :param pulumi.Input[_builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
@@ -404,11 +406,10 @@ class CacheStage(pulumi.CustomResource):
 
         Cache stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:edgeservices/cacheStage:CacheStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -463,11 +464,10 @@ class CacheStage(pulumi.CustomResource):
 
         Cache stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:edgeservices/cacheStage:CacheStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CacheStageArgs args: The arguments to use to populate this resource's properties.

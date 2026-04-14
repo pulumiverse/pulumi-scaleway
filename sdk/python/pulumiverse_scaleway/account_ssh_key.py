@@ -25,6 +25,7 @@ class AccountSshKeyArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccountSshKey resource.
+
         :param pulumi.Input[_builtins.str] public_key: The public SSH key to be added.
         :param pulumi.Input[_builtins.bool] disabled: The SSH key status
         :param pulumi.Input[_builtins.str] name: The name of the SSH key.
@@ -100,6 +101,7 @@ class _AccountSshKeyState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountSshKey resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the iam SSH Key
         :param pulumi.Input[_builtins.bool] disabled: The SSH key status
         :param pulumi.Input[_builtins.str] fingerprint: The fingerprint of the iam SSH key
@@ -261,11 +263,10 @@ class AccountSshKey(pulumi.CustomResource):
 
         SSH keys can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,11 +303,10 @@ class AccountSshKey(pulumi.CustomResource):
 
         SSH keys can be imported using the `id`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountSshKeyArgs args: The arguments to use to populate this resource's properties.

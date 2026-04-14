@@ -28,6 +28,7 @@ class CustomerGatewayArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CustomerGateway resource.
+
         :param pulumi.Input[_builtins.int] asn: The AS Number of the customer gateway. Must be different from Scaleway's ASN (12876). For testing, you can use a private ASN (64512-65535).
         :param pulumi.Input[_builtins.str] ipv4_public: The public IPv4 address of the customer gateway (your VPN endpoint).
         :param pulumi.Input[_builtins.str] ipv6_public: The public IPv6 address of the customer gateway (your VPN endpoint).
@@ -150,6 +151,7 @@ class _CustomerGatewayState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomerGateway resources.
+
         :param pulumi.Input[_builtins.int] asn: The AS Number of the customer gateway. Must be different from Scaleway's ASN (12876). For testing, you can use a private ASN (64512-65535).
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the customer gateway (RFC 3339 format).
         :param pulumi.Input[_builtins.str] ipv4_public: The public IPv4 address of the customer gateway (your VPN endpoint).
@@ -372,11 +374,10 @@ class CustomerGateway(pulumi.CustomResource):
 
         Customer Gateways can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/customerGateway:CustomerGateway main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -449,11 +450,10 @@ class CustomerGateway(pulumi.CustomResource):
 
         Customer Gateways can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:s2svpn/customerGateway:CustomerGateway main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomerGatewayArgs args: The arguments to use to populate this resource's properties.

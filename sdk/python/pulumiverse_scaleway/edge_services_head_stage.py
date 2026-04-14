@@ -23,6 +23,7 @@ class EdgeServicesHeadStageArgs:
                  head_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesHeadStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] head_stage_id: The ID of head stage of the pipeline.
         """
@@ -62,6 +63,7 @@ class _EdgeServicesHeadStageState:
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesHeadStage resources.
+
         :param pulumi.Input[_builtins.str] head_stage_id: The ID of head stage of the pipeline.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         """
@@ -136,11 +138,10 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
 
         Head stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -180,11 +181,10 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
 
         Head stages can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesHeadStageArgs args: The arguments to use to populate this resource's properties.

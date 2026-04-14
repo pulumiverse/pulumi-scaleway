@@ -41,11 +41,35 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Permission Drift Management
+ *
+ * ### Understanding Permission Drift
+ *
+ * When you configure a privilege (e.g., `readwrite`), Scaleway applies it to **database objects that exist at that moment**. If new tables, views, or sequences are created later, they won't automatically inherit these permissions. In that case, the API may return `custom`.
+ *
+ * **Example:**
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const app = new scaleway.databases.Privilege("app", {
+ *     instanceId: main.id,
+ *     userName: "app_user",
+ *     databaseName: "mydb",
+ *     permission: "readwrite",
+ * });
+ * ```
+ *
+ * ### Handling Permission Drift
+ *
+ * Run `pulumi up` to reapply the configured permission to all objects (existing and new):
+ *
+ * The plan will typically show:
+ *
  * ## Import
  *
  * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:databases/privilege:Privilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
@@ -84,13 +108,21 @@ export class Privilege extends pulumi.CustomResource {
      */
     declare public readonly databaseName: pulumi.Output<string>;
     /**
+     * The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+     */
+    declare public /*out*/ readonly effectivePermission: pulumi.Output<string>;
+    /**
      * UUID of the Database Instance.
      */
     declare public readonly instanceId: pulumi.Output<string>;
     /**
-     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     declare public readonly permission: pulumi.Output<string>;
+    /**
+     * Permission synchronization status. Possible values:
+     */
+    declare public /*out*/ readonly permissionStatus: pulumi.Output<string>;
     /**
      * `region`) The region in which the resource exists.
      */
@@ -114,8 +146,10 @@ export class Privilege extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PrivilegeState | undefined;
             resourceInputs["databaseName"] = state?.databaseName;
+            resourceInputs["effectivePermission"] = state?.effectivePermission;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["permission"] = state?.permission;
+            resourceInputs["permissionStatus"] = state?.permissionStatus;
             resourceInputs["region"] = state?.region;
             resourceInputs["userName"] = state?.userName;
         } else {
@@ -137,6 +171,8 @@ export class Privilege extends pulumi.CustomResource {
             resourceInputs["permission"] = args?.permission;
             resourceInputs["region"] = args?.region;
             resourceInputs["userName"] = args?.userName;
+            resourceInputs["effectivePermission"] = undefined /*out*/;
+            resourceInputs["permissionStatus"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/databasePrivilege:DatabasePrivilege" }] };
@@ -154,13 +190,21 @@ export interface PrivilegeState {
      */
     databaseName?: pulumi.Input<string>;
     /**
+     * The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
+     */
+    effectivePermission?: pulumi.Input<string>;
+    /**
      * UUID of the Database Instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission?: pulumi.Input<string>;
+    /**
+     * Permission synchronization status. Possible values:
+     */
+    permissionStatus?: pulumi.Input<string>;
     /**
      * `region`) The region in which the resource exists.
      */
@@ -184,7 +228,7 @@ export interface PrivilegeArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+     * Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission: pulumi.Input<string>;
     /**

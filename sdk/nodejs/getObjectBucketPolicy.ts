@@ -41,6 +41,15 @@ export interface GetObjectBucketPolicyArgs {
      * The name of the bucket.
      */
     bucket: string;
+    /**
+     * `projectId`) The ID of the project with which the bucket is associated.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+     *
+     * For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
+     */
     projectId?: string;
     /**
      * `region`) The region in which the Object Storage exists.
@@ -101,6 +110,15 @@ export interface GetObjectBucketPolicyOutputArgs {
      * The name of the bucket.
      */
     bucket: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project with which the bucket is associated.
+     *
+     * > **Important:** The `projectId` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
+     * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+     * like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
+     *
+     * For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
+     */
     projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the Object Storage exists.

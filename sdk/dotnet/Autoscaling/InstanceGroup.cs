@@ -231,8 +231,6 @@ namespace Pulumiverse.Scaleway.Autoscaling
     /// 
     /// Autoscaling Instance groups can be imported using `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:autoscaling/instanceGroup:InstanceGroup main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

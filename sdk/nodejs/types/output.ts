@@ -677,6 +677,10 @@ export interface EdgeServicesRouteStageRule {
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatch {
     /**
+     * Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+     */
+    hostFilter?: outputs.EdgeServicesRouteStageRuleRuleHttpMatchHostFilter;
+    /**
      * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
      */
     methodFilters: string[];
@@ -684,6 +688,17 @@ export interface EdgeServicesRouteStageRuleRuleHttpMatch {
      * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
      */
     pathFilter?: outputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilter;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatchHostFilter {
+    /**
+     * The type of filter to match for the host. Use the `regex` type.
+     */
+    hostFilterType: string;
+    /**
+     * The value to be matched for the host.
+     */
+    value: string;
 }
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
@@ -3404,7 +3419,9 @@ export interface InstanceSecurityGroupInboundRule {
      */
     port?: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange?: string;
     /**
@@ -3462,7 +3479,9 @@ export interface InstanceSecurityGroupRulesInboundRule {
      */
     port?: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange?: string;
     /**
@@ -3765,7 +3784,9 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * The IP corresponding to the hostname
+     * Request a specific IP in the specified source pool.
+     *
+     * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address: string;
     /**
@@ -7182,6 +7203,10 @@ export namespace edgeservices {
 
     export interface GetRouteStageRuleRuleHttpMatch {
         /**
+         * Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided
+         */
+        hostFilters: outputs.edgeservices.GetRouteStageRuleRuleHttpMatchHostFilter[];
+        /**
          * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
          */
         methodFilters: string[];
@@ -7189,6 +7214,17 @@ export namespace edgeservices {
          * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
          */
         pathFilters: outputs.edgeservices.GetRouteStageRuleRuleHttpMatchPathFilter[];
+    }
+
+    export interface GetRouteStageRuleRuleHttpMatchHostFilter {
+        /**
+         * The type of filter to match for the host path
+         */
+        hostFilterType: string;
+        /**
+         * The value to be matched for the host path
+         */
+        value: string;
     }
 
     export interface GetRouteStageRuleRuleHttpMatchPathFilter {
@@ -7230,6 +7266,10 @@ export namespace edgeservices {
 
     export interface RouteStageRuleRuleHttpMatch {
         /**
+         * Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+         */
+        hostFilter?: outputs.edgeservices.RouteStageRuleRuleHttpMatchHostFilter;
+        /**
          * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
          */
         methodFilters: string[];
@@ -7237,6 +7277,17 @@ export namespace edgeservices {
          * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
          */
         pathFilter?: outputs.edgeservices.RouteStageRuleRuleHttpMatchPathFilter;
+    }
+
+    export interface RouteStageRuleRuleHttpMatchHostFilter {
+        /**
+         * The type of filter to match for the host. Use the `regex` type.
+         */
+        hostFilterType: string;
+        /**
+         * The value to be matched for the host.
+         */
+        value: string;
     }
 
     export interface RouteStageRuleRuleHttpMatchPathFilter {
@@ -8514,7 +8565,9 @@ export namespace instance {
          */
         port?: number;
         /**
-         * Computed port range for this rule (e.g: 1-1024, 22-22)
+         * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+         * If no `port` nor `portRange` are specified, rule will apply to all port.
+         * Only one of `port` and `portRange` should be specified.
          */
         portRange?: string;
         /**
@@ -8572,7 +8625,9 @@ export namespace instance {
          */
         port?: number;
         /**
-         * Computed port range for this rule (e.g: 1-1024, 22-22)
+         * Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+         * If no `port` nor `portRange` are specified, rule will apply to all port.
+         * Only one of `port` and `portRange` should be specified.
          */
         portRange?: string;
         /**
@@ -8766,6 +8821,45 @@ export namespace interlink {
          * Last update date.
          */
         updatedAt: string;
+    }
+
+    export interface GetPopsPop {
+        /**
+         * Physical address of the PoP.
+         */
+        address: string;
+        /**
+         * List of available bandwidth options in Mbps.
+         */
+        availableLinkBandwidthsMbps: number[];
+        /**
+         * City where the PoP is located.
+         */
+        city: string;
+        /**
+         * Human-readable display name.
+         */
+        displayName: string;
+        /**
+         * Hosting provider name to filter for.
+         */
+        hostingProviderName: string;
+        /**
+         * ID of the PoP.
+         */
+        id: string;
+        /**
+         * URL of the PoP's logo.
+         */
+        logoUrl: string;
+        /**
+         * PoP name to filter for.
+         */
+        name: string;
+        /**
+         * `region`) The region to list PoPs from.
+         */
+        region: string;
     }
 
 }
@@ -9047,7 +9141,9 @@ export namespace ipam {
 
     export interface IpReverse {
         /**
-         * The IP corresponding to the hostname
+         * Request a specific IP in the specified source pool.
+         *
+         * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
          */
         address: string;
         /**

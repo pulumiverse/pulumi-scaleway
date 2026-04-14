@@ -11,11 +11,102 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// &gt; **Deprecated:** This resource is deprecated and will be removed on **January 1st, 2026**.
+    /// 
+    /// &gt; **Migration Guide:** Grafana authentication is now managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/). To access your Grafana instance, use the `scaleway.observability.getGrafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+    /// 
+    /// The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+    /// 
+    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Migration to IAM Authentication
+    /// 
+    /// Instead of managing Grafana users, retrieve your Grafana URL using the data source:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Old approach (deprecated)
+    ///     // resource "scaleway_cockpit_grafana_user" "main" {
+    ///     //   project_id = scaleway_account_project.project.id
+    ///     //   login      = "my-awesome-user"
+    ///     //   role       = "editor"
+    ///     // }
+    ///     // New approach - Use IAM authentication
+    ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["grafanaUrl"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+    ///     };
+    /// });
+    /// ```
+    /// 
+    /// ### Programmatic access with the Grafana provider
+    /// 
+    /// To automate Grafana configuration (e.g., dashboards, alerting) with Terraform, reuse your Scaleway IAM secret as an `X-Auth-Token` header. The Grafana provider must run in `Anonymous` mode because user/password authentication is deprecated.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     // Scaleway IAM secret key used for both the Scaleway and Grafana providers
+    ///     var scalewaySecretKey = config.Require("scalewaySecretKey");
+    ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// The header `X-Auth-Token` is mandatory when Grafana users are disabled. Store the IAM secret key securely (environment variable, secrets manager, etc.) and avoid committing it to version control.
+    /// 
+    /// ### Create a Grafana user (Deprecated)
+    /// 
+    /// The following command allows you to create a Grafana user within a specific Scaleway Project.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "test project grafana user",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Observability.GrafanaUser("main", new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///         Login = "my-awesome-user",
+    ///         Role = "editor",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2

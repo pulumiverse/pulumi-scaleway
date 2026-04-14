@@ -33,6 +33,7 @@ class GatewayNetworkArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GatewayNetwork resource.
+
         :param pulumi.Input[_builtins.str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[_builtins.bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
@@ -227,6 +228,7 @@ class _GatewayNetworkState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayNetwork resources.
+
         :param pulumi.Input[_builtins.bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the GatewayNetwork.
         :param pulumi.Input[_builtins.str] dhcp_id: Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -549,11 +551,10 @@ class GatewayNetwork(pulumi.CustomResource):
 
         GatewayNetwork can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/gatewayNetwork:GatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -646,11 +647,10 @@ class GatewayNetwork(pulumi.CustomResource):
 
         GatewayNetwork can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/gatewayNetwork:GatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GatewayNetworkArgs args: The arguments to use to populate this resource's properties.

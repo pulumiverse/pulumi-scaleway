@@ -11,6 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Mongodb
 {
     /// <summary>
+    /// Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+    /// 
+    /// &gt; **Security Best Practice:**
+    /// For enhanced security, we recommend using the `PasswordWo` write-only argument instead of the regular `Password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -118,8 +123,6 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// 
     /// MongoDB® users can be imported using the `{region}/{instance_id}/{name}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
     /// ```
@@ -147,6 +150,7 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password of the MongoDB® user in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
@@ -254,6 +258,7 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password of the MongoDB® user in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -330,6 +335,7 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password of the MongoDB® user in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
         /// </summary>
         public Input<string>? PasswordWo
         {

@@ -73,7 +73,77 @@ class AwaitableGetGrafanaResult(GetGrafanaResult):
 def get_grafana(project_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGrafanaResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+
+    This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Example Usage
+
+    ### Basic usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_grafana(project_id=project["id"])
+    pulumi.export("grafanaUrl", main.grafana_url)
+    ```
+
+    ### Using with default project
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Uses the default project from provider configuration
+    main = scaleway.observability.get_grafana()
+    pulumi.export("grafanaUrl", main.grafana_url)
+    ```
+
+    ### Complete example with Cockpit setup
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    project = scaleway.account.Project("project", name="my-observability-project")
+    main_cockpit = scaleway.observability.Cockpit("main", project_id=project.id)
+    main = scaleway.observability.get_grafana_output(project_id=main_cockpit.project_id)
+    pulumi.export("grafanaConnectionInfo", {
+        "url": main.grafana_url,
+        "projectId": main.project_id,
+    })
+    ```
+
+    ### Using the Grafana Terraform provider
+
+    When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `anonymous` mode.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    config = pulumi.Config()
+    # Scaleway IAM secret key reused by the Grafana provider
+    scaleway_secret_key = config.require("scalewaySecretKey")
+    main = scaleway.observability.get_grafana(project_id=project["id"])
+    ```
+
+    Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+
+    ## Authentication
+
+    To access Grafana, use your Scaleway IAM credentials:
+
+    1. Navigate to the `grafana_url` provided by this data source
+    2. Sign in using your Scaleway account (IAM authentication)
+    3. Your access level is determined by your IAM permissions on the project
+
+    For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+
 
     :param _builtins.str project_id: The ID of the project the Grafana instance is associated with. If not provided, the default project configured in the provider is used.
     """
@@ -89,7 +159,77 @@ def get_grafana(project_id: Optional[_builtins.str] = None,
 def get_grafana_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGrafanaResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about Scaleway Cockpit's Grafana instance for a specific project.
+
+    This data source provides the Grafana URL and project details. Authentication is managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Example Usage
+
+    ### Basic usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_grafana(project_id=project["id"])
+    pulumi.export("grafanaUrl", main.grafana_url)
+    ```
+
+    ### Using with default project
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Uses the default project from provider configuration
+    main = scaleway.observability.get_grafana()
+    pulumi.export("grafanaUrl", main.grafana_url)
+    ```
+
+    ### Complete example with Cockpit setup
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    project = scaleway.account.Project("project", name="my-observability-project")
+    main_cockpit = scaleway.observability.Cockpit("main", project_id=project.id)
+    main = scaleway.observability.get_grafana_output(project_id=main_cockpit.project_id)
+    pulumi.export("grafanaConnectionInfo", {
+        "url": main.grafana_url,
+        "projectId": main.project_id,
+    })
+    ```
+
+    ### Using the Grafana Terraform provider
+
+    When you need to configure Grafana resources programmatically, supply the IAM secret key as an `X-Auth-Token` header. The Grafana provider itself stays in `anonymous` mode.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    config = pulumi.Config()
+    # Scaleway IAM secret key reused by the Grafana provider
+    scaleway_secret_key = config.require("scalewaySecretKey")
+    main = scaleway.observability.get_grafana(project_id=project["id"])
+    ```
+
+    Keep the secret key in a secure backend (environment variables, Vault, etc.) and never commit it to source control.
+
+    ## Authentication
+
+    To access Grafana, use your Scaleway IAM credentials:
+
+    1. Navigate to the `grafana_url` provided by this data source
+    2. Sign in using your Scaleway account (IAM authentication)
+    3. Your access level is determined by your IAM permissions on the project
+
+    For more information about IAM authentication, see the [Scaleway IAM documentation](https://www.scaleway.com/en/docs/identity-and-access-management/iam/).
+
 
     :param _builtins.str project_id: The ID of the project the Grafana instance is associated with. If not provided, the default project configured in the provider is used.
     """

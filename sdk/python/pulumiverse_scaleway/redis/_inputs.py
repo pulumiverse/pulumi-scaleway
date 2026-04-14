@@ -25,26 +25,21 @@ __all__ = [
     'ClusterPublicNetworkArgsDict',
 ]
 
-MYPY = False
+class ClusterAclArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A text describing this rule. Default description: `Allow IP`
 
-if not MYPY:
-    class ClusterAclArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A text describing this rule. Default description: `Allow IP`
-
-        > The `acl` conflict with `private_network`. Only one should be specified.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    ClusterAclArgsDict: TypeAlias = Mapping[str, Any]
+    > The `acl` conflict with `private_network`. Only one should be specified.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class ClusterAclArgs:
@@ -104,18 +99,15 @@ class ClusterAclArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ClusterPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    ClusterPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class ClusterPrivateIpArgs:
@@ -156,54 +148,51 @@ class ClusterPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ClusterPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The UUID of the Private Network resource.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPv4 addresses of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-        service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
-        Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-        scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
-        If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-        > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
+class ClusterPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The UUID of the Private Network resource.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPv4 addresses of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
+    service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
+    Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+    scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+    If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+    > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 
-        > The `private_network` conflicts with `acl`. Only one should be specified.
+    > The `private_network` conflicts with `acl`. Only one should be specified.
 
-        > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
+    > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 
-        - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-        block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
-        Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
-        by side.
+    - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+    block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
+    Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+    by side.
 
-        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
-        able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
-        configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
-        require updating the Private Network to add IPs.
-        Your `service_ips` must be listed as follows:
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone in which the
-        Redis™ cluster should be created.
-        """
-elif False:
-    ClusterPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+    able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+    configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+    require updating the Private Network to add IPs.
+    Your `service_ips` must be listed as follows:
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone in which the
+    Redis™ cluster should be created.
+    """
 
 @pulumi.input_type
 class ClusterPrivateNetworkArgs:
@@ -347,22 +336,19 @@ class ClusterPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class ClusterPublicNetworkArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPv4 addresses of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    ClusterPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPublicNetworkArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPv4 addresses of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class ClusterPublicNetworkArgs:

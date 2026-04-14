@@ -26,6 +26,7 @@ class SecurityGroupRulesArgs:
                  outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]]] = None):
         """
         The set of arguments for constructing a SecurityGroupRules resource.
+
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
@@ -81,6 +82,7 @@ class _SecurityGroupRulesState:
                  security_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroupRules resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
@@ -189,7 +191,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -224,7 +226,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -232,11 +234,10 @@ class SecurityGroupRules(pulumi.CustomResource):
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -300,7 +301,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -335,7 +336,7 @@ class SecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -343,11 +344,10 @@ class SecurityGroupRules(pulumi.CustomResource):
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityGroupRulesArgs args: The arguments to use to populate this resource's properties.

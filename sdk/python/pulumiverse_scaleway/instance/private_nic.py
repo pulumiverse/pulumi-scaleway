@@ -30,6 +30,7 @@ class PrivateNicArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateNic resource.
+
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: IPAM ip list, should be for internal use only
@@ -149,6 +150,7 @@ class _PrivateNicState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateNic resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: IPAM ip list, should be for internal use only
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipam_ip_ids: IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the private NIC.
@@ -353,11 +355,10 @@ class PrivateNic(pulumi.CustomResource):
 
         Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/privateNic:PrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -442,11 +443,10 @@ class PrivateNic(pulumi.CustomResource):
 
         Private NICs can be imported using the `{zone}/{server_id}/{private_nic_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:instance/privateNic:PrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateNicArgs args: The arguments to use to populate this resource's properties.

@@ -12,11 +12,139 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway OpenSearch deployments.
+// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+//
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/opensearch"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := opensearch.NewDeployment(ctx, "main", &opensearch.DeploymentArgs{
+//				Name:       pulumi.String("my-opensearch-cluster"),
+//				Version:    pulumi.String("2.0"),
+//				NodeAmount: pulumi.Int(1),
+//				NodeType:   pulumi.String("SEARCHDB-SHARED-2C-8G"),
+//				Password:   pulumi.String("ThisIsASecurePassword123!"),
+//				Volume: &opensearch.DeploymentVolumeArgs{
+//					Type:     pulumi.String("sbs_5k"),
+//					SizeInGb: pulumi.Int(5),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Production Setup with High Availability
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/opensearch"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			prod, err := opensearch.NewDeployment(ctx, "prod", &opensearch.DeploymentArgs{
+//				Name:       pulumi.String("logs-prod-cluster"),
+//				Version:    pulumi.String("2.0"),
+//				NodeAmount: pulumi.Int(3),
+//				NodeType:   pulumi.String("SEARCHDB-DEDICATED-2C-8G"),
+//				Password:   pulumi.Any(opensearchPassword),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("production"),
+//					pulumi.String("logs"),
+//				},
+//				Volume: &opensearch.DeploymentVolumeArgs{
+//					Type:     pulumi.String("sbs_15k"),
+//					SizeInGb: pulumi.Int(100),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("opensearchUrl", prod.Endpoints.ApplyT(func(endpoints []opensearch.DeploymentEndpoint) (*string, error) {
+//				return &endpoints[0].Services[0].Url, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Tags for Organization
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/opensearch"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := opensearch.NewDeployment(ctx, "analytics", &opensearch.DeploymentArgs{
+//				Name:       pulumi.String("analytics-cluster"),
+//				Version:    pulumi.String("2.0"),
+//				NodeAmount: pulumi.Int(1),
+//				NodeType:   pulumi.String("SEARCHDB-SHARED-4C-16G"),
+//				Password:   pulumi.Any(opensearchPassword),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("analytics"),
+//					pulumi.String("dev"),
+//					pulumi.String("team-data"),
+//				},
+//				Volume: &opensearch.DeploymentVolumeArgs{
+//					Type:     pulumi.String("sbs_5k"),
+//					SizeInGb: pulumi.Int(10),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Upgrade Notes
+//
+// ### Changing Resources
+//
+// Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
+//
+// 1. Create a snapshot of your data (manual process)
+// 2. Modify the `nodeType` in your Terraform configuration
+// 3. Apply the changes (will destroy and recreate)
+// 4. Restore your data from the snapshot
+//
 // ## Import
 //
 // OpenSearch deployments can be imported using the `{region}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111

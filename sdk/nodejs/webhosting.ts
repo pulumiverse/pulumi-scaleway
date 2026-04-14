@@ -36,8 +36,6 @@ import * as utilities from "./utilities";
  *
  * Hostings can be imported using the `{region}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
  * ```

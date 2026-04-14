@@ -29,20 +29,15 @@ __all__ = [
     'GetIpsResourceArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class IpCustomResourceArgsDict(TypedDict):
-        mac_address: pulumi.Input[_builtins.str]
-        """
-        The MAC address of the custom resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
-        """
-elif False:
-    IpCustomResourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpCustomResourceArgsDict(TypedDict):
+    mac_address: pulumi.Input[_builtins.str]
+    """
+    The MAC address of the custom resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    When the resource is in a Private Network, a DNS record is available to resolve the resource name.
+    """
 
 @pulumi.input_type
 class IpCustomResourceArgs:
@@ -82,26 +77,23 @@ class IpCustomResourceArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class IpResourceArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the resource that the IP is attached to.
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The MAC address of the resource the IP is attached to.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the resource the IP is attached to.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of resource the IP is attached to.
-        """
-elif False:
-    IpResourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpResourceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the resource that the IP is attached to.
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The MAC address of the resource the IP is attached to.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the resource the IP is attached to.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of resource the IP is attached to.
+    """
 
 @pulumi.input_type
 class IpResourceArgs:
@@ -174,18 +166,17 @@ class IpResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class IpReverseArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP corresponding to the hostname
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse domain name.
-        """
-elif False:
-    IpReverseArgsDict: TypeAlias = Mapping[str, Any]
+class IpReverseArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Request a specific IP in the specified source pool.
+
+    > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse domain name.
+    """
 
 @pulumi.input_type
 class IpReverseArgs:
@@ -193,7 +184,9 @@ class IpReverseArgs:
                  address: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] address: The IP corresponding to the hostname
+        :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
+               
+               > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] hostname: The reverse domain name.
         """
         if address is not None:
@@ -205,7 +198,9 @@ class IpReverseArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The IP corresponding to the hostname
+        Request a specific IP in the specified source pool.
+
+        > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
 
@@ -226,22 +221,19 @@ class IpReverseArgs:
         pulumi.set(self, "hostname", value)
 
 
-if not MYPY:
-    class IpSourceArgsDict(TypedDict):
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Private Network of the IP (if the IP is a private IP).
-        """
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Private Network subnet of the IP (if the IP is a private IP).
-        """
-        zonal: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
-        """
-elif False:
-    IpSourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpSourceArgsDict(TypedDict):
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Private Network of the IP (if the IP is a private IP).
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Private Network subnet of the IP (if the IP is a private IP).
+    """
+    zonal: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
+    """
 
 @pulumi.input_type
 class IpSourceArgs:
@@ -298,22 +290,19 @@ class IpSourceArgs:
         pulumi.set(self, "zonal", value)
 
 
-if not MYPY:
-    class GetIpResourceArgsDict(TypedDict):
-        type: _builtins.str
-        """
-        The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        """
-        id: NotRequired[_builtins.str]
-        """
-        The ID of the resource that the IP is attached to.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        The name of the resource the IP is attached to.
-        """
-elif False:
-    GetIpResourceArgsDict: TypeAlias = Mapping[str, Any]
+class GetIpResourceArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    """
+    id: NotRequired[_builtins.str]
+    """
+    The ID of the resource that the IP is attached to.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    The name of the resource the IP is attached to.
+    """
 
 @pulumi.input_type
 class GetIpResourceArgs:
@@ -369,22 +358,19 @@ class GetIpResourceArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetIpsResourceArgsDict(TypedDict):
-        type: _builtins.str
-        """
-        The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        """
-        id: NotRequired[_builtins.str]
-        """
-        The ID of the attached resource.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        The name of the attached resource.
-        """
-elif False:
-    GetIpsResourceArgsDict: TypeAlias = Mapping[str, Any]
+class GetIpsResourceArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    """
+    id: NotRequired[_builtins.str]
+    """
+    The ID of the attached resource.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    The name of the attached resource.
+    """
 
 @pulumi.input_type
 class GetIpsResourceArgs:

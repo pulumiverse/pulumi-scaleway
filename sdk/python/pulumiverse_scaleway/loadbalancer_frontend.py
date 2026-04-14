@@ -34,6 +34,7 @@ class LoadbalancerFrontendArgs:
                  timeout_client: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerFrontend resource.
+
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -228,6 +229,7 @@ class _LoadbalancerFrontendState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
@@ -590,11 +592,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -733,11 +734,10 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerFrontendArgs args: The arguments to use to populate this resource's properties.

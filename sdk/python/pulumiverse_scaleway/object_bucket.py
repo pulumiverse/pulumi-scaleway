@@ -33,6 +33,7 @@ class ObjectBucketArgs:
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
         """
         The set of arguments for constructing a ObjectBucket resource.
+
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
@@ -217,6 +218,7 @@ class _ObjectBucketState:
                  versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None):
         """
         Input properties used for looking up and filtering ObjectBucket resources.
+
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
@@ -529,21 +531,17 @@ class ObjectBucket(pulumi.CustomResource):
 
         Buckets can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -662,21 +660,17 @@ class ObjectBucket(pulumi.CustomResource):
 
         Buckets can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ObjectBucketArgs args: The arguments to use to populate this resource's properties.

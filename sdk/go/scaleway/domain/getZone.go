@@ -11,6 +11,41 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// The `domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.
+//
+// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+//
+// ## Example Usage
+//
+// ### Query a domain zone
+//
+// The following command allows you to retrieve information about the DNS zone for the subdomain `test` within the domain `scaleway-terraform.com`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get zone
+//			_, err := domain.LookupZone(ctx, &domain.LookupZoneArgs{
+//				Domain:    pulumi.StringRef("scaleway-terraform.com"),
+//				Subdomain: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupZone(ctx *pulumi.Context, args *LookupZoneArgs, opts ...pulumi.InvokeOption) (*LookupZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupZoneResult

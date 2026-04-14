@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -89,7 +89,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -136,7 +136,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
@@ -252,6 +252,9 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// The creation date of the pool.
         /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// The size of the pool at the time the terraform state was updated.
+        /// </summary>
         public readonly int CurrentSize;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

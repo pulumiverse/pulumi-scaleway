@@ -45,11 +45,91 @@ import (
 //
 // ```
 //
+// ### With IAM Application
+//
+// This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
+//
+// > **Note:** For more information, see [How to connect to a Serverless SQL Database](https://www.scaleway.com/en/docs/serverless-sql-databases/how-to/connect-to-a-database/)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			app, err := iam.NewApplication(ctx, "app", &iam.ApplicationArgs{
+//				Name: pulumi.String("my app"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewPolicy(ctx, "db_access", &iam.PolicyArgs{
+//				Name:          pulumi.String("my policy"),
+//				Description:   pulumi.String("gives app access to serverless database in project"),
+//				ApplicationId: app.ID(),
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
+//						ProjectIds: pulumi.StringArray{
+//							pulumi.String(_default.Id),
+//						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("ServerlessSQLDatabaseReadWrite"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
+//				ApplicationId: app.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			database, err := databases.NewServerlessDatabase(ctx, "database", &databases.ServerlessDatabaseArgs{
+//				Name:   pulumi.String("my-database"),
+//				MinCpu: pulumi.Int(0),
+//				MaxCpu: pulumi.Int(8),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("databaseConnectionString", pulumi.Any(std.Format(ctx, map[string]interface{}{
+//				"input": "postgres://%s:%s@%s",
+//				"args": []interface{}{
+//					app.ID(),
+//					apiKey.SecretKey,
+//					std.Trimprefix(ctx, map[string]interface{}{
+//						"input":  database.Endpoint,
+//						"prefix": "postgres://",
+//					}, nil).Result,
+//				},
+//			}, nil).Result))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111

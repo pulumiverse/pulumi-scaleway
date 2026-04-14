@@ -24,6 +24,7 @@ class VpcPublicGatewayIpReverseDnsArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayIpReverseDns resource.
+
         :param pulumi.Input[_builtins.str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[_builtins.str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the IP should be reserved.
@@ -78,6 +79,7 @@ class _VpcPublicGatewayIpReverseDnsState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayIpReverseDns resources.
+
         :param pulumi.Input[_builtins.str] gateway_ip_id: The Public Gateway IP ID
         :param pulumi.Input[_builtins.str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the IP should be reserved.
@@ -168,11 +170,10 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -213,11 +214,10 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
 
         Public Gateway IP reverse DNS can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayIpReverseDnsArgs args: The arguments to use to populate this resource's properties.

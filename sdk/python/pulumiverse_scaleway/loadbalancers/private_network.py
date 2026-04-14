@@ -26,6 +26,7 @@ class PrivateNetworkArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateNetwork resource.
+
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID to attach the private network to.
         :param pulumi.Input[_builtins.str] private_network_id: The private network ID to attach.
         :param pulumi.Input[_builtins.str] ipam_ip_ids: The IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
@@ -115,6 +116,7 @@ class _PrivateNetworkState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateNetwork resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Private Network attachment (RFC 3339 format).
         :param pulumi.Input[_builtins.str] ipam_ip_ids: The IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID to attach the private network to.
@@ -287,11 +289,10 @@ class PrivateNetwork(pulumi.CustomResource):
 
         Private Network attachments can be imported using `{zone}/{lb-id}/{private-network-id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/privateNetwork:PrivateNetwork lbpn01 fr-par-1/11111111-1111-1111-1111-111111111111/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -344,11 +345,10 @@ class PrivateNetwork(pulumi.CustomResource):
 
         Private Network attachments can be imported using `{zone}/{lb-id}/{private-network-id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/privateNetwork:PrivateNetwork lbpn01 fr-par-1/11111111-1111-1111-1111-111111111111/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PrivateNetworkArgs args: The arguments to use to populate this resource's properties.

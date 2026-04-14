@@ -7,11 +7,53 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * The `scaleway.secrets.Secret` resource allows you to create and manage secrets in Scaleway Secret Manager.
+ *
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Create a secret
+ *
+ * The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.secrets.Secret("main", {
+ *     name: "foo",
+ *     description: "barr",
+ *     tags: [
+ *         "foo",
+ *         "terraform",
+ *     ],
+ * });
+ * ```
+ *
+ * ### Apply the ephemeral policy on a secret
+ *
+ * The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
+ *
+ * In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const ephemeral = new scaleway.secrets.Secret("ephemeral", {
+ *     name: "foo",
+ *     ephemeralPolicies: [{
+ *         ttl: "24h",
+ *         expiresOnceAccessed: true,
+ *         action: "disable",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * This section explains how to import a secret using the `{region}/{id}` format.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:secrets/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
@@ -70,7 +112,7 @@ export class Secret extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+     * True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
      */
     declare public readonly protected: pulumi.Output<boolean | undefined>;
     /**
@@ -183,7 +225,7 @@ export interface SecretState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+     * True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
      */
     protected?: pulumi.Input<boolean>;
     /**
@@ -242,7 +284,7 @@ export interface SecretArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
+     * True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
      */
     protected?: pulumi.Input<boolean>;
     /**

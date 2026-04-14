@@ -25,6 +25,7 @@ class InstanceIpArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceIp resource.
+
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IP.
         :param pulumi.Input[_builtins.str] type: The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
@@ -102,6 +103,7 @@ class _InstanceIpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceIp resources.
+
         :param pulumi.Input[_builtins.str] address: The IP address.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the IP is associated with.
         :param pulumi.Input[_builtins.str] prefix: The IP Prefix.
@@ -272,11 +274,10 @@ class InstanceIp(pulumi.CustomResource):
 
         IPs can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,11 +308,10 @@ class InstanceIp(pulumi.CustomResource):
 
         IPs can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceIpArgs args: The arguments to use to populate this resource's properties.

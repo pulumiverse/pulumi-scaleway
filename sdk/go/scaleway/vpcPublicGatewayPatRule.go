@@ -123,8 +123,6 @@ import (
 //
 // Public Gateway PAT rule configurations can be imported using `{zone}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```

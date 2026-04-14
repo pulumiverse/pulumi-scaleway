@@ -144,10 +144,10 @@ import (
 //			}
 //			myServer, err := elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
 //				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
+//				Offer: pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Os:    pulumi.String(pulumi.String(myOs.OsId)),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(myKey.Id),
+//					pulumi.String(pulumi.String(myKey.Id)),
 //				},
 //				Options: elasticmetal.ServerOptionArray{
 //					&elasticmetal.ServerOptionArgs{
@@ -187,8 +187,6 @@ import (
 // ## Import
 //
 // Routes can be imported using `{region}/{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:network/route:Route main fr-par/11111111-1111-1111-1111-111111111111

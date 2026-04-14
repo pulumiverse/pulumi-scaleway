@@ -29,6 +29,7 @@ class AclArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input['AclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[_builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
@@ -132,6 +133,7 @@ class _AclState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
+
         :param pulumi.Input['AclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[_builtins.str] description: The ACL description.
@@ -302,11 +304,10 @@ class Acl(pulumi.CustomResource):
 
         Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/acl:Acl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -357,11 +358,10 @@ class Acl(pulumi.CustomResource):
 
         Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:loadbalancers/acl:Acl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.

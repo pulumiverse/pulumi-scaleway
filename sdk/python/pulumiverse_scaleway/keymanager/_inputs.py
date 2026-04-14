@@ -19,20 +19,15 @@ __all__ = [
     'KeyRotationPolicyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class KeyRotationPolicyArgsDict(TypedDict):
-        rotation_period: pulumi.Input[_builtins.str]
-        """
-        – The period between key rotations (e.g., `"720h"` for 30 days).
-        """
-        next_rotation_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the next scheduled rotation.
-        """
-elif False:
-    KeyRotationPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class KeyRotationPolicyArgsDict(TypedDict):
+    rotation_period: pulumi.Input[_builtins.str]
+    """
+    – The period between key rotations (e.g., `"720h"` for 30 days).
+    """
+    next_rotation_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the next scheduled rotation.
+    """
 
 @pulumi.input_type
 class KeyRotationPolicyArgs:

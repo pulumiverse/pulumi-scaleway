@@ -30,6 +30,7 @@ class RouteArgs:
                  s3: Optional[pulumi.Input['RouteS3Args']] = None):
         """
         The set of arguments for constructing a Route resource.
+
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Route will be attached to.
         :param pulumi.Input[_builtins.str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         :param pulumi.Input['RouteDatabaseArgs'] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
@@ -149,6 +150,7 @@ class _RouteState:
                  topic: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Route resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time the Route was created.
         :param pulumi.Input['RouteDatabaseArgs'] database: Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Route will be attached to.
@@ -287,6 +289,13 @@ class Route(pulumi.CustomResource):
                  topic: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Routes. For more information, see the following:
+
+        - [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+        - [Product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/)
+
         ## Example Usage
 
         ### Database Route
@@ -381,11 +390,10 @@ class Route(pulumi.CustomResource):
 
         IoT Routes can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/route:Route route01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -404,6 +412,13 @@ class Route(pulumi.CustomResource):
                  args: RouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Routes. For more information, see the following:
+
+        - [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+        - [Product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/)
+
         ## Example Usage
 
         ### Database Route
@@ -498,11 +513,10 @@ class Route(pulumi.CustomResource):
 
         IoT Routes can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/route:Route route01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteArgs args: The arguments to use to populate this resource's properties.

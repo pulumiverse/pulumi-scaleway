@@ -27,22 +27,19 @@ __all__ = [
     'RouteStageRuleArgsDict',
     'RouteStageRuleRuleHttpMatchArgs',
     'RouteStageRuleRuleHttpMatchArgsDict',
+    'RouteStageRuleRuleHttpMatchHostFilterArgs',
+    'RouteStageRuleRuleHttpMatchHostFilterArgsDict',
     'RouteStageRuleRuleHttpMatchPathFilterArgs',
     'RouteStageRuleRuleHttpMatchPathFilterArgsDict',
     'TlsStageSecretArgs',
     'TlsStageSecretArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackendStageLbBackendConfigArgsDict(TypedDict):
-        lb_config: NotRequired[pulumi.Input['BackendStageLbBackendConfigLbConfigArgsDict']]
-        """
-        The Load Balancer config.
-        """
-elif False:
-    BackendStageLbBackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+class BackendStageLbBackendConfigArgsDict(TypedDict):
+    lb_config: NotRequired[pulumi.Input['BackendStageLbBackendConfigLbConfigArgsDict']]
+    """
+    The Load Balancer config.
+    """
 
 @pulumi.input_type
 class BackendStageLbBackendConfigArgs:
@@ -67,34 +64,31 @@ class BackendStageLbBackendConfigArgs:
         pulumi.set(self, "lb_config", value)
 
 
-if not MYPY:
-    class BackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
-        """
-        frontend_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the frontend.
-        """
-        has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to forward websocket requests to the load balancer.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Load Balancer.
-        """
-        is_ssl: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether the Load Balancer's frontend handles SSL connections.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone of the Load Balancer.
-        """
-elif False:
-    BackendStageLbBackendConfigLbConfigArgsDict: TypeAlias = Mapping[str, Any]
+class BackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+    """
+    frontend_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the frontend.
+    """
+    has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to forward websocket requests to the load balancer.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Load Balancer.
+    """
+    is_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether the Load Balancer's frontend handles SSL connections.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone of the Load Balancer.
+    """
 
 @pulumi.input_type
 class BackendStageLbBackendConfigLbConfigArgs:
@@ -199,22 +193,19 @@ class BackendStageLbBackendConfigLbConfigArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class BackendStageS3BackendConfigArgsDict(TypedDict):
-        bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Bucket.
-        """
-        bucket_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the Bucket.
-        """
-        is_website: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether the bucket website feature is enabled.
-        """
-elif False:
-    BackendStageS3BackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+class BackendStageS3BackendConfigArgsDict(TypedDict):
+    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Bucket.
+    """
+    bucket_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the Bucket.
+    """
+    is_website: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether the bucket website feature is enabled.
+    """
 
 @pulumi.input_type
 class BackendStageS3BackendConfigArgs:
@@ -271,22 +262,19 @@ class BackendStageS3BackendConfigArgs:
         pulumi.set(self, "is_website", value)
 
 
-if not MYPY:
-    class CacheStagePurgeRequestArgsDict(TypedDict):
-        all: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to purge all content.
-        """
-        assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of asserts to purge.
-        """
-        pipeline_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The pipeline ID in which the purge request will be created.
-        """
-elif False:
-    CacheStagePurgeRequestArgsDict: TypeAlias = Mapping[str, Any]
+class CacheStagePurgeRequestArgsDict(TypedDict):
+    all: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to purge all content.
+    """
+    assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of asserts to purge.
+    """
+    pipeline_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The pipeline ID in which the purge request will be created.
+    """
 
 @pulumi.input_type
 class CacheStagePurgeRequestArgs:
@@ -343,22 +331,19 @@ class CacheStagePurgeRequestArgs:
         pulumi.set(self, "pipeline_id", value)
 
 
-if not MYPY:
-    class RouteStageRuleArgsDict(TypedDict):
-        backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
-        """
-        rule_http_match: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchArgsDict']]
-        """
-        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
-        """
-        waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
-        """
-elif False:
-    RouteStageRuleArgsDict: TypeAlias = Mapping[str, Any]
+class RouteStageRuleArgsDict(TypedDict):
+    backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
+    """
+    rule_http_match: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchArgsDict']]
+    """
+    The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+    """
+    waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
+    """
 
 @pulumi.input_type
 class RouteStageRuleArgs:
@@ -415,32 +400,49 @@ class RouteStageRuleArgs:
         pulumi.set(self, "waf_stage_id", value)
 
 
-if not MYPY:
-    class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
-        method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
-        """
-        path_filter: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgsDict']]
-        """
-        HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
-        """
-elif False:
-    RouteStageRuleRuleHttpMatchArgsDict: TypeAlias = Mapping[str, Any]
+class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
+    host_filter: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgsDict']]
+    """
+    Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+    """
+    method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+    """
+    path_filter: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgsDict']]
+    """
+    HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+    """
 
 @pulumi.input_type
 class RouteStageRuleRuleHttpMatchArgs:
     def __init__(__self__, *,
+                 host_filter: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']] = None,
                  method_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path_filter: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgs']] = None):
         """
+        :param pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs'] host_filter: Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] method_filters: HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
         :param pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgs'] path_filter: HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
         """
+        if host_filter is not None:
+            pulumi.set(__self__, "host_filter", host_filter)
         if method_filters is not None:
             pulumi.set(__self__, "method_filters", method_filters)
         if path_filter is not None:
             pulumi.set(__self__, "path_filter", path_filter)
+
+    @_builtins.property
+    @pulumi.getter(name="hostFilter")
+    def host_filter(self) -> Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']]:
+        """
+        Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+        """
+        return pulumi.get(self, "host_filter")
+
+    @host_filter.setter
+    def host_filter(self, value: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']]):
+        pulumi.set(self, "host_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="methodFilters")
@@ -467,18 +469,62 @@ class RouteStageRuleRuleHttpMatchArgs:
         pulumi.set(self, "path_filter", value)
 
 
-if not MYPY:
-    class RouteStageRuleRuleHttpMatchPathFilterArgsDict(TypedDict):
-        path_filter_type: pulumi.Input[_builtins.str]
+class RouteStageRuleRuleHttpMatchHostFilterArgsDict(TypedDict):
+    host_filter_type: pulumi.Input[_builtins.str]
+    """
+    The type of filter to match for the host. Use the `regex` type.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to be matched for the host.
+    """
+
+@pulumi.input_type
+class RouteStageRuleRuleHttpMatchHostFilterArgs:
+    def __init__(__self__, *,
+                 host_filter_type: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
         """
-        The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        :param pulumi.Input[_builtins.str] host_filter_type: The type of filter to match for the host. Use the `regex` type.
+        :param pulumi.Input[_builtins.str] value: The value to be matched for the host.
         """
-        value: pulumi.Input[_builtins.str]
+        pulumi.set(__self__, "host_filter_type", host_filter_type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hostFilterType")
+    def host_filter_type(self) -> pulumi.Input[_builtins.str]:
         """
-        The value to be matched for the HTTP URL path.
+        The type of filter to match for the host. Use the `regex` type.
         """
-elif False:
-    RouteStageRuleRuleHttpMatchPathFilterArgsDict: TypeAlias = Mapping[str, Any]
+        return pulumi.get(self, "host_filter_type")
+
+    @host_filter_type.setter
+    def host_filter_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "host_filter_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to be matched for the host.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class RouteStageRuleRuleHttpMatchPathFilterArgsDict(TypedDict):
+    path_filter_type: pulumi.Input[_builtins.str]
+    """
+    The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to be matched for the HTTP URL path.
+    """
 
 @pulumi.input_type
 class RouteStageRuleRuleHttpMatchPathFilterArgs:
@@ -517,18 +563,15 @@ class RouteStageRuleRuleHttpMatchPathFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class TlsStageSecretArgsDict(TypedDict):
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the secret.
-        """
-        secret_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Secret
-        """
-elif False:
-    TlsStageSecretArgsDict: TypeAlias = Mapping[str, Any]
+class TlsStageSecretArgsDict(TypedDict):
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the secret.
+    """
+    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Secret
+    """
 
 @pulumi.input_type
 class TlsStageSecretArgs:

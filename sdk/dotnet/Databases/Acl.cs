@@ -127,8 +127,6 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:databases/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```

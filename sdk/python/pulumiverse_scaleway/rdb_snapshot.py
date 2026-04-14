@@ -25,6 +25,7 @@ class RdbSnapshotArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RdbSnapshot resource.
+
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the snapshot in ISO 8601 format (e.g., `2025-01-31T00:00:00Z`). If not set, the snapshot will not expire automatically.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot.
@@ -102,6 +103,7 @@ class _RdbSnapshotState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RdbSnapshot resources.
+
         :param pulumi.Input[_builtins.str] created_at: The timestamp when the snapshot was created, in ISO 8601 format.
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the snapshot in ISO 8601 format (e.g., `2025-01-31T00:00:00Z`). If not set, the snapshot will not expire automatically.
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
@@ -348,6 +350,7 @@ class RdbSnapshot(pulumi.CustomResource):
 
         RDB Snapshots can be imported using the `{region}/{snapshot_id}` format.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the snapshot in ISO 8601 format (e.g., `2025-01-31T00:00:00Z`). If not set, the snapshot will not expire automatically.
@@ -437,6 +440,7 @@ class RdbSnapshot(pulumi.CustomResource):
         ## Import
 
         RDB Snapshots can be imported using the `{region}/{snapshot_id}` format.
+
 
         :param str resource_name: The name of the resource.
         :param RdbSnapshotArgs args: The arguments to use to populate this resource's properties.

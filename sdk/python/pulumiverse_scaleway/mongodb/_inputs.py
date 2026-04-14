@@ -25,20 +25,15 @@ __all__ = [
     'UserRoleArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class InstancePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-elif False:
-    InstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
 
 @pulumi.input_type
 class InstancePrivateIpArgs:
@@ -79,30 +74,27 @@ class InstancePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstancePrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the Private Network.
-        """
-        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of DNS records for your endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IP addresses for your endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    InstancePrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Private Network.
+    """
+    dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of DNS records for your endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IP addresses for your endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class InstancePrivateNetworkArgs:
@@ -190,22 +182,19 @@ class InstancePrivateNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class InstancePublicNetworkArgsDict(TypedDict):
-        dns_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DNS record of your endpoint
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    InstancePublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePublicNetworkArgsDict(TypedDict):
+    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DNS record of your endpoint
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class InstancePublicNetworkArgs:
@@ -262,22 +251,19 @@ class InstancePublicNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class UserRoleArgsDict(TypedDict):
-        role: pulumi.Input[_builtins.str]
-        """
-        The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
-        """
-        any_database: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Apply the role to all databases. Cannot be used with `database_name`.
-        """
-        database_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The database name for the role. Cannot be used with `any_database`.
-        """
-elif False:
-    UserRoleArgsDict: TypeAlias = Mapping[str, Any]
+class UserRoleArgsDict(TypedDict):
+    role: pulumi.Input[_builtins.str]
+    """
+    The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+    """
+    any_database: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Apply the role to all databases. Cannot be used with `database_name`.
+    """
+    database_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The database name for the role. Cannot be used with `any_database`.
+    """
 
 @pulumi.input_type
 class UserRoleArgs:

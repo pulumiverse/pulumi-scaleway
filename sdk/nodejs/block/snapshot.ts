@@ -79,8 +79,6 @@ import * as utilities from "../utilities";
  *
  * This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:block/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```

@@ -31,6 +31,7 @@ class DeviceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Device resource.
+
         :param pulumi.Input[_builtins.str] hub_id: The ID of the hub on which this device will be created.
         :param pulumi.Input[_builtins.bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
                
@@ -183,6 +184,7 @@ class _DeviceState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Device resources.
+
         :param pulumi.Input[_builtins.bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
                
                > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
@@ -409,6 +411,10 @@ class Device(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+
         ## Example Usage
 
         ### Basic
@@ -429,11 +435,10 @@ class Device(pulumi.CustomResource):
 
         IoT devices can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/device:Device device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -459,6 +464,10 @@ class Device(pulumi.CustomResource):
                  args: DeviceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+
+        Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+
         ## Example Usage
 
         ### Basic
@@ -479,11 +488,10 @@ class Device(pulumi.CustomResource):
 
         IoT devices can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iot/device:Device device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceArgs args: The arguments to use to populate this resource's properties.

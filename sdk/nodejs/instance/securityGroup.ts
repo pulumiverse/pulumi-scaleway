@@ -7,11 +7,96 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Creates and manages Scaleway compute Instance security groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
+ *
+ * ## Example Usage
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const allowAll = new scaleway.instance.SecurityGroup("allow_all", {});
+ * const web = new scaleway.instance.SecurityGroup("web", {
+ *     inboundDefaultPolicy: "drop",
+ *     inboundRules: [
+ *         {
+ *             action: "accept",
+ *             port: 22,
+ *             ipRange: "212.47.225.64/32",
+ *         },
+ *         {
+ *             action: "accept",
+ *             port: 80,
+ *         },
+ *         {
+ *             action: "accept",
+ *             protocol: "UDP",
+ *             portRange: "22-23",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Web server with banned IP and restricted internet access
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const web = new scaleway.instance.SecurityGroup("web", {
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "drop",
+ *     inboundRules: [
+ *         {
+ *             action: "drop",
+ *             ipRange: "1.1.1.1/32",
+ *         },
+ *         {
+ *             action: "accept",
+ *             port: 22,
+ *             ipRange: "212.47.225.64/32",
+ *         },
+ *         {
+ *             action: "accept",
+ *             port: 443,
+ *         },
+ *     ],
+ *     outboundRules: [{
+ *         action: "accept",
+ *         ipRange: "8.8.8.8/32",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Trusted IP for SSH access (using for_each)
+ *
+ * If you use terraform >= 0.12.6, you can leverage the `forEach` feature with this resource.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const trusted = [
+ *     "192.168.0.1",
+ *     "192.168.0.2",
+ *     "192.168.0.3",
+ * ];
+ * const dummy = new scaleway.instance.SecurityGroup("dummy", {
+ *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         action: "accept",
+ *         port: 22,
+ *         ipRange: entry.value,
+ *     })),
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Instance security group can be imported using the `{zone}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:instance/securityGroup:SecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111

@@ -40,11 +40,68 @@ namespace Pulumiverse.Scaleway.Network
     /// });
     /// ```
     /// 
+    /// ### With bastion
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var key1 = new Scaleway.Iam.SshKey("key1", new()
+    ///     {
+    ///         Name = "key1",
+    ///         PublicKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "~/.ssh/id_rsa.pub",
+    ///         }).Result,
+    ///     });
+    /// 
+    ///     var key2 = new Scaleway.Iam.SshKey("key2", new()
+    ///     {
+    ///         Name = "key2",
+    ///         PublicKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "~/.ssh/another_key.pub",
+    ///         }).Result,
+    ///     });
+    /// 
+    ///     var sshKeysHash = Std.Index.Sha256.Invoke(new()
+    ///     {
+    ///         Input = Std.Index.Join.Invoke(new()
+    ///         {
+    ///             Separator = ",",
+    ///             Input = new[]
+    ///             {
+    ///                 key1.PublicKey,
+    ///                 key2.PublicKey,
+    ///             },
+    ///         }).Result,
+    ///     }).Result;
+    /// 
+    ///     var main = new Scaleway.Network.PublicGateway("main", new()
+    ///     {
+    ///         Name = "public_gateway_demo",
+    ///         Type = "VPC-GW-S",
+    ///         Tags = new[]
+    ///         {
+    ///             "demo",
+    ///             "terraform",
+    ///         },
+    ///         BastionEnabled = true,
+    ///         BastionPort = 61000,
+    ///         RefreshSshKeys = sshKeysHash,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Public Gateways can be imported using `{zone}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:network/publicGateway:PublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111

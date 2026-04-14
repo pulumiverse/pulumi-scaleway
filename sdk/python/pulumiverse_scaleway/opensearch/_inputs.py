@@ -25,28 +25,23 @@ __all__ = [
     'DeploymentVolumeArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class DeploymentEndpointArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private network ID if the endpoint is private.
-        """
-        public: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the endpoint is public (true) or private (false).
-        """
-        services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgsDict']]]]
-        """
-        List of services exposed on the endpoint.
-        """
-elif False:
-    DeploymentEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentEndpointArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private network ID if the endpoint is private.
+    """
+    public: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the endpoint is public (true) or private (false).
+    """
+    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgsDict']]]]
+    """
+    List of services exposed on the endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentEndpointArgs:
@@ -119,22 +114,19 @@ class DeploymentEndpointArgs:
         pulumi.set(self, "services", value)
 
 
-if not MYPY:
-    class DeploymentEndpointServiceArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the OpenSearch deployment. If not specified, a random name will be generated.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Service port number.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
-        """
-elif False:
-    DeploymentEndpointServiceArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentEndpointServiceArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the OpenSearch deployment. If not specified, a random name will be generated.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Service port number.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+    """
 
 @pulumi.input_type
 class DeploymentEndpointServiceArgs:
@@ -191,14 +183,11 @@ class DeploymentEndpointServiceArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class DeploymentPrivateNetworkArgsDict(TypedDict):
-        private_network_id: pulumi.Input[_builtins.str]
-        """
-        Private network ID if the endpoint is private.
-        """
-elif False:
-    DeploymentPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPrivateNetworkArgsDict(TypedDict):
+    private_network_id: pulumi.Input[_builtins.str]
+    """
+    Private network ID if the endpoint is private.
+    """
 
 @pulumi.input_type
 class DeploymentPrivateNetworkArgs:
@@ -222,18 +211,15 @@ class DeploymentPrivateNetworkArgs:
         pulumi.set(self, "private_network_id", value)
 
 
-if not MYPY:
-    class DeploymentVolumeArgsDict(TypedDict):
-        size_in_gb: pulumi.Input[_builtins.int]
-        """
-        Volume size in GB. Changing this forces recreation of the deployment.
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
-        """
-elif False:
-    DeploymentVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentVolumeArgsDict(TypedDict):
+    size_in_gb: pulumi.Input[_builtins.int]
+    """
+    Volume size in GB. Changing this forces recreation of the deployment.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+    """
 
 @pulumi.input_type
 class DeploymentVolumeArgs:

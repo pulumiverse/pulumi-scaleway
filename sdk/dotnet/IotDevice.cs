@@ -11,6 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
+    /// &gt; **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
+    /// 
+    /// Creates and manages Scaleway IoT Hub Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/iot/).
+    /// 
     /// ## Example Usage
     /// 
     /// ### Basic
@@ -41,8 +45,6 @@ namespace Pulumiverse.Scaleway
     /// ## Import
     /// 
     /// IoT devices can be imported using the `{region}/{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111

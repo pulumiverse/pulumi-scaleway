@@ -68,17 +68,12 @@ import (
 //
 // Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:object/bucketLockConfiguration:BucketLockConfiguration some_bucket fr-par/some-bucket
 // ```
 //
-// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
 // If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:object/bucketLockConfiguration:BucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
@@ -86,9 +81,13 @@ import (
 type BucketLockConfiguration struct {
 	pulumi.CustomResourceState
 
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -138,9 +137,13 @@ func GetBucketLockConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BucketLockConfiguration resources.
 type bucketLockConfigurationState struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket *string `pulumi:"bucket"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -149,9 +152,13 @@ type bucketLockConfigurationState struct {
 }
 
 type BucketLockConfigurationState struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringPtrInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -164,9 +171,13 @@ func (BucketLockConfigurationState) ElementType() reflect.Type {
 }
 
 type bucketLockConfigurationArgs struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket string `pulumi:"bucket"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -176,9 +187,13 @@ type bucketLockConfigurationArgs struct {
 
 // The set of arguments for constructing a BucketLockConfiguration resource.
 type BucketLockConfigurationArgs struct {
-	// The bucket's name or regional ID.
+	// The name of the bucket, or its Terraform ID.
 	Bucket pulumi.StringInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+	// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -273,12 +288,16 @@ func (o BucketLockConfigurationOutput) ToBucketLockConfigurationOutputWithContex
 	return o
 }
 
-// The bucket's name or regional ID.
+// The name of the bucket, or its Terraform ID.
 func (o BucketLockConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketLockConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// The projectId you want to attach the resource to
+// `projectId`) The ID of the project the bucket is associated with.
+//
+// > **Important:** The `projectId` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+// If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
+// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 func (o BucketLockConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketLockConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

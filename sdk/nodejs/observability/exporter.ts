@@ -78,8 +78,6 @@ import * as utilities from "../utilities";
  *
  * Import an exporter using the regional ID:
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:observability/exporter:Exporter main fr-par/11111111-1111-1111-1111-111111111111
  * ```

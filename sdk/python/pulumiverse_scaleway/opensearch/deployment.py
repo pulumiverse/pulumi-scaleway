@@ -34,6 +34,7 @@ class DeploymentArgs:
                  volume: Optional[pulumi.Input['DeploymentVolumeArgs']] = None):
         """
         The set of arguments for constructing a Deployment resource.
+
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] version: OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
@@ -228,6 +229,7 @@ class _DeploymentState:
                  volume: Optional[pulumi.Input['DeploymentVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointArgs']]] endpoints: List of endpoints for accessing the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
@@ -498,15 +500,94 @@ class Deployment(pulumi.CustomResource):
                  volume: Optional[pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway OpenSearch deployments.
+        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.opensearch.Deployment("main",
+            name="my-opensearch-cluster",
+            version="2.0",
+            node_amount=1,
+            node_type="SEARCHDB-SHARED-2C-8G",
+            password="ThisIsASecurePassword123!",
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 5,
+            })
+        ```
+
+        ### Production Setup with High Availability
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        prod = scaleway.opensearch.Deployment("prod",
+            name="logs-prod-cluster",
+            version="2.0",
+            node_amount=3,
+            node_type="SEARCHDB-DEDICATED-2C-8G",
+            password=opensearch_password,
+            tags=[
+                "production",
+                "logs",
+            ],
+            volume={
+                "type": "sbs_15k",
+                "size_in_gb": 100,
+            })
+        pulumi.export("opensearchUrl", prod.endpoints[0].services[0].url)
+        ```
+
+        ### With Tags for Organization
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        analytics = scaleway.opensearch.Deployment("analytics",
+            name="analytics-cluster",
+            version="2.0",
+            node_amount=1,
+            node_type="SEARCHDB-SHARED-4C-16G",
+            password=opensearch_password,
+            tags=[
+                "analytics",
+                "dev",
+                "team-data",
+            ],
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 10,
+            })
+        ```
+
+        ## Upgrade Notes
+
+        ### Changing Resources
+
+        Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
+
+        1. Create a snapshot of your data (manual process)
+        2. Modify the `node_type` in your Terraform configuration
+        3. Apply the changes (will destroy and recreate)
+        4. Restore your data from the snapshot
+
         ## Import
 
         OpenSearch deployments can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -533,15 +614,94 @@ class Deployment(pulumi.CustomResource):
                  args: DeploymentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway OpenSearch deployments.
+        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.opensearch.Deployment("main",
+            name="my-opensearch-cluster",
+            version="2.0",
+            node_amount=1,
+            node_type="SEARCHDB-SHARED-2C-8G",
+            password="ThisIsASecurePassword123!",
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 5,
+            })
+        ```
+
+        ### Production Setup with High Availability
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        prod = scaleway.opensearch.Deployment("prod",
+            name="logs-prod-cluster",
+            version="2.0",
+            node_amount=3,
+            node_type="SEARCHDB-DEDICATED-2C-8G",
+            password=opensearch_password,
+            tags=[
+                "production",
+                "logs",
+            ],
+            volume={
+                "type": "sbs_15k",
+                "size_in_gb": 100,
+            })
+        pulumi.export("opensearchUrl", prod.endpoints[0].services[0].url)
+        ```
+
+        ### With Tags for Organization
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        analytics = scaleway.opensearch.Deployment("analytics",
+            name="analytics-cluster",
+            version="2.0",
+            node_amount=1,
+            node_type="SEARCHDB-SHARED-4C-16G",
+            password=opensearch_password,
+            tags=[
+                "analytics",
+                "dev",
+                "team-data",
+            ],
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 10,
+            })
+        ```
+
+        ## Upgrade Notes
+
+        ### Changing Resources
+
+        Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
+
+        1. Create a snapshot of your data (manual process)
+        2. Modify the `node_type` in your Terraform configuration
+        3. Apply the changes (will destroy and recreate)
+        4. Restore your data from the snapshot
+
         ## Import
 
         OpenSearch deployments can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.

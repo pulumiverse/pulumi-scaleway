@@ -7,6 +7,10 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * The `scaleway.domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `taskId` and `projectId` needed for importing a domain registration into Terraform state.
+ *
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
  * ## Example Usage
  *
  * ### Get taskId for import
@@ -107,6 +111,10 @@ export interface GetRegistrationResult {
     readonly technicalContacts: outputs.domain.GetRegistrationTechnicalContact[];
 }
 /**
+ * The `scaleway.domain.Registration` data source retrieves information about an existing domain registration by domain name. Use it to get the `taskId` and `projectId` needed for importing a domain registration into Terraform state.
+ *
+ * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
+ *
  * ## Example Usage
  *
  * ### Get taskId for import

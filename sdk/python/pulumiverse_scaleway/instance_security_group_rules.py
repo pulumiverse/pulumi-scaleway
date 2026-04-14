@@ -26,6 +26,7 @@ class InstanceSecurityGroupRulesArgs:
                  outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]] = None):
         """
         The set of arguments for constructing a InstanceSecurityGroupRules resource.
+
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
@@ -81,6 +82,7 @@ class _InstanceSecurityGroupRulesState:
                  security_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceSecurityGroupRules resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
@@ -194,7 +196,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -229,7 +231,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -237,11 +239,10 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -305,7 +306,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"],
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -340,7 +341,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "action": "accept",
                 "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted]],
+            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
             security_group_id=main.id)
         ```
 
@@ -348,11 +349,10 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
 
         Instance security group rules can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceSecurityGroupRulesArgs args: The arguments to use to populate this resource's properties.

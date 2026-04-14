@@ -7,6 +7,12 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Redis™ clusters.
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-redis).
+ *
+ * > **Security Best Practice:**
+ * For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -36,8 +42,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Redis™ cluster can be imported using the `{zone}/{id}`, e.g.
- *
- * bash
  *
  * ```sh
  * $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
@@ -122,6 +126,7 @@ export class RedisCluster extends pulumi.CustomResource {
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
     /**
@@ -310,6 +315,7 @@ export interface RedisClusterState {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**
@@ -416,6 +422,7 @@ export interface RedisClusterArgs {
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
     passwordWo?: pulumi.Input<string>;
     /**

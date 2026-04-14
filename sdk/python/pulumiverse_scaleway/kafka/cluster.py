@@ -35,6 +35,7 @@ class ClusterArgs:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
+
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
@@ -234,6 +235,7 @@ class _ClusterState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of cluster creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -566,11 +568,10 @@ class Cluster(pulumi.CustomResource):
 
         Kafka clusters can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:kafka/cluster:Cluster main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -663,11 +664,10 @@ class Cluster(pulumi.CustomResource):
 
         Kafka clusters can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:kafka/cluster:Cluster main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.

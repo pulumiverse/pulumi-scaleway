@@ -28,6 +28,7 @@ class GroupArgs:
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
         :param pulumi.Input[_builtins.bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
@@ -150,6 +151,7 @@ class _GroupState:
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
@@ -334,15 +336,33 @@ class Group(pulumi.CustomResource):
             user_ids=[])
         ```
 
+        ### With users
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        with_users = scaleway.iam.Group("with_users",
+            name="iam_group_with_app",
+            application_ids=[],
+            user_ids=[user.id for user in users_get_user.values()])
+        ```
+
         ## Import
 
         IAM groups can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -392,15 +412,33 @@ class Group(pulumi.CustomResource):
             user_ids=[])
         ```
 
+        ### With users
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        users = std.toset(input=[
+            "user1@mail.com",
+            "user2@mail.com",
+        ])["result"]
+        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        with_users = scaleway.iam.Group("with_users",
+            name="iam_group_with_app",
+            application_ids=[],
+            user_ids=[user.id for user in users_get_user.values()])
+        ```
+
         ## Import
 
         IAM groups can be imported using the `{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

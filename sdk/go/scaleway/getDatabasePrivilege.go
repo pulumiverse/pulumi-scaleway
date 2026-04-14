@@ -67,15 +67,17 @@ type LookupDatabasePrivilegeArgs struct {
 
 // A collection of values returned by getDatabasePrivilege.
 type LookupDatabasePrivilegeResult struct {
-	DatabaseName string `pulumi:"databaseName"`
+	DatabaseName        string `pulumi:"databaseName"`
+	EffectivePermission string `pulumi:"effectivePermission"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
 	// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
 	// , `custom` and `none`.
-	Permission string  `pulumi:"permission"`
-	Region     *string `pulumi:"region"`
-	UserName   string  `pulumi:"userName"`
+	Permission       string  `pulumi:"permission"`
+	PermissionStatus string  `pulumi:"permissionStatus"`
+	Region           *string `pulumi:"region"`
+	UserName         string  `pulumi:"userName"`
 }
 
 func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivilegeOutputArgs, opts ...pulumi.InvokeOption) LookupDatabasePrivilegeResultOutput {
@@ -122,6 +124,10 @@ func (o LookupDatabasePrivilegeResultOutput) DatabaseName() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+func (o LookupDatabasePrivilegeResultOutput) EffectivePermission() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.EffectivePermission }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupDatabasePrivilegeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.Id }).(pulumi.StringOutput)
@@ -135,6 +141,10 @@ func (o LookupDatabasePrivilegeResultOutput) InstanceId() pulumi.StringOutput {
 // , `custom` and `none`.
 func (o LookupDatabasePrivilegeResultOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.Permission }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabasePrivilegeResultOutput) PermissionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabasePrivilegeResult) string { return v.PermissionStatus }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabasePrivilegeResultOutput) Region() pulumi.StringPtrOutput {

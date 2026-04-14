@@ -23,6 +23,7 @@ class EdgeServicesPlanArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesPlan resource.
+
         :param pulumi.Input[_builtins.str] name: The name of the plan.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the plan is associated with.
         """
@@ -63,6 +64,7 @@ class _EdgeServicesPlanState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesPlan resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the plan.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the plan is associated with.
         """
@@ -128,11 +130,10 @@ class EdgeServicesPlan(pulumi.CustomResource):
 
         Plans can be imported using `{project_id}/{plan_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -163,11 +164,10 @@ class EdgeServicesPlan(pulumi.CustomResource):
 
         Plans can be imported using `{project_id}/{plan_name}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesPlanArgs args: The arguments to use to populate this resource's properties.

@@ -36,6 +36,7 @@ class VpcPublicGatewayDhcpArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayDhcp resource.
+
         :param pulumi.Input[_builtins.str] subnet: The subnet to associate with the Public Gateway DHCP configuration.
         :param pulumi.Input[_builtins.str] address: The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         :param pulumi.Input[_builtins.str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
@@ -294,6 +295,7 @@ class _VpcPublicGatewayDhcpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayDhcp resources.
+
         :param pulumi.Input[_builtins.str] address: The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Public Gateway DHCP configuration.
         :param pulumi.Input[_builtins.str] dns_local_name: TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
@@ -623,11 +625,10 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -676,11 +677,10 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayDhcpArgs args: The arguments to use to populate this resource's properties.

@@ -40,8 +40,6 @@ namespace Pulumiverse.Scaleway.Network
     /// 
     /// Public Gateway DHCP configuration can be imported using `{zone}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:network/publicGatewayDhcp:PublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```

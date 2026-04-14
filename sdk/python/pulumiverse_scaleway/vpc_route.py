@@ -28,6 +28,7 @@ class VpcRouteArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a VpcRoute resource.
+
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the route belongs to.
         :param pulumi.Input[_builtins.str] description: The route description.
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
@@ -149,6 +150,7 @@ class _VpcRouteState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcRoute resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route (RFC 3339 format).
         :param pulumi.Input[_builtins.str] description: The route description.
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
@@ -391,11 +393,10 @@ class VpcRoute(pulumi.CustomResource):
 
         Routes can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -498,11 +499,10 @@ class VpcRoute(pulumi.CustomResource):
 
         Routes can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcRouteArgs args: The arguments to use to populate this resource's properties.

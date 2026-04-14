@@ -49,8 +49,6 @@ import (
 //
 // SSH keys can be imported using the `id`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:account/sshKey:SshKey main 11111111-1111-1111-1111-111111111111
 // ```

@@ -23,6 +23,7 @@ class MnqSnsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqSns resource.
+
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region
                in which SNS will be enabled.
@@ -66,6 +67,7 @@ class _MnqSnsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqSns resources.
+
         :param pulumi.Input[_builtins.str] endpoint: The endpoint of the SNS service for this Project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project in which SNS will be enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region
@@ -164,11 +166,10 @@ class MnqSns(pulumi.CustomResource):
 
         SNS status can be imported using `{region}/{project_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -216,11 +217,10 @@ class MnqSns(pulumi.CustomResource):
 
         SNS status can be imported using `{region}/{project_id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MnqSnsArgs args: The arguments to use to populate this resource's properties.

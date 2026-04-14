@@ -314,6 +314,8 @@
         "instanceVolume.ts",
         "interlink/getPartner.ts",
         "interlink/getPartners.ts",
+        "interlink/getPop.ts",
+        "interlink/getPops.ts",
         "interlink/index.ts",
         "iot/device.ts",
         "iot/getDevice.ts",

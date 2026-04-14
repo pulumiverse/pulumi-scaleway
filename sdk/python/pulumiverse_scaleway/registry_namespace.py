@@ -26,6 +26,7 @@ class RegistryNamespaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RegistryNamespace resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[_builtins.str] name: The unique name of the namespace.
@@ -120,6 +121,7 @@ class _RegistryNamespaceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RegistryNamespace resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.str] endpoint: Endpoint reachable by Docker.
         :param pulumi.Input[_builtins.bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
@@ -271,11 +273,10 @@ class RegistryNamespace(pulumi.CustomResource):
 
         Namespaces can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,11 +316,10 @@ class RegistryNamespace(pulumi.CustomResource):
 
         Namespaces can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RegistryNamespaceArgs args: The arguments to use to populate this resource's properties.

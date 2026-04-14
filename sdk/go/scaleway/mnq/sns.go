@@ -66,7 +66,7 @@ import (
 //			}
 //			// For specific Project in default region
 //			_, err = mnq.NewSns(ctx, "for_project", &mnq.SnsArgs{
-//				ProjectId: pulumi.String(project.Id),
+//				ProjectId: pulumi.String(pulumi.String(project.Id)),
 //			})
 //			if err != nil {
 //				return err
@@ -80,8 +80,6 @@ import (
 // ## Import
 //
 // SNS status can be imported using `{region}/{project_id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:mnq/sns:Sns main fr-par/11111111111111111111111111111111

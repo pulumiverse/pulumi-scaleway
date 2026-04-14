@@ -28,6 +28,7 @@ class ReadReplicaArgs:
                  same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ReadReplica resource.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
@@ -121,6 +122,7 @@ class _ReadReplicaState:
                  same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ReadReplica resources.
+
         :param pulumi.Input['ReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
@@ -297,11 +299,10 @@ class ReadReplica(pulumi.CustomResource):
 
         Read Replicas can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:databases/readReplica:ReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -400,11 +401,10 @@ class ReadReplica(pulumi.CustomResource):
 
         Read Replicas can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:databases/readReplica:ReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ReadReplicaArgs args: The arguments to use to populate this resource's properties.

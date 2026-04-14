@@ -29,6 +29,7 @@ class VolumeArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Volume resource.
+
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
@@ -164,6 +165,7 @@ class _VolumeState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
+
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
@@ -346,11 +348,10 @@ class Volume(pulumi.CustomResource):
 
         This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:block/volume:Volume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -413,11 +414,10 @@ class Volume(pulumi.CustomResource):
 
         This section explains how to import a Block Storage volume using the zoned ID (`{zone}/{id}`) format.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:block/volume:Volume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.

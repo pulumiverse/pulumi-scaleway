@@ -56,8 +56,6 @@ import * as utilities from "./utilities";
  *
  * User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
  * ```

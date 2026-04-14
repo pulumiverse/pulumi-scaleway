@@ -112,8 +112,6 @@ namespace Pulumiverse.Scaleway.Datawarehouse
     /// 
     /// Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
     /// 
-    /// bash
-    /// 
     /// ```sh
     /// $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
@@ -153,6 +151,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the deployment in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         /// </summary>
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
@@ -322,6 +321,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the deployment in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         /// </summary>
         public Input<string>? PasswordWo
         {
@@ -448,6 +448,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the first user of the deployment in write-only mode. Only one of `Password` or `PasswordWo` should be specified. `PasswordWo` will not be set in the Terraform state. To update the `PasswordWo`, you must also update the `PasswordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         /// </summary>
         public Input<string>? PasswordWo
         {

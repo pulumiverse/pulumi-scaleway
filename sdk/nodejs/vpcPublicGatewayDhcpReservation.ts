@@ -64,8 +64,6 @@ import * as utilities from "./utilities";
  *
  * Public Gateway DHCP reservation configurations can be imported using `{zone}/{id}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```

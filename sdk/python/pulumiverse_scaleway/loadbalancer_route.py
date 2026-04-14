@@ -27,6 +27,7 @@ class LoadbalancerRouteArgs:
                  match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
+
         :param pulumi.Input[_builtins.str] backend_id: The ID of the backend the route is associated with.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[_builtins.str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
@@ -145,6 +146,7 @@ class _LoadbalancerRouteState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
+
         :param pulumi.Input[_builtins.str] backend_id: The ID of the backend the route is associated with.
         :param pulumi.Input[_builtins.str] created_at: The date on which the route was created.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the frontend the route is associated with.
@@ -398,11 +400,10 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -524,11 +525,10 @@ class LoadbalancerRoute(pulumi.CustomResource):
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerRouteArgs args: The arguments to use to populate this resource's properties.

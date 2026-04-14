@@ -12,11 +12,128 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// > **Deprecated:** This resource is deprecated and will be removed on **January 1st, 2026**.
+//
+// > **Migration Guide:** Grafana authentication is now managed through [Scaleway IAM (Identity and Access Management)](https://www.scaleway.com/en/docs/identity-and-access-management/iam/). To access your Grafana instance, use the `observability.getGrafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
+//
+// The `observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+//
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+//
+// ## Example Usage
+//
+// ### Migration to IAM Authentication
+//
+// Instead of managing Grafana users, retrieve your Grafana URL using the data source:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Old approach (deprecated)
+//			//
+//			//	resource "scaleway_cockpit_grafana_user" "main" {
+//			//	  project_id = scaleway_account_project.project.id
+//			//	  login      = "my-awesome-user"
+//			//	  role       = "editor"
+//			//	}
+//			//
+//			// New approach - Use IAM authentication
+//			main, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
+//				ProjectId: pulumi.StringRef(project.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("grafanaUrl", main.GrafanaUrl)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Programmatic access with the Grafana provider
+//
+// To automate Grafana configuration (e.g., dashboards, alerting) with Terraform, reuse your Scaleway IAM secret as an `X-Auth-Token` header. The Grafana provider must run in `anonymous` mode because user/password authentication is deprecated.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			// Scaleway IAM secret key used for both the Scaleway and Grafana providers
+//			scalewaySecretKey := cfg.Require("scalewaySecretKey")
+//			_, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
+//				ProjectId: pulumi.StringRef(project.Id),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// The header `X-Auth-Token` is mandatory when Grafana users are disabled. Store the IAM secret key securely (environment variable, secrets manager, etc.) and avoid committing it to version control.
+//
+// ### Create a Grafana user (Deprecated)
+//
+// The following command allows you to create a Grafana user within a specific Scaleway Project.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
+//				Name: pulumi.String("test project grafana user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = observability.NewGrafanaUser(ctx, "main", &observability.GrafanaUserArgs{
+//				ProjectId: project.ID(),
+//				Login:     pulumi.String("my-awesome-user"),
+//				Role:      pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:observability/grafanaUser:GrafanaUser main 11111111-1111-1111-1111-111111111111/2

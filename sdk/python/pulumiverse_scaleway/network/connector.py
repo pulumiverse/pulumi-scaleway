@@ -27,6 +27,7 @@ class ConnectorArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Connector resource.
+
         :param pulumi.Input[_builtins.str] target_vpc_id: The ID of the target VPC to connect to.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the source VPC.
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
@@ -133,6 +134,7 @@ class _ConnectorState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connector resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the VPC connector (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC connector is associated with.
@@ -357,11 +359,10 @@ class Connector(pulumi.CustomResource):
 
         VPC connectors can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/connector:Connector main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -436,11 +437,10 @@ class Connector(pulumi.CustomResource):
 
         VPC connectors can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:network/connector:Connector main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectorArgs args: The arguments to use to populate this resource's properties.

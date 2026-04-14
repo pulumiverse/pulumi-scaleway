@@ -62,11 +62,53 @@ namespace Pulumiverse.Scaleway.Iam
     /// });
     /// ```
     /// 
+    /// ### With users
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var users = Std.Index.Toset.Invoke(new()
+    ///     {
+    ///         Input = new[]
+    ///         {
+    ///             "user1@mail.com",
+    ///             "user2@mail.com",
+    ///         },
+    ///     }).Result;
+    /// 
+    ///     var usersGetUser = .ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key;
+    ///     }, item =&gt; {
+    ///         var __value = item.Value;
+    ///         return Scaleway.Iam.GetUser.Invoke(new()
+    ///         {
+    ///             Email = __value,
+    ///         });
+    ///     });
+    /// 
+    ///     var withUsers = new Scaleway.Iam.Group("with_users", new()
+    ///     {
+    ///         Name = "iam_group_with_app",
+    ///         ApplicationIds = new[] {},
+    ///         UserIds = (usersGetUser).Values.Select(user =&gt; 
+    ///         {
+    ///             return user.Id;
+    ///         }).ToList(),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IAM groups can be imported using the `{id}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:iam/group:Group basic 11111111-1111-1111-1111-111111111111

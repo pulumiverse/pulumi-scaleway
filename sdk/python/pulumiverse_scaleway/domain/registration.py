@@ -30,6 +30,7 @@ class RegistrationArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Registration resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_names: : A list of domain names to be registered.
         :param pulumi.Input[_builtins.bool] auto_renew: : Enables or disables auto-renewal.
         :param pulumi.Input[_builtins.bool] dnssec: : Enables or disables DNSSEC.
@@ -153,6 +154,7 @@ class _RegistrationState:
                  technical_contacts: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]] = None):
         """
         Input properties used for looking up and filtering Registration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]] administrative_contacts: : Administrative contact information.
         :param pulumi.Input[_builtins.bool] auto_renew: : Enables or disables auto-renewal.
         :param pulumi.Input[_builtins.bool] dnssec: : Enables or disables DNSSEC.
@@ -447,13 +449,12 @@ class Registration(pulumi.CustomResource):
 
         To import an existing domain registration, use:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
         ```
 
-        You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
+        You can use the domain.Registration data source to look up the `task_id` and `project_id` by domain name.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -583,13 +584,12 @@ class Registration(pulumi.CustomResource):
 
         To import an existing domain registration, use:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
         ```
 
-        You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
+        You can use the domain.Registration data source to look up the `task_id` and `project_id` by domain name.
+
 
         :param str resource_name: The name of the resource.
         :param RegistrationArgs args: The arguments to use to populate this resource's properties.

@@ -111,6 +111,8 @@ import (
 //
 // ```
 //
+// ### Create a permission for multiple users using a group
+//
 // ### Create a policy with a particular condition
 //
 // IAM policy rule can use a condition to be applied.
@@ -157,8 +159,6 @@ import (
 // ## Import
 //
 // Policies can be imported using the `{id}`, e.g.
-//
-// bash
 //
 // ```sh
 // $ pulumi import scaleway:iam/policy:Policy main 11111111-1111-1111-1111-111111111111

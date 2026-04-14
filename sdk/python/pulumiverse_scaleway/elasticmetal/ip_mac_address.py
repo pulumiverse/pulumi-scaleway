@@ -25,6 +25,7 @@ class IpMacAddressArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpMacAddress resource.
+
         :param pulumi.Input[_builtins.str] flexible_ip_id: The ID of the flexible IP for which to generate a virtual MAC.
         :param pulumi.Input[_builtins.str] type: The type of the virtual MAC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] flexible_ip_ids_to_duplicates: The IDs of the flexible IPs on which to duplicate the virtual MAC.
@@ -101,6 +102,7 @@ class _IpMacAddressState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpMacAddress resources.
+
         :param pulumi.Input[_builtins.str] address: The Virtual MAC address.
         :param pulumi.Input[_builtins.str] created_at: The date at which the Virtual Mac Address was created (RFC 3339 format).
         :param pulumi.Input[_builtins.str] flexible_ip_id: The ID of the flexible IP for which to generate a virtual MAC.
@@ -283,11 +285,10 @@ class IpMacAddress(pulumi.CustomResource):
 
         Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/ipMacAddress:IpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,11 +350,10 @@ class IpMacAddress(pulumi.CustomResource):
 
         Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:elasticmetal/ipMacAddress:IpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpMacAddressArgs args: The arguments to use to populate this resource's properties.

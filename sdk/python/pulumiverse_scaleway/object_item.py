@@ -35,7 +35,8 @@ class ObjectItemArgs:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ObjectItem resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] key: The path to the object.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
@@ -45,7 +46,11 @@ class ObjectItemArgs:
         :param pulumi.Input[_builtins.str] file: The name of the file to upload, defaults to an empty file.
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Map of metadata used for the object (keys must be lowercase).
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[_builtins.str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -83,7 +88,7 @@ class ObjectItemArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -181,7 +186,11 @@ class ObjectItemArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -269,7 +278,8 @@ class _ObjectItemState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObjectItem resources.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
@@ -279,7 +289,11 @@ class _ObjectItemState:
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Map of metadata used for the object (keys must be lowercase).
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[_builtins.str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -319,7 +333,7 @@ class _ObjectItemState:
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -417,7 +431,11 @@ class _ObjectItemState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 
@@ -529,32 +547,28 @@ class ObjectItem(pulumi.CustomResource):
             bucket=some_bucket.id,
             key="object_path",
             file="myfile",
-            hash=std.index.filemd5(input="myfile")["result"])
+            hash=std.filemd5(input="myfile")["result"])
         ```
 
         ## Import
 
         Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
@@ -564,7 +578,11 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Map of metadata used for the object (keys must be lowercase).
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[_builtins.str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -594,28 +612,24 @@ class ObjectItem(pulumi.CustomResource):
             bucket=some_bucket.id,
             key="object_path",
             file="myfile",
-            hash=std.index.filemd5(input="myfile")["result"])
+            hash=std.filemd5(input="myfile")["result"])
         ```
 
         ## Import
 
         Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
         ```
 
-        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
-
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
         If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
-
-        bash
 
         ```sh
         $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ObjectItemArgs args: The arguments to use to populate this resource's properties.
@@ -707,7 +721,7 @@ class ObjectItem(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
@@ -717,7 +731,11 @@ class ObjectItem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Map of metadata used for the object (keys must be lowercase).
-        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+               If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+               like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The Scaleway region the bucket resides in.
         :param pulumi.Input[_builtins.str] sse_customer_key: Customer's encryption keys to encrypt data (SSE-C)
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -748,7 +766,7 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter
     def bucket(self) -> pulumi.Output[_builtins.str]:
         """
-        The bucket's name or regional ID.
+        The name of the bucket, or its Terraform ID.
         """
         return pulumi.get(self, "bucket")
 
@@ -814,7 +832,11 @@ class ObjectItem(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+        If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
+        like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         """
         return pulumi.get(self, "project_id")
 

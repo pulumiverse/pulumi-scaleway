@@ -59,8 +59,6 @@ import * as utilities from "../utilities";
  *
  * Data Warehouse users can be imported using the `{region}/{deployment_id}/{name}`, e.g.
  *
- * bash
- *
  * ```sh
  * $ pulumi import scaleway:datawarehouse/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
  * ```

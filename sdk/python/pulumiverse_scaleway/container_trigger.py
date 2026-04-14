@@ -29,6 +29,7 @@ class ContainerTriggerArgs:
                  sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
         """
         The set of arguments for constructing a ContainerTrigger resource.
+
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to create a trigger for.
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
@@ -132,6 +133,7 @@ class _ContainerTriggerState:
                  sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
         """
         Input properties used for looking up and filtering ContainerTrigger resources.
+
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to create a trigger for.
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
@@ -286,11 +288,10 @@ class ContainerTrigger(pulumi.CustomResource):
 
         Container Triggers can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -350,11 +351,10 @@ class ContainerTrigger(pulumi.CustomResource):
 
         Container Triggers can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ContainerTriggerArgs args: The arguments to use to populate this resource's properties.

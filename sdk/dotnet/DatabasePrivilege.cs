@@ -60,11 +60,42 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ## Permission Drift Management
+    /// 
+    /// ### Understanding Permission Drift
+    /// 
+    /// When you configure a privilege (e.g., `Readwrite`), Scaleway applies it to **database objects that exist at that moment**. If new tables, views, or sequences are created later, they won't automatically inherit these permissions. In that case, the API may return `Custom`.
+    /// 
+    /// **Example:**
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var app = new Scaleway.Databases.Privilege("app", new()
+    ///     {
+    ///         InstanceId = main.Id,
+    ///         UserName = "app_user",
+    ///         DatabaseName = "mydb",
+    ///         Permission = "readwrite",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Handling Permission Drift
+    /// 
+    /// Run `pulumi up` to reapply the configured permission to all objects (existing and new):
+    /// 
+    /// The plan will typically show:
+    /// 
     /// ## Import
     /// 
     /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
-    /// 
-    /// bash
     /// 
     /// ```sh
     /// $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
@@ -81,16 +112,28 @@ namespace Pulumiverse.Scaleway
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
+        /// The actual permission currently set in Scaleway. May differ from `Permission` after database schema changes (new tables, views, or sequences created).
+        /// </summary>
+        [Output("effectivePermission")]
+        public Output<string> EffectivePermission { get; private set; } = null!;
+
+        /// <summary>
         /// UUID of the Database Instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
+        /// Desired permission level. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
+
+        /// <summary>
+        /// Permission synchronization status. Possible values:
+        /// </summary>
+        [Output("permissionStatus")]
+        public Output<string> PermissionStatus { get; private set; } = null!;
 
         /// <summary>
         /// `Region`) The region in which the resource exists.
@@ -164,7 +207,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
+        /// Desired permission level. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
@@ -196,16 +239,28 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
+        /// The actual permission currently set in Scaleway. May differ from `Permission` after database schema changes (new tables, views, or sequences created).
+        /// </summary>
+        [Input("effectivePermission")]
+        public Input<string>? EffectivePermission { get; set; }
+
+        /// <summary>
         /// UUID of the Database Instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
+        /// Desired permission level. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
+
+        /// <summary>
+        /// Permission synchronization status. Possible values:
+        /// </summary>
+        [Input("permissionStatus")]
+        public Input<string>? PermissionStatus { get; set; }
 
         /// <summary>
         /// `Region`) The region in which the resource exists.

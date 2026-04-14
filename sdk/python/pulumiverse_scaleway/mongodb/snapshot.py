@@ -25,6 +25,7 @@ class SnapshotArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
+
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
                
                > **Important:** Once set, `expires_at` cannot be removed.
@@ -105,6 +106,7 @@ class _SnapshotState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time when the MongoDB® snapshot was created.
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
                
@@ -293,11 +295,10 @@ class Snapshot(pulumi.CustomResource):
 
         MongoDB® snapshots can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -334,11 +335,10 @@ class Snapshot(pulumi.CustomResource):
 
         MongoDB® snapshots can be imported using the `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.

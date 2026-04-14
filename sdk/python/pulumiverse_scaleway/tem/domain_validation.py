@@ -24,6 +24,7 @@ class DomainValidationArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a DomainValidation resource.
+
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain name used when sending emails. This ID must correspond to a domain already registered with Scaleway's Transactional Email service.
         :param pulumi.Input[_builtins.str] region: `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         :param pulumi.Input[_builtins.int] timeout: The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
@@ -80,6 +81,7 @@ class _DomainValidationState:
                  validated: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DomainValidation resources.
+
         :param pulumi.Input[_builtins.str] domain_id: The ID of the domain name used when sending emails. This ID must correspond to a domain already registered with Scaleway's Transactional Email service.
         :param pulumi.Input[_builtins.str] region: `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         :param pulumi.Input[_builtins.int] timeout: The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
@@ -154,6 +156,9 @@ class DomainValidation(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        This Terraform resource manages the validation of domains for use with Scaleway's Transactional Email Management (TEM) service. It ensures that domains used for sending emails are verified and comply with Scaleway's requirements for email sending.
+        For more information refer to the [API documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+
         ## Example Usage
 
         ### Basic
@@ -170,6 +175,7 @@ class DomainValidation(pulumi.CustomResource):
             region="fr-par",
             timeout=300)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -184,6 +190,9 @@ class DomainValidation(pulumi.CustomResource):
                  args: DomainValidationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This Terraform resource manages the validation of domains for use with Scaleway's Transactional Email Management (TEM) service. It ensures that domains used for sending emails are verified and comply with Scaleway's requirements for email sending.
+        For more information refer to the [API documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+
         ## Example Usage
 
         ### Basic
@@ -200,6 +209,7 @@ class DomainValidation(pulumi.CustomResource):
             region="fr-par",
             timeout=300)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainValidationArgs args: The arguments to use to populate this resource's properties.

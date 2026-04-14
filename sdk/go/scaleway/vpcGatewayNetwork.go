@@ -148,8 +148,6 @@ import (
 //
 // GatewayNetwork can be imported using `{zone}/{id}`, e.g.
 //
-// bash
-//
 // ```sh
 // $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```

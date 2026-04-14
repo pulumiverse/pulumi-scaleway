@@ -21,11 +21,11 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });
@@ -45,11 +45,11 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });
@@ -69,11 +69,11 @@ namespace Pulumiverse.Scaleway
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });

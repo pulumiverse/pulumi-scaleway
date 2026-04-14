@@ -29,6 +29,7 @@ class NamespaceArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
                > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
@@ -180,6 +181,7 @@ class _NamespaceState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
                > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
@@ -400,11 +402,10 @@ class Namespace(pulumi.CustomResource):
 
         Functions namespaces can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:functions/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -452,11 +453,10 @@ class Namespace(pulumi.CustomResource):
 
         Functions namespaces can be imported using `{region}/{id}`, as shown below:
 
-        bash
-
         ```sh
         $ pulumi import scaleway:functions/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

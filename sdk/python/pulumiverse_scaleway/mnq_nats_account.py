@@ -24,6 +24,7 @@ class MnqNatsAccountArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqNatsAccount resource.
+
         :param pulumi.Input[_builtins.str] name: The unique name of the NATS account.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the
                account is associated with.
@@ -85,6 +86,7 @@ class _MnqNatsAccountState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqNatsAccount resources.
+
         :param pulumi.Input[_builtins.str] endpoint: The endpoint of the NATS service for this account.
         :param pulumi.Input[_builtins.str] name: The unique name of the NATS account.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the
@@ -188,11 +190,10 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         Namespaces can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,11 +230,10 @@ class MnqNatsAccount(pulumi.CustomResource):
 
         Namespaces can be imported using `{region}/{id}`, e.g.
 
-        bash
-
         ```sh
         $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MnqNatsAccountArgs args: The arguments to use to populate this resource's properties.
