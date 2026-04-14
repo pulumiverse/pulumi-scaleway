@@ -31,6 +31,7 @@ class HubArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Hub resource.
+
         :param pulumi.Input[_builtins.str] product_plan: Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
                
                > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
@@ -215,6 +216,7 @@ class _HubState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Hub resources.
+
         :param pulumi.Input[_builtins.int] connected_device_count: The current number of connected devices in the Hub.
         :param pulumi.Input[_builtins.str] created_at: The date and time the Hub was created.
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
@@ -554,6 +556,7 @@ class Hub(pulumi.CustomResource):
         $ pulumi import scaleway:iot/hub:Hub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
@@ -602,6 +605,7 @@ class Hub(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:iot/hub:Hub hub01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HubArgs args: The arguments to use to populate this resource's properties.

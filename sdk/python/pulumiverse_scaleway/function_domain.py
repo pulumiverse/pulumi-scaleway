@@ -24,6 +24,7 @@ class FunctionDomainArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionDomain resource.
+
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
                
@@ -87,6 +88,7 @@ class _FunctionDomainState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionDomain resources.
+
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
                
@@ -208,6 +210,7 @@ class FunctionDomain(pulumi.CustomResource):
         $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
@@ -258,6 +261,7 @@ class FunctionDomain(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionDomainArgs args: The arguments to use to populate this resource's properties.

@@ -21,20 +21,15 @@ __all__ = [
     'ServerPrivateNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    ServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class ServerPrivateIpArgs:
@@ -75,34 +70,31 @@ class ServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ServerPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The private network ID
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the private network was created.
-        """
-        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPAM IP IDs to attach to the server.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The current status of the private network.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the private network was last updated.
-        """
-        vlan: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VLAN ID associated with the private network.
-        """
-elif False:
-    ServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The private network ID
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the private network was created.
+    """
+    ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPAM IP IDs to attach to the server.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The current status of the private network.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the private network was last updated.
+    """
+    vlan: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VLAN ID associated with the private network.
+    """
 
 @pulumi.input_type
 class ServerPrivateNetworkArgs:

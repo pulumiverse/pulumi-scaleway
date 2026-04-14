@@ -28,6 +28,7 @@ class BucketWebsiteConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketWebsiteConfiguration resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input['BucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input['BucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
@@ -124,6 +125,7 @@ class _BucketWebsiteConfigurationState:
                  website_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketWebsiteConfiguration resources.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
         :param pulumi.Input['BucketWebsiteConfigurationErrorDocumentArgs'] error_document: The name of the error file for the website detailed below.
         :param pulumi.Input['BucketWebsiteConfigurationIndexDocumentArgs'] index_document: The name of the index file for the website detailed below.
@@ -327,6 +329,7 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
@@ -419,6 +422,7 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketWebsiteConfigurationArgs args: The arguments to use to populate this resource's properties.

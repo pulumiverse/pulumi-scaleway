@@ -27,6 +27,7 @@ class MnqSqsCredentialsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqSqsCredentials resource.
+
         :param pulumi.Input[_builtins.str] name: The unique name of the SQS credentials.
         :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
@@ -101,6 +102,7 @@ class _MnqSqsCredentialsState:
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqSqsCredentials resources.
+
         :param pulumi.Input[_builtins.str] access_key: The ID of the key.
         :param pulumi.Input[_builtins.str] name: The unique name of the SQS credentials.
         :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
@@ -242,6 +244,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The unique name of the SQS credentials.
@@ -286,6 +289,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MnqSqsCredentialsArgs args: The arguments to use to populate this resource's properties.

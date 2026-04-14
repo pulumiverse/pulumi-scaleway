@@ -43,6 +43,7 @@ class KubernetesNodePoolArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a KubernetesNodePool resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: The ID of the Kubernetes cluster on which this pool will be created.
         :param pulumi.Input[_builtins.str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
@@ -410,6 +411,7 @@ class _KubernetesNodePoolState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KubernetesNodePool resources.
+
         :param pulumi.Input[_builtins.bool] autohealing: Enables the autohealing feature for this pool.
         :param pulumi.Input[_builtins.bool] autoscaling: Enables the autoscaling feature for this pool.
                
@@ -981,6 +983,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] autohealing: Enables the autohealing feature for this pool.
@@ -1137,6 +1140,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KubernetesNodePoolArgs args: The arguments to use to populate this resource's properties.

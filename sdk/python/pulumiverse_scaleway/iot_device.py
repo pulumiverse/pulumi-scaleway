@@ -31,6 +31,7 @@ class IotDeviceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IotDevice resource.
+
         :param pulumi.Input[_builtins.str] hub_id: The ID of the hub on which this device will be created.
         :param pulumi.Input[_builtins.bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
                
@@ -183,6 +184,7 @@ class _IotDeviceState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IotDevice resources.
+
         :param pulumi.Input[_builtins.bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
                
                > **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
@@ -442,6 +444,7 @@ class IotDevice(pulumi.CustomResource):
         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_insecure: Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
@@ -493,6 +496,7 @@ class IotDevice(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IotDeviceArgs args: The arguments to use to populate this resource's properties.

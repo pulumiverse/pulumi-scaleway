@@ -28,6 +28,7 @@ class DatabaseUserArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabaseUser resource.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
@@ -173,6 +174,7 @@ class _DatabaseUserState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabaseUser resources.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
@@ -375,6 +377,7 @@ class DatabaseUser(pulumi.CustomResource):
         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
@@ -452,6 +455,7 @@ class DatabaseUser(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabaseUserArgs args: The arguments to use to populate this resource's properties.

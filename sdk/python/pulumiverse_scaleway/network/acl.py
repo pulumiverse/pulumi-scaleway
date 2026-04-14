@@ -28,6 +28,7 @@ class AclArgs:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the ACL belongs to.
         :param pulumi.Input[_builtins.str] default_policy: The action to take for packets which do not match any rules.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
@@ -115,6 +116,7 @@ class _AclState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
+
         :param pulumi.Input[_builtins.str] default_policy: The action to take for packets which do not match any rules.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the ACL.
@@ -242,6 +244,7 @@ class Acl(pulumi.CustomResource):
         $ pulumi import scaleway:network/acl:Acl main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] default_policy: The action to take for packets which do not match any rules.
@@ -292,6 +295,7 @@ class Acl(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:network/acl:Acl main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class GatewayArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Gateway resource.
+
         :param pulumi.Input[_builtins.str] gateway_type: The VPN gateway type (commercial offer type).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network to attach to the VPN gateway.
         :param pulumi.Input[_builtins.str] ipam_private_ipv4_id: The ID of the IPAM private IPv4 address to attach to the VPN gateway.
@@ -204,6 +205,7 @@ class _GatewayState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Gateway resources.
+
         :param pulumi.Input[_builtins.int] asn: The AS Number of the VPN gateway (typically 12876 for Scaleway).
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the VPN gateway (RFC 3339 format).
         :param pulumi.Input[_builtins.str] gateway_type: The VPN gateway type (commercial offer type).
@@ -482,6 +484,7 @@ class Gateway(pulumi.CustomResource):
         $ pulumi import scaleway:s2svpn/gateway:Gateway main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] gateway_type: The VPN gateway type (commercial offer type).
@@ -533,6 +536,7 @@ class Gateway(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:s2svpn/gateway:Gateway main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GatewayArgs args: The arguments to use to populate this resource's properties.

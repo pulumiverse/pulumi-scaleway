@@ -30,6 +30,7 @@ class WebhostingArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Webhosting resource.
+
         :param pulumi.Input[_builtins.str] domain: The domain name of the hosting.
         :param pulumi.Input[_builtins.str] email: The contact email of the client for the hosting.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the selected offer for the hosting.
@@ -160,6 +161,7 @@ class _WebhostingState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Webhosting resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['WebhostingCpanelUrlArgs']]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[_builtins.str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] dns_status: The DNS status of the hosting.
@@ -518,6 +520,7 @@ class Webhosting(pulumi.CustomResource):
         $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain: The domain name of the hosting.
@@ -565,6 +568,7 @@ class Webhosting(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WebhostingArgs args: The arguments to use to populate this resource's properties.

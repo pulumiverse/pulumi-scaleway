@@ -30,6 +30,7 @@ class IpArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Ip resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
                
@@ -159,6 +160,7 @@ class _IpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Ip resources.
+
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
                
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
@@ -467,6 +469,7 @@ class Ip(pulumi.CustomResource):
         $ pulumi import scaleway:ipam/ip:Ip ip_demo fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
@@ -576,6 +579,7 @@ class Ip(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:ipam/ip:Ip ip_demo fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpArgs args: The arguments to use to populate this resource's properties.

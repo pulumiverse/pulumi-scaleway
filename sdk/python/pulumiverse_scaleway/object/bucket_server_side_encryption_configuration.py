@@ -25,6 +25,7 @@ class BucketServerSideEncryptionConfigurationArgs:
                  rules: pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]):
         """
         The set of arguments for constructing a BucketServerSideEncryptionConfiguration resource.
+
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
         """
@@ -63,6 +64,7 @@ class _BucketServerSideEncryptionConfigurationState:
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering BucketServerSideEncryptionConfiguration resources.
+
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
         """
@@ -158,6 +160,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
@@ -221,6 +224,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketServerSideEncryptionConfigurationArgs args: The arguments to use to populate this resource's properties.

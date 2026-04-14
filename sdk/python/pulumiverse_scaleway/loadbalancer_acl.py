@@ -29,6 +29,7 @@ class LoadbalancerAclArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerAcl resource.
+
         :param pulumi.Input['LoadbalancerAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[_builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
@@ -132,6 +133,7 @@ class _LoadbalancerAclState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerAcl resources.
+
         :param pulumi.Input['LoadbalancerAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[_builtins.str] description: The ACL description.
@@ -311,6 +313,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         $ pulumi import scaleway:index/loadbalancerAcl:LoadbalancerAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']] action: Action to undertake when an ACL filter matches.
@@ -363,6 +366,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/loadbalancerAcl:LoadbalancerAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerAclArgs args: The arguments to use to populate this resource's properties.

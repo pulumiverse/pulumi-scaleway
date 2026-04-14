@@ -34,6 +34,7 @@ class DeploymentArgs:
                  volume: Optional[pulumi.Input['DeploymentVolumeArgs']] = None):
         """
         The set of arguments for constructing a Deployment resource.
+
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] version: OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
@@ -228,6 +229,7 @@ class _DeploymentState:
                  volume: Optional[pulumi.Input['DeploymentVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointArgs']]] endpoints: List of endpoints for accessing the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
@@ -586,6 +588,7 @@ class Deployment(pulumi.CustomResource):
         $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
@@ -698,6 +701,7 @@ class Deployment(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:opensearch/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class UserArgs:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
@@ -151,6 +152,7 @@ class _UserState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
@@ -357,6 +359,7 @@ class User(pulumi.CustomResource):
         $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
@@ -455,6 +458,7 @@ class User(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:mongodb/user:User main fr-par/11111111-1111-1111-1111-111111111111/my_user
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

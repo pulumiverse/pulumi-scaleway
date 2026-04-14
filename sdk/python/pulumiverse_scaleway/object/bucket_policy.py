@@ -25,6 +25,7 @@ class BucketPolicyArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketPolicy resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -107,6 +108,7 @@ class _BucketPolicyState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BucketPolicy resources.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] policy: The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -349,6 +351,7 @@ class BucketPolicy(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
@@ -523,6 +526,7 @@ class BucketPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class DomainRecordArgs:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         The set of arguments for constructing a DomainRecord resource.
+
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[_builtins.str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
@@ -217,6 +218,7 @@ class _DomainRecordState:
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None):
         """
         Input properties used for looking up and filtering DomainRecord resources.
+
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[_builtins.str] fqdn: The FQDN of the record.
@@ -633,6 +635,7 @@ class DomainRecord(pulumi.CustomResource):
         $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
@@ -847,6 +850,7 @@ class DomainRecord(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainRecordArgs args: The arguments to use to populate this resource's properties.

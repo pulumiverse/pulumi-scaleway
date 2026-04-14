@@ -47,20 +47,15 @@ __all__ = [
     'BucketWebsiteConfigurationIndexDocumentArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BucketAclAccessControlPolicyArgsDict(TypedDict):
-        owner: pulumi.Input['BucketAclAccessControlPolicyOwnerArgsDict']
-        """
-        Configuration block of the bucket project owner's display organization ID.
-        """
-        grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgsDict']]]]
-        """
-        Grant
-        """
-elif False:
-    BucketAclAccessControlPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclAccessControlPolicyArgsDict(TypedDict):
+    owner: pulumi.Input['BucketAclAccessControlPolicyOwnerArgsDict']
+    """
+    Configuration block of the bucket project owner's display organization ID.
+    """
+    grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgsDict']]]]
+    """
+    Grant
+    """
 
 @pulumi.input_type
 class BucketAclAccessControlPolicyArgs:
@@ -100,18 +95,15 @@ class BucketAclAccessControlPolicyArgs:
         pulumi.set(self, "grants", value)
 
 
-if not MYPY:
-    class BucketAclAccessControlPolicyGrantArgsDict(TypedDict):
-        permission: pulumi.Input[_builtins.str]
-        """
-        Logging permissions assigned to the grantee for the bucket.
-        """
-        grantee: NotRequired[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgsDict']]
-        """
-        Configuration block for the project being granted permissions.
-        """
-elif False:
-    BucketAclAccessControlPolicyGrantArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclAccessControlPolicyGrantArgsDict(TypedDict):
+    permission: pulumi.Input[_builtins.str]
+    """
+    Logging permissions assigned to the grantee for the bucket.
+    """
+    grantee: NotRequired[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgsDict']]
+    """
+    Configuration block for the project being granted permissions.
+    """
 
 @pulumi.input_type
 class BucketAclAccessControlPolicyGrantArgs:
@@ -151,26 +143,23 @@ class BucketAclAccessControlPolicyGrantArgs:
         pulumi.set(self, "grantee", value)
 
 
-if not MYPY:
-    class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Display name of the grantee to grant access to.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of grantee. Valid values: `CanonicalUser`, `Group`
-        """
-        uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The uri of the grantee if you are granting permissions to a predefined group.
-        """
-elif False:
-    BucketAclAccessControlPolicyGrantGranteeArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Display name of the grantee to grant access to.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The `region`, `bucket` and `acl` separated by (`/`).
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of grantee. Valid values: `CanonicalUser`, `Group`
+    """
+    uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The uri of the grantee if you are granting permissions to a predefined group.
+    """
 
 @pulumi.input_type
 class BucketAclAccessControlPolicyGrantGranteeArgs:
@@ -243,18 +232,15 @@ class BucketAclAccessControlPolicyGrantGranteeArgs:
         pulumi.set(self, "uri", value)
 
 
-if not MYPY:
-    class BucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The project ID of the grantee.
-        """
-elif False:
-    BucketAclAccessControlPolicyOwnerArgsDict: TypeAlias = Mapping[str, Any]
+class BucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The `region`, `bucket` and `acl` separated by (`/`).
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The project ID of the grantee.
+    """
 
 @pulumi.input_type
 class BucketAclAccessControlPolicyOwnerArgs:
@@ -294,30 +280,27 @@ class BucketAclAccessControlPolicyOwnerArgs:
         pulumi.set(self, "display_name", value)
 
 
-if not MYPY:
-    class BucketCorsRuleArgsDict(TypedDict):
-        allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
-        """
-        allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies which origins are allowed.
-        """
-        allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies which headers are allowed.
-        """
-        expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies header exposure in the response.
-        """
-        max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies time in seconds that the browser can cache the response for a preflight request.
-        """
-elif False:
-    BucketCorsRuleArgsDict: TypeAlias = Mapping[str, Any]
+class BucketCorsRuleArgsDict(TypedDict):
+    allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
+    """
+    allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies which origins are allowed.
+    """
+    allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies which headers are allowed.
+    """
+    expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies header exposure in the response.
+    """
+    max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies time in seconds that the browser can cache the response for a preflight request.
+    """
 
 @pulumi.input_type
 class BucketCorsRuleArgs:
@@ -404,40 +387,37 @@ class BucketCorsRuleArgs:
         pulumi.set(self, "max_age_seconds", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
-        """
-        abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+class BucketLifecycleRuleArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+    """
+    abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
-        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
-        """
-        expiration: NotRequired[pulumi.Input['BucketLifecycleRuleExpirationArgsDict']]
-        """
-        Specifies a period in the object's expire
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Object key prefix identifying one or more objects to which the rule applies.
-        """
-        tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies object tags key and value.
-        """
-        transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]
-        """
-        Define when objects transition to another storage class
-        """
-elif False:
-    BucketLifecycleRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+    """
+    expiration: NotRequired[pulumi.Input['BucketLifecycleRuleExpirationArgsDict']]
+    """
+    Specifies a period in the object's expire
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Object key prefix identifying one or more objects to which the rule applies.
+    """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies object tags key and value.
+    """
+    transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]
+    """
+    Define when objects transition to another storage class
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleArgs:
@@ -561,14 +541,11 @@ class BucketLifecycleRuleArgs:
         pulumi.set(self, "transitions", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleExpirationArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days after object creation when the specific rule action takes effect.
-        """
-elif False:
-    BucketLifecycleRuleExpirationArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLifecycleRuleExpirationArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days after object creation when the specific rule action takes effect.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleExpirationArgs:
@@ -592,26 +569,23 @@ class BucketLifecycleRuleExpirationArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class BucketLifecycleRuleTransitionArgsDict(TypedDict):
-        storage_class: pulumi.Input[_builtins.str]
-        """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+class BucketLifecycleRuleTransitionArgsDict(TypedDict):
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
 
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 
 
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        """
-        days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days after object creation when the specific rule action takes effect.
-        """
-elif False:
-    BucketLifecycleRuleTransitionArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+    """
+    days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days after object creation when the specific rule action takes effect.
+    """
 
 @pulumi.input_type
 class BucketLifecycleRuleTransitionArgs:
@@ -667,14 +641,11 @@ class BucketLifecycleRuleTransitionArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class BucketLockConfigurationRuleArgsDict(TypedDict):
-        default_retention: pulumi.Input['BucketLockConfigurationRuleDefaultRetentionArgsDict']
-        """
-        The default retention for the lock.
-        """
-elif False:
-    BucketLockConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLockConfigurationRuleArgsDict(TypedDict):
+    default_retention: pulumi.Input['BucketLockConfigurationRuleDefaultRetentionArgsDict']
+    """
+    The default retention for the lock.
+    """
 
 @pulumi.input_type
 class BucketLockConfigurationRuleArgs:
@@ -698,22 +669,19 @@ class BucketLockConfigurationRuleArgs:
         pulumi.set(self, "default_retention", value)
 
 
-if not MYPY:
-    class BucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
-        """
-        days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of days you want to specify for the default retention period.
-        """
-        years: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of years you want to specify for the default retention period.
-        """
-elif False:
-    BucketLockConfigurationRuleDefaultRetentionArgsDict: TypeAlias = Mapping[str, Any]
+class BucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
+    """
+    days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of days you want to specify for the default retention period.
+    """
+    years: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of years you want to specify for the default retention period.
+    """
 
 @pulumi.input_type
 class BucketLockConfigurationRuleDefaultRetentionArgs:
@@ -769,14 +737,11 @@ class BucketLockConfigurationRuleDefaultRetentionArgs:
         pulumi.set(self, "years", value)
 
 
-if not MYPY:
-    class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
-        apply_server_side_encryption_by_default: NotRequired[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]
-        """
-        Single object for setting server-side encryption by default.
-        """
-elif False:
-    BucketServerSideEncryptionConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
+class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
+    apply_server_side_encryption_by_default: NotRequired[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]
+    """
+    Single object for setting server-side encryption by default.
+    """
 
 @pulumi.input_type
 class BucketServerSideEncryptionConfigurationRuleArgs:
@@ -801,14 +766,11 @@ class BucketServerSideEncryptionConfigurationRuleArgs:
         pulumi.set(self, "apply_server_side_encryption_by_default", value)
 
 
-if not MYPY:
-    class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict(TypedDict):
-        sse_algorithm: pulumi.Input[_builtins.str]
-        """
-        Server-side encryption algorithm to use. Valid values are `AES256`.
-        """
-elif False:
-    BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict: TypeAlias = Mapping[str, Any]
+class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict(TypedDict):
+    sse_algorithm: pulumi.Input[_builtins.str]
+    """
+    Server-side encryption algorithm to use. Valid values are `AES256`.
+    """
 
 @pulumi.input_type
 class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs:
@@ -832,14 +794,11 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         pulumi.set(self, "sse_algorithm", value)
 
 
-if not MYPY:
-    class BucketVersioningArgsDict(TypedDict):
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
-        """
-elif False:
-    BucketVersioningArgsDict: TypeAlias = Mapping[str, Any]
+class BucketVersioningArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+    """
 
 @pulumi.input_type
 class BucketVersioningArgs:
@@ -864,14 +823,11 @@ class BucketVersioningArgs:
         pulumi.set(self, "enabled", value)
 
 
-if not MYPY:
-    class BucketWebsiteConfigurationErrorDocumentArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The object key name to use when a 4XX class error occurs.
-        """
-elif False:
-    BucketWebsiteConfigurationErrorDocumentArgsDict: TypeAlias = Mapping[str, Any]
+class BucketWebsiteConfigurationErrorDocumentArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The object key name to use when a 4XX class error occurs.
+    """
 
 @pulumi.input_type
 class BucketWebsiteConfigurationErrorDocumentArgs:
@@ -895,16 +851,13 @@ class BucketWebsiteConfigurationErrorDocumentArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class BucketWebsiteConfigurationIndexDocumentArgsDict(TypedDict):
-        suffix: pulumi.Input[_builtins.str]
-        """
-        A suffix that is appended to a request targeting a specific directory on the website endpoint.
+class BucketWebsiteConfigurationIndexDocumentArgsDict(TypedDict):
+    suffix: pulumi.Input[_builtins.str]
+    """
+    A suffix that is appended to a request targeting a specific directory on the website endpoint.
 
-        > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
-        """
-elif False:
-    BucketWebsiteConfigurationIndexDocumentArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+    """
 
 @pulumi.input_type
 class BucketWebsiteConfigurationIndexDocumentArgs:

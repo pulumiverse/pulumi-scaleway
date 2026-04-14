@@ -26,6 +26,7 @@ class CronArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cron resource.
+
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your function’s event object
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
@@ -114,6 +115,7 @@ class _CronState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cron resources.
+
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your function’s event object
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] name: The name of the function CRON trigger. If not provided, a random name is generated.
@@ -265,6 +267,7 @@ class Cron(pulumi.CustomResource):
         $ pulumi import scaleway:functions/cron:Cron main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your function’s event object
@@ -323,6 +326,7 @@ class Cron(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:functions/cron:Cron main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CronArgs args: The arguments to use to populate this resource's properties.

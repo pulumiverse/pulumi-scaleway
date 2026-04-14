@@ -27,28 +27,23 @@ __all__ = [
     'ModelNodesSupportQuantizationArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class DeploymentPrivateEndpointArgsDict(TypedDict):
-        disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable the authentication on the endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private network to use.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The URL of the endpoint.
-        """
-elif False:
-    DeploymentPrivateEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPrivateEndpointArgsDict(TypedDict):
+    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable the authentication on the endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private network to use.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The URL of the endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentPrivateEndpointArgs:
@@ -121,18 +116,15 @@ class DeploymentPrivateEndpointArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class DeploymentPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-elif False:
-    DeploymentPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentPrivateIpArgs:
@@ -173,26 +165,23 @@ class DeploymentPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class DeploymentPublicEndpointArgsDict(TypedDict):
-        disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable the authentication on the endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-        is_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Enable or disable public endpoint.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The URL of the endpoint.
-        """
-elif False:
-    DeploymentPublicEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPublicEndpointArgsDict(TypedDict):
+    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable the authentication on the endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
+    is_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable or disable public endpoint.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The URL of the endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentPublicEndpointArgs:
@@ -265,18 +254,15 @@ class DeploymentPublicEndpointArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class ModelNodesSupportArgsDict(TypedDict):
-        node_type_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of node supported.
-        """
-        quantizations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgsDict']]]]
-        """
-        A list of supported quantization options, including:
-        """
-elif False:
-    ModelNodesSupportArgsDict: TypeAlias = Mapping[str, Any]
+class ModelNodesSupportArgsDict(TypedDict):
+    node_type_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of node supported.
+    """
+    quantizations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgsDict']]]]
+    """
+    A list of supported quantization options, including:
+    """
 
 @pulumi.input_type
 class ModelNodesSupportArgs:
@@ -317,22 +303,19 @@ class ModelNodesSupportArgs:
         pulumi.set(self, "quantizations", value)
 
 
-if not MYPY:
-    class ModelNodesSupportQuantizationArgsDict(TypedDict):
-        allowed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether this quantization is allowed.
-        """
-        max_context_size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum context length supported by this quantization.
-        """
-        quantization_bits: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of bits used for quantization (e.g., 8, 16).
-        """
-elif False:
-    ModelNodesSupportQuantizationArgsDict: TypeAlias = Mapping[str, Any]
+class ModelNodesSupportQuantizationArgsDict(TypedDict):
+    allowed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether this quantization is allowed.
+    """
+    max_context_size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum context length supported by this quantization.
+    """
+    quantization_bits: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of bits used for quantization (e.g., 8, 16).
+    """
 
 @pulumi.input_type
 class ModelNodesSupportQuantizationArgs:

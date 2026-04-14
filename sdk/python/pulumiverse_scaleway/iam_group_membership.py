@@ -24,6 +24,7 @@ class IamGroupMembershipArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IamGroupMembership resource.
+
         :param pulumi.Input[_builtins.str] group_id: ID of the group to add members to.
         :param pulumi.Input[_builtins.str] application_id: The ID of the application that will be added to the group.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user that will be added to the group
@@ -83,6 +84,7 @@ class _IamGroupMembershipState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IamGroupMembership resources.
+
         :param pulumi.Input[_builtins.str] application_id: The ID of the application that will be added to the group.
         :param pulumi.Input[_builtins.str] group_id: ID of the group to add members to.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user that will be added to the group
@@ -205,6 +207,7 @@ class IamGroupMembership(pulumi.CustomResource):
         $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: The ID of the application that will be added to the group.
@@ -273,6 +276,7 @@ class IamGroupMembership(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IamGroupMembershipArgs args: The arguments to use to populate this resource's properties.

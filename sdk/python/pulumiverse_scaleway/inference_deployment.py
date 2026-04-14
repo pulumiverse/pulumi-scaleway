@@ -36,6 +36,7 @@ class InferenceDeploymentArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a InferenceDeployment resource.
+
         :param pulumi.Input[_builtins.str] model_id: The model id used for the deployment.
         :param pulumi.Input[_builtins.str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
         :param pulumi.Input[_builtins.bool] accept_eula: Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
@@ -255,6 +256,7 @@ class _InferenceDeploymentState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InferenceDeployment resources.
+
         :param pulumi.Input[_builtins.bool] accept_eula: Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the deployment.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool.
@@ -585,6 +587,7 @@ class InferenceDeployment(pulumi.CustomResource):
         $ pulumi import scaleway:index/inferenceDeployment:InferenceDeployment deployment fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accept_eula: Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
@@ -638,6 +641,7 @@ class InferenceDeployment(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/inferenceDeployment:InferenceDeployment deployment fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InferenceDeploymentArgs args: The arguments to use to populate this resource's properties.

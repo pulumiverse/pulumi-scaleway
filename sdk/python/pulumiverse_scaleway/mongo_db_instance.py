@@ -44,6 +44,7 @@ class MongoDbInstanceArgs:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MongoDbInstance resource.
+
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
@@ -391,6 +392,7 @@ class _MongoDbInstanceState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MongoDbInstance resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the MongoDB® instance.
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
@@ -821,6 +823,7 @@ class MongoDbInstance(pulumi.CustomResource):
         $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
@@ -883,6 +886,7 @@ class MongoDbInstance(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MongoDbInstanceArgs args: The arguments to use to populate this resource's properties.

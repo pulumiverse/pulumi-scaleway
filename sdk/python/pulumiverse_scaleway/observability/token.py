@@ -27,6 +27,7 @@ class TokenArgs:
                  scopes: Optional[pulumi.Input['TokenScopesArgs']] = None):
         """
         The set of arguments for constructing a Token resource.
+
         :param pulumi.Input[_builtins.str] name: The name of the token.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[_builtins.str] region: ) The region where the Cockpit token is located.
@@ -102,6 +103,7 @@ class _TokenState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Token resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Cockpit Token (Format ISO 8601)
         :param pulumi.Input[_builtins.str] name: The name of the token.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
@@ -272,6 +274,7 @@ class Token(pulumi.CustomResource):
         $ pulumi import scaleway:observability/token:Token main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the token.
@@ -335,6 +338,7 @@ class Token(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:observability/token:Token main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TokenArgs args: The arguments to use to populate this resource's properties.

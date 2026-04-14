@@ -27,6 +27,7 @@ class AclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input[_builtins.str] cluster_id: UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
                
                > **Important:** Updates to `cluster_id` will recreate the ACL.
@@ -110,6 +111,7 @@ class _AclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['AclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
@@ -257,6 +259,7 @@ class Acl(pulumi.CustomResource):
         $ pulumi import scaleway:kubernetes/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
@@ -336,6 +339,7 @@ class Acl(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:kubernetes/acl:Acl acl01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.

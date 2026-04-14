@@ -37,6 +37,7 @@ class SqsQueueArgs:
                  visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SqsQueue resource.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SQS queue.
         :param pulumi.Input[_builtins.str] secret_key: The secret key of the SQS queue.
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
@@ -269,6 +270,7 @@ class _SqsQueueState:
                  visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SqsQueue resources.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SQS queue.
         :param pulumi.Input[_builtins.str] arn: The ARN of the queue
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
@@ -604,6 +606,7 @@ class SqsQueue(pulumi.CustomResource):
 
         - `max_receive_count` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The access key of the SQS queue.
@@ -697,6 +700,7 @@ class SqsQueue(pulumi.CustomResource):
         - `id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
 
         - `max_receive_count` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
+
 
         :param str resource_name: The name of the resource.
         :param SqsQueueArgs args: The arguments to use to populate this resource's properties.

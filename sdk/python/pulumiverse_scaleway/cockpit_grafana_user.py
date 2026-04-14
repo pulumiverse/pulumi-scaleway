@@ -24,6 +24,7 @@ class CockpitGrafanaUserArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CockpitGrafanaUser resource.
+
         :param pulumi.Input[_builtins.str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         :param pulumi.Input[_builtins.str] role: The role assigned to the Grafana user. Must be `editor` or `viewer`.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
@@ -80,6 +81,7 @@ class _CockpitGrafanaUserState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CockpitGrafanaUser resources.
+
         :param pulumi.Input[_builtins.str] grafana_url: URL for Grafana.
         :param pulumi.Input[_builtins.str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         :param pulumi.Input[_builtins.str] password: The password of the Grafana user.
@@ -242,6 +244,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] login: The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
@@ -322,6 +325,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CockpitGrafanaUserArgs args: The arguments to use to populate this resource's properties.

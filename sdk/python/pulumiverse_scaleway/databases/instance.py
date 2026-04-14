@@ -48,6 +48,7 @@ class InstanceArgs:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
                > **Important** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
@@ -501,6 +502,7 @@ class _InstanceState:
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
+
         :param pulumi.Input[_builtins.bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[_builtins.int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
@@ -1099,6 +1101,7 @@ class Instance(pulumi.CustomResource):
         $ pulumi import scaleway:databases/instance:Instance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
@@ -1202,6 +1205,7 @@ class Instance(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:databases/instance:Instance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceArgs args: The arguments to use to populate this resource's properties.

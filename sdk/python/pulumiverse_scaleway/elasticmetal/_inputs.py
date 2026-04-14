@@ -29,28 +29,23 @@ __all__ = [
     'ServerPrivateNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ServerIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    ServerIpArgsDict: TypeAlias = Mapping[str, Any]
+class ServerIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class ServerIpArgs:
@@ -123,26 +118,23 @@ class ServerIpArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ServerIpv4ArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    ServerIpv4ArgsDict: TypeAlias = Mapping[str, Any]
+class ServerIpv4ArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class ServerIpv4Args:
@@ -215,26 +207,23 @@ class ServerIpv4Args:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ServerIpv6ArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    ServerIpv6ArgsDict: TypeAlias = Mapping[str, Any]
+class ServerIpv6ArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class ServerIpv6Args:
@@ -307,22 +296,19 @@ class ServerIpv6Args:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class ServerOptionArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
-        """
-        expires_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The auto expiration date for compatible options
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the server.
-        """
-elif False:
-    ServerOptionArgsDict: TypeAlias = Mapping[str, Any]
+class ServerOptionArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
+    """
+    expires_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The auto expiration date for compatible options
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the server.
+    """
 
 @pulumi.input_type
 class ServerOptionArgs:
@@ -378,18 +364,15 @@ class ServerOptionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-elif False:
-    ServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
 
 @pulumi.input_type
 class ServerPrivateIpArgs:
@@ -430,38 +413,35 @@ class ServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ServerPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The id of the private network to attach.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the private network.
-        """
-        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPAM IP IDs to assign to the server in the requested private network.
-        """
-        mapping_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Server-to-Private Network mapping.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private network status.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the private network.
-        """
-        vlan: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VLAN ID associated to the private network.
-        """
-elif False:
-    ServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The id of the private network to attach.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the private network.
+    """
+    ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPAM IP IDs to assign to the server in the requested private network.
+    """
+    mapping_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Server-to-Private Network mapping.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private network status.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the private network.
+    """
+    vlan: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VLAN ID associated to the private network.
+    """
 
 @pulumi.input_type
 class ServerPrivateNetworkArgs:

@@ -27,6 +27,7 @@ class MnqSnsCredentialsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqSnsCredentials resource.
+
         :param pulumi.Input[_builtins.str] name: The unique name of the SNS credentials.
         :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
@@ -101,6 +102,7 @@ class _MnqSnsCredentialsState:
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqSnsCredentials resources.
+
         :param pulumi.Input[_builtins.str] access_key: The ID of the key.
         :param pulumi.Input[_builtins.str] name: The unique name of the SNS credentials.
         :param pulumi.Input['MnqSnsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
@@ -242,6 +244,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
         $ pulumi import scaleway:index/mnqSnsCredentials:MnqSnsCredentials main fr-par/11111111111111111111111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The unique name of the SNS credentials.
@@ -286,6 +289,7 @@ class MnqSnsCredentials(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/mnqSnsCredentials:MnqSnsCredentials main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MnqSnsCredentialsArgs args: The arguments to use to populate this resource's properties.

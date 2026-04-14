@@ -26,6 +26,7 @@ class ContainerTokenArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ContainerToken resource.
+
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
@@ -123,6 +124,7 @@ class _ContainerTokenState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerToken resources.
+
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
                
                > Only one of `namespace_id` or `container_id` must be set.
@@ -273,6 +275,7 @@ class ContainerToken(pulumi.CustomResource):
         $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
@@ -322,6 +325,7 @@ class ContainerToken(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ContainerTokenArgs args: The arguments to use to populate this resource's properties.

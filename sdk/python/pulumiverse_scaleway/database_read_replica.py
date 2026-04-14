@@ -28,6 +28,7 @@ class DatabaseReadReplicaArgs:
                  same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DatabaseReadReplica resource.
+
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
@@ -121,6 +122,7 @@ class _DatabaseReadReplicaState:
                  same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DatabaseReadReplica resources.
+
         :param pulumi.Input['DatabaseReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
@@ -306,6 +308,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']] direct_access: Creates a direct access endpoint to rdb replica.
@@ -406,6 +409,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabaseReadReplicaArgs args: The arguments to use to populate this resource's properties.

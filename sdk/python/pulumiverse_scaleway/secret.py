@@ -32,6 +32,7 @@ class SecretArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Secret resource.
+
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
@@ -191,6 +192,7 @@ class _SecretState:
                  versions: Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
         :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
@@ -478,6 +480,7 @@ class Secret(pulumi.CustomResource):
         $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
@@ -547,6 +550,7 @@ class Secret(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretArgs args: The arguments to use to populate this resource's properties.

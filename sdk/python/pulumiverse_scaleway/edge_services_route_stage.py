@@ -28,6 +28,7 @@ class EdgeServicesRouteStageArgs:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesRouteStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
@@ -117,6 +118,7 @@ class _EdgeServicesRouteStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesRouteStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -364,6 +366,7 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
@@ -499,6 +502,7 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesRouteStageArgs args: The arguments to use to populate this resource's properties.

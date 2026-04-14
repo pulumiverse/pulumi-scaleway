@@ -33,6 +33,7 @@ class BucketArgs:
                  versioning: Optional[pulumi.Input['BucketVersioningArgs']] = None):
         """
         The set of arguments for constructing a Bucket resource.
+
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
@@ -217,6 +218,7 @@ class _BucketState:
                  versioning: Optional[pulumi.Input['BucketVersioningArgs']] = None):
         """
         Input properties used for looking up and filtering Bucket resources.
+
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
@@ -535,6 +537,7 @@ class Bucket(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
@@ -662,6 +665,7 @@ class Bucket(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketArgs args: The arguments to use to populate this resource's properties.

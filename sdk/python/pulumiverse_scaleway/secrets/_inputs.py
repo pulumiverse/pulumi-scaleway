@@ -21,24 +21,19 @@ __all__ = [
     'SecretVersionArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SecretEphemeralPolicyArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
-        """
-        expires_once_accessed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        True if the secret version expires after a single user access.
-        """
-        ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
-        """
-elif False:
-    SecretEphemeralPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SecretEphemeralPolicyArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+    """
+    expires_once_accessed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    True if the secret version expires after a single user access.
+    """
+    ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+    """
 
 @pulumi.input_type
 class SecretEphemeralPolicyArgs:
@@ -94,38 +89,35 @@ class SecretEphemeralPolicyArgs:
         pulumi.set(self, "ttl", value)
 
 
-if not MYPY:
-    class SecretVersionArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date and time of the secret's creation (in RFC 3339 format).
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description of the secret (e.g. `my-new-description`).
-        """
-        latest: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Returns true if the version is the latest.
-        """
-        revision: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The revision of secret version
-        """
-        secret_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret ID associated with this version
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the secret.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date and time of the secret's last update (in RFC 3339 format).
-        """
-elif False:
-    SecretVersionArgsDict: TypeAlias = Mapping[str, Any]
+class SecretVersionArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Date and time of the secret's creation (in RFC 3339 format).
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the secret (e.g. `my-new-description`).
+    """
+    latest: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Returns true if the version is the latest.
+    """
+    revision: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The revision of secret version
+    """
+    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret ID associated with this version
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the secret.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Date and time of the secret's last update (in RFC 3339 format).
+    """
 
 @pulumi.input_type
 class SecretVersionArgs:

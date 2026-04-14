@@ -30,6 +30,7 @@ class SnsTopicArgs:
                  sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnsTopic resource.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] secret_key: The secret key of the SNS credentials.
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
@@ -184,6 +185,7 @@ class _SnsTopicState:
                  sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnsTopic resources.
+
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
         :param pulumi.Input[_builtins.str] arn: The ARN of the topic
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication.
@@ -404,6 +406,7 @@ class SnsTopic(pulumi.CustomResource):
         $ pulumi import scaleway:mnq/snsTopic:SnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The access key of the SNS credentials.
@@ -456,6 +459,7 @@ class SnsTopic(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:mnq/snsTopic:SnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnsTopicArgs args: The arguments to use to populate this resource's properties.

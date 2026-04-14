@@ -35,6 +35,7 @@ class SecurityGroupArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityGroup resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the security group.
         :param pulumi.Input[_builtins.bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         :param pulumi.Input[_builtins.bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
@@ -238,6 +239,7 @@ class _SecurityGroupState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroup resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the security group.
         :param pulumi.Input[_builtins.bool] enable_default_security: Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         :param pulumi.Input[_builtins.bool] external_rules: A boolean to specify whether to use instance_security_group_rules.
@@ -550,6 +552,7 @@ class SecurityGroup(pulumi.CustomResource):
         $ pulumi import scaleway:instance/securityGroup:SecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the security group.
@@ -664,6 +667,7 @@ class SecurityGroup(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:instance/securityGroup:SecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityGroupArgs args: The arguments to use to populate this resource's properties.

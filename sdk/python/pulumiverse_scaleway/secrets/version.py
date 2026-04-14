@@ -27,6 +27,7 @@ class VersionArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Version resource.
+
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
         :param pulumi.Input[_builtins.str] data: The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -136,6 +137,7 @@ class _VersionState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Version resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] data: The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -348,6 +350,7 @@ class Version(pulumi.CustomResource):
         $ pulumi import scaleway:secrets/version:Version main fr-par/11111111-1111-1111-1111-111111111111/2
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] data: The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
@@ -407,6 +410,7 @@ class Version(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:secrets/version:Version main fr-par/11111111-1111-1111-1111-111111111111/2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VersionArgs args: The arguments to use to populate this resource's properties.

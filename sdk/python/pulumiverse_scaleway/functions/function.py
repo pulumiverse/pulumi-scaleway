@@ -42,6 +42,7 @@ class FunctionArgs:
                  zip_hash: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Function resource.
+
         :param pulumi.Input[_builtins.str] handler: Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
         :param pulumi.Input[_builtins.str] namespace_id: The Functions namespace ID of the function.
                
@@ -393,6 +394,7 @@ class _FunctionState:
                  zip_hash: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
+
         :param pulumi.Input[_builtins.int] cpu_limit: The CPU limit in mVCPU for your function.
         :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         :param pulumi.Input[_builtins.str] description: The description of the function.
@@ -890,6 +892,7 @@ class Function(pulumi.CustomResource):
         $ pulumi import scaleway:functions/function:Function main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] deploy: Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
@@ -1021,6 +1024,7 @@ class Function(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:functions/function:Function main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionArgs args: The arguments to use to populate this resource's properties.

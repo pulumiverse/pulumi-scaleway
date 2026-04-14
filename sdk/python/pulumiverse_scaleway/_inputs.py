@@ -281,20 +281,15 @@ __all__ = [
     'GetIpamIpsResourceArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AppleSiliconServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    AppleSiliconServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class AppleSiliconServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class AppleSiliconServerPrivateIpArgs:
@@ -335,34 +330,31 @@ class AppleSiliconServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class AppleSiliconServerPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The private network ID
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the private network was created.
-        """
-        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPAM IP IDs to attach to the server.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The current status of the private network.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the private network was last updated.
-        """
-        vlan: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VLAN ID associated with the private network.
-        """
-elif False:
-    AppleSiliconServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class AppleSiliconServerPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The private network ID
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the private network was created.
+    """
+    ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPAM IP IDs to attach to the server.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The current status of the private network.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the private network was last updated.
+    """
+    vlan: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VLAN ID associated with the private network.
+    """
 
 @pulumi.input_type
 class AppleSiliconServerPrivateNetworkArgs:
@@ -466,26 +458,23 @@ class AppleSiliconServerPrivateNetworkArgs:
         pulumi.set(self, "vlan", value)
 
 
-if not MYPY:
-    class BaremetalServerIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    BaremetalServerIpArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class BaremetalServerIpArgs:
@@ -558,26 +547,23 @@ class BaremetalServerIpArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class BaremetalServerIpv4ArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    BaremetalServerIpv4ArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerIpv4ArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class BaremetalServerIpv4Args:
@@ -650,26 +636,23 @@ class BaremetalServerIpv4Args:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class BaremetalServerIpv6ArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-        reverse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse of the IPv6.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the IPv6.
-        """
-elif False:
-    BaremetalServerIpv6ArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerIpv6ArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
+    reverse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse of the IPv6.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the IPv6.
+    """
 
 @pulumi.input_type
 class BaremetalServerIpv6Args:
@@ -742,22 +725,19 @@ class BaremetalServerIpv6Args:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class BaremetalServerOptionArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
-        """
-        expires_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The auto expiration date for compatible options
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the server.
-        """
-elif False:
-    BaremetalServerOptionArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerOptionArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
+    """
+    expires_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The auto expiration date for compatible options
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the server.
+    """
 
 @pulumi.input_type
 class BaremetalServerOptionArgs:
@@ -813,18 +793,15 @@ class BaremetalServerOptionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class BaremetalServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IPv6.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv6.
-        """
-elif False:
-    BaremetalServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IPv6.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv6.
+    """
 
 @pulumi.input_type
 class BaremetalServerPrivateIpArgs:
@@ -865,38 +842,35 @@ class BaremetalServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class BaremetalServerPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The id of the private network to attach.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the private network.
-        """
-        ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPAM IP IDs to assign to the server in the requested private network.
-        """
-        mapping_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Server-to-Private Network mapping.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private network status.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the private network.
-        """
-        vlan: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The VLAN ID associated to the private network.
-        """
-elif False:
-    BaremetalServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class BaremetalServerPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The id of the private network to attach.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the private network.
+    """
+    ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPAM IP IDs to assign to the server in the requested private network.
+    """
+    mapping_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Server-to-Private Network mapping.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private network status.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the private network.
+    """
+    vlan: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The VLAN ID associated to the private network.
+    """
 
 @pulumi.input_type
 class BaremetalServerPrivateNetworkArgs:
@@ -1016,18 +990,15 @@ class BaremetalServerPrivateNetworkArgs:
         pulumi.set(self, "vlan", value)
 
 
-if not MYPY:
-    class BlockSnapshotExportArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        The name of the bucket where the QCOW file will be saved.
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        The desired key (path) for the QCOW file within the bucket.
-        """
-elif False:
-    BlockSnapshotExportArgsDict: TypeAlias = Mapping[str, Any]
+class BlockSnapshotExportArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    The name of the bucket where the QCOW file will be saved.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    The desired key (path) for the QCOW file within the bucket.
+    """
 
 @pulumi.input_type
 class BlockSnapshotExportArgs:
@@ -1066,18 +1037,15 @@ class BlockSnapshotExportArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class BlockSnapshotImportArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        The name of the bucket containing the QCOW file.
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        The key of the QCOW file within the bucket.
-        """
-elif False:
-    BlockSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+class BlockSnapshotImportArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    The name of the bucket containing the QCOW file.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    The key of the QCOW file within the bucket.
+    """
 
 @pulumi.input_type
 class BlockSnapshotImportArgs:
@@ -1116,14 +1084,11 @@ class BlockSnapshotImportArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class CockpitAlertManagerContactPointArgsDict(TypedDict):
-        email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Email addresses for the alert receivers
-        """
-elif False:
-    CockpitAlertManagerContactPointArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitAlertManagerContactPointArgsDict(TypedDict):
+    email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Email addresses for the alert receivers
+    """
 
 @pulumi.input_type
 class CockpitAlertManagerContactPointArgs:
@@ -1148,30 +1113,27 @@ class CockpitAlertManagerContactPointArgs:
         pulumi.set(self, "email", value)
 
 
-if not MYPY:
-    class CockpitEndpointArgsDict(TypedDict):
-        alertmanager_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        """
-        grafana_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for Grafana.
-        """
-        logs_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        metrics_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        traces_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-elif False:
-    CockpitEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitEndpointArgsDict(TypedDict):
+    alertmanager_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+    """
+    grafana_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for Grafana.
+    """
+    logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
+    metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
+    traces_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
+    """
 
 @pulumi.input_type
 class CockpitEndpointArgs:
@@ -1260,18 +1222,15 @@ class CockpitEndpointArgs:
         pulumi.set(self, "traces_url", value)
 
 
-if not MYPY:
-    class CockpitPushUrlArgsDict(TypedDict):
-        push_logs_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Push URL for logs (Grafana Loki)
-        """
-        push_metrics_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Push URL for metrics (Grafana Mimir)
-        """
-elif False:
-    CockpitPushUrlArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitPushUrlArgsDict(TypedDict):
+    push_logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Push URL for logs (Grafana Loki)
+    """
+    push_metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Push URL for metrics (Grafana Mimir)
+    """
 
 @pulumi.input_type
 class CockpitPushUrlArgs:
@@ -1312,46 +1271,43 @@ class CockpitPushUrlArgs:
         pulumi.set(self, "push_metrics_url", value)
 
 
-if not MYPY:
-    class CockpitTokenScopesArgsDict(TypedDict):
-        query_logs: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query logs.
-        """
-        query_metrics: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query metrics.
-        """
-        query_traces: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to query traces.
-        """
-        setup_alerts: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up alerts.
-        """
-        setup_logs_rules: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up logs rules.
-        """
-        setup_metrics_rules: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to set up metrics rules.
-        """
-        write_logs: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write logs.
-        """
-        write_metrics: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write metrics.
-        """
-        write_traces: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Permission to write traces.
-        """
-elif False:
-    CockpitTokenScopesArgsDict: TypeAlias = Mapping[str, Any]
+class CockpitTokenScopesArgsDict(TypedDict):
+    query_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query logs.
+    """
+    query_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query metrics.
+    """
+    query_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to query traces.
+    """
+    setup_alerts: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up alerts.
+    """
+    setup_logs_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up logs rules.
+    """
+    setup_metrics_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to set up metrics rules.
+    """
+    write_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write logs.
+    """
+    write_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write metrics.
+    """
+    write_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Permission to write traces.
+    """
 
 @pulumi.input_type
 class CockpitTokenScopesArgs:
@@ -1504,22 +1460,19 @@ class CockpitTokenScopesArgs:
         pulumi.set(self, "write_traces", value)
 
 
-if not MYPY:
-    class ContainerHealthCheckArgsDict(TypedDict):
-        failure_threshold: pulumi.Input[_builtins.int]
-        """
-        Number of consecutive health check failures before considering the container unhealthy.
-        """
-        https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]
-        """
-        HTTP health check configuration.
-        """
-        interval: pulumi.Input[_builtins.str]
-        """
-        Period between health checks (in seconds).
-        """
-elif False:
-    ContainerHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerHealthCheckArgsDict(TypedDict):
+    failure_threshold: pulumi.Input[_builtins.int]
+    """
+    Number of consecutive health check failures before considering the container unhealthy.
+    """
+    https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]
+    """
+    HTTP health check configuration.
+    """
+    interval: pulumi.Input[_builtins.str]
+    """
+    Period between health checks (in seconds).
+    """
 
 @pulumi.input_type
 class ContainerHealthCheckArgs:
@@ -1573,14 +1526,11 @@ class ContainerHealthCheckArgs:
         pulumi.set(self, "interval", value)
 
 
-if not MYPY:
-    class ContainerHealthCheckHttpArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Path to use for the HTTP health check.
-        """
-elif False:
-    ContainerHealthCheckHttpArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerHealthCheckHttpArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Path to use for the HTTP health check.
+    """
 
 @pulumi.input_type
 class ContainerHealthCheckHttpArgs:
@@ -1604,22 +1554,19 @@ class ContainerHealthCheckHttpArgs:
         pulumi.set(self, "path", value)
 
 
-if not MYPY:
-    class ContainerScalingOptionArgsDict(TypedDict):
-        concurrent_requests_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the number of concurrent requests being processed per container instance.
-        """
-        cpu_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the CPU usage of a container instance.
-        """
-        memory_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the memory usage of a container instance.
-        """
-elif False:
-    ContainerScalingOptionArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerScalingOptionArgsDict(TypedDict):
+    concurrent_requests_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the number of concurrent requests being processed per container instance.
+    """
+    cpu_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the CPU usage of a container instance.
+    """
+    memory_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the memory usage of a container instance.
+    """
 
 @pulumi.input_type
 class ContainerScalingOptionArgs:
@@ -1676,26 +1623,23 @@ class ContainerScalingOptionArgs:
         pulumi.set(self, "memory_usage_threshold", value)
 
 
-if not MYPY:
-    class ContainerTriggerNatsArgsDict(TypedDict):
-        subject: pulumi.Input[_builtins.str]
-        """
-        The subject to listen to.
-        """
-        account_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        unique identifier of the Messaging and Queuing NATS account.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
-        """
-elif False:
-    ContainerTriggerNatsArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerTriggerNatsArgsDict(TypedDict):
+    subject: pulumi.Input[_builtins.str]
+    """
+    The subject to listen to.
+    """
+    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    unique identifier of the Messaging and Queuing NATS account.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class ContainerTriggerNatsArgs:
@@ -1767,26 +1711,23 @@ class ContainerTriggerNatsArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class ContainerTriggerSqsArgsDict(TypedDict):
-        queue: pulumi.Input[_builtins.str]
-        """
-        The name of the SQS queue.
-        """
-        namespace_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the Messaging and Queuing namespace. This argument is deprecated.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where SQS is enabled (defaults to provider `region`)
-        """
-elif False:
-    ContainerTriggerSqsArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerTriggerSqsArgsDict(TypedDict):
+    queue: pulumi.Input[_builtins.str]
+    """
+    The name of the SQS queue.
+    """
+    namespace_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the Messaging and Queuing namespace. This argument is deprecated.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where SQS is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class ContainerTriggerSqsArgs:
@@ -1862,18 +1803,15 @@ class ContainerTriggerSqsArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class DatabaseAclAclRuleArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A text describing this rule. Default description: `IP allowed`
-        """
-elif False:
-    DatabaseAclAclRuleArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseAclAclRuleArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A text describing this rule. Default description: `IP allowed`
+    """
 
 @pulumi.input_type
 class DatabaseAclAclRuleArgs:
@@ -1913,30 +1851,27 @@ class DatabaseAclAclRuleArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class DatabaseInstanceLoadBalancerArgsDict(TypedDict):
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-elif False:
-    DatabaseInstanceLoadBalancerArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstanceLoadBalancerArgsDict(TypedDict):
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
 
 @pulumi.input_type
 class DatabaseInstanceLoadBalancerArgs:
@@ -2025,18 +1960,15 @@ class DatabaseInstanceLoadBalancerArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class DatabaseInstanceLogsPolicyArgsDict(TypedDict):
-        max_age_retention: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The max age (in days) of remote logs to keep on the Database Instance
-        """
-        total_disk_retention: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The max disk size of remote logs to keep on the Database Instance.
-        """
-elif False:
-    DatabaseInstanceLogsPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstanceLogsPolicyArgsDict(TypedDict):
+    max_age_retention: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The max age (in days) of remote logs to keep on the Database Instance
+    """
+    total_disk_retention: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The max disk size of remote logs to keep on the Database Instance.
+    """
 
 @pulumi.input_type
 class DatabaseInstanceLogsPolicyArgs:
@@ -2077,18 +2009,15 @@ class DatabaseInstanceLogsPolicyArgs:
         pulumi.set(self, "total_disk_retention", value)
 
 
-if not MYPY:
-    class DatabaseInstancePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version ID to use in upgrade requests.
-        """
-elif False:
-    DatabaseInstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstancePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version ID to use in upgrade requests.
+    """
 
 @pulumi.input_type
 class DatabaseInstancePrivateIpArgs:
@@ -2129,46 +2058,43 @@ class DatabaseInstancePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class DatabaseInstancePrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The private network ID
-        """
-        enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether or not the private network endpoint should be configured with IPAM
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        ip_net: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP with the given mask within the private subnet
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The zone you want to attach the resource to
-        """
-elif False:
-    DatabaseInstancePrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstancePrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The private network ID
+    """
+    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether or not the private network endpoint should be configured with IPAM
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    ip_net: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP with the given mask within the private subnet
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The zone you want to attach the resource to
+    """
 
 @pulumi.input_type
 class DatabaseInstancePrivateNetworkArgs:
@@ -2320,22 +2246,19 @@ class DatabaseInstancePrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class DatabaseInstanceReadReplicaArgsDict(TypedDict):
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address on the network.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port in the Private Network.
-        """
-elif False:
-    DatabaseInstanceReadReplicaArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstanceReadReplicaArgsDict(TypedDict):
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address on the network.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port in the Private Network.
+    """
 
 @pulumi.input_type
 class DatabaseInstanceReadReplicaArgs:
@@ -2392,26 +2315,23 @@ class DatabaseInstanceReadReplicaArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class DatabaseInstanceUpgradableVersionArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version ID to use in upgrade requests.
-        """
-        minor_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Minor version string (e.g., `15.5.0`).
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Database Instance.
-        """
-        version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Version string (e.g., `15.5`).
-        """
-elif False:
-    DatabaseInstanceUpgradableVersionArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseInstanceUpgradableVersionArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version ID to use in upgrade requests.
+    """
+    minor_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Minor version string (e.g., `15.5.0`).
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Database Instance.
+    """
+    version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Version string (e.g., `15.5`).
+    """
 
 @pulumi.input_type
 class DatabaseInstanceUpgradableVersionArgs:
@@ -2484,30 +2404,27 @@ class DatabaseInstanceUpgradableVersionArgs:
         pulumi.set(self, "version", value)
 
 
-if not MYPY:
-    class DatabaseReadReplicaDirectAccessArgsDict(TypedDict):
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint of the Read Replica.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint. Only one of IP and hostname may be set.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    DatabaseReadReplicaDirectAccessArgsDict: TypeAlias = Mapping[str, Any]
+class DatabaseReadReplicaDirectAccessArgsDict(TypedDict):
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint of the Read Replica.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint. Only one of IP and hostname may be set.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class DatabaseReadReplicaDirectAccessArgs:
@@ -2596,48 +2513,45 @@ class DatabaseReadReplicaDirectAccessArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class DatabaseReadReplicaPrivateNetworkArgsDict(TypedDict):
-        private_network_id: pulumi.Input[_builtins.str]
-        """
-        UUID of the Private Netork to be connected to the Read Replica.
-        """
-        enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+class DatabaseReadReplicaPrivateNetworkArgsDict(TypedDict):
+    private_network_id: pulumi.Input[_builtins.str]
+    """
+    UUID of the Private Netork to be connected to the Read Replica.
+    """
+    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
-        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint of the Read Replica.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the endpoint. Only one of IP and hostname may be set.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-        service_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private network zone
-        """
-elif False:
-    DatabaseReadReplicaPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint of the Read Replica.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the endpoint. Only one of IP and hostname may be set.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
+    service_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private network zone
+    """
 
 @pulumi.input_type
 class DatabaseReadReplicaPrivateNetworkArgs:
@@ -2793,14 +2707,11 @@ class DatabaseReadReplicaPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class DomainRecordGeoIpArgsDict(TypedDict):
-        matches: pulumi.Input[Sequence[pulumi.Input['DomainRecordGeoIpMatchArgsDict']]]
-        """
-        The list of matches
-        """
-elif False:
-    DomainRecordGeoIpArgsDict: TypeAlias = Mapping[str, Any]
+class DomainRecordGeoIpArgsDict(TypedDict):
+    matches: pulumi.Input[Sequence[pulumi.Input['DomainRecordGeoIpMatchArgsDict']]]
+    """
+    The list of matches
+    """
 
 @pulumi.input_type
 class DomainRecordGeoIpArgs:
@@ -2824,22 +2735,19 @@ class DomainRecordGeoIpArgs:
         pulumi.set(self, "matches", value)
 
 
-if not MYPY:
-    class DomainRecordGeoIpMatchArgsDict(TypedDict):
-        data: pulumi.Input[_builtins.str]
-        """
-        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
-        """
-        continents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
-        """
-        countries: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
-        """
-elif False:
-    DomainRecordGeoIpMatchArgsDict: TypeAlias = Mapping[str, Any]
+class DomainRecordGeoIpMatchArgsDict(TypedDict):
+    data: pulumi.Input[_builtins.str]
+    """
+    The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+    """
+    continents: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
+    """
+    countries: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
+    """
 
 @pulumi.input_type
 class DomainRecordGeoIpMatchArgs:
@@ -2895,30 +2803,27 @@ class DomainRecordGeoIpMatchArgs:
         pulumi.set(self, "countries", value)
 
 
-if not MYPY:
-    class DomainRecordHttpServiceArgsDict(TypedDict):
-        ips: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        IPs to check
-        """
-        must_contain: pulumi.Input[_builtins.str]
-        """
-        Text to search
-        """
-        strategy: pulumi.Input[_builtins.str]
-        """
-        Strategy to return an IP from the IPs list
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        URL to match the must_contain text to validate an IP
-        """
-        user_agent: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User-agent used when checking the URL
-        """
-elif False:
-    DomainRecordHttpServiceArgsDict: TypeAlias = Mapping[str, Any]
+class DomainRecordHttpServiceArgsDict(TypedDict):
+    ips: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    IPs to check
+    """
+    must_contain: pulumi.Input[_builtins.str]
+    """
+    Text to search
+    """
+    strategy: pulumi.Input[_builtins.str]
+    """
+    Strategy to return an IP from the IPs list
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    URL to match the must_contain text to validate an IP
+    """
+    user_agent: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User-agent used when checking the URL
+    """
 
 @pulumi.input_type
 class DomainRecordHttpServiceArgs:
@@ -3003,18 +2908,15 @@ class DomainRecordHttpServiceArgs:
         pulumi.set(self, "user_agent", value)
 
 
-if not MYPY:
-    class DomainRecordViewArgsDict(TypedDict):
-        data: pulumi.Input[_builtins.str]
-        """
-        The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
-        """
-        subnet: pulumi.Input[_builtins.str]
-        """
-        The subnet of the view
-        """
-elif False:
-    DomainRecordViewArgsDict: TypeAlias = Mapping[str, Any]
+class DomainRecordViewArgsDict(TypedDict):
+    data: pulumi.Input[_builtins.str]
+    """
+    The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
+    """
+    subnet: pulumi.Input[_builtins.str]
+    """
+    The subnet of the view
+    """
 
 @pulumi.input_type
 class DomainRecordViewArgs:
@@ -3053,18 +2955,15 @@ class DomainRecordViewArgs:
         pulumi.set(self, "subnet", value)
 
 
-if not MYPY:
-    class DomainRecordWeightedArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        The weighted IP
-        """
-        weight: pulumi.Input[_builtins.int]
-        """
-        The weight of the IP
-        """
-elif False:
-    DomainRecordWeightedArgsDict: TypeAlias = Mapping[str, Any]
+class DomainRecordWeightedArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    The weighted IP
+    """
+    weight: pulumi.Input[_builtins.int]
+    """
+    The weight of the IP
+    """
 
 @pulumi.input_type
 class DomainRecordWeightedArgs:
@@ -3103,14 +3002,11 @@ class DomainRecordWeightedArgs:
         pulumi.set(self, "weight", value)
 
 
-if not MYPY:
-    class EdgeServicesBackendStageLbBackendConfigArgsDict(TypedDict):
-        lb_config: NotRequired[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict']]
-        """
-        The Load Balancer config.
-        """
-elif False:
-    EdgeServicesBackendStageLbBackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesBackendStageLbBackendConfigArgsDict(TypedDict):
+    lb_config: NotRequired[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict']]
+    """
+    The Load Balancer config.
+    """
 
 @pulumi.input_type
 class EdgeServicesBackendStageLbBackendConfigArgs:
@@ -3135,34 +3031,31 @@ class EdgeServicesBackendStageLbBackendConfigArgs:
         pulumi.set(self, "lb_config", value)
 
 
-if not MYPY:
-    class EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
-        domain_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
-        """
-        frontend_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the frontend.
-        """
-        has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to forward websocket requests to the load balancer.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Load Balancer.
-        """
-        is_ssl: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether the Load Balancer's frontend handles SSL connections.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone of the Load Balancer.
-        """
-elif False:
-    EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
+    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+    """
+    frontend_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the frontend.
+    """
+    has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to forward websocket requests to the load balancer.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Load Balancer.
+    """
+    is_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether the Load Balancer's frontend handles SSL connections.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone of the Load Balancer.
+    """
 
 @pulumi.input_type
 class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
@@ -3267,22 +3160,19 @@ class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class EdgeServicesBackendStageS3BackendConfigArgsDict(TypedDict):
-        bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the Bucket.
-        """
-        bucket_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the Bucket.
-        """
-        is_website: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether the bucket website feature is enabled.
-        """
-elif False:
-    EdgeServicesBackendStageS3BackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesBackendStageS3BackendConfigArgsDict(TypedDict):
+    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the Bucket.
+    """
+    bucket_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the Bucket.
+    """
+    is_website: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether the bucket website feature is enabled.
+    """
 
 @pulumi.input_type
 class EdgeServicesBackendStageS3BackendConfigArgs:
@@ -3339,22 +3229,19 @@ class EdgeServicesBackendStageS3BackendConfigArgs:
         pulumi.set(self, "is_website", value)
 
 
-if not MYPY:
-    class EdgeServicesCacheStagePurgeRequestArgsDict(TypedDict):
-        all: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to purge all content.
-        """
-        assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of asserts to purge.
-        """
-        pipeline_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The pipeline ID in which the purge request will be created.
-        """
-elif False:
-    EdgeServicesCacheStagePurgeRequestArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesCacheStagePurgeRequestArgsDict(TypedDict):
+    all: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to purge all content.
+    """
+    assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of asserts to purge.
+    """
+    pipeline_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The pipeline ID in which the purge request will be created.
+    """
 
 @pulumi.input_type
 class EdgeServicesCacheStagePurgeRequestArgs:
@@ -3411,22 +3298,19 @@ class EdgeServicesCacheStagePurgeRequestArgs:
         pulumi.set(self, "pipeline_id", value)
 
 
-if not MYPY:
-    class EdgeServicesRouteStageRuleArgsDict(TypedDict):
-        backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
-        """
-        rule_http_match: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgsDict']]
-        """
-        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
-        """
-        waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
-        """
-elif False:
-    EdgeServicesRouteStageRuleArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesRouteStageRuleArgsDict(TypedDict):
+    backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
+    """
+    rule_http_match: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgsDict']]
+    """
+    The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+    """
+    waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
+    """
 
 @pulumi.input_type
 class EdgeServicesRouteStageRuleArgs:
@@ -3483,22 +3367,19 @@ class EdgeServicesRouteStageRuleArgs:
         pulumi.set(self, "waf_stage_id", value)
 
 
-if not MYPY:
-    class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
-        host_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict']]
-        """
-        Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
-        """
-        method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
-        """
-        path_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict']]
-        """
-        HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
-        """
-elif False:
-    EdgeServicesRouteStageRuleRuleHttpMatchArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
+    host_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict']]
+    """
+    Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
+    """
+    method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+    """
+    path_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict']]
+    """
+    HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+    """
 
 @pulumi.input_type
 class EdgeServicesRouteStageRuleRuleHttpMatchArgs:
@@ -3555,18 +3436,15 @@ class EdgeServicesRouteStageRuleRuleHttpMatchArgs:
         pulumi.set(self, "path_filter", value)
 
 
-if not MYPY:
-    class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict(TypedDict):
-        host_filter_type: pulumi.Input[_builtins.str]
-        """
-        The type of filter to match for the host. Use the `regex` type.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value to be matched for the host.
-        """
-elif False:
-    EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict(TypedDict):
+    host_filter_type: pulumi.Input[_builtins.str]
+    """
+    The type of filter to match for the host. Use the `regex` type.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to be matched for the host.
+    """
 
 @pulumi.input_type
 class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs:
@@ -3605,18 +3483,15 @@ class EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict(TypedDict):
-        path_filter_type: pulumi.Input[_builtins.str]
-        """
-        The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The value to be matched for the HTTP URL path.
-        """
-elif False:
-    EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict(TypedDict):
+    path_filter_type: pulumi.Input[_builtins.str]
+    """
+    The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to be matched for the HTTP URL path.
+    """
 
 @pulumi.input_type
 class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs:
@@ -3655,18 +3530,15 @@ class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class EdgeServicesTlsStageSecretArgsDict(TypedDict):
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The region of the secret.
-        """
-        secret_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Secret
-        """
-elif False:
-    EdgeServicesTlsStageSecretArgsDict: TypeAlias = Mapping[str, Any]
+class EdgeServicesTlsStageSecretArgsDict(TypedDict):
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The region of the secret.
+    """
+    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Secret
+    """
 
 @pulumi.input_type
 class EdgeServicesTlsStageSecretArgs:
@@ -3707,26 +3579,23 @@ class EdgeServicesTlsStageSecretArgs:
         pulumi.set(self, "secret_id", value)
 
 
-if not MYPY:
-    class FunctionTriggerNatsArgsDict(TypedDict):
-        subject: pulumi.Input[_builtins.str]
-        """
-        The subject to listen to.
-        """
-        account_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        unique identifier of the Messaging and Queuing NATS account.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
-        """
-elif False:
-    FunctionTriggerNatsArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionTriggerNatsArgsDict(TypedDict):
+    subject: pulumi.Input[_builtins.str]
+    """
+    The subject to listen to.
+    """
+    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    unique identifier of the Messaging and Queuing NATS account.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class FunctionTriggerNatsArgs:
@@ -3798,26 +3667,23 @@ class FunctionTriggerNatsArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class FunctionTriggerSqsArgsDict(TypedDict):
-        queue: pulumi.Input[_builtins.str]
-        """
-        The name of the SQS queue.
-        """
-        namespace_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the Messaging and Queuing namespace. This argument is deprecated.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where SQS is enabled (defaults to provider `region`)
-        """
-elif False:
-    FunctionTriggerSqsArgsDict: TypeAlias = Mapping[str, Any]
+class FunctionTriggerSqsArgsDict(TypedDict):
+    queue: pulumi.Input[_builtins.str]
+    """
+    The name of the SQS queue.
+    """
+    namespace_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the Messaging and Queuing namespace. This argument is deprecated.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where SQS is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class FunctionTriggerSqsArgs:
@@ -3893,34 +3759,31 @@ class FunctionTriggerSqsArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class IamPolicyRuleArgsDict(TypedDict):
-        permission_set_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Names of permission sets bind to the rule.
-        """
-        condition: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The condition of the rule.
+class IamPolicyRuleArgsDict(TypedDict):
+    permission_set_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Names of permission sets bind to the rule.
+    """
+    condition: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The condition of the rule.
 
-        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
+    **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
-        ```shell
-        scw iam permission-set list
-        ```
-        """
-        organization_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
-        """
-        project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of project IDs scoped to the rule.
+    ```shell
+    scw iam permission-set list
+    ```
+    """
+    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
+    """
+    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of project IDs scoped to the rule.
 
-        > **Important** One `organization_id` or `project_ids` must be set per rule.
-        """
-elif False:
-    IamPolicyRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important** One `organization_id` or `project_ids` must be set per rule.
+    """
 
 @pulumi.input_type
 class IamPolicyRuleArgs:
@@ -4008,26 +3871,23 @@ class IamPolicyRuleArgs:
         pulumi.set(self, "project_ids", value)
 
 
-if not MYPY:
-    class InferenceDeploymentPrivateEndpointArgsDict(TypedDict):
-        disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable the authentication on the endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private network to use.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The URL of the endpoint.
-        """
-elif False:
-    InferenceDeploymentPrivateEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class InferenceDeploymentPrivateEndpointArgsDict(TypedDict):
+    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable the authentication on the endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private network to use.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The URL of the endpoint.
+    """
 
 @pulumi.input_type
 class InferenceDeploymentPrivateEndpointArgs:
@@ -4100,18 +3960,15 @@ class InferenceDeploymentPrivateEndpointArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class InferenceDeploymentPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-elif False:
-    InferenceDeploymentPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class InferenceDeploymentPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
 
 @pulumi.input_type
 class InferenceDeploymentPrivateIpArgs:
@@ -4152,26 +4009,23 @@ class InferenceDeploymentPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InferenceDeploymentPublicEndpointArgsDict(TypedDict):
-        disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable the authentication on the endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The id of the public endpoint.
-        """
-        is_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Enable or disable public endpoint.
-        """
-        url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        (Optional) The URL of the endpoint.
-        """
-elif False:
-    InferenceDeploymentPublicEndpointArgsDict: TypeAlias = Mapping[str, Any]
+class InferenceDeploymentPublicEndpointArgsDict(TypedDict):
+    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable the authentication on the endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The id of the public endpoint.
+    """
+    is_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable or disable public endpoint.
+    """
+    url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    (Optional) The URL of the endpoint.
+    """
 
 @pulumi.input_type
 class InferenceDeploymentPublicEndpointArgs:
@@ -4244,34 +4098,31 @@ class InferenceDeploymentPublicEndpointArgs:
         pulumi.set(self, "url", value)
 
 
-if not MYPY:
-    class InstanceImageAdditionalVolumeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the server containing the volume.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the image. If not provided it will be randomly generated.
-        """
-        server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Description of the server containing the volume (in case the image is a backup from a server).
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The size of the volume.
-        """
-        tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of tags to apply to the image.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
-        """
-elif False:
-    InstanceImageAdditionalVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceImageAdditionalVolumeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the server containing the volume.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the image. If not provided it will be randomly generated.
+    """
+    server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Description of the server containing the volume (in case the image is a backup from a server).
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The size of the volume.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of tags to apply to the image.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+    """
 
 @pulumi.input_type
 class InstanceImageAdditionalVolumeArgs:
@@ -4376,26 +4227,23 @@ class InstanceImageAdditionalVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class InstanceImageRootVolumeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the server containing the volume.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the image. If not provided it will be randomly generated.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The size of the volume.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
-        """
-elif False:
-    InstanceImageRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceImageRootVolumeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the server containing the volume.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the image. If not provided it will be randomly generated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The size of the volume.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+    """
 
 @pulumi.input_type
 class InstanceImageRootVolumeArgs:
@@ -4468,18 +4316,15 @@ class InstanceImageRootVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class InstancePrivateNicPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    InstancePrivateNicPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePrivateNicPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class InstancePrivateNicPrivateIpArgs:
@@ -4520,36 +4365,33 @@ class InstancePrivateNicPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstanceSecurityGroupInboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        The action to take when rule match. Possible values are: `accept` or `drop`.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
-        If no `port` nor `port_range` are specified, rule will apply to all port.
-        Only one of `port` and `port_range` should be specified.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
-        """
-elif False:
-    InstanceSecurityGroupInboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSecurityGroupInboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    The action to take when rule match. Possible values are: `accept` or `drop`.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+    If no `port` nor `port_range` are specified, rule will apply to all port.
+    Only one of `port` and `port_range` should be specified.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+    """
 
 @pulumi.input_type
 class InstanceSecurityGroupInboundRuleArgs:
@@ -4661,34 +4503,31 @@ class InstanceSecurityGroupInboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class InstanceSecurityGroupOutboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action when rule match request (drop or accept)
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Network port for this rule
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Protocol for this rule (TCP, UDP, ICMP or ANY)
-        """
-elif False:
-    InstanceSecurityGroupOutboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSecurityGroupOutboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action when rule match request (drop or accept)
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Network port for this rule
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Computed port range for this rule (e.g: 1-1024, 22-22)
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Protocol for this rule (TCP, UDP, ICMP or ANY)
+    """
 
 @pulumi.input_type
 class InstanceSecurityGroupOutboundRuleArgs:
@@ -4796,36 +4635,33 @@ class InstanceSecurityGroupOutboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class InstanceSecurityGroupRulesInboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        The action to take when rule match. Possible values are: `accept` or `drop`.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port this rule apply to. If no port is specified, rule will apply to all port.
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
-        If no `port` nor `port_range` are specified, rule will apply to all port.
-        Only one of `port` and `port_range` should be specified.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
-        """
-elif False:
-    InstanceSecurityGroupRulesInboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSecurityGroupRulesInboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    The action to take when rule match. Possible values are: `accept` or `drop`.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port this rule apply to. If no port is specified, rule will apply to all port.
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+    If no `port` nor `port_range` are specified, rule will apply to all port.
+    Only one of `port` and `port_range` should be specified.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+    """
 
 @pulumi.input_type
 class InstanceSecurityGroupRulesInboundRuleArgs:
@@ -4937,34 +4773,31 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class InstanceSecurityGroupRulesOutboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action when rule match request (drop or accept)
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Network port for this rule
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Protocol for this rule (TCP, UDP, ICMP or ANY)
-        """
-elif False:
-    InstanceSecurityGroupRulesOutboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSecurityGroupRulesOutboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action when rule match request (drop or accept)
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Network port for this rule
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Computed port range for this rule (e.g: 1-1024, 22-22)
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Protocol for this rule (TCP, UDP, ICMP or ANY)
+    """
 
 @pulumi.input_type
 class InstanceSecurityGroupRulesOutboundRuleArgs:
@@ -5072,18 +4905,15 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class InstanceServerFilesystemArgsDict(TypedDict):
-        filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The unique ID of the filesystem attached to the server.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The state of the filesystem
-        """
-elif False:
-    InstanceServerFilesystemArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceServerFilesystemArgsDict(TypedDict):
+    filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The unique ID of the filesystem attached to the server.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The state of the filesystem
+    """
 
 @pulumi.input_type
 class InstanceServerFilesystemArgs:
@@ -5124,18 +4954,15 @@ class InstanceServerFilesystemArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class InstanceServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    InstanceServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class InstanceServerPrivateIpArgs:
@@ -5176,30 +5003,27 @@ class InstanceServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class InstanceServerPrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The Private Network ID
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        MAC address of the NIC
-        """
-        pnic_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the NIC
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private NIC state
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone in which the server should be created.
-        """
-elif False:
-    InstanceServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceServerPrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The Private Network ID
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    MAC address of the NIC
+    """
+    pnic_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the NIC
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private NIC state
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone in which the server should be created.
+    """
 
 @pulumi.input_type
 class InstanceServerPrivateNetworkArgs:
@@ -5287,38 +5111,35 @@ class InstanceServerPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class InstanceServerPublicIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IP.
-        """
-        dynamic: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the IP is dynamic.
-        """
-        family: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address' family.
-        """
-        gateway: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP of the Gateway associated with the IP.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP.
-        """
-        netmask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The CIDR netmask of the IP.
-        """
-        provisioning_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The provisioning mode of the IP
-        """
-elif False:
-    InstanceServerPublicIpArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceServerPublicIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IP.
+    """
+    dynamic: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the IP is dynamic.
+    """
+    family: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address' family.
+    """
+    gateway: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP of the Gateway associated with the IP.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP.
+    """
+    netmask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The CIDR netmask of the IP.
+    """
+    provisioning_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The provisioning mode of the IP
+    """
 
 @pulumi.input_type
 class InstanceServerPublicIpArgs:
@@ -5439,44 +5260,41 @@ class InstanceServerPublicIpArgs:
         pulumi.set(self, "provisioning_mode", value)
 
 
-if not MYPY:
-    class InstanceServerRootVolumeArgsDict(TypedDict):
-        boot: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set the volume where the boot the server
-        """
-        delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Forces deletion of the root volume on instance termination.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the root volume.
-        """
-        sbs_iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+class InstanceServerRootVolumeArgsDict(TypedDict):
+    boot: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set the volume where the boot the server
+    """
+    delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Forces deletion of the root volume on instance termination.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the root volume.
+    """
+    sbs_iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
 
-        > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
-        It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
-        """
-        size_in_gb: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Size of the root volume in gigabytes.
-        To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
-        check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
-        Depending on `volume_type`, updates to this field may recreate a new resource.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
-        """
-elif False:
-    InstanceServerRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
+    It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
+    """
+    size_in_gb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Size of the root volume in gigabytes.
+    To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
+    check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
+    Depending on `volume_type`, updates to this field may recreate a new resource.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
+    """
 
 @pulumi.input_type
 class InstanceServerRootVolumeArgs:
@@ -5609,18 +5427,15 @@ class InstanceServerRootVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class InstanceSnapshotImportArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        Key of the object to import
-        """
-elif False:
-    InstanceSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceSnapshotImportArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Key of the object to import
+    """
 
 @pulumi.input_type
 class InstanceSnapshotImportArgs:
@@ -5659,18 +5474,15 @@ class InstanceSnapshotImportArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class IotDeviceCertificateArgsDict(TypedDict):
-        crt: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        X509 PEM encoded certificate of the device
-        """
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private key of the device, in case it is generated by Scaleway.
-        """
-elif False:
-    IotDeviceCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class IotDeviceCertificateArgsDict(TypedDict):
+    crt: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    X509 PEM encoded certificate of the device
+    """
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private key of the device, in case it is generated by Scaleway.
+    """
 
 @pulumi.input_type
 class IotDeviceCertificateArgs:
@@ -5711,18 +5523,15 @@ class IotDeviceCertificateArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class IotDeviceMessageFiltersArgsDict(TypedDict):
-        publish: NotRequired[pulumi.Input['IotDeviceMessageFiltersPublishArgsDict']]
-        """
-        Rules used to restrict topics the device can publish to.
-        """
-        subscribe: NotRequired[pulumi.Input['IotDeviceMessageFiltersSubscribeArgsDict']]
-        """
-        Rules used to restrict topics the device can subscribe to.
-        """
-elif False:
-    IotDeviceMessageFiltersArgsDict: TypeAlias = Mapping[str, Any]
+class IotDeviceMessageFiltersArgsDict(TypedDict):
+    publish: NotRequired[pulumi.Input['IotDeviceMessageFiltersPublishArgsDict']]
+    """
+    Rules used to restrict topics the device can publish to.
+    """
+    subscribe: NotRequired[pulumi.Input['IotDeviceMessageFiltersSubscribeArgsDict']]
+    """
+    Rules used to restrict topics the device can subscribe to.
+    """
 
 @pulumi.input_type
 class IotDeviceMessageFiltersArgs:
@@ -5763,18 +5572,15 @@ class IotDeviceMessageFiltersArgs:
         pulumi.set(self, "subscribe", value)
 
 
-if not MYPY:
-    class IotDeviceMessageFiltersPublishArgsDict(TypedDict):
-        policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Filtering policy (eg `accept` or `reject`)
-        """
-        topics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of topics to match (eg `foo/bar/+/baz/#`)
-        """
-elif False:
-    IotDeviceMessageFiltersPublishArgsDict: TypeAlias = Mapping[str, Any]
+class IotDeviceMessageFiltersPublishArgsDict(TypedDict):
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Filtering policy (eg `accept` or `reject`)
+    """
+    topics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of topics to match (eg `foo/bar/+/baz/#`)
+    """
 
 @pulumi.input_type
 class IotDeviceMessageFiltersPublishArgs:
@@ -5815,22 +5621,19 @@ class IotDeviceMessageFiltersPublishArgs:
         pulumi.set(self, "topics", value)
 
 
-if not MYPY:
-    class IotDeviceMessageFiltersSubscribeArgsDict(TypedDict):
-        policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Same as publish rules.
-        """
-        topics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Same as publish rules.
+class IotDeviceMessageFiltersSubscribeArgsDict(TypedDict):
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Same as publish rules.
+    """
+    topics: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Same as publish rules.
 
-        - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+    - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
 
-        > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
-        """
-elif False:
-    IotDeviceMessageFiltersSubscribeArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+    """
 
 @pulumi.input_type
 class IotDeviceMessageFiltersSubscribeArgs:
@@ -5879,34 +5682,31 @@ class IotDeviceMessageFiltersSubscribeArgs:
         pulumi.set(self, "topics", value)
 
 
-if not MYPY:
-    class IotRouteDatabaseArgsDict(TypedDict):
-        dbname: pulumi.Input[_builtins.str]
-        """
-        The database name (e.g. `measurements`).
-        """
-        host: pulumi.Input[_builtins.str]
-        """
-        The database hostname. Can be an IP or a FQDN.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        The database password.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        The database port (e.g. `5432`)
-        """
-        query: pulumi.Input[_builtins.str]
-        """
-        The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The database username.
-        """
-elif False:
-    IotRouteDatabaseArgsDict: TypeAlias = Mapping[str, Any]
+class IotRouteDatabaseArgsDict(TypedDict):
+    dbname: pulumi.Input[_builtins.str]
+    """
+    The database name (e.g. `measurements`).
+    """
+    host: pulumi.Input[_builtins.str]
+    """
+    The database hostname. Can be an IP or a FQDN.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    The database password.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    The database port (e.g. `5432`)
+    """
+    query: pulumi.Input[_builtins.str]
+    """
+    The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The database username.
+    """
 
 @pulumi.input_type
 class IotRouteDatabaseArgs:
@@ -6005,22 +5805,19 @@ class IotRouteDatabaseArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class IotRouteRestArgsDict(TypedDict):
-        headers: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
-        """
-        a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
-        """
-        uri: pulumi.Input[_builtins.str]
-        """
-        The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
-        """
-        verb: pulumi.Input[_builtins.str]
-        """
-        The HTTP Verb used to call Rest URI (e.g. `post`).
-        """
-elif False:
-    IotRouteRestArgsDict: TypeAlias = Mapping[str, Any]
+class IotRouteRestArgsDict(TypedDict):
+    headers: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]
+    """
+    a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
+    """
+    uri: pulumi.Input[_builtins.str]
+    """
+    The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
+    """
+    verb: pulumi.Input[_builtins.str]
+    """
+    The HTTP Verb used to call Rest URI (e.g. `post`).
+    """
 
 @pulumi.input_type
 class IotRouteRestArgs:
@@ -6074,26 +5871,23 @@ class IotRouteRestArgs:
         pulumi.set(self, "verb", value)
 
 
-if not MYPY:
-    class IotRouteS3ArgsDict(TypedDict):
-        bucket_name: pulumi.Input[_builtins.str]
-        """
-        The name of the S3 route's destination bucket (e.g. `my-object-storage`).
-        """
-        bucket_region: pulumi.Input[_builtins.str]
-        """
-        The region of the S3 route's destination bucket (e.g. `fr-par`).
-        """
-        strategy: pulumi.Input[_builtins.str]
-        """
-        How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
-        """
-        object_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The string to prefix object names with (e.g. `mykeyprefix-`).
-        """
-elif False:
-    IotRouteS3ArgsDict: TypeAlias = Mapping[str, Any]
+class IotRouteS3ArgsDict(TypedDict):
+    bucket_name: pulumi.Input[_builtins.str]
+    """
+    The name of the S3 route's destination bucket (e.g. `my-object-storage`).
+    """
+    bucket_region: pulumi.Input[_builtins.str]
+    """
+    The region of the S3 route's destination bucket (e.g. `fr-par`).
+    """
+    strategy: pulumi.Input[_builtins.str]
+    """
+    How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
+    """
+    object_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The string to prefix object names with (e.g. `mykeyprefix-`).
+    """
 
 @pulumi.input_type
 class IotRouteS3Args:
@@ -6163,18 +5957,15 @@ class IotRouteS3Args:
         pulumi.set(self, "object_prefix", value)
 
 
-if not MYPY:
-    class IpamIpCustomResourceArgsDict(TypedDict):
-        mac_address: pulumi.Input[_builtins.str]
-        """
-        The MAC address of the custom resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
-        """
-elif False:
-    IpamIpCustomResourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpamIpCustomResourceArgsDict(TypedDict):
+    mac_address: pulumi.Input[_builtins.str]
+    """
+    The MAC address of the custom resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    When the resource is in a Private Network, a DNS record is available to resolve the resource name.
+    """
 
 @pulumi.input_type
 class IpamIpCustomResourceArgs:
@@ -6214,26 +6005,23 @@ class IpamIpCustomResourceArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class IpamIpResourceArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the resource that the IP is attached to.
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The MAC address of the resource the IP is attached to.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the resource the IP is attached to.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of resource the IP is attached to.
-        """
-elif False:
-    IpamIpResourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpamIpResourceArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the resource that the IP is attached to.
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The MAC address of the resource the IP is attached to.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the resource the IP is attached to.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of resource the IP is attached to.
+    """
 
 @pulumi.input_type
 class IpamIpResourceArgs:
@@ -6306,20 +6094,17 @@ class IpamIpResourceArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class IpamIpReverseArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Request a specific IP in the specified source pool.
+class IpamIpReverseArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Request a specific IP in the specified source pool.
 
-        > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
-        """
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The reverse domain name.
-        """
-elif False:
-    IpamIpReverseArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
+    """
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The reverse domain name.
+    """
 
 @pulumi.input_type
 class IpamIpReverseArgs:
@@ -6364,22 +6149,19 @@ class IpamIpReverseArgs:
         pulumi.set(self, "hostname", value)
 
 
-if not MYPY:
-    class IpamIpSourceArgsDict(TypedDict):
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Private Network of the IP (if the IP is a private IP).
-        """
-        subnet_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Private Network subnet of the IP (if the IP is a private IP).
-        """
-        zonal: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
-        """
-elif False:
-    IpamIpSourceArgsDict: TypeAlias = Mapping[str, Any]
+class IpamIpSourceArgsDict(TypedDict):
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Private Network of the IP (if the IP is a private IP).
+    """
+    subnet_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Private Network subnet of the IP (if the IP is a private IP).
+    """
+    zonal: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
+    """
 
 @pulumi.input_type
 class IpamIpSourceArgs:
@@ -6436,18 +6218,15 @@ class IpamIpSourceArgs:
         pulumi.set(self, "zonal", value)
 
 
-if not MYPY:
-    class JobDefinitionCronArgsDict(TypedDict):
-        schedule: pulumi.Input[_builtins.str]
-        """
-        Cron format string.
-        """
-        timezone: pulumi.Input[_builtins.str]
-        """
-        The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-        """
-elif False:
-    JobDefinitionCronArgsDict: TypeAlias = Mapping[str, Any]
+class JobDefinitionCronArgsDict(TypedDict):
+    schedule: pulumi.Input[_builtins.str]
+    """
+    Cron format string.
+    """
+    timezone: pulumi.Input[_builtins.str]
+    """
+    The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    """
 
 @pulumi.input_type
 class JobDefinitionCronArgs:
@@ -6486,30 +6265,27 @@ class JobDefinitionCronArgs:
         pulumi.set(self, "timezone", value)
 
 
-if not MYPY:
-    class JobDefinitionSecretReferenceArgsDict(TypedDict):
-        secret_id: pulumi.Input[_builtins.str]
-        """
-        The secret unique identifier, it could be formatted as region/UUID or UUID. In case the region is passed, it must be the same as the job definition. You could reference the same secret multiple times in the same job definition.
-        """
-        environment: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        An environment variable containing the secret value. Must be specified if `file` is not specified.
-        """
-        file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The absolute file path where the secret will be mounted. Must be specified if `environment` is not specified.
-        """
-        secret_reference_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret reference UUID that is automatically generated by the provider.
-        """
-        secret_version: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret version.
-        """
-elif False:
-    JobDefinitionSecretReferenceArgsDict: TypeAlias = Mapping[str, Any]
+class JobDefinitionSecretReferenceArgsDict(TypedDict):
+    secret_id: pulumi.Input[_builtins.str]
+    """
+    The secret unique identifier, it could be formatted as region/UUID or UUID. In case the region is passed, it must be the same as the job definition. You could reference the same secret multiple times in the same job definition.
+    """
+    environment: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    An environment variable containing the secret value. Must be specified if `file` is not specified.
+    """
+    file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The absolute file path where the secret will be mounted. Must be specified if `environment` is not specified.
+    """
+    secret_reference_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret reference UUID that is automatically generated by the provider.
+    """
+    secret_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret version.
+    """
 
 @pulumi.input_type
 class JobDefinitionSecretReferenceArgs:
@@ -6597,18 +6373,15 @@ class JobDefinitionSecretReferenceArgs:
         pulumi.set(self, "secret_version", value)
 
 
-if not MYPY:
-    class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
-        rotation_period: pulumi.Input[_builtins.str]
-        """
-        – The period between key rotations (e.g., `"720h"` for 30 days).
-        """
-        next_rotation_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the next scheduled rotation.
-        """
-elif False:
-    KeyManagerKeyRotationPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
+    rotation_period: pulumi.Input[_builtins.str]
+    """
+    – The period between key rotations (e.g., `"720h"` for 30 days).
+    """
+    next_rotation_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the next scheduled rotation.
+    """
 
 @pulumi.input_type
 class KeyManagerKeyRotationPolicyArgs:
@@ -6648,23 +6421,20 @@ class KeyManagerKeyRotationPolicyArgs:
         pulumi.set(self, "next_rotation_at", value)
 
 
-if not MYPY:
-    class KubernetesClusterAutoUpgradeArgsDict(TypedDict):
-        enable: pulumi.Input[_builtins.bool]
-        """
-        Set to `true` to enable Kubernetes patch version auto upgrades.
-        > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
-        """
-        maintenance_window_day: pulumi.Input[_builtins.str]
-        """
-        The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
-        """
-        maintenance_window_start_hour: pulumi.Input[_builtins.int]
-        """
-        The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
-        """
-elif False:
-    KubernetesClusterAutoUpgradeArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesClusterAutoUpgradeArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.bool]
+    """
+    Set to `true` to enable Kubernetes patch version auto upgrades.
+    > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+    """
+    maintenance_window_day: pulumi.Input[_builtins.str]
+    """
+    The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+    """
+    maintenance_window_start_hour: pulumi.Input[_builtins.int]
+    """
+    The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+    """
 
 @pulumi.input_type
 class KubernetesClusterAutoUpgradeArgs:
@@ -6720,50 +6490,47 @@ class KubernetesClusterAutoUpgradeArgs:
         pulumi.set(self, "maintenance_window_start_hour", value)
 
 
-if not MYPY:
-    class KubernetesClusterAutoscalerConfigArgsDict(TypedDict):
-        balance_similar_node_groups: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Detect similar node groups and balance the number of nodes between them.
-        """
-        disable_scale_down: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disables the scale down feature of the autoscaler.
-        """
-        estimator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of resource estimator to be used in scale up.
-        """
-        expander: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of node group expander to be used in scale up.
-        """
-        expendable_pods_priority_cutoff: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
-        """
-        ignore_daemonsets_utilization: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Ignore DaemonSet pods when calculating resource utilization for scaling down.
-        """
-        max_graceful_termination_sec: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
-        """
-        scale_down_delay_after_add: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How long after scale up that scale down evaluation resumes.
-        """
-        scale_down_unneeded_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How long a node should be unneeded before it is eligible for scale down.
-        """
-        scale_down_utilization_threshold: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
-        """
-elif False:
-    KubernetesClusterAutoscalerConfigArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesClusterAutoscalerConfigArgsDict(TypedDict):
+    balance_similar_node_groups: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Detect similar node groups and balance the number of nodes between them.
+    """
+    disable_scale_down: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disables the scale down feature of the autoscaler.
+    """
+    estimator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of resource estimator to be used in scale up.
+    """
+    expander: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of node group expander to be used in scale up.
+    """
+    expendable_pods_priority_cutoff: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+    """
+    ignore_daemonsets_utilization: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Ignore DaemonSet pods when calculating resource utilization for scaling down.
+    """
+    max_graceful_termination_sec: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
+    """
+    scale_down_delay_after_add: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How long after scale up that scale down evaluation resumes.
+    """
+    scale_down_unneeded_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How long a node should be unneeded before it is eligible for scale down.
+    """
+    scale_down_utilization_threshold: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+    """
 
 @pulumi.input_type
 class KubernetesClusterAutoscalerConfigArgs:
@@ -6932,26 +6699,23 @@ class KubernetesClusterAutoscalerConfigArgs:
         pulumi.set(self, "scale_down_utilization_threshold", value)
 
 
-if not MYPY:
-    class KubernetesClusterKubeconfigArgsDict(TypedDict):
-        cluster_ca_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The CA certificate of the Kubernetes API server.
-        """
-        config_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The raw kubeconfig file.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Kubernetes API server.
-        """
-        token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The token to connect to the Kubernetes API server.
-        """
-elif False:
-    KubernetesClusterKubeconfigArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesClusterKubeconfigArgsDict(TypedDict):
+    cluster_ca_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The CA certificate of the Kubernetes API server.
+    """
+    config_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The raw kubeconfig file.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Kubernetes API server.
+    """
+    token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The token to connect to the Kubernetes API server.
+    """
 
 @pulumi.input_type
 class KubernetesClusterKubeconfigArgs:
@@ -7024,38 +6788,35 @@ class KubernetesClusterKubeconfigArgs:
         pulumi.set(self, "token", value)
 
 
-if not MYPY:
-    class KubernetesClusterOpenIdConnectConfigArgsDict(TypedDict):
-        client_id: pulumi.Input[_builtins.str]
-        """
-        A client id that all tokens must be issued for
-        """
-        issuer_url: pulumi.Input[_builtins.str]
-        """
-        URL of the provider which allows the API server to discover public signing keys
-        """
-        groups_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        JWT claim to use as the user's group
-        """
-        groups_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix prepended to group claims
-        """
-        required_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Multiple key=value pairs that describes a required claim in the ID Token
-        """
-        username_claim: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        JWT claim to use as the user name
-        """
-        username_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix prepended to username
-        """
-elif False:
-    KubernetesClusterOpenIdConnectConfigArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesClusterOpenIdConnectConfigArgsDict(TypedDict):
+    client_id: pulumi.Input[_builtins.str]
+    """
+    A client id that all tokens must be issued for
+    """
+    issuer_url: pulumi.Input[_builtins.str]
+    """
+    URL of the provider which allows the API server to discover public signing keys
+    """
+    groups_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    JWT claim to use as the user's group
+    """
+    groups_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix prepended to group claims
+    """
+    required_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Multiple key=value pairs that describes a required claim in the ID Token
+    """
+    username_claim: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    JWT claim to use as the user name
+    """
+    username_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix prepended to username
+    """
 
 @pulumi.input_type
 class KubernetesClusterOpenIdConnectConfigArgs:
@@ -7174,36 +6935,33 @@ class KubernetesClusterOpenIdConnectConfigArgs:
         pulumi.set(self, "username_prefix", value)
 
 
-if not MYPY:
-    class KubernetesNodePoolNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name for the pool.
+class KubernetesNodePoolNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name for the pool.
 
-        > **Important:** Updates to this field will recreate a new resource.
-        """
-        private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodePrivateIpArgsDict']]]]
-        """
-        The list of private IPv4 and IPv6 addresses associated with the node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
-        """
-        public_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the node.
-        """
-elif False:
-    KubernetesNodePoolNodeArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** Updates to this field will recreate a new resource.
+    """
+    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolNodePrivateIpArgsDict']]]]
+    """
+    The list of private IPv4 and IPv6 addresses associated with the node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+    """
+    public_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the node.
+    """
 
 @pulumi.input_type
 class KubernetesNodePoolNodeArgs:
@@ -7320,18 +7078,15 @@ class KubernetesNodePoolNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class KubernetesNodePoolNodePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    KubernetesNodePoolNodePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesNodePoolNodePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class KubernetesNodePoolNodePrivateIpArgs:
@@ -7372,18 +7127,15 @@ class KubernetesNodePoolNodePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class KubernetesNodePoolUpgradePolicyArgsDict(TypedDict):
-        max_surge: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum number of nodes to be created during the upgrade
-        """
-        max_unavailable: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum number of nodes that can be not ready at the same time
-        """
-elif False:
-    KubernetesNodePoolUpgradePolicyArgsDict: TypeAlias = Mapping[str, Any]
+class KubernetesNodePoolUpgradePolicyArgsDict(TypedDict):
+    max_surge: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum number of nodes to be created during the upgrade
+    """
+    max_unavailable: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum number of nodes that can be not ready at the same time
+    """
 
 @pulumi.input_type
 class KubernetesNodePoolUpgradePolicyArgs:
@@ -7424,18 +7176,15 @@ class KubernetesNodePoolUpgradePolicyArgs:
         pulumi.set(self, "max_unavailable", value)
 
 
-if not MYPY:
-    class LoadbalancerAclActionArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        The action type. Possible values are: `allow` or `deny` or `redirect`.
-        """
-        redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerAclActionRedirectArgsDict']]]]
-        """
-        Redirect parameters when using an ACL with `redirect` action.
-        """
-elif False:
-    LoadbalancerAclActionArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerAclActionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The action type. Possible values are: `allow` or `deny` or `redirect`.
+    """
+    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerAclActionRedirectArgsDict']]]]
+    """
+    Redirect parameters when using an ACL with `redirect` action.
+    """
 
 @pulumi.input_type
 class LoadbalancerAclActionArgs:
@@ -7475,22 +7224,19 @@ class LoadbalancerAclActionArgs:
         pulumi.set(self, "redirects", value)
 
 
-if not MYPY:
-    class LoadbalancerAclActionRedirectArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        """
-        target: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The redirect type. Possible values are: `location` or `scheme`.
-        """
-elif False:
-    LoadbalancerAclActionRedirectArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerAclActionRedirectArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+    """
+    target: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The redirect type. Possible values are: `location` or `scheme`.
+    """
 
 @pulumi.input_type
 class LoadbalancerAclActionRedirectArgs:
@@ -7547,37 +7293,34 @@ class LoadbalancerAclActionRedirectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class LoadbalancerAclMatchArgsDict(TypedDict):
-        http_filter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
-        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        """
-        http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
-        """
-        http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
-        """
-        invert: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set to `true`, the condition will be of type "unless".
-        """
-        ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-        ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-elif False:
-    LoadbalancerAclMatchArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerAclMatchArgsDict(TypedDict):
+    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+    It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+    Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+    """
+    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+    """
+    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of possible values to match for the given HTTP filter.
+    Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+    """
+    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set to `true`, the condition will be of type "unless".
+    """
+    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
+    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
 
 @pulumi.input_type
 class LoadbalancerAclMatchArgs:
@@ -7688,26 +7431,23 @@ class LoadbalancerAclMatchArgs:
         pulumi.set(self, "ips_edge_services", value)
 
 
-if not MYPY:
-    class LoadbalancerBackendHealthCheckHttpArgsDict(TypedDict):
-        uri: pulumi.Input[_builtins.str]
-        """
-        The HTTP endpoint URL to call for HC requests
-        """
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The expected HTTP status code
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP host header to use for HC requests
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP method to use for HC requests
-        """
-elif False:
-    LoadbalancerBackendHealthCheckHttpArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerBackendHealthCheckHttpArgsDict(TypedDict):
+    uri: pulumi.Input[_builtins.str]
+    """
+    The HTTP endpoint URL to call for HC requests
+    """
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expected HTTP status code
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP host header to use for HC requests
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP method to use for HC requests
+    """
 
 @pulumi.input_type
 class LoadbalancerBackendHealthCheckHttpArgs:
@@ -7779,30 +7519,27 @@ class LoadbalancerBackendHealthCheckHttpArgs:
         pulumi.set(self, "method", value)
 
 
-if not MYPY:
-    class LoadbalancerBackendHealthCheckHttpsArgsDict(TypedDict):
-        uri: pulumi.Input[_builtins.str]
-        """
-        The HTTPS endpoint URL to call for HC requests
-        """
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The expected HTTP status code
-        """
-        host_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP host header to use for HC requests
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP method to use for HC requests
-        """
-        sni: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The SNI to use for HC requests over SSL
-        """
-elif False:
-    LoadbalancerBackendHealthCheckHttpsArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerBackendHealthCheckHttpsArgsDict(TypedDict):
+    uri: pulumi.Input[_builtins.str]
+    """
+    The HTTPS endpoint URL to call for HC requests
+    """
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The expected HTTP status code
+    """
+    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP host header to use for HC requests
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP method to use for HC requests
+    """
+    sni: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The SNI to use for HC requests over SSL
+    """
 
 @pulumi.input_type
 class LoadbalancerBackendHealthCheckHttpsArgs:
@@ -7890,11 +7627,8 @@ class LoadbalancerBackendHealthCheckHttpsArgs:
         pulumi.set(self, "sni", value)
 
 
-if not MYPY:
-    class LoadbalancerBackendHealthCheckTcpArgsDict(TypedDict):
-        pass
-elif False:
-    LoadbalancerBackendHealthCheckTcpArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerBackendHealthCheckTcpArgsDict(TypedDict):
+    pass
 
 @pulumi.input_type
 class LoadbalancerBackendHealthCheckTcpArgs:
@@ -7902,14 +7636,11 @@ class LoadbalancerBackendHealthCheckTcpArgs:
         pass
 
 
-if not MYPY:
-    class LoadbalancerCertificateCustomCertificateArgsDict(TypedDict):
-        certificate_chain: pulumi.Input[_builtins.str]
-        """
-        The full PEM-formatted certificate chain
-        """
-elif False:
-    LoadbalancerCertificateCustomCertificateArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerCertificateCustomCertificateArgsDict(TypedDict):
+    certificate_chain: pulumi.Input[_builtins.str]
+    """
+    The full PEM-formatted certificate chain
+    """
 
 @pulumi.input_type
 class LoadbalancerCertificateCustomCertificateArgs:
@@ -7933,18 +7664,15 @@ class LoadbalancerCertificateCustomCertificateArgs:
         pulumi.set(self, "certificate_chain", value)
 
 
-if not MYPY:
-    class LoadbalancerCertificateLetsencryptArgsDict(TypedDict):
-        common_name: pulumi.Input[_builtins.str]
-        """
-        Main domain of the certificate
-        """
-        subject_alternative_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The alternative domain names of the certificate
-        """
-elif False:
-    LoadbalancerCertificateLetsencryptArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerCertificateLetsencryptArgsDict(TypedDict):
+    common_name: pulumi.Input[_builtins.str]
+    """
+    Main domain of the certificate
+    """
+    subject_alternative_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The alternative domain names of the certificate
+    """
 
 @pulumi.input_type
 class LoadbalancerCertificateLetsencryptArgs:
@@ -7984,34 +7712,31 @@ class LoadbalancerCertificateLetsencryptArgs:
         pulumi.set(self, "subject_alternative_names", value)
 
 
-if not MYPY:
-    class LoadbalancerFrontendAclArgsDict(TypedDict):
-        action: pulumi.Input['LoadbalancerFrontendAclActionArgsDict']
-        """
-        Action to undertake when an ACL filter matches.
-        """
-        match: pulumi.Input['LoadbalancerFrontendAclMatchArgsDict']
-        """
-        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the frontend was created.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description of the ACL
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ACL name. If not provided it will be randomly generated.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time the frontend resource was updated.
-        """
-elif False:
-    LoadbalancerFrontendAclArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerFrontendAclArgsDict(TypedDict):
+    action: pulumi.Input['LoadbalancerFrontendAclActionArgsDict']
+    """
+    Action to undertake when an ACL filter matches.
+    """
+    match: pulumi.Input['LoadbalancerFrontendAclMatchArgsDict']
+    """
+    The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the frontend was created.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the ACL
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ACL name. If not provided it will be randomly generated.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time the frontend resource was updated.
+    """
 
 @pulumi.input_type
 class LoadbalancerFrontendAclArgs:
@@ -8114,18 +7839,15 @@ class LoadbalancerFrontendAclArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class LoadbalancerFrontendAclActionArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
-        """
-        The action type. Possible values are: `allow` or `deny` or `redirect`.
-        """
-        redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgsDict']]]]
-        """
-        Redirect parameters when using an ACL with `redirect` action.
-        """
-elif False:
-    LoadbalancerFrontendAclActionArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerFrontendAclActionArgsDict(TypedDict):
+    type: pulumi.Input[_builtins.str]
+    """
+    The action type. Possible values are: `allow` or `deny` or `redirect`.
+    """
+    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgsDict']]]]
+    """
+    Redirect parameters when using an ACL with `redirect` action.
+    """
 
 @pulumi.input_type
 class LoadbalancerFrontendAclActionArgs:
@@ -8165,22 +7887,19 @@ class LoadbalancerFrontendAclActionArgs:
         pulumi.set(self, "redirects", value)
 
 
-if not MYPY:
-    class LoadbalancerFrontendAclActionRedirectArgsDict(TypedDict):
-        code: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        """
-        target: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The redirect type. Possible values are: `location` or `scheme`.
-        """
-elif False:
-    LoadbalancerFrontendAclActionRedirectArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerFrontendAclActionRedirectArgsDict(TypedDict):
+    code: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+    """
+    target: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The redirect type. Possible values are: `location` or `scheme`.
+    """
 
 @pulumi.input_type
 class LoadbalancerFrontendAclActionRedirectArgs:
@@ -8237,37 +7956,34 @@ class LoadbalancerFrontendAclActionRedirectArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class LoadbalancerFrontendAclMatchArgsDict(TypedDict):
-        http_filter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
-        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
-        """
-        http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
-        """
-        http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
-        """
-        invert: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set to `true`, the condition will be of type "unless".
-        """
-        ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-        ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
-        """
-elif False:
-    LoadbalancerFrontendAclMatchArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerFrontendAclMatchArgsDict(TypedDict):
+    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+    It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+    Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+    """
+    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+    """
+    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of possible values to match for the given HTTP filter.
+    Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+    """
+    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set to `true`, the condition will be of type "unless".
+    """
+    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
+    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+    """
 
 @pulumi.input_type
 class LoadbalancerFrontendAclMatchArgs:
@@ -8378,18 +8094,15 @@ class LoadbalancerFrontendAclMatchArgs:
         pulumi.set(self, "ips_edge_services", value)
 
 
-if not MYPY:
-    class LoadbalancerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    LoadbalancerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class LoadbalancerPrivateIpArgs:
@@ -8430,35 +8143,32 @@ class LoadbalancerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class LoadbalancerPrivateNetworkArgsDict(TypedDict):
-        private_network_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the Private Network to attach to.
-        - > **Important:** Updates to `private_network` will recreate the attachment.
-        """
-        dhcp_config: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true if you want to let DHCP assign IP addresses
-        """
-        ipam_ids: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        """
-        static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the private network connection.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone of the Load Balancer.
-        """
-elif False:
-    LoadbalancerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class LoadbalancerPrivateNetworkArgsDict(TypedDict):
+    private_network_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Private Network to attach to.
+    - > **Important:** Updates to `private_network` will recreate the attachment.
+    """
+    dhcp_config: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true if you want to let DHCP assign IP addresses
+    """
+    ipam_ids: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
+    """
+    static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the private network connection.
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone of the Load Balancer.
+    """
 
 @pulumi.input_type
 class LoadbalancerPrivateNetworkArgs:
@@ -8572,22 +8282,19 @@ class LoadbalancerPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class MnqSnsCredentialsPermissionsArgsDict(TypedDict):
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can manage the associated resource(s).
-        """
-        can_publish: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can publish messages to the service.
-        """
-        can_receive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can receive messages from the service.
-        """
-elif False:
-    MnqSnsCredentialsPermissionsArgsDict: TypeAlias = Mapping[str, Any]
+class MnqSnsCredentialsPermissionsArgsDict(TypedDict):
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can manage the associated resource(s).
+    """
+    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can publish messages to the service.
+    """
+    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can receive messages from the service.
+    """
 
 @pulumi.input_type
 class MnqSnsCredentialsPermissionsArgs:
@@ -8644,22 +8351,19 @@ class MnqSnsCredentialsPermissionsArgs:
         pulumi.set(self, "can_receive", value)
 
 
-if not MYPY:
-    class MnqSqsCredentialsPermissionsArgsDict(TypedDict):
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can manage the associated resource(s).
-        """
-        can_publish: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can publish messages to the service.
-        """
-        can_receive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can receive messages from the service.
-        """
-elif False:
-    MnqSqsCredentialsPermissionsArgsDict: TypeAlias = Mapping[str, Any]
+class MnqSqsCredentialsPermissionsArgsDict(TypedDict):
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can manage the associated resource(s).
+    """
+    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can publish messages to the service.
+    """
+    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can receive messages from the service.
+    """
 
 @pulumi.input_type
 class MnqSqsCredentialsPermissionsArgs:
@@ -8716,18 +8420,15 @@ class MnqSqsCredentialsPermissionsArgs:
         pulumi.set(self, "can_receive", value)
 
 
-if not MYPY:
-    class MnqSqsQueueDeadLetterQueueArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The ID of the queue with format `{region/{project-id}/{queue-name}`
-        """
-        max_receive_count: pulumi.Input[_builtins.int]
-        """
-        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
-        """
-elif False:
-    MnqSqsQueueDeadLetterQueueArgsDict: TypeAlias = Mapping[str, Any]
+class MnqSqsQueueDeadLetterQueueArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The ID of the queue with format `{region/{project-id}/{queue-name}`
+    """
+    max_receive_count: pulumi.Input[_builtins.int]
+    """
+    The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+    """
 
 @pulumi.input_type
 class MnqSqsQueueDeadLetterQueueArgs:
@@ -8766,18 +8467,15 @@ class MnqSqsQueueDeadLetterQueueArgs:
         pulumi.set(self, "max_receive_count", value)
 
 
-if not MYPY:
-    class MongoDbInstancePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-elif False:
-    MongoDbInstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class MongoDbInstancePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
 
 @pulumi.input_type
 class MongoDbInstancePrivateIpArgs:
@@ -8818,30 +8516,27 @@ class MongoDbInstancePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class MongoDbInstancePrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the Private Network.
-        """
-        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of DNS records for your endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IP addresses for your endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    MongoDbInstancePrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class MongoDbInstancePrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Private Network.
+    """
+    dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of DNS records for your endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IP addresses for your endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class MongoDbInstancePrivateNetworkArgs:
@@ -8929,22 +8624,19 @@ class MongoDbInstancePrivateNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class MongoDbInstancePublicNetworkArgsDict(TypedDict):
-        dns_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The DNS record of your endpoint
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    MongoDbInstancePublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class MongoDbInstancePublicNetworkArgsDict(TypedDict):
+    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The DNS record of your endpoint
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class MongoDbInstancePublicNetworkArgs:
@@ -9001,18 +8693,15 @@ class MongoDbInstancePublicNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ObjectBucketAclAccessControlPolicyArgsDict(TypedDict):
-        owner: pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgsDict']
-        """
-        Configuration block of the bucket project owner's display organization ID.
-        """
-        grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgsDict']]]]
-        """
-        Grant
-        """
-elif False:
-    ObjectBucketAclAccessControlPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketAclAccessControlPolicyArgsDict(TypedDict):
+    owner: pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgsDict']
+    """
+    Configuration block of the bucket project owner's display organization ID.
+    """
+    grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgsDict']]]]
+    """
+    Grant
+    """
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyArgs:
@@ -9052,18 +8741,15 @@ class ObjectBucketAclAccessControlPolicyArgs:
         pulumi.set(self, "grants", value)
 
 
-if not MYPY:
-    class ObjectBucketAclAccessControlPolicyGrantArgsDict(TypedDict):
-        permission: pulumi.Input[_builtins.str]
-        """
-        Logging permissions assigned to the grantee for the bucket.
-        """
-        grantee: NotRequired[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict']]
-        """
-        Configuration block for the project being granted permissions.
-        """
-elif False:
-    ObjectBucketAclAccessControlPolicyGrantArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketAclAccessControlPolicyGrantArgsDict(TypedDict):
+    permission: pulumi.Input[_builtins.str]
+    """
+    Logging permissions assigned to the grantee for the bucket.
+    """
+    grantee: NotRequired[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict']]
+    """
+    Configuration block for the project being granted permissions.
+    """
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyGrantArgs:
@@ -9103,26 +8789,23 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
         pulumi.set(self, "grantee", value)
 
 
-if not MYPY:
-    class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Display name of the grantee to grant access to.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of grantee. Valid values: `CanonicalUser`, `Group`
-        """
-        uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The uri of the grantee if you are granting permissions to a predefined group.
-        """
-elif False:
-    ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Display name of the grantee to grant access to.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The `region`, `bucket` and `acl` separated by (`/`).
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of grantee. Valid values: `CanonicalUser`, `Group`
+    """
+    uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The uri of the grantee if you are granting permissions to a predefined group.
+    """
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
@@ -9195,18 +8878,15 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
         pulumi.set(self, "uri", value)
 
 
-if not MYPY:
-    class ObjectBucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The project ID of the grantee.
-        """
-elif False:
-    ObjectBucketAclAccessControlPolicyOwnerArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The `region`, `bucket` and `acl` separated by (`/`).
+    """
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The project ID of the grantee.
+    """
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyOwnerArgs:
@@ -9246,30 +8926,27 @@ class ObjectBucketAclAccessControlPolicyOwnerArgs:
         pulumi.set(self, "display_name", value)
 
 
-if not MYPY:
-    class ObjectBucketCorsRuleArgsDict(TypedDict):
-        allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
-        """
-        allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Specifies which origins are allowed.
-        """
-        allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies which headers are allowed.
-        """
-        expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies header exposure in the response.
-        """
-        max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies time in seconds that the browser can cache the response for a preflight request.
-        """
-elif False:
-    ObjectBucketCorsRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketCorsRuleArgsDict(TypedDict):
+    allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
+    """
+    allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Specifies which origins are allowed.
+    """
+    allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies which headers are allowed.
+    """
+    expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies header exposure in the response.
+    """
+    max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies time in seconds that the browser can cache the response for a preflight request.
+    """
 
 @pulumi.input_type
 class ObjectBucketCorsRuleArgs:
@@ -9356,40 +9033,37 @@ class ObjectBucketCorsRuleArgs:
         pulumi.set(self, "max_age_seconds", value)
 
 
-if not MYPY:
-    class ObjectBucketLifecycleRuleArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
-        """
-        abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+class ObjectBucketLifecycleRuleArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+    """
+    abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
-        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
-        """
-        expiration: NotRequired[pulumi.Input['ObjectBucketLifecycleRuleExpirationArgsDict']]
-        """
-        Specifies a period in the object's expire
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
-        """
-        prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Object key prefix identifying one or more objects to which the rule applies.
-        """
-        tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Specifies object tags key and value.
-        """
-        transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgsDict']]]]
-        """
-        Define when objects transition to another storage class
-        """
-elif False:
-    ObjectBucketLifecycleRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+    """
+    expiration: NotRequired[pulumi.Input['ObjectBucketLifecycleRuleExpirationArgsDict']]
+    """
+    Specifies a period in the object's expire
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+    """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Object key prefix identifying one or more objects to which the rule applies.
+    """
+    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Specifies object tags key and value.
+    """
+    transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgsDict']]]]
+    """
+    Define when objects transition to another storage class
+    """
 
 @pulumi.input_type
 class ObjectBucketLifecycleRuleArgs:
@@ -9513,14 +9187,11 @@ class ObjectBucketLifecycleRuleArgs:
         pulumi.set(self, "transitions", value)
 
 
-if not MYPY:
-    class ObjectBucketLifecycleRuleExpirationArgsDict(TypedDict):
-        days: pulumi.Input[_builtins.int]
-        """
-        Specifies the number of days after object creation when the specific rule action takes effect.
-        """
-elif False:
-    ObjectBucketLifecycleRuleExpirationArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketLifecycleRuleExpirationArgsDict(TypedDict):
+    days: pulumi.Input[_builtins.int]
+    """
+    Specifies the number of days after object creation when the specific rule action takes effect.
+    """
 
 @pulumi.input_type
 class ObjectBucketLifecycleRuleExpirationArgs:
@@ -9544,26 +9215,23 @@ class ObjectBucketLifecycleRuleExpirationArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
-        storage_class: pulumi.Input[_builtins.str]
-        """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 
 
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 
 
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        """
-        days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Specifies the number of days after object creation when the specific rule action takes effect.
-        """
-elif False:
-    ObjectBucketLifecycleRuleTransitionArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+    """
+    days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Specifies the number of days after object creation when the specific rule action takes effect.
+    """
 
 @pulumi.input_type
 class ObjectBucketLifecycleRuleTransitionArgs:
@@ -9619,14 +9287,11 @@ class ObjectBucketLifecycleRuleTransitionArgs:
         pulumi.set(self, "days", value)
 
 
-if not MYPY:
-    class ObjectBucketLockConfigurationRuleArgsDict(TypedDict):
-        default_retention: pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict']
-        """
-        The default retention for the lock.
-        """
-elif False:
-    ObjectBucketLockConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketLockConfigurationRuleArgsDict(TypedDict):
+    default_retention: pulumi.Input['ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict']
+    """
+    The default retention for the lock.
+    """
 
 @pulumi.input_type
 class ObjectBucketLockConfigurationRuleArgs:
@@ -9650,22 +9315,19 @@ class ObjectBucketLockConfigurationRuleArgs:
         pulumi.set(self, "default_retention", value)
 
 
-if not MYPY:
-    class ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
-        mode: pulumi.Input[_builtins.str]
-        """
-        The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
-        """
-        days: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of days you want to specify for the default retention period.
-        """
-        years: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of years you want to specify for the default retention period.
-        """
-elif False:
-    ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
+    mode: pulumi.Input[_builtins.str]
+    """
+    The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
+    """
+    days: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of days you want to specify for the default retention period.
+    """
+    years: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of years you want to specify for the default retention period.
+    """
 
 @pulumi.input_type
 class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
@@ -9721,14 +9383,11 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
         pulumi.set(self, "years", value)
 
 
-if not MYPY:
-    class ObjectBucketVersioningArgsDict(TypedDict):
-        enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
-        """
-elif False:
-    ObjectBucketVersioningArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketVersioningArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+    """
 
 @pulumi.input_type
 class ObjectBucketVersioningArgs:
@@ -9753,14 +9412,11 @@ class ObjectBucketVersioningArgs:
         pulumi.set(self, "enabled", value)
 
 
-if not MYPY:
-    class ObjectBucketWebsiteConfigurationErrorDocumentArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
-        """
-        The object key name to use when a 4XX class error occurs.
-        """
-elif False:
-    ObjectBucketWebsiteConfigurationErrorDocumentArgsDict: TypeAlias = Mapping[str, Any]
+class ObjectBucketWebsiteConfigurationErrorDocumentArgsDict(TypedDict):
+    key: pulumi.Input[_builtins.str]
+    """
+    The object key name to use when a 4XX class error occurs.
+    """
 
 @pulumi.input_type
 class ObjectBucketWebsiteConfigurationErrorDocumentArgs:
@@ -9784,16 +9440,13 @@ class ObjectBucketWebsiteConfigurationErrorDocumentArgs:
         pulumi.set(self, "key", value)
 
 
-if not MYPY:
-    class ObjectBucketWebsiteConfigurationIndexDocumentArgsDict(TypedDict):
-        suffix: pulumi.Input[_builtins.str]
-        """
-        A suffix that is appended to a request targeting a specific directory on the website endpoint.
+class ObjectBucketWebsiteConfigurationIndexDocumentArgsDict(TypedDict):
+    suffix: pulumi.Input[_builtins.str]
+    """
+    A suffix that is appended to a request targeting a specific directory on the website endpoint.
 
-        > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
-        """
-elif False:
-    ObjectBucketWebsiteConfigurationIndexDocumentArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+    """
 
 @pulumi.input_type
 class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
@@ -9821,24 +9474,21 @@ class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
         pulumi.set(self, "suffix", value)
 
 
-if not MYPY:
-    class RedisClusterAclArgsDict(TypedDict):
-        ip: pulumi.Input[_builtins.str]
-        """
-        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A text describing this rule. Default description: `Allow IP`
+class RedisClusterAclArgsDict(TypedDict):
+    ip: pulumi.Input[_builtins.str]
+    """
+    The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A text describing this rule. Default description: `Allow IP`
 
-        > The `acl` conflict with `private_network`. Only one should be specified.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    RedisClusterAclArgsDict: TypeAlias = Mapping[str, Any]
+    > The `acl` conflict with `private_network`. Only one should be specified.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class RedisClusterAclArgs:
@@ -9898,18 +9548,15 @@ class RedisClusterAclArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class RedisClusterPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    RedisClusterPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class RedisClusterPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class RedisClusterPrivateIpArgs:
@@ -9950,54 +9597,51 @@ class RedisClusterPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class RedisClusterPrivateNetworkArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The UUID of the Private Network resource.
-        """
-        endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the endpoint.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPv4 addresses of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-        service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
-        Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-        scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
-        If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
-        > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
+class RedisClusterPrivateNetworkArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The UUID of the Private Network resource.
+    """
+    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the endpoint.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPv4 addresses of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
+    service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
+    Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+    scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+    If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+    > **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
 
-        > The `private_network` conflicts with `acl`. Only one should be specified.
+    > The `private_network` conflicts with `acl`. Only one should be specified.
 
-        > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
+    > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 
-        - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-        block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
-        Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
-        by side.
+    - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+    block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
+    Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+    by side.
 
-        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
-        able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
-        configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
-        require updating the Private Network to add IPs.
-        Your `service_ips` must be listed as follows:
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone in which the
-        Redis™ cluster should be created.
-        """
-elif False:
-    RedisClusterPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+    - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+    able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+    configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+    require updating the Private Network to add IPs.
+    Your `service_ips` must be listed as follows:
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone in which the
+    Redis™ cluster should be created.
+    """
 
 @pulumi.input_type
 class RedisClusterPrivateNetworkArgs:
@@ -10141,22 +9785,19 @@ class RedisClusterPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class RedisClusterPublicNetworkArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of IPv4 addresses of the endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port of the endpoint.
-        """
-elif False:
-    RedisClusterPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class RedisClusterPublicNetworkArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
+    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of IPv4 addresses of the endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port of the endpoint.
+    """
 
 @pulumi.input_type
 class RedisClusterPublicNetworkArgs:
@@ -10213,22 +9854,19 @@ class RedisClusterPublicNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class SecretEphemeralPolicyArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
-        """
-        expires_once_accessed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        True if the secret version expires after a single user access.
-        """
-        ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
-        """
-elif False:
-    SecretEphemeralPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class SecretEphemeralPolicyArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+    """
+    expires_once_accessed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    True if the secret version expires after a single user access.
+    """
+    ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+    """
 
 @pulumi.input_type
 class SecretEphemeralPolicyArgs:
@@ -10284,38 +9922,35 @@ class SecretEphemeralPolicyArgs:
         pulumi.set(self, "ttl", value)
 
 
-if not MYPY:
-    class SecretVersionArgsDict(TypedDict):
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date and time of the secret's creation (in RFC 3339 format).
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Description of the secret (e.g. `my-new-description`).
-        """
-        latest: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Returns true if the version is the latest.
-        """
-        revision: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The revision of secret version
-        """
-        secret_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret ID associated with this version
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the secret.
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date and time of the secret's last update (in RFC 3339 format).
-        """
-elif False:
-    SecretVersionArgsDict: TypeAlias = Mapping[str, Any]
+class SecretVersionArgsDict(TypedDict):
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Date and time of the secret's creation (in RFC 3339 format).
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Description of the secret (e.g. `my-new-description`).
+    """
+    latest: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Returns true if the version is the latest.
+    """
+    revision: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The revision of secret version
+    """
+    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret ID associated with this version
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the secret.
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Date and time of the secret's last update (in RFC 3339 format).
+    """
 
 @pulumi.input_type
 class SecretVersionArgs:
@@ -10436,30 +10071,27 @@ class SecretVersionArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class TemDomainReputationArgsDict(TypedDict):
-        previous_score: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The previously-calculated domain's reputation score.
-        """
-        previous_scored_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time and date the previous reputation score was calculated.
-        """
-        score: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        A range from 0 to 100 that determines your domain's reputation score.
-        """
-        scored_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time and date the score was calculated.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the domain's reputation.
-        """
-elif False:
-    TemDomainReputationArgsDict: TypeAlias = Mapping[str, Any]
+class TemDomainReputationArgsDict(TypedDict):
+    previous_score: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The previously-calculated domain's reputation score.
+    """
+    previous_scored_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time and date the previous reputation score was calculated.
+    """
+    score: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    A range from 0 to 100 that determines your domain's reputation score.
+    """
+    scored_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time and date the score was calculated.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the domain's reputation.
+    """
 
 @pulumi.input_type
 class TemDomainReputationArgs:
@@ -10548,18 +10180,15 @@ class TemDomainReputationArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class VpcGatewayNetworkIpamConfigArgsDict(TypedDict):
-        ipam_ip_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
-        """
-        push_default_route: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to enable the default route on the GatewayNetwork.
-        """
-elif False:
-    VpcGatewayNetworkIpamConfigArgsDict: TypeAlias = Mapping[str, Any]
+class VpcGatewayNetworkIpamConfigArgsDict(TypedDict):
+    ipam_ip_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+    """
+    push_default_route: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to enable the default route on the GatewayNetwork.
+    """
 
 @pulumi.input_type
 class VpcGatewayNetworkIpamConfigArgs:
@@ -10600,18 +10229,15 @@ class VpcGatewayNetworkIpamConfigArgs:
         pulumi.set(self, "push_default_route", value)
 
 
-if not MYPY:
-    class VpcGatewayNetworkPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    VpcGatewayNetworkPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class VpcGatewayNetworkPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class VpcGatewayNetworkPrivateIpArgs:
@@ -10652,38 +10278,35 @@ class VpcGatewayNetworkPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class VpcPrivateNetworkIpv4SubnetArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the subnet.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet ID.
-        """
-        prefix_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
-        """
-        subnet: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet CIDR.
-        """
-        subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the subnet.
-        """
-elif False:
-    VpcPrivateNetworkIpv4SubnetArgsDict: TypeAlias = Mapping[str, Any]
+class VpcPrivateNetworkIpv4SubnetArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the subnet.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet ID.
+    """
+    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+    """
+    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet CIDR.
+    """
+    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the subnet.
+    """
 
 @pulumi.input_type
 class VpcPrivateNetworkIpv4SubnetArgs:
@@ -10804,38 +10427,35 @@ class VpcPrivateNetworkIpv4SubnetArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class VpcPrivateNetworkIpv6SubnetArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the subnet.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet ID.
-        """
-        prefix_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
-        """
-        subnet: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet CIDR.
-        """
-        subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the subnet.
-        """
-elif False:
-    VpcPrivateNetworkIpv6SubnetArgsDict: TypeAlias = Mapping[str, Any]
+class VpcPrivateNetworkIpv6SubnetArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the subnet.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet ID.
+    """
+    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+    """
+    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet CIDR.
+    """
+    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the subnet.
+    """
 
 @pulumi.input_type
 class VpcPrivateNetworkIpv6SubnetArgs:
@@ -10956,18 +10576,15 @@ class VpcPrivateNetworkIpv6SubnetArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class WebhostingCpanelUrlArgsDict(TypedDict):
-        dashboard: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Dashboard.
-        """
-        webmail: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Webmail interface.
-        """
-elif False:
-    WebhostingCpanelUrlArgsDict: TypeAlias = Mapping[str, Any]
+class WebhostingCpanelUrlArgsDict(TypedDict):
+    dashboard: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Dashboard.
+    """
+    webmail: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Webmail interface.
+    """
 
 @pulumi.input_type
 class WebhostingCpanelUrlArgs:
@@ -11008,22 +10625,19 @@ class WebhostingCpanelUrlArgs:
         pulumi.set(self, "webmail", value)
 
 
-if not MYPY:
-    class WebhostingNameServerArgsDict(TypedDict):
-        hostname: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Hostname of the server
-        """
-        is_default: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether or not the webhosting is the default one
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The hosting status.
-        """
-elif False:
-    WebhostingNameServerArgsDict: TypeAlias = Mapping[str, Any]
+class WebhostingNameServerArgsDict(TypedDict):
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Hostname of the server
+    """
+    is_default: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether or not the webhosting is the default one
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The hosting status.
+    """
 
 @pulumi.input_type
 class WebhostingNameServerArgs:
@@ -11080,18 +10694,15 @@ class WebhostingNameServerArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class WebhostingOptionArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option ID.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option name.
-        """
-elif False:
-    WebhostingOptionArgsDict: TypeAlias = Mapping[str, Any]
+class WebhostingOptionArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option ID.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option name.
+    """
 
 @pulumi.input_type
 class WebhostingOptionArgs:
@@ -11132,34 +10743,31 @@ class WebhostingOptionArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class WebhostingRecordArgsDict(TypedDict):
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The option name.
-        """
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Priority of DNS records associated with the webhosting.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The hosting status.
-        """
-        ttl: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Time to live in seconds of the record
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of the DNS record
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Value of the DNS record
-        """
-elif False:
-    WebhostingRecordArgsDict: TypeAlias = Mapping[str, Any]
+class WebhostingRecordArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The option name.
+    """
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Priority of DNS records associated with the webhosting.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The hosting status.
+    """
+    ttl: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Time to live in seconds of the record
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of the DNS record
+    """
+    value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Value of the DNS record
+    """
 
 @pulumi.input_type
 class WebhostingRecordArgs:
@@ -11264,22 +10872,19 @@ class WebhostingRecordArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetIpamIpResourceArgsDict(TypedDict):
-        type: _builtins.str
-        """
-        The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        """
-        id: NotRequired[_builtins.str]
-        """
-        The ID of the resource that the IP is attached to.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        The name of the resource the IP is attached to.
-        """
-elif False:
-    GetIpamIpResourceArgsDict: TypeAlias = Mapping[str, Any]
+class GetIpamIpResourceArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    """
+    id: NotRequired[_builtins.str]
+    """
+    The ID of the resource that the IP is attached to.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    The name of the resource the IP is attached to.
+    """
 
 @pulumi.input_type
 class GetIpamIpResourceArgs:
@@ -11335,22 +10940,19 @@ class GetIpamIpResourceArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class GetIpamIpsResourceArgsDict(TypedDict):
-        type: _builtins.str
-        """
-        The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        """
-        id: NotRequired[_builtins.str]
-        """
-        The ID of the attached resource.
-        """
-        name: NotRequired[_builtins.str]
-        """
-        The name of the attached resource.
-        """
-elif False:
-    GetIpamIpsResourceArgsDict: TypeAlias = Mapping[str, Any]
+class GetIpamIpsResourceArgsDict(TypedDict):
+    type: _builtins.str
+    """
+    The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+    """
+    id: NotRequired[_builtins.str]
+    """
+    The ID of the attached resource.
+    """
+    name: NotRequired[_builtins.str]
+    """
+    The name of the attached resource.
+    """
 
 @pulumi.input_type
 class GetIpamIpsResourceArgs:

@@ -28,6 +28,7 @@ class CockpitAlertManagerArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CockpitAlertManager resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
         :param pulumi.Input[_builtins.bool] enable_managed_alerts: **Deprecated** (Optional, Boolean) Use `preconfigured_alert_ids` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preconfigured_alert_ids: A set of preconfigured alert rule IDs to enable explicitly. Use the `observability_get_preconfigured_alert` data source to list available alerts.
@@ -121,6 +122,7 @@ class _CockpitAlertManagerState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CockpitAlertManager resources.
+
         :param pulumi.Input[_builtins.str] alert_manager_url: The URL of the alert manager.
         :param pulumi.Input[Sequence[pulumi.Input['CockpitAlertManagerContactPointArgs']]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
         :param pulumi.Input[_builtins.bool] enable_managed_alerts: **Deprecated** (Optional, Boolean) Use `preconfigured_alert_ids` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
@@ -306,6 +308,7 @@ class CockpitAlertManager(pulumi.CustomResource):
         $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitAlertManagerContactPointArgs', 'CockpitAlertManagerContactPointArgsDict']]]] contact_points: A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
@@ -390,6 +393,7 @@ class CockpitAlertManager(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CockpitAlertManagerArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class NamespaceArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
         :param pulumi.Input[_builtins.str] name: The unique name of the namespace.
@@ -120,6 +121,7 @@ class _NamespaceState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.str] endpoint: Endpoint reachable by Docker.
         :param pulumi.Input[_builtins.bool] is_public: Whether the images stored in the namespace should be downloadable publicly (docker pull).
@@ -270,6 +272,7 @@ class Namespace(pulumi.CustomResource):
         $ pulumi import scaleway:registry/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
@@ -311,6 +314,7 @@ class Namespace(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:registry/namespace:Namespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

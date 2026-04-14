@@ -24,6 +24,7 @@ class NatsCredentialsArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NatsCredentials resource.
+
         :param pulumi.Input[_builtins.str] account_id: The ID of the NATS account the credentials are generated from
         :param pulumi.Input[_builtins.str] name: The unique name of the NATS credentials.
         :param pulumi.Input[_builtins.str] region: `region`). The region
@@ -82,6 +83,7 @@ class _NatsCredentialsState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NatsCredentials resources.
+
         :param pulumi.Input[_builtins.str] account_id: The ID of the NATS account the credentials are generated from
         :param pulumi.Input[_builtins.str] file: The content of the credentials file.
         :param pulumi.Input[_builtins.str] name: The unique name of the NATS credentials.
@@ -182,6 +184,7 @@ class NatsCredentials(pulumi.CustomResource):
         $ pulumi import scaleway:mnq/natsCredentials:NatsCredentials main fr-par/11111111111111111111111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account_id: The ID of the NATS account the credentials are generated from
@@ -219,6 +222,7 @@ class NatsCredentials(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:mnq/natsCredentials:NatsCredentials main fr-par/11111111111111111111111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NatsCredentialsArgs args: The arguments to use to populate this resource's properties.

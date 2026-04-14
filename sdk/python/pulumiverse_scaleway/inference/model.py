@@ -30,6 +30,7 @@ class ModelArgs:
                  secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Model resource.
+
         :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
@@ -160,6 +161,7 @@ class _ModelState:
                  url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Model resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the model
         :param pulumi.Input[_builtins.str] description: A textual description of the model (if available).
         :param pulumi.Input[_builtins.bool] has_eula: Whether the model requires end-user license agreement acceptance before use.
@@ -477,6 +479,7 @@ class Model(pulumi.CustomResource):
         $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
@@ -551,6 +554,7 @@ class Model(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:inference/model:Model my_model fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ModelArgs args: The arguments to use to populate this resource's properties.

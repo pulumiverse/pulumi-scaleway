@@ -28,6 +28,7 @@ class RouteStageArgs:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RouteStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
@@ -117,6 +118,7 @@ class _RouteStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouteStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -359,6 +361,7 @@ class RouteStage(pulumi.CustomResource):
         $ pulumi import scaleway:edgeservices/routeStage:RouteStage basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
@@ -494,6 +497,7 @@ class RouteStage(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:edgeservices/routeStage:RouteStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RouteStageArgs args: The arguments to use to populate this resource's properties.

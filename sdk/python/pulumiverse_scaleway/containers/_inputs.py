@@ -27,24 +27,19 @@ __all__ = [
     'TriggerSqsArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ContainerHealthCheckArgsDict(TypedDict):
-        failure_threshold: pulumi.Input[_builtins.int]
-        """
-        Number of consecutive health check failures before considering the container unhealthy.
-        """
-        https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]
-        """
-        HTTP health check configuration.
-        """
-        interval: pulumi.Input[_builtins.str]
-        """
-        Period between health checks (in seconds).
-        """
-elif False:
-    ContainerHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerHealthCheckArgsDict(TypedDict):
+    failure_threshold: pulumi.Input[_builtins.int]
+    """
+    Number of consecutive health check failures before considering the container unhealthy.
+    """
+    https: pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]
+    """
+    HTTP health check configuration.
+    """
+    interval: pulumi.Input[_builtins.str]
+    """
+    Period between health checks (in seconds).
+    """
 
 @pulumi.input_type
 class ContainerHealthCheckArgs:
@@ -98,14 +93,11 @@ class ContainerHealthCheckArgs:
         pulumi.set(self, "interval", value)
 
 
-if not MYPY:
-    class ContainerHealthCheckHttpArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        """
-        Path to use for the HTTP health check.
-        """
-elif False:
-    ContainerHealthCheckHttpArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerHealthCheckHttpArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    Path to use for the HTTP health check.
+    """
 
 @pulumi.input_type
 class ContainerHealthCheckHttpArgs:
@@ -129,22 +121,19 @@ class ContainerHealthCheckHttpArgs:
         pulumi.set(self, "path", value)
 
 
-if not MYPY:
-    class ContainerScalingOptionArgsDict(TypedDict):
-        concurrent_requests_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the number of concurrent requests being processed per container instance.
-        """
-        cpu_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the CPU usage of a container instance.
-        """
-        memory_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Scale depending on the memory usage of a container instance.
-        """
-elif False:
-    ContainerScalingOptionArgsDict: TypeAlias = Mapping[str, Any]
+class ContainerScalingOptionArgsDict(TypedDict):
+    concurrent_requests_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the number of concurrent requests being processed per container instance.
+    """
+    cpu_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the CPU usage of a container instance.
+    """
+    memory_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Scale depending on the memory usage of a container instance.
+    """
 
 @pulumi.input_type
 class ContainerScalingOptionArgs:
@@ -201,26 +190,23 @@ class ContainerScalingOptionArgs:
         pulumi.set(self, "memory_usage_threshold", value)
 
 
-if not MYPY:
-    class TriggerNatsArgsDict(TypedDict):
-        subject: pulumi.Input[_builtins.str]
-        """
-        The subject to listen to.
-        """
-        account_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        unique identifier of the Messaging and Queuing NATS account.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
-        """
-elif False:
-    TriggerNatsArgsDict: TypeAlias = Mapping[str, Any]
+class TriggerNatsArgsDict(TypedDict):
+    subject: pulumi.Input[_builtins.str]
+    """
+    The subject to listen to.
+    """
+    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    unique identifier of the Messaging and Queuing NATS account.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class TriggerNatsArgs:
@@ -292,26 +278,23 @@ class TriggerNatsArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class TriggerSqsArgsDict(TypedDict):
-        queue: pulumi.Input[_builtins.str]
-        """
-        The name of the SQS queue.
-        """
-        namespace_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the Messaging and Queuing namespace. This argument is deprecated.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Region where SQS is enabled (defaults to provider `region`)
-        """
-elif False:
-    TriggerSqsArgsDict: TypeAlias = Mapping[str, Any]
+class TriggerSqsArgsDict(TypedDict):
+    queue: pulumi.Input[_builtins.str]
+    """
+    The name of the SQS queue.
+    """
+    namespace_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the Messaging and Queuing namespace. This argument is deprecated.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Region where SQS is enabled (defaults to provider `region`)
+    """
 
 @pulumi.input_type
 class TriggerSqsArgs:

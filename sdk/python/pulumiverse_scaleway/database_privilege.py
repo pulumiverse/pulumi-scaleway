@@ -26,6 +26,7 @@ class DatabasePrivilegeArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabasePrivilege resource.
+
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
         :param pulumi.Input[_builtins.str] permission: Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
@@ -112,6 +113,7 @@ class _DatabasePrivilegeState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabasePrivilege resources.
+
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[_builtins.str] effective_permission: The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
@@ -303,6 +305,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database_name: Name of the database (e.g. `my-db-name`).
@@ -382,6 +385,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabasePrivilegeArgs args: The arguments to use to populate this resource's properties.

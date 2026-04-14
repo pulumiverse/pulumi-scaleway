@@ -24,6 +24,7 @@ class IpReverseDnsArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpReverseDns resource.
+
         :param pulumi.Input[_builtins.str] ip_id: The IP ID
         :param pulumi.Input[_builtins.str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the IP should be reserved.
@@ -78,6 +79,7 @@ class _IpReverseDnsState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpReverseDns resources.
+
         :param pulumi.Input[_builtins.str] ip_id: The IP ID
         :param pulumi.Input[_builtins.str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the IP should be reserved.
@@ -168,6 +170,7 @@ class IpReverseDns(pulumi.CustomResource):
         $ pulumi import scaleway:instance/ipReverseDns:IpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] ip_id: The IP ID
@@ -211,6 +214,7 @@ class IpReverseDns(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:instance/ipReverseDns:IpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpReverseDnsArgs args: The arguments to use to populate this resource's properties.

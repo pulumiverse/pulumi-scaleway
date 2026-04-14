@@ -29,6 +29,7 @@ class FunctionTriggerArgs:
                  sqs: Optional[pulumi.Input['FunctionTriggerSqsArgs']] = None):
         """
         The set of arguments for constructing a FunctionTrigger resource.
+
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function to create a trigger for.
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
@@ -132,6 +133,7 @@ class _FunctionTriggerState:
                  sqs: Optional[pulumi.Input['FunctionTriggerSqsArgs']] = None):
         """
         Input properties used for looking up and filtering FunctionTrigger resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function to create a trigger for.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
@@ -290,6 +292,7 @@ class FunctionTrigger(pulumi.CustomResource):
         $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
@@ -351,6 +354,7 @@ class FunctionTrigger(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionTriggerArgs args: The arguments to use to populate this resource's properties.

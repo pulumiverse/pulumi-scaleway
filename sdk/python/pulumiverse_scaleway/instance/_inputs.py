@@ -43,36 +43,31 @@ __all__ = [
     'SnapshotImportArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ImageAdditionalVolumeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the server containing the volume.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the image. If not provided it will be randomly generated.
-        """
-        server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Description of the server containing the volume (in case the image is a backup from a server).
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The size of the volume.
-        """
-        tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of tags to apply to the image.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
-        """
-elif False:
-    ImageAdditionalVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ImageAdditionalVolumeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the server containing the volume.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the image. If not provided it will be randomly generated.
+    """
+    server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    Description of the server containing the volume (in case the image is a backup from a server).
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The size of the volume.
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of tags to apply to the image.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+    """
 
 @pulumi.input_type
 class ImageAdditionalVolumeArgs:
@@ -177,26 +172,23 @@ class ImageAdditionalVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class ImageRootVolumeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the server containing the volume.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the image. If not provided it will be randomly generated.
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The size of the volume.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
-        """
-elif False:
-    ImageRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class ImageRootVolumeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the server containing the volume.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the image. If not provided it will be randomly generated.
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The size of the volume.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+    """
 
 @pulumi.input_type
 class ImageRootVolumeArgs:
@@ -269,18 +261,15 @@ class ImageRootVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class PrivateNicPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    PrivateNicPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateNicPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class PrivateNicPrivateIpArgs:
@@ -321,36 +310,33 @@ class PrivateNicPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class SecurityGroupInboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        The action to take when rule match. Possible values are: `accept` or `drop`.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
-        If no `port` nor `port_range` are specified, rule will apply to all port.
-        Only one of `port` and `port_range` should be specified.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
-        """
-elif False:
-    SecurityGroupInboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityGroupInboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    The action to take when rule match. Possible values are: `accept` or `drop`.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+    If no `port` nor `port_range` are specified, rule will apply to all port.
+    Only one of `port` and `port_range` should be specified.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+    """
 
 @pulumi.input_type
 class SecurityGroupInboundRuleArgs:
@@ -462,34 +448,31 @@ class SecurityGroupInboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class SecurityGroupOutboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action when rule match request (drop or accept)
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Network port for this rule
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Protocol for this rule (TCP, UDP, ICMP or ANY)
-        """
-elif False:
-    SecurityGroupOutboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityGroupOutboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action when rule match request (drop or accept)
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Network port for this rule
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Computed port range for this rule (e.g: 1-1024, 22-22)
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Protocol for this rule (TCP, UDP, ICMP or ANY)
+    """
 
 @pulumi.input_type
 class SecurityGroupOutboundRuleArgs:
@@ -597,36 +580,33 @@ class SecurityGroupOutboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class SecurityGroupRulesInboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        The action to take when rule match. Possible values are: `accept` or `drop`.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port this rule apply to. If no port is specified, rule will apply to all port.
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
-        If no `port` nor `port_range` are specified, rule will apply to all port.
-        Only one of `port` and `port_range` should be specified.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
-        """
-elif False:
-    SecurityGroupRulesInboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityGroupRulesInboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    The action to take when rule match. Possible values are: `accept` or `drop`.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port this rule apply to. If no port is specified, rule will apply to all port.
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
+    If no `port` nor `port_range` are specified, rule will apply to all port.
+    Only one of `port` and `port_range` should be specified.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+    """
 
 @pulumi.input_type
 class SecurityGroupRulesInboundRuleArgs:
@@ -738,34 +718,31 @@ class SecurityGroupRulesInboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class SecurityGroupRulesOutboundRuleArgsDict(TypedDict):
-        action: pulumi.Input[_builtins.str]
-        """
-        Action when rule match request (drop or accept)
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
-        """
-        ip_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Network port for this rule
-        """
-        port_range: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Protocol for this rule (TCP, UDP, ICMP or ANY)
-        """
-elif False:
-    SecurityGroupRulesOutboundRuleArgsDict: TypeAlias = Mapping[str, Any]
+class SecurityGroupRulesOutboundRuleArgsDict(TypedDict):
+    action: pulumi.Input[_builtins.str]
+    """
+    Action when rule match request (drop or accept)
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+    """
+    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Network port for this rule
+    """
+    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Computed port range for this rule (e.g: 1-1024, 22-22)
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Protocol for this rule (TCP, UDP, ICMP or ANY)
+    """
 
 @pulumi.input_type
 class SecurityGroupRulesOutboundRuleArgs:
@@ -873,18 +850,15 @@ class SecurityGroupRulesOutboundRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class ServerFilesystemArgsDict(TypedDict):
-        filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The unique ID of the filesystem attached to the server.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The state of the filesystem
-        """
-elif False:
-    ServerFilesystemArgsDict: TypeAlias = Mapping[str, Any]
+class ServerFilesystemArgsDict(TypedDict):
+    filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The unique ID of the filesystem attached to the server.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The state of the filesystem
+    """
 
 @pulumi.input_type
 class ServerFilesystemArgs:
@@ -925,18 +899,15 @@ class ServerFilesystemArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class ServerPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    ServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class ServerPrivateIpArgs:
@@ -977,30 +948,27 @@ class ServerPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class ServerPrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The Private Network ID
-        """
-        mac_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        MAC address of the NIC
-        """
-        pnic_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the NIC
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private NIC state
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        `zone`) The zone in which the server should be created.
-        """
-elif False:
-    ServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The Private Network ID
+    """
+    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    MAC address of the NIC
+    """
+    pnic_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the NIC
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private NIC state
+    """
+    zone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `zone`) The zone in which the server should be created.
+    """
 
 @pulumi.input_type
 class ServerPrivateNetworkArgs:
@@ -1088,38 +1056,35 @@ class ServerPrivateNetworkArgs:
         pulumi.set(self, "zone", value)
 
 
-if not MYPY:
-    class ServerPublicIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The address of the IP.
-        """
-        dynamic: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the IP is dynamic.
-        """
-        family: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP address' family.
-        """
-        gateway: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP of the Gateway associated with the IP.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP.
-        """
-        netmask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The CIDR netmask of the IP.
-        """
-        provisioning_mode: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The provisioning mode of the IP
-        """
-elif False:
-    ServerPublicIpArgsDict: TypeAlias = Mapping[str, Any]
+class ServerPublicIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The address of the IP.
+    """
+    dynamic: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the IP is dynamic.
+    """
+    family: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP address' family.
+    """
+    gateway: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP of the Gateway associated with the IP.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP.
+    """
+    netmask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The CIDR netmask of the IP.
+    """
+    provisioning_mode: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The provisioning mode of the IP
+    """
 
 @pulumi.input_type
 class ServerPublicIpArgs:
@@ -1240,44 +1205,41 @@ class ServerPublicIpArgs:
         pulumi.set(self, "provisioning_mode", value)
 
 
-if not MYPY:
-    class ServerRootVolumeArgsDict(TypedDict):
-        boot: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set the volume where the boot the server
-        """
-        delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Forces deletion of the root volume on instance termination.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the root volume.
-        """
-        sbs_iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+class ServerRootVolumeArgsDict(TypedDict):
+    boot: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set the volume where the boot the server
+    """
+    delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Forces deletion of the root volume on instance termination.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the root volume.
+    """
+    sbs_iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
 
-        > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
-        It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
-        """
-        size_in_gb: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Size of the root volume in gigabytes.
-        To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
-        check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
-        Depending on `volume_type`, updates to this field may recreate a new resource.
-        """
-        volume_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
-        """
-        volume_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
-        """
-elif False:
-    ServerRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
+    It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
+    """
+    size_in_gb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Size of the root volume in gigabytes.
+    To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
+    check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
+    Depending on `volume_type`, updates to this field may recreate a new resource.
+    """
+    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
+    """
+    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
+    """
 
 @pulumi.input_type
 class ServerRootVolumeArgs:
@@ -1410,18 +1372,15 @@ class ServerRootVolumeArgs:
         pulumi.set(self, "volume_type", value)
 
 
-if not MYPY:
-    class SnapshotImportArgsDict(TypedDict):
-        bucket: pulumi.Input[_builtins.str]
-        """
-        Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
-        """
-        key: pulumi.Input[_builtins.str]
-        """
-        Key of the object to import
-        """
-elif False:
-    SnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+class SnapshotImportArgsDict(TypedDict):
+    bucket: pulumi.Input[_builtins.str]
+    """
+    Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Key of the object to import
+    """
 
 @pulumi.input_type
 class SnapshotImportArgs:

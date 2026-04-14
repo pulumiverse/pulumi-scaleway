@@ -25,6 +25,7 @@ class UserDataArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserData resource.
+
         :param pulumi.Input[_builtins.str] key: Key of the user data.
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[_builtins.str] value: Value associated with your key
@@ -104,6 +105,7 @@ class _UserDataState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserData resources.
+
         :param pulumi.Input[_builtins.str] key: Key of the user data.
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[_builtins.str] value: Value associated with your key
@@ -242,6 +244,7 @@ class UserData(pulumi.CustomResource):
         $ pulumi import scaleway:instance/userData:UserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] key: Key of the user data.
@@ -313,6 +316,7 @@ class UserData(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:instance/userData:UserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserDataArgs args: The arguments to use to populate this resource's properties.

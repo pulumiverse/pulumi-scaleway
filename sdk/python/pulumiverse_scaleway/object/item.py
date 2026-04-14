@@ -35,6 +35,7 @@ class ItemArgs:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Item resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] key: The path to the object.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
@@ -277,6 +278,7 @@ class _ItemState:
                  visibility: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Item resources.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] content: The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
@@ -558,6 +560,7 @@ class Item(pulumi.CustomResource):
         $ pulumi import scaleway:object/item:Item some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
@@ -621,6 +624,7 @@ class Item(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/item:Item some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ItemArgs args: The arguments to use to populate this resource's properties.

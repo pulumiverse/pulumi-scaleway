@@ -27,6 +27,7 @@ class CertificateArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
+
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
         :param pulumi.Input['CertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input['CertificateLetsencryptArgs'] letsencrypt: The Let's Encrypt type certificate configuration
@@ -104,6 +105,7 @@ class _CertificateState:
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
+
         :param pulumi.Input[_builtins.str] common_name: Main domain of the certificate
         :param pulumi.Input['CertificateCustomCertificateArgs'] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[_builtins.str] fingerprint: The identifier (SHA-1) of the certificate
@@ -306,6 +308,7 @@ class Certificate(pulumi.CustomResource):
         $ pulumi import scaleway:loadbalancers/certificate:Certificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']] custom_certificate: The custom type certificate type configuration
@@ -356,6 +359,7 @@ class Certificate(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:loadbalancers/certificate:Certificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.

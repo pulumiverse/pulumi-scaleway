@@ -33,6 +33,7 @@ class VpcPublicGatewayArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGateway resource.
+
         :param pulumi.Input[_builtins.str] type: The gateway type.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_ranges: Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         :param pulumi.Input[_builtins.bool] bastion_enabled: Enable SSH bastion on the gateway.
@@ -242,6 +243,7 @@ class _VpcPublicGatewayState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGateway resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_ranges: Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         :param pulumi.Input[_builtins.int] bandwidth: The bandwidth available of the gateway
         :param pulumi.Input[_builtins.bool] bastion_enabled: Enable SSH bastion on the gateway.
@@ -606,6 +608,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ip_ranges: Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
@@ -685,6 +688,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayArgs args: The arguments to use to populate this resource's properties.

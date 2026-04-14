@@ -51,6 +51,7 @@ class ContainerArgs:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Container resource.
+
         :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
                
                > **Important** Updating the `name` argument will recreate the container.
@@ -525,6 +526,7 @@ class _ContainerState:
                  timeout: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Container resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
@@ -1253,6 +1255,7 @@ class Container(pulumi.CustomResource):
         $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
@@ -1499,6 +1502,7 @@ class Container(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ContainerArgs args: The arguments to use to populate this resource's properties.

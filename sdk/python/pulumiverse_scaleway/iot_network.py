@@ -26,6 +26,7 @@ class IotNetworkArgs:
                  topic_prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IotNetwork resource.
+
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
@@ -115,6 +116,7 @@ class _IotNetworkState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IotNetwork resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time the Network was created.
         :param pulumi.Input[_builtins.str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
@@ -291,6 +293,7 @@ class IotNetwork(pulumi.CustomResource):
         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
@@ -340,6 +343,7 @@ class IotNetwork(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IotNetworkArgs args: The arguments to use to populate this resource's properties.

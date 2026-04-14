@@ -24,6 +24,7 @@ class AccountProjectArgs:
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AccountProject resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
@@ -82,6 +83,7 @@ class _AccountProjectState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountProject resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation time of the Project.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
@@ -216,6 +218,7 @@ class AccountProject(pulumi.CustomResource):
         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
@@ -268,6 +271,7 @@ class AccountProject(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountProjectArgs args: The arguments to use to populate this resource's properties.

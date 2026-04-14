@@ -23,24 +23,19 @@ __all__ = [
     'SqsQueueDeadLetterQueueArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SnsCredentialsPermissionsArgsDict(TypedDict):
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can manage the associated resource(s).
-        """
-        can_publish: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can publish messages to the service.
-        """
-        can_receive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can receive messages from the service.
-        """
-elif False:
-    SnsCredentialsPermissionsArgsDict: TypeAlias = Mapping[str, Any]
+class SnsCredentialsPermissionsArgsDict(TypedDict):
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can manage the associated resource(s).
+    """
+    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can publish messages to the service.
+    """
+    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can receive messages from the service.
+    """
 
 @pulumi.input_type
 class SnsCredentialsPermissionsArgs:
@@ -97,22 +92,19 @@ class SnsCredentialsPermissionsArgs:
         pulumi.set(self, "can_receive", value)
 
 
-if not MYPY:
-    class SqsCredentialsPermissionsArgsDict(TypedDict):
-        can_manage: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can manage the associated resource(s).
-        """
-        can_publish: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can publish messages to the service.
-        """
-        can_receive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        . Defines whether the user can receive messages from the service.
-        """
-elif False:
-    SqsCredentialsPermissionsArgsDict: TypeAlias = Mapping[str, Any]
+class SqsCredentialsPermissionsArgsDict(TypedDict):
+    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can manage the associated resource(s).
+    """
+    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can publish messages to the service.
+    """
+    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    . Defines whether the user can receive messages from the service.
+    """
 
 @pulumi.input_type
 class SqsCredentialsPermissionsArgs:
@@ -169,18 +161,15 @@ class SqsCredentialsPermissionsArgs:
         pulumi.set(self, "can_receive", value)
 
 
-if not MYPY:
-    class SqsQueueDeadLetterQueueArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        The ID of the queue with format `{region/{project-id}/{queue-name}`
-        """
-        max_receive_count: pulumi.Input[_builtins.int]
-        """
-        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
-        """
-elif False:
-    SqsQueueDeadLetterQueueArgsDict: TypeAlias = Mapping[str, Any]
+class SqsQueueDeadLetterQueueArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    The ID of the queue with format `{region/{project-id}/{queue-name}`
+    """
+    max_receive_count: pulumi.Input[_builtins.int]
+    """
+    The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+    """
 
 @pulumi.input_type
 class SqsQueueDeadLetterQueueArgs:

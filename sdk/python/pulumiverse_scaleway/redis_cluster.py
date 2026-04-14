@@ -40,6 +40,7 @@ class RedisClusterArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RedisCluster resource.
+
         :param pulumi.Input[_builtins.str] node_type: The type of Redis™ cluster you want to create (e.g. `RED1-M`).
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
@@ -378,6 +379,7 @@ class _RedisClusterState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RedisCluster resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[_builtins.str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[_builtins.int] cluster_size: The number of nodes in the Redis™ cluster.
@@ -808,6 +810,7 @@ class RedisCluster(pulumi.CustomResource):
         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
@@ -902,6 +905,7 @@ class RedisCluster(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedisClusterArgs args: The arguments to use to populate this resource's properties.

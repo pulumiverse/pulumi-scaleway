@@ -26,6 +26,7 @@ class ServerlessDatabaseArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServerlessDatabase resource.
+
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
         :param pulumi.Input[_builtins.str] name: The name of the database (e.g. `my-new-database`).
@@ -119,6 +120,7 @@ class _ServerlessDatabaseState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServerlessDatabase resources.
+
         :param pulumi.Input[_builtins.str] endpoint: The endpoint of the database.
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
@@ -291,6 +293,7 @@ class ServerlessDatabase(pulumi.CustomResource):
         $ pulumi import scaleway:databases/serverlessDatabase:ServerlessDatabase database fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
@@ -369,6 +372,7 @@ class ServerlessDatabase(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:databases/serverlessDatabase:ServerlessDatabase database fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerlessDatabaseArgs args: The arguments to use to populate this resource's properties.

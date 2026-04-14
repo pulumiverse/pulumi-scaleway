@@ -24,6 +24,7 @@ class SamlArgs:
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Saml resource.
+
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
         """
         if organization_id is not None:
@@ -52,6 +53,7 @@ class _SamlState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Saml resources.
+
         :param pulumi.Input[_builtins.str] entity_id: (Computed) The entity ID of the Service Provider.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
         :param pulumi.Input['SamlServiceProviderArgs'] service_provider: (Computed) The Service Provider information. It contains:
@@ -153,6 +155,7 @@ class Saml(pulumi.CustomResource):
         main = scaleway.iam.Saml("main", organization_id="11111111-1111-1111-1111-111111111111")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
@@ -177,6 +180,7 @@ class Saml(pulumi.CustomResource):
         ### Enable IAM SAML for an organization
         main = scaleway.iam.Saml("main", organization_id="11111111-1111-1111-1111-111111111111")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SamlArgs args: The arguments to use to populate this resource's properties.

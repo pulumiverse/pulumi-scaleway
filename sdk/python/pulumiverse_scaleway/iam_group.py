@@ -28,6 +28,7 @@ class IamGroupArgs:
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a IamGroup resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
         :param pulumi.Input[_builtins.bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
@@ -150,6 +151,7 @@ class _IamGroupState:
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering IamGroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
@@ -366,6 +368,7 @@ class IamGroup(pulumi.CustomResource):
         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
@@ -440,6 +443,7 @@ class IamGroup(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IamGroupArgs args: The arguments to use to populate this resource's properties.

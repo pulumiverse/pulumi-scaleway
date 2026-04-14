@@ -19,32 +19,27 @@ __all__ = [
     'DomainReputationArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class DomainReputationArgsDict(TypedDict):
-        previous_score: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The previously-calculated domain's reputation score.
-        """
-        previous_scored_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time and date the previous reputation score was calculated.
-        """
-        score: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        A range from 0 to 100 that determines your domain's reputation score.
-        """
-        scored_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The time and date the score was calculated.
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the domain's reputation.
-        """
-elif False:
-    DomainReputationArgsDict: TypeAlias = Mapping[str, Any]
+class DomainReputationArgsDict(TypedDict):
+    previous_score: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The previously-calculated domain's reputation score.
+    """
+    previous_scored_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time and date the previous reputation score was calculated.
+    """
+    score: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    A range from 0 to 100 that determines your domain's reputation score.
+    """
+    scored_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The time and date the score was calculated.
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the domain's reputation.
+    """
 
 @pulumi.input_type
 class DomainReputationArgs:

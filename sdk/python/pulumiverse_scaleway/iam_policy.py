@@ -32,6 +32,7 @@ class IamPolicyArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IamPolicy resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]] rules: List of rules in the policy.
         :param pulumi.Input[_builtins.str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[_builtins.str] description: The description of the IAM policy.
@@ -190,6 +191,7 @@ class _IamPolicyState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IamPolicy resources.
+
         :param pulumi.Input[_builtins.str] application_id: ID of the application the policy will be linked to
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the policy.
         :param pulumi.Input[_builtins.str] description: The description of the IAM policy.
@@ -499,6 +501,7 @@ class IamPolicy(pulumi.CustomResource):
         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: ID of the application the policy will be linked to
@@ -619,6 +622,7 @@ class IamPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IamPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -31,6 +31,7 @@ class InstanceGroupArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceGroup resource.
+
         :param pulumi.Input[_builtins.str] template_id: The ID of the Instance template to attach to the Instance group.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]] capacities: The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
         :param pulumi.Input[_builtins.bool] delete_servers_on_destroy: Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
@@ -168,6 +169,7 @@ class _InstanceGroupState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceGroup resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]] capacities: The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
         :param pulumi.Input[_builtins.str] created_at: Date and time of Instance group's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.bool] delete_servers_on_destroy: Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
@@ -471,6 +473,7 @@ class InstanceGroup(pulumi.CustomResource):
         $ pulumi import scaleway:autoscaling/instanceGroup:InstanceGroup main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]] capacities: The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
@@ -622,6 +625,7 @@ class InstanceGroup(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:autoscaling/instanceGroup:InstanceGroup main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceGroupArgs args: The arguments to use to populate this resource's properties.

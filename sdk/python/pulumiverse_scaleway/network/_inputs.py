@@ -27,48 +27,43 @@ __all__ = [
     'PrivateNetworkIpv6SubnetArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AclRuleArgsDict(TypedDict):
-        action: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The policy to apply to the packet.
-        """
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The rule description.
-        """
-        destination: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The destination IP range to which this rule applies (CIDR notation with subnet mask).
-        """
-        dst_port_high: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ending port of the destination port range to which this rule applies (inclusive).
-        """
-        dst_port_low: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The starting port of the destination port range to which this rule applies (inclusive).
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The protocol to which this rule applies. Default value: ANY.
-        """
-        source: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Source IP range to which this rule applies (CIDR notation with subnet mask).
-        """
-        src_port_high: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ending port of the source port range to which this rule applies (inclusive).
-        """
-        src_port_low: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The starting port of the source port range to which this rule applies (inclusive).
-        """
-elif False:
-    AclRuleArgsDict: TypeAlias = Mapping[str, Any]
+class AclRuleArgsDict(TypedDict):
+    action: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The policy to apply to the packet.
+    """
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The rule description.
+    """
+    destination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The destination IP range to which this rule applies (CIDR notation with subnet mask).
+    """
+    dst_port_high: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ending port of the destination port range to which this rule applies (inclusive).
+    """
+    dst_port_low: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The starting port of the destination port range to which this rule applies (inclusive).
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The protocol to which this rule applies. Default value: ANY.
+    """
+    source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Source IP range to which this rule applies (CIDR notation with subnet mask).
+    """
+    src_port_high: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ending port of the source port range to which this rule applies (inclusive).
+    """
+    src_port_low: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The starting port of the source port range to which this rule applies (inclusive).
+    """
 
 @pulumi.input_type
 class AclRuleArgs:
@@ -221,18 +216,15 @@ class AclRuleArgs:
         pulumi.set(self, "src_port_low", value)
 
 
-if not MYPY:
-    class GatewayNetworkIpamConfigArgsDict(TypedDict):
-        ipam_ip_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
-        """
-        push_default_route: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Defines whether to enable the default route on the GatewayNetwork.
-        """
-elif False:
-    GatewayNetworkIpamConfigArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayNetworkIpamConfigArgsDict(TypedDict):
+    ipam_ip_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+    """
+    push_default_route: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Defines whether to enable the default route on the GatewayNetwork.
+    """
 
 @pulumi.input_type
 class GatewayNetworkIpamConfigArgs:
@@ -273,18 +265,15 @@ class GatewayNetworkIpamConfigArgs:
         pulumi.set(self, "push_default_route", value)
 
 
-if not MYPY:
-    class GatewayNetworkPrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IPv4 address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IPv4 address resource.
-        """
-elif False:
-    GatewayNetworkPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class GatewayNetworkPrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IPv4 address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IPv4 address resource.
+    """
 
 @pulumi.input_type
 class GatewayNetworkPrivateIpArgs:
@@ -325,38 +314,35 @@ class GatewayNetworkPrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class PrivateNetworkIpv4SubnetArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the subnet.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet ID.
-        """
-        prefix_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
-        """
-        subnet: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet CIDR.
-        """
-        subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the subnet.
-        """
-elif False:
-    PrivateNetworkIpv4SubnetArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateNetworkIpv4SubnetArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the subnet.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet ID.
+    """
+    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+    """
+    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet CIDR.
+    """
+    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the subnet.
+    """
 
 @pulumi.input_type
 class PrivateNetworkIpv4SubnetArgs:
@@ -477,38 +463,35 @@ class PrivateNetworkIpv4SubnetArgs:
         pulumi.set(self, "updated_at", value)
 
 
-if not MYPY:
-    class PrivateNetworkIpv6SubnetArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
-        """
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the creation of the subnet.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet ID.
-        """
-        prefix_length: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
-        """
-        subnet: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet CIDR.
-        """
-        subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
-        """
-        updated_at: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The date and time of the last update of the subnet.
-        """
-elif False:
-    PrivateNetworkIpv6SubnetArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateNetworkIpv6SubnetArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
+    """
+    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the creation of the subnet.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet ID.
+    """
+    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+    """
+    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet CIDR.
+    """
+    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+    """
+    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The date and time of the last update of the subnet.
+    """
 
 @pulumi.input_type
 class PrivateNetworkIpv6SubnetArgs:

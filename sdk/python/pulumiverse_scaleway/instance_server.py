@@ -48,6 +48,7 @@ class InstanceServerArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceServer resource.
+
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
                Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
@@ -523,6 +524,7 @@ class _InstanceServerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceServer resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
                attached to the server. Updates to this field will trigger a stop/start of the server.
                
@@ -1242,6 +1244,7 @@ class InstanceServer(pulumi.CustomResource):
         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
@@ -1514,6 +1517,7 @@ class InstanceServer(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstanceServerArgs args: The arguments to use to populate this resource's properties.

@@ -37,6 +37,7 @@ class DeploymentArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
+
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
@@ -274,6 +275,7 @@ class _DeploymentState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
+
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
@@ -647,6 +649,7 @@ class Deployment(pulumi.CustomResource):
         $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
@@ -745,6 +748,7 @@ class Deployment(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:datawarehouse/deployment:Deployment main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeploymentArgs args: The arguments to use to populate this resource's properties.

@@ -31,6 +31,7 @@ class TlsStageArgs:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsStage resource.
+
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
@@ -169,6 +170,7 @@ class _TlsStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] certificate_expires_at: The expiration date of the certificate.
@@ -390,6 +392,7 @@ class TlsStage(pulumi.CustomResource):
         $ pulumi import scaleway:edgeservices/tlsStage:TlsStage basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
@@ -444,6 +447,7 @@ class TlsStage(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:edgeservices/tlsStage:TlsStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsStageArgs args: The arguments to use to populate this resource's properties.

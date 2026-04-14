@@ -34,6 +34,7 @@ class ServerArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
+
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
@@ -235,6 +236,7 @@ class _ServerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+
         :param pulumi.Input[_builtins.str] commitment: The commitment period of the server
         :param pulumi.Input[_builtins.str] created_at: The date and time the private network was created.
         :param pulumi.Input[_builtins.str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
@@ -645,6 +647,7 @@ class Server(pulumi.CustomResource):
         $ pulumi import scaleway:applesilicon/server:Server main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] commitment: The commitment period of the server
@@ -734,6 +737,7 @@ class Server(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:applesilicon/server:Server main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServerArgs args: The arguments to use to populate this resource's properties.

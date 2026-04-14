@@ -27,6 +27,7 @@ class VpcArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Vpc resource.
+
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
@@ -135,6 +136,7 @@ class _VpcState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Vpc resources.
+
         :param pulumi.Input[_builtins.str] created_at: Date and time of VPC's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
@@ -350,6 +352,7 @@ class Vpc(pulumi.CustomResource):
         $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
@@ -408,6 +411,7 @@ class Vpc(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class ObjectBucketAclArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ObjectBucketAcl resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
@@ -140,6 +141,7 @@ class _ObjectBucketAclState:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObjectBucketAcl resources.
+
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
@@ -370,6 +372,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ObjectBucketAclAccessControlPolicyArgs', 'ObjectBucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
@@ -499,6 +502,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ObjectBucketAclArgs args: The arguments to use to populate this resource's properties.

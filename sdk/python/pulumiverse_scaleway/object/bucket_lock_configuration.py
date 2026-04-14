@@ -27,6 +27,7 @@ class BucketLockConfigurationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketLockConfiguration resource.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input['BucketLockConfigurationRuleArgs'] rule: Specifies the object lock rule for the specified object.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
@@ -105,6 +106,7 @@ class _BucketLockConfigurationState:
                  rule: Optional[pulumi.Input['BucketLockConfigurationRuleArgs']] = None):
         """
         Input properties used for looking up and filtering BucketLockConfiguration resources.
+
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
                
@@ -235,6 +237,7 @@ class BucketLockConfiguration(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketLockConfiguration:BucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
@@ -299,6 +302,7 @@ class BucketLockConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketLockConfiguration:BucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BucketLockConfigurationArgs args: The arguments to use to populate this resource's properties.

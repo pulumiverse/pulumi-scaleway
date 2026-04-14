@@ -26,6 +26,7 @@ class SecurityGroupRulesArgs:
                  outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]]] = None):
         """
         The set of arguments for constructing a SecurityGroupRules resource.
+
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
@@ -81,6 +82,7 @@ class _SecurityGroupRulesState:
                  security_group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroupRules resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group.
@@ -236,6 +238,7 @@ class SecurityGroupRules(pulumi.CustomResource):
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupRulesInboundRuleArgs', 'SecurityGroupRulesInboundRuleArgsDict']]]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
@@ -344,6 +347,7 @@ class SecurityGroupRules(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:instance/securityGroupRules:SecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecurityGroupRulesArgs args: The arguments to use to populate this resource's properties.

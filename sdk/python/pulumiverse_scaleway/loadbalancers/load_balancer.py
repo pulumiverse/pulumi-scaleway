@@ -37,6 +37,7 @@ class LoadBalancerArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadBalancer resource.
+
         :param pulumi.Input[_builtins.str] type: The type of the Load Balancer. Please check the migration section to upgrade the type.
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
@@ -291,6 +292,7 @@ class _LoadBalancerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadBalancer resources.
+
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         :param pulumi.Input[_builtins.str] description: The description of the Load Balancer.
@@ -712,6 +714,7 @@ class LoadBalancer(pulumi.CustomResource):
 
         Be aware that you will also need to import the `loadbalancers.Ip` resource.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
@@ -833,6 +836,7 @@ class LoadBalancer(pulumi.CustomResource):
         ```
 
         Be aware that you will also need to import the `loadbalancers.Ip` resource.
+
 
         :param str resource_name: The name of the resource.
         :param LoadBalancerArgs args: The arguments to use to populate this resource's properties.

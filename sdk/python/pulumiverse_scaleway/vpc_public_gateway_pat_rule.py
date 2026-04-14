@@ -27,6 +27,7 @@ class VpcPublicGatewayPatRuleArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayPatRule resource.
+
         :param pulumi.Input[_builtins.str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[_builtins.str] private_ip: The private IP address to forward data to.
         :param pulumi.Input[_builtins.int] private_port: The private port to translate to.
@@ -130,6 +131,7 @@ class _VpcPublicGatewayPatRuleState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayPatRule resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the PAT rule configuration.
         :param pulumi.Input[_builtins.str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the PAT rule configuration is associated with.
@@ -346,6 +348,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] gateway_id: The ID of the Public Gateway.
@@ -420,6 +423,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayPatRuleArgs args: The arguments to use to populate this resource's properties.

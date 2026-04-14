@@ -27,6 +27,7 @@ class InstancePlacementGroupArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstancePlacementGroup resource.
+
         :param pulumi.Input[_builtins.str] name: The name of the placement group.
         :param pulumi.Input[_builtins.str] policy_mode: The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         :param pulumi.Input[_builtins.str] policy_type: The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
@@ -133,6 +134,7 @@ class _InstancePlacementGroupState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstancePlacementGroup resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the placement group.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the placement group is associated with.
         :param pulumi.Input[_builtins.str] policy_mode: The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
@@ -294,6 +296,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the placement group.
@@ -328,6 +331,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstancePlacementGroupArgs args: The arguments to use to populate this resource's properties.

@@ -33,33 +33,28 @@ __all__ = [
     'PoolUpgradePolicyArgsDict',
 ]
 
-MYPY = False
+class AclAclRuleArgsDict(TypedDict):
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A text describing this rule.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the ACL resource. It is the same as the ID of the cluster.
+    """
+    ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 
-if not MYPY:
-    class AclAclRuleArgsDict(TypedDict):
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A text describing this rule.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the ACL resource. It is the same as the ID of the cluster.
-        """
-        ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+    > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
+    """
+    scaleway_ranges: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+    Only one rule with this field set to true can be added.
 
-        > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
-        """
-        scaleway_ranges: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
-        Only one rule with this field set to true can be added.
-
-        > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
-        """
-elif False:
-    AclAclRuleArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+    """
 
 @pulumi.input_type
 class AclAclRuleArgs:
@@ -142,23 +137,20 @@ class AclAclRuleArgs:
         pulumi.set(self, "scaleway_ranges", value)
 
 
-if not MYPY:
-    class ClusterAutoUpgradeArgsDict(TypedDict):
-        enable: pulumi.Input[_builtins.bool]
-        """
-        Set to `true` to enable Kubernetes patch version auto upgrades.
-        > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
-        """
-        maintenance_window_day: pulumi.Input[_builtins.str]
-        """
-        The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
-        """
-        maintenance_window_start_hour: pulumi.Input[_builtins.int]
-        """
-        The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
-        """
-elif False:
-    ClusterAutoUpgradeArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterAutoUpgradeArgsDict(TypedDict):
+    enable: pulumi.Input[_builtins.bool]
+    """
+    Set to `true` to enable Kubernetes patch version auto upgrades.
+    > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+    """
+    maintenance_window_day: pulumi.Input[_builtins.str]
+    """
+    The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+    """
+    maintenance_window_start_hour: pulumi.Input[_builtins.int]
+    """
+    The start hour (UTC) of the 2-hour auto upgrade maintenance window (0 to 23).
+    """
 
 @pulumi.input_type
 class ClusterAutoUpgradeArgs:
@@ -214,50 +206,47 @@ class ClusterAutoUpgradeArgs:
         pulumi.set(self, "maintenance_window_start_hour", value)
 
 
-if not MYPY:
-    class ClusterAutoscalerConfigArgsDict(TypedDict):
-        balance_similar_node_groups: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Detect similar node groups and balance the number of nodes between them.
-        """
-        disable_scale_down: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disables the scale down feature of the autoscaler.
-        """
-        estimator: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of resource estimator to be used in scale up.
-        """
-        expander: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of node group expander to be used in scale up.
-        """
-        expendable_pods_priority_cutoff: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
-        """
-        ignore_daemonsets_utilization: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Ignore DaemonSet pods when calculating resource utilization for scaling down.
-        """
-        max_graceful_termination_sec: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
-        """
-        scale_down_delay_after_add: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How long after scale up that scale down evaluation resumes.
-        """
-        scale_down_unneeded_time: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How long a node should be unneeded before it is eligible for scale down.
-        """
-        scale_down_utilization_threshold: NotRequired[pulumi.Input[_builtins.float]]
-        """
-        Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
-        """
-elif False:
-    ClusterAutoscalerConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterAutoscalerConfigArgsDict(TypedDict):
+    balance_similar_node_groups: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Detect similar node groups and balance the number of nodes between them.
+    """
+    disable_scale_down: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disables the scale down feature of the autoscaler.
+    """
+    estimator: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of resource estimator to be used in scale up.
+    """
+    expander: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of node group expander to be used in scale up.
+    """
+    expendable_pods_priority_cutoff: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
+    """
+    ignore_daemonsets_utilization: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Ignore DaemonSet pods when calculating resource utilization for scaling down.
+    """
+    max_graceful_termination_sec: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
+    """
+    scale_down_delay_after_add: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How long after scale up that scale down evaluation resumes.
+    """
+    scale_down_unneeded_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How long a node should be unneeded before it is eligible for scale down.
+    """
+    scale_down_utilization_threshold: NotRequired[pulumi.Input[_builtins.float]]
+    """
+    Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+    """
 
 @pulumi.input_type
 class ClusterAutoscalerConfigArgs:
@@ -426,26 +415,23 @@ class ClusterAutoscalerConfigArgs:
         pulumi.set(self, "scale_down_utilization_threshold", value)
 
 
-if not MYPY:
-    class ClusterKubeconfigArgsDict(TypedDict):
-        cluster_ca_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The CA certificate of the Kubernetes API server.
-        """
-        config_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The raw kubeconfig file.
-        """
-        host: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the Kubernetes API server.
-        """
-        token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The token to connect to the Kubernetes API server.
-        """
-elif False:
-    ClusterKubeconfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterKubeconfigArgsDict(TypedDict):
+    cluster_ca_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The CA certificate of the Kubernetes API server.
+    """
+    config_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The raw kubeconfig file.
+    """
+    host: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the Kubernetes API server.
+    """
+    token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The token to connect to the Kubernetes API server.
+    """
 
 @pulumi.input_type
 class ClusterKubeconfigArgs:
@@ -518,38 +504,35 @@ class ClusterKubeconfigArgs:
         pulumi.set(self, "token", value)
 
 
-if not MYPY:
-    class ClusterOpenIdConnectConfigArgsDict(TypedDict):
-        client_id: pulumi.Input[_builtins.str]
-        """
-        A client id that all tokens must be issued for
-        """
-        issuer_url: pulumi.Input[_builtins.str]
-        """
-        URL of the provider which allows the API server to discover public signing keys
-        """
-        groups_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        JWT claim to use as the user's group
-        """
-        groups_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix prepended to group claims
-        """
-        required_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Multiple key=value pairs that describes a required claim in the ID Token
-        """
-        username_claim: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        JWT claim to use as the user name
-        """
-        username_prefix: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix prepended to username
-        """
-elif False:
-    ClusterOpenIdConnectConfigArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterOpenIdConnectConfigArgsDict(TypedDict):
+    client_id: pulumi.Input[_builtins.str]
+    """
+    A client id that all tokens must be issued for
+    """
+    issuer_url: pulumi.Input[_builtins.str]
+    """
+    URL of the provider which allows the API server to discover public signing keys
+    """
+    groups_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    JWT claim to use as the user's group
+    """
+    groups_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix prepended to group claims
+    """
+    required_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Multiple key=value pairs that describes a required claim in the ID Token
+    """
+    username_claim: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    JWT claim to use as the user name
+    """
+    username_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix prepended to username
+    """
 
 @pulumi.input_type
 class ClusterOpenIdConnectConfigArgs:
@@ -668,36 +651,33 @@ class ClusterOpenIdConnectConfigArgs:
         pulumi.set(self, "username_prefix", value)
 
 
-if not MYPY:
-    class PoolNodeArgsDict(TypedDict):
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name for the pool.
+class PoolNodeArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name for the pool.
 
-        > **Important:** Updates to this field will recreate a new resource.
-        """
-        private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgsDict']]]]
-        """
-        The list of private IPv4 and IPv6 addresses associated with the node.
-        """
-        public_ip: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
-        """
-        public_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
-        """
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The status of the node.
-        """
-elif False:
-    PoolNodeArgsDict: TypeAlias = Mapping[str, Any]
+    > **Important:** Updates to this field will recreate a new resource.
+    """
+    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgsDict']]]]
+    """
+    The list of private IPv4 and IPv6 addresses associated with the node.
+    """
+    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+    """
+    public_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+    """
+    status: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The status of the node.
+    """
 
 @pulumi.input_type
 class PoolNodeArgs:
@@ -814,18 +794,15 @@ class PoolNodeArgs:
         pulumi.set(self, "status", value)
 
 
-if not MYPY:
-    class PoolNodePrivateIpArgsDict(TypedDict):
-        address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private IP address.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the IP address resource.
-        """
-elif False:
-    PoolNodePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+class PoolNodePrivateIpArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private IP address.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the IP address resource.
+    """
 
 @pulumi.input_type
 class PoolNodePrivateIpArgs:
@@ -866,18 +843,15 @@ class PoolNodePrivateIpArgs:
         pulumi.set(self, "id", value)
 
 
-if not MYPY:
-    class PoolUpgradePolicyArgsDict(TypedDict):
-        max_surge: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum number of nodes to be created during the upgrade
-        """
-        max_unavailable: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum number of nodes that can be not ready at the same time
-        """
-elif False:
-    PoolUpgradePolicyArgsDict: TypeAlias = Mapping[str, Any]
+class PoolUpgradePolicyArgsDict(TypedDict):
+    max_surge: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum number of nodes to be created during the upgrade
+    """
+    max_unavailable: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum number of nodes that can be not ready at the same time
+    """
 
 @pulumi.input_type
 class PoolUpgradePolicyArgs:

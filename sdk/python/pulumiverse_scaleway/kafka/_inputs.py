@@ -21,28 +21,23 @@ __all__ = [
     'ClusterPublicNetworkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ClusterPrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The private network ID (same as input).
-        """
-        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of DNS records for the private endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port number.
-        """
-elif False:
-    ClusterPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The private network ID (same as input).
+    """
+    dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of DNS records for the private endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port number.
+    """
 
 @pulumi.input_type
 class ClusterPrivateNetworkArgs:
@@ -114,22 +109,19 @@ class ClusterPrivateNetworkArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class ClusterPublicNetworkArgsDict(TypedDict):
-        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of DNS records for the private endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private endpoint.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port number.
-        """
-elif False:
-    ClusterPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class ClusterPublicNetworkArgsDict(TypedDict):
+    dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of DNS records for the private endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private endpoint.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port number.
+    """
 
 @pulumi.input_type
 class ClusterPublicNetworkArgs:

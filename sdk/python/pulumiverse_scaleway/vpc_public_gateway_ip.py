@@ -25,6 +25,7 @@ class VpcPublicGatewayIpArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayIp resource.
+
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Public Gateway IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain name for the IP address
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Public Gateway IP.
@@ -101,6 +102,7 @@ class _VpcPublicGatewayIpState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayIp resources.
+
         :param pulumi.Input[_builtins.str] address: The IP address itself.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Public Gateway IP.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the Public Gateway IP is associated with.
@@ -268,6 +270,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Public Gateway IP is associated with.
@@ -308,6 +311,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VpcPublicGatewayIpArgs args: The arguments to use to populate this resource's properties.

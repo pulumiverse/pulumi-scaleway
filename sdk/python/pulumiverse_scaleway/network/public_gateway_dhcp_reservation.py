@@ -25,6 +25,7 @@ class PublicGatewayDhcpReservationArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PublicGatewayDhcpReservation resource.
+
         :param pulumi.Input[_builtins.str] gateway_network_id: The ID of the owning GatewayNetwork.
         :param pulumi.Input[_builtins.str] ip_address: The IP address to give to the machine.
         :param pulumi.Input[_builtins.str] mac_address: The MAC address for the static entry.
@@ -98,6 +99,7 @@ class _PublicGatewayDhcpReservationState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PublicGatewayDhcpReservation resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the Public Gateway DHCP configuration.
         :param pulumi.Input[_builtins.str] gateway_network_id: The ID of the owning GatewayNetwork.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the client machine.
@@ -291,6 +293,7 @@ class PublicGatewayDhcpReservation(pulumi.CustomResource):
         $ pulumi import scaleway:network/publicGatewayDhcpReservation:PublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] gateway_network_id: The ID of the owning GatewayNetwork.
@@ -362,6 +365,7 @@ class PublicGatewayDhcpReservation(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:network/publicGatewayDhcpReservation:PublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PublicGatewayDhcpReservationArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class EdgeServicesWafStageArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesWafStage resource.
+
         :param pulumi.Input[_builtins.int] paranoia_level: The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
@@ -114,6 +115,7 @@ class _EdgeServicesWafStageState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesWafStage resources.
+
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the WAF stage.
         :param pulumi.Input[_builtins.str] mode: The mode defining WAF behavior (`disable`/`log_only`/`enable`).
@@ -264,6 +266,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
@@ -302,6 +305,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EdgeServicesWafStageArgs args: The arguments to use to populate this resource's properties.

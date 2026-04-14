@@ -32,6 +32,7 @@ class InstancePolicyArgs:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstancePolicy resource.
+
         :param pulumi.Input[_builtins.str] action: The action to execute when the metric-based condition is met.
         :param pulumi.Input[_builtins.str] instance_group_id: The ID of the Instance group related to this policy.
         :param pulumi.Input[_builtins.int] priority: The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
@@ -179,6 +180,7 @@ class _InstancePolicyState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstancePolicy resources.
+
         :param pulumi.Input[_builtins.str] action: The action to execute when the metric-based condition is met.
         :param pulumi.Input[_builtins.str] instance_group_id: The ID of the Instance group related to this policy.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePolicyMetricArgs']]] metrics: Cockpit metric to use when determining whether to trigger a scale up/down action.
@@ -384,6 +386,7 @@ class InstancePolicy(pulumi.CustomResource):
         $ pulumi import scaleway:autoscaling/instancePolicy:InstancePolicy main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: The action to execute when the metric-based condition is met.
@@ -452,6 +455,7 @@ class InstancePolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:autoscaling/instancePolicy:InstancePolicy main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param InstancePolicyArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class IamUserArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a IamUser resource.
+
         :param pulumi.Input[_builtins.str] email: The email of the IAM user. For Guest users, this argument is not editable.
         :param pulumi.Input[_builtins.str] username: The username of the IAM user.
         :param pulumi.Input[_builtins.str] first_name: The user's first name.
@@ -259,6 +260,7 @@ class _IamUserState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IamUser resources.
+
         :param pulumi.Input[_builtins.str] account_root_user_id: The ID of the account root user associated with the user.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the IAM user.
         :param pulumi.Input[_builtins.bool] deletable: Whether the IAM user is deletable.
@@ -671,6 +673,7 @@ class IamUser(pulumi.CustomResource):
         $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] email: The email of the IAM user. For Guest users, this argument is not editable.
@@ -745,6 +748,7 @@ class IamUser(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IamUserArgs args: The arguments to use to populate this resource's properties.

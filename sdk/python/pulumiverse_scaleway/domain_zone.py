@@ -24,6 +24,7 @@ class DomainZoneArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DomainZone resource.
+
         :param pulumi.Input[_builtins.str] domain: The main domain where the DNS zone will be created.
         :param pulumi.Input[_builtins.str] subdomain: The name of the subdomain (zone name) to create within the domain.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project associated with the domain.
@@ -84,6 +85,7 @@ class _DomainZoneState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DomainZone resources.
+
         :param pulumi.Input[_builtins.str] domain: The main domain where the DNS zone will be created.
         :param pulumi.Input[_builtins.str] message: Message.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ns: The list of same servers for the zone.
@@ -265,6 +267,7 @@ class DomainZone(pulumi.CustomResource):
         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain: The main domain where the DNS zone will be created.
@@ -304,6 +307,7 @@ class DomainZone(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainZoneArgs args: The arguments to use to populate this resource's properties.

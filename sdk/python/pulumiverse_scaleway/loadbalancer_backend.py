@@ -53,6 +53,7 @@ class LoadbalancerBackendArgs:
                  timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerBackend resource.
+
         :param pulumi.Input[_builtins.int] forward_port: User sessions will be forwarded to this port of backend servers
         :param pulumi.Input[_builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
@@ -548,6 +549,7 @@ class _LoadbalancerBackendState:
                  timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerBackend resources.
+
         :param pulumi.Input[_builtins.str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down
                
                **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
@@ -1097,6 +1099,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] failover_host: Scaleway S3 bucket website to be served in case all backend servers are down
@@ -1182,6 +1185,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LoadbalancerBackendArgs args: The arguments to use to populate this resource's properties.

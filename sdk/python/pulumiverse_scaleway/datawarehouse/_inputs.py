@@ -25,28 +25,23 @@ __all__ = [
     'DeploymentPublicNetworkServiceArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class DeploymentPrivateNetworkArgsDict(TypedDict):
-        pn_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the private network. Format: `{region}/{id}` or just `{id}`.
-        """
-        dns_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        DNS record for the private endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private endpoint.
-        """
-        services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgsDict']]]]
-        """
-        List of services exposed on the private endpoint.
-        """
-elif False:
-    DeploymentPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPrivateNetworkArgsDict(TypedDict):
+    pn_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+    """
+    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    DNS record for the private endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private endpoint.
+    """
+    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgsDict']]]]
+    """
+    List of services exposed on the private endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentPrivateNetworkArgs:
@@ -118,18 +113,15 @@ class DeploymentPrivateNetworkArgs:
         pulumi.set(self, "services", value)
 
 
-if not MYPY:
-    class DeploymentPrivateNetworkServiceArgsDict(TypedDict):
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port number.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Service protocol (e.g., "tcp", "https", "mysql").
-        """
-elif False:
-    DeploymentPrivateNetworkServiceArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPrivateNetworkServiceArgsDict(TypedDict):
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port number.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Service protocol (e.g., "tcp", "https", "mysql").
+    """
 
 @pulumi.input_type
 class DeploymentPrivateNetworkServiceArgs:
@@ -170,22 +162,19 @@ class DeploymentPrivateNetworkServiceArgs:
         pulumi.set(self, "protocol", value)
 
 
-if not MYPY:
-    class DeploymentPublicNetworkArgsDict(TypedDict):
-        dns_record: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        DNS record for the private endpoint.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the private endpoint.
-        """
-        services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgsDict']]]]
-        """
-        List of services exposed on the private endpoint.
-        """
-elif False:
-    DeploymentPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPublicNetworkArgsDict(TypedDict):
+    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    DNS record for the private endpoint.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the private endpoint.
+    """
+    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgsDict']]]]
+    """
+    List of services exposed on the private endpoint.
+    """
 
 @pulumi.input_type
 class DeploymentPublicNetworkArgs:
@@ -242,18 +231,15 @@ class DeploymentPublicNetworkArgs:
         pulumi.set(self, "services", value)
 
 
-if not MYPY:
-    class DeploymentPublicNetworkServiceArgsDict(TypedDict):
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        TCP port number.
-        """
-        protocol: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Service protocol (e.g., "tcp", "https", "mysql").
-        """
-elif False:
-    DeploymentPublicNetworkServiceArgsDict: TypeAlias = Mapping[str, Any]
+class DeploymentPublicNetworkServiceArgsDict(TypedDict):
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    TCP port number.
+    """
+    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Service protocol (e.g., "tcp", "https", "mysql").
+    """
 
 @pulumi.input_type
 class DeploymentPublicNetworkServiceArgs:

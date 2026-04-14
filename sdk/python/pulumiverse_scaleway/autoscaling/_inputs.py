@@ -29,24 +29,19 @@ __all__ = [
     'InstanceTemplateVolumeFromSnapshotArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class InstanceGroupCapacityArgsDict(TypedDict):
-        cooldown_delay: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
-        """
-        max_replicas: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum count of Instances for the Instance group.
-        """
-        min_replicas: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The minimum count of Instances for the Instance group.
-        """
-elif False:
-    InstanceGroupCapacityArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceGroupCapacityArgsDict(TypedDict):
+    cooldown_delay: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+    """
+    max_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum count of Instances for the Instance group.
+    """
+    min_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The minimum count of Instances for the Instance group.
+    """
 
 @pulumi.input_type
 class InstanceGroupCapacityArgs:
@@ -103,22 +98,19 @@ class InstanceGroupCapacityArgs:
         pulumi.set(self, "min_replicas", value)
 
 
-if not MYPY:
-    class InstanceGroupLoadBalancerArgsDict(TypedDict):
-        backend_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The Load Balancer backend IDs.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Load Balancer.
-        """
-        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of the Private Network attached to the Load Balancer.
-        """
-elif False:
-    InstanceGroupLoadBalancerArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceGroupLoadBalancerArgsDict(TypedDict):
+    backend_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The Load Balancer backend IDs.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Load Balancer.
+    """
+    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of the Private Network attached to the Load Balancer.
+    """
 
 @pulumi.input_type
 class InstanceGroupLoadBalancerArgs:
@@ -175,38 +167,35 @@ class InstanceGroupLoadBalancerArgs:
         pulumi.set(self, "private_network_id", value)
 
 
-if not MYPY:
-    class InstancePolicyMetricArgsDict(TypedDict):
-        aggregate: pulumi.Input[_builtins.str]
-        """
-        How the values sampled for the `metric` should be aggregated.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name or description of the metric policy.
-        """
-        operator: pulumi.Input[_builtins.str]
-        """
-        Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
-        """
-        cockpit_metric_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
-        """
-        managed_metric: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
-        """
-        sampling_range_min: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The Interval of time, in minutes, during which metric is sampled.
-        """
-        threshold: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
-        """
-elif False:
-    InstancePolicyMetricArgsDict: TypeAlias = Mapping[str, Any]
+class InstancePolicyMetricArgsDict(TypedDict):
+    aggregate: pulumi.Input[_builtins.str]
+    """
+    How the values sampled for the `metric` should be aggregated.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name or description of the metric policy.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+    """
+    cockpit_metric_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+    """
+    managed_metric: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+    """
+    sampling_range_min: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The Interval of time, in minutes, during which metric is sampled.
+    """
+    threshold: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+    """
 
 @pulumi.input_type
 class InstancePolicyMetricArgs:
@@ -324,38 +313,35 @@ class InstancePolicyMetricArgs:
         pulumi.set(self, "threshold", value)
 
 
-if not MYPY:
-    class InstanceTemplateVolumeArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the volume.
-        """
-        volume_type: pulumi.Input[_builtins.str]
-        """
-        The type of the volume.
-        """
-        boot: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Force the Instance to boot on this volume.
-        """
-        from_empty: NotRequired[pulumi.Input['InstanceTemplateVolumeFromEmptyArgsDict']]
-        """
-        Volume instance template from empty
-        """
-        from_snapshot: NotRequired[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgsDict']]
-        """
-        Volume instance template from snapshot
-        """
-        perf_iops: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
-        """
-        tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        The list of tags assigned to the volume.
-        """
-elif False:
-    InstanceTemplateVolumeArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceTemplateVolumeArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the volume.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    The type of the volume.
+    """
+    boot: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Force the Instance to boot on this volume.
+    """
+    from_empty: NotRequired[pulumi.Input['InstanceTemplateVolumeFromEmptyArgsDict']]
+    """
+    Volume instance template from empty
+    """
+    from_snapshot: NotRequired[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgsDict']]
+    """
+    Volume instance template from snapshot
+    """
+    perf_iops: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+    """
+    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    The list of tags assigned to the volume.
+    """
 
 @pulumi.input_type
 class InstanceTemplateVolumeArgs:
@@ -474,14 +460,11 @@ class InstanceTemplateVolumeArgs:
         pulumi.set(self, "tags", value)
 
 
-if not MYPY:
-    class InstanceTemplateVolumeFromEmptyArgsDict(TypedDict):
-        size: pulumi.Input[_builtins.int]
-        """
-        Size in GB of the new empty volume
-        """
-elif False:
-    InstanceTemplateVolumeFromEmptyArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceTemplateVolumeFromEmptyArgsDict(TypedDict):
+    size: pulumi.Input[_builtins.int]
+    """
+    Size in GB of the new empty volume
+    """
 
 @pulumi.input_type
 class InstanceTemplateVolumeFromEmptyArgs:
@@ -505,18 +488,15 @@ class InstanceTemplateVolumeFromEmptyArgs:
         pulumi.set(self, "size", value)
 
 
-if not MYPY:
-    class InstanceTemplateVolumeFromSnapshotArgsDict(TypedDict):
-        snapshot_id: pulumi.Input[_builtins.str]
-        """
-        ID of the snapshot to clone
-        """
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Override size (in GB) of the cloned volume
-        """
-elif False:
-    InstanceTemplateVolumeFromSnapshotArgsDict: TypeAlias = Mapping[str, Any]
+class InstanceTemplateVolumeFromSnapshotArgsDict(TypedDict):
+    snapshot_id: pulumi.Input[_builtins.str]
+    """
+    ID of the snapshot to clone
+    """
+    size: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Override size (in GB) of the cloned volume
+    """
 
 @pulumi.input_type
 class InstanceTemplateVolumeFromSnapshotArgs:

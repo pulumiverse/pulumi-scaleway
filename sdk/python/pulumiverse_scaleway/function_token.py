@@ -26,6 +26,7 @@ class FunctionTokenArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FunctionToken resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the token.
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the token.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
@@ -123,6 +124,7 @@ class _FunctionTokenState:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionToken resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the token.
         :param pulumi.Input[_builtins.str] expires_at: The expiration date of the token.
         :param pulumi.Input[_builtins.str] function_id: The unique identifier of the function.
@@ -277,6 +279,7 @@ class FunctionToken(pulumi.CustomResource):
         $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the token.
@@ -330,6 +333,7 @@ class FunctionToken(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FunctionTokenArgs args: The arguments to use to populate this resource's properties.

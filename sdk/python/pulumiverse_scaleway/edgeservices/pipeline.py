@@ -24,6 +24,7 @@ class PipelineArgs:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pipeline resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the pipeline.
         :param pulumi.Input[_builtins.str] name: The name of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the pipeline is associated with.
@@ -83,6 +84,7 @@ class _PipelineState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
+
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the pipeline.
         :param pulumi.Input[_builtins.str] description: The description of the pipeline.
         :param pulumi.Input[_builtins.str] name: The name of the pipeline.
@@ -262,6 +264,7 @@ class Pipeline(pulumi.CustomResource):
         $ pulumi import scaleway:edgeservices/pipeline:Pipeline basic 11111111-1111-1111-1111-111111111111
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the pipeline.
@@ -349,6 +352,7 @@ class Pipeline(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:edgeservices/pipeline:Pipeline basic 11111111-1111-1111-1111-111111111111
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PipelineArgs args: The arguments to use to populate this resource's properties.
