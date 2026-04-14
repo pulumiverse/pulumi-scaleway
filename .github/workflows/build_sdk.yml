@@ -38,10 +38,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
-          persist-credentials: false      
-      - id: esc-secrets
-        name: Map environment to ESC outputs
-        uses: ./.github/actions/esc-action
+          persist-credentials: false
       - name: Cache examples generation
         uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
@@ -54,7 +51,7 @@ jobs:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
           version: 2026.2.20
-          github_token: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+          github_token: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
           # only saving the cache in the prerequisites job
           cache_save: false
       - name: Setup Go Cache
@@ -70,7 +67,7 @@ jobs:
       - name: Prepare local workspace
         run: make prepare_local_workspace
         env:
-          GITHUB_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
       - name: Download prerequisites
         uses: ./.github/actions/download-prerequisites
       - name: Update path
@@ -127,7 +124,7 @@ jobs:
 
           # Push with pulumi-bot credentials to trigger a re-run of the
           # workflow. https://github.com/orgs/community/discussions/25702
-          git push https://pulumi-bot:${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}@github.com/${{ github.repository }} \
+          git push https://pulumi-bot:${{ secrets.PULUMI_BOT_TOKEN }}@github.com/${{ github.repository }} \
               "HEAD:$HEAD_REF"
         env:
           # head_ref is untrusted so it's recommended to pass via env var to

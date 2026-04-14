@@ -20,10 +20,14 @@ linters:
       - schema.go
       - pulumiManifest.go
       - pkg/vendored
-      - pkg/version
       - third_party$
       - builtin$
       - examples$
+    rules:
+      - linters:
+          - revive
+        path: pkg/version/
+        text: "var-naming" # https://github.com/pulumi/ci-mgmt/issues/2100
 formatters:
   enable:
     - gci

@@ -72,10 +72,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
-          persist-credentials: false      
-      - id: esc-secrets
-        name: Map environment to ESC outputs
-        uses: ./.github/actions/esc-action
+          persist-credentials: false
       - name: Install mise
         uses: jdx/mise-action@c1a019b8d2586943b4dbebc456323b516910e310
         with:

@@ -43,17 +43,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
-          persist-credentials: false # Conflicts with app auth token.      
-      - id: esc-secrets
-        name: Map environment to ESC outputs
-        uses: ./.github/actions/esc-action
+          persist-credentials: false # Conflicts with app auth token.
       - name: Install mise
         uses: jdx/mise-action@c1a019b8d2586943b4dbebc456323b516910e310
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
           version: 2026.2.20
-          github_token: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+          github_token: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
           # only saving the cache in the prerequisites job
           cache_save: false
       - name: Install upgrade-provider
@@ -71,7 +68,7 @@ jobs:
         run: upgrade-provider "$REPO" --kind=check-upstream-version
         env:
           REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN || secrets.GITHUB_TOKEN }}
         shell: bash
       - name: Calculate target version
         id: target_version
@@ -91,4 +88,4 @@ jobs:
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
         env:
-          GH_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN || secrets.GITHUB_TOKEN }}

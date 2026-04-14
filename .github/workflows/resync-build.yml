@@ -48,4 +48,4 @@ jobs:
           title: Regenerate Github Actions workflows for pulumi-scaleway
           token: ${{ env.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN || secrets.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN || secrets.GITHUB_TOKEN }}
