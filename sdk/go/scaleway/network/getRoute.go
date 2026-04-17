@@ -112,6 +112,7 @@ type LookupRouteResult struct {
 	NexthopPrivateNetworkId *string  `pulumi:"nexthopPrivateNetworkId"`
 	NexthopResourceId       *string  `pulumi:"nexthopResourceId"`
 	NexthopResourceType     *string  `pulumi:"nexthopResourceType"`
+	NexthopVpcConnectorId   string   `pulumi:"nexthopVpcConnectorId"`
 	Region                  *string  `pulumi:"region"`
 	RouteId                 *string  `pulumi:"routeId"`
 	Tags                    []string `pulumi:"tags"`
@@ -202,6 +203,10 @@ func (o LookupRouteResultOutput) NexthopResourceId() pulumi.StringPtrOutput {
 
 func (o LookupRouteResultOutput) NexthopResourceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRouteResult) *string { return v.NexthopResourceType }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRouteResultOutput) NexthopVpcConnectorId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouteResult) string { return v.NexthopVpcConnectorId }).(pulumi.StringOutput)
 }
 
 func (o LookupRouteResultOutput) Region() pulumi.StringPtrOutput {

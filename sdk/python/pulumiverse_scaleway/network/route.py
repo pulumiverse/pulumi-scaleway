@@ -24,6 +24,7 @@ class RouteArgs:
                  destination: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 nexthop_vpc_connector_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -34,6 +35,7 @@ class RouteArgs:
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
         :param pulumi.Input[_builtins.str] nexthop_private_network_id: The ID of the nexthop private network.
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
+        :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         """
@@ -46,6 +48,8 @@ class RouteArgs:
             pulumi.set(__self__, "nexthop_private_network_id", nexthop_private_network_id)
         if nexthop_resource_id is not None:
             pulumi.set(__self__, "nexthop_resource_id", nexthop_resource_id)
+        if nexthop_vpc_connector_id is not None:
+            pulumi.set(__self__, "nexthop_vpc_connector_id", nexthop_vpc_connector_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -112,6 +116,18 @@ class RouteArgs:
         pulumi.set(self, "nexthop_resource_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="nexthopVpcConnectorId")
+    def nexthop_vpc_connector_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the nexthop VPC Connector.
+        """
+        return pulumi.get(self, "nexthop_vpc_connector_id")
+
+    @nexthop_vpc_connector_id.setter
+    def nexthop_vpc_connector_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "nexthop_vpc_connector_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -144,6 +160,7 @@ class _RouteState:
                  destination: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 nexthop_vpc_connector_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -156,6 +173,7 @@ class _RouteState:
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
         :param pulumi.Input[_builtins.str] nexthop_private_network_id: The ID of the nexthop private network.
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
+        :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the creation of the route (RFC 3339 format).
@@ -171,6 +189,8 @@ class _RouteState:
             pulumi.set(__self__, "nexthop_private_network_id", nexthop_private_network_id)
         if nexthop_resource_id is not None:
             pulumi.set(__self__, "nexthop_resource_id", nexthop_resource_id)
+        if nexthop_vpc_connector_id is not None:
+            pulumi.set(__self__, "nexthop_vpc_connector_id", nexthop_vpc_connector_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -241,6 +261,18 @@ class _RouteState:
         pulumi.set(self, "nexthop_resource_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="nexthopVpcConnectorId")
+    def nexthop_vpc_connector_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the nexthop VPC Connector.
+        """
+        return pulumi.get(self, "nexthop_vpc_connector_id")
+
+    @nexthop_vpc_connector_id.setter
+    def nexthop_vpc_connector_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "nexthop_vpc_connector_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -299,6 +331,7 @@ class Route(pulumi.CustomResource):
                  destination: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 nexthop_vpc_connector_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -384,6 +417,29 @@ class Route(pulumi.CustomResource):
             nexthop_resource_id=my_server.private_networks[0].mapping_id)
         ```
 
+        ### With VPC Connector
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-source")
+        vpc02 = scaleway.network.Vpc("vpc02", name="tf-vpc-target")
+        main = scaleway.network.Connector("main",
+            name="tf-conn-route",
+            vpc_id=vpc01.id,
+            target_vpc_id=vpc02.id)
+        rt01 = scaleway.network.Route("rt01",
+            vpc_id=vpc01.id,
+            description="tf-route-connector",
+            tags=[
+                "tf",
+                "route",
+            ],
+            destination="10.0.0.0/24",
+            nexthop_vpc_connector_id=main.id)
+        ```
+
         ## Import
 
         Routes can be imported using `{region}/{id}`, e.g.
@@ -399,6 +455,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
         :param pulumi.Input[_builtins.str] nexthop_private_network_id: The ID of the nexthop private network.
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
+        :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the route belongs to.
@@ -490,6 +547,29 @@ class Route(pulumi.CustomResource):
             nexthop_resource_id=my_server.private_networks[0].mapping_id)
         ```
 
+        ### With VPC Connector
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-source")
+        vpc02 = scaleway.network.Vpc("vpc02", name="tf-vpc-target")
+        main = scaleway.network.Connector("main",
+            name="tf-conn-route",
+            vpc_id=vpc01.id,
+            target_vpc_id=vpc02.id)
+        rt01 = scaleway.network.Route("rt01",
+            vpc_id=vpc01.id,
+            description="tf-route-connector",
+            tags=[
+                "tf",
+                "route",
+            ],
+            destination="10.0.0.0/24",
+            nexthop_vpc_connector_id=main.id)
+        ```
+
         ## Import
 
         Routes can be imported using `{region}/{id}`, e.g.
@@ -518,6 +598,7 @@ class Route(pulumi.CustomResource):
                  destination: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  nexthop_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 nexthop_vpc_connector_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -534,6 +615,7 @@ class Route(pulumi.CustomResource):
             __props__.__dict__["destination"] = destination
             __props__.__dict__["nexthop_private_network_id"] = nexthop_private_network_id
             __props__.__dict__["nexthop_resource_id"] = nexthop_resource_id
+            __props__.__dict__["nexthop_vpc_connector_id"] = nexthop_vpc_connector_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
@@ -558,6 +640,7 @@ class Route(pulumi.CustomResource):
             destination: Optional[pulumi.Input[_builtins.str]] = None,
             nexthop_private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
             nexthop_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+            nexthop_vpc_connector_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -574,6 +657,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] destination: The destination of the route.
         :param pulumi.Input[_builtins.str] nexthop_private_network_id: The ID of the nexthop private network.
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
+        :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the creation of the route (RFC 3339 format).
@@ -588,6 +672,7 @@ class Route(pulumi.CustomResource):
         __props__.__dict__["destination"] = destination
         __props__.__dict__["nexthop_private_network_id"] = nexthop_private_network_id
         __props__.__dict__["nexthop_resource_id"] = nexthop_resource_id
+        __props__.__dict__["nexthop_vpc_connector_id"] = nexthop_vpc_connector_id
         __props__.__dict__["region"] = region
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -633,6 +718,14 @@ class Route(pulumi.CustomResource):
         The ID of the nexthop resource.
         """
         return pulumi.get(self, "nexthop_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="nexthopVpcConnectorId")
+    def nexthop_vpc_connector_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the nexthop VPC Connector.
+        """
+        return pulumi.get(self, "nexthop_vpc_connector_id")
 
     @_builtins.property
     @pulumi.getter

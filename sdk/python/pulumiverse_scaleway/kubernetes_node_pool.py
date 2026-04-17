@@ -72,6 +72,8 @@ class KubernetesNodePoolArgs:
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+               
+               > Note: The minimal volume size of a node is 20GB.
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
@@ -296,6 +298,8 @@ class KubernetesNodePoolArgs:
     def root_volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The size of the system volume of the nodes in gigabyte
+
+        > Note: The minimal volume size of a node is 20GB.
         """
         return pulumi.get(self, "root_volume_size_in_gb")
 
@@ -440,6 +444,8 @@ class _KubernetesNodePoolState:
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+               
+               > Note: The minimal volume size of a node is 20GB.
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
         :param pulumi.Input[_builtins.int] size: The size of the pool.
@@ -707,6 +713,8 @@ class _KubernetesNodePoolState:
     def root_volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The size of the system volume of the nodes in gigabyte
+
+        > Note: The minimal volume size of a node is 20GB.
         """
         return pulumi.get(self, "root_volume_size_in_gb")
 
@@ -878,33 +886,6 @@ class KubernetesNodePool(pulumi.CustomResource):
 
         Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.kubernetes.Cluster("main",
-            version="1.32.3",
-            cni="cilium")
-        main_pool = scaleway.kubernetes.Pool("main",
-            cluster_id=main.id,
-            node_type="DEV1-M",
-            size=3,
-            min_size=0,
-            max_size=10,
-            autoscaling=True,
-            autohealing=True,
-            container_runtime="containerd",
-            placement_group_id="1267e3fd-a51c-49ed-ad12-857092ee3a3d")
-        ```
-
-        ## Zone
-
-        The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
-
-        Please note that a pool belongs to only one cluster, in the same region.`region`.
-
         ## Placement Group
 
         If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
@@ -1011,6 +992,8 @@ class KubernetesNodePool(pulumi.CustomResource):
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+               
+               > Note: The minimal volume size of a node is 20GB.
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
         :param pulumi.Input[_builtins.int] size: The size of the pool.
@@ -1035,33 +1018,6 @@ class KubernetesNodePool(pulumi.CustomResource):
         The `kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
 
         Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.kubernetes.Cluster("main",
-            version="1.32.3",
-            cni="cilium")
-        main_pool = scaleway.kubernetes.Pool("main",
-            cluster_id=main.id,
-            node_type="DEV1-M",
-            size=3,
-            min_size=0,
-            max_size=10,
-            autoscaling=True,
-            autohealing=True,
-            container_runtime="containerd",
-            placement_group_id="1267e3fd-a51c-49ed-ad12-857092ee3a3d")
-        ```
-
-        ## Zone
-
-        The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
-
-        Please note that a pool belongs to only one cluster, in the same region.`region`.
 
         ## Placement Group
 
@@ -1290,6 +1246,8 @@ class KubernetesNodePool(pulumi.CustomResource):
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
+               
+               > Note: The minimal volume size of a node is 20GB.
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
         :param pulumi.Input[_builtins.int] size: The size of the pool.
@@ -1409,7 +1367,7 @@ class KubernetesNodePool(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def min_size(self) -> pulumi.Output[_builtins.int]:
         """
         The minimum size of the pool, used by the autoscaling feature.
         """
@@ -1476,6 +1434,8 @@ class KubernetesNodePool(pulumi.CustomResource):
     def root_volume_size_in_gb(self) -> pulumi.Output[_builtins.int]:
         """
         The size of the system volume of the nodes in gigabyte
+
+        > Note: The minimal volume size of a node is 20GB.
         """
         return pulumi.get(self, "root_volume_size_in_gb")
 

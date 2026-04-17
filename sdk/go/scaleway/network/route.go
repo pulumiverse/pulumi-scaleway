@@ -184,6 +184,59 @@ import (
 //
 // ```
 //
+// ### With VPC Connector
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
+//				Name: pulumi.String("tf-vpc-source"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			vpc02, err := network.NewVpc(ctx, "vpc02", &network.VpcArgs{
+//				Name: pulumi.String("tf-vpc-target"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			main, err := network.NewConnector(ctx, "main", &network.ConnectorArgs{
+//				Name:        pulumi.String("tf-conn-route"),
+//				VpcId:       vpc01.ID(),
+//				TargetVpcId: vpc02.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
+//				VpcId:       vpc01.ID(),
+//				Description: pulumi.String("tf-route-connector"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("tf"),
+//					pulumi.String("route"),
+//				},
+//				Destination:           pulumi.String("10.0.0.0/24"),
+//				NexthopVpcConnectorId: main.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Routes can be imported using `{region}/{id}`, e.g.
@@ -204,6 +257,8 @@ type Route struct {
 	NexthopPrivateNetworkId pulumi.StringPtrOutput `pulumi:"nexthopPrivateNetworkId"`
 	// The ID of the nexthop resource.
 	NexthopResourceId pulumi.StringPtrOutput `pulumi:"nexthopResourceId"`
+	// The ID of the nexthop VPC Connector.
+	NexthopVpcConnectorId pulumi.StringPtrOutput `pulumi:"nexthopVpcConnectorId"`
 	// `region`) The region of the route.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The tags to associate with the route.
@@ -263,6 +318,8 @@ type routeState struct {
 	NexthopPrivateNetworkId *string `pulumi:"nexthopPrivateNetworkId"`
 	// The ID of the nexthop resource.
 	NexthopResourceId *string `pulumi:"nexthopResourceId"`
+	// The ID of the nexthop VPC Connector.
+	NexthopVpcConnectorId *string `pulumi:"nexthopVpcConnectorId"`
 	// `region`) The region of the route.
 	Region *string `pulumi:"region"`
 	// The tags to associate with the route.
@@ -284,6 +341,8 @@ type RouteState struct {
 	NexthopPrivateNetworkId pulumi.StringPtrInput
 	// The ID of the nexthop resource.
 	NexthopResourceId pulumi.StringPtrInput
+	// The ID of the nexthop VPC Connector.
+	NexthopVpcConnectorId pulumi.StringPtrInput
 	// `region`) The region of the route.
 	Region pulumi.StringPtrInput
 	// The tags to associate with the route.
@@ -307,6 +366,8 @@ type routeArgs struct {
 	NexthopPrivateNetworkId *string `pulumi:"nexthopPrivateNetworkId"`
 	// The ID of the nexthop resource.
 	NexthopResourceId *string `pulumi:"nexthopResourceId"`
+	// The ID of the nexthop VPC Connector.
+	NexthopVpcConnectorId *string `pulumi:"nexthopVpcConnectorId"`
 	// `region`) The region of the route.
 	Region *string `pulumi:"region"`
 	// The tags to associate with the route.
@@ -325,6 +386,8 @@ type RouteArgs struct {
 	NexthopPrivateNetworkId pulumi.StringPtrInput
 	// The ID of the nexthop resource.
 	NexthopResourceId pulumi.StringPtrInput
+	// The ID of the nexthop VPC Connector.
+	NexthopVpcConnectorId pulumi.StringPtrInput
 	// `region`) The region of the route.
 	Region pulumi.StringPtrInput
 	// The tags to associate with the route.
@@ -443,6 +506,11 @@ func (o RouteOutput) NexthopPrivateNetworkId() pulumi.StringPtrOutput {
 // The ID of the nexthop resource.
 func (o RouteOutput) NexthopResourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.NexthopResourceId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the nexthop VPC Connector.
+func (o RouteOutput) NexthopVpcConnectorId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.NexthopVpcConnectorId }).(pulumi.StringPtrOutput)
 }
 
 // `region`) The region of the route.

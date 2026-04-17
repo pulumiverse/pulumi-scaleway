@@ -1316,6 +1316,36 @@
                     }
                 }
             },
+            "scaleway_interlink_link": {
+                "current": "scaleway:interlink/link:Link",
+                "majorVersion": 1,
+                "fields": {
+                    "peer_bgp_config": {
+                        "maxItemsOne": false
+                    },
+                    "scw_bgp_config": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_interlink_routing_policy": {
+                "current": "scaleway:interlink/routingPolicy:RoutingPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "prefix_filter_in": {
+                        "maxItemsOne": false
+                    },
+                    "prefix_filter_out": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_iot_device": {
                 "current": "scaleway:iot/device:Device",
                 "past": [
@@ -3825,6 +3855,21 @@
                     }
                 }
             },
+            "scaleway_interlink_link": {
+                "current": "scaleway:interlink/getLink:getLink",
+                "majorVersion": 1,
+                "fields": {
+                    "peer_bgp_config": {
+                        "maxItemsOne": false
+                    },
+                    "scw_bgp_config": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_interlink_partner": {
                 "current": "scaleway:interlink/getPartner:getPartner",
                 "majorVersion": 1
@@ -3863,6 +3908,21 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "scaleway_interlink_routing_policy": {
+                "current": "scaleway:interlink/getRoutingPolicy:getRoutingPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "prefix_filter_in": {
+                        "maxItemsOne": false
+                    },
+                    "prefix_filter_out": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -6372,6 +6432,8 @@
             "scaleway:instance/snapshot:Snapshot": 0,
             "scaleway:instance/userData:UserData": 0,
             "scaleway:instance/volume:Volume": 0,
+            "scaleway:interlink/link:Link": 0,
+            "scaleway:interlink/routingPolicy:RoutingPolicy": 0,
             "scaleway:iot/device:Device": 0,
             "scaleway:iot/hub:Hub": 0,
             "scaleway:iot/network:Network": 0,
@@ -6589,10 +6651,12 @@
             "scaleway:instance/getServers:getServers": 0,
             "scaleway:instance/getSnapshot:getSnapshot": 0,
             "scaleway:instance/getVolume:getVolume": 0,
+            "scaleway:interlink/getLink:getLink": 0,
             "scaleway:interlink/getPartner:getPartner": 0,
             "scaleway:interlink/getPartners:getPartners": 0,
             "scaleway:interlink/getPop:getPop": 0,
             "scaleway:interlink/getPops:getPops": 0,
+            "scaleway:interlink/getRoutingPolicy:getRoutingPolicy": 0,
             "scaleway:iot/getDevice:getDevice": 0,
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,

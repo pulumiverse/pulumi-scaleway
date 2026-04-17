@@ -299,6 +299,7 @@ namespace Pulumiverse.Scaleway.Network
         public readonly string? NexthopPrivateNetworkId;
         public readonly string? NexthopResourceId;
         public readonly string? NexthopResourceType;
+        public readonly string NexthopVpcConnectorId;
         public readonly string? Region;
         public readonly string? RouteId;
         public readonly ImmutableArray<string> Tags;
@@ -323,6 +324,8 @@ namespace Pulumiverse.Scaleway.Network
 
             string? nexthopResourceType,
 
+            string nexthopVpcConnectorId,
+
             string? region,
 
             string? routeId,
@@ -341,6 +344,7 @@ namespace Pulumiverse.Scaleway.Network
             NexthopPrivateNetworkId = nexthopPrivateNetworkId;
             NexthopResourceId = nexthopResourceId;
             NexthopResourceType = nexthopResourceType;
+            NexthopVpcConnectorId = nexthopVpcConnectorId;
             Region = region;
             RouteId = routeId;
             Tags = tags;

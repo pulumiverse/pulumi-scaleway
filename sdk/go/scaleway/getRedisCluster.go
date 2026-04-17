@@ -48,7 +48,8 @@ type LookupRedisClusterResult struct {
 	Certificate string  `pulumi:"certificate"`
 	ClusterId   *string `pulumi:"clusterId"`
 	// The number of nodes in the Redis Cluster.
-	ClusterSize int `pulumi:"clusterSize"`
+	ClusterSize      int    `pulumi:"clusterSize"`
+	ConnectionString string `pulumi:"connectionString"`
 	// The date and time of creation of the Redis Cluster.
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
@@ -140,6 +141,10 @@ func (o LookupRedisClusterResultOutput) ClusterId() pulumi.StringPtrOutput {
 // The number of nodes in the Redis Cluster.
 func (o LookupRedisClusterResultOutput) ClusterSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) int { return v.ClusterSize }).(pulumi.IntOutput)
+}
+
+func (o LookupRedisClusterResultOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.ConnectionString }).(pulumi.StringOutput)
 }
 
 // The date and time of creation of the Redis Cluster.

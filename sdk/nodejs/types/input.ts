@@ -4308,6 +4308,35 @@ export namespace instance {
 }
 
 export namespace interlink {
+    export interface LinkPeerBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn?: pulumi.Input<number>;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4?: pulumi.Input<string>;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6?: pulumi.Input<string>;
+    }
+
+    export interface LinkScwBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn?: pulumi.Input<number>;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4?: pulumi.Input<string>;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6?: pulumi.Input<string>;
+    }
 }
 
 export namespace iot {

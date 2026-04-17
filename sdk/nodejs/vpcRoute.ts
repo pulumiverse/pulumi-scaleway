@@ -99,6 +99,31 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With VPC Connector
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "tf-vpc-source"});
+ * const vpc02 = new scaleway.network.Vpc("vpc02", {name: "tf-vpc-target"});
+ * const main = new scaleway.network.Connector("main", {
+ *     name: "tf-conn-route",
+ *     vpcId: vpc01.id,
+ *     targetVpcId: vpc02.id,
+ * });
+ * const rt01 = new scaleway.network.Route("rt01", {
+ *     vpcId: vpc01.id,
+ *     description: "tf-route-connector",
+ *     tags: [
+ *         "tf",
+ *         "route",
+ *     ],
+ *     destination: "10.0.0.0/24",
+ *     nexthopVpcConnectorId: main.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Routes can be imported using `{region}/{id}`, e.g.
@@ -159,6 +184,10 @@ export class VpcRoute extends pulumi.CustomResource {
      */
     declare public readonly nexthopResourceId: pulumi.Output<string | undefined>;
     /**
+     * The ID of the nexthop VPC Connector.
+     */
+    declare public readonly nexthopVpcConnectorId: pulumi.Output<string | undefined>;
+    /**
      * `region`) The region of the route.
      */
     declare public readonly region: pulumi.Output<string | undefined>;
@@ -196,6 +225,7 @@ export class VpcRoute extends pulumi.CustomResource {
             resourceInputs["destination"] = state?.destination;
             resourceInputs["nexthopPrivateNetworkId"] = state?.nexthopPrivateNetworkId;
             resourceInputs["nexthopResourceId"] = state?.nexthopResourceId;
+            resourceInputs["nexthopVpcConnectorId"] = state?.nexthopVpcConnectorId;
             resourceInputs["region"] = state?.region;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -209,6 +239,7 @@ export class VpcRoute extends pulumi.CustomResource {
             resourceInputs["destination"] = args?.destination;
             resourceInputs["nexthopPrivateNetworkId"] = args?.nexthopPrivateNetworkId;
             resourceInputs["nexthopResourceId"] = args?.nexthopResourceId;
+            resourceInputs["nexthopVpcConnectorId"] = args?.nexthopVpcConnectorId;
             resourceInputs["region"] = args?.region;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["vpcId"] = args?.vpcId;
@@ -244,6 +275,10 @@ export interface VpcRouteState {
      * The ID of the nexthop resource.
      */
     nexthopResourceId?: pulumi.Input<string>;
+    /**
+     * The ID of the nexthop VPC Connector.
+     */
+    nexthopVpcConnectorId?: pulumi.Input<string>;
     /**
      * `region`) The region of the route.
      */
@@ -282,6 +317,10 @@ export interface VpcRouteArgs {
      * The ID of the nexthop resource.
      */
     nexthopResourceId?: pulumi.Input<string>;
+    /**
+     * The ID of the nexthop VPC Connector.
+     */
+    nexthopVpcConnectorId?: pulumi.Input<string>;
     /**
      * `region`) The region of the route.
      */

@@ -123,6 +123,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// The number of nodes in the Redis Cluster.
         /// </summary>
         public readonly int ClusterSize;
+        public readonly string ConnectionString;
         /// <summary>
         /// The date and time of creation of the Redis Cluster.
         /// </summary>
@@ -188,6 +189,8 @@ namespace Pulumiverse.Scaleway.Redis
 
             int clusterSize,
 
+            string connectionString,
+
             string createdAt,
 
             string id,
@@ -228,6 +231,7 @@ namespace Pulumiverse.Scaleway.Redis
             Certificate = certificate;
             ClusterId = clusterId;
             ClusterSize = clusterSize;
+            ConnectionString = connectionString;
             CreatedAt = createdAt;
             Id = id;
             Name = name;

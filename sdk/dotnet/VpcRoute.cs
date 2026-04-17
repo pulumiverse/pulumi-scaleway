@@ -160,6 +160,49 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With VPC Connector
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "tf-vpc-source",
+    ///     });
+    /// 
+    ///     var vpc02 = new Scaleway.Network.Vpc("vpc02", new()
+    ///     {
+    ///         Name = "tf-vpc-target",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Network.Connector("main", new()
+    ///     {
+    ///         Name = "tf-conn-route",
+    ///         VpcId = vpc01.Id,
+    ///         TargetVpcId = vpc02.Id,
+    ///     });
+    /// 
+    ///     var rt01 = new Scaleway.Network.Route("rt01", new()
+    ///     {
+    ///         VpcId = vpc01.Id,
+    ///         Description = "tf-route-connector",
+    ///         Tags = new[]
+    ///         {
+    ///             "tf",
+    ///             "route",
+    ///         },
+    ///         Destination = "10.0.0.0/24",
+    ///         NexthopVpcConnectorId = main.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Routes can be imported using `{region}/{id}`, e.g.
@@ -201,6 +244,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("nexthopResourceId")]
         public Output<string?> NexthopResourceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the nexthop VPC Connector.
+        /// </summary>
+        [Output("nexthopVpcConnectorId")]
+        public Output<string?> NexthopVpcConnectorId { get; private set; } = null!;
 
         /// <summary>
         /// `Region`) The region of the route.
@@ -298,6 +347,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NexthopResourceId { get; set; }
 
         /// <summary>
+        /// The ID of the nexthop VPC Connector.
+        /// </summary>
+        [Input("nexthopVpcConnectorId")]
+        public Input<string>? NexthopVpcConnectorId { get; set; }
+
+        /// <summary>
         /// `Region`) The region of the route.
         /// </summary>
         [Input("region")]
@@ -358,6 +413,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("nexthopResourceId")]
         public Input<string>? NexthopResourceId { get; set; }
+
+        /// <summary>
+        /// The ID of the nexthop VPC Connector.
+        /// </summary>
+        [Input("nexthopVpcConnectorId")]
+        public Input<string>? NexthopVpcConnectorId { get; set; }
 
         /// <summary>
         /// `Region`) The region of the route.

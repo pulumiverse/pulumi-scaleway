@@ -112,9 +112,9 @@ export class Connector extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the Project the VPC connector is associated with.
+     * The Scaleway Project the VPC connector belongs to.
      */
-    declare public readonly projectId: pulumi.Output<string>;
+    declare public /*out*/ readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region of the VPC connector.
      */
@@ -172,13 +172,13 @@ export class Connector extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vpcId'");
             }
             resourceInputs["name"] = args?.name;
-            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["targetVpcId"] = args?.targetVpcId;
             resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -204,7 +204,7 @@ export interface ConnectorState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the Project the VPC connector is associated with.
+     * The Scaleway Project the VPC connector belongs to.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -241,10 +241,6 @@ export interface ConnectorArgs {
      * The name of the VPC connector. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
-    /**
-     * `projectId`) The ID of the Project the VPC connector is associated with.
-     */
-    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region of the VPC connector.
      */

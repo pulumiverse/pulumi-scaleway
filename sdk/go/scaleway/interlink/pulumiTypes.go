@@ -13,6 +13,466 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type LinkPeerBgpConfig struct {
+	// AS Number of the BGP peer
+	Asn *int `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 *string `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 *string `pulumi:"ipv6"`
+}
+
+// LinkPeerBgpConfigInput is an input type that accepts LinkPeerBgpConfigArgs and LinkPeerBgpConfigOutput values.
+// You can construct a concrete instance of `LinkPeerBgpConfigInput` via:
+//
+//	LinkPeerBgpConfigArgs{...}
+type LinkPeerBgpConfigInput interface {
+	pulumi.Input
+
+	ToLinkPeerBgpConfigOutput() LinkPeerBgpConfigOutput
+	ToLinkPeerBgpConfigOutputWithContext(context.Context) LinkPeerBgpConfigOutput
+}
+
+type LinkPeerBgpConfigArgs struct {
+	// AS Number of the BGP peer
+	Asn pulumi.IntPtrInput `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 pulumi.StringPtrInput `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
+}
+
+func (LinkPeerBgpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (i LinkPeerBgpConfigArgs) ToLinkPeerBgpConfigOutput() LinkPeerBgpConfigOutput {
+	return i.ToLinkPeerBgpConfigOutputWithContext(context.Background())
+}
+
+func (i LinkPeerBgpConfigArgs) ToLinkPeerBgpConfigOutputWithContext(ctx context.Context) LinkPeerBgpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkPeerBgpConfigOutput)
+}
+
+// LinkPeerBgpConfigArrayInput is an input type that accepts LinkPeerBgpConfigArray and LinkPeerBgpConfigArrayOutput values.
+// You can construct a concrete instance of `LinkPeerBgpConfigArrayInput` via:
+//
+//	LinkPeerBgpConfigArray{ LinkPeerBgpConfigArgs{...} }
+type LinkPeerBgpConfigArrayInput interface {
+	pulumi.Input
+
+	ToLinkPeerBgpConfigArrayOutput() LinkPeerBgpConfigArrayOutput
+	ToLinkPeerBgpConfigArrayOutputWithContext(context.Context) LinkPeerBgpConfigArrayOutput
+}
+
+type LinkPeerBgpConfigArray []LinkPeerBgpConfigInput
+
+func (LinkPeerBgpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (i LinkPeerBgpConfigArray) ToLinkPeerBgpConfigArrayOutput() LinkPeerBgpConfigArrayOutput {
+	return i.ToLinkPeerBgpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i LinkPeerBgpConfigArray) ToLinkPeerBgpConfigArrayOutputWithContext(ctx context.Context) LinkPeerBgpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkPeerBgpConfigArrayOutput)
+}
+
+type LinkPeerBgpConfigOutput struct{ *pulumi.OutputState }
+
+func (LinkPeerBgpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (o LinkPeerBgpConfigOutput) ToLinkPeerBgpConfigOutput() LinkPeerBgpConfigOutput {
+	return o
+}
+
+func (o LinkPeerBgpConfigOutput) ToLinkPeerBgpConfigOutputWithContext(ctx context.Context) LinkPeerBgpConfigOutput {
+	return o
+}
+
+// AS Number of the BGP peer
+func (o LinkPeerBgpConfigOutput) Asn() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LinkPeerBgpConfig) *int { return v.Asn }).(pulumi.IntPtrOutput)
+}
+
+// IPv4 address of the BGP peer
+func (o LinkPeerBgpConfigOutput) Ipv4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LinkPeerBgpConfig) *string { return v.Ipv4 }).(pulumi.StringPtrOutput)
+}
+
+// IPv6 address of the BGP peer
+func (o LinkPeerBgpConfigOutput) Ipv6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LinkPeerBgpConfig) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
+}
+
+type LinkPeerBgpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (LinkPeerBgpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (o LinkPeerBgpConfigArrayOutput) ToLinkPeerBgpConfigArrayOutput() LinkPeerBgpConfigArrayOutput {
+	return o
+}
+
+func (o LinkPeerBgpConfigArrayOutput) ToLinkPeerBgpConfigArrayOutputWithContext(ctx context.Context) LinkPeerBgpConfigArrayOutput {
+	return o
+}
+
+func (o LinkPeerBgpConfigArrayOutput) Index(i pulumi.IntInput) LinkPeerBgpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LinkPeerBgpConfig {
+		return vs[0].([]LinkPeerBgpConfig)[vs[1].(int)]
+	}).(LinkPeerBgpConfigOutput)
+}
+
+type LinkScwBgpConfig struct {
+	// AS Number of the BGP peer
+	Asn *int `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 *string `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 *string `pulumi:"ipv6"`
+}
+
+// LinkScwBgpConfigInput is an input type that accepts LinkScwBgpConfigArgs and LinkScwBgpConfigOutput values.
+// You can construct a concrete instance of `LinkScwBgpConfigInput` via:
+//
+//	LinkScwBgpConfigArgs{...}
+type LinkScwBgpConfigInput interface {
+	pulumi.Input
+
+	ToLinkScwBgpConfigOutput() LinkScwBgpConfigOutput
+	ToLinkScwBgpConfigOutputWithContext(context.Context) LinkScwBgpConfigOutput
+}
+
+type LinkScwBgpConfigArgs struct {
+	// AS Number of the BGP peer
+	Asn pulumi.IntPtrInput `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 pulumi.StringPtrInput `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
+}
+
+func (LinkScwBgpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkScwBgpConfig)(nil)).Elem()
+}
+
+func (i LinkScwBgpConfigArgs) ToLinkScwBgpConfigOutput() LinkScwBgpConfigOutput {
+	return i.ToLinkScwBgpConfigOutputWithContext(context.Background())
+}
+
+func (i LinkScwBgpConfigArgs) ToLinkScwBgpConfigOutputWithContext(ctx context.Context) LinkScwBgpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkScwBgpConfigOutput)
+}
+
+// LinkScwBgpConfigArrayInput is an input type that accepts LinkScwBgpConfigArray and LinkScwBgpConfigArrayOutput values.
+// You can construct a concrete instance of `LinkScwBgpConfigArrayInput` via:
+//
+//	LinkScwBgpConfigArray{ LinkScwBgpConfigArgs{...} }
+type LinkScwBgpConfigArrayInput interface {
+	pulumi.Input
+
+	ToLinkScwBgpConfigArrayOutput() LinkScwBgpConfigArrayOutput
+	ToLinkScwBgpConfigArrayOutputWithContext(context.Context) LinkScwBgpConfigArrayOutput
+}
+
+type LinkScwBgpConfigArray []LinkScwBgpConfigInput
+
+func (LinkScwBgpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LinkScwBgpConfig)(nil)).Elem()
+}
+
+func (i LinkScwBgpConfigArray) ToLinkScwBgpConfigArrayOutput() LinkScwBgpConfigArrayOutput {
+	return i.ToLinkScwBgpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i LinkScwBgpConfigArray) ToLinkScwBgpConfigArrayOutputWithContext(ctx context.Context) LinkScwBgpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkScwBgpConfigArrayOutput)
+}
+
+type LinkScwBgpConfigOutput struct{ *pulumi.OutputState }
+
+func (LinkScwBgpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkScwBgpConfig)(nil)).Elem()
+}
+
+func (o LinkScwBgpConfigOutput) ToLinkScwBgpConfigOutput() LinkScwBgpConfigOutput {
+	return o
+}
+
+func (o LinkScwBgpConfigOutput) ToLinkScwBgpConfigOutputWithContext(ctx context.Context) LinkScwBgpConfigOutput {
+	return o
+}
+
+// AS Number of the BGP peer
+func (o LinkScwBgpConfigOutput) Asn() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LinkScwBgpConfig) *int { return v.Asn }).(pulumi.IntPtrOutput)
+}
+
+// IPv4 address of the BGP peer
+func (o LinkScwBgpConfigOutput) Ipv4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LinkScwBgpConfig) *string { return v.Ipv4 }).(pulumi.StringPtrOutput)
+}
+
+// IPv6 address of the BGP peer
+func (o LinkScwBgpConfigOutput) Ipv6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LinkScwBgpConfig) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
+}
+
+type LinkScwBgpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (LinkScwBgpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LinkScwBgpConfig)(nil)).Elem()
+}
+
+func (o LinkScwBgpConfigArrayOutput) ToLinkScwBgpConfigArrayOutput() LinkScwBgpConfigArrayOutput {
+	return o
+}
+
+func (o LinkScwBgpConfigArrayOutput) ToLinkScwBgpConfigArrayOutputWithContext(ctx context.Context) LinkScwBgpConfigArrayOutput {
+	return o
+}
+
+func (o LinkScwBgpConfigArrayOutput) Index(i pulumi.IntInput) LinkScwBgpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LinkScwBgpConfig {
+		return vs[0].([]LinkScwBgpConfig)[vs[1].(int)]
+	}).(LinkScwBgpConfigOutput)
+}
+
+type GetLinkPeerBgpConfig struct {
+	// AS Number of the BGP peer
+	Asn int `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 string `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 string `pulumi:"ipv6"`
+}
+
+// GetLinkPeerBgpConfigInput is an input type that accepts GetLinkPeerBgpConfigArgs and GetLinkPeerBgpConfigOutput values.
+// You can construct a concrete instance of `GetLinkPeerBgpConfigInput` via:
+//
+//	GetLinkPeerBgpConfigArgs{...}
+type GetLinkPeerBgpConfigInput interface {
+	pulumi.Input
+
+	ToGetLinkPeerBgpConfigOutput() GetLinkPeerBgpConfigOutput
+	ToGetLinkPeerBgpConfigOutputWithContext(context.Context) GetLinkPeerBgpConfigOutput
+}
+
+type GetLinkPeerBgpConfigArgs struct {
+	// AS Number of the BGP peer
+	Asn pulumi.IntInput `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 pulumi.StringInput `pulumi:"ipv6"`
+}
+
+func (GetLinkPeerBgpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (i GetLinkPeerBgpConfigArgs) ToGetLinkPeerBgpConfigOutput() GetLinkPeerBgpConfigOutput {
+	return i.ToGetLinkPeerBgpConfigOutputWithContext(context.Background())
+}
+
+func (i GetLinkPeerBgpConfigArgs) ToGetLinkPeerBgpConfigOutputWithContext(ctx context.Context) GetLinkPeerBgpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLinkPeerBgpConfigOutput)
+}
+
+// GetLinkPeerBgpConfigArrayInput is an input type that accepts GetLinkPeerBgpConfigArray and GetLinkPeerBgpConfigArrayOutput values.
+// You can construct a concrete instance of `GetLinkPeerBgpConfigArrayInput` via:
+//
+//	GetLinkPeerBgpConfigArray{ GetLinkPeerBgpConfigArgs{...} }
+type GetLinkPeerBgpConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetLinkPeerBgpConfigArrayOutput() GetLinkPeerBgpConfigArrayOutput
+	ToGetLinkPeerBgpConfigArrayOutputWithContext(context.Context) GetLinkPeerBgpConfigArrayOutput
+}
+
+type GetLinkPeerBgpConfigArray []GetLinkPeerBgpConfigInput
+
+func (GetLinkPeerBgpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (i GetLinkPeerBgpConfigArray) ToGetLinkPeerBgpConfigArrayOutput() GetLinkPeerBgpConfigArrayOutput {
+	return i.ToGetLinkPeerBgpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetLinkPeerBgpConfigArray) ToGetLinkPeerBgpConfigArrayOutputWithContext(ctx context.Context) GetLinkPeerBgpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLinkPeerBgpConfigArrayOutput)
+}
+
+type GetLinkPeerBgpConfigOutput struct{ *pulumi.OutputState }
+
+func (GetLinkPeerBgpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (o GetLinkPeerBgpConfigOutput) ToGetLinkPeerBgpConfigOutput() GetLinkPeerBgpConfigOutput {
+	return o
+}
+
+func (o GetLinkPeerBgpConfigOutput) ToGetLinkPeerBgpConfigOutputWithContext(ctx context.Context) GetLinkPeerBgpConfigOutput {
+	return o
+}
+
+// AS Number of the BGP peer
+func (o GetLinkPeerBgpConfigOutput) Asn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLinkPeerBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+}
+
+// IPv4 address of the BGP peer
+func (o GetLinkPeerBgpConfigOutput) Ipv4() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLinkPeerBgpConfig) string { return v.Ipv4 }).(pulumi.StringOutput)
+}
+
+// IPv6 address of the BGP peer
+func (o GetLinkPeerBgpConfigOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLinkPeerBgpConfig) string { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+type GetLinkPeerBgpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLinkPeerBgpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLinkPeerBgpConfig)(nil)).Elem()
+}
+
+func (o GetLinkPeerBgpConfigArrayOutput) ToGetLinkPeerBgpConfigArrayOutput() GetLinkPeerBgpConfigArrayOutput {
+	return o
+}
+
+func (o GetLinkPeerBgpConfigArrayOutput) ToGetLinkPeerBgpConfigArrayOutputWithContext(ctx context.Context) GetLinkPeerBgpConfigArrayOutput {
+	return o
+}
+
+func (o GetLinkPeerBgpConfigArrayOutput) Index(i pulumi.IntInput) GetLinkPeerBgpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLinkPeerBgpConfig {
+		return vs[0].([]GetLinkPeerBgpConfig)[vs[1].(int)]
+	}).(GetLinkPeerBgpConfigOutput)
+}
+
+type GetLinkScwBgpConfig struct {
+	// AS Number of the BGP peer
+	Asn int `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 string `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 string `pulumi:"ipv6"`
+}
+
+// GetLinkScwBgpConfigInput is an input type that accepts GetLinkScwBgpConfigArgs and GetLinkScwBgpConfigOutput values.
+// You can construct a concrete instance of `GetLinkScwBgpConfigInput` via:
+//
+//	GetLinkScwBgpConfigArgs{...}
+type GetLinkScwBgpConfigInput interface {
+	pulumi.Input
+
+	ToGetLinkScwBgpConfigOutput() GetLinkScwBgpConfigOutput
+	ToGetLinkScwBgpConfigOutputWithContext(context.Context) GetLinkScwBgpConfigOutput
+}
+
+type GetLinkScwBgpConfigArgs struct {
+	// AS Number of the BGP peer
+	Asn pulumi.IntInput `pulumi:"asn"`
+	// IPv4 address of the BGP peer
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+	// IPv6 address of the BGP peer
+	Ipv6 pulumi.StringInput `pulumi:"ipv6"`
+}
+
+func (GetLinkScwBgpConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLinkScwBgpConfig)(nil)).Elem()
+}
+
+func (i GetLinkScwBgpConfigArgs) ToGetLinkScwBgpConfigOutput() GetLinkScwBgpConfigOutput {
+	return i.ToGetLinkScwBgpConfigOutputWithContext(context.Background())
+}
+
+func (i GetLinkScwBgpConfigArgs) ToGetLinkScwBgpConfigOutputWithContext(ctx context.Context) GetLinkScwBgpConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLinkScwBgpConfigOutput)
+}
+
+// GetLinkScwBgpConfigArrayInput is an input type that accepts GetLinkScwBgpConfigArray and GetLinkScwBgpConfigArrayOutput values.
+// You can construct a concrete instance of `GetLinkScwBgpConfigArrayInput` via:
+//
+//	GetLinkScwBgpConfigArray{ GetLinkScwBgpConfigArgs{...} }
+type GetLinkScwBgpConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetLinkScwBgpConfigArrayOutput() GetLinkScwBgpConfigArrayOutput
+	ToGetLinkScwBgpConfigArrayOutputWithContext(context.Context) GetLinkScwBgpConfigArrayOutput
+}
+
+type GetLinkScwBgpConfigArray []GetLinkScwBgpConfigInput
+
+func (GetLinkScwBgpConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLinkScwBgpConfig)(nil)).Elem()
+}
+
+func (i GetLinkScwBgpConfigArray) ToGetLinkScwBgpConfigArrayOutput() GetLinkScwBgpConfigArrayOutput {
+	return i.ToGetLinkScwBgpConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetLinkScwBgpConfigArray) ToGetLinkScwBgpConfigArrayOutputWithContext(ctx context.Context) GetLinkScwBgpConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLinkScwBgpConfigArrayOutput)
+}
+
+type GetLinkScwBgpConfigOutput struct{ *pulumi.OutputState }
+
+func (GetLinkScwBgpConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLinkScwBgpConfig)(nil)).Elem()
+}
+
+func (o GetLinkScwBgpConfigOutput) ToGetLinkScwBgpConfigOutput() GetLinkScwBgpConfigOutput {
+	return o
+}
+
+func (o GetLinkScwBgpConfigOutput) ToGetLinkScwBgpConfigOutputWithContext(ctx context.Context) GetLinkScwBgpConfigOutput {
+	return o
+}
+
+// AS Number of the BGP peer
+func (o GetLinkScwBgpConfigOutput) Asn() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLinkScwBgpConfig) int { return v.Asn }).(pulumi.IntOutput)
+}
+
+// IPv4 address of the BGP peer
+func (o GetLinkScwBgpConfigOutput) Ipv4() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLinkScwBgpConfig) string { return v.Ipv4 }).(pulumi.StringOutput)
+}
+
+// IPv6 address of the BGP peer
+func (o GetLinkScwBgpConfigOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLinkScwBgpConfig) string { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+type GetLinkScwBgpConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLinkScwBgpConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLinkScwBgpConfig)(nil)).Elem()
+}
+
+func (o GetLinkScwBgpConfigArrayOutput) ToGetLinkScwBgpConfigArrayOutput() GetLinkScwBgpConfigArrayOutput {
+	return o
+}
+
+func (o GetLinkScwBgpConfigArrayOutput) ToGetLinkScwBgpConfigArrayOutputWithContext(ctx context.Context) GetLinkScwBgpConfigArrayOutput {
+	return o
+}
+
+func (o GetLinkScwBgpConfigArrayOutput) Index(i pulumi.IntInput) GetLinkScwBgpConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLinkScwBgpConfig {
+		return vs[0].([]GetLinkScwBgpConfig)[vs[1].(int)]
+	}).(GetLinkScwBgpConfigOutput)
+}
+
 type GetPartnersPartner struct {
 	// Contact email address.
 	ContactEmail string `pulumi:"contactEmail"`
@@ -334,10 +794,26 @@ func (o GetPopsPopArrayOutput) Index(i pulumi.IntInput) GetPopsPopOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkPeerBgpConfigInput)(nil)).Elem(), LinkPeerBgpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkPeerBgpConfigArrayInput)(nil)).Elem(), LinkPeerBgpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkScwBgpConfigInput)(nil)).Elem(), LinkScwBgpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkScwBgpConfigArrayInput)(nil)).Elem(), LinkScwBgpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkPeerBgpConfigInput)(nil)).Elem(), GetLinkPeerBgpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkPeerBgpConfigArrayInput)(nil)).Elem(), GetLinkPeerBgpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkScwBgpConfigInput)(nil)).Elem(), GetLinkScwBgpConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkScwBgpConfigArrayInput)(nil)).Elem(), GetLinkScwBgpConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPartnersPartnerInput)(nil)).Elem(), GetPartnersPartnerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPartnersPartnerArrayInput)(nil)).Elem(), GetPartnersPartnerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPopsPopInput)(nil)).Elem(), GetPopsPopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPopsPopArrayInput)(nil)).Elem(), GetPopsPopArray{})
+	pulumi.RegisterOutputType(LinkPeerBgpConfigOutput{})
+	pulumi.RegisterOutputType(LinkPeerBgpConfigArrayOutput{})
+	pulumi.RegisterOutputType(LinkScwBgpConfigOutput{})
+	pulumi.RegisterOutputType(LinkScwBgpConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetLinkPeerBgpConfigOutput{})
+	pulumi.RegisterOutputType(GetLinkPeerBgpConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetLinkScwBgpConfigOutput{})
+	pulumi.RegisterOutputType(GetLinkScwBgpConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetPartnersPartnerOutput{})
 	pulumi.RegisterOutputType(GetPartnersPartnerArrayOutput{})
 	pulumi.RegisterOutputType(GetPopsPopOutput{})

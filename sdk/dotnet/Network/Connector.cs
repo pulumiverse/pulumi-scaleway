@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `ProjectId`) The ID of the Project the VPC connector is associated with.
+        /// The Scaleway Project the VPC connector belongs to.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -236,12 +236,6 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `ProjectId`) The ID of the Project the VPC connector is associated with.
-        /// </summary>
-        [Input("projectId")]
-        public Input<string>? ProjectId { get; set; }
-
-        /// <summary>
         /// `Region`) The region of the VPC connector.
         /// </summary>
         [Input("region")]
@@ -298,7 +292,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `ProjectId`) The ID of the Project the VPC connector is associated with.
+        /// The Scaleway Project the VPC connector belongs to.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

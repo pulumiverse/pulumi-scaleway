@@ -8792,6 +8792,36 @@ export namespace instance {
 }
 
 export namespace interlink {
+    export interface GetLinkPeerBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn: number;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4: string;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6: string;
+    }
+
+    export interface GetLinkScwBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn: number;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4: string;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6: string;
+    }
+
     export interface GetPartnersPartner {
         /**
          * Contact email address.
@@ -8860,6 +8890,36 @@ export namespace interlink {
          * `region`) The region to list PoPs from.
          */
         region: string;
+    }
+
+    export interface LinkPeerBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn: number;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4: string;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6: string;
+    }
+
+    export interface LinkScwBgpConfig {
+        /**
+         * AS Number of the BGP peer
+         */
+        asn: number;
+        /**
+         * IPv4 address of the BGP peer
+         */
+        ipv4: string;
+        /**
+         * IPv6 address of the BGP peer
+         */
+        ipv6: string;
     }
 
 }

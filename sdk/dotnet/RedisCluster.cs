@@ -101,6 +101,12 @@ namespace Pulumiverse.Scaleway
         public Output<int> ClusterSize { get; private set; } = null!;
 
         /// <summary>
+        /// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `Rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `UserName` and the password (Redis ACL). When `PasswordWo` is used, the password is omitted because it is not stored in state.
+        /// </summary>
+        [Output("connectionString")]
+        public Output<string> ConnectionString { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of creation of the Redis™ cluster.
         /// </summary>
         [Output("createdAt")]
@@ -242,6 +248,7 @@ namespace Pulumiverse.Scaleway
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
                 AdditionalSecretOutputs =
                 {
+                    "connectionString",
                     "password",
                     "passwordWo",
                 },
@@ -495,6 +502,22 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("clusterSize")]
         public Input<int>? ClusterSize { get; set; }
+
+        [Input("connectionString")]
+        private Input<string>? _connectionString;
+
+        /// <summary>
+        /// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `Rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `UserName` and the password (Redis ACL). When `PasswordWo` is used, the password is omitted because it is not stored in state.
+        /// </summary>
+        public Input<string>? ConnectionString
+        {
+            get => _connectionString;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _connectionString = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The date and time of creation of the Redis™ cluster.

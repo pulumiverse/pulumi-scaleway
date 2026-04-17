@@ -94,6 +94,8 @@ type RedisCluster struct {
 	// > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
 	// recreate your cluster as you will be switching to the cluster mode.
 	ClusterSize pulumi.IntOutput `pulumi:"clusterSize"`
+	// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+	ConnectionString pulumi.StringOutput `pulumi:"connectionString"`
 	// The date and time of creation of the Redis™ cluster.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The name of the Redis™ cluster.
@@ -167,6 +169,7 @@ func NewRedisCluster(ctx *pulumi.Context,
 		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"connectionString",
 		"password",
 		"passwordWo",
 	})
@@ -215,6 +218,8 @@ type redisClusterState struct {
 	// > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
 	// recreate your cluster as you will be switching to the cluster mode.
 	ClusterSize *int `pulumi:"clusterSize"`
+	// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+	ConnectionString *string `pulumi:"connectionString"`
 	// The date and time of creation of the Redis™ cluster.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The name of the Redis™ cluster.
@@ -287,6 +292,8 @@ type RedisClusterState struct {
 	// > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
 	// recreate your cluster as you will be switching to the cluster mode.
 	ClusterSize pulumi.IntPtrInput
+	// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+	ConnectionString pulumi.StringPtrInput
 	// The date and time of creation of the Redis™ cluster.
 	CreatedAt pulumi.StringPtrInput
 	// The name of the Redis™ cluster.
@@ -589,6 +596,11 @@ func (o RedisClusterOutput) Certificate() pulumi.StringOutput {
 // recreate your cluster as you will be switching to the cluster mode.
 func (o RedisClusterOutput) ClusterSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.IntOutput { return v.ClusterSize }).(pulumi.IntOutput)
+}
+
+// Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+func (o RedisClusterOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.ConnectionString }).(pulumi.StringOutput)
 }
 
 // The date and time of creation of the Redis™ cluster.

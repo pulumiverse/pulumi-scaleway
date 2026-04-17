@@ -26,7 +26,7 @@ class GetRouteResult:
     """
     A collection of values returned by getRoute.
     """
-    def __init__(__self__, created_at=None, description=None, destination=None, id=None, is_ipv6=None, nexthop_private_network_id=None, nexthop_resource_id=None, nexthop_resource_type=None, region=None, route_id=None, tags=None, updated_at=None, vpc_id=None):
+    def __init__(__self__, created_at=None, description=None, destination=None, id=None, is_ipv6=None, nexthop_private_network_id=None, nexthop_resource_id=None, nexthop_resource_type=None, nexthop_vpc_connector_id=None, region=None, route_id=None, tags=None, updated_at=None, vpc_id=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -51,6 +51,9 @@ class GetRouteResult:
         if nexthop_resource_type and not isinstance(nexthop_resource_type, str):
             raise TypeError("Expected argument 'nexthop_resource_type' to be a str")
         pulumi.set(__self__, "nexthop_resource_type", nexthop_resource_type)
+        if nexthop_vpc_connector_id and not isinstance(nexthop_vpc_connector_id, str):
+            raise TypeError("Expected argument 'nexthop_vpc_connector_id' to be a str")
+        pulumi.set(__self__, "nexthop_vpc_connector_id", nexthop_vpc_connector_id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -111,6 +114,11 @@ class GetRouteResult:
         return pulumi.get(self, "nexthop_resource_type")
 
     @_builtins.property
+    @pulumi.getter(name="nexthopVpcConnectorId")
+    def nexthop_vpc_connector_id(self) -> _builtins.str:
+        return pulumi.get(self, "nexthop_vpc_connector_id")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "region")
@@ -150,6 +158,7 @@ class AwaitableGetRouteResult(GetRouteResult):
             nexthop_private_network_id=self.nexthop_private_network_id,
             nexthop_resource_id=self.nexthop_resource_id,
             nexthop_resource_type=self.nexthop_resource_type,
+            nexthop_vpc_connector_id=self.nexthop_vpc_connector_id,
             region=self.region,
             route_id=self.route_id,
             tags=self.tags,
@@ -223,6 +232,7 @@ def get_route(is_ipv6: Optional[_builtins.bool] = None,
         nexthop_private_network_id=pulumi.get(__ret__, 'nexthop_private_network_id'),
         nexthop_resource_id=pulumi.get(__ret__, 'nexthop_resource_id'),
         nexthop_resource_type=pulumi.get(__ret__, 'nexthop_resource_type'),
+        nexthop_vpc_connector_id=pulumi.get(__ret__, 'nexthop_vpc_connector_id'),
         region=pulumi.get(__ret__, 'region'),
         route_id=pulumi.get(__ret__, 'route_id'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -293,6 +303,7 @@ def get_route_output(is_ipv6: Optional[pulumi.Input[Optional[_builtins.bool]]] =
         nexthop_private_network_id=pulumi.get(__response__, 'nexthop_private_network_id'),
         nexthop_resource_id=pulumi.get(__response__, 'nexthop_resource_id'),
         nexthop_resource_type=pulumi.get(__response__, 'nexthop_resource_type'),
+        nexthop_vpc_connector_id=pulumi.get(__response__, 'nexthop_vpc_connector_id'),
         region=pulumi.get(__response__, 'region'),
         route_id=pulumi.get(__response__, 'route_id'),
         tags=pulumi.get(__response__, 'tags'),
