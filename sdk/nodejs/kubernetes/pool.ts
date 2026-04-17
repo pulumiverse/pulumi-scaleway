@@ -11,35 +11,6 @@ import * as utilities from "../utilities";
  *
  * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.kubernetes.Cluster("main", {
- *     version: "1.32.3",
- *     cni: "cilium",
- * });
- * const mainPool = new scaleway.kubernetes.Pool("main", {
- *     clusterId: main.id,
- *     nodeType: "DEV1-M",
- *     size: 3,
- *     minSize: 0,
- *     maxSize: 10,
- *     autoscaling: true,
- *     autohealing: true,
- *     containerRuntime: "containerd",
- *     placementGroupId: "1267e3fd-a51c-49ed-ad12-857092ee3a3d",
- * });
- * ```
- *
- * ## Zone
- *
- * The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
- *
- * Please note that a pool belongs to only one cluster, in the same region.`region`.
- *
  * ## Placement Group
  *
  * If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
@@ -189,7 +160,7 @@ export class Pool extends pulumi.CustomResource {
     /**
      * The minimum size of the pool, used by the autoscaling feature.
      */
-    declare public readonly minSize: pulumi.Output<number | undefined>;
+    declare public readonly minSize: pulumi.Output<number>;
     /**
      * The name for the pool.
      *
@@ -224,6 +195,8 @@ export class Pool extends pulumi.CustomResource {
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The size of the system volume of the nodes in gigabyte
+     *
+     * > Note: The minimal volume size of a node is 20GB.
      */
     declare public readonly rootVolumeSizeInGb: pulumi.Output<number>;
     /**
@@ -435,6 +408,8 @@ export interface PoolState {
     region?: pulumi.Input<string>;
     /**
      * The size of the system volume of the nodes in gigabyte
+     *
+     * > Note: The minimal volume size of a node is 20GB.
      */
     rootVolumeSizeInGb?: pulumi.Input<number>;
     /**
@@ -551,6 +526,8 @@ export interface PoolArgs {
     region?: pulumi.Input<string>;
     /**
      * The size of the system volume of the nodes in gigabyte
+     *
+     * > Note: The minimal volume size of a node is 20GB.
      */
     rootVolumeSizeInGb?: pulumi.Input<number>;
     /**

@@ -1837,6 +1837,22 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "interlink/link",
+  "fqn": "pulumiverse_scaleway.interlink",
+  "classes": {
+   "scaleway:interlink/link:Link": "Link"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "interlink/routingPolicy",
+  "fqn": "pulumiverse_scaleway.interlink",
+  "classes": {
+   "scaleway:interlink/routingPolicy:RoutingPolicy": "RoutingPolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "iot/device",
   "fqn": "pulumiverse_scaleway.iot",
   "classes": {

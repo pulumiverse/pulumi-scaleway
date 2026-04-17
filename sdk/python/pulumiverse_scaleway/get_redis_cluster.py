@@ -29,7 +29,7 @@ class GetRedisClusterResult:
     """
     A collection of values returned by getRedisCluster.
     """
-    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, created_at=None, id=None, name=None, node_type=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
+    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, connection_string=None, created_at=None, id=None, name=None, node_type=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
@@ -42,6 +42,9 @@ class GetRedisClusterResult:
         if cluster_size and not isinstance(cluster_size, int):
             raise TypeError("Expected argument 'cluster_size' to be a int")
         pulumi.set(__self__, "cluster_size", cluster_size)
+        if connection_string and not isinstance(connection_string, str):
+            raise TypeError("Expected argument 'connection_string' to be a str")
+        pulumi.set(__self__, "connection_string", connection_string)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -125,6 +128,11 @@ class GetRedisClusterResult:
         The number of nodes in the Redis Cluster.
         """
         return pulumi.get(self, "cluster_size")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> _builtins.str:
+        return pulumi.get(self, "connection_string")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -263,6 +271,7 @@ class AwaitableGetRedisClusterResult(GetRedisClusterResult):
             certificate=self.certificate,
             cluster_id=self.cluster_id,
             cluster_size=self.cluster_size,
+            connection_string=self.connection_string,
             created_at=self.created_at,
             id=self.id,
             name=self.name,
@@ -315,6 +324,7 @@ def get_redis_cluster(cluster_id: Optional[_builtins.str] = None,
         certificate=pulumi.get(__ret__, 'certificate'),
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         cluster_size=pulumi.get(__ret__, 'cluster_size'),
+        connection_string=pulumi.get(__ret__, 'connection_string'),
         created_at=pulumi.get(__ret__, 'created_at'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
@@ -364,6 +374,7 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[_builtin
         certificate=pulumi.get(__response__, 'certificate'),
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         cluster_size=pulumi.get(__response__, 'cluster_size'),
+        connection_string=pulumi.get(__response__, 'connection_string'),
         created_at=pulumi.get(__response__, 'created_at'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

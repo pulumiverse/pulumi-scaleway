@@ -360,6 +360,7 @@ class _ClusterState:
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_string: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -398,6 +399,7 @@ class _ClusterState:
                
                > **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
                recreate your cluster as you will be switching to the cluster mode.
+        :param pulumi.Input[_builtins.str] connection_string: Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `user_name` and the password (Redis ACL). When `password_wo` is used, the password is omitted because it is not stored in state.
         :param pulumi.Input[_builtins.str] created_at: The date and time of creation of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] name: The name of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] node_type: The type of Redis™ cluster you want to create (e.g. `RED1-M`).
@@ -436,6 +438,8 @@ class _ClusterState:
             pulumi.set(__self__, "certificate", certificate)
         if cluster_size is not None:
             pulumi.set(__self__, "cluster_size", cluster_size)
+        if connection_string is not None:
+            pulumi.set(__self__, "connection_string", connection_string)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if name is not None:
@@ -521,6 +525,18 @@ class _ClusterState:
     @cluster_size.setter
     def cluster_size(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "cluster_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `user_name` and the password (Redis ACL). When `password_wo` is used, the password is omitted because it is not stored in state.
+        """
+        return pulumi.get(self, "connection_string")
+
+    @connection_string.setter
+    def connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "connection_string", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -967,11 +983,12 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["version"] = version
             __props__.__dict__["zone"] = zone
             __props__.__dict__["certificate"] = None
+            __props__.__dict__["connection_string"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/redisCluster:RedisCluster")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["connectionString", "password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Cluster, __self__).__init__(
             'scaleway:redis/cluster:Cluster',
@@ -986,6 +1003,7 @@ class Cluster(pulumi.CustomResource):
             acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
             certificate: Optional[pulumi.Input[_builtins.str]] = None,
             cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
+            connection_string: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1028,6 +1046,7 @@ class Cluster(pulumi.CustomResource):
                
                > **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
                recreate your cluster as you will be switching to the cluster mode.
+        :param pulumi.Input[_builtins.str] connection_string: Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `user_name` and the password (Redis ACL). When `password_wo` is used, the password is omitted because it is not stored in state.
         :param pulumi.Input[_builtins.str] created_at: The date and time of creation of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] name: The name of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] node_type: The type of Redis™ cluster you want to create (e.g. `RED1-M`).
@@ -1067,6 +1086,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["acls"] = acls
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["cluster_size"] = cluster_size
+        __props__.__dict__["connection_string"] = connection_string
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
@@ -1124,6 +1144,14 @@ class Cluster(pulumi.CustomResource):
         recreate your cluster as you will be switching to the cluster mode.
         """
         return pulumi.get(self, "cluster_size")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> pulumi.Output[_builtins.str]:
+        """
+        Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `user_name` and the password (Redis ACL). When `password_wo` is used, the password is omitted because it is not stored in state.
+        """
+        return pulumi.get(self, "connection_string")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

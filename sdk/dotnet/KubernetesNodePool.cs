@@ -15,44 +15,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Kubernetes.Cluster("main", new()
-    ///     {
-    ///         Version = "1.32.3",
-    ///         Cni = "cilium",
-    ///     });
-    /// 
-    ///     var mainPool = new Scaleway.Kubernetes.Pool("main", new()
-    ///     {
-    ///         ClusterId = main.Id,
-    ///         NodeType = "DEV1-M",
-    ///         Size = 3,
-    ///         MinSize = 0,
-    ///         MaxSize = 10,
-    ///         Autoscaling = true,
-    ///         Autohealing = true,
-    ///         ContainerRuntime = "containerd",
-    ///         PlacementGroupId = "1267e3fd-a51c-49ed-ad12-857092ee3a3d",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Zone
-    /// 
-    /// The option `Zone` indicate where you the resource of your pool should be created, and it could be different from `Region`
-    /// 
-    /// Please note that a pool belongs to only one cluster, in the same region.`Region`.
-    /// 
     /// ## Placement Group
     /// 
     /// If you are working with cluster type `Multicloud` please set the `Zone` where your placement group is e.g:
@@ -214,7 +176,7 @@ namespace Pulumiverse.Scaleway
         /// The minimum size of the pool, used by the autoscaling feature.
         /// </summary>
         [Output("minSize")]
-        public Output<int?> MinSize { get; private set; } = null!;
+        public Output<int> MinSize { get; private set; } = null!;
 
         /// <summary>
         /// The name for the pool.
@@ -262,6 +224,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the system volume of the nodes in gigabyte
+        /// 
+        /// &gt; Note: The minimal volume size of a node is 20GB.
         /// </summary>
         [Output("rootVolumeSizeInGb")]
         public Output<int> RootVolumeSizeInGb { get; private set; } = null!;
@@ -471,6 +435,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the system volume of the nodes in gigabyte
+        /// 
+        /// &gt; Note: The minimal volume size of a node is 20GB.
         /// </summary>
         [Input("rootVolumeSizeInGb")]
         public Input<int>? RootVolumeSizeInGb { get; set; }
@@ -653,6 +619,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the system volume of the nodes in gigabyte
+        /// 
+        /// &gt; Note: The minimal volume size of a node is 20GB.
         /// </summary>
         [Input("rootVolumeSizeInGb")]
         public Input<int>? RootVolumeSizeInGb { get; set; }

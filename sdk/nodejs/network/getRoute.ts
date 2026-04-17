@@ -102,6 +102,7 @@ export interface GetRouteResult {
     readonly nexthopPrivateNetworkId?: string;
     readonly nexthopResourceId?: string;
     readonly nexthopResourceType?: string;
+    readonly nexthopVpcConnectorId: string;
     readonly region?: string;
     readonly routeId?: string;
     readonly tags?: string[];

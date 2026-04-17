@@ -63,6 +63,7 @@ export interface GetClusterResult {
      * The number of nodes in the Redis Cluster.
      */
     readonly clusterSize: number;
+    readonly connectionString: string;
     /**
      * The date and time of creation of the Redis Cluster.
      */

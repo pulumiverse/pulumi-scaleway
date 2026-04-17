@@ -157,7 +157,7 @@ type Connector struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID the VPC connector is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the Project the VPC connector is associated with.
+	// The Scaleway Project the VPC connector belongs to.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -215,7 +215,7 @@ type connectorState struct {
 	Name *string `pulumi:"name"`
 	// The Organization ID the VPC connector is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the Project the VPC connector is associated with.
+	// The Scaleway Project the VPC connector belongs to.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
 	Region *string `pulumi:"region"`
@@ -238,7 +238,7 @@ type ConnectorState struct {
 	Name pulumi.StringPtrInput
 	// The Organization ID the VPC connector is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the Project the VPC connector is associated with.
+	// The Scaleway Project the VPC connector belongs to.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the VPC connector.
 	Region pulumi.StringPtrInput
@@ -261,8 +261,6 @@ func (ConnectorState) ElementType() reflect.Type {
 type connectorArgs struct {
 	// The name of the VPC connector. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the Project the VPC connector is associated with.
-	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
 	Region *string `pulumi:"region"`
 	// The tags to associate with the VPC connector.
@@ -277,8 +275,6 @@ type connectorArgs struct {
 type ConnectorArgs struct {
 	// The name of the VPC connector. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// `projectId`) The ID of the Project the VPC connector is associated with.
-	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the VPC connector.
 	Region pulumi.StringPtrInput
 	// The tags to associate with the VPC connector.
@@ -391,7 +387,7 @@ func (o ConnectorOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connector) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the Project the VPC connector is associated with.
+// The Scaleway Project the VPC connector belongs to.
 func (o ConnectorOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connector) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

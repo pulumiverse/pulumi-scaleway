@@ -106,6 +106,10 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     declare public readonly clusterSize: pulumi.Output<number>;
     /**
+     * Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+     */
+    declare public /*out*/ readonly connectionString: pulumi.Output<string>;
+    /**
      * The date and time of creation of the Redis™ cluster.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
@@ -207,6 +211,7 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["acls"] = state?.acls;
             resourceInputs["certificate"] = state?.certificate;
             resourceInputs["clusterSize"] = state?.clusterSize;
+            resourceInputs["connectionString"] = state?.connectionString;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeType"] = state?.nodeType;
@@ -253,11 +258,12 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["version"] = args?.version;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["certificate"] = undefined /*out*/;
+            resourceInputs["connectionString"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
+        const secretOpts = { additionalSecretOutputs: ["connectionString", "password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(RedisCluster.__pulumiType, name, resourceInputs, opts);
     }
@@ -294,6 +300,10 @@ export interface RedisClusterState {
      * recreate your cluster as you will be switching to the cluster mode.
      */
     clusterSize?: pulumi.Input<number>;
+    /**
+     * Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
+     */
+    connectionString?: pulumi.Input<string>;
     /**
      * The date and time of creation of the Redis™ cluster.
      */

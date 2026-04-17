@@ -16,53 +16,6 @@ import (
 //
 // Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := kubernetes.NewCluster(ctx, "main", &kubernetes.ClusterArgs{
-//				Version: pulumi.String("1.32.3"),
-//				Cni:     pulumi.String("cilium"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewPool(ctx, "main", &kubernetes.PoolArgs{
-//				ClusterId:        main.ID(),
-//				NodeType:         pulumi.String("DEV1-M"),
-//				Size:             pulumi.Int(3),
-//				MinSize:          pulumi.Int(0),
-//				MaxSize:          pulumi.Int(10),
-//				Autoscaling:      pulumi.Bool(true),
-//				Autohealing:      pulumi.Bool(true),
-//				ContainerRuntime: pulumi.String("containerd"),
-//				PlacementGroupId: pulumi.String("1267e3fd-a51c-49ed-ad12-857092ee3a3d"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Zone
-//
-// The option `zone` indicate where you the resource of your pool should be created, and it could be different from `region`
-//
-// Please note that a pool belongs to only one cluster, in the same region.`region`.
-//
 // ## Placement Group
 //
 // If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
@@ -207,7 +160,7 @@ type KubernetesNodePool struct {
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
-	MinSize pulumi.IntPtrOutput `pulumi:"minSize"`
+	MinSize pulumi.IntOutput `pulumi:"minSize"`
 	// The name for the pool.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -229,6 +182,8 @@ type KubernetesNodePool struct {
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
+	//
+	// > Note: The minimal volume size of a node is 20GB.
 	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringOutput `pulumi:"rootVolumeType"`
@@ -340,6 +295,8 @@ type kubernetesNodePoolState struct {
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
+	//
+	// > Note: The minimal volume size of a node is 20GB.
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
@@ -413,6 +370,8 @@ type KubernetesNodePoolState struct {
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
+	//
+	// > Note: The minimal volume size of a node is 20GB.
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
@@ -484,6 +443,8 @@ type kubernetesNodePoolArgs struct {
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
+	//
+	// > Note: The minimal volume size of a node is 20GB.
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
@@ -546,6 +507,8 @@ type KubernetesNodePoolArgs struct {
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
+	//
+	// > Note: The minimal volume size of a node is 20GB.
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
@@ -701,8 +664,8 @@ func (o KubernetesNodePoolOutput) MaxSize() pulumi.IntOutput {
 }
 
 // The minimum size of the pool, used by the autoscaling feature.
-func (o KubernetesNodePoolOutput) MinSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.MinSize }).(pulumi.IntPtrOutput)
+func (o KubernetesNodePoolOutput) MinSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.MinSize }).(pulumi.IntOutput)
 }
 
 // The name for the pool.
@@ -744,6 +707,8 @@ func (o KubernetesNodePoolOutput) Region() pulumi.StringPtrOutput {
 }
 
 // The size of the system volume of the nodes in gigabyte
+//
+// > Note: The minimal volume size of a node is 20GB.
 func (o KubernetesNodePoolOutput) RootVolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.RootVolumeSizeInGb }).(pulumi.IntOutput)
 }

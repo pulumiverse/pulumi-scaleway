@@ -22,7 +22,6 @@ class ConnectorArgs:
                  target_vpc_id: pulumi.Input[_builtins.str],
                  vpc_id: pulumi.Input[_builtins.str],
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -31,7 +30,6 @@ class ConnectorArgs:
         :param pulumi.Input[_builtins.str] target_vpc_id: The ID of the target VPC to connect to.
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the source VPC.
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
-        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC connector is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
         """
@@ -39,8 +37,6 @@ class ConnectorArgs:
         pulumi.set(__self__, "vpc_id", vpc_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
@@ -81,18 +77,6 @@ class ConnectorArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        `project_id`) The ID of the Project the VPC connector is associated with.
-        """
-        return pulumi.get(self, "project_id")
-
-    @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -138,7 +122,7 @@ class _ConnectorState:
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the VPC connector (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC connector is associated with.
-        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC connector is associated with.
+        :param pulumi.Input[_builtins.str] project_id: The Scaleway Project the VPC connector belongs to.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
         :param pulumi.Input[_builtins.str] status: The status of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
@@ -207,7 +191,7 @@ class _ConnectorState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        `project_id`) The ID of the Project the VPC connector is associated with.
+        The Scaleway Project the VPC connector belongs to.
         """
         return pulumi.get(self, "project_id")
 
@@ -295,7 +279,6 @@ class Connector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  target_vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -367,7 +350,6 @@ class Connector(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
-        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC connector is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
         :param pulumi.Input[_builtins.str] target_vpc_id: The ID of the target VPC to connect to.
@@ -458,7 +440,6 @@ class Connector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  target_vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -473,7 +454,6 @@ class Connector(pulumi.CustomResource):
             __props__ = ConnectorArgs.__new__(ConnectorArgs)
 
             __props__.__dict__["name"] = name
-            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             if target_vpc_id is None and not opts.urn:
@@ -484,6 +464,7 @@ class Connector(pulumi.CustomResource):
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["project_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Connector, __self__).__init__(
@@ -516,7 +497,7 @@ class Connector(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the VPC connector (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: The name of the VPC connector. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC connector is associated with.
-        :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC connector is associated with.
+        :param pulumi.Input[_builtins.str] project_id: The Scaleway Project the VPC connector belongs to.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
         :param pulumi.Input[_builtins.str] status: The status of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
@@ -568,7 +549,7 @@ class Connector(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        `project_id`) The ID of the Project the VPC connector is associated with.
+        The Scaleway Project the VPC connector belongs to.
         """
         return pulumi.get(self, "project_id")
 

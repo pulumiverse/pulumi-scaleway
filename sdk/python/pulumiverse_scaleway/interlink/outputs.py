@@ -15,9 +15,179 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'LinkPeerBgpConfig',
+    'LinkScwBgpConfig',
+    'GetLinkPeerBgpConfigResult',
+    'GetLinkScwBgpConfigResult',
     'GetPartnersPartnerResult',
     'GetPopsPopResult',
 ]
+
+@pulumi.output_type
+class LinkPeerBgpConfig(dict):
+    def __init__(__self__, *,
+                 asn: Optional[_builtins.int] = None,
+                 ipv4: Optional[_builtins.str] = None,
+                 ipv6: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int asn: AS Number of the BGP peer
+        :param _builtins.str ipv4: IPv4 address of the BGP peer
+        :param _builtins.str ipv6: IPv6 address of the BGP peer
+        """
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if ipv4 is not None:
+            pulumi.set(__self__, "ipv4", ipv4)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[_builtins.int]:
+        """
+        AS Number of the BGP peer
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4(self) -> Optional[_builtins.str]:
+        """
+        IPv4 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv4")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> Optional[_builtins.str]:
+        """
+        IPv6 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv6")
+
+
+@pulumi.output_type
+class LinkScwBgpConfig(dict):
+    def __init__(__self__, *,
+                 asn: Optional[_builtins.int] = None,
+                 ipv4: Optional[_builtins.str] = None,
+                 ipv6: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int asn: AS Number of the BGP peer
+        :param _builtins.str ipv4: IPv4 address of the BGP peer
+        :param _builtins.str ipv6: IPv6 address of the BGP peer
+        """
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if ipv4 is not None:
+            pulumi.set(__self__, "ipv4", ipv4)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[_builtins.int]:
+        """
+        AS Number of the BGP peer
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4(self) -> Optional[_builtins.str]:
+        """
+        IPv4 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv4")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> Optional[_builtins.str]:
+        """
+        IPv6 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv6")
+
+
+@pulumi.output_type
+class GetLinkPeerBgpConfigResult(dict):
+    def __init__(__self__, *,
+                 asn: _builtins.int,
+                 ipv4: _builtins.str,
+                 ipv6: _builtins.str):
+        """
+        :param _builtins.int asn: AS Number of the BGP peer
+        :param _builtins.str ipv4: IPv4 address of the BGP peer
+        :param _builtins.str ipv6: IPv6 address of the BGP peer
+        """
+        pulumi.set(__self__, "asn", asn)
+        pulumi.set(__self__, "ipv4", ipv4)
+        pulumi.set(__self__, "ipv6", ipv6)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> _builtins.int:
+        """
+        AS Number of the BGP peer
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4(self) -> _builtins.str:
+        """
+        IPv4 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv4")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> _builtins.str:
+        """
+        IPv6 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv6")
+
+
+@pulumi.output_type
+class GetLinkScwBgpConfigResult(dict):
+    def __init__(__self__, *,
+                 asn: _builtins.int,
+                 ipv4: _builtins.str,
+                 ipv6: _builtins.str):
+        """
+        :param _builtins.int asn: AS Number of the BGP peer
+        :param _builtins.str ipv4: IPv4 address of the BGP peer
+        :param _builtins.str ipv6: IPv6 address of the BGP peer
+        """
+        pulumi.set(__self__, "asn", asn)
+        pulumi.set(__self__, "ipv4", ipv4)
+        pulumi.set(__self__, "ipv6", ipv6)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> _builtins.int:
+        """
+        AS Number of the BGP peer
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4(self) -> _builtins.str:
+        """
+        IPv4 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv4")
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6(self) -> _builtins.str:
+        """
+        IPv6 address of the BGP peer
+        """
+        return pulumi.get(self, "ipv6")
+
 
 @pulumi.output_type
 class GetPartnersPartnerResult(dict):
