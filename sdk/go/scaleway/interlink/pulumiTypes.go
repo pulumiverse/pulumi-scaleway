@@ -243,6 +243,112 @@ func (o LinkScwBgpConfigArrayOutput) Index(i pulumi.IntInput) LinkScwBgpConfigOu
 	}).(LinkScwBgpConfigOutput)
 }
 
+type GetDedicatedConnectionVlanRange struct {
+	// End of the VLAN range
+	End int `pulumi:"end"`
+	// Start of the VLAN range
+	Start int `pulumi:"start"`
+}
+
+// GetDedicatedConnectionVlanRangeInput is an input type that accepts GetDedicatedConnectionVlanRangeArgs and GetDedicatedConnectionVlanRangeOutput values.
+// You can construct a concrete instance of `GetDedicatedConnectionVlanRangeInput` via:
+//
+//	GetDedicatedConnectionVlanRangeArgs{...}
+type GetDedicatedConnectionVlanRangeInput interface {
+	pulumi.Input
+
+	ToGetDedicatedConnectionVlanRangeOutput() GetDedicatedConnectionVlanRangeOutput
+	ToGetDedicatedConnectionVlanRangeOutputWithContext(context.Context) GetDedicatedConnectionVlanRangeOutput
+}
+
+type GetDedicatedConnectionVlanRangeArgs struct {
+	// End of the VLAN range
+	End pulumi.IntInput `pulumi:"end"`
+	// Start of the VLAN range
+	Start pulumi.IntInput `pulumi:"start"`
+}
+
+func (GetDedicatedConnectionVlanRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDedicatedConnectionVlanRange)(nil)).Elem()
+}
+
+func (i GetDedicatedConnectionVlanRangeArgs) ToGetDedicatedConnectionVlanRangeOutput() GetDedicatedConnectionVlanRangeOutput {
+	return i.ToGetDedicatedConnectionVlanRangeOutputWithContext(context.Background())
+}
+
+func (i GetDedicatedConnectionVlanRangeArgs) ToGetDedicatedConnectionVlanRangeOutputWithContext(ctx context.Context) GetDedicatedConnectionVlanRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDedicatedConnectionVlanRangeOutput)
+}
+
+// GetDedicatedConnectionVlanRangeArrayInput is an input type that accepts GetDedicatedConnectionVlanRangeArray and GetDedicatedConnectionVlanRangeArrayOutput values.
+// You can construct a concrete instance of `GetDedicatedConnectionVlanRangeArrayInput` via:
+//
+//	GetDedicatedConnectionVlanRangeArray{ GetDedicatedConnectionVlanRangeArgs{...} }
+type GetDedicatedConnectionVlanRangeArrayInput interface {
+	pulumi.Input
+
+	ToGetDedicatedConnectionVlanRangeArrayOutput() GetDedicatedConnectionVlanRangeArrayOutput
+	ToGetDedicatedConnectionVlanRangeArrayOutputWithContext(context.Context) GetDedicatedConnectionVlanRangeArrayOutput
+}
+
+type GetDedicatedConnectionVlanRangeArray []GetDedicatedConnectionVlanRangeInput
+
+func (GetDedicatedConnectionVlanRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDedicatedConnectionVlanRange)(nil)).Elem()
+}
+
+func (i GetDedicatedConnectionVlanRangeArray) ToGetDedicatedConnectionVlanRangeArrayOutput() GetDedicatedConnectionVlanRangeArrayOutput {
+	return i.ToGetDedicatedConnectionVlanRangeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDedicatedConnectionVlanRangeArray) ToGetDedicatedConnectionVlanRangeArrayOutputWithContext(ctx context.Context) GetDedicatedConnectionVlanRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDedicatedConnectionVlanRangeArrayOutput)
+}
+
+type GetDedicatedConnectionVlanRangeOutput struct{ *pulumi.OutputState }
+
+func (GetDedicatedConnectionVlanRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDedicatedConnectionVlanRange)(nil)).Elem()
+}
+
+func (o GetDedicatedConnectionVlanRangeOutput) ToGetDedicatedConnectionVlanRangeOutput() GetDedicatedConnectionVlanRangeOutput {
+	return o
+}
+
+func (o GetDedicatedConnectionVlanRangeOutput) ToGetDedicatedConnectionVlanRangeOutputWithContext(ctx context.Context) GetDedicatedConnectionVlanRangeOutput {
+	return o
+}
+
+// End of the VLAN range
+func (o GetDedicatedConnectionVlanRangeOutput) End() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDedicatedConnectionVlanRange) int { return v.End }).(pulumi.IntOutput)
+}
+
+// Start of the VLAN range
+func (o GetDedicatedConnectionVlanRangeOutput) Start() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDedicatedConnectionVlanRange) int { return v.Start }).(pulumi.IntOutput)
+}
+
+type GetDedicatedConnectionVlanRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDedicatedConnectionVlanRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDedicatedConnectionVlanRange)(nil)).Elem()
+}
+
+func (o GetDedicatedConnectionVlanRangeArrayOutput) ToGetDedicatedConnectionVlanRangeArrayOutput() GetDedicatedConnectionVlanRangeArrayOutput {
+	return o
+}
+
+func (o GetDedicatedConnectionVlanRangeArrayOutput) ToGetDedicatedConnectionVlanRangeArrayOutputWithContext(ctx context.Context) GetDedicatedConnectionVlanRangeArrayOutput {
+	return o
+}
+
+func (o GetDedicatedConnectionVlanRangeArrayOutput) Index(i pulumi.IntInput) GetDedicatedConnectionVlanRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDedicatedConnectionVlanRange {
+		return vs[0].([]GetDedicatedConnectionVlanRange)[vs[1].(int)]
+	}).(GetDedicatedConnectionVlanRangeOutput)
+}
+
 type GetLinkPeerBgpConfig struct {
 	// AS Number of the BGP peer
 	Asn int `pulumi:"asn"`
@@ -798,6 +904,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LinkPeerBgpConfigArrayInput)(nil)).Elem(), LinkPeerBgpConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LinkScwBgpConfigInput)(nil)).Elem(), LinkScwBgpConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LinkScwBgpConfigArrayInput)(nil)).Elem(), LinkScwBgpConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDedicatedConnectionVlanRangeInput)(nil)).Elem(), GetDedicatedConnectionVlanRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDedicatedConnectionVlanRangeArrayInput)(nil)).Elem(), GetDedicatedConnectionVlanRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkPeerBgpConfigInput)(nil)).Elem(), GetLinkPeerBgpConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkPeerBgpConfigArrayInput)(nil)).Elem(), GetLinkPeerBgpConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLinkScwBgpConfigInput)(nil)).Elem(), GetLinkScwBgpConfigArgs{})
@@ -810,6 +918,8 @@ func init() {
 	pulumi.RegisterOutputType(LinkPeerBgpConfigArrayOutput{})
 	pulumi.RegisterOutputType(LinkScwBgpConfigOutput{})
 	pulumi.RegisterOutputType(LinkScwBgpConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetDedicatedConnectionVlanRangeOutput{})
+	pulumi.RegisterOutputType(GetDedicatedConnectionVlanRangeArrayOutput{})
 	pulumi.RegisterOutputType(GetLinkPeerBgpConfigOutput{})
 	pulumi.RegisterOutputType(GetLinkPeerBgpConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetLinkScwBgpConfigOutput{})

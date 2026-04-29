@@ -15,6 +15,8 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -30,6 +32,28 @@ import * as utilities from "../utilities";
  *     popId: pop.then(pop => pop.id),
  *     partnerId: partner.then(partner => partner.id),
  *     bandwidthMbps: 50,
+ * });
+ * ```
+ *
+ * ### With VPC
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pop = scaleway.interlink.getPop({
+ *     name: "Telehouse TH2",
+ * });
+ * const partner = scaleway.interlink.getPartner({
+ *     name: "FranceIX",
+ * });
+ * const vpc = new scaleway.network.Vpc("vpc", {name: "my-vpc"});
+ * const main = new scaleway.interlink.Link("main", {
+ *     name: "my-hosted-link",
+ *     popId: pop.then(pop => pop.id),
+ *     partnerId: partner.then(partner => partner.id),
+ *     bandwidthMbps: 50,
+ *     vpcId: vpc.id,
  * });
  * ```
  *
@@ -90,9 +114,9 @@ export class Link extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * Defines whether route propagation is enabled or not.
+     * Defines whether route propagation is enabled or not. Defaults to `false`.
      */
-    declare public /*out*/ readonly enableRoutePropagation: pulumi.Output<boolean>;
+    declare public readonly enableRoutePropagation: pulumi.Output<boolean | undefined>;
     /**
      * Name of the link. If not provided, a name will be randomly generated.
      */
@@ -158,9 +182,9 @@ export class Link extends pulumi.CustomResource {
      */
     declare public readonly vlan: pulumi.Output<number>;
     /**
-     * ID of the Scaleway VPC attached to the link.
+     * ID of the Scaleway VPC to attach to the link.
      */
-    declare public /*out*/ readonly vpcId: pulumi.Output<string>;
+    declare public readonly vpcId: pulumi.Output<string | undefined>;
 
     /**
      * Create a Link resource with the given unique name, arguments, and options.
@@ -208,6 +232,7 @@ export class Link extends pulumi.CustomResource {
             }
             resourceInputs["bandwidthMbps"] = args?.bandwidthMbps;
             resourceInputs["connectionId"] = args?.connectionId;
+            resourceInputs["enableRoutePropagation"] = args?.enableRoutePropagation;
             resourceInputs["name"] = args?.name;
             resourceInputs["partnerId"] = args?.partnerId;
             resourceInputs["peerAsn"] = args?.peerAsn;
@@ -218,17 +243,16 @@ export class Link extends pulumi.CustomResource {
             resourceInputs["routingPolicyV6Id"] = args?.routingPolicyV6Id;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["vlan"] = args?.vlan;
+            resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["bgpV4Status"] = undefined /*out*/;
             resourceInputs["bgpV6Status"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["enableRoutePropagation"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["pairingKey"] = undefined /*out*/;
             resourceInputs["peerBgpConfigs"] = undefined /*out*/;
             resourceInputs["scwBgpConfigs"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
-            resourceInputs["vpcId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["pairingKey"] };
@@ -262,7 +286,7 @@ export interface LinkState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Defines whether route propagation is enabled or not.
+     * Defines whether route propagation is enabled or not. Defaults to `false`.
      */
     enableRoutePropagation?: pulumi.Input<boolean>;
     /**
@@ -330,7 +354,7 @@ export interface LinkState {
      */
     vlan?: pulumi.Input<number>;
     /**
-     * ID of the Scaleway VPC attached to the link.
+     * ID of the Scaleway VPC to attach to the link.
      */
     vpcId?: pulumi.Input<string>;
 }
@@ -347,6 +371,10 @@ export interface LinkArgs {
      * If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partnerId`.
      */
     connectionId?: pulumi.Input<string>;
+    /**
+     * Defines whether route propagation is enabled or not. Defaults to `false`.
+     */
+    enableRoutePropagation?: pulumi.Input<boolean>;
     /**
      * Name of the link. If not provided, a name will be randomly generated.
      */
@@ -387,4 +415,8 @@ export interface LinkArgs {
      * For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
      */
     vlan?: pulumi.Input<number>;
+    /**
+     * ID of the Scaleway VPC to attach to the link.
+     */
+    vpcId?: pulumi.Input<string>;
 }

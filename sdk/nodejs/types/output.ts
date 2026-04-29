@@ -8792,6 +8792,17 @@ export namespace instance {
 }
 
 export namespace interlink {
+    export interface GetDedicatedConnectionVlanRange {
+        /**
+         * End of the VLAN range
+         */
+        end: number;
+        /**
+         * Start of the VLAN range
+         */
+        start: number;
+    }
+
     export interface GetLinkPeerBgpConfig {
         /**
          * AS Number of the BGP peer

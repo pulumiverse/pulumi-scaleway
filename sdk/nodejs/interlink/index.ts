@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetDedicatedConnectionArgs, GetDedicatedConnectionResult, GetDedicatedConnectionOutputArgs } from "./getDedicatedConnection";
+export const getDedicatedConnection: typeof import("./getDedicatedConnection").getDedicatedConnection = null as any;
+export const getDedicatedConnectionOutput: typeof import("./getDedicatedConnection").getDedicatedConnectionOutput = null as any;
+utilities.lazyLoad(exports, ["getDedicatedConnection","getDedicatedConnectionOutput"], () => require("./getDedicatedConnection"));
+
 export { GetLinkArgs, GetLinkResult, GetLinkOutputArgs } from "./getLink";
 export const getLink: typeof import("./getLink").getLink = null as any;
 export const getLinkOutput: typeof import("./getLink").getLinkOutput = null as any;

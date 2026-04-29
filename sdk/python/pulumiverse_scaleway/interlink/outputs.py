@@ -17,6 +17,7 @@ from .. import _utilities
 __all__ = [
     'LinkPeerBgpConfig',
     'LinkScwBgpConfig',
+    'GetDedicatedConnectionVlanRangeResult',
     'GetLinkPeerBgpConfigResult',
     'GetLinkScwBgpConfigResult',
     'GetPartnersPartnerResult',
@@ -107,6 +108,35 @@ class LinkScwBgpConfig(dict):
         IPv6 address of the BGP peer
         """
         return pulumi.get(self, "ipv6")
+
+
+@pulumi.output_type
+class GetDedicatedConnectionVlanRangeResult(dict):
+    def __init__(__self__, *,
+                 end: _builtins.int,
+                 start: _builtins.int):
+        """
+        :param _builtins.int end: End of the VLAN range
+        :param _builtins.int start: Start of the VLAN range
+        """
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "start", start)
+
+    @_builtins.property
+    @pulumi.getter
+    def end(self) -> _builtins.int:
+        """
+        End of the VLAN range
+        """
+        return pulumi.get(self, "end")
+
+    @_builtins.property
+    @pulumi.getter
+    def start(self) -> _builtins.int:
+        """
+        Start of the VLAN range
+        """
+        return pulumi.get(self, "start")
 
 
 @pulumi.output_type

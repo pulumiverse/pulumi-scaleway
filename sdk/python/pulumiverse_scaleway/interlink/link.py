@@ -24,6 +24,7 @@ class LinkArgs:
                  bandwidth_mbps: pulumi.Input[_builtins.int],
                  pop_id: pulumi.Input[_builtins.str],
                  connection_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  partner_id: Optional[pulumi.Input[_builtins.str]] = None,
                  peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
@@ -32,13 +33,15 @@ class LinkArgs:
                  routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
                  routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None):
+                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Link resource.
 
         :param pulumi.Input[_builtins.int] bandwidth_mbps: Desired bandwidth for the link. Must be compatible with available link bandwidths and remaining bandwidth capacity of the connection.
         :param pulumi.Input[_builtins.str] pop_id: PoP (location) where the link will be created.
         :param pulumi.Input[_builtins.str] connection_id: If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
+        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
         :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
@@ -48,11 +51,14 @@ class LinkArgs:
         :param pulumi.Input[_builtins.str] routing_policy_v6_id: If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.int] vlan: For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
+        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC to attach to the link.
         """
         pulumi.set(__self__, "bandwidth_mbps", bandwidth_mbps)
         pulumi.set(__self__, "pop_id", pop_id)
         if connection_id is not None:
             pulumi.set(__self__, "connection_id", connection_id)
+        if enable_route_propagation is not None:
+            pulumi.set(__self__, "enable_route_propagation", enable_route_propagation)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if partner_id is not None:
@@ -71,6 +77,8 @@ class LinkArgs:
             pulumi.set(__self__, "tags", tags)
         if vlan is not None:
             pulumi.set(__self__, "vlan", vlan)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @_builtins.property
     @pulumi.getter(name="bandwidthMbps")
@@ -107,6 +115,18 @@ class LinkArgs:
     @connection_id.setter
     def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableRoutePropagation")
+    def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Defines whether route propagation is enabled or not. Defaults to `false`.
+        """
+        return pulumi.get(self, "enable_route_propagation")
+
+    @enable_route_propagation.setter
+    def enable_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -216,6 +236,18 @@ class LinkArgs:
     def vlan(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "vlan", value)
 
+    @_builtins.property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ID of the Scaleway VPC to attach to the link.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
 
 @pulumi.input_type
 class _LinkState:
@@ -251,7 +283,7 @@ class _LinkState:
         :param pulumi.Input[_builtins.str] bgp_v6_status: Status of the link's BGP IPv6 session.
         :param pulumi.Input[_builtins.str] connection_id: If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the link (RFC 3339 format).
-        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
+        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: Organization ID.
         :param pulumi.Input[_builtins.str] pairing_key: Used to identify a link from a user or partner's point of view.
@@ -268,7 +300,7 @@ class _LinkState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.str] updated_at: Last modification date of the link (RFC 3339 format).
         :param pulumi.Input[_builtins.int] vlan: For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
-        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC attached to the link.
+        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC to attach to the link.
         """
         if bandwidth_mbps is not None:
             pulumi.set(__self__, "bandwidth_mbps", bandwidth_mbps)
@@ -381,7 +413,7 @@ class _LinkState:
     @pulumi.getter(name="enableRoutePropagation")
     def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Defines whether route propagation is enabled or not.
+        Defines whether route propagation is enabled or not. Defaults to `false`.
         """
         return pulumi.get(self, "enable_route_propagation")
 
@@ -585,7 +617,7 @@ class _LinkState:
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the Scaleway VPC attached to the link.
+        ID of the Scaleway VPC to attach to the link.
         """
         return pulumi.get(self, "vpc_id")
 
@@ -602,6 +634,7 @@ class Link(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
                  connection_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  partner_id: Optional[pulumi.Input[_builtins.str]] = None,
                  peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
@@ -612,6 +645,7 @@ class Link(pulumi.CustomResource):
                  routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vlan: Optional[pulumi.Input[_builtins.int]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Interlink Links.
@@ -621,6 +655,8 @@ class Link(pulumi.CustomResource):
         For more information, see [the Interlink documentation](https://www.scaleway.com/en/docs/network/interlink/) and [API documentation](https://www.scaleway.com/en/developers/api/interlink/).
 
         ## Example Usage
+
+        ### Basic
 
         ```python
         import pulumi
@@ -636,6 +672,24 @@ class Link(pulumi.CustomResource):
             bandwidth_mbps=50)
         ```
 
+        ### With VPC
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        pop = scaleway.interlink.get_pop(name="Telehouse TH2")
+        partner = scaleway.interlink.get_partner(name="FranceIX")
+        vpc = scaleway.network.Vpc("vpc", name="my-vpc")
+        main = scaleway.interlink.Link("main",
+            name="my-hosted-link",
+            pop_id=pop.id,
+            partner_id=partner.id,
+            bandwidth_mbps=50,
+            vpc_id=vpc.id)
+        ```
+
         ## Import
 
         Interlink Links can be imported using `{region}/{id}`, e.g.
@@ -649,6 +703,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] bandwidth_mbps: Desired bandwidth for the link. Must be compatible with available link bandwidths and remaining bandwidth capacity of the connection.
         :param pulumi.Input[_builtins.str] connection_id: If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
+        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
         :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
@@ -659,6 +714,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] routing_policy_v6_id: If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.int] vlan: For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
+        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC to attach to the link.
         """
         ...
     @overload
@@ -675,6 +731,8 @@ class Link(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -687,6 +745,24 @@ class Link(pulumi.CustomResource):
             pop_id=pop.id,
             partner_id=partner.id,
             bandwidth_mbps=50)
+        ```
+
+        ### With VPC
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        pop = scaleway.interlink.get_pop(name="Telehouse TH2")
+        partner = scaleway.interlink.get_partner(name="FranceIX")
+        vpc = scaleway.network.Vpc("vpc", name="my-vpc")
+        main = scaleway.interlink.Link("main",
+            name="my-hosted-link",
+            pop_id=pop.id,
+            partner_id=partner.id,
+            bandwidth_mbps=50,
+            vpc_id=vpc.id)
         ```
 
         ## Import
@@ -715,6 +791,7 @@ class Link(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
                  connection_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  partner_id: Optional[pulumi.Input[_builtins.str]] = None,
                  peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
@@ -725,6 +802,7 @@ class Link(pulumi.CustomResource):
                  routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vlan: Optional[pulumi.Input[_builtins.int]] = None,
+                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -738,6 +816,7 @@ class Link(pulumi.CustomResource):
                 raise TypeError("Missing required property 'bandwidth_mbps'")
             __props__.__dict__["bandwidth_mbps"] = bandwidth_mbps
             __props__.__dict__["connection_id"] = connection_id
+            __props__.__dict__["enable_route_propagation"] = enable_route_propagation
             __props__.__dict__["name"] = name
             __props__.__dict__["partner_id"] = partner_id
             __props__.__dict__["peer_asn"] = peer_asn
@@ -750,17 +829,16 @@ class Link(pulumi.CustomResource):
             __props__.__dict__["routing_policy_v6_id"] = routing_policy_v6_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vlan"] = vlan
+            __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["bgp_v4_status"] = None
             __props__.__dict__["bgp_v6_status"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["enable_route_propagation"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["pairing_key"] = None
             __props__.__dict__["peer_bgp_configs"] = None
             __props__.__dict__["scw_bgp_configs"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["vpc_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["pairingKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Link, __self__).__init__(
@@ -808,7 +886,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bgp_v6_status: Status of the link's BGP IPv6 session.
         :param pulumi.Input[_builtins.str] connection_id: If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
         :param pulumi.Input[_builtins.str] created_at: Creation date of the link (RFC 3339 format).
-        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
+        :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: Organization ID.
         :param pulumi.Input[_builtins.str] pairing_key: Used to identify a link from a user or partner's point of view.
@@ -825,7 +903,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.str] updated_at: Last modification date of the link (RFC 3339 format).
         :param pulumi.Input[_builtins.int] vlan: For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
-        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC attached to the link.
+        :param pulumi.Input[_builtins.str] vpc_id: ID of the Scaleway VPC to attach to the link.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -898,9 +976,9 @@ class Link(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="enableRoutePropagation")
-    def enable_route_propagation(self) -> pulumi.Output[_builtins.bool]:
+    def enable_route_propagation(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Defines whether route propagation is enabled or not.
+        Defines whether route propagation is enabled or not. Defaults to `false`.
         """
         return pulumi.get(self, "enable_route_propagation")
 
@@ -1034,9 +1112,9 @@ class Link(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> pulumi.Output[_builtins.str]:
+    def vpc_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        ID of the Scaleway VPC attached to the link.
+        ID of the Scaleway VPC to attach to the link.
         """
         return pulumi.get(self, "vpc_id")
 
