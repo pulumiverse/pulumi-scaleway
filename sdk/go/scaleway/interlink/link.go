@@ -20,6 +20,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ```go
 // package main
 //
@@ -59,6 +61,55 @@ import (
 //
 // ```
 //
+// ### With VPC
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/interlink"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pop, err := interlink.GetPop(ctx, &interlink.GetPopArgs{
+//				Name: pulumi.StringRef("Telehouse TH2"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			partner, err := interlink.GetPartner(ctx, &interlink.GetPartnerArgs{
+//				Name: pulumi.StringRef("FranceIX"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			vpc, err := network.NewVpc(ctx, "vpc", &network.VpcArgs{
+//				Name: pulumi.String("my-vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = interlink.NewLink(ctx, "main", &interlink.LinkArgs{
+//				Name:          pulumi.String("my-hosted-link"),
+//				PopId:         pulumi.String(pulumi.String(pop.Id)),
+//				PartnerId:     pulumi.String(pulumi.String(partner.Id)),
+//				BandwidthMbps: pulumi.Int(50),
+//				VpcId:         vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Interlink Links can be imported using `{region}/{id}`, e.g.
@@ -79,8 +130,8 @@ type Link struct {
 	ConnectionId pulumi.StringPtrOutput `pulumi:"connectionId"`
 	// Creation date of the link (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Defines whether route propagation is enabled or not.
-	EnableRoutePropagation pulumi.BoolOutput `pulumi:"enableRoutePropagation"`
+	// Defines whether route propagation is enabled or not. Defaults to `false`.
+	EnableRoutePropagation pulumi.BoolPtrOutput `pulumi:"enableRoutePropagation"`
 	// Name of the link. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Organization ID.
@@ -113,8 +164,8 @@ type Link struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
 	Vlan pulumi.IntOutput `pulumi:"vlan"`
-	// ID of the Scaleway VPC attached to the link.
-	VpcId pulumi.StringOutput `pulumi:"vpcId"`
+	// ID of the Scaleway VPC to attach to the link.
+	VpcId pulumi.StringPtrOutput `pulumi:"vpcId"`
 }
 
 // NewLink registers a new resource with the given unique name, arguments, and options.
@@ -167,7 +218,7 @@ type linkState struct {
 	ConnectionId *string `pulumi:"connectionId"`
 	// Creation date of the link (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// Defines whether route propagation is enabled or not.
+	// Defines whether route propagation is enabled or not. Defaults to `false`.
 	EnableRoutePropagation *bool `pulumi:"enableRoutePropagation"`
 	// Name of the link. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -201,7 +252,7 @@ type linkState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
 	Vlan *int `pulumi:"vlan"`
-	// ID of the Scaleway VPC attached to the link.
+	// ID of the Scaleway VPC to attach to the link.
 	VpcId *string `pulumi:"vpcId"`
 }
 
@@ -216,7 +267,7 @@ type LinkState struct {
 	ConnectionId pulumi.StringPtrInput
 	// Creation date of the link (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// Defines whether route propagation is enabled or not.
+	// Defines whether route propagation is enabled or not. Defaults to `false`.
 	EnableRoutePropagation pulumi.BoolPtrInput
 	// Name of the link. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -250,7 +301,7 @@ type LinkState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
 	Vlan pulumi.IntPtrInput
-	// ID of the Scaleway VPC attached to the link.
+	// ID of the Scaleway VPC to attach to the link.
 	VpcId pulumi.StringPtrInput
 }
 
@@ -263,6 +314,8 @@ type linkArgs struct {
 	BandwidthMbps int `pulumi:"bandwidthMbps"`
 	// If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partnerId`.
 	ConnectionId *string `pulumi:"connectionId"`
+	// Defines whether route propagation is enabled or not. Defaults to `false`.
+	EnableRoutePropagation *bool `pulumi:"enableRoutePropagation"`
 	// Name of the link. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
@@ -283,6 +336,8 @@ type linkArgs struct {
 	Tags []string `pulumi:"tags"`
 	// For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
 	Vlan *int `pulumi:"vlan"`
+	// ID of the Scaleway VPC to attach to the link.
+	VpcId *string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a Link resource.
@@ -291,6 +346,8 @@ type LinkArgs struct {
 	BandwidthMbps pulumi.IntInput
 	// If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partnerId`.
 	ConnectionId pulumi.StringPtrInput
+	// Defines whether route propagation is enabled or not. Defaults to `false`.
+	EnableRoutePropagation pulumi.BoolPtrInput
 	// Name of the link. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
@@ -311,6 +368,8 @@ type LinkArgs struct {
 	Tags pulumi.StringArrayInput
 	// For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
 	Vlan pulumi.IntPtrInput
+	// ID of the Scaleway VPC to attach to the link.
+	VpcId pulumi.StringPtrInput
 }
 
 func (LinkArgs) ElementType() reflect.Type {
@@ -425,9 +484,9 @@ func (o LinkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Link) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Defines whether route propagation is enabled or not.
-func (o LinkOutput) EnableRoutePropagation() pulumi.BoolOutput {
-	return o.ApplyT(func(v *Link) pulumi.BoolOutput { return v.EnableRoutePropagation }).(pulumi.BoolOutput)
+// Defines whether route propagation is enabled or not. Defaults to `false`.
+func (o LinkOutput) EnableRoutePropagation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Link) pulumi.BoolPtrOutput { return v.EnableRoutePropagation }).(pulumi.BoolPtrOutput)
 }
 
 // Name of the link. If not provided, a name will be randomly generated.
@@ -510,9 +569,9 @@ func (o LinkOutput) Vlan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Link) pulumi.IntOutput { return v.Vlan }).(pulumi.IntOutput)
 }
 
-// ID of the Scaleway VPC attached to the link.
-func (o LinkOutput) VpcId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Link) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
+// ID of the Scaleway VPC to attach to the link.
+func (o LinkOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Link) pulumi.StringPtrOutput { return v.VpcId }).(pulumi.StringPtrOutput)
 }
 
 type LinkArrayOutput struct{ *pulumi.OutputState }

@@ -312,6 +312,7 @@
         "instanceSnapshot.ts",
         "instanceUserData.ts",
         "instanceVolume.ts",
+        "interlink/getDedicatedConnection.ts",
         "interlink/getLink.ts",
         "interlink/getPartner.ts",
         "interlink/getPartners.ts",

@@ -3855,6 +3855,21 @@
                     }
                 }
             },
+            "scaleway_interlink_dedicated_connection": {
+                "current": "scaleway:interlink/getDedicatedConnection:getDedicatedConnection",
+                "majorVersion": 1,
+                "fields": {
+                    "available_link_bandwidths": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "vlan_range": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_interlink_link": {
                 "current": "scaleway:interlink/getLink:getLink",
                 "majorVersion": 1,
@@ -6651,6 +6666,7 @@
             "scaleway:instance/getServers:getServers": 0,
             "scaleway:instance/getSnapshot:getSnapshot": 0,
             "scaleway:instance/getVolume:getVolume": 0,
+            "scaleway:interlink/getDedicatedConnection:getDedicatedConnection": 0,
             "scaleway:interlink/getLink:getLink": 0,
             "scaleway:interlink/getPartner:getPartner": 0,
             "scaleway:interlink/getPartners:getPartners": 0,

@@ -19,6 +19,8 @@ namespace Pulumiverse.Scaleway.Interlink
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,6 +45,43 @@ namespace Pulumiverse.Scaleway.Interlink
     ///         PopId = pop.Apply(getPopResult =&gt; getPopResult.Id),
     ///         PartnerId = partner.Apply(getPartnerResult =&gt; getPartnerResult.Id),
     ///         BandwidthMbps = 50,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With VPC
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pop = Scaleway.Interlink.GetPop.Invoke(new()
+    ///     {
+    ///         Name = "Telehouse TH2",
+    ///     });
+    /// 
+    ///     var partner = Scaleway.Interlink.GetPartner.Invoke(new()
+    ///     {
+    ///         Name = "FranceIX",
+    ///     });
+    /// 
+    ///     var vpc = new Scaleway.Network.Vpc("vpc", new()
+    ///     {
+    ///         Name = "my-vpc",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Interlink.Link("main", new()
+    ///     {
+    ///         Name = "my-hosted-link",
+    ///         PopId = pop.Apply(getPopResult =&gt; getPopResult.Id),
+    ///         PartnerId = partner.Apply(getPartnerResult =&gt; getPartnerResult.Id),
+    ///         BandwidthMbps = 50,
+    ///         VpcId = vpc.Id,
     ///     });
     /// 
     /// });
@@ -90,10 +129,10 @@ namespace Pulumiverse.Scaleway.Interlink
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether route propagation is enabled or not.
+        /// Defines whether route propagation is enabled or not. Defaults to `False`.
         /// </summary>
         [Output("enableRoutePropagation")]
-        public Output<bool> EnableRoutePropagation { get; private set; } = null!;
+        public Output<bool?> EnableRoutePropagation { get; private set; } = null!;
 
         /// <summary>
         /// Name of the link. If not provided, a name will be randomly generated.
@@ -192,10 +231,10 @@ namespace Pulumiverse.Scaleway.Interlink
         public Output<int> Vlan { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the Scaleway VPC attached to the link.
+        /// ID of the Scaleway VPC to attach to the link.
         /// </summary>
         [Output("vpcId")]
-        public Output<string> VpcId { get; private set; } = null!;
+        public Output<string?> VpcId { get; private set; } = null!;
 
 
         /// <summary>
@@ -259,6 +298,12 @@ namespace Pulumiverse.Scaleway.Interlink
         /// </summary>
         [Input("connectionId")]
         public Input<string>? ConnectionId { get; set; }
+
+        /// <summary>
+        /// Defines whether route propagation is enabled or not. Defaults to `False`.
+        /// </summary>
+        [Input("enableRoutePropagation")]
+        public Input<bool>? EnableRoutePropagation { get; set; }
 
         /// <summary>
         /// Name of the link. If not provided, a name will be randomly generated.
@@ -326,6 +371,12 @@ namespace Pulumiverse.Scaleway.Interlink
         [Input("vlan")]
         public Input<int>? Vlan { get; set; }
 
+        /// <summary>
+        /// ID of the Scaleway VPC to attach to the link.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
+
         public LinkArgs()
         {
         }
@@ -365,7 +416,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Defines whether route propagation is enabled or not.
+        /// Defines whether route propagation is enabled or not. Defaults to `False`.
         /// </summary>
         [Input("enableRoutePropagation")]
         public Input<bool>? EnableRoutePropagation { get; set; }
@@ -495,7 +546,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public Input<int>? Vlan { get; set; }
 
         /// <summary>
-        /// ID of the Scaleway VPC attached to the link.
+        /// ID of the Scaleway VPC to attach to the link.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
