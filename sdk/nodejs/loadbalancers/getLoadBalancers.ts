@@ -100,17 +100,17 @@ export interface GetLoadBalancersOutputArgs {
     /**
      * The Load Balancer name to filter for. Load Balancers with a matching name are listed.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project the Load Balancer is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of tags to filter for. Load Balancers with these exact tags are listed.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -118,20 +118,20 @@ export interface NatsCredentialsState {
     /**
      * The ID of the NATS account the credentials are generated from
      */
-    accountId?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string | undefined>;
     /**
      * The content of the credentials file.
      */
-    file?: pulumi.Input<string>;
+    file?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the NATS credentials.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which the account exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -145,10 +145,10 @@ export interface NatsCredentialsArgs {
     /**
      * The unique name of the NATS credentials.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which the account exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

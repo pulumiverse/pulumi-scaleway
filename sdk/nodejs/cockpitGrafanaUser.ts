@@ -179,23 +179,23 @@ export interface CockpitGrafanaUserState {
     /**
      * URL for Grafana.
      */
-    grafanaUrl?: pulumi.Input<string>;
+    grafanaUrl?: pulumi.Input<string | undefined>;
     /**
      * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
-    login?: pulumi.Input<string>;
+    login?: pulumi.Input<string | undefined>;
     /**
      * The password of the Grafana user.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -209,7 +209,7 @@ export interface CockpitGrafanaUserArgs {
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */

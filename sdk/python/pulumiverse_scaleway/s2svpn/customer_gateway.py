@@ -20,12 +20,12 @@ __all__ = ['CustomerGatewayArgs', 'CustomerGateway']
 class CustomerGatewayArgs:
     def __init__(__self__, *,
                  asn: pulumi.Input[_builtins.int],
-                 ipv4_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 ipv4_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a CustomerGateway resource.
 
@@ -65,90 +65,90 @@ class CustomerGatewayArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipv4Public")
-    def ipv4_public(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv4_public(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv4 address of the customer gateway (your VPN endpoint).
         """
         return pulumi.get(self, "ipv4_public")
 
     @ipv4_public.setter
-    def ipv4_public(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv4_public(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv4_public", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Public")
-    def ipv6_public(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_public(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv6 address of the customer gateway (your VPN endpoint).
         """
         return pulumi.get(self, "ipv6_public")
 
     @ipv6_public.setter
-    def ipv6_public(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_public(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_public", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the customer gateway. If not provided, it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the customer gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the customer gateway should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags to apply to the customer gateway.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _CustomerGatewayState:
     def __init__(__self__, *,
-                 asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv4_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv4_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomerGateway resources.
 
@@ -186,122 +186,122 @@ class _CustomerGatewayState:
 
     @_builtins.property
     @pulumi.getter
-    def asn(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def asn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The AS Number of the customer gateway. Must be different from Scaleway's ASN (12876). For testing, you can use a private ASN (64512-65535).
         """
         return pulumi.get(self, "asn")
 
     @asn.setter
-    def asn(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def asn(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "asn", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the customer gateway (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4Public")
-    def ipv4_public(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv4_public(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv4 address of the customer gateway (your VPN endpoint).
         """
         return pulumi.get(self, "ipv4_public")
 
     @ipv4_public.setter
-    def ipv4_public(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv4_public(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv4_public", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Public")
-    def ipv6_public(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_public(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv6 address of the customer gateway (your VPN endpoint).
         """
         return pulumi.get(self, "ipv6_public")
 
     @ipv6_public.setter
-    def ipv6_public(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_public(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_public", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the customer gateway. If not provided, it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID the customer gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the customer gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the customer gateway should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags to apply to the customer gateway.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the customer gateway (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -311,13 +311,13 @@ class CustomerGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 ipv4_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 ipv4_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Site-to-Site VPN Customer Gateways.
@@ -470,13 +470,13 @@ class CustomerGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 ipv4_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_public: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 ipv4_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_public: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -508,16 +508,16 @@ class CustomerGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            asn: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            ipv4_public: Optional[pulumi.Input[_builtins.str]] = None,
-            ipv6_public: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'CustomerGateway':
+            asn: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            ipv4_public: pulumi.Input[Optional[_builtins.str]] = None,
+            ipv6_public: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomerGateway':
         """
         Get an existing CustomerGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

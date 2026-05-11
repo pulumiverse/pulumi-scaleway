@@ -162,14 +162,14 @@ export interface GetLoadbalancerCertificateOutputArgs {
      * The certificate ID.
      * - Only one of `name` and `certificateId` should be specified.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * The Load Balancer ID this certificate is attached to.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Load Balancer certificate.
      * - When using a certificate `name` you should specify the `lb-id`
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * });
  * // User Data with many keys.
  * const data: scaleway.instance.UserData[] = [];
- * for (const range of Object.entries(userData).map(([k, v]) => ({key: k, value: v}))) {
+ * for (const range of Object.entries(userData).sort().map(([k, v]) => ({key: k, value: v}))) {
  *     data.push(new scaleway.instance.UserData(`data-${range.key}`, {
  *         serverId: mainServer.id,
  *         key: range.key,
@@ -157,15 +157,15 @@ export interface UserDataState {
     /**
      * Key of the user data.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server associated with.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * Value associated with your key
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      *
@@ -174,7 +174,7 @@ export interface UserDataState {
      * - string
      * - UTF-8 encoded file content using file
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,5 +201,5 @@ export interface UserDataArgs {
      * - string
      * - UTF-8 encoded file content using file
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

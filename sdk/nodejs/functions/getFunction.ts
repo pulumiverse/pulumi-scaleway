@@ -107,11 +107,11 @@ export interface GetFunctionOutputArgs {
     /**
      * The unique identifier of the function. Only one of `name` and `functionId` should be specified.
      */
-    functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string | undefined>;
     /**
      * The name of the function. Only one of `name` and `namespaceId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace ID associated with this function.
      */
@@ -119,9 +119,9 @@ export interface GetFunctionOutputArgs {
     /**
      * The unique identifier of the project with which the function is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the container exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

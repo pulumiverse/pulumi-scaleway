@@ -102,9 +102,9 @@ export interface GetPartnersOutputArgs {
     /**
      * Filter for partners present (offering a connection) in one of these PoPs.
      */
-    popIds?: pulumi.Input<pulumi.Input<string>[]>;
+    popIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `region`) The region to list partners from.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

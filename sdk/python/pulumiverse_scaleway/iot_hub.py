@@ -20,15 +20,15 @@ __all__ = ['IotHubArgs', 'IotHub']
 class IotHubArgs:
     def __init__(__self__, *,
                  product_plan: pulumi.Input[_builtins.str],
-                 device_auto_provisioning: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_events: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 events_topic_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca_challenge: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IotHub resource.
 
@@ -83,31 +83,31 @@ class IotHubArgs:
 
     @_builtins.property
     @pulumi.getter(name="deviceAutoProvisioning")
-    def device_auto_provisioning(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def device_auto_provisioning(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Wether to enable the device auto provisioning or not
         """
         return pulumi.get(self, "device_auto_provisioning")
 
     @device_auto_provisioning.setter
-    def device_auto_provisioning(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def device_auto_provisioning(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "device_auto_provisioning", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEvents")
-    def disable_events(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_events(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable the hub events or not
         """
         return pulumi.get(self, "disable_events")
 
     @disable_events.setter
-    def disable_events(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_events(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_events", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the IoT Hub instance should be enabled or not.
 
@@ -116,104 +116,104 @@ class IotHubArgs:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="eventsTopicPrefix")
-    def events_topic_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def events_topic_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Topic prefix for the hub events
         """
         return pulumi.get(self, "events_topic_prefix")
 
     @events_topic_prefix.setter
-    def events_topic_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def events_topic_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "events_topic_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="hubCa")
-    def hub_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom user provided certificate authority
         """
         return pulumi.get(self, "hub_ca")
 
     @hub_ca.setter
-    def hub_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="hubCaChallenge")
-    def hub_ca_challenge(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_ca_challenge(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Challenge certificate for the user provided hub CA
         """
         return pulumi.get(self, "hub_ca_challenge")
 
     @hub_ca_challenge.setter
-    def hub_ca_challenge(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_ca_challenge(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_ca_challenge", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the IoT Hub Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _IotHubState:
     def __init__(__self__, *,
-                 connected_device_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 device_auto_provisioning: Optional[pulumi.Input[_builtins.bool]] = None,
-                 device_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_events: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 events_topic_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca_challenge: Optional[pulumi.Input[_builtins.str]] = None,
-                 mqtt_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 mqtt_ca_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 connected_device_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+                 mqtt_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 mqtt_ca_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IotHub resources.
 
@@ -282,67 +282,67 @@ class _IotHubState:
 
     @_builtins.property
     @pulumi.getter(name="connectedDeviceCount")
-    def connected_device_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connected_device_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The current number of connected devices in the Hub.
         """
         return pulumi.get(self, "connected_device_count")
 
     @connected_device_count.setter
-    def connected_device_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connected_device_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connected_device_count", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the Hub was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="deviceAutoProvisioning")
-    def device_auto_provisioning(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def device_auto_provisioning(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Wether to enable the device auto provisioning or not
         """
         return pulumi.get(self, "device_auto_provisioning")
 
     @device_auto_provisioning.setter
-    def device_auto_provisioning(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def device_auto_provisioning(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "device_auto_provisioning", value)
 
     @_builtins.property
     @pulumi.getter(name="deviceCount")
-    def device_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def device_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of registered devices in the Hub.
         """
         return pulumi.get(self, "device_count")
 
     @device_count.setter
-    def device_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def device_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "device_count", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEvents")
-    def disable_events(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_events(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable the hub events or not
         """
         return pulumi.get(self, "disable_events")
 
     @disable_events.setter
-    def disable_events(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_events(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_events", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the IoT Hub instance should be enabled or not.
 
@@ -351,108 +351,108 @@ class _IotHubState:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MQTT network endpoint to connect MQTT devices to.
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="eventsTopicPrefix")
-    def events_topic_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def events_topic_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Topic prefix for the hub events
         """
         return pulumi.get(self, "events_topic_prefix")
 
     @events_topic_prefix.setter
-    def events_topic_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def events_topic_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "events_topic_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="hubCa")
-    def hub_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom user provided certificate authority
         """
         return pulumi.get(self, "hub_ca")
 
     @hub_ca.setter
-    def hub_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="hubCaChallenge")
-    def hub_ca_challenge(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_ca_challenge(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Challenge certificate for the user provided hub CA
         """
         return pulumi.get(self, "hub_ca_challenge")
 
     @hub_ca_challenge.setter
-    def hub_ca_challenge(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_ca_challenge(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_ca_challenge", value)
 
     @_builtins.property
     @pulumi.getter(name="mqttCa")
-    def mqtt_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mqtt_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MQTT certificate content
         """
         return pulumi.get(self, "mqtt_ca")
 
     @mqtt_ca.setter
-    def mqtt_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mqtt_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mqtt_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="mqttCaUrl")
-    def mqtt_ca_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mqtt_ca_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MQTT ca url
         """
         return pulumi.get(self, "mqtt_ca_url")
 
     @mqtt_ca_url.setter
-    def mqtt_ca_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mqtt_ca_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mqtt_ca_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization_id you want to attach the resource to
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="productPlan")
-    def product_plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def product_plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
 
@@ -461,55 +461,55 @@ class _IotHubState:
         return pulumi.get(self, "product_plan")
 
     @product_plan.setter
-    def product_plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def product_plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "product_plan", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the IoT Hub Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current status of the Hub.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the Hub resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -524,16 +524,16 @@ class IotHub(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_auto_provisioning: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_events: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 events_topic_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca_challenge: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
@@ -627,16 +627,16 @@ class IotHub(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_auto_provisioning: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_events: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 events_topic_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_ca_challenge: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""IotHub is deprecated: scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -678,25 +678,25 @@ class IotHub(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connected_device_count: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            device_auto_provisioning: Optional[pulumi.Input[_builtins.bool]] = None,
-            device_count: Optional[pulumi.Input[_builtins.int]] = None,
-            disable_events: Optional[pulumi.Input[_builtins.bool]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            events_topic_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            hub_ca: Optional[pulumi.Input[_builtins.str]] = None,
-            hub_ca_challenge: Optional[pulumi.Input[_builtins.str]] = None,
-            mqtt_ca: Optional[pulumi.Input[_builtins.str]] = None,
-            mqtt_ca_url: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            product_plan: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'IotHub':
+            connected_device_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+            device_count: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_ca_url: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            product_plan: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'IotHub':
         """
         Get an existing IotHub resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

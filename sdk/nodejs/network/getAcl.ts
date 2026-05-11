@@ -117,11 +117,11 @@ export interface GetAclOutputArgs {
     /**
      * Whether to get the IPv6 ACL.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `region`). The region in which the ACL exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The VPC ID to look up the ACL for.
      */

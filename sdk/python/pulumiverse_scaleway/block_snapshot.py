@@ -21,13 +21,13 @@ __all__ = ['BlockSnapshotArgs', 'BlockSnapshot']
 @pulumi.input_type
 class BlockSnapshotArgs:
     def __init__(__self__, *,
-                 export: Optional[pulumi.Input['BlockSnapshotExportArgs']] = None,
-                 import_: Optional[pulumi.Input['BlockSnapshotImportArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 export: pulumi.Input[Optional['BlockSnapshotExportArgs']] = None,
+                 import_: pulumi.Input[Optional['BlockSnapshotImportArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BlockSnapshot resource.
 
@@ -56,99 +56,99 @@ class BlockSnapshotArgs:
 
     @_builtins.property
     @pulumi.getter
-    def export(self) -> Optional[pulumi.Input['BlockSnapshotExportArgs']]:
+    def export(self) -> pulumi.Input[Optional['BlockSnapshotExportArgs']]:
         """
         Use this block to export the volume as a QCOW file to Object Storage.
         """
         return pulumi.get(self, "export")
 
     @export.setter
-    def export(self, value: Optional[pulumi.Input['BlockSnapshotExportArgs']]):
+    def export(self, value: pulumi.Input[Optional['BlockSnapshotExportArgs']]):
         pulumi.set(self, "export", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input['BlockSnapshotImportArgs']]:
+    def import_(self) -> pulumi.Input[Optional['BlockSnapshotImportArgs']]:
         """
         Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input['BlockSnapshotImportArgs']]):
+    def import_(self, value: pulumi.Input[Optional['BlockSnapshotImportArgs']]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the snapshot. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the volume to take a snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
-    def volume_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ). The zone in which the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _BlockSnapshotState:
     def __init__(__self__, *,
-                 export: Optional[pulumi.Input['BlockSnapshotExportArgs']] = None,
-                 import_: Optional[pulumi.Input['BlockSnapshotImportArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 export: pulumi.Input[Optional['BlockSnapshotExportArgs']] = None,
+                 import_: pulumi.Input[Optional['BlockSnapshotImportArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BlockSnapshot resources.
 
@@ -177,86 +177,86 @@ class _BlockSnapshotState:
 
     @_builtins.property
     @pulumi.getter
-    def export(self) -> Optional[pulumi.Input['BlockSnapshotExportArgs']]:
+    def export(self) -> pulumi.Input[Optional['BlockSnapshotExportArgs']]:
         """
         Use this block to export the volume as a QCOW file to Object Storage.
         """
         return pulumi.get(self, "export")
 
     @export.setter
-    def export(self, value: Optional[pulumi.Input['BlockSnapshotExportArgs']]):
+    def export(self, value: pulumi.Input[Optional['BlockSnapshotExportArgs']]):
         pulumi.set(self, "export", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input['BlockSnapshotImportArgs']]:
+    def import_(self) -> pulumi.Input[Optional['BlockSnapshotImportArgs']]:
         """
         Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input['BlockSnapshotImportArgs']]):
+    def import_(self, value: pulumi.Input[Optional['BlockSnapshotImportArgs']]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the snapshot. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the volume to take a snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
-    def volume_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ). The zone in which the snapshot should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -271,13 +271,13 @@ class BlockSnapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 export: Optional[pulumi.Input[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
-                 import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 export: pulumi.Input[Optional[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
+                 import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
@@ -454,13 +454,13 @@ class BlockSnapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 export: Optional[pulumi.Input[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
-                 import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 export: pulumi.Input[Optional[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
+                 import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""BlockSnapshot is deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -488,13 +488,13 @@ class BlockSnapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            export: Optional[pulumi.Input[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
-            import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'BlockSnapshot':
+            export: pulumi.Input[Optional[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict']]] = None,
+            import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'BlockSnapshot':
         """
         Get an existing BlockSnapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

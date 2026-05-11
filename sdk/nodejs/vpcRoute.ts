@@ -258,43 +258,43 @@ export interface VpcRouteState {
     /**
      * The date and time of the creation of the route (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The route description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the route.
      */
-    destination?: pulumi.Input<string>;
+    destination?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop private network.
      */
-    nexthopPrivateNetworkId?: pulumi.Input<string>;
+    nexthopPrivateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop resource.
      */
-    nexthopResourceId?: pulumi.Input<string>;
+    nexthopResourceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop VPC Connector.
      */
-    nexthopVpcConnectorId?: pulumi.Input<string>;
+    nexthopVpcConnectorId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the route.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the route.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the creation of the route (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The VPC ID the route belongs to.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -304,31 +304,31 @@ export interface VpcRouteArgs {
     /**
      * The route description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The destination of the route.
      */
-    destination?: pulumi.Input<string>;
+    destination?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop private network.
      */
-    nexthopPrivateNetworkId?: pulumi.Input<string>;
+    nexthopPrivateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop resource.
      */
-    nexthopResourceId?: pulumi.Input<string>;
+    nexthopResourceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the nexthop VPC Connector.
      */
-    nexthopVpcConnectorId?: pulumi.Input<string>;
+    nexthopVpcConnectorId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the route.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the route.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The VPC ID the route belongs to.
      */

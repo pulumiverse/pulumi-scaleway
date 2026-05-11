@@ -262,12 +262,12 @@ def get_instance_image(architecture: Optional[_builtins.str] = None,
         root_volume_id=pulumi.get(__ret__, 'root_volume_id'),
         state=pulumi.get(__ret__, 'state'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              image_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              latest: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_image_output(architecture: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              image_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              latest: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceImageResult]:
     """
     Gets information about an instance image.

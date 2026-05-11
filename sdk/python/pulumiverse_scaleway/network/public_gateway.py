@@ -20,17 +20,17 @@ __all__ = ['PublicGatewayArgs', 'PublicGateway']
 class PublicGatewayArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 allowed_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bastion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bastion_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_smtp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 move_to_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_ssh_keys: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PublicGateway resource.
 
@@ -88,159 +88,159 @@ class PublicGatewayArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedIpRanges")
-    def allowed_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         """
         return pulumi.get(self, "allowed_ip_ranges")
 
     @allowed_ip_ranges.setter
-    def allowed_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="bastionEnabled")
-    def bastion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def bastion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable SSH bastion on the gateway.
         """
         return pulumi.get(self, "bastion_enabled")
 
     @bastion_enabled.setter
-    def bastion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def bastion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "bastion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="bastionPort")
-    def bastion_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def bastion_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port on which the SSH bastion will listen.
         """
         return pulumi.get(self, "bastion_port")
 
     @bastion_port.setter
-    def bastion_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def bastion_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "bastion_port", value)
 
     @_builtins.property
     @pulumi.getter(name="enableSmtp")
-    def enable_smtp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_smtp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable SMTP on the gateway.
         """
         return pulumi.get(self, "enable_smtp")
 
     @enable_smtp.setter
-    def enable_smtp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_smtp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_smtp", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="moveToIpam")
     @_utilities.deprecated("""All gateways now use IPAM. This field is no longer needed""")
-    def move_to_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def move_to_ipam(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
         """
         return pulumi.get(self, "move_to_ipam")
 
     @move_to_ipam.setter
-    def move_to_ipam(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def move_to_ipam(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "move_to_ipam", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name for the Public Gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshSshKeys")
-    def refresh_ssh_keys(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def refresh_ssh_keys(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         """
         return pulumi.get(self, "refresh_ssh_keys")
 
     @refresh_ssh_keys.setter
-    def refresh_ssh_keys(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def refresh_ssh_keys(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "refresh_ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags to associate with the Public Gateway.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Public Gateway should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _PublicGatewayState:
     def __init__(__self__, *,
-                 allowed_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-                 bastion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bastion_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_smtp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 move_to_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_ssh_keys: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+                 bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 upstream_dns_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PublicGateway resources.
 
@@ -308,220 +308,220 @@ class _PublicGatewayState:
 
     @_builtins.property
     @pulumi.getter(name="allowedIpRanges")
-    def allowed_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
         """
         return pulumi.get(self, "allowed_ip_ranges")
 
     @allowed_ip_ranges.setter
-    def allowed_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter
-    def bandwidth(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def bandwidth(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The bandwidth available of the gateway
         """
         return pulumi.get(self, "bandwidth")
 
     @bandwidth.setter
-    def bandwidth(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def bandwidth(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "bandwidth", value)
 
     @_builtins.property
     @pulumi.getter(name="bastionEnabled")
-    def bastion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def bastion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable SSH bastion on the gateway.
         """
         return pulumi.get(self, "bastion_enabled")
 
     @bastion_enabled.setter
-    def bastion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def bastion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "bastion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="bastionPort")
-    def bastion_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def bastion_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port on which the SSH bastion will listen.
         """
         return pulumi.get(self, "bastion_port")
 
     @bastion_port.setter
-    def bastion_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def bastion_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "bastion_port", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the Public Gateway.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="enableSmtp")
-    def enable_smtp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_smtp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable SMTP on the gateway.
         """
         return pulumi.get(self, "enable_smtp")
 
     @enable_smtp.setter
-    def enable_smtp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_smtp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_smtp", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Attach an existing flexible IP to the gateway.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="moveToIpam")
     @_utilities.deprecated("""All gateways now use IPAM. This field is no longer needed""")
-    def move_to_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def move_to_ipam(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
         """
         return pulumi.get(self, "move_to_ipam")
 
     @move_to_ipam.setter
-    def move_to_ipam(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def move_to_ipam(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "move_to_ipam", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name for the Public Gateway. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID the Public Gateway is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the public gateway is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshSshKeys")
-    def refresh_ssh_keys(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def refresh_ssh_keys(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
         """
         return pulumi.get(self, "refresh_ssh_keys")
 
     @refresh_ssh_keys.setter
-    def refresh_ssh_keys(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def refresh_ssh_keys(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "refresh_ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the public gateway.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags to associate with the Public Gateway.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The gateway type.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the Public Gateway.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="upstreamDnsServers")
     @_utilities.deprecated("""This field is no longer supported in the v2 API""")
-    def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def upstream_dns_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Override the gateway's default recursive DNS servers, if DNS features are enabled.
         """
         return pulumi.get(self, "upstream_dns_servers")
 
     @upstream_dns_servers.setter
-    def upstream_dns_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def upstream_dns_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "upstream_dns_servers", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Public Gateway should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -531,18 +531,18 @@ class PublicGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bastion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bastion_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_smtp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 move_to_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_ssh_keys: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Public Gateways.
@@ -700,18 +700,18 @@ class PublicGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bastion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bastion_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_smtp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 move_to_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_ssh_keys: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -753,24 +753,24 @@ class PublicGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-            bastion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            bastion_port: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_smtp: Optional[pulumi.Input[_builtins.bool]] = None,
-            ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-            move_to_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            refresh_ssh_keys: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'PublicGateway':
+            allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+            bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            upstream_dns_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'PublicGateway':
         """
         Get an existing PublicGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

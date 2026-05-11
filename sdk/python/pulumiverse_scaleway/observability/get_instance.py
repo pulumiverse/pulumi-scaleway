@@ -153,7 +153,7 @@ def get_instance(project_id: Optional[_builtins.str] = None,
         plan_id=pulumi.get(__ret__, 'plan_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         push_urls=pulumi.get(__ret__, 'push_urls'))
-def get_instance_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
     > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.

@@ -122,12 +122,12 @@ export function getGatewayNetworkOutput(args?: GetGatewayNetworkOutputArgs, opts
  * A collection of arguments for invoking getGatewayNetwork.
  */
 export interface GetGatewayNetworkOutputArgs {
-    dhcpId?: pulumi.Input<string>;
-    enableMasquerade?: pulumi.Input<boolean>;
-    gatewayId?: pulumi.Input<string>;
+    dhcpId?: pulumi.Input<string | undefined>;
+    enableMasquerade?: pulumi.Input<boolean | undefined>;
+    gatewayId?: pulumi.Input<string | undefined>;
     /**
      * ID of the GatewayNetwork.
      */
-    gatewayNetworkId?: pulumi.Input<string>;
-    privateNetworkId?: pulumi.Input<string>;
+    gatewayNetworkId?: pulumi.Input<string | undefined>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
 }

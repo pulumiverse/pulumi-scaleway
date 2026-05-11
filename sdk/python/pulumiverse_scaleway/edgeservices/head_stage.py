@@ -20,7 +20,7 @@ __all__ = ['HeadStageArgs', 'HeadStage']
 class HeadStageArgs:
     def __init__(__self__, *,
                  pipeline_id: pulumi.Input[_builtins.str],
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a HeadStage resource.
 
@@ -45,22 +45,22 @@ class HeadStageArgs:
 
     @_builtins.property
     @pulumi.getter(name="headStageId")
-    def head_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def head_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of head stage of the pipeline.
         """
         return pulumi.get(self, "head_stage_id")
 
     @head_stage_id.setter
-    def head_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def head_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "head_stage_id", value)
 
 
 @pulumi.input_type
 class _HeadStageState:
     def __init__(__self__, *,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HeadStage resources.
 
@@ -74,26 +74,26 @@ class _HeadStageState:
 
     @_builtins.property
     @pulumi.getter(name="headStageId")
-    def head_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def head_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of head stage of the pipeline.
         """
         return pulumi.get(self, "head_stage_id")
 
     @head_stage_id.setter
-    def head_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def head_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "head_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pipelineId")
-    def pipeline_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the pipeline.
         """
         return pulumi.get(self, "pipeline_id")
 
     @pipeline_id.setter
-    def pipeline_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline_id", value)
 
 
@@ -103,8 +103,8 @@ class HeadStage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Sets the Scaleway Edge Services head stage of your pipeline.
@@ -196,8 +196,8 @@ class HeadStage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -223,8 +223,8 @@ class HeadStage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-            pipeline_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'HeadStage':
+            head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'HeadStage':
         """
         Get an existing HeadStage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -287,66 +287,66 @@ export interface LoadbalancerFrontendState {
     /**
      * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
      */
-    acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[] | undefined>;
     /**
      * The ID of the Load Balancer backend this frontend is attached to.
      *
      * > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
      */
-    backendId?: pulumi.Input<string>;
+    backendId?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * List of certificate IDs that should be used by the frontend.
      *
      * > **Important:** Certificates are not allowed on port 80.
      */
-    certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    certificateIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
      */
-    connectionRateLimit?: pulumi.Input<number>;
+    connectionRateLimit?: pulumi.Input<number | undefined>;
     /**
      * The date and time the frontend was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Defines whether to enable access logs on the frontend.
      */
-    enableAccessLogs?: pulumi.Input<boolean>;
+    enableAccessLogs?: pulumi.Input<boolean | undefined>;
     /**
      * Activates HTTP/3 protocol.
      */
-    enableHttp3?: pulumi.Input<boolean>;
+    enableHttp3?: pulumi.Input<boolean | undefined>;
     /**
      * A boolean to specify whether to use lb_acl.
      * If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
      */
-    externalAcls?: pulumi.Input<boolean>;
+    externalAcls?: pulumi.Input<boolean | undefined>;
     /**
      * TCP port to listen to on the front side.
      */
-    inboundPort?: pulumi.Input<number>;
+    inboundPort?: pulumi.Input<number | undefined>;
     /**
      * The ID of the Load Balancer this frontend is attached to.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Maximum inactivity time on the client side. (e.g. `1s`)
      */
-    timeoutClient?: pulumi.Input<string>;
+    timeoutClient?: pulumi.Input<string | undefined>;
     /**
      * The date and time the frontend resource was updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -356,7 +356,7 @@ export interface LoadbalancerFrontendArgs {
     /**
      * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
      */
-    acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[] | undefined>;
     /**
      * The ID of the Load Balancer backend this frontend is attached to.
      *
@@ -368,24 +368,24 @@ export interface LoadbalancerFrontendArgs {
      *
      * > **Important:** Certificates are not allowed on port 80.
      */
-    certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    certificateIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
      */
-    connectionRateLimit?: pulumi.Input<number>;
+    connectionRateLimit?: pulumi.Input<number | undefined>;
     /**
      * Defines whether to enable access logs on the frontend.
      */
-    enableAccessLogs?: pulumi.Input<boolean>;
+    enableAccessLogs?: pulumi.Input<boolean | undefined>;
     /**
      * Activates HTTP/3 protocol.
      */
-    enableHttp3?: pulumi.Input<boolean>;
+    enableHttp3?: pulumi.Input<boolean | undefined>;
     /**
      * A boolean to specify whether to use lb_acl.
      * If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
      */
-    externalAcls?: pulumi.Input<boolean>;
+    externalAcls?: pulumi.Input<boolean | undefined>;
     /**
      * TCP port to listen to on the front side.
      */
@@ -397,9 +397,9 @@ export interface LoadbalancerFrontendArgs {
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Maximum inactivity time on the client side. (e.g. `1s`)
      */
-    timeoutClient?: pulumi.Input<string>;
+    timeoutClient?: pulumi.Input<string | undefined>;
 }

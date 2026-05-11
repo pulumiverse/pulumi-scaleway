@@ -238,14 +238,14 @@ def get_route(is_ipv6: Optional[_builtins.bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_route_output(is_ipv6: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                     nexthop_private_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     nexthop_resource_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     nexthop_resource_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     route_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                     vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_route_output(is_ipv6: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                     nexthop_private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     nexthop_resource_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     nexthop_resource_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     route_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                     vpc_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRouteResult]:
     """
     Gets information about a VPC route.

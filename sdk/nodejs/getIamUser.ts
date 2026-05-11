@@ -118,20 +118,20 @@ export interface GetIamUserOutputArgs {
     /**
      * The email address of the IAM user.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the
      * organization the user is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the user.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the IAM user.
      *
      * > **Note** You must specify at least one: `email` and/or `userId`.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }

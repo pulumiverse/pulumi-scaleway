@@ -322,39 +322,39 @@ export interface BaremetalServerState {
     /**
      * Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * A description for the server.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The domain of the server.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * The hostname of the server.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * If True, this boolean allows to create a server without the install config if you want to provide it later.
      */
-    installConfigAfterward?: pulumi.Input<boolean>;
+    installConfigAfterward?: pulumi.Input<boolean | undefined>;
     /**
      * (List of) The IPs of the server.
      */
-    ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[]>;
+    ips?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIp>[] | undefined>;
     /**
      * (List of) The IPv4 addresses of the server.
      */
-    ipv4s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv4>[]>;
+    ipv4s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv4>[] | undefined>;
     /**
      * (List of) The IPv6 addresses of the server.
      */
-    ipv6s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv6>[]>;
+    ipv6s?: pulumi.Input<pulumi.Input<inputs.BaremetalServerIpv6>[] | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
@@ -362,105 +362,105 @@ export interface BaremetalServerState {
      * > **Important:** Updates to `offer` will recreate the server.
      * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
-    offer?: pulumi.Input<string>;
+    offer?: pulumi.Input<string | undefined>;
     /**
      * The ID of the offer.
      */
-    offerId?: pulumi.Input<string>;
+    offerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the offer.
      */
-    offerName?: pulumi.Input<string>;
+    offerName?: pulumi.Input<string | undefined>;
     /**
      * The options to enable on the server.
      * > The `options` block supports:
      */
-    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[]>;
+    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[] | undefined>;
     /**
      * The organization ID the server is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
-    os?: pulumi.Input<string>;
+    os?: pulumi.Input<string | undefined>;
     /**
      * The name of the os.
      */
-    osName?: pulumi.Input<string>;
+    osName?: pulumi.Input<string | undefined>;
     /**
      * The partitioning schema in JSON format
      */
-    partitioning?: pulumi.Input<string>;
+    partitioning?: pulumi.Input<string | undefined>;
     /**
      * Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateIp>[] | undefined>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to true to activate server protection option.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
      */
-    reinstallOnConfigChanges?: pulumi.Input<boolean>;
+    reinstallOnConfigChanges?: pulumi.Input<boolean | undefined>;
     /**
      * Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
      */
-    servicePassword?: pulumi.Input<string>;
+    servicePassword?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
      */
-    servicePasswordWo?: pulumi.Input<string>;
+    servicePasswordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
      */
-    servicePasswordWoVersion?: pulumi.Input<number>;
+    servicePasswordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * User used for the service to install.
      */
-    serviceUser?: pulumi.Input<string>;
+    serviceUser?: pulumi.Input<string | undefined>;
     /**
      * List of SSH keys allowed to connect to the server.
      */
-    sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The tags associated with the server.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * User used for the installation.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -470,23 +470,23 @@ export interface BaremetalServerArgs {
     /**
      * Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * A description for the server.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The hostname of the server.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * If True, this boolean allows to create a server without the install config if you want to provide it later.
      */
-    installConfigAfterward?: pulumi.Input<boolean>;
+    installConfigAfterward?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
@@ -499,82 +499,82 @@ export interface BaremetalServerArgs {
      * The options to enable on the server.
      * > The `options` block supports:
      */
-    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[]>;
+    options?: pulumi.Input<pulumi.Input<inputs.BaremetalServerOption>[] | undefined>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
-    os?: pulumi.Input<string>;
+    os?: pulumi.Input<string | undefined>;
     /**
      * The partitioning schema in JSON format
      */
-    partitioning?: pulumi.Input<string>;
+    partitioning?: pulumi.Input<string | undefined>;
     /**
      * Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password used for the installation in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. May be required depending on used os.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateIp>[] | undefined>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to true to activate server protection option.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
      */
-    reinstallOnConfigChanges?: pulumi.Input<boolean>;
+    reinstallOnConfigChanges?: pulumi.Input<boolean | undefined>;
     /**
      * Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
      */
-    servicePassword?: pulumi.Input<string>;
+    servicePassword?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password used for the service to install in write-only mode. Only one of `servicePassword` or `servicePasswordWo` should be specified. `servicePasswordWo` will not be set in the Terraform state. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`. May be required depending on used os.
      */
-    servicePasswordWo?: pulumi.Input<string>;
+    servicePasswordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
      */
-    servicePasswordWoVersion?: pulumi.Input<number>;
+    servicePasswordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * User used for the service to install.
      */
-    serviceUser?: pulumi.Input<string>;
+    serviceUser?: pulumi.Input<string | undefined>;
     /**
      * List of SSH keys allowed to connect to the server.
      */
-    sshKeyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The tags associated with the server.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * User used for the installation.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

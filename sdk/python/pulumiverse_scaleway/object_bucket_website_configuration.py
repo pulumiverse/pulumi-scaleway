@@ -23,9 +23,9 @@ class ObjectBucketWebsiteConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
                  index_document: pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'],
-                 error_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 error_document: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ObjectBucketWebsiteConfiguration resource.
 
@@ -74,19 +74,19 @@ class ObjectBucketWebsiteConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="errorDocument")
-    def error_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
+    def error_document(self) -> pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
         """
         The name of the error file for the website detailed below.
         """
         return pulumi.get(self, "error_document")
 
     @error_document.setter
-    def error_document(self, value: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]):
+    def error_document(self, value: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]):
         pulumi.set(self, "error_document", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
 
@@ -97,32 +97,32 @@ class ObjectBucketWebsiteConfigurationArgs:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _ObjectBucketWebsiteConfigurationState:
     def __init__(__self__, *,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
-                 index_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 website_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 website_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
+                 index_document: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationIndexDocumentArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 website_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 website_endpoint: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObjectBucketWebsiteConfiguration resources.
 
@@ -155,43 +155,43 @@ class _ObjectBucketWebsiteConfigurationState:
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the bucket.
         """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="errorDocument")
-    def error_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
+    def error_document(self) -> pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]:
         """
         The name of the error file for the website detailed below.
         """
         return pulumi.get(self, "error_document")
 
     @error_document.setter
-    def error_document(self, value: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]):
+    def error_document(self, value: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationErrorDocumentArgs']]):
         pulumi.set(self, "error_document", value)
 
     @_builtins.property
     @pulumi.getter(name="indexDocument")
-    def index_document(self) -> Optional[pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]:
+    def index_document(self) -> pulumi.Input[Optional['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]:
         """
         The name of the index file for the website detailed below.
         """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
-    def index_document(self, value: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]):
+    def index_document(self, value: pulumi.Input[Optional['ObjectBucketWebsiteConfigurationIndexDocumentArgs']]):
         pulumi.set(self, "index_document", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
 
@@ -202,43 +202,43 @@ class _ObjectBucketWebsiteConfigurationState:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="websiteDomain")
-    def website_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def website_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
         """
         return pulumi.get(self, "website_domain")
 
     @website_domain.setter
-    def website_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def website_domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "website_domain", value)
 
     @_builtins.property
     @pulumi.getter(name="websiteEndpoint")
-    def website_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def website_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The website endpoint.
         """
         return pulumi.get(self, "website_endpoint")
 
     @website_endpoint.setter
-    def website_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def website_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "website_endpoint", value)
 
 
@@ -253,11 +253,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
@@ -444,11 +444,11 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""ObjectBucketWebsiteConfiguration is deprecated: scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -480,13 +480,13 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            error_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-            index_document: Optional[pulumi.Input[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            website_domain: Optional[pulumi.Input[_builtins.str]] = None,
-            website_endpoint: Optional[pulumi.Input[_builtins.str]] = None) -> 'ObjectBucketWebsiteConfiguration':
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            error_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationErrorDocumentArgs', 'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
+            index_document: pulumi.Input[Optional[Union['ObjectBucketWebsiteConfigurationIndexDocumentArgs', 'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            website_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            website_endpoint: pulumi.Input[Optional[_builtins.str]] = None) -> 'ObjectBucketWebsiteConfiguration':
         """
         Get an existing ObjectBucketWebsiteConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

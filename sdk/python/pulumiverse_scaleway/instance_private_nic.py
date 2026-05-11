@@ -23,11 +23,11 @@ class InstancePrivateNicArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[_builtins.str],
                  server_id: pulumi.Input[_builtins.str],
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstancePrivateNic resource.
 
@@ -78,76 +78,76 @@ class InstancePrivateNicArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM ip list, should be for internal use only
         """
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamIpIds")
-    def ipam_ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipam_ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
         """
         return pulumi.get(self, "ipam_ip_ids")
 
     @ipam_ip_ids.setter
-    def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipam_ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipam_ip_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the private NIC.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server must be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _InstancePrivateNicState:
     def __init__(__self__, *,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstancePrivateNic resources.
 
@@ -179,98 +179,98 @@ class _InstancePrivateNicState:
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM ip list, should be for internal use only
         """
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamIpIds")
-    def ipam_ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipam_ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
         """
         return pulumi.get(self, "ipam_ip_ids")
 
     @ipam_ip_ids.setter
-    def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipam_ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipam_ip_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MAC address of the private NIC.
         """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private network attached to.
         """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the server associated with.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the private NIC.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server must be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -285,13 +285,13 @@ class InstancePrivateNic(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Instance Private NICs. For more information, see
@@ -468,13 +468,13 @@ class InstancePrivateNic(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""InstancePrivateNic is deprecated: scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -507,14 +507,14 @@ class InstancePrivateNic(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
-            private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'InstancePrivateNic':
+            ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstancePrivateNic':
         """
         Get an existing InstancePrivateNic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

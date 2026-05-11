@@ -301,11 +301,11 @@ def get_load_balancer(lb_id: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_load_balancer_output(lb_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             release_ip: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                             zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_load_balancer_output(lb_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             release_ip: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                             zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadBalancerResult]:
     """
     Gets information about a Load Balancer.

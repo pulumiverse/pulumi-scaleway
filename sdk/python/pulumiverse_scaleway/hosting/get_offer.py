@@ -183,10 +183,10 @@ def get_offer(control_panel: Optional[_builtins.str] = None,
         price=pulumi.get(__ret__, 'price'),
         products=pulumi.get(__ret__, 'products'),
         region=pulumi.get(__ret__, 'region'))
-def get_offer_output(control_panel: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     offer_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_offer_output(control_panel: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     offer_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOfferResult]:
     """
     Gets information about a webhosting offer.

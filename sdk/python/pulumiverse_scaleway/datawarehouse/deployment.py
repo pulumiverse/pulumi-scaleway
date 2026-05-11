@@ -26,15 +26,15 @@ class DeploymentArgs:
                  ram_per_cpu: pulumi.Input[_builtins.int],
                  replica_count: pulumi.Input[_builtins.int],
                  version: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_network: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 started: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 started: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
 
@@ -142,31 +142,31 @@ class DeploymentArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Data Warehouse deployment.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
@@ -174,36 +174,36 @@ class DeploymentArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]:
         """
         Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
@@ -212,67 +212,67 @@ class DeploymentArgs:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the deployment should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def started(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def started(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         """
         return pulumi.get(self, "started")
 
     @started.setter
-    def started(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def started(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "started", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the deployment.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _DeploymentState:
     def __init__(__self__, *,
-                 cpu_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_network: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_networks: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]] = None,
-                 ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 started: Optional[pulumi.Input[_builtins.bool]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]] = None,
+                 ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 started: pulumi.Input[Optional[_builtins.bool]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Deployment resources.
 
@@ -337,67 +337,67 @@ class _DeploymentState:
 
     @_builtins.property
     @pulumi.getter(name="cpuMax")
-    def cpu_max(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_max(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         """
         return pulumi.get(self, "cpu_max")
 
     @cpu_max.setter
-    def cpu_max(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_max(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_max", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuMin")
-    def cpu_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         """
         return pulumi.get(self, "cpu_min")
 
     @cpu_min.setter
-    def cpu_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_min", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of deployment creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Data Warehouse deployment.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
@@ -405,36 +405,36 @@ class _DeploymentState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]:
         """
         Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
@@ -443,115 +443,115 @@ class _DeploymentState:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicNetworks")
-    def public_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]:
+    def public_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]:
         """
         Public endpoint information (always created automatically).
         """
         return pulumi.get(self, "public_networks")
 
     @public_networks.setter
-    def public_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]):
+    def public_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]):
         pulumi.set(self, "public_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="ramPerCpu")
-    def ram_per_cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram_per_cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         RAM per CPU in GB.
         """
         return pulumi.get(self, "ram_per_cpu")
 
     @ram_per_cpu.setter
-    def ram_per_cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram_per_cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram_per_cpu", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the deployment should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="replicaCount")
-    def replica_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def replica_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of replicas. Can be updated in place via the deployment configuration API.
         """
         return pulumi.get(self, "replica_count")
 
     @replica_count.setter
-    def replica_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def replica_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "replica_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def started(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def started(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         """
         return pulumi.get(self, "started")
 
     @started.setter
-    def started(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def started(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "started", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the deployment (e.g., "ready", "provisioning").
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the deployment.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of deployment last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -561,20 +561,20 @@ class Deployment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cpu_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 started: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 started: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Data Warehouse deployments.
@@ -765,20 +765,20 @@ class Deployment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cpu_max: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 started: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
+                 cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 started: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -828,24 +828,24 @@ class Deployment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_max: Optional[pulumi.Input[_builtins.int]] = None,
-            cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
-            ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-            started: Optional[pulumi.Input[_builtins.bool]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None) -> 'Deployment':
+            cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
+            ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+            started: pulumi.Input[Optional[_builtins.bool]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

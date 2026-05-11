@@ -129,11 +129,11 @@ export interface GetPartitionSchemaOutputArgs {
     /**
      * The mount point for the extra partition. Must be an absolute path using alphanumeric characters and underscores.
      */
-    ext4Mountpoint?: pulumi.Input<string>;
+    ext4Mountpoint?: pulumi.Input<string | undefined>;
     /**
      * Whether to add an extra ext4 data partition.
      */
-    extraPartition?: pulumi.Input<boolean>;
+    extraPartition?: pulumi.Input<boolean | undefined>;
     /**
      * The UUID of the BareMetal offer.
      */
@@ -145,5 +145,5 @@ export interface GetPartitionSchemaOutputArgs {
     /**
      * Whether to include a swap partition.
      */
-    swap?: pulumi.Input<boolean>;
+    swap?: pulumi.Input<boolean | undefined>;
 }

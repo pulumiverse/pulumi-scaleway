@@ -187,10 +187,10 @@ def get_instance_policy(instance_group_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         value=pulumi.get(__ret__, 'value'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_instance_policy_output(instance_group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               instance_policy_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_policy_output(instance_group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               instance_policy_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancePolicyResult]:
     """
     Gets information about an Autoscaling Instance policy.

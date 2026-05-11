@@ -50,7 +50,7 @@ class AclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgsDict']]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgs']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """
@@ -59,7 +59,7 @@ class AclActionArgsDict(TypedDict):
 class AclActionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 redirects: Optional[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgs']]]] = None):
+                 redirects: pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] type: The action type. Possible values are: `allow` or `deny` or `redirect`.
         :param pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
@@ -82,27 +82,27 @@ class AclActionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def redirects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgs']]]]:
+    def redirects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgs']]]]:
         """
         Redirect parameters when using an ACL with `redirect` action.
         """
         return pulumi.get(self, "redirects")
 
     @redirects.setter
-    def redirects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclActionRedirectArgs']]]]):
+    def redirects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgs']]]]):
         pulumi.set(self, "redirects", value)
 
 
 class AclActionRedirectArgsDict(TypedDict):
-    code: NotRequired[pulumi.Input[_builtins.int]]
+    code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
     """
-    target: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The redirect type. Possible values are: `location` or `scheme`.
     """
@@ -110,9 +110,9 @@ class AclActionRedirectArgsDict(TypedDict):
 @pulumi.input_type
 class AclActionRedirectArgs:
     def __init__(__self__, *,
-                 code: Optional[pulumi.Input[_builtins.int]] = None,
-                 target: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 code: pulumi.Input[Optional[_builtins.int]] = None,
+                 target: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         :param pulumi.Input[_builtins.str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
@@ -127,66 +127,66 @@ class AclActionRedirectArgs:
 
     @_builtins.property
     @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         """
         return pulumi.get(self, "code")
 
     @code.setter
-    def code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "code", value)
 
     @_builtins.property
     @pulumi.getter
-    def target(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
     @target.setter
-    def target(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class AclMatchArgsDict(TypedDict):
-    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    http_filter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
     It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
     Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
     """
-    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    http_filter_option: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
     """
-    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    http_filter_values: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of possible values to match for the given HTTP filter.
     Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
     """
-    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    invert: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set to `true`, the condition will be of type "unless".
     """
-    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    ip_subnets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
     """
-    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    ips_edge_services: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
     """
@@ -194,12 +194,12 @@ class AclMatchArgsDict(TypedDict):
 @pulumi.input_type
 class AclMatchArgs:
     def __init__(__self__, *,
-                 http_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_filter_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 invert: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ips_edge_services: Optional[pulumi.Input[_builtins.bool]] = None):
+                 http_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_filter_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_filter_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 invert: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_subnets: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ips_edge_services: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -226,7 +226,7 @@ class AclMatchArgs:
 
     @_builtins.property
     @pulumi.getter(name="httpFilter")
-    def http_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
         It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -235,24 +235,24 @@ class AclMatchArgs:
         return pulumi.get(self, "http_filter")
 
     @http_filter.setter
-    def http_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="httpFilterOption")
-    def http_filter_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_filter_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
-    def http_filter_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_filter_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_filter_option", value)
 
     @_builtins.property
     @pulumi.getter(name="httpFilterValues")
-    def http_filter_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def http_filter_values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of possible values to match for the given HTTP filter.
         Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
@@ -260,43 +260,43 @@ class AclMatchArgs:
         return pulumi.get(self, "http_filter_values")
 
     @http_filter_values.setter
-    def http_filter_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def http_filter_values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "http_filter_values", value)
 
     @_builtins.property
     @pulumi.getter
-    def invert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def invert(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, the condition will be of type "unless".
         """
         return pulumi.get(self, "invert")
 
     @invert.setter
-    def invert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def invert(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "invert", value)
 
     @_builtins.property
     @pulumi.getter(name="ipSubnets")
-    def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_subnets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
-    def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_subnets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
 
     @_builtins.property
     @pulumi.getter(name="ipsEdgeServices")
-    def ips_edge_services(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ips_edge_services(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ips_edge_services")
 
     @ips_edge_services.setter
-    def ips_edge_services(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ips_edge_services(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ips_edge_services", value)
 
 
@@ -305,15 +305,15 @@ class BackendHealthCheckHttpArgsDict(TypedDict):
     """
     The HTTP endpoint URL to call for HC requests
     """
-    code: NotRequired[pulumi.Input[_builtins.int]]
+    code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The expected HTTP status code
     """
-    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    host_header: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP host header to use for HC requests
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP method to use for HC requests
     """
@@ -322,9 +322,9 @@ class BackendHealthCheckHttpArgsDict(TypedDict):
 class BackendHealthCheckHttpArgs:
     def __init__(__self__, *,
                  uri: pulumi.Input[_builtins.str],
-                 code: Optional[pulumi.Input[_builtins.int]] = None,
-                 host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None):
+                 code: pulumi.Input[Optional[_builtins.int]] = None,
+                 host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] uri: The HTTP endpoint URL to call for HC requests
         :param pulumi.Input[_builtins.int] code: The expected HTTP status code
@@ -353,38 +353,38 @@ class BackendHealthCheckHttpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expected HTTP status code
         """
         return pulumi.get(self, "code")
 
     @code.setter
-    def code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "code", value)
 
     @_builtins.property
     @pulumi.getter(name="hostHeader")
-    def host_header(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_header(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP host header to use for HC requests
         """
         return pulumi.get(self, "host_header")
 
     @host_header.setter
-    def host_header(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_header(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_header", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP method to use for HC requests
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
 
@@ -393,19 +393,19 @@ class BackendHealthCheckHttpsArgsDict(TypedDict):
     """
     The HTTPS endpoint URL to call for HC requests
     """
-    code: NotRequired[pulumi.Input[_builtins.int]]
+    code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The expected HTTP status code
     """
-    host_header: NotRequired[pulumi.Input[_builtins.str]]
+    host_header: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP host header to use for HC requests
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP method to use for HC requests
     """
-    sni: NotRequired[pulumi.Input[_builtins.str]]
+    sni: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The SNI to use for HC requests over SSL
     """
@@ -414,10 +414,10 @@ class BackendHealthCheckHttpsArgsDict(TypedDict):
 class BackendHealthCheckHttpsArgs:
     def __init__(__self__, *,
                  uri: pulumi.Input[_builtins.str],
-                 code: Optional[pulumi.Input[_builtins.int]] = None,
-                 host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 sni: Optional[pulumi.Input[_builtins.str]] = None):
+                 code: pulumi.Input[Optional[_builtins.int]] = None,
+                 host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 sni: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] uri: The HTTPS endpoint URL to call for HC requests
         :param pulumi.Input[_builtins.int] code: The expected HTTP status code
@@ -449,50 +449,50 @@ class BackendHealthCheckHttpsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expected HTTP status code
         """
         return pulumi.get(self, "code")
 
     @code.setter
-    def code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "code", value)
 
     @_builtins.property
     @pulumi.getter(name="hostHeader")
-    def host_header(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_header(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP host header to use for HC requests
         """
         return pulumi.get(self, "host_header")
 
     @host_header.setter
-    def host_header(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_header(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_header", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP method to use for HC requests
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def sni(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sni(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SNI to use for HC requests over SSL
         """
         return pulumi.get(self, "sni")
 
     @sni.setter
-    def sni(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sni(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sni", value)
 
 
@@ -538,7 +538,7 @@ class CertificateLetsencryptArgsDict(TypedDict):
     """
     Main domain of the certificate
     """
-    subject_alternative_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    subject_alternative_names: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The alternative domain names of the certificate
     """
@@ -547,7 +547,7 @@ class CertificateLetsencryptArgsDict(TypedDict):
 class CertificateLetsencryptArgs:
     def __init__(__self__, *,
                  common_name: pulumi.Input[_builtins.str],
-                 subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 subject_alternative_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] common_name: Main domain of the certificate
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subject_alternative_names: The alternative domain names of the certificate
@@ -570,14 +570,14 @@ class CertificateLetsencryptArgs:
 
     @_builtins.property
     @pulumi.getter(name="subjectAlternativeNames")
-    def subject_alternative_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def subject_alternative_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The alternative domain names of the certificate
         """
         return pulumi.get(self, "subject_alternative_names")
 
     @subject_alternative_names.setter
-    def subject_alternative_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def subject_alternative_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "subject_alternative_names", value)
 
 
@@ -590,19 +590,19 @@ class FrontendAclArgsDict(TypedDict):
     """
     The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time the frontend was created.
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Description of the ACL
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ACL name. If not provided it will be randomly generated.
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time the frontend resource was updated.
     """
@@ -612,10 +612,10 @@ class FrontendAclArgs:
     def __init__(__self__, *,
                  action: pulumi.Input['FrontendAclActionArgs'],
                  match: pulumi.Input['FrontendAclMatchArgs'],
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input['FrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['FrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
@@ -661,50 +661,50 @@ class FrontendAclArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the frontend was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the ACL
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the frontend resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -713,7 +713,7 @@ class FrontendAclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgsDict']]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """
@@ -722,7 +722,7 @@ class FrontendAclActionArgsDict(TypedDict):
 class FrontendAclActionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 redirects: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]] = None):
+                 redirects: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] type: The action type. Possible values are: `allow` or `deny` or `redirect`.
         :param pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
@@ -745,27 +745,27 @@ class FrontendAclActionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def redirects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]:
+    def redirects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]:
         """
         Redirect parameters when using an ACL with `redirect` action.
         """
         return pulumi.get(self, "redirects")
 
     @redirects.setter
-    def redirects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]):
+    def redirects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]):
         pulumi.set(self, "redirects", value)
 
 
 class FrontendAclActionRedirectArgsDict(TypedDict):
-    code: NotRequired[pulumi.Input[_builtins.int]]
+    code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
     """
-    target: NotRequired[pulumi.Input[_builtins.str]]
+    target: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The redirect type. Possible values are: `location` or `scheme`.
     """
@@ -773,9 +773,9 @@ class FrontendAclActionRedirectArgsDict(TypedDict):
 @pulumi.input_type
 class FrontendAclActionRedirectArgs:
     def __init__(__self__, *,
-                 code: Optional[pulumi.Input[_builtins.int]] = None,
-                 target: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 code: pulumi.Input[Optional[_builtins.int]] = None,
+                 target: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         :param pulumi.Input[_builtins.str] target: A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
@@ -790,66 +790,66 @@ class FrontendAclActionRedirectArgs:
 
     @_builtins.property
     @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         """
         return pulumi.get(self, "code")
 
     @code.setter
-    def code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "code", value)
 
     @_builtins.property
     @pulumi.getter
-    def target(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
     @target.setter
-    def target(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class FrontendAclMatchArgsDict(TypedDict):
-    http_filter: NotRequired[pulumi.Input[_builtins.str]]
+    http_filter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
     It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
     Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
     """
-    http_filter_option: NotRequired[pulumi.Input[_builtins.str]]
+    http_filter_option: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
     """
-    http_filter_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    http_filter_values: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of possible values to match for the given HTTP filter.
     Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
     """
-    invert: NotRequired[pulumi.Input[_builtins.bool]]
+    invert: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set to `true`, the condition will be of type "unless".
     """
-    ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    ip_subnets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
     """
-    ips_edge_services: NotRequired[pulumi.Input[_builtins.bool]]
+    ips_edge_services: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
     """
@@ -857,12 +857,12 @@ class FrontendAclMatchArgsDict(TypedDict):
 @pulumi.input_type
 class FrontendAclMatchArgs:
     def __init__(__self__, *,
-                 http_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_filter_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 invert: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ips_edge_services: Optional[pulumi.Input[_builtins.bool]] = None):
+                 http_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_filter_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_filter_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 invert: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_subnets: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ips_edge_services: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -889,7 +889,7 @@ class FrontendAclMatchArgs:
 
     @_builtins.property
     @pulumi.getter(name="httpFilter")
-    def http_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
         It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -898,24 +898,24 @@ class FrontendAclMatchArgs:
         return pulumi.get(self, "http_filter")
 
     @http_filter.setter
-    def http_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="httpFilterOption")
-    def http_filter_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_filter_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
-    def http_filter_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_filter_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_filter_option", value)
 
     @_builtins.property
     @pulumi.getter(name="httpFilterValues")
-    def http_filter_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def http_filter_values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of possible values to match for the given HTTP filter.
         Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
@@ -923,52 +923,52 @@ class FrontendAclMatchArgs:
         return pulumi.get(self, "http_filter_values")
 
     @http_filter_values.setter
-    def http_filter_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def http_filter_values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "http_filter_values", value)
 
     @_builtins.property
     @pulumi.getter
-    def invert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def invert(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, the condition will be of type "unless".
         """
         return pulumi.get(self, "invert")
 
     @invert.setter
-    def invert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def invert(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "invert", value)
 
     @_builtins.property
     @pulumi.getter(name="ipSubnets")
-    def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_subnets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
-    def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_subnets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
 
     @_builtins.property
     @pulumi.getter(name="ipsEdgeServices")
-    def ips_edge_services(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ips_edge_services(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ips_edge_services")
 
     @ips_edge_services.setter
-    def ips_edge_services(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ips_edge_services(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ips_edge_services", value)
 
 
 class LoadBalancerPrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IP address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP address resource.
     """
@@ -976,8 +976,8 @@ class LoadBalancerPrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class LoadBalancerPrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IP address.
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
@@ -989,26 +989,26 @@ class LoadBalancerPrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IP address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -1018,23 +1018,23 @@ class LoadBalancerPrivateNetworkArgsDict(TypedDict):
     The ID of the Private Network to attach to.
     - > **Important:** Updates to `private_network` will recreate the attachment.
     """
-    dhcp_config: NotRequired[pulumi.Input[_builtins.bool]]
+    dhcp_config: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true if you want to let DHCP assign IP addresses
     """
-    ipam_ids: NotRequired[pulumi.Input[_builtins.str]]
+    ipam_ids: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
     """
-    static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    static_configs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The status of the private network connection.
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     `zone`) The zone of the Load Balancer.
     """
@@ -1043,11 +1043,11 @@ class LoadBalancerPrivateNetworkArgsDict(TypedDict):
 class LoadBalancerPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[_builtins.str],
-                 dhcp_config: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipam_ids: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_configs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 dhcp_config: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipam_ids: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_configs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network to attach to.
                - > **Important:** Updates to `private_network` will recreate the attachment.
@@ -1091,63 +1091,63 @@ class LoadBalancerPrivateNetworkArgs:
     @_builtins.property
     @pulumi.getter(name="dhcpConfig")
     @_utilities.deprecated("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
-    def dhcp_config(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcp_config(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true if you want to let DHCP assign IP addresses
         """
         return pulumi.get(self, "dhcp_config")
 
     @dhcp_config.setter
-    def dhcp_config(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcp_config(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcp_config", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamIds")
-    def ipam_ids(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipam_ids(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         """
         return pulumi.get(self, "ipam_ids")
 
     @ipam_ids.setter
-    def ipam_ids(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipam_ids(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipam_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="staticConfigs")
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
-    def static_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def static_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
         return pulumi.get(self, "static_configs")
 
     @static_configs.setter
-    def static_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def static_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "static_configs", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the private network connection.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 

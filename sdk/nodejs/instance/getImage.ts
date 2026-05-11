@@ -127,25 +127,25 @@ export interface GetImageOutputArgs {
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */
-    architecture?: pulumi.Input<string>;
+    architecture?: pulumi.Input<string | undefined>;
     /**
      * The image id. Only one of `name` and `imageId` should be specified.
      */
-    imageId?: pulumi.Input<string>;
+    imageId?: pulumi.Input<string | undefined>;
     /**
      * Use the latest image ID.
      */
-    latest?: pulumi.Input<boolean>;
+    latest?: pulumi.Input<boolean | undefined>;
     /**
      * The image name. Only one of `name` and `imageId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the image is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the image exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

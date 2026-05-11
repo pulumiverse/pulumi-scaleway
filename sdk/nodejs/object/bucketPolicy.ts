@@ -266,11 +266,11 @@ export interface BucketPolicyState {
     /**
      * The name of the bucket, or its Terraform ID.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, refer to the official documentation.
      */
-    policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -280,11 +280,11 @@ export interface BucketPolicyState {
      *
      * > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway region this bucket resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -308,9 +308,9 @@ export interface BucketPolicyArgs {
      *
      * > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway region this bucket resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

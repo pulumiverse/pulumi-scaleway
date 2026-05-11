@@ -36,7 +36,7 @@ __all__ = [
 ]
 
 class BackendStageLbBackendConfigArgsDict(TypedDict):
-    lb_config: NotRequired[pulumi.Input['BackendStageLbBackendConfigLbConfigArgsDict']]
+    lb_config: NotRequired[pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']]]
     """
     The Load Balancer config.
     """
@@ -44,7 +44,7 @@ class BackendStageLbBackendConfigArgsDict(TypedDict):
 @pulumi.input_type
 class BackendStageLbBackendConfigArgs:
     def __init__(__self__, *,
-                 lb_config: Optional[pulumi.Input['BackendStageLbBackendConfigLbConfigArgs']] = None):
+                 lb_config: pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']] = None):
         """
         :param pulumi.Input['BackendStageLbBackendConfigLbConfigArgs'] lb_config: The Load Balancer config.
         """
@@ -53,39 +53,39 @@ class BackendStageLbBackendConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="lbConfig")
-    def lb_config(self) -> Optional[pulumi.Input['BackendStageLbBackendConfigLbConfigArgs']]:
+    def lb_config(self) -> pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']]:
         """
         The Load Balancer config.
         """
         return pulumi.get(self, "lb_config")
 
     @lb_config.setter
-    def lb_config(self, value: Optional[pulumi.Input['BackendStageLbBackendConfigLbConfigArgs']]):
+    def lb_config(self, value: pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']]):
         pulumi.set(self, "lb_config", value)
 
 
 class BackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
-    domain_name: NotRequired[pulumi.Input[_builtins.str]]
+    domain_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
     """
-    frontend_id: NotRequired[pulumi.Input[_builtins.str]]
+    frontend_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the frontend.
     """
-    has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
+    has_websocket: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether to forward websocket requests to the load balancer.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Load Balancer.
     """
-    is_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    is_ssl: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether the Load Balancer's frontend handles SSL connections.
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     `zone`) The zone of the Load Balancer.
     """
@@ -93,12 +93,12 @@ class BackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
 @pulumi.input_type
 class BackendStageLbBackendConfigLbConfigArgs:
     def __init__(__self__, *,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 has_websocket: Optional[pulumi.Input[_builtins.bool]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 has_websocket: pulumi.Input[Optional[_builtins.bool]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_ssl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] domain_name: The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the frontend.
@@ -122,87 +122,87 @@ class BackendStageLbBackendConfigLbConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="domainName")
-    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
         """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
-    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
 
     @_builtins.property
     @pulumi.getter(name="frontendId")
-    def frontend_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontend_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the frontend.
         """
         return pulumi.get(self, "frontend_id")
 
     @frontend_id.setter
-    def frontend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontend_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontend_id", value)
 
     @_builtins.property
     @pulumi.getter(name="hasWebsocket")
-    def has_websocket(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def has_websocket(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to forward websocket requests to the load balancer.
         """
         return pulumi.get(self, "has_websocket")
 
     @has_websocket.setter
-    def has_websocket(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def has_websocket(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "has_websocket", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Load Balancer.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isSsl")
-    def is_ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ssl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether the Load Balancer's frontend handles SSL connections.
         """
         return pulumi.get(self, "is_ssl")
 
     @is_ssl.setter
-    def is_ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ssl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ssl", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 class BackendStageS3BackendConfigArgsDict(TypedDict):
-    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    bucket_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the Bucket.
     """
-    bucket_region: NotRequired[pulumi.Input[_builtins.str]]
+    bucket_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region of the Bucket.
     """
-    is_website: NotRequired[pulumi.Input[_builtins.bool]]
+    is_website: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether the bucket website feature is enabled.
     """
@@ -210,9 +210,9 @@ class BackendStageS3BackendConfigArgsDict(TypedDict):
 @pulumi.input_type
 class BackendStageS3BackendConfigArgs:
     def __init__(__self__, *,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_website: Optional[pulumi.Input[_builtins.bool]] = None):
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_website: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket_name: The name of the Bucket.
         :param pulumi.Input[_builtins.str] bucket_region: The region of the Bucket.
@@ -227,51 +227,51 @@ class BackendStageS3BackendConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Bucket.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketRegion")
-    def bucket_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region of the Bucket.
         """
         return pulumi.get(self, "bucket_region")
 
     @bucket_region.setter
-    def bucket_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_region", value)
 
     @_builtins.property
     @pulumi.getter(name="isWebsite")
-    def is_website(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_website(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether the bucket website feature is enabled.
         """
         return pulumi.get(self, "is_website")
 
     @is_website.setter
-    def is_website(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_website(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_website", value)
 
 
 class CacheStagePurgeRequestArgsDict(TypedDict):
-    all: NotRequired[pulumi.Input[_builtins.bool]]
+    all: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether to purge all content.
     """
-    assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    assets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The list of asserts to purge.
     """
-    pipeline_id: NotRequired[pulumi.Input[_builtins.str]]
+    pipeline_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The pipeline ID in which the purge request will be created.
     """
@@ -279,9 +279,9 @@ class CacheStagePurgeRequestArgsDict(TypedDict):
 @pulumi.input_type
 class CacheStagePurgeRequestArgs:
     def __init__(__self__, *,
-                 all: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 all: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assets: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] all: Defines whether to purge all content.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] assets: The list of asserts to purge.
@@ -296,51 +296,51 @@ class CacheStagePurgeRequestArgs:
 
     @_builtins.property
     @pulumi.getter
-    def all(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def all(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to purge all content.
         """
         return pulumi.get(self, "all")
 
     @all.setter
-    def all(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def all(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "all", value)
 
     @_builtins.property
     @pulumi.getter
-    def assets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def assets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of asserts to purge.
         """
         return pulumi.get(self, "assets")
 
     @assets.setter
-    def assets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def assets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "assets", value)
 
     @_builtins.property
     @pulumi.getter(name="pipelineId")
-    def pipeline_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pipeline ID in which the purge request will be created.
         """
         return pulumi.get(self, "pipeline_id")
 
     @pipeline_id.setter
-    def pipeline_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline_id", value)
 
 
 class RouteStageRuleArgsDict(TypedDict):
-    backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    backend_stage_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
     """
-    rule_http_match: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchArgsDict']]
+    rule_http_match: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgs']]]
     """
     The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
     """
-    waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+    waf_stage_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
     """
@@ -348,9 +348,9 @@ class RouteStageRuleArgsDict(TypedDict):
 @pulumi.input_type
 class RouteStageRuleArgs:
     def __init__(__self__, *,
-                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule_http_match: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchArgs']] = None,
-                 waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule_http_match: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgs']] = None,
+                 waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         :param pulumi.Input['RouteStageRuleRuleHttpMatchArgs'] rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
@@ -365,51 +365,51 @@ class RouteStageRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         """
         return pulumi.get(self, "backend_stage_id")
 
     @backend_stage_id.setter
-    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ruleHttpMatch")
-    def rule_http_match(self) -> Optional[pulumi.Input['RouteStageRuleRuleHttpMatchArgs']]:
+    def rule_http_match(self) -> pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgs']]:
         """
         The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
         """
         return pulumi.get(self, "rule_http_match")
 
     @rule_http_match.setter
-    def rule_http_match(self, value: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchArgs']]):
+    def rule_http_match(self, value: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgs']]):
         pulumi.set(self, "rule_http_match", value)
 
     @_builtins.property
     @pulumi.getter(name="wafStageId")
-    def waf_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def waf_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
         """
         return pulumi.get(self, "waf_stage_id")
 
     @waf_stage_id.setter
-    def waf_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def waf_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "waf_stage_id", value)
 
 
 class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
-    host_filter: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgsDict']]
+    host_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgs']]]
     """
     Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
     """
-    method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    method_filters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
     """
-    path_filter: NotRequired[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgsDict']]
+    path_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgs']]]
     """
     HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
     """
@@ -417,9 +417,9 @@ class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
 @pulumi.input_type
 class RouteStageRuleRuleHttpMatchArgs:
     def __init__(__self__, *,
-                 host_filter: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']] = None,
-                 method_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 path_filter: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgs']] = None):
+                 host_filter: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgs']] = None,
+                 method_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 path_filter: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgs']] = None):
         """
         :param pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs'] host_filter: Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] method_filters: HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
@@ -434,38 +434,38 @@ class RouteStageRuleRuleHttpMatchArgs:
 
     @_builtins.property
     @pulumi.getter(name="hostFilter")
-    def host_filter(self) -> Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']]:
+    def host_filter(self) -> pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgs']]:
         """
         Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
         """
         return pulumi.get(self, "host_filter")
 
     @host_filter.setter
-    def host_filter(self, value: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchHostFilterArgs']]):
+    def host_filter(self, value: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgs']]):
         pulumi.set(self, "host_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="methodFilters")
-    def method_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def method_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
         """
         return pulumi.get(self, "method_filters")
 
     @method_filters.setter
-    def method_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def method_filters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "method_filters", value)
 
     @_builtins.property
     @pulumi.getter(name="pathFilter")
-    def path_filter(self) -> Optional[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgs']]:
+    def path_filter(self) -> pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgs']]:
         """
         HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
         """
         return pulumi.get(self, "path_filter")
 
     @path_filter.setter
-    def path_filter(self, value: Optional[pulumi.Input['RouteStageRuleRuleHttpMatchPathFilterArgs']]):
+    def path_filter(self, value: pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgs']]):
         pulumi.set(self, "path_filter", value)
 
 
@@ -564,11 +564,11 @@ class RouteStageRuleRuleHttpMatchPathFilterArgs:
 
 
 class TlsStageSecretArgsDict(TypedDict):
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region of the secret.
     """
-    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    secret_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Secret
     """
@@ -576,8 +576,8 @@ class TlsStageSecretArgsDict(TypedDict):
 @pulumi.input_type
 class TlsStageSecretArgs:
     def __init__(__self__, *,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] region: The region of the secret.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the Secret
@@ -589,26 +589,26 @@ class TlsStageSecretArgs:
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region of the secret.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Secret
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
 

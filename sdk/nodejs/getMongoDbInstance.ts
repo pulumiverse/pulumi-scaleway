@@ -139,17 +139,17 @@ export interface GetMongoDbInstanceOutputArgs {
      *
      * > **Note** You must specify at least one: `name` or `instanceId`.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * The name of the MongoDB® instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `name`.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the MongoDB® Instance exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

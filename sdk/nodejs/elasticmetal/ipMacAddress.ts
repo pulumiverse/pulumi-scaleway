@@ -172,36 +172,36 @@ export interface IpMacAddressState {
     /**
      * The Virtual MAC address.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The date at which the Virtual Mac Address was created (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the flexible IP for which to generate a virtual MAC.
      */
-    flexibleIpId?: pulumi.Input<string>;
+    flexibleIpId?: pulumi.Input<string | undefined>;
     /**
      * The IDs of the flexible IPs on which to duplicate the virtual MAC.
      * > **Important:** The flexible IPs need to be attached to the same server for the operation to work.
      */
-    flexibleIpIdsToDuplicates?: pulumi.Input<pulumi.Input<string>[]>;
+    flexibleIpIdsToDuplicates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The Virtual MAC status.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The type of the virtual MAC.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date at which the Virtual Mac Address was last updated (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The zone of the Virtual Mac Address.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,7 +216,7 @@ export interface IpMacAddressArgs {
      * The IDs of the flexible IPs on which to duplicate the virtual MAC.
      * > **Important:** The flexible IPs need to be attached to the same server for the operation to work.
      */
-    flexibleIpIdsToDuplicates?: pulumi.Input<pulumi.Input<string>[]>;
+    flexibleIpIdsToDuplicates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the virtual MAC.
      */
@@ -224,5 +224,5 @@ export interface IpMacAddressArgs {
     /**
      * The zone of the Virtual Mac Address.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

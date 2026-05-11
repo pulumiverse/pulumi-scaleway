@@ -21,18 +21,18 @@ __all__ = ['SecurityGroupArgs', 'SecurityGroup']
 @pulumi.input_type
 class SecurityGroupArgs:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_default_security: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stateful: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_security: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 inbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stateful: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecurityGroup resource.
 
@@ -77,31 +77,31 @@ class SecurityGroupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the security group.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDefaultSecurity")
-    def enable_default_security(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_default_security(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         """
         return pulumi.get(self, "enable_default_security")
 
     @enable_default_security.setter
-    def enable_default_security(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_default_security(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_default_security", value)
 
     @_builtins.property
     @pulumi.getter(name="externalRules")
-    def external_rules(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_rules(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use instance_security_group_rules.
         If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
@@ -109,134 +109,134 @@ class SecurityGroupArgs:
         return pulumi.get(self, "external_rules")
 
     @external_rules.setter
-    def external_rules(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_rules(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="inboundDefaultPolicy")
-    def inbound_default_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inbound_default_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "inbound_default_policy")
 
     @inbound_default_policy.setter
-    def inbound_default_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inbound_default_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inbound_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="inboundRules")
-    def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]:
+    def inbound_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]:
         """
         A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
     @inbound_rules.setter
-    def inbound_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]):
+    def inbound_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]):
         pulumi.set(self, "inbound_rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the security group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="outboundDefaultPolicy")
-    def outbound_default_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def outbound_default_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "outbound_default_policy")
 
     @outbound_default_policy.setter
-    def outbound_default_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def outbound_default_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "outbound_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="outboundRules")
-    def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]:
+    def outbound_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]:
         """
         A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
     @outbound_rules.setter
-    def outbound_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]):
+    def outbound_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]):
         pulumi.set(self, "outbound_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def stateful(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stateful(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether the security group should be stateful or not.
         """
         return pulumi.get(self, "stateful")
 
     @stateful.setter
-    def stateful(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stateful(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stateful", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags of the security group.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the security group should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _SecurityGroupState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_default_security: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stateful: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_security: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 inbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stateful: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroup resources.
 
@@ -284,31 +284,31 @@ class _SecurityGroupState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the security group.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDefaultSecurity")
-    def enable_default_security(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_default_security(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
         """
         return pulumi.get(self, "enable_default_security")
 
     @enable_default_security.setter
-    def enable_default_security(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_default_security(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_default_security", value)
 
     @_builtins.property
     @pulumi.getter(name="externalRules")
-    def external_rules(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_rules(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use instance_security_group_rules.
         If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
@@ -316,127 +316,127 @@ class _SecurityGroupState:
         return pulumi.get(self, "external_rules")
 
     @external_rules.setter
-    def external_rules(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_rules(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="inboundDefaultPolicy")
-    def inbound_default_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inbound_default_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default policy on incoming traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "inbound_default_policy")
 
     @inbound_default_policy.setter
-    def inbound_default_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inbound_default_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inbound_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="inboundRules")
-    def inbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]:
+    def inbound_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]:
         """
         A list of inbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "inbound_rules")
 
     @inbound_rules.setter
-    def inbound_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]):
+    def inbound_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupInboundRuleArgs']]]]):
         pulumi.set(self, "inbound_rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the security group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the security group is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="outboundDefaultPolicy")
-    def outbound_default_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def outbound_default_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         """
         return pulumi.get(self, "outbound_default_policy")
 
     @outbound_default_policy.setter
-    def outbound_default_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def outbound_default_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "outbound_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="outboundRules")
-    def outbound_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]:
+    def outbound_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]:
         """
         A list of outbound rule to add to the security group. (Structure is documented below.)
         """
         return pulumi.get(self, "outbound_rules")
 
     @outbound_rules.setter
-    def outbound_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]):
+    def outbound_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecurityGroupOutboundRuleArgs']]]]):
         pulumi.set(self, "outbound_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def stateful(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stateful(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether the security group should be stateful or not.
         """
         return pulumi.get(self, "stateful")
 
     @stateful.setter
-    def stateful(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stateful(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stateful", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags of the security group.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the security group should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -446,18 +446,18 @@ class SecurityGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_default_security: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stateful: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_security: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 inbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stateful: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway compute Instance security groups. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
@@ -538,8 +538,8 @@ class SecurityGroup(pulumi.CustomResource):
             inbound_rules=[{
                 "action": "accept",
                 "port": 22,
-                "ip_range": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
+                "ip_range": entry,
+            } for entry in trusted],
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         ```
@@ -654,8 +654,8 @@ class SecurityGroup(pulumi.CustomResource):
             inbound_rules=[{
                 "action": "accept",
                 "port": 22,
-                "ip_range": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in trusted.items()]],
+                "ip_range": entry,
+            } for entry in trusted],
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         ```
@@ -684,18 +684,18 @@ class SecurityGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_default_security: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stateful: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_security: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 inbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stateful: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -730,19 +730,19 @@ class SecurityGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_default_security: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-            inbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            outbound_default_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            stateful: Optional[pulumi.Input[_builtins.bool]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecurityGroup':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_default_security: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+            inbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            inbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupInboundRuleArgs', 'SecurityGroupInboundRuleArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityGroupOutboundRuleArgs', 'SecurityGroupOutboundRuleArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            stateful: pulumi.Input[Optional[_builtins.bool]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecurityGroup':
         """
         Get an existing SecurityGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

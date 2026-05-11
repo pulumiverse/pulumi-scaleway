@@ -21,7 +21,7 @@ __all__ = ['SamlArgs', 'Saml']
 @pulumi.input_type
 class SamlArgs:
     def __init__(__self__, *,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Saml resource.
 
@@ -32,25 +32,25 @@ class SamlArgs:
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID. If not provided, the default organization ID will be used.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
 
 @pulumi.input_type
 class _SamlState:
     def __init__(__self__, *,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_provider: Optional[pulumi.Input['SamlServiceProviderArgs']] = None,
-                 single_sign_on_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_provider: pulumi.Input[Optional['SamlServiceProviderArgs']] = None,
+                 single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Saml resources.
 
@@ -73,62 +73,62 @@ class _SamlState:
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The entity ID of the Service Provider.
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID. If not provided, the default organization ID will be used.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceProvider")
-    def service_provider(self) -> Optional[pulumi.Input['SamlServiceProviderArgs']]:
+    def service_provider(self) -> pulumi.Input[Optional['SamlServiceProviderArgs']]:
         """
         (Computed) The Service Provider information. It contains:
         """
         return pulumi.get(self, "service_provider")
 
     @service_provider.setter
-    def service_provider(self, value: Optional[pulumi.Input['SamlServiceProviderArgs']]):
+    def service_provider(self, value: pulumi.Input[Optional['SamlServiceProviderArgs']]):
         pulumi.set(self, "service_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="singleSignOnUrl")
-    def single_sign_on_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def single_sign_on_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The single sign-on URL of the SAML Identity Provider.
         """
         return pulumi.get(self, "single_sign_on_url")
 
     @single_sign_on_url.setter
-    def single_sign_on_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def single_sign_on_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "single_sign_on_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The status of the SAML configuration.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
@@ -138,7 +138,7 @@ class Saml(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages SAML activation for an organization. SAML (Security Assertion Markup Language) is an open standard for exchanging authentication and authorization data between parties, specifically between an identity provider and a service provider. This resource allows you to enable and disable SAML-based single sign-on for your Scaleway organization.
@@ -197,7 +197,7 @@ class Saml(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -222,11 +222,11 @@ class Saml(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            service_provider: Optional[pulumi.Input[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']]] = None,
-            single_sign_on_url: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None) -> 'Saml':
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            service_provider: pulumi.Input[Optional[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']]] = None,
+            single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Saml':
         """
         Get an existing Saml resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

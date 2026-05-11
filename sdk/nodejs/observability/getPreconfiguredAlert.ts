@@ -196,17 +196,17 @@ export interface GetPreconfiguredAlertOutputArgs {
     /**
      * Filter alerts by data source ID.
      */
-    dataSourceId?: pulumi.Input<string>;
+    dataSourceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the alerts are associated with. If not provided, the default project configured in the provider is used.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region in which the alerts exist.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Filter alerts by rule status. Valid values are `enabled` or `disabled`.
      */
-    ruleStatus?: pulumi.Input<string>;
+    ruleStatus?: pulumi.Input<string | undefined>;
 }

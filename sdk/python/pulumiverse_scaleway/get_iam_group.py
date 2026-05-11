@@ -190,9 +190,9 @@ def get_iam_group(group_id: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_ids=pulumi.get(__ret__, 'user_ids'))
-def get_iam_group_output(group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_iam_group_output(group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIamGroupResult]:
     """
     Gets information about an existing IAM group.

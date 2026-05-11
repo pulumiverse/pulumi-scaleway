@@ -255,100 +255,100 @@ export interface MongoDbInstanceState {
     /**
      * The date and time of the creation of the MongoDB® instance.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Whether automatic snapshot scheduling is enabled.
      */
-    isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
+    isSnapshotScheduleEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the MongoDB® instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the instance
      */
-    nodeNumber?: pulumi.Input<number>;
+    nodeNumber?: pulumi.Input<number | undefined>;
     /**
      * The type of MongoDB® instance to create.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * Password of the user. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password of the user in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private IPv4 address associated with the instance.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[] | undefined>;
     /**
      * Private Network endpoints of the Database Instance.
      */
-    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Public network endpoint configuration (no arguments).
      */
-    publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
+    publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork | undefined>;
     /**
      * `region`) The region in which the MongoDB® instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Map of settings to define for the instance.
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Snapshot ID to restore the MongoDB® instance from.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * Snapshot schedule frequency in hours.
      */
-    snapshotScheduleFrequencyHours?: pulumi.Input<number>;
+    snapshotScheduleFrequencyHours?: pulumi.Input<number | undefined>;
     /**
      * Snapshot schedule retention in days.
      */
-    snapshotScheduleRetentionDays?: pulumi.Input<number>;
+    snapshotScheduleRetentionDays?: pulumi.Input<number | undefined>;
     /**
      * List of tags attached to the MongoDB® instance.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The PEM-encoded TLS certificate for the MongoDB® instance, if available.
      */
-    tlsCertificate?: pulumi.Input<string>;
+    tlsCertificate?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the MongoDB® instance.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Name of the user created when the instance is created.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * MongoDB® version of the instance.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Volume size in GB.
      */
-    volumeSizeInGb?: pulumi.Input<number>;
+    volumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * Volume type of the instance.
      */
-    volumeType?: pulumi.Input<string>;
+    volumeType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -358,11 +358,11 @@ export interface MongoDbInstanceArgs {
     /**
      * Whether automatic snapshot scheduling is enabled.
      */
-    isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
+    isSnapshotScheduleEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the MongoDB® instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the instance
      */
@@ -374,70 +374,70 @@ export interface MongoDbInstanceArgs {
     /**
      * Password of the user. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password of the user in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private IPv4 address associated with the instance.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[] | undefined>;
     /**
      * Private Network endpoints of the Database Instance.
      */
-    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Public network endpoint configuration (no arguments).
      */
-    publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
+    publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork | undefined>;
     /**
      * `region`) The region in which the MongoDB® instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Map of settings to define for the instance.
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Snapshot ID to restore the MongoDB® instance from.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * Snapshot schedule frequency in hours.
      */
-    snapshotScheduleFrequencyHours?: pulumi.Input<number>;
+    snapshotScheduleFrequencyHours?: pulumi.Input<number | undefined>;
     /**
      * Snapshot schedule retention in days.
      */
-    snapshotScheduleRetentionDays?: pulumi.Input<number>;
+    snapshotScheduleRetentionDays?: pulumi.Input<number | undefined>;
     /**
      * List of tags attached to the MongoDB® instance.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the user created when the instance is created.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * MongoDB® version of the instance.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Volume size in GB.
      */
-    volumeSizeInGb?: pulumi.Input<number>;
+    volumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * Volume type of the instance.
      */
-    volumeType?: pulumi.Input<string>;
+    volumeType?: pulumi.Input<string | undefined>;
 }

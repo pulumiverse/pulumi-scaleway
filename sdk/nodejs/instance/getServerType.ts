@@ -130,5 +130,5 @@ export interface GetServerTypeOutputArgs {
     /**
      * `zone`) The zone of the server type (to check the availability of the server type for example).
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

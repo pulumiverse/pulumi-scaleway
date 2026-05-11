@@ -21,8 +21,8 @@ __all__ = ['CockpitArgs', 'Cockpit']
 @pulumi.input_type
 class CockpitArgs:
     def __init__(__self__, *,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cockpit resource.
 
@@ -43,7 +43,7 @@ class CockpitArgs:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
         > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
@@ -53,30 +53,30 @@ class CockpitArgs:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
 @pulumi.input_type
 class _CockpitState:
     def __init__(__self__, *,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_urls: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]] = None):
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['CockpitEndpointArgs']]]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_urls: pulumi.Input[Optional[Sequence[pulumi.Input['CockpitPushUrlArgs']]]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
 
@@ -115,20 +115,20 @@ class _CockpitState:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.""")
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
         (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CockpitEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
-    def plan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
         > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
@@ -138,45 +138,45 @@ class _CockpitState:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="planId")
     @_utilities.deprecated("""The 'plan_id' attribute is deprecated and will be removed in a future release.""")
-    def plan_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plan_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) The ID of the current pricing plan.
         """
         return pulumi.get(self, "plan_id")
 
     @plan_id.setter
-    def plan_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plan_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plan_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pushUrls")
     @_utilities.deprecated("""Please use `observability.Source` instead""")
-    def push_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
+    def push_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
         """
         [DEPRECATED] Push_url
         """
         return pulumi.get(self, "push_urls")
 
     @push_urls.setter
-    def push_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]):
+    def push_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]):
         pulumi.set(self, "push_urls", value)
 
 
@@ -186,8 +186,8 @@ class Cockpit(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Important:** The resource `observability.Cockpit` has been deprecated and will no longer be supported after January 1st, 2025. Instead, use the new specialized resources:
@@ -412,8 +412,8 @@ class Cockpit(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 plan: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -440,11 +440,11 @@ class Cockpit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]]] = None,
-            plan: Optional[pulumi.Input[_builtins.str]] = None,
-            plan_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            push_urls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]]] = None) -> 'Cockpit':
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            plan_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            push_urls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]]] = None) -> 'Cockpit':
         """
         Get an existing Cockpit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

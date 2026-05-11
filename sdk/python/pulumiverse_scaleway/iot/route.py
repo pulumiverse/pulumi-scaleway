@@ -23,11 +23,11 @@ class RouteArgs:
     def __init__(__self__, *,
                  hub_id: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
-                 database: Optional[pulumi.Input['RouteDatabaseArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rest: Optional[pulumi.Input['RouteRestArgs']] = None,
-                 s3: Optional[pulumi.Input['RouteS3Args']] = None):
+                 database: pulumi.Input[Optional['RouteDatabaseArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rest: pulumi.Input[Optional['RouteRestArgs']] = None,
+                 s3: pulumi.Input[Optional['RouteS3Args']] = None):
         """
         The set of arguments for constructing a Route resource.
 
@@ -78,76 +78,76 @@ class RouteArgs:
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input['RouteDatabaseArgs']]:
+    def database(self) -> pulumi.Input[Optional['RouteDatabaseArgs']]:
         """
         Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input['RouteDatabaseArgs']]):
+    def database(self, value: pulumi.Input[Optional['RouteDatabaseArgs']]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT Route you want to create (e.g. `my-route`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def rest(self) -> Optional[pulumi.Input['RouteRestArgs']]:
+    def rest(self) -> pulumi.Input[Optional['RouteRestArgs']]:
         """
         Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "rest")
 
     @rest.setter
-    def rest(self, value: Optional[pulumi.Input['RouteRestArgs']]):
+    def rest(self, value: pulumi.Input[Optional['RouteRestArgs']]):
         pulumi.set(self, "rest", value)
 
     @_builtins.property
     @pulumi.getter
-    def s3(self) -> Optional[pulumi.Input['RouteS3Args']]:
+    def s3(self) -> pulumi.Input[Optional['RouteS3Args']]:
         """
         Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "s3")
 
     @s3.setter
-    def s3(self, value: Optional[pulumi.Input['RouteS3Args']]):
+    def s3(self, value: pulumi.Input[Optional['RouteS3Args']]):
         pulumi.set(self, "s3", value)
 
 
 @pulumi.input_type
 class _RouteState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 database: Optional[pulumi.Input['RouteDatabaseArgs']] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rest: Optional[pulumi.Input['RouteRestArgs']] = None,
-                 s3: Optional[pulumi.Input['RouteS3Args']] = None,
-                 topic: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 database: pulumi.Input[Optional['RouteDatabaseArgs']] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rest: pulumi.Input[Optional['RouteRestArgs']] = None,
+                 s3: pulumi.Input[Optional['RouteS3Args']] = None,
+                 topic: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Route resources.
 
@@ -179,98 +179,98 @@ class _RouteState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the Route was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input['RouteDatabaseArgs']]:
+    def database(self) -> pulumi.Input[Optional['RouteDatabaseArgs']]:
         """
         Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input['RouteDatabaseArgs']]):
+    def database(self, value: pulumi.Input[Optional['RouteDatabaseArgs']]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter(name="hubId")
-    def hub_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hub ID to which the Route will be attached to.
         """
         return pulumi.get(self, "hub_id")
 
     @hub_id.setter
-    def hub_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT Route you want to create (e.g. `my-route`).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def rest(self) -> Optional[pulumi.Input['RouteRestArgs']]:
+    def rest(self) -> pulumi.Input[Optional['RouteRestArgs']]:
         """
         Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "rest")
 
     @rest.setter
-    def rest(self, value: Optional[pulumi.Input['RouteRestArgs']]):
+    def rest(self, value: pulumi.Input[Optional['RouteRestArgs']]):
         pulumi.set(self, "rest", value)
 
     @_builtins.property
     @pulumi.getter
-    def s3(self) -> Optional[pulumi.Input['RouteS3Args']]:
+    def s3(self) -> pulumi.Input[Optional['RouteS3Args']]:
         """
         Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
         return pulumi.get(self, "s3")
 
     @s3.setter
-    def s3(self, value: Optional[pulumi.Input['RouteS3Args']]):
+    def s3(self, value: pulumi.Input[Optional['RouteS3Args']]):
         pulumi.set(self, "s3", value)
 
     @_builtins.property
     @pulumi.getter
-    def topic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def topic(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         """
         return pulumi.get(self, "topic")
 
     @topic.setter
-    def topic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def topic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "topic", value)
 
 
@@ -280,13 +280,13 @@ class Route(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 database: Optional[pulumi.Input[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rest: Optional[pulumi.Input[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
-                 s3: Optional[pulumi.Input[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
-                 topic: Optional[pulumi.Input[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rest: pulumi.Input[Optional[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
+                 s3: pulumi.Input[Optional[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
+                 topic: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
@@ -533,13 +533,13 @@ class Route(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 database: Optional[pulumi.Input[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 rest: Optional[pulumi.Input[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
-                 s3: Optional[pulumi.Input[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
-                 topic: Optional[pulumi.Input[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 rest: pulumi.Input[Optional[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
+                 s3: pulumi.Input[Optional[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
+                 topic: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -573,14 +573,14 @@ class Route(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            database: Optional[pulumi.Input[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
-            hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            rest: Optional[pulumi.Input[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
-            s3: Optional[pulumi.Input[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
-            topic: Optional[pulumi.Input[_builtins.str]] = None) -> 'Route':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            database: pulumi.Input[Optional[Union['RouteDatabaseArgs', 'RouteDatabaseArgsDict']]] = None,
+            hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rest: pulumi.Input[Optional[Union['RouteRestArgs', 'RouteRestArgsDict']]] = None,
+            s3: pulumi.Input[Optional[Union['RouteS3Args', 'RouteS3ArgsDict']]] = None,
+            topic: pulumi.Input[Optional[_builtins.str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

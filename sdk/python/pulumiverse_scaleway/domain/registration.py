@@ -22,12 +22,12 @@ __all__ = ['RegistrationArgs', 'Registration']
 class RegistrationArgs:
     def __init__(__self__, *,
                  domain_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 auto_renew: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dnssec: Optional[pulumi.Input[_builtins.bool]] = None,
-                 duration_in_years: Optional[pulumi.Input[_builtins.int]] = None,
-                 owner_contact: Optional[pulumi.Input['RegistrationOwnerContactArgs']] = None,
-                 owner_contact_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+                 duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+                 owner_contact: pulumi.Input[Optional['RegistrationOwnerContactArgs']] = None,
+                 owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Registration resource.
 
@@ -67,91 +67,91 @@ class RegistrationArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoRenew")
-    def auto_renew(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_renew(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables or disables auto-renewal.
         """
         return pulumi.get(self, "auto_renew")
 
     @auto_renew.setter
-    def auto_renew(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_renew(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_renew", value)
 
     @_builtins.property
     @pulumi.getter
-    def dnssec(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dnssec(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables or disables DNSSEC.
         """
         return pulumi.get(self, "dnssec")
 
     @dnssec.setter
-    def dnssec(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dnssec(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dnssec", value)
 
     @_builtins.property
     @pulumi.getter(name="durationInYears")
-    def duration_in_years(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def duration_in_years(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         : The registration period in years.
         """
         return pulumi.get(self, "duration_in_years")
 
     @duration_in_years.setter
-    def duration_in_years(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def duration_in_years(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "duration_in_years", value)
 
     @_builtins.property
     @pulumi.getter(name="ownerContact")
-    def owner_contact(self) -> Optional[pulumi.Input['RegistrationOwnerContactArgs']]:
+    def owner_contact(self) -> pulumi.Input[Optional['RegistrationOwnerContactArgs']]:
         """
         : Details of the owner contact.
         """
         return pulumi.get(self, "owner_contact")
 
     @owner_contact.setter
-    def owner_contact(self, value: Optional[pulumi.Input['RegistrationOwnerContactArgs']]):
+    def owner_contact(self, value: pulumi.Input[Optional['RegistrationOwnerContactArgs']]):
         pulumi.set(self, "owner_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="ownerContactId")
-    def owner_contact_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def owner_contact_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         : The ID of an existing owner contact.
         """
         return pulumi.get(self, "owner_contact_id")
 
     @owner_contact_id.setter
-    def owner_contact_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def owner_contact_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "owner_contact_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         : The Scaleway project ID.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
 @pulumi.input_type
 class _RegistrationState:
     def __init__(__self__, *,
-                 administrative_contacts: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]] = None,
-                 auto_renew: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dnssec: Optional[pulumi.Input[_builtins.bool]] = None,
-                 domain_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ds_records: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]] = None,
-                 duration_in_years: Optional[pulumi.Input[_builtins.int]] = None,
-                 owner_contact: Optional[pulumi.Input['RegistrationOwnerContactArgs']] = None,
-                 owner_contact_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 task_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 technical_contacts: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]] = None):
+                 administrative_contacts: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]] = None,
+                 auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+                 domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ds_records: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]] = None,
+                 duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+                 owner_contact: pulumi.Input[Optional['RegistrationOwnerContactArgs']] = None,
+                 owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 task_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 technical_contacts: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]] = None):
         """
         Input properties used for looking up and filtering Registration resources.
 
@@ -192,134 +192,134 @@ class _RegistrationState:
 
     @_builtins.property
     @pulumi.getter(name="administrativeContacts")
-    def administrative_contacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]]:
+    def administrative_contacts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]]:
         """
         : Administrative contact information.
         """
         return pulumi.get(self, "administrative_contacts")
 
     @administrative_contacts.setter
-    def administrative_contacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]]):
+    def administrative_contacts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactArgs']]]]):
         pulumi.set(self, "administrative_contacts", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRenew")
-    def auto_renew(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_renew(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables or disables auto-renewal.
         """
         return pulumi.get(self, "auto_renew")
 
     @auto_renew.setter
-    def auto_renew(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_renew(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_renew", value)
 
     @_builtins.property
     @pulumi.getter
-    def dnssec(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dnssec(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables or disables DNSSEC.
         """
         return pulumi.get(self, "dnssec")
 
     @dnssec.setter
-    def dnssec(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dnssec(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dnssec", value)
 
     @_builtins.property
     @pulumi.getter(name="domainNames")
-    def domain_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def domain_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         : A list of domain names to be registered.
         """
         return pulumi.get(self, "domain_names")
 
     @domain_names.setter
-    def domain_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def domain_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "domain_names", value)
 
     @_builtins.property
     @pulumi.getter(name="dsRecords")
-    def ds_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]]:
+    def ds_records(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]]:
         """
         DNSSEC DS record configuration.
         """
         return pulumi.get(self, "ds_records")
 
     @ds_records.setter
-    def ds_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]]):
+    def ds_records(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordArgs']]]]):
         pulumi.set(self, "ds_records", value)
 
     @_builtins.property
     @pulumi.getter(name="durationInYears")
-    def duration_in_years(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def duration_in_years(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         : The registration period in years.
         """
         return pulumi.get(self, "duration_in_years")
 
     @duration_in_years.setter
-    def duration_in_years(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def duration_in_years(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "duration_in_years", value)
 
     @_builtins.property
     @pulumi.getter(name="ownerContact")
-    def owner_contact(self) -> Optional[pulumi.Input['RegistrationOwnerContactArgs']]:
+    def owner_contact(self) -> pulumi.Input[Optional['RegistrationOwnerContactArgs']]:
         """
         : Details of the owner contact.
         """
         return pulumi.get(self, "owner_contact")
 
     @owner_contact.setter
-    def owner_contact(self, value: Optional[pulumi.Input['RegistrationOwnerContactArgs']]):
+    def owner_contact(self, value: pulumi.Input[Optional['RegistrationOwnerContactArgs']]):
         pulumi.set(self, "owner_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="ownerContactId")
-    def owner_contact_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def owner_contact_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         : The ID of an existing owner contact.
         """
         return pulumi.get(self, "owner_contact_id")
 
     @owner_contact_id.setter
-    def owner_contact_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def owner_contact_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "owner_contact_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         : The Scaleway project ID.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="taskId")
-    def task_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def task_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the task that created the domain.
         """
         return pulumi.get(self, "task_id")
 
     @task_id.setter
-    def task_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def task_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "task_id", value)
 
     @_builtins.property
     @pulumi.getter(name="technicalContacts")
-    def technical_contacts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]]:
+    def technical_contacts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]]:
         """
         : Technical contact information.
         """
         return pulumi.get(self, "technical_contacts")
 
     @technical_contacts.setter
-    def technical_contacts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]]):
+    def technical_contacts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]]]):
         pulumi.set(self, "technical_contacts", value)
 
 
@@ -329,13 +329,13 @@ class Registration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_renew: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dnssec: Optional[pulumi.Input[_builtins.bool]] = None,
-                 domain_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 duration_in_years: Optional[pulumi.Input[_builtins.int]] = None,
-                 owner_contact: Optional[pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
-                 owner_contact_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+                 domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+                 owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `domain.Registration` resource allows you to purchase and manage domain registrations with Scaleway. Using this resource you can register one or more domains for a specified duration, configure auto-renewal and DNSSEC options, and set contact information. You can supply an owner contact either by providing an existing contact ID or by specifying the complete contact details. The resource automatically returns additional contact information (administrative and technical) as provided by the Scaleway API.
@@ -606,13 +606,13 @@ class Registration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_renew: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dnssec: Optional[pulumi.Input[_builtins.bool]] = None,
-                 domain_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 duration_in_years: Optional[pulumi.Input[_builtins.int]] = None,
-                 owner_contact: Optional[pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
-                 owner_contact_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+                 domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+                 owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -645,17 +645,17 @@ class Registration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            administrative_contacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict']]]]] = None,
-            auto_renew: Optional[pulumi.Input[_builtins.bool]] = None,
-            dnssec: Optional[pulumi.Input[_builtins.bool]] = None,
-            domain_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ds_records: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict']]]]] = None,
-            duration_in_years: Optional[pulumi.Input[_builtins.int]] = None,
-            owner_contact: Optional[pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
-            owner_contact_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            task_id: Optional[pulumi.Input[_builtins.str]] = None,
-            technical_contacts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict']]]]] = None) -> 'Registration':
+            administrative_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict']]]]] = None,
+            auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+            dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+            domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ds_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict']]]]] = None,
+            duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+            owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+            owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            task_id: pulumi.Input[Optional[_builtins.str]] = None,
+            technical_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict']]]]] = None) -> 'Registration':
         """
         Get an existing Registration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

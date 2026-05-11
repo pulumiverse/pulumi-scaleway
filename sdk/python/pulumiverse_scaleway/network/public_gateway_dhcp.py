@@ -20,20 +20,20 @@ __all__ = ['PublicGatewayDhcpArgs', 'PublicGatewayDhcp']
 class PublicGatewayDhcpArgs:
     def __init__(__self__, *,
                  subnet: pulumi.Input[_builtins.str],
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_local_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_high: Optional[pulumi.Input[_builtins.str]] = None,
-                 pool_low: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
-                 push_dns_server: Optional[pulumi.Input[_builtins.bool]] = None,
-                 rebind_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 valid_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_local_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_searches: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 dns_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_high: pulumi.Input[Optional[_builtins.str]] = None,
+                 pool_low: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_default_route: pulumi.Input[Optional[_builtins.bool]] = None,
+                 push_dns_server: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rebind_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 valid_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PublicGatewayDhcp resource.
 
@@ -103,103 +103,103 @@ class PublicGatewayDhcpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsLocalName")
-    def dns_local_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_local_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
         """
         return pulumi.get(self, "dns_local_name")
 
     @dns_local_name.setter
-    def dns_local_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_local_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_local_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsSearches")
-    def dns_searches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def dns_searches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Additional DNS search paths
         """
         return pulumi.get(self, "dns_searches")
 
     @dns_searches.setter
-    def dns_searches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def dns_searches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "dns_searches", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsServersOverrides")
-    def dns_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def dns_servers_overrides(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         """
         return pulumi.get(self, "dns_servers_overrides")
 
     @dns_servers_overrides.setter
-    def dns_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def dns_servers_overrides(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "dns_servers_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDynamic")
-    def enable_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dynamic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
         """
         return pulumi.get(self, "enable_dynamic")
 
     @enable_dynamic.setter
-    def enable_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dynamic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dynamic", value)
 
     @_builtins.property
     @pulumi.getter(name="poolHigh")
-    def pool_high(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_high(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
         """
         return pulumi.get(self, "pool_high")
 
     @pool_high.setter
-    def pool_high(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_high(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_high", value)
 
     @_builtins.property
     @pulumi.getter(name="poolLow")
-    def pool_low(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_low(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         """
         return pulumi.get(self, "pool_low")
 
     @pool_low.setter
-    def pool_low(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_low(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_low", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pushDefaultRoute")
-    def push_default_route(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def push_default_route(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 
@@ -208,91 +208,91 @@ class PublicGatewayDhcpArgs:
         return pulumi.get(self, "push_default_route")
 
     @push_default_route.setter
-    def push_default_route(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def push_default_route(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "push_default_route", value)
 
     @_builtins.property
     @pulumi.getter(name="pushDnsServer")
-    def push_dns_server(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def push_dns_server(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         """
         return pulumi.get(self, "push_dns_server")
 
     @push_dns_server.setter
-    def push_dns_server(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def push_dns_server(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "push_dns_server", value)
 
     @_builtins.property
     @pulumi.getter(name="rebindTimer")
-    def rebind_timer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rebind_timer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         """
         return pulumi.get(self, "rebind_timer")
 
     @rebind_timer.setter
-    def rebind_timer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rebind_timer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rebind_timer", value)
 
     @_builtins.property
     @pulumi.getter(name="renewTimer")
-    def renew_timer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_timer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         """
         return pulumi.get(self, "renew_timer")
 
     @renew_timer.setter
-    def renew_timer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_timer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_timer", value)
 
     @_builtins.property
     @pulumi.getter(name="validLifetime")
-    def valid_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def valid_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         """
         return pulumi.get(self, "valid_lifetime")
 
     @valid_lifetime.setter
-    def valid_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def valid_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "valid_lifetime", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _PublicGatewayDhcpState:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_local_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pool_high: Optional[pulumi.Input[_builtins.str]] = None,
-                 pool_low: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
-                 push_dns_server: Optional[pulumi.Input[_builtins.bool]] = None,
-                 rebind_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_local_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_searches: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 dns_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pool_high: pulumi.Input[Optional[_builtins.str]] = None,
+                 pool_low: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_default_route: pulumi.Input[Optional[_builtins.bool]] = None,
+                 push_dns_server: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rebind_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PublicGatewayDhcp resources.
 
@@ -359,127 +359,127 @@ class _PublicGatewayDhcpState:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP address of the DHCP server. This will be the gateway's address in the Private Network.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the Public Gateway DHCP configuration.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsLocalName")
-    def dns_local_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_local_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
         """
         return pulumi.get(self, "dns_local_name")
 
     @dns_local_name.setter
-    def dns_local_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_local_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_local_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsSearches")
-    def dns_searches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def dns_searches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Additional DNS search paths
         """
         return pulumi.get(self, "dns_searches")
 
     @dns_searches.setter
-    def dns_searches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def dns_searches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "dns_searches", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsServersOverrides")
-    def dns_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def dns_servers_overrides(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
         """
         return pulumi.get(self, "dns_servers_overrides")
 
     @dns_servers_overrides.setter
-    def dns_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def dns_servers_overrides(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "dns_servers_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDynamic")
-    def enable_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dynamic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
         """
         return pulumi.get(self, "enable_dynamic")
 
     @enable_dynamic.setter
-    def enable_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dynamic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dynamic", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID the Public Gateway DHCP config is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="poolHigh")
-    def pool_high(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_high(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
         """
         return pulumi.get(self, "pool_high")
 
     @pool_high.setter
-    def pool_high(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_high(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_high", value)
 
     @_builtins.property
     @pulumi.getter(name="poolLow")
-    def pool_low(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pool_low(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
         """
         return pulumi.get(self, "pool_low")
 
     @pool_low.setter
-    def pool_low(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pool_low(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pool_low", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pushDefaultRoute")
-    def push_default_route(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def push_default_route(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
 
@@ -488,92 +488,92 @@ class _PublicGatewayDhcpState:
         return pulumi.get(self, "push_default_route")
 
     @push_default_route.setter
-    def push_default_route(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def push_default_route(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "push_default_route", value)
 
     @_builtins.property
     @pulumi.getter(name="pushDnsServer")
-    def push_dns_server(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def push_dns_server(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
         """
         return pulumi.get(self, "push_dns_server")
 
     @push_dns_server.setter
-    def push_dns_server(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def push_dns_server(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "push_dns_server", value)
 
     @_builtins.property
     @pulumi.getter(name="rebindTimer")
-    def rebind_timer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rebind_timer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
         """
         return pulumi.get(self, "rebind_timer")
 
     @rebind_timer.setter
-    def rebind_timer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rebind_timer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rebind_timer", value)
 
     @_builtins.property
     @pulumi.getter(name="renewTimer")
-    def renew_timer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_timer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
         """
         return pulumi.get(self, "renew_timer")
 
     @renew_timer.setter
-    def renew_timer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_timer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_timer", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
-    def subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet to associate with the Public Gateway DHCP configuration.
         """
         return pulumi.get(self, "subnet")
 
     @subnet.setter
-    def subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the Public Gateway DHCP configuration.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="validLifetime")
-    def valid_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def valid_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         """
         return pulumi.get(self, "valid_lifetime")
 
     @valid_lifetime.setter
-    def valid_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def valid_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "valid_lifetime", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -583,21 +583,21 @@ class PublicGatewayDhcp(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_local_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_high: Optional[pulumi.Input[_builtins.str]] = None,
-                 pool_low: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
-                 push_dns_server: Optional[pulumi.Input[_builtins.bool]] = None,
-                 rebind_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_local_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_searches: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 dns_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_high: pulumi.Input[Optional[_builtins.str]] = None,
+                 pool_low: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_default_route: pulumi.Input[Optional[_builtins.bool]] = None,
+                 push_dns_server: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rebind_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Important:**  The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
@@ -692,21 +692,21 @@ class PublicGatewayDhcp(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_local_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pool_high: Optional[pulumi.Input[_builtins.str]] = None,
-                 pool_low: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
-                 push_dns_server: Optional[pulumi.Input[_builtins.bool]] = None,
-                 rebind_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_timer: Optional[pulumi.Input[_builtins.int]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_local_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_searches: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 dns_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pool_high: pulumi.Input[Optional[_builtins.str]] = None,
+                 pool_low: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_default_route: pulumi.Input[Optional[_builtins.bool]] = None,
+                 push_dns_server: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rebind_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_timer: pulumi.Input[Optional[_builtins.int]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -748,24 +748,24 @@ class PublicGatewayDhcp(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            address: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_local_name: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            enable_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            pool_high: Optional[pulumi.Input[_builtins.str]] = None,
-            pool_low: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            push_default_route: Optional[pulumi.Input[_builtins.bool]] = None,
-            push_dns_server: Optional[pulumi.Input[_builtins.bool]] = None,
-            rebind_timer: Optional[pulumi.Input[_builtins.int]] = None,
-            renew_timer: Optional[pulumi.Input[_builtins.int]] = None,
-            subnet: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            valid_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'PublicGatewayDhcp':
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_local_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_searches: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            dns_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enable_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            pool_high: pulumi.Input[Optional[_builtins.str]] = None,
+            pool_low: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            push_default_route: pulumi.Input[Optional[_builtins.bool]] = None,
+            push_dns_server: pulumi.Input[Optional[_builtins.bool]] = None,
+            rebind_timer: pulumi.Input[Optional[_builtins.int]] = None,
+            renew_timer: pulumi.Input[Optional[_builtins.int]] = None,
+            subnet: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            valid_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'PublicGatewayDhcp':
         """
         Get an existing PublicGatewayDhcp resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

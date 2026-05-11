@@ -226,9 +226,9 @@ def get_bucket(name: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         versionings=pulumi.get(__ret__, 'versionings'))
-def get_bucket_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_bucket_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketResult]:
     """
     The `object.Bucket` data source is used to retrieve information about an Object Storage bucket.

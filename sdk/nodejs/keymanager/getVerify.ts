@@ -85,7 +85,7 @@ export interface GetVerifyOutputArgs {
     /**
      * The region of the key. If not set, the region is derived from the keyId when possible or from the provider `region` configuration.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The message signature to verify, encoded as a base64 string.
      */

@@ -71,5 +71,5 @@ export interface GetConsumptionsOutputArgs {
     /**
      * `projectId`) The ID of the project the consumption list is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

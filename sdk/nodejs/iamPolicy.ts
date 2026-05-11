@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  * const project = scaleway.account.getProject({
  *     name: projectName,
  * });
- * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: scaleway.iam.getUser({
+ * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: scaleway.iam.getUser({
  *     email: __value,
  * }) }), {});
  * const withUsers = new scaleway.iam.Group("with_users", {
@@ -256,53 +256,53 @@ export interface IamPolicyState {
     /**
      * ID of the application the policy will be linked to
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the policy.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The description of the IAM policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the policy is editable.
      */
-    editable?: pulumi.Input<boolean>;
+    editable?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the group the policy will be linked to
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IAM policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * If the policy doesn't apply to a principal.
      *
      * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
-    noPrincipal?: pulumi.Input<boolean>;
+    noPrincipal?: pulumi.Input<boolean | undefined>;
     /**
      * `organizationId`) The ID of the organization the policy is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * List of rules in the policy.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.IamPolicyRule>[] | undefined>;
     /**
      * The tags associated with the IAM policy.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the policy.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user the policy will be linked to
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -312,29 +312,29 @@ export interface IamPolicyArgs {
     /**
      * ID of the application the policy will be linked to
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The description of the IAM policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * ID of the group the policy will be linked to
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IAM policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * If the policy doesn't apply to a principal.
      *
      * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
-    noPrincipal?: pulumi.Input<boolean>;
+    noPrincipal?: pulumi.Input<boolean | undefined>;
     /**
      * `organizationId`) The ID of the organization the policy is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * List of rules in the policy.
      */
@@ -342,9 +342,9 @@ export interface IamPolicyArgs {
     /**
      * The tags associated with the IAM policy.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ID of the user the policy will be linked to
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }

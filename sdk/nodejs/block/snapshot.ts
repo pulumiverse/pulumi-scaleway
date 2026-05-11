@@ -184,31 +184,31 @@ export interface SnapshotState {
     /**
      * Use this block to export the volume as a QCOW file to Object Storage.
      */
-    export?: pulumi.Input<inputs.block.SnapshotExport>;
+    export?: pulumi.Input<inputs.block.SnapshotExport | undefined>;
     /**
      * Use this block to import a QCOW image from Object Storage to create a volume.
      */
-    import?: pulumi.Input<inputs.block.SnapshotImport>;
+    import?: pulumi.Input<inputs.block.SnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Scaleway Project the snapshot is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * ). The zone in which the snapshot should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -218,29 +218,29 @@ export interface SnapshotArgs {
     /**
      * Use this block to export the volume as a QCOW file to Object Storage.
      */
-    export?: pulumi.Input<inputs.block.SnapshotExport>;
+    export?: pulumi.Input<inputs.block.SnapshotExport | undefined>;
     /**
      * Use this block to import a QCOW image from Object Storage to create a volume.
      */
-    import?: pulumi.Input<inputs.block.SnapshotImport>;
+    import?: pulumi.Input<inputs.block.SnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Scaleway Project the snapshot is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * ). The zone in which the snapshot should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -233,8 +233,8 @@ def get_public_gateway_pat_rule(pat_rule_id: Optional[_builtins.str] = None,
         public_port=pulumi.get(__ret__, 'public_port'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_public_gateway_pat_rule_output(pat_rule_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                       zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_public_gateway_pat_rule_output(pat_rule_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPublicGatewayPatRuleResult]:
     """
     Gets information about a Public Gateway PAT rule. For further information, please see the

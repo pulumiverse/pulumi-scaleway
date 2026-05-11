@@ -109,5 +109,5 @@ export interface GetDatabaseOutputArgs {
      * The name of the RDB instance.
      */
     name: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

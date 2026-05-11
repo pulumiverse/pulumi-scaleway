@@ -52,7 +52,7 @@ class BucketAclAccessControlPolicyArgsDict(TypedDict):
     """
     Configuration block of the bucket project owner's display organization ID.
     """
-    grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgsDict']]]]
+    grants: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]]
     """
     Grant
     """
@@ -61,7 +61,7 @@ class BucketAclAccessControlPolicyArgsDict(TypedDict):
 class BucketAclAccessControlPolicyArgs:
     def __init__(__self__, *,
                  owner: pulumi.Input['BucketAclAccessControlPolicyOwnerArgs'],
-                 grants: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]] = None):
+                 grants: pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]] = None):
         """
         :param pulumi.Input['BucketAclAccessControlPolicyOwnerArgs'] owner: Configuration block of the bucket project owner's display organization ID.
         :param pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]] grants: Grant
@@ -84,14 +84,14 @@ class BucketAclAccessControlPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]:
+    def grants(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]:
         """
         Grant
         """
         return pulumi.get(self, "grants")
 
     @grants.setter
-    def grants(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]):
+    def grants(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]):
         pulumi.set(self, "grants", value)
 
 
@@ -100,7 +100,7 @@ class BucketAclAccessControlPolicyGrantArgsDict(TypedDict):
     """
     Logging permissions assigned to the grantee for the bucket.
     """
-    grantee: NotRequired[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgsDict']]
+    grantee: NotRequired[pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgs']]]
     """
     Configuration block for the project being granted permissions.
     """
@@ -109,7 +109,7 @@ class BucketAclAccessControlPolicyGrantArgsDict(TypedDict):
 class BucketAclAccessControlPolicyGrantArgs:
     def __init__(__self__, *,
                  permission: pulumi.Input[_builtins.str],
-                 grantee: Optional[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgs']] = None):
+                 grantee: pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] permission: Logging permissions assigned to the grantee for the bucket.
         :param pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgs'] grantee: Configuration block for the project being granted permissions.
@@ -132,31 +132,31 @@ class BucketAclAccessControlPolicyGrantArgs:
 
     @_builtins.property
     @pulumi.getter
-    def grantee(self) -> Optional[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgs']]:
+    def grantee(self) -> pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgs']]:
         """
         Configuration block for the project being granted permissions.
         """
         return pulumi.get(self, "grantee")
 
     @grantee.setter
-    def grantee(self, value: Optional[pulumi.Input['BucketAclAccessControlPolicyGrantGranteeArgs']]):
+    def grantee(self, value: pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgs']]):
         pulumi.set(self, "grantee", value)
 
 
 class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    display_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Display name of the grantee to grant access to.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `region`, `bucket` and `acl` separated by (`/`).
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of grantee. Valid values: `CanonicalUser`, `Group`
     """
-    uri: NotRequired[pulumi.Input[_builtins.str]]
+    uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The uri of the grantee if you are granting permissions to a predefined group.
     """
@@ -164,10 +164,10 @@ class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
 @pulumi.input_type
 class BucketAclAccessControlPolicyGrantGranteeArgs:
     def __init__(__self__, *,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri: Optional[pulumi.Input[_builtins.str]] = None):
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] display_name: Display name of the grantee to grant access to.
         :param pulumi.Input[_builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
@@ -185,50 +185,50 @@ class BucketAclAccessControlPolicyGrantGranteeArgs:
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of the grantee to grant access to.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The uri of the grantee if you are granting permissions to a predefined group.
         """
         return pulumi.get(self, "uri")
 
     @uri.setter
-    def uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uri", value)
 
 
@@ -237,7 +237,7 @@ class BucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
     """
     The `region`, `bucket` and `acl` separated by (`/`).
     """
-    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    display_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The project ID of the grantee.
     """
@@ -246,7 +246,7 @@ class BucketAclAccessControlPolicyOwnerArgsDict(TypedDict):
 class BucketAclAccessControlPolicyOwnerArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[_builtins.str],
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
         :param pulumi.Input[_builtins.str] display_name: The project ID of the grantee.
@@ -269,14 +269,14 @@ class BucketAclAccessControlPolicyOwnerArgs:
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project ID of the grantee.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
 
@@ -289,15 +289,15 @@ class BucketCorsRuleArgsDict(TypedDict):
     """
     Specifies which origins are allowed.
     """
-    allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies which headers are allowed.
     """
-    expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    expose_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies header exposure in the response.
     """
-    max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    max_age_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies time in seconds that the browser can cache the response for a preflight request.
     """
@@ -307,9 +307,9 @@ class BucketCorsRuleArgs:
     def __init__(__self__, *,
                  allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 allowed_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 max_age_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 expose_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_age_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_methods: Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: Specifies which origins are allowed.
@@ -352,38 +352,38 @@ class BucketCorsRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedHeaders")
-    def allowed_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies which headers are allowed.
         """
         return pulumi.get(self, "allowed_headers")
 
     @allowed_headers.setter
-    def allowed_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def expose_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies header exposure in the response.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def expose_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="maxAgeSeconds")
-    def max_age_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_age_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies time in seconds that the browser can cache the response for a preflight request.
         """
         return pulumi.get(self, "max_age_seconds")
 
     @max_age_seconds.setter
-    def max_age_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_age_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_age_seconds", value)
 
 
@@ -392,29 +392,29 @@ class BucketLifecycleRuleArgsDict(TypedDict):
     """
     The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
     """
-    abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[_builtins.int]]
+    abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
     > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
     """
-    expiration: NotRequired[pulumi.Input['BucketLifecycleRuleExpirationArgsDict']]
+    expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleRuleExpirationArgs']]]
     """
     Specifies a period in the object's expire
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier for the rule. Must be less than or equal to 255 characters in length.
     """
-    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Object key prefix identifying one or more objects to which the rule applies.
     """
-    tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Specifies object tags key and value.
     """
-    transitions: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]
+    transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]]
     """
     Define when objects transition to another storage class
     """
@@ -423,12 +423,12 @@ class BucketLifecycleRuleArgsDict(TypedDict):
 class BucketLifecycleRuleArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
-                 abort_incomplete_multipart_upload_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 expiration: Optional[pulumi.Input['BucketLifecycleRuleExpirationArgs']] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 transitions: Optional[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]] = None):
+                 abort_incomplete_multipart_upload_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 expiration: pulumi.Input[Optional['BucketLifecycleRuleExpirationArgs']] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 transitions: pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
         :param pulumi.Input[_builtins.int] abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
@@ -468,7 +468,7 @@ class BucketLifecycleRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
-    def abort_incomplete_multipart_upload_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def abort_incomplete_multipart_upload_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 
@@ -477,67 +477,67 @@ class BucketLifecycleRuleArgs:
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @abort_incomplete_multipart_upload_days.setter
-    def abort_incomplete_multipart_upload_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def abort_incomplete_multipart_upload_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "abort_incomplete_multipart_upload_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiration(self) -> Optional[pulumi.Input['BucketLifecycleRuleExpirationArgs']]:
+    def expiration(self) -> pulumi.Input[Optional['BucketLifecycleRuleExpirationArgs']]:
         """
         Specifies a period in the object's expire
         """
         return pulumi.get(self, "expiration")
 
     @expiration.setter
-    def expiration(self, value: Optional[pulumi.Input['BucketLifecycleRuleExpirationArgs']]):
+    def expiration(self, value: pulumi.Input[Optional['BucketLifecycleRuleExpirationArgs']]):
         pulumi.set(self, "expiration", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the rule. Must be less than or equal to 255 characters in length.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Object key prefix identifying one or more objects to which the rule applies.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies object tags key and value.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def transitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]:
+    def transitions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]:
         """
         Define when objects transition to another storage class
         """
         return pulumi.get(self, "transitions")
 
     @transitions.setter
-    def transitions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]):
+    def transitions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]):
         pulumi.set(self, "transitions", value)
 
 
@@ -582,7 +582,7 @@ class BucketLifecycleRuleTransitionArgsDict(TypedDict):
     > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
     > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
     """
-    days: NotRequired[pulumi.Input[_builtins.int]]
+    days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after object creation when the specific rule action takes effect.
     """
@@ -591,7 +591,7 @@ class BucketLifecycleRuleTransitionArgsDict(TypedDict):
 class BucketLifecycleRuleTransitionArgs:
     def __init__(__self__, *,
                  storage_class: pulumi.Input[_builtins.str],
-                 days: Optional[pulumi.Input[_builtins.int]] = None):
+                 days: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
                
@@ -630,14 +630,14 @@ class BucketLifecycleRuleTransitionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
         return pulumi.get(self, "days")
 
     @days.setter
-    def days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days", value)
 
 
@@ -674,11 +674,11 @@ class BucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
     """
     The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
     """
-    days: NotRequired[pulumi.Input[_builtins.int]]
+    days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of days you want to specify for the default retention period.
     """
-    years: NotRequired[pulumi.Input[_builtins.int]]
+    years: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of years you want to specify for the default retention period.
     """
@@ -687,8 +687,8 @@ class BucketLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
 class BucketLockConfigurationRuleDefaultRetentionArgs:
     def __init__(__self__, *,
                  mode: pulumi.Input[_builtins.str],
-                 days: Optional[pulumi.Input[_builtins.int]] = None,
-                 years: Optional[pulumi.Input[_builtins.int]] = None):
+                 days: pulumi.Input[Optional[_builtins.int]] = None,
+                 years: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] mode: The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/#retention-modes) for more information on retention modes.
         :param pulumi.Input[_builtins.int] days: The number of days you want to specify for the default retention period.
@@ -714,31 +714,31 @@ class BucketLockConfigurationRuleDefaultRetentionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of days you want to specify for the default retention period.
         """
         return pulumi.get(self, "days")
 
     @days.setter
-    def days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days", value)
 
     @_builtins.property
     @pulumi.getter
-    def years(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def years(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of years you want to specify for the default retention period.
         """
         return pulumi.get(self, "years")
 
     @years.setter
-    def years(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def years(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "years", value)
 
 
 class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
-    apply_server_side_encryption_by_default: NotRequired[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]
+    apply_server_side_encryption_by_default: NotRequired[pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]]
     """
     Single object for setting server-side encryption by default.
     """
@@ -746,7 +746,7 @@ class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
 @pulumi.input_type
 class BucketServerSideEncryptionConfigurationRuleArgs:
     def __init__(__self__, *,
-                 apply_server_side_encryption_by_default: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']] = None):
+                 apply_server_side_encryption_by_default: pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']] = None):
         """
         :param pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_default: Single object for setting server-side encryption by default.
         """
@@ -755,14 +755,14 @@ class BucketServerSideEncryptionConfigurationRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="applyServerSideEncryptionByDefault")
-    def apply_server_side_encryption_by_default(self) -> Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]:
+    def apply_server_side_encryption_by_default(self) -> pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]:
         """
         Single object for setting server-side encryption by default.
         """
         return pulumi.get(self, "apply_server_side_encryption_by_default")
 
     @apply_server_side_encryption_by_default.setter
-    def apply_server_side_encryption_by_default(self, value: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]):
+    def apply_server_side_encryption_by_default(self, value: pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]):
         pulumi.set(self, "apply_server_side_encryption_by_default", value)
 
 
@@ -795,7 +795,7 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
 
 
 class BucketVersioningArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
     """
@@ -803,7 +803,7 @@ class BucketVersioningArgsDict(TypedDict):
 @pulumi.input_type
 class BucketVersioningArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
         """
@@ -812,14 +812,14 @@ class BucketVersioningArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
 

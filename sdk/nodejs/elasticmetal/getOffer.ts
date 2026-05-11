@@ -110,21 +110,21 @@ export interface GetOfferOutputArgs {
     /**
      * Include disabled offers.
      */
-    includeDisabled?: pulumi.Input<boolean>;
+    includeDisabled?: pulumi.Input<boolean | undefined>;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The offer id. Only one of `name` and `offerId` should be specified.
      */
-    offerId?: pulumi.Input<string>;
+    offerId?: pulumi.Input<string | undefined>;
     /**
      * Period of subscription the desired offer. Should be `hourly` or `monthly`.
      */
-    subscriptionPeriod?: pulumi.Input<string>;
+    subscriptionPeriod?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the offer should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

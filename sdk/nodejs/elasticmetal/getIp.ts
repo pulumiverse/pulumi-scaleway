@@ -112,14 +112,14 @@ export interface GetIpOutputArgs {
      * The IP ID.
      * Only one of `ipAddress` and `flexibleIpId` should be specified.
      */
-    flexibleIpId?: pulumi.Input<string>;
+    flexibleIpId?: pulumi.Input<string | undefined>;
     /**
      * The IP address.
      * Only one of `ipAddress` and `flexibleIpId` should be specified.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Flexible IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

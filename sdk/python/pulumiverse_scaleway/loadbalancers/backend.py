@@ -24,33 +24,33 @@ class BackendArgs:
                  forward_port: pulumi.Input[_builtins.int],
                  forward_protocol: pulumi.Input[_builtins.str],
                  lb_id: pulumi.Input[_builtins.str],
-                 failover_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_port_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_http: Optional[pulumi.Input['BackendHealthCheckHttpArgs']] = None,
-                 health_check_https: Optional[pulumi.Input['BackendHealthCheckHttpsArgs']] = None,
-                 health_check_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_send_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input['BackendHealthCheckTcpArgs']] = None,
-                 health_check_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_transient_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_ssl_server_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_marked_down_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redispatch_attempt_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 send_proxy_v2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssl_bridging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sticky_sessions: Optional[pulumi.Input[_builtins.str]] = None,
-                 sticky_sessions_cookie_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_connect: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_server: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None):
+                 failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_http: pulumi.Input[Optional['BackendHealthCheckHttpArgs']] = None,
+                 health_check_https: pulumi.Input[Optional['BackendHealthCheckHttpsArgs']] = None,
+                 health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 health_check_tcp: pulumi.Input[Optional['BackendHealthCheckTcpArgs']] = None,
+                 health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+                 sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Backend resource.
 
@@ -187,7 +187,7 @@ class BackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="failoverHost")
-    def failover_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def failover_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Scaleway S3 bucket website to be served in case all backend servers are down
 
@@ -197,356 +197,356 @@ class BackendArgs:
         return pulumi.get(self, "failover_host")
 
     @failover_host.setter
-    def failover_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def failover_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "failover_host", value)
 
     @_builtins.property
     @pulumi.getter(name="forwardPortAlgorithm")
-    def forward_port_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def forward_port_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Load balancing algorithm
         """
         return pulumi.get(self, "forward_port_algorithm")
 
     @forward_port_algorithm.setter
-    def forward_port_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def forward_port_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "forward_port_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckDelay")
-    def health_check_delay(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_delay(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval between two HC requests
         """
         return pulumi.get(self, "health_check_delay")
 
     @health_check_delay.setter
-    def health_check_delay(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckHttp")
-    def health_check_http(self) -> Optional[pulumi.Input['BackendHealthCheckHttpArgs']]:
+    def health_check_http(self) -> pulumi.Input[Optional['BackendHealthCheckHttpArgs']]:
         """
         HTTP Health check
         """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
-    def health_check_http(self, value: Optional[pulumi.Input['BackendHealthCheckHttpArgs']]):
+    def health_check_http(self, value: pulumi.Input[Optional['BackendHealthCheckHttpArgs']]):
         pulumi.set(self, "health_check_http", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckHttps")
-    def health_check_https(self) -> Optional[pulumi.Input['BackendHealthCheckHttpsArgs']]:
+    def health_check_https(self) -> pulumi.Input[Optional['BackendHealthCheckHttpsArgs']]:
         """
         HTTPS Health check
         """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
-    def health_check_https(self, value: Optional[pulumi.Input['BackendHealthCheckHttpsArgs']]):
+    def health_check_https(self, value: pulumi.Input[Optional['BackendHealthCheckHttpsArgs']]):
         pulumi.set(self, "health_check_https", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckMaxRetries")
-    def health_check_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def health_check_max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of allowed failed HC requests before the backend server is marked down
         """
         return pulumi.get(self, "health_check_max_retries")
 
     @health_check_max_retries.setter
-    def health_check_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def health_check_max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "health_check_max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckPort")
-    def health_check_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def health_check_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port the HC requests will be send to. Default to `forward_port`
         """
         return pulumi.get(self, "health_check_port")
 
     @health_check_port.setter
-    def health_check_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def health_check_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "health_check_port", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckSendProxy")
-    def health_check_send_proxy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def health_check_send_proxy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether proxy protocol should be activated for the health check
         """
         return pulumi.get(self, "health_check_send_proxy")
 
     @health_check_send_proxy.setter
-    def health_check_send_proxy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def health_check_send_proxy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "health_check_send_proxy", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTcp")
-    def health_check_tcp(self) -> Optional[pulumi.Input['BackendHealthCheckTcpArgs']]:
+    def health_check_tcp(self) -> pulumi.Input[Optional['BackendHealthCheckTcpArgs']]:
         """
         TCP Health check
         """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
-    def health_check_tcp(self, value: Optional[pulumi.Input['BackendHealthCheckTcpArgs']]):
+    def health_check_tcp(self, value: pulumi.Input[Optional['BackendHealthCheckTcpArgs']]):
         pulumi.set(self, "health_check_tcp", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTimeout")
-    def health_check_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timeout before we consider a HC request failed
         """
         return pulumi.get(self, "health_check_timeout")
 
     @health_check_timeout.setter
-    def health_check_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTransientDelay")
-    def health_check_transient_delay(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_transient_delay(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         """
         return pulumi.get(self, "health_check_transient_delay")
 
     @health_check_transient_delay.setter
-    def health_check_transient_delay(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_transient_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_transient_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreSslServerVerify")
-    def ignore_ssl_server_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_ssl_server_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         """
         return pulumi.get(self, "ignore_ssl_server_verify")
 
     @ignore_ssl_server_verify.setter
-    def ignore_ssl_server_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_ssl_server_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_ssl_server_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of connections allowed per backend server
         """
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of retries when a backend server connection failed
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the backend
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="onMarkedDownAction")
-    def on_marked_down_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def on_marked_down_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Modify what occurs when a backend server is marked down
         """
         return pulumi.get(self, "on_marked_down_action")
 
     @on_marked_down_action.setter
-    def on_marked_down_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def on_marked_down_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "on_marked_down_action", value)
 
     @_builtins.property
     @pulumi.getter(name="proxyProtocol")
-    def proxy_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def proxy_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of PROXY protocol to enable
         """
         return pulumi.get(self, "proxy_protocol")
 
     @proxy_protocol.setter
-    def proxy_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def proxy_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "proxy_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="redispatchAttemptCount")
-    def redispatch_attempt_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def redispatch_attempt_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Whether to use another backend server on each attempt
         """
         return pulumi.get(self, "redispatch_attempt_count")
 
     @redispatch_attempt_count.setter
-    def redispatch_attempt_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def redispatch_attempt_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "redispatch_attempt_count", value)
 
     @_builtins.property
     @pulumi.getter(name="sendProxyV2")
     @_utilities.deprecated("""Please use proxy_protocol instead""")
-    def send_proxy_v2(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_proxy_v2(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables PROXY protocol version 2
         """
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
-    def send_proxy_v2(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_proxy_v2(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_proxy_v2", value)
 
     @_builtins.property
     @pulumi.getter(name="serverIps")
-    def server_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def server_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Backend server IP addresses list (IPv4 or IPv6)
         """
         return pulumi.get(self, "server_ips")
 
     @server_ips.setter
-    def server_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def server_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "server_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="sslBridging")
-    def ssl_bridging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ssl_bridging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables SSL between load balancer and backend servers
         """
         return pulumi.get(self, "ssl_bridging")
 
     @ssl_bridging.setter
-    def ssl_bridging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ssl_bridging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ssl_bridging", value)
 
     @_builtins.property
     @pulumi.getter(name="stickySessions")
-    def sticky_sessions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sticky_sessions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of sticky sessions
         """
         return pulumi.get(self, "sticky_sessions")
 
     @sticky_sessions.setter
-    def sticky_sessions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sticky_sessions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sticky_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="stickySessionsCookieName")
-    def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sticky_sessions_cookie_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cookie name for sticky sessions
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
     @sticky_sessions_cookie_name.setter
-    def sticky_sessions_cookie_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sticky_sessions_cookie_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sticky_sessions_cookie_name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutConnect")
-    def timeout_connect(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_connect(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum initial server connection establishment time
         """
         return pulumi.get(self, "timeout_connect")
 
     @timeout_connect.setter
-    def timeout_connect(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_connect(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_connect", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutQueue")
-    def timeout_queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         """
         return pulumi.get(self, "timeout_queue")
 
     @timeout_queue.setter
-    def timeout_queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutServer")
-    def timeout_server(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_server(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum server connection inactivity time
         """
         return pulumi.get(self, "timeout_server")
 
     @timeout_server.setter
-    def timeout_server(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_server(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_server", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutTunnel")
-    def timeout_tunnel(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_tunnel(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum tunnel inactivity time
         """
         return pulumi.get(self, "timeout_tunnel")
 
     @timeout_tunnel.setter
-    def timeout_tunnel(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_tunnel(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_tunnel", value)
 
 
 @pulumi.input_type
 class _BackendState:
     def __init__(__self__, *,
-                 failover_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 forward_port_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_http: Optional[pulumi.Input['BackendHealthCheckHttpArgs']] = None,
-                 health_check_https: Optional[pulumi.Input['BackendHealthCheckHttpsArgs']] = None,
-                 health_check_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_send_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input['BackendHealthCheckTcpArgs']] = None,
-                 health_check_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_transient_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_ssl_server_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_marked_down_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redispatch_attempt_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 send_proxy_v2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssl_bridging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sticky_sessions: Optional[pulumi.Input[_builtins.str]] = None,
-                 sticky_sessions_cookie_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_connect: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_server: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None):
+                 failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_http: pulumi.Input[Optional['BackendHealthCheckHttpArgs']] = None,
+                 health_check_https: pulumi.Input[Optional['BackendHealthCheckHttpsArgs']] = None,
+                 health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 health_check_tcp: pulumi.Input[Optional['BackendHealthCheckTcpArgs']] = None,
+                 health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+                 sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
 
@@ -650,7 +650,7 @@ class _BackendState:
 
     @_builtins.property
     @pulumi.getter(name="failoverHost")
-    def failover_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def failover_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Scaleway S3 bucket website to be served in case all backend servers are down
 
@@ -660,356 +660,356 @@ class _BackendState:
         return pulumi.get(self, "failover_host")
 
     @failover_host.setter
-    def failover_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def failover_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "failover_host", value)
 
     @_builtins.property
     @pulumi.getter(name="forwardPort")
-    def forward_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def forward_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         User sessions will be forwarded to this port of backend servers
         """
         return pulumi.get(self, "forward_port")
 
     @forward_port.setter
-    def forward_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def forward_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "forward_port", value)
 
     @_builtins.property
     @pulumi.getter(name="forwardPortAlgorithm")
-    def forward_port_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def forward_port_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Load balancing algorithm
         """
         return pulumi.get(self, "forward_port_algorithm")
 
     @forward_port_algorithm.setter
-    def forward_port_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def forward_port_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "forward_port_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="forwardProtocol")
-    def forward_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def forward_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Backend protocol
         """
         return pulumi.get(self, "forward_protocol")
 
     @forward_protocol.setter
-    def forward_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def forward_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "forward_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckDelay")
-    def health_check_delay(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_delay(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval between two HC requests
         """
         return pulumi.get(self, "health_check_delay")
 
     @health_check_delay.setter
-    def health_check_delay(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckHttp")
-    def health_check_http(self) -> Optional[pulumi.Input['BackendHealthCheckHttpArgs']]:
+    def health_check_http(self) -> pulumi.Input[Optional['BackendHealthCheckHttpArgs']]:
         """
         HTTP Health check
         """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
-    def health_check_http(self, value: Optional[pulumi.Input['BackendHealthCheckHttpArgs']]):
+    def health_check_http(self, value: pulumi.Input[Optional['BackendHealthCheckHttpArgs']]):
         pulumi.set(self, "health_check_http", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckHttps")
-    def health_check_https(self) -> Optional[pulumi.Input['BackendHealthCheckHttpsArgs']]:
+    def health_check_https(self) -> pulumi.Input[Optional['BackendHealthCheckHttpsArgs']]:
         """
         HTTPS Health check
         """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
-    def health_check_https(self, value: Optional[pulumi.Input['BackendHealthCheckHttpsArgs']]):
+    def health_check_https(self, value: pulumi.Input[Optional['BackendHealthCheckHttpsArgs']]):
         pulumi.set(self, "health_check_https", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckMaxRetries")
-    def health_check_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def health_check_max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of allowed failed HC requests before the backend server is marked down
         """
         return pulumi.get(self, "health_check_max_retries")
 
     @health_check_max_retries.setter
-    def health_check_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def health_check_max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "health_check_max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckPort")
-    def health_check_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def health_check_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port the HC requests will be send to. Default to `forward_port`
         """
         return pulumi.get(self, "health_check_port")
 
     @health_check_port.setter
-    def health_check_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def health_check_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "health_check_port", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckSendProxy")
-    def health_check_send_proxy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def health_check_send_proxy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether proxy protocol should be activated for the health check
         """
         return pulumi.get(self, "health_check_send_proxy")
 
     @health_check_send_proxy.setter
-    def health_check_send_proxy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def health_check_send_proxy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "health_check_send_proxy", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTcp")
-    def health_check_tcp(self) -> Optional[pulumi.Input['BackendHealthCheckTcpArgs']]:
+    def health_check_tcp(self) -> pulumi.Input[Optional['BackendHealthCheckTcpArgs']]:
         """
         TCP Health check
         """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
-    def health_check_tcp(self, value: Optional[pulumi.Input['BackendHealthCheckTcpArgs']]):
+    def health_check_tcp(self, value: pulumi.Input[Optional['BackendHealthCheckTcpArgs']]):
         pulumi.set(self, "health_check_tcp", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTimeout")
-    def health_check_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timeout before we consider a HC request failed
         """
         return pulumi.get(self, "health_check_timeout")
 
     @health_check_timeout.setter
-    def health_check_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckTransientDelay")
-    def health_check_transient_delay(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_transient_delay(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         """
         return pulumi.get(self, "health_check_transient_delay")
 
     @health_check_transient_delay.setter
-    def health_check_transient_delay(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_transient_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_transient_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreSslServerVerify")
-    def ignore_ssl_server_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_ssl_server_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         """
         return pulumi.get(self, "ignore_ssl_server_verify")
 
     @ignore_ssl_server_verify.setter
-    def ignore_ssl_server_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_ssl_server_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_ssl_server_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="lbId")
-    def lb_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lb_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The load-balancer ID
         """
         return pulumi.get(self, "lb_id")
 
     @lb_id.setter
-    def lb_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lb_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lb_id", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of connections allowed per backend server
         """
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of retries when a backend server connection failed
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the backend
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="onMarkedDownAction")
-    def on_marked_down_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def on_marked_down_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Modify what occurs when a backend server is marked down
         """
         return pulumi.get(self, "on_marked_down_action")
 
     @on_marked_down_action.setter
-    def on_marked_down_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def on_marked_down_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "on_marked_down_action", value)
 
     @_builtins.property
     @pulumi.getter(name="proxyProtocol")
-    def proxy_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def proxy_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of PROXY protocol to enable
         """
         return pulumi.get(self, "proxy_protocol")
 
     @proxy_protocol.setter
-    def proxy_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def proxy_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "proxy_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="redispatchAttemptCount")
-    def redispatch_attempt_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def redispatch_attempt_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Whether to use another backend server on each attempt
         """
         return pulumi.get(self, "redispatch_attempt_count")
 
     @redispatch_attempt_count.setter
-    def redispatch_attempt_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def redispatch_attempt_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "redispatch_attempt_count", value)
 
     @_builtins.property
     @pulumi.getter(name="sendProxyV2")
     @_utilities.deprecated("""Please use proxy_protocol instead""")
-    def send_proxy_v2(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_proxy_v2(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables PROXY protocol version 2
         """
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
-    def send_proxy_v2(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_proxy_v2(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_proxy_v2", value)
 
     @_builtins.property
     @pulumi.getter(name="serverIps")
-    def server_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def server_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Backend server IP addresses list (IPv4 or IPv6)
         """
         return pulumi.get(self, "server_ips")
 
     @server_ips.setter
-    def server_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def server_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "server_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="sslBridging")
-    def ssl_bridging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ssl_bridging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables SSL between load balancer and backend servers
         """
         return pulumi.get(self, "ssl_bridging")
 
     @ssl_bridging.setter
-    def ssl_bridging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ssl_bridging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ssl_bridging", value)
 
     @_builtins.property
     @pulumi.getter(name="stickySessions")
-    def sticky_sessions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sticky_sessions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of sticky sessions
         """
         return pulumi.get(self, "sticky_sessions")
 
     @sticky_sessions.setter
-    def sticky_sessions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sticky_sessions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sticky_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="stickySessionsCookieName")
-    def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sticky_sessions_cookie_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cookie name for sticky sessions
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
     @sticky_sessions_cookie_name.setter
-    def sticky_sessions_cookie_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sticky_sessions_cookie_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sticky_sessions_cookie_name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutConnect")
-    def timeout_connect(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_connect(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum initial server connection establishment time
         """
         return pulumi.get(self, "timeout_connect")
 
     @timeout_connect.setter
-    def timeout_connect(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_connect(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_connect", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutQueue")
-    def timeout_queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         """
         return pulumi.get(self, "timeout_queue")
 
     @timeout_queue.setter
-    def timeout_queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutServer")
-    def timeout_server(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_server(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum server connection inactivity time
         """
         return pulumi.get(self, "timeout_server")
 
     @timeout_server.setter
-    def timeout_server(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_server(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_server", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutTunnel")
-    def timeout_tunnel(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_tunnel(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum tunnel inactivity time
         """
         return pulumi.get(self, "timeout_tunnel")
 
     @timeout_tunnel.setter
-    def timeout_tunnel(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_tunnel(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_tunnel", value)
 
 
@@ -1019,36 +1019,36 @@ class Backend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 failover_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 forward_port_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_http: Optional[pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-                 health_check_https: Optional[pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
-                 health_check_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_send_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
-                 health_check_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_transient_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_ssl_server_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_marked_down_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redispatch_attempt_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 send_proxy_v2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssl_bridging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sticky_sessions: Optional[pulumi.Input[_builtins.str]] = None,
-                 sticky_sessions_cookie_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_connect: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_server: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None,
+                 failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
+                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+                 health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+                 health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+                 sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancer backends.
@@ -1197,36 +1197,36 @@ class Backend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 failover_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 forward_port_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 forward_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_http: Optional[pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-                 health_check_https: Optional[pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
-                 health_check_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 health_check_send_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 health_check_tcp: Optional[pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
-                 health_check_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check_transient_delay: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_ssl_server_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_marked_down_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redispatch_attempt_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 send_proxy_v2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssl_bridging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sticky_sessions: Optional[pulumi.Input[_builtins.str]] = None,
-                 sticky_sessions_cookie_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_connect: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_server: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None,
+                 failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
+                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+                 health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+                 health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+                 sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1284,36 +1284,36 @@ class Backend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            failover_host: Optional[pulumi.Input[_builtins.str]] = None,
-            forward_port: Optional[pulumi.Input[_builtins.int]] = None,
-            forward_port_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            forward_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            health_check_delay: Optional[pulumi.Input[_builtins.str]] = None,
-            health_check_http: Optional[pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-            health_check_https: Optional[pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
-            health_check_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            health_check_port: Optional[pulumi.Input[_builtins.int]] = None,
-            health_check_send_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
-            health_check_tcp: Optional[pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
-            health_check_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            health_check_transient_delay: Optional[pulumi.Input[_builtins.str]] = None,
-            ignore_ssl_server_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-            lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-            max_connections: Optional[pulumi.Input[_builtins.int]] = None,
-            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            on_marked_down_action: Optional[pulumi.Input[_builtins.str]] = None,
-            proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            redispatch_attempt_count: Optional[pulumi.Input[_builtins.int]] = None,
-            send_proxy_v2: Optional[pulumi.Input[_builtins.bool]] = None,
-            server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ssl_bridging: Optional[pulumi.Input[_builtins.bool]] = None,
-            sticky_sessions: Optional[pulumi.Input[_builtins.str]] = None,
-            sticky_sessions_cookie_name: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_connect: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_queue: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_server: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_tunnel: Optional[pulumi.Input[_builtins.str]] = None) -> 'Backend':
+            failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+            forward_port: pulumi.Input[Optional[_builtins.int]] = None,
+            forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
+            health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+            health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+            health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+            health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+            health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+            ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+            max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+            proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+            send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+            server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+            sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+            sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None) -> 'Backend':
         """
         Get an existing Backend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

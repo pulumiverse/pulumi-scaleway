@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *         "user2@mail.com",
  *     ],
  * }).result;
- * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: scaleway.iam.getUser({
+ * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: scaleway.iam.getUser({
  *     email: __value,
  * }) }), {});
  * const withUsers = new scaleway.iam.Group("with_users", {
@@ -186,39 +186,39 @@ export interface IamGroupState {
     /**
      * The list of IDs of the applications attached to the group.
      */
-    applicationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the creation of the group
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The description of the IAM group.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
      */
-    externalMembership?: pulumi.Input<boolean>;
+    externalMembership?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the IAM group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the organization the group is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the group
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The list of IDs of the users attached to the group.
      */
-    userIds?: pulumi.Input<pulumi.Input<string>[]>;
+    userIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -228,29 +228,29 @@ export interface IamGroupArgs {
     /**
      * The list of IDs of the applications attached to the group.
      */
-    applicationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    applicationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the IAM group.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
      */
-    externalMembership?: pulumi.Input<boolean>;
+    externalMembership?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the IAM group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the organization the group is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The list of IDs of the users attached to the group.
      */
-    userIds?: pulumi.Input<pulumi.Input<string>[]>;
+    userIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

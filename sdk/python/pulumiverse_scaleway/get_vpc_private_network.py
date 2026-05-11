@@ -244,11 +244,11 @@ def get_vpc_private_network(name: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   private_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_private_network_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   vpc_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPrivateNetworkResult]:
     """
     Gets information about a Private Network.

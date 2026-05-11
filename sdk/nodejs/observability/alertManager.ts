@@ -178,29 +178,29 @@ export interface AlertManagerState {
     /**
      * The URL of the alert manager.
      */
-    alertManagerUrl?: pulumi.Input<string>;
+    alertManagerUrl?: pulumi.Input<string | undefined>;
     /**
      * A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
      */
-    contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[]>;
+    contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[] | undefined>;
     /**
      * **Deprecated** (Optional, Boolean) Use `preconfiguredAlertIds` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
      *
      * @deprecated Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.
      */
-    enableManagedAlerts?: pulumi.Input<boolean>;
+    enableManagedAlerts?: pulumi.Input<boolean | undefined>;
     /**
      * A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
      */
-    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[]>;
+    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,23 +210,23 @@ export interface AlertManagerArgs {
     /**
      * A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
      */
-    contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[]>;
+    contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[] | undefined>;
     /**
      * **Deprecated** (Optional, Boolean) Use `preconfiguredAlertIds` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
      *
      * @deprecated Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.
      */
-    enableManagedAlerts?: pulumi.Input<boolean>;
+    enableManagedAlerts?: pulumi.Input<boolean | undefined>;
     /**
      * A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
      */
-    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[]>;
+    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

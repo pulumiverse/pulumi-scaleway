@@ -199,46 +199,46 @@ export interface InstanceSnapshotState {
     /**
      * The snapshot creation time.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Import a snapshot from a qcow2 file located in a bucket
      */
-    import?: pulumi.Input<inputs.InstanceSnapshotImport>;
+    import?: pulumi.Input<inputs.InstanceSnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the snapshot is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the snapshot is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (Optional) The size of the snapshot.
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which
      * the snapshot should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -248,32 +248,32 @@ export interface InstanceSnapshotArgs {
     /**
      * Import a snapshot from a qcow2 file located in a bucket
      */
-    import?: pulumi.Input<inputs.InstanceSnapshotImport>;
+    import?: pulumi.Input<inputs.InstanceSnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the snapshot is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which
      * the snapshot should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

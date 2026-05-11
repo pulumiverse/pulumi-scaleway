@@ -24,7 +24,7 @@ class KeyRotationPolicyArgsDict(TypedDict):
     """
     – The period between key rotations (e.g., `"720h"` for 30 days).
     """
-    next_rotation_at: NotRequired[pulumi.Input[_builtins.str]]
+    next_rotation_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time of the next scheduled rotation.
     """
@@ -33,7 +33,7 @@ class KeyRotationPolicyArgsDict(TypedDict):
 class KeyRotationPolicyArgs:
     def __init__(__self__, *,
                  rotation_period: pulumi.Input[_builtins.str],
-                 next_rotation_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 next_rotation_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
         :param pulumi.Input[_builtins.str] next_rotation_at: The date and time of the next scheduled rotation.
@@ -56,14 +56,14 @@ class KeyRotationPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="nextRotationAt")
-    def next_rotation_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def next_rotation_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the next scheduled rotation.
         """
         return pulumi.get(self, "next_rotation_at")
 
     @next_rotation_at.setter
-    def next_rotation_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def next_rotation_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "next_rotation_at", value)
 
 

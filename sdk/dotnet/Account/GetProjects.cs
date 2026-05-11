@@ -55,16 +55,20 @@ namespace Pulumiverse.Scaleway.Account
         ///     var all = Scaleway.Account.GetProjects.Invoke();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length; rangeIndex++)
+        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = "main",
-        ///             PublicKey = publicKey,
-        ///             ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///             {
+        ///                 Name = "main",
+        ///                 PublicKey = publicKey,
+        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -114,16 +118,20 @@ namespace Pulumiverse.Scaleway.Account
         ///     var all = Scaleway.Account.GetProjects.Invoke();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length; rangeIndex++)
+        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = "main",
-        ///             PublicKey = publicKey,
-        ///             ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///             {
+        ///                 Name = "main",
+        ///                 PublicKey = publicKey,
+        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -173,16 +181,20 @@ namespace Pulumiverse.Scaleway.Account
         ///     var all = Scaleway.Account.GetProjects.Invoke();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length; rangeIndex++)
+        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = "main",
-        ///             PublicKey = publicKey,
-        ///             ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             main.Add(new Scaleway.Account.SshKey($"main-{range.Value}", new()
+        ///             {
+        ///                 Name = "main",
+        ///                 PublicKey = publicKey,
+        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>

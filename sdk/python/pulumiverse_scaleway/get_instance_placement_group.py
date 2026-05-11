@@ -181,10 +181,10 @@ def get_instance_placement_group(name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        placement_group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_placement_group_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        placement_group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancePlacementGroupResult]:
     """
     Gets information about a Security Group.

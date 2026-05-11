@@ -160,11 +160,11 @@ def get_partition_schema(ext4_mountpoint: Optional[_builtins.str] = None,
         offer_id=pulumi.get(__ret__, 'offer_id'),
         os_id=pulumi.get(__ret__, 'os_id'),
         swap=pulumi.get(__ret__, 'swap'))
-def get_partition_schema_output(ext4_mountpoint: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                extra_partition: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                os_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                swap: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_partition_schema_output(ext4_mountpoint: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                extra_partition: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                os_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                swap: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPartitionSchemaResult]:
     """
     The elasticmetal_get_partition_schema data source allows you to retrieve a ready-to-use partitioning schema for a BareMetal server. This schema can be used for custom installations with optional swap and extra partitions.

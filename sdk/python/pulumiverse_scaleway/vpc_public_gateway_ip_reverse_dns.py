@@ -21,7 +21,7 @@ class VpcPublicGatewayIpReverseDnsArgs:
     def __init__(__self__, *,
                  gateway_ip_id: pulumi.Input[_builtins.str],
                  reverse: pulumi.Input[_builtins.str],
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPublicGatewayIpReverseDns resource.
 
@@ -60,23 +60,23 @@ class VpcPublicGatewayIpReverseDnsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _VpcPublicGatewayIpReverseDnsState:
     def __init__(__self__, *,
-                 gateway_ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reverse: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 gateway_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reverse: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering VpcPublicGatewayIpReverseDns resources.
 
@@ -93,38 +93,38 @@ class _VpcPublicGatewayIpReverseDnsState:
 
     @_builtins.property
     @pulumi.getter(name="gatewayIpId")
-    def gateway_ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gateway_ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Public Gateway IP ID
         """
         return pulumi.get(self, "gateway_ip_id")
 
     @gateway_ip_id.setter
-    def gateway_ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gateway_ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gateway_ip_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def reverse(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reverse(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The reverse domain name for this IP address
         """
         return pulumi.get(self, "reverse")
 
     @reverse.setter
-    def reverse(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reverse(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reverse", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the IP should be reserved.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -139,9 +139,9 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 gateway_ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reverse: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 gateway_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reverse: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages Scaleway Public Gateway public (flexible) IPs' reverse DNS.
@@ -234,9 +234,9 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 gateway_ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 reverse: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 gateway_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 reverse: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""VpcPublicGatewayIpReverseDns is deprecated: scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -264,9 +264,9 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            gateway_ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-            reverse: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'VpcPublicGatewayIpReverseDns':
+            gateway_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            reverse: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'VpcPublicGatewayIpReverseDns':
         """
         Get an existing VpcPublicGatewayIpReverseDns resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

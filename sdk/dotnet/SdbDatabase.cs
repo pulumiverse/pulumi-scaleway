@@ -97,14 +97,14 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["databaseConnectionString"] = Std.Index.Format.Invoke(new()
+    ///         ["databaseConnectionString"] = Std.Format.Invoke(new()
     ///         {
     ///             Input = "postgres://%s:%s@%s",
     ///             Args = new[]
     ///             {
     ///                 app.Id,
     ///                 apiKey.SecretKey,
-    ///                 Std.Index.Trimprefix.Invoke(new()
+    ///                 Std.Trimprefix.Invoke(new()
     ///                 {
     ///                     Input = database.Endpoint,
     ///                     Prefix = "postgres://",

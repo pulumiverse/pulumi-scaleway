@@ -185,39 +185,39 @@ export interface InstancePolicyState {
     /**
      * The action to execute when the metric-based condition is met.
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Instance group related to this policy.
      */
-    instanceGroupId?: pulumi.Input<string>;
+    instanceGroupId?: pulumi.Input<string | undefined>;
     /**
      * Cockpit metric to use when determining whether to trigger a scale up/down action.
      */
-    metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstancePolicyMetric>[]>;
+    metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstancePolicyMetric>[] | undefined>;
     /**
      * The Instance policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance policy is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * How to use the number defined in `value` when determining by how many Instances to scale up/down.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
      */
-    value?: pulumi.Input<number>;
+    value?: pulumi.Input<number | undefined>;
     /**
      * `zone`) The zone in which the Instance policy exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -235,11 +235,11 @@ export interface InstancePolicyArgs {
     /**
      * Cockpit metric to use when determining whether to trigger a scale up/down action.
      */
-    metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstancePolicyMetric>[]>;
+    metrics?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstancePolicyMetric>[] | undefined>;
     /**
      * The Instance policy name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
      */
@@ -247,7 +247,7 @@ export interface InstancePolicyArgs {
     /**
      * `projectId`) The ID of the Project the Instance policy is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * How to use the number defined in `value` when determining by how many Instances to scale up/down.
      */
@@ -259,5 +259,5 @@ export interface InstancePolicyArgs {
     /**
      * `zone`) The zone in which the Instance policy exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

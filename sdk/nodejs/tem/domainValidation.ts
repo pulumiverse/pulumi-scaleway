@@ -113,19 +113,19 @@ export interface DomainValidationState {
     /**
      * The ID of the domain name used when sending emails. This ID must correspond to a domain already registered with Scaleway's Transactional Email service.
      */
-    domainId?: pulumi.Input<string>;
+    domainId?: pulumi.Input<string | undefined>;
     /**
      * `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Indicates if the domain has been verified for email sending. This is computed after the creation or update of the domain validation resource.
      */
-    validated?: pulumi.Input<boolean>;
+    validated?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -139,9 +139,9 @@ export interface DomainValidationArgs {
     /**
      * `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

@@ -23,18 +23,18 @@ class LinkArgs:
     def __init__(__self__, *,
                  bandwidth_mbps: pulumi.Input[_builtins.int],
                  pop_id: pulumi.Input[_builtins.str],
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 partner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 peer_asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Link resource.
 
@@ -106,175 +106,175 @@ class LinkArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="enableRoutePropagation")
-    def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether route propagation is enabled or not. Defaults to `false`.
         """
         return pulumi.get(self, "enable_route_propagation")
 
     @enable_route_propagation.setter
-    def enable_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the link. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="partnerId")
-    def partner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def partner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
         """
         return pulumi.get(self, "partner_id")
 
     @partner_id.setter
-    def partner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def partner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "partner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="peerAsn")
-    def peer_asn(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def peer_asn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
         """
         return pulumi.get(self, "peer_asn")
 
     @peer_asn.setter
-    def peer_asn(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def peer_asn(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "peer_asn", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the link is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the link should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyV4Id")
-    def routing_policy_v4_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_v4_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
         """
         return pulumi.get(self, "routing_policy_v4_id")
 
     @routing_policy_v4_id.setter
-    def routing_policy_v4_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_v4_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_v4_id", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyV6Id")
-    def routing_policy_v6_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_v6_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         """
         return pulumi.get(self, "routing_policy_v6_id")
 
     @routing_policy_v6_id.setter
-    def routing_policy_v6_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_v6_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_v6_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the link.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def vlan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vlan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
         """
         return pulumi.get(self, "vlan")
 
     @vlan.setter
-    def vlan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vlan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vlan", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the Scaleway VPC to attach to the link.
         """
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
 
 @pulumi.input_type
 class _LinkState:
     def __init__(__self__, *,
-                 bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
-                 bgp_v4_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 bgp_v6_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pairing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 partner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 peer_bgp_configs: Optional[pulumi.Input[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]] = None,
-                 pop_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 scw_bgp_configs: Optional[pulumi.Input[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 bandwidth_mbps: pulumi.Input[Optional[_builtins.int]] = None,
+                 bgp_v4_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 bgp_v6_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pairing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 peer_asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 peer_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]] = None,
+                 pop_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 scw_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Link resources.
 
@@ -351,278 +351,278 @@ class _LinkState:
 
     @_builtins.property
     @pulumi.getter(name="bandwidthMbps")
-    def bandwidth_mbps(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def bandwidth_mbps(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Desired bandwidth for the link. Must be compatible with available link bandwidths and remaining bandwidth capacity of the connection.
         """
         return pulumi.get(self, "bandwidth_mbps")
 
     @bandwidth_mbps.setter
-    def bandwidth_mbps(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def bandwidth_mbps(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "bandwidth_mbps", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpV4Status")
-    def bgp_v4_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bgp_v4_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the link's BGP IPv4 session.
         """
         return pulumi.get(self, "bgp_v4_status")
 
     @bgp_v4_status.setter
-    def bgp_v4_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bgp_v4_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bgp_v4_status", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpV6Status")
-    def bgp_v6_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bgp_v6_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the link's BGP IPv6 session.
         """
         return pulumi.get(self, "bgp_v6_status")
 
     @bgp_v6_status.setter
-    def bgp_v6_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bgp_v6_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bgp_v6_status", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partner_id`.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creation date of the link (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="enableRoutePropagation")
-    def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether route propagation is enabled or not. Defaults to `false`.
         """
         return pulumi.get(self, "enable_route_propagation")
 
     @enable_route_propagation.setter
-    def enable_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the link. If not provided, a name will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Organization ID.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pairingKey")
-    def pairing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pairing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used to identify a link from a user or partner's point of view.
         """
         return pulumi.get(self, "pairing_key")
 
     @pairing_key.setter
-    def pairing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pairing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pairing_key", value)
 
     @_builtins.property
     @pulumi.getter(name="partnerId")
-    def partner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def partner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
         """
         return pulumi.get(self, "partner_id")
 
     @partner_id.setter
-    def partner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def partner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "partner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="peerAsn")
-    def peer_asn(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def peer_asn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
         """
         return pulumi.get(self, "peer_asn")
 
     @peer_asn.setter
-    def peer_asn(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def peer_asn(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "peer_asn", value)
 
     @_builtins.property
     @pulumi.getter(name="peerBgpConfigs")
-    def peer_bgp_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]]:
+    def peer_bgp_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]]:
         """
         BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "peer_bgp_configs")
 
     @peer_bgp_configs.setter
-    def peer_bgp_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]]):
+    def peer_bgp_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]]]):
         pulumi.set(self, "peer_bgp_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="popId")
-    def pop_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pop_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PoP (location) where the link will be created.
         """
         return pulumi.get(self, "pop_id")
 
     @pop_id.setter
-    def pop_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pop_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pop_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the link is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the link should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyV4Id")
-    def routing_policy_v4_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_v4_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
         """
         return pulumi.get(self, "routing_policy_v4_id")
 
     @routing_policy_v4_id.setter
-    def routing_policy_v4_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_v4_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_v4_id", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyV6Id")
-    def routing_policy_v6_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_v6_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         """
         return pulumi.get(self, "routing_policy_v6_id")
 
     @routing_policy_v6_id.setter
-    def routing_policy_v6_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_v6_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_v6_id", value)
 
     @_builtins.property
     @pulumi.getter(name="scwBgpConfigs")
-    def scw_bgp_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]]:
+    def scw_bgp_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]]:
         """
         BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "scw_bgp_configs")
 
     @scw_bgp_configs.setter
-    def scw_bgp_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]]):
+    def scw_bgp_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]]):
         pulumi.set(self, "scw_bgp_configs", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the link.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the link.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last modification date of the link (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def vlan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def vlan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
         """
         return pulumi.get(self, "vlan")
 
     @vlan.setter
-    def vlan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def vlan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "vlan", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the Scaleway VPC to attach to the link.
         """
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
 
@@ -632,20 +632,20 @@ class Link(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 partner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 pop_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 bandwidth_mbps: pulumi.Input[Optional[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 peer_asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 pop_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Interlink Links.
@@ -789,20 +789,20 @@ class Link(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 partner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
-                 pop_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vlan: Optional[pulumi.Input[_builtins.int]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 bandwidth_mbps: pulumi.Input[Optional[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 peer_asn: pulumi.Input[Optional[_builtins.int]] = None,
+                 pop_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vlan: pulumi.Input[Optional[_builtins.int]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -851,29 +851,29 @@ class Link(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bandwidth_mbps: Optional[pulumi.Input[_builtins.int]] = None,
-            bgp_v4_status: Optional[pulumi.Input[_builtins.str]] = None,
-            bgp_v6_status: Optional[pulumi.Input[_builtins.str]] = None,
-            connection_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            pairing_key: Optional[pulumi.Input[_builtins.str]] = None,
-            partner_id: Optional[pulumi.Input[_builtins.str]] = None,
-            peer_asn: Optional[pulumi.Input[_builtins.int]] = None,
-            peer_bgp_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LinkPeerBgpConfigArgs', 'LinkPeerBgpConfigArgsDict']]]]] = None,
-            pop_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            routing_policy_v4_id: Optional[pulumi.Input[_builtins.str]] = None,
-            routing_policy_v6_id: Optional[pulumi.Input[_builtins.str]] = None,
-            scw_bgp_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LinkScwBgpConfigArgs', 'LinkScwBgpConfigArgsDict']]]]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            vlan: Optional[pulumi.Input[_builtins.int]] = None,
-            vpc_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Link':
+            bandwidth_mbps: pulumi.Input[Optional[_builtins.int]] = None,
+            bgp_v4_status: pulumi.Input[Optional[_builtins.str]] = None,
+            bgp_v6_status: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            pairing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            peer_asn: pulumi.Input[Optional[_builtins.int]] = None,
+            peer_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LinkPeerBgpConfigArgs', 'LinkPeerBgpConfigArgsDict']]]]] = None,
+            pop_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scw_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LinkScwBgpConfigArgs', 'LinkScwBgpConfigArgsDict']]]]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            vlan: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Link':
         """
         Get an existing Link resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

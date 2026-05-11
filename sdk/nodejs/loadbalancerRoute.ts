@@ -244,42 +244,42 @@ export interface LoadbalancerRouteState {
     /**
      * The ID of the backend the route is associated with.
      */
-    backendId?: pulumi.Input<string>;
+    backendId?: pulumi.Input<string | undefined>;
     /**
      * The date on which the route was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the frontend the route is associated with.
      */
-    frontendId?: pulumi.Input<string>;
+    frontendId?: pulumi.Input<string | undefined>;
     /**
      * The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      *
      * > **Important:** This field should be set for routes on HTTP Load Balancers.
      */
-    matchHostHeader?: pulumi.Input<string>;
+    matchHostHeader?: pulumi.Input<string | undefined>;
     /**
      * The value to match in the URL beginning path from an incoming request.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      */
-    matchPathBegin?: pulumi.Input<string>;
+    matchPathBegin?: pulumi.Input<string | undefined>;
     /**
      * The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      *
      * > **Important:** This field should be set for routes on TCP Load Balancers.
      */
-    matchSni?: pulumi.Input<string>;
+    matchSni?: pulumi.Input<string | undefined>;
     /**
      * If true, all subdomains will match.
      */
-    matchSubdomains?: pulumi.Input<boolean>;
+    matchSubdomains?: pulumi.Input<boolean | undefined>;
     /**
      * The date on which the route was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -300,21 +300,21 @@ export interface LoadbalancerRouteArgs {
      *
      * > **Important:** This field should be set for routes on HTTP Load Balancers.
      */
-    matchHostHeader?: pulumi.Input<string>;
+    matchHostHeader?: pulumi.Input<string | undefined>;
     /**
      * The value to match in the URL beginning path from an incoming request.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      */
-    matchPathBegin?: pulumi.Input<string>;
+    matchPathBegin?: pulumi.Input<string | undefined>;
     /**
      * The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      *
      * > **Important:** This field should be set for routes on TCP Load Balancers.
      */
-    matchSni?: pulumi.Input<string>;
+    matchSni?: pulumi.Input<string | undefined>;
     /**
      * If true, all subdomains will match.
      */
-    matchSubdomains?: pulumi.Input<boolean>;
+    matchSubdomains?: pulumi.Input<boolean | undefined>;
 }

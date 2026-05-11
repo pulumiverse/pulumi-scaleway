@@ -184,11 +184,11 @@ def get_private_nic(private_network_id: Optional[_builtins.str] = None,
         server_id=pulumi.get(__ret__, 'server_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_private_nic_output(private_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           private_nic_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                           zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_private_nic_output(private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           private_nic_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                           zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateNicResult]:
     """
     Gets information about an instance private NIC.

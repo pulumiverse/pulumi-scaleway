@@ -343,10 +343,10 @@ def get_redis_cluster(cluster_id: Optional[_builtins.str] = None,
         user_name=pulumi.get(__ret__, 'user_name'),
         version=pulumi.get(__ret__, 'version'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_redis_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisClusterResult]:
     """
     Gets information about a Redis™ cluster.

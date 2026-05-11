@@ -24,20 +24,20 @@ class ClusterArgs:
                  node_type: pulumi.Input[_builtins.str],
                  user_name: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]] = None,
-                 cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input['ClusterPublicNetworkArgs']] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tls_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]] = None,
+                 cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional['ClusterPublicNetworkArgs']] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -164,19 +164,19 @@ class ClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]]:
         """
         List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         """
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterSize")
-    def cluster_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cluster_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of nodes in the Redis™ cluster.
 
@@ -198,36 +198,36 @@ class ClusterArgs:
         return pulumi.get(self, "cluster_size")
 
     @cluster_size.setter
-    def cluster_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cluster_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cluster_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Redis™ cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -235,36 +235,36 @@ class ClusterArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]:
         """
         The list of private IPv4 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]:
         """
         Describes the Private Network you want to connect to your cluster. If not set, a public
         network will be provided. More details on the Private Network section
@@ -272,12 +272,12 @@ class ClusterArgs:
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the Redis™ cluster is
         associated with.
@@ -285,12 +285,12 @@ class ClusterArgs:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicNetwork")
-    def public_network(self) -> Optional[pulumi.Input['ClusterPublicNetworkArgs']]:
+    def public_network(self) -> pulumi.Input[Optional['ClusterPublicNetworkArgs']]:
         """
         (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
         > The `public_network` block exports:
@@ -298,12 +298,12 @@ class ClusterArgs:
         return pulumi.get(self, "public_network")
 
     @public_network.setter
-    def public_network(self, value: Optional[pulumi.Input['ClusterPublicNetworkArgs']]):
+    def public_network(self, value: pulumi.Input[Optional['ClusterPublicNetworkArgs']]):
         pulumi.set(self, "public_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
         with scaleway API or CLI
@@ -311,24 +311,24 @@ class ClusterArgs:
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Redis™ cluster.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsEnabled")
-    def tls_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether TLS is enabled or not.
 
@@ -337,12 +337,12 @@ class ClusterArgs:
         return pulumi.get(self, "tls_enabled")
 
     @tls_enabled.setter
-    def tls_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the
         Redis™ cluster should be created.
@@ -350,34 +350,34 @@ class ClusterArgs:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _ClusterState:
     def __init__(__self__, *,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input['ClusterPublicNetworkArgs']] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tls_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional['ClusterPublicNetworkArgs']] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
 
@@ -477,31 +477,31 @@ class _ClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]]:
         """
         List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         """
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PEM of the certificate used by redis, only when `tls_enabled` is true
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterSize")
-    def cluster_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cluster_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of nodes in the Redis™ cluster.
 
@@ -523,48 +523,48 @@ class _ClusterState:
         return pulumi.get(self, "cluster_size")
 
     @cluster_size.setter
-    def cluster_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cluster_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cluster_size", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionString")
-    def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `user_name` and the password (Redis ACL). When `password_wo` is used, the password is omitted because it is not stored in state.
         """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
-    def connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_string", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of creation of the Redis™ cluster.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Redis™ cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
-    def node_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of Redis™ cluster you want to create (e.g. `RED1-M`).
 
@@ -574,24 +574,24 @@ class _ClusterState:
         return pulumi.get(self, "node_type")
 
     @node_type.setter
-    def node_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -599,36 +599,36 @@ class _ClusterState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]:
         """
         The list of private IPv4 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]:
         """
         Describes the Private Network you want to connect to your cluster. If not set, a public
         network will be provided. More details on the Private Network section
@@ -636,12 +636,12 @@ class _ClusterState:
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the Redis™ cluster is
         associated with.
@@ -649,12 +649,12 @@ class _ClusterState:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicNetwork")
-    def public_network(self) -> Optional[pulumi.Input['ClusterPublicNetworkArgs']]:
+    def public_network(self) -> pulumi.Input[Optional['ClusterPublicNetworkArgs']]:
         """
         (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
         > The `public_network` block exports:
@@ -662,12 +662,12 @@ class _ClusterState:
         return pulumi.get(self, "public_network")
 
     @public_network.setter
-    def public_network(self, value: Optional[pulumi.Input['ClusterPublicNetworkArgs']]):
+    def public_network(self, value: pulumi.Input[Optional['ClusterPublicNetworkArgs']]):
         pulumi.set(self, "public_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
         with scaleway API or CLI
@@ -675,24 +675,24 @@ class _ClusterState:
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Redis™ cluster.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsEnabled")
-    def tls_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether TLS is enabled or not.
 
@@ -701,36 +701,36 @@ class _ClusterState:
         return pulumi.get(self, "tls_enabled")
 
     @tls_enabled.setter
-    def tls_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the Redis™ cluster.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the first user of the Redis™ cluster.
         """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Redis™ cluster's version (e.g. `6.2.7`).
 
@@ -740,12 +740,12 @@ class _ClusterState:
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the
         Redis™ cluster should be created.
@@ -753,7 +753,7 @@ class _ClusterState:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -763,23 +763,23 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
-                 cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tls_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
+                 cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Redis™ clusters.
@@ -933,23 +933,23 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
-                 cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tls_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
+                 cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1000,27 +1000,27 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
-            connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_type: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_network: Optional[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
-            settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            tls_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            user_name: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Cluster':
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterAclArgs', 'ClusterAclArgsDict']]]]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+            connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateIpArgs', 'ClusterPrivateIpArgsDict']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_network: pulumi.Input[Optional[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

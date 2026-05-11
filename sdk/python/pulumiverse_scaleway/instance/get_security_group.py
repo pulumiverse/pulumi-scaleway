@@ -229,10 +229,10 @@ def get_security_group(name: Optional[_builtins.str] = None,
         stateful=pulumi.get(__ret__, 'stateful'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_security_group_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              security_group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_security_group_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              security_group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecurityGroupResult]:
     """
     Gets information about a Security Group.

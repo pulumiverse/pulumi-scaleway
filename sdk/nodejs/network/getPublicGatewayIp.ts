@@ -83,5 +83,5 @@ export function getPublicGatewayIpOutput(args?: GetPublicGatewayIpOutputArgs, op
  * A collection of arguments for invoking getPublicGatewayIp.
  */
 export interface GetPublicGatewayIpOutputArgs {
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
 }

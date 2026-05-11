@@ -28,19 +28,19 @@ __all__ = [
 ]
 
 class DeploymentPrivateEndpointArgsDict(TypedDict):
-    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_auth: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable the authentication on the endpoint.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Optional) The id of the public endpoint.
     """
-    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    private_network_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the private network to use.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Optional) The URL of the endpoint.
     """
@@ -48,10 +48,10 @@ class DeploymentPrivateEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPrivateEndpointArgs:
     def __init__(__self__, *,
-                 disable_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 disable_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] disable_auth: Disable the authentication on the endpoint.
         :param pulumi.Input[_builtins.str] id: (Optional) The id of the public endpoint.
@@ -69,59 +69,59 @@ class DeploymentPrivateEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="disableAuth")
-    def disable_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_auth(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable the authentication on the endpoint.
         """
         return pulumi.get(self, "disable_auth")
 
     @disable_auth.setter
-    def disable_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_auth(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_auth", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Optional) The id of the public endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private network to use.
         """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Optional) The URL of the endpoint.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
 class DeploymentPrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IPv4 address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Optional) The id of the public endpoint.
     """
@@ -129,8 +129,8 @@ class DeploymentPrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IPv4 address.
         :param pulumi.Input[_builtins.str] id: (Optional) The id of the public endpoint.
@@ -142,43 +142,43 @@ class DeploymentPrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IPv4 address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Optional) The id of the public endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class DeploymentPublicEndpointArgsDict(TypedDict):
-    disable_auth: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_auth: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable the authentication on the endpoint.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Optional) The id of the public endpoint.
     """
-    is_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    is_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable or disable public endpoint.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Optional) The URL of the endpoint.
     """
@@ -186,10 +186,10 @@ class DeploymentPublicEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPublicEndpointArgs:
     def __init__(__self__, *,
-                 disable_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 disable_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] disable_auth: Disable the authentication on the endpoint.
         :param pulumi.Input[_builtins.str] id: (Optional) The id of the public endpoint.
@@ -207,59 +207,59 @@ class DeploymentPublicEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="disableAuth")
-    def disable_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_auth(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable the authentication on the endpoint.
         """
         return pulumi.get(self, "disable_auth")
 
     @disable_auth.setter
-    def disable_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_auth(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_auth", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Optional) The id of the public endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isEnabled")
-    def is_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable public endpoint.
         """
         return pulumi.get(self, "is_enabled")
 
     @is_enabled.setter
-    def is_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Optional) The URL of the endpoint.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
 class ModelNodesSupportArgsDict(TypedDict):
-    node_type_name: NotRequired[pulumi.Input[_builtins.str]]
+    node_type_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of node supported.
     """
-    quantizations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgsDict']]]]
+    quantizations: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]]
     """
     A list of supported quantization options, including:
     """
@@ -267,8 +267,8 @@ class ModelNodesSupportArgsDict(TypedDict):
 @pulumi.input_type
 class ModelNodesSupportArgs:
     def __init__(__self__, *,
-                 node_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 quantizations: Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]] = None):
+                 node_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 quantizations: pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] node_type_name: The type of node supported.
         :param pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]] quantizations: A list of supported quantization options, including:
@@ -280,39 +280,39 @@ class ModelNodesSupportArgs:
 
     @_builtins.property
     @pulumi.getter(name="nodeTypeName")
-    def node_type_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of node supported.
         """
         return pulumi.get(self, "node_type_name")
 
     @node_type_name.setter
-    def node_type_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def quantizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]:
+    def quantizations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]:
         """
         A list of supported quantization options, including:
         """
         return pulumi.get(self, "quantizations")
 
     @quantizations.setter
-    def quantizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]):
+    def quantizations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]):
         pulumi.set(self, "quantizations", value)
 
 
 class ModelNodesSupportQuantizationArgsDict(TypedDict):
-    allowed: NotRequired[pulumi.Input[_builtins.bool]]
+    allowed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether this quantization is allowed.
     """
-    max_context_size: NotRequired[pulumi.Input[_builtins.int]]
+    max_context_size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum context length supported by this quantization.
     """
-    quantization_bits: NotRequired[pulumi.Input[_builtins.int]]
+    quantization_bits: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of bits used for quantization (e.g., 8, 16).
     """
@@ -320,9 +320,9 @@ class ModelNodesSupportQuantizationArgsDict(TypedDict):
 @pulumi.input_type
 class ModelNodesSupportQuantizationArgs:
     def __init__(__self__, *,
-                 allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_context_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 quantization_bits: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_context_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 quantization_bits: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] allowed: Whether this quantization is allowed.
         :param pulumi.Input[_builtins.int] max_context_size: Maximum context length supported by this quantization.
@@ -337,38 +337,38 @@ class ModelNodesSupportQuantizationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this quantization is allowed.
         """
         return pulumi.get(self, "allowed")
 
     @allowed.setter
-    def allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="maxContextSize")
-    def max_context_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_context_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum context length supported by this quantization.
         """
         return pulumi.get(self, "max_context_size")
 
     @max_context_size.setter
-    def max_context_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_context_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_context_size", value)
 
     @_builtins.property
     @pulumi.getter(name="quantizationBits")
-    def quantization_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def quantization_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of bits used for quantization (e.g., 8, 16).
         """
         return pulumi.get(self, "quantization_bits")
 
     @quantization_bits.setter
-    def quantization_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def quantization_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "quantization_bits", value)
 
 

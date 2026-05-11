@@ -113,10 +113,10 @@ export interface GetLbRoutesOutputArgs {
     /**
      * The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
      */
-    frontendId?: pulumi.Input<string>;
-    projectId?: pulumi.Input<string>;
+    frontendId?: pulumi.Input<string | undefined>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the routes exist.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

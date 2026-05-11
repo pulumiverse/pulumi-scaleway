@@ -207,60 +207,60 @@ export interface SecretState {
     /**
      * Date and time of the secret's creation (in RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Description of the secret (e.g. `my-new-description`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
-    ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.SecretEphemeralPolicy>[]>;
+    ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.SecretEphemeralPolicy>[] | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Path of the secret, defaults to `/`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The project ID containing is the secret.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region
      * in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The status of the secret.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Tags of the secret (e.g. `["tag", "secret"]`).
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Date and time of the secret's last update (in RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The amount of secret versions.
      */
-    versionCount?: pulumi.Input<number>;
+    versionCount?: pulumi.Input<number | undefined>;
     /**
      * List of the versions of the secret
      */
-    versions?: pulumi.Input<pulumi.Input<inputs.SecretVersion>[]>;
+    versions?: pulumi.Input<pulumi.Input<inputs.SecretVersion>[] | undefined>;
 }
 
 /**
@@ -270,38 +270,38 @@ export interface SecretArgs {
     /**
      * Description of the secret (e.g. `my-new-description`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
-    ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.SecretEphemeralPolicy>[]>;
+    ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.SecretEphemeralPolicy>[] | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Path of the secret, defaults to `/`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The project ID containing is the secret.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region
      * in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Tags of the secret (e.g. `["tag", "secret"]`).
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

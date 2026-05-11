@@ -26,19 +26,19 @@ __all__ = [
 ]
 
 class DeploymentEndpointArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
-    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    private_network_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private network ID if the endpoint is private.
     """
-    public: NotRequired[pulumi.Input[_builtins.bool]]
+    public: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the endpoint is public (true) or private (false).
     """
-    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgsDict']]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]]
     """
     List of services exposed on the endpoint.
     """
@@ -46,10 +46,10 @@ class DeploymentEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentEndpointArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
-                 services: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
+                 services: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The ID of the endpoint.
         :param pulumi.Input[_builtins.str] private_network_id: Private network ID if the endpoint is private.
@@ -67,63 +67,63 @@ class DeploymentEndpointArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private network ID if the endpoint is private.
         """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the endpoint is public (true) or private (false).
         """
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
     @_builtins.property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]:
+    def services(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]:
         """
         List of services exposed on the endpoint.
         """
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]):
+    def services(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]):
         pulumi.set(self, "services", value)
 
 
 class DeploymentEndpointServiceArgsDict(TypedDict):
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the OpenSearch deployment. If not specified, a random name will be generated.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Service port number.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
     """
@@ -131,9 +131,9 @@ class DeploymentEndpointServiceArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentEndpointServiceArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
         :param pulumi.Input[_builtins.int] port: Service port number.
@@ -148,38 +148,38 @@ class DeploymentEndpointServiceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the OpenSearch deployment. If not specified, a random name will be generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Service port number.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 

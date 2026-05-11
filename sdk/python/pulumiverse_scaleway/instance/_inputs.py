@@ -44,27 +44,27 @@ __all__ = [
 ]
 
 class ImageAdditionalVolumeArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the server containing the volume.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the image. If not provided it will be randomly generated.
     """
-    server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    server: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Description of the server containing the volume (in case the image is a backup from a server).
     """
-    size: NotRequired[pulumi.Input[_builtins.int]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The size of the volume.
     """
-    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of tags to apply to the image.
     """
-    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
     """
@@ -72,12 +72,12 @@ class ImageAdditionalVolumeArgsDict(TypedDict):
 @pulumi.input_type
 class ImageAdditionalVolumeArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 server: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 server: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: ID of the server containing the volume.
         :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
@@ -101,91 +101,91 @@ class ImageAdditionalVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the server containing the volume.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the image. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def server(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def server(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Description of the server containing the volume (in case the image is a backup from a server).
         """
         return pulumi.get(self, "server")
 
     @server.setter
-    def server(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def server(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "server", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the volume.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags to apply to the image.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
 class ImageRootVolumeArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the server containing the volume.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the image. If not provided it will be randomly generated.
     """
-    size: NotRequired[pulumi.Input[_builtins.int]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The size of the volume.
     """
-    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
     """
@@ -193,10 +193,10 @@ class ImageRootVolumeArgsDict(TypedDict):
 @pulumi.input_type
 class ImageRootVolumeArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: ID of the server containing the volume.
         :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
@@ -214,59 +214,59 @@ class ImageRootVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the server containing the volume.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the image. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the volume.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
 class PrivateNicPrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IP address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP address resource.
     """
@@ -274,8 +274,8 @@ class PrivateNicPrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class PrivateNicPrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IP address.
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
@@ -287,26 +287,26 @@ class PrivateNicPrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IP address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -315,25 +315,25 @@ class SecurityGroupInboundRuleArgsDict(TypedDict):
     """
     The action to take when rule match. Possible values are: `accept` or `drop`.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
     """
-    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    ip_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
     """
-    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    port_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
     If no `port` nor `port_range` are specified, rule will apply to all port.
     Only one of `port` and `port_range` should be specified.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
     """
@@ -342,11 +342,11 @@ class SecurityGroupInboundRuleArgsDict(TypedDict):
 class SecurityGroupInboundRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: The action to take when rule match. Possible values are: `accept` or `drop`.
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
@@ -387,43 +387,43 @@ class SecurityGroupInboundRuleArgs:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="ipRange")
-    def ip_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
         return pulumi.get(self, "ip_range")
 
     @ip_range.setter
-    def ip_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port this rule applies to. If no `port` nor `port_range` are specified, the rule will apply to all port. Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="portRange")
-    def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
         If no `port` nor `port_range` are specified, rule will apply to all port.
@@ -432,19 +432,19 @@ class SecurityGroupInboundRuleArgs:
         return pulumi.get(self, "port_range")
 
     @port_range.setter
-    def port_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
@@ -453,23 +453,23 @@ class SecurityGroupOutboundRuleArgsDict(TypedDict):
     """
     Action when rule match request (drop or accept)
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
     """
-    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    ip_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Network port for this rule
     """
-    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    port_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed port range for this rule (e.g: 1-1024, 22-22)
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Protocol for this rule (TCP, UDP, ICMP or ANY)
     """
@@ -478,11 +478,11 @@ class SecurityGroupOutboundRuleArgsDict(TypedDict):
 class SecurityGroupOutboundRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: Action when rule match request (drop or accept)
         :param pulumi.Input[_builtins.str] ip: Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
@@ -521,62 +521,62 @@ class SecurityGroupOutboundRuleArgs:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="ipRange")
-    def ip_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
         """
         return pulumi.get(self, "ip_range")
 
     @ip_range.setter
-    def ip_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Network port for this rule
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="portRange")
-    def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed port range for this rule (e.g: 1-1024, 22-22)
         """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
-    def port_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Protocol for this rule (TCP, UDP, ICMP or ANY)
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
@@ -585,25 +585,25 @@ class SecurityGroupRulesInboundRuleArgsDict(TypedDict):
     """
     The action to take when rule match. Possible values are: `accept` or `drop`.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
     """
-    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    ip_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port this rule apply to. If no port is specified, rule will apply to all port.
     """
-    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    port_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
     If no `port` nor `port_range` are specified, rule will apply to all port.
     Only one of `port` and `port_range` should be specified.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
     """
@@ -612,11 +612,11 @@ class SecurityGroupRulesInboundRuleArgsDict(TypedDict):
 class SecurityGroupRulesInboundRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: The action to take when rule match. Possible values are: `accept` or `drop`.
         :param pulumi.Input[_builtins.str] ip: The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
@@ -657,43 +657,43 @@ class SecurityGroupRulesInboundRuleArgs:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="ipRange")
-    def ip_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
         return pulumi.get(self, "ip_range")
 
     @ip_range.setter
-    def ip_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port this rule apply to. If no port is specified, rule will apply to all port.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="portRange")
-    def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Need terraform >= 0.13.0 (Optional) The port range (e.g `22-23`) this rule applies to.
         If no `port` nor `port_range` are specified, rule will apply to all port.
@@ -702,19 +702,19 @@ class SecurityGroupRulesInboundRuleArgs:
         return pulumi.get(self, "port_range")
 
     @port_range.setter
-    def port_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
@@ -723,23 +723,23 @@ class SecurityGroupRulesOutboundRuleArgsDict(TypedDict):
     """
     Action when rule match request (drop or accept)
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
     """
-    ip_range: NotRequired[pulumi.Input[_builtins.str]]
+    ip_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Network port for this rule
     """
-    port_range: NotRequired[pulumi.Input[_builtins.str]]
+    port_range: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Computed port range for this rule (e.g: 1-1024, 22-22)
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Protocol for this rule (TCP, UDP, ICMP or ANY)
     """
@@ -748,11 +748,11 @@ class SecurityGroupRulesOutboundRuleArgsDict(TypedDict):
 class SecurityGroupRulesOutboundRuleArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: Action when rule match request (drop or accept)
         :param pulumi.Input[_builtins.str] ip: Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
@@ -791,71 +791,71 @@ class SecurityGroupRulesOutboundRuleArgs:
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="ipRange")
-    def ip_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
         """
         return pulumi.get(self, "ip_range")
 
     @ip_range.setter
-    def ip_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Network port for this rule
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="portRange")
-    def port_range(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port_range(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Computed port range for this rule (e.g: 1-1024, 22-22)
         """
         return pulumi.get(self, "port_range")
 
     @port_range.setter
-    def port_range(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port_range(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port_range", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Protocol for this rule (TCP, UDP, ICMP or ANY)
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
 class ServerFilesystemArgsDict(TypedDict):
-    filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
+    filesystem_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The unique ID of the filesystem attached to the server.
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The state of the filesystem
     """
@@ -863,8 +863,8 @@ class ServerFilesystemArgsDict(TypedDict):
 @pulumi.input_type
 class ServerFilesystemArgs:
     def __init__(__self__, *,
-                 filesystem_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 filesystem_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] filesystem_id: The unique ID of the filesystem attached to the server.
         :param pulumi.Input[_builtins.str] status: The state of the filesystem
@@ -876,35 +876,35 @@ class ServerFilesystemArgs:
 
     @_builtins.property
     @pulumi.getter(name="filesystemId")
-    def filesystem_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def filesystem_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID of the filesystem attached to the server.
         """
         return pulumi.get(self, "filesystem_id")
 
     @filesystem_id.setter
-    def filesystem_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def filesystem_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "filesystem_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the filesystem
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
 class ServerPrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IP address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP address resource.
     """
@@ -912,8 +912,8 @@ class ServerPrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class ServerPrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IP address.
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
@@ -925,26 +925,26 @@ class ServerPrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IP address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -953,19 +953,19 @@ class ServerPrivateNetworkArgsDict(TypedDict):
     """
     The Private Network ID
     """
-    mac_address: NotRequired[pulumi.Input[_builtins.str]]
+    mac_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     MAC address of the NIC
     """
-    pnic_id: NotRequired[pulumi.Input[_builtins.str]]
+    pnic_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the NIC
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private NIC state
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     `zone`) The zone in which the server should be created.
     """
@@ -974,10 +974,10 @@ class ServerPrivateNetworkArgsDict(TypedDict):
 class ServerPrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[_builtins.str],
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 pnic_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 pnic_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] pn_id: The Private Network ID
         :param pulumi.Input[_builtins.str] mac_address: MAC address of the NIC
@@ -1009,79 +1009,79 @@ class ServerPrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MAC address of the NIC
         """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
     @pulumi.getter(name="pnicId")
-    def pnic_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pnic_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the NIC
         """
         return pulumi.get(self, "pnic_id")
 
     @pnic_id.setter
-    def pnic_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pnic_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pnic_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private NIC state
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 class ServerPublicIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The address of the IP.
     """
-    dynamic: NotRequired[pulumi.Input[_builtins.bool]]
+    dynamic: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the IP is dynamic.
     """
-    family: NotRequired[pulumi.Input[_builtins.str]]
+    family: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IP address' family.
     """
-    gateway: NotRequired[pulumi.Input[_builtins.str]]
+    gateway: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IP of the Gateway associated with the IP.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP.
     """
-    netmask: NotRequired[pulumi.Input[_builtins.str]]
+    netmask: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The CIDR netmask of the IP.
     """
-    provisioning_mode: NotRequired[pulumi.Input[_builtins.str]]
+    provisioning_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The provisioning mode of the IP
     """
@@ -1089,13 +1089,13 @@ class ServerPublicIpArgsDict(TypedDict):
 @pulumi.input_type
 class ServerPublicIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 family: Optional[pulumi.Input[_builtins.str]] = None,
-                 gateway: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 netmask: Optional[pulumi.Input[_builtins.str]] = None,
-                 provisioning_mode: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 family: pulumi.Input[Optional[_builtins.str]] = None,
+                 gateway: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 netmask: pulumi.Input[Optional[_builtins.str]] = None,
+                 provisioning_mode: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The address of the IP.
         :param pulumi.Input[_builtins.bool] dynamic: Whether the IP is dynamic.
@@ -1122,121 +1122,121 @@ class ServerPublicIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The address of the IP.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dynamic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the IP is dynamic.
         """
         return pulumi.get(self, "dynamic")
 
     @dynamic.setter
-    def dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dynamic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dynamic", value)
 
     @_builtins.property
     @pulumi.getter
-    def family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def family(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP address' family.
         """
         return pulumi.get(self, "family")
 
     @family.setter
-    def family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "family", value)
 
     @_builtins.property
     @pulumi.getter
-    def gateway(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gateway(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP of the Gateway associated with the IP.
         """
         return pulumi.get(self, "gateway")
 
     @gateway.setter
-    def gateway(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gateway(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gateway", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def netmask(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def netmask(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The CIDR netmask of the IP.
         """
         return pulumi.get(self, "netmask")
 
     @netmask.setter
-    def netmask(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def netmask(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "netmask", value)
 
     @_builtins.property
     @pulumi.getter(name="provisioningMode")
-    def provisioning_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provisioning_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The provisioning mode of the IP
         """
         return pulumi.get(self, "provisioning_mode")
 
     @provisioning_mode.setter
-    def provisioning_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provisioning_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provisioning_mode", value)
 
 
 class ServerRootVolumeArgsDict(TypedDict):
-    boot: NotRequired[pulumi.Input[_builtins.bool]]
+    boot: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set the volume where the boot the server
     """
-    delete_on_termination: NotRequired[pulumi.Input[_builtins.bool]]
+    delete_on_termination: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Forces deletion of the root volume on instance termination.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the root volume.
     """
-    sbs_iops: NotRequired[pulumi.Input[_builtins.int]]
+    sbs_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
 
     > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
     It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
     """
-    size_in_gb: NotRequired[pulumi.Input[_builtins.int]]
+    size_in_gb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Size of the root volume in gigabytes.
     To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
     check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
     Depending on `volume_type`, updates to this field may recreate a new resource.
     """
-    volume_id: NotRequired[pulumi.Input[_builtins.str]]
+    volume_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
     """
-    volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
     """
@@ -1244,13 +1244,13 @@ class ServerRootVolumeArgsDict(TypedDict):
 @pulumi.input_type
 class ServerRootVolumeArgs:
     def __init__(__self__, *,
-                 boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_on_termination: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sbs_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_on_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sbs_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] boot: Set the volume where the boot the server
         :param pulumi.Input[_builtins.bool] delete_on_termination: Forces deletion of the root volume on instance termination.
@@ -1283,43 +1283,43 @@ class ServerRootVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set the volume where the boot the server
         """
         return pulumi.get(self, "boot")
 
     @boot.setter
-    def boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "boot", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnTermination")
-    def delete_on_termination(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_termination(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Forces deletion of the root volume on instance termination.
         """
         return pulumi.get(self, "delete_on_termination")
 
     @delete_on_termination.setter
-    def delete_on_termination(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_termination(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_termination", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the root volume.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="sbsIops")
-    def sbs_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sbs_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
 
@@ -1329,12 +1329,12 @@ class ServerRootVolumeArgs:
         return pulumi.get(self, "sbs_iops")
 
     @sbs_iops.setter
-    def sbs_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sbs_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sbs_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeInGb")
-    def size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Size of the root volume in gigabytes.
         To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -1344,31 +1344,31 @@ class ServerRootVolumeArgs:
         return pulumi.get(self, "size_in_gb")
 
     @size_in_gb.setter
-    def size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
         """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
-    def volume_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_id", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 

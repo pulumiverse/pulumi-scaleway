@@ -22,13 +22,13 @@ class MnqSnsTopicSubscriptionArgs:
                  access_key: pulumi.Input[_builtins.str],
                  protocol: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 redrive_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MnqSnsTopicSubscription resource.
 
@@ -100,43 +100,43 @@ class MnqSnsTopicSubscriptionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Endpoint of the subscription
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="redrivePolicy")
-    def redrive_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def redrive_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Activate JSON redrive policy.
         """
         return pulumi.get(self, "redrive_policy")
 
     @redrive_policy.setter
-    def redrive_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def redrive_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "redrive_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region
         in which SNS is enabled.
@@ -144,60 +144,60 @@ class MnqSnsTopicSubscriptionArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="snsEndpoint")
-    def sns_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sns_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sns_endpoint")
 
     @sns_endpoint.setter
-    def sns_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sns_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sns_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="topicArn")
-    def topic_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def topic_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the topic. Either `topic_id` or `topic_arn` is required.
         """
         return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
-    def topic_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def topic_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "topic_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="topicId")
-    def topic_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def topic_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
         """
         return pulumi.get(self, "topic_id")
 
     @topic_id.setter
-    def topic_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def topic_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "topic_id", value)
 
 
 @pulumi.input_type
 class _MnqSnsTopicSubscriptionState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redrive_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MnqSnsTopicSubscription resources.
 
@@ -239,79 +239,79 @@ class _MnqSnsTopicSubscriptionState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The access key of the SNS credentials.
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the topic subscription
         """
         return pulumi.get(self, "arn")
 
     @arn.setter
-    def arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Endpoint of the subscription
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Protocol of the SNS topic subscription.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="redrivePolicy")
-    def redrive_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def redrive_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Activate JSON redrive policy.
         """
         return pulumi.get(self, "redrive_policy")
 
     @redrive_policy.setter
-    def redrive_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def redrive_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "redrive_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region
         in which SNS is enabled.
@@ -319,55 +319,55 @@ class _MnqSnsTopicSubscriptionState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key of the SNS credentials.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="snsEndpoint")
-    def sns_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sns_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sns_endpoint")
 
     @sns_endpoint.setter
-    def sns_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sns_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sns_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="topicArn")
-    def topic_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def topic_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the topic. Either `topic_id` or `topic_arn` is required.
         """
         return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
-    def topic_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def topic_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "topic_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="topicId")
-    def topic_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def topic_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
         """
         return pulumi.get(self, "topic_id")
 
     @topic_id.setter
-    def topic_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def topic_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "topic_id", value)
 
 
@@ -382,16 +382,16 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redrive_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages Scaleway Messaging and Queuing SNS topic subscriptions.
@@ -518,16 +518,16 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 redrive_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 topic_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 topic_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""MnqSnsTopicSubscription is deprecated: scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -567,17 +567,17 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            arn: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            redrive_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            topic_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            topic_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'MnqSnsTopicSubscription':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            topic_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MnqSnsTopicSubscription':
         """
         Get an existing MnqSnsTopicSubscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

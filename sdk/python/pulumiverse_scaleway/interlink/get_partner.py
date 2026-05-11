@@ -185,9 +185,9 @@ def get_partner(name: Optional[_builtins.str] = None,
         portal_url=pulumi.get(__ret__, 'portal_url'),
         region=pulumi.get(__ret__, 'region'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_partner_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       partner_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_partner_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       partner_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPartnerResult]:
     """
     Gets information about an Interlink Partner.

@@ -20,11 +20,11 @@ __all__ = ['DnsStageArgs', 'DnsStage']
 class DnsStageArgs:
     def __init__(__self__, *,
                  pipeline_id: pulumi.Input[_builtins.str],
-                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DnsStage resource.
 
@@ -61,78 +61,78 @@ class DnsStageArgs:
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
     @backend_stage_id.setter
-    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheStageId")
-    def cache_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "cache_stage_id")
 
     @cache_stage_id.setter
-    def cache_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_stage_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def fqdns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def fqdns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         """
         return pulumi.get(self, "fqdns")
 
     @fqdns.setter
-    def fqdns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def fqdns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "fqdns", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the DNS stage is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsStageId")
-    def tls_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "tls_stage_id")
 
     @tls_stage_id.setter
-    def tls_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_stage_id", value)
 
 
 @pulumi.input_type
 class _DnsStageState:
     def __init__(__self__, *,
-                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_fqdn: Optional[pulumi.Input[_builtins.str]] = None,
-                 fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+                 fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DnsStage resources.
 
@@ -170,122 +170,122 @@ class _DnsStageState:
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
     @backend_stage_id.setter
-    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheStageId")
-    def cache_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "cache_stage_id")
 
     @cache_stage_id.setter
-    def cache_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the DNS stage.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultFqdn")
-    def default_fqdn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_fqdn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Default Fully Qualified Domain Name attached to the stage.
         """
         return pulumi.get(self, "default_fqdn")
 
     @default_fqdn.setter
-    def default_fqdn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_fqdn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_fqdn", value)
 
     @_builtins.property
     @pulumi.getter
-    def fqdns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def fqdns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         """
         return pulumi.get(self, "fqdns")
 
     @fqdns.setter
-    def fqdns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def fqdns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "fqdns", value)
 
     @_builtins.property
     @pulumi.getter(name="pipelineId")
-    def pipeline_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the pipeline.
         """
         return pulumi.get(self, "pipeline_id")
 
     @pipeline_id.setter
-    def pipeline_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the DNS stage is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsStageId")
-    def tls_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "tls_stage_id")
 
     @tls_stage_id.setter
-    def tls_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_stage_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the stage.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the DNS stage.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -295,12 +295,12 @@ class DnsStage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Edge Services DNS Stages.
@@ -382,12 +382,12 @@ class DnsStage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -421,16 +421,16 @@ class DnsStage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-            cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            default_fqdn: Optional[pulumi.Input[_builtins.str]] = None,
-            fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tls_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'DnsStage':
+            backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+            fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'DnsStage':
         """
         Get an existing DnsStage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

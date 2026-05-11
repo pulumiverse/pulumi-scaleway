@@ -166,31 +166,31 @@ export interface CockpitTokenState {
     /**
      * The date and time of the creation of the Cockpit Token (Format ISO 8601)
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The name of the token.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the Cockpit token is located.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Scopes allowed, each with default values:
      */
-    scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
+    scopes?: pulumi.Input<inputs.CockpitTokenScopes | undefined>;
     /**
      * The secret key of the token.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the Cockpit Token (Format ISO 8601)
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -200,17 +200,17 @@ export interface CockpitTokenArgs {
     /**
      * The name of the token.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the Cockpit token is located.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Scopes allowed, each with default values:
      */
-    scopes?: pulumi.Input<inputs.CockpitTokenScopes>;
+    scopes?: pulumi.Input<inputs.CockpitTokenScopes | undefined>;
 }

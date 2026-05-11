@@ -132,10 +132,10 @@ def get_user(email: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         tags=pulumi.get(__ret__, 'tags'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_user_output(email: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                    user_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                    user_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     Use this data source to get information on an existing IAM user based on its ID or email address.

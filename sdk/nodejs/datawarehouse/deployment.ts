@@ -268,78 +268,78 @@ export interface DeploymentState {
     /**
      * Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
      */
-    cpuMax?: pulumi.Input<number>;
+    cpuMax?: pulumi.Input<number | undefined>;
     /**
      * Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
      */
-    cpuMin?: pulumi.Input<number>;
+    cpuMin?: pulumi.Input<number | undefined>;
     /**
      * Date and time of deployment creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Name of the Data Warehouse deployment.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
      */
-    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
      * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Public endpoint information (always created automatically).
      */
-    publicNetworks?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPublicNetwork>[]>;
+    publicNetworks?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPublicNetwork>[] | undefined>;
     /**
      * RAM per CPU in GB.
      */
-    ramPerCpu?: pulumi.Input<number>;
+    ramPerCpu?: pulumi.Input<number | undefined>;
     /**
      * `region`) The region in which the deployment should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Number of replicas. Can be updated in place via the deployment configuration API.
      */
-    replicaCount?: pulumi.Input<number>;
+    replicaCount?: pulumi.Input<number | undefined>;
     /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */
-    started?: pulumi.Input<boolean>;
+    started?: pulumi.Input<boolean | undefined>;
     /**
      * The status of the deployment (e.g., "ready", "provisioning").
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of deployment last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -357,30 +357,30 @@ export interface DeploymentArgs {
     /**
      * Name of the Data Warehouse deployment.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the deployment in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
      */
-    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
      * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * RAM per CPU in GB.
      */
@@ -388,7 +388,7 @@ export interface DeploymentArgs {
     /**
      * `region`) The region in which the deployment should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Number of replicas. Can be updated in place via the deployment configuration API.
      */
@@ -396,11 +396,11 @@ export interface DeploymentArgs {
     /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */
-    started?: pulumi.Input<boolean>;
+    started?: pulumi.Input<boolean | undefined>;
     /**
      * List of tags to apply to the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
      */

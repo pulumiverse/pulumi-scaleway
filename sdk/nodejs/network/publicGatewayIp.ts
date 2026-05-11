@@ -140,35 +140,35 @@ export interface PublicGatewayIpState {
     /**
      * The IP address itself.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the Public Gateway IP.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the Public Gateway IP is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Public Gateway IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain name for the IP address
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Public Gateway IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the Public Gateway IP.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway IP should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -178,17 +178,17 @@ export interface PublicGatewayIpArgs {
     /**
      * `projectId`) The ID of the Project the Public Gateway IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain name for the IP address
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Public Gateway IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway IP should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -271,12 +271,12 @@ def get_secret(name: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version_count=pulumi.get(__ret__, 'version_count'),
         versions=pulumi.get(__ret__, 'versions'))
-def get_secret_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      path: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      secret_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_secret_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      secret_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
     The `secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.

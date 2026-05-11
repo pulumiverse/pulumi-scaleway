@@ -332,39 +332,39 @@ export interface InstanceState {
     /**
      * Boolean to store logical backups in the same region as the database instance
      */
-    backupSameRegion?: pulumi.Input<boolean>;
+    backupSameRegion?: pulumi.Input<boolean | undefined>;
     /**
      * Backup schedule frequency in hours
      */
-    backupScheduleFrequency?: pulumi.Input<number>;
+    backupScheduleFrequency?: pulumi.Input<number | undefined>;
     /**
      * Backup schedule retention in days
      */
-    backupScheduleRetention?: pulumi.Input<number>;
+    backupScheduleRetention?: pulumi.Input<number | undefined>;
     /**
      * Certificate of the Database Instance.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * Disable automated backup for the database instance
      */
-    disableBackup?: pulumi.Input<boolean>;
+    disableBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Enable or disable encryption at rest for the Database Instance.
      */
-    encryptionAtRest?: pulumi.Input<boolean>;
+    encryptionAtRest?: pulumi.Input<boolean | undefined>;
     /**
      * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
-    endpointIp?: pulumi.Input<string>;
+    endpointIp?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
-    endpointPort?: pulumi.Input<number>;
+    endpointPort?: pulumi.Input<number | undefined>;
     /**
      * Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
      *
@@ -374,29 +374,29 @@ export interface InstanceState {
      *
      * > **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
-    engine?: pulumi.Input<string>;
+    engine?: pulumi.Input<string | undefined>;
     /**
      * Map of engine settings to be set at database initialisation.
      */
-    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Enable or disable high availability for the Database Instance.
      *
      * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
-    isHaCluster?: pulumi.Input<boolean>;
+    isHaCluster?: pulumi.Input<boolean | undefined>;
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer>;
+    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer | undefined>;
     /**
      * Logs policy configuration
      */
-    logsPolicy?: pulumi.Input<inputs.databases.InstanceLogsPolicy>;
+    logsPolicy?: pulumi.Input<inputs.databases.InstanceLogsPolicy | undefined>;
     /**
      * The name of the Database Instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
@@ -405,78 +405,78 @@ export interface InstanceState {
      *
      * > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the Database Instance is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the Database Instance in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[] | undefined>;
     /**
      * List of Private Networks endpoints of the Database Instance.
      */
-    privateNetwork?: pulumi.Input<inputs.databases.InstancePrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.databases.InstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the Database
      * Instance is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of read replicas of the Database Instance.
      */
-    readReplicas?: pulumi.Input<pulumi.Input<inputs.databases.InstanceReadReplica>[]>;
+    readReplicas?: pulumi.Input<pulumi.Input<inputs.databases.InstanceReadReplica>[] | undefined>;
     /**
      * `region`) The region
      * in which the Database Instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Map of engine settings to be set on a running instance.
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Database Instance.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of available engine versions for upgrade. Each version contains:
      */
-    upgradableVersions?: pulumi.Input<pulumi.Input<inputs.databases.InstanceUpgradableVersion>[]>;
+    upgradableVersions?: pulumi.Input<pulumi.Input<inputs.databases.InstanceUpgradableVersion>[] | undefined>;
     /**
      * Identifier for the first user of the Database Instance.
      *
      * > **Important** Updates to `userName` will recreate the Database Instance.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
-    volumeSizeInGb?: pulumi.Input<number>;
+    volumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
-    volumeType?: pulumi.Input<string>;
+    volumeType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -486,23 +486,23 @@ export interface InstanceArgs {
     /**
      * Boolean to store logical backups in the same region as the database instance
      */
-    backupSameRegion?: pulumi.Input<boolean>;
+    backupSameRegion?: pulumi.Input<boolean | undefined>;
     /**
      * Backup schedule frequency in hours
      */
-    backupScheduleFrequency?: pulumi.Input<number>;
+    backupScheduleFrequency?: pulumi.Input<number | undefined>;
     /**
      * Backup schedule retention in days
      */
-    backupScheduleRetention?: pulumi.Input<number>;
+    backupScheduleRetention?: pulumi.Input<number | undefined>;
     /**
      * Disable automated backup for the database instance
      */
-    disableBackup?: pulumi.Input<boolean>;
+    disableBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Enable or disable encryption at rest for the Database Instance.
      */
-    encryptionAtRest?: pulumi.Input<boolean>;
+    encryptionAtRest?: pulumi.Input<boolean | undefined>;
     /**
      * Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
      *
@@ -512,29 +512,29 @@ export interface InstanceArgs {
      *
      * > **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
-    engine?: pulumi.Input<string>;
+    engine?: pulumi.Input<string | undefined>;
     /**
      * Map of engine settings to be set at database initialisation.
      */
-    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Enable or disable high availability for the Database Instance.
      *
      * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
-    isHaCluster?: pulumi.Input<boolean>;
+    isHaCluster?: pulumi.Input<boolean | undefined>;
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer>;
+    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer | undefined>;
     /**
      * Logs policy configuration
      */
-    logsPolicy?: pulumi.Input<inputs.databases.InstanceLogsPolicy>;
+    logsPolicy?: pulumi.Input<inputs.databases.InstanceLogsPolicy | undefined>;
     /**
      * The name of the Database Instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
@@ -547,60 +547,60 @@ export interface InstanceArgs {
     /**
      * Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the Database Instance in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[] | undefined>;
     /**
      * List of Private Networks endpoints of the Database Instance.
      */
-    privateNetwork?: pulumi.Input<inputs.databases.InstancePrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.databases.InstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the Database
      * Instance is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region
      * in which the Database Instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Map of engine settings to be set on a running instance.
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Database Instance.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Identifier for the first user of the Database Instance.
      *
      * > **Important** Updates to `userName` will recreate the Database Instance.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
-    volumeSizeInGb?: pulumi.Input<number>;
+    volumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
-    volumeType?: pulumi.Input<string>;
+    volumeType?: pulumi.Input<string | undefined>;
 }

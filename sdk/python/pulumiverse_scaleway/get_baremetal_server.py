@@ -430,10 +430,10 @@ def get_baremetal_server(name: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         user=pulumi.get(__ret__, 'user'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                server_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_baremetal_server_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                server_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBaremetalServerResult]:
     """
     Gets information about a baremetal server.

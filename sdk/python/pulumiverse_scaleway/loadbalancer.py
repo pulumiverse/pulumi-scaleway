@@ -22,19 +22,19 @@ __all__ = ['LoadbalancerArgs', 'Loadbalancer']
 class LoadbalancerArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_compatibility_level: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
 
@@ -106,43 +106,43 @@ class LoadbalancerArgs:
 
     @_builtins.property
     @pulumi.getter(name="assignFlexibleIp")
-    def assign_flexible_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def assign_flexible_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         """
         return pulumi.get(self, "assign_flexible_ip")
 
     @assign_flexible_ip.setter
-    def assign_flexible_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def assign_flexible_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "assign_flexible_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="assignFlexibleIpv6")
-    def assign_flexible_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def assign_flexible_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         """
         return pulumi.get(self, "assign_flexible_ipv6")
 
     @assign_flexible_ipv6.setter
-    def assign_flexible_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def assign_flexible_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "assign_flexible_ipv6", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the Load Balancer.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="externalPrivateNetworks")
-    def external_private_networks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_private_networks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use lb_private_network.
         If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
@@ -150,13 +150,13 @@ class LoadbalancerArgs:
         return pulumi.get(self, "external_private_networks")
 
     @external_private_networks.setter
-    def external_private_networks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_private_networks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
     @_utilities.deprecated("""Please use ip_ids""")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
 
@@ -165,12 +165,12 @@ class LoadbalancerArgs:
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The List of IP IDs to attach to the Load Balancer.
 
@@ -179,117 +179,117 @@ class LoadbalancerArgs:
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Load Balancer.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]:
         """
         List of private network to connect with your load balancer.
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="releaseIp")
     @_utilities.deprecated("""The resource ip will be destroyed by it's own resource. Please set this to `false`""")
-    def release_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def release_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         The `release_ip` allow the release of the IP address associated with the Load Balancer.
         """
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
-    def release_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def release_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "release_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCompatibilityLevel")
-    def ssl_compatibility_level(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_compatibility_level(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         """
         return pulumi.get(self, "ssl_compatibility_level")
 
     @ssl_compatibility_level.setter
-    def ssl_compatibility_level(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_compatibility_level(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_compatibility_level", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Load Balancer.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _LoadbalancerState:
     def __init__(__self__, *,
-                 assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_compatibility_level: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
 
@@ -365,43 +365,43 @@ class _LoadbalancerState:
 
     @_builtins.property
     @pulumi.getter(name="assignFlexibleIp")
-    def assign_flexible_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def assign_flexible_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         """
         return pulumi.get(self, "assign_flexible_ip")
 
     @assign_flexible_ip.setter
-    def assign_flexible_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def assign_flexible_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "assign_flexible_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="assignFlexibleIpv6")
-    def assign_flexible_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def assign_flexible_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         """
         return pulumi.get(self, "assign_flexible_ipv6")
 
     @assign_flexible_ipv6.setter
-    def assign_flexible_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def assign_flexible_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "assign_flexible_ipv6", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the Load Balancer.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="externalPrivateNetworks")
-    def external_private_networks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_private_networks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use lb_private_network.
         If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
@@ -409,25 +409,25 @@ class _LoadbalancerState:
         return pulumi.get(self, "external_private_networks")
 
     @external_private_networks.setter
-    def external_private_networks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_private_networks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Load Balancer public IPv4 address.
         """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
-    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
     @_utilities.deprecated("""Please use ip_ids""")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
 
@@ -436,12 +436,12 @@ class _LoadbalancerState:
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The List of IP IDs to attach to the Load Balancer.
 
@@ -450,152 +450,152 @@ class _LoadbalancerState:
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Address")
-    def ipv6_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Load Balancer public IPv6 address.
         """
         return pulumi.get(self, "ipv6_address")
 
     @ipv6_address.setter
-    def ipv6_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Load Balancer.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Organization ID the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]:
         """
         List of private network to connect with your load balancer.
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Load Balancer is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region of the resource
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="releaseIp")
     @_utilities.deprecated("""The resource ip will be destroyed by it's own resource. Please set this to `false`""")
-    def release_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def release_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         The `release_ip` allow the release of the IP address associated with the Load Balancer.
         """
         return pulumi.get(self, "release_ip")
 
     @release_ip.setter
-    def release_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def release_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "release_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCompatibilityLevel")
-    def ssl_compatibility_level(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_compatibility_level(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         """
         return pulumi.get(self, "ssl_compatibility_level")
 
     @ssl_compatibility_level.setter
-    def ssl_compatibility_level(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_compatibility_level(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_compatibility_level", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Load Balancer.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the Load Balancer. Please check the migration section to upgrade the type.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -610,20 +610,20 @@ class Loadbalancer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_compatibility_level: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancers.
@@ -858,20 +858,20 @@ class Loadbalancer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 release_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_compatibility_level: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""Loadbalancer is deprecated: scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -913,25 +913,25 @@ class Loadbalancer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-            assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
-            ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ipv6_address: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            release_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-            ssl_compatibility_level: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Loadbalancer':
+            assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipv6_address: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Loadbalancer':
         """
         Get an existing Loadbalancer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

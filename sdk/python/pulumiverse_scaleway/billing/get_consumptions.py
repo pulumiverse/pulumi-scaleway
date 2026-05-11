@@ -116,7 +116,7 @@ def get_consumptions(project_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_consumptions_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_consumptions_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConsumptionsResult]:
     """
     Gets information about your Consumptions.

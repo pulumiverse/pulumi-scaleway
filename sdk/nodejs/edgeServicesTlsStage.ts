@@ -178,47 +178,47 @@ export interface EdgeServicesTlsStageState {
     /**
      * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    cacheStageId?: pulumi.Input<string>;
+    cacheStageId?: pulumi.Input<string | undefined>;
     /**
      * The expiration date of the certificate.
      */
-    certificateExpiresAt?: pulumi.Input<string>;
+    certificateExpiresAt?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the TLS stage.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Set to true when Scaleway generates and manages a Let's Encrypt certificate for the TLS stage/custom endpoint.
      */
-    managedCertificate?: pulumi.Input<boolean>;
+    managedCertificate?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the TLS stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    routeStageId?: pulumi.Input<string>;
+    routeStageId?: pulumi.Input<string | undefined>;
     /**
      * The TLS secrets.
      */
-    secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[]>;
+    secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[] | undefined>;
     /**
      * The date and time of the last update of the TLS stage.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -228,15 +228,15 @@ export interface EdgeServicesTlsStageArgs {
     /**
      * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    cacheStageId?: pulumi.Input<string>;
+    cacheStageId?: pulumi.Input<string | undefined>;
     /**
      * Set to true when Scaleway generates and manages a Let's Encrypt certificate for the TLS stage/custom endpoint.
      */
-    managedCertificate?: pulumi.Input<boolean>;
+    managedCertificate?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the pipeline.
      */
@@ -244,17 +244,17 @@ export interface EdgeServicesTlsStageArgs {
     /**
      * `projectId`) The ID of the project the TLS stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    routeStageId?: pulumi.Input<string>;
+    routeStageId?: pulumi.Input<string | undefined>;
     /**
      * The TLS secrets.
      */
-    secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[]>;
+    secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[] | undefined>;
     /**
      * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }

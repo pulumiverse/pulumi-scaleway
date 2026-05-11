@@ -169,17 +169,17 @@ export interface GetIpsOutputArgs {
     /**
      * (Defaults to provider `projectId`) The ID of the project the IP is in.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of server IDs used as filter. IPs with these exact server IDs are listed.
      */
-    serverIds?: pulumi.Input<pulumi.Input<string>[]>;
+    serverIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of tags used as filter. IPs with these exact tags are listed.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which IPs exist.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

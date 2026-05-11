@@ -20,7 +20,7 @@ __all__ = ['EdgeServicesHeadStageArgs', 'EdgeServicesHeadStage']
 class EdgeServicesHeadStageArgs:
     def __init__(__self__, *,
                  pipeline_id: pulumi.Input[_builtins.str],
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EdgeServicesHeadStage resource.
 
@@ -45,22 +45,22 @@ class EdgeServicesHeadStageArgs:
 
     @_builtins.property
     @pulumi.getter(name="headStageId")
-    def head_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def head_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of head stage of the pipeline.
         """
         return pulumi.get(self, "head_stage_id")
 
     @head_stage_id.setter
-    def head_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def head_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "head_stage_id", value)
 
 
 @pulumi.input_type
 class _EdgeServicesHeadStageState:
     def __init__(__self__, *,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesHeadStage resources.
 
@@ -74,26 +74,26 @@ class _EdgeServicesHeadStageState:
 
     @_builtins.property
     @pulumi.getter(name="headStageId")
-    def head_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def head_stage_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of head stage of the pipeline.
         """
         return pulumi.get(self, "head_stage_id")
 
     @head_stage_id.setter
-    def head_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def head_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "head_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pipelineId")
-    def pipeline_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the pipeline.
         """
         return pulumi.get(self, "pipeline_id")
 
     @pipeline_id.setter
-    def pipeline_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline_id", value)
 
 
@@ -108,8 +108,8 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Sets the Scaleway Edge Services head stage of your pipeline.
@@ -201,8 +201,8 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""EdgeServicesHeadStage is deprecated: scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -227,8 +227,8 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
-            pipeline_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'EdgeServicesHeadStage':
+            head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'EdgeServicesHeadStage':
         """
         Get an existing EdgeServicesHeadStage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

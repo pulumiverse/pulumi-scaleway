@@ -125,15 +125,15 @@ export interface InstanceIpReverseDnsState {
     /**
      * The IP ID
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * The reverse DNS for this IP.
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -151,5 +151,5 @@ export interface InstanceIpReverseDnsArgs {
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

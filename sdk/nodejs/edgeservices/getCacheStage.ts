@@ -124,9 +124,9 @@ export interface GetCacheStageOutputArgs {
      *
      * The following filter arguments are supported (cannot be used with `cacheStageId`):
      */
-    cacheStageId?: pulumi.Input<string>;
+    cacheStageId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
 }

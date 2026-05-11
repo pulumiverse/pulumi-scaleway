@@ -124,10 +124,10 @@ def get_marketplace_image(image_type: Optional[_builtins.str] = None,
         instance_type=pulumi.get(__ret__, 'instance_type'),
         label=pulumi.get(__ret__, 'label'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_marketplace_image_output(image_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 instance_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 label: Optional[pulumi.Input[_builtins.str]] = None,
-                                 zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_marketplace_image_output(image_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 instance_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 label: pulumi.Input[Optional[_builtins.str]] = None,
+                                 zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMarketplaceImageResult]:
     """
     Gets local image ID of an image from its label name.

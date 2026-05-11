@@ -126,19 +126,19 @@ namespace Pulumiverse.Scaleway
     ///         Name = domainName,
     ///     });
     /// 
-    ///     var smtpAuthUser = new GitLab.Index.ProjectVariable("smtp_auth_user", new()
+    ///     var smtpAuthUser = new GitLab.ProjectVariable("smtp_auth_user", new()
     ///     {
     ///         Key = "SMTP_AUTH_USER",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsAuthUser),
     ///     });
     /// 
-    ///     var smtpPort = new GitLab.Index.ProjectVariable("smtp_port", new()
+    ///     var smtpPort = new GitLab.ProjectVariable("smtp_port", new()
     ///     {
     ///         Key = "SMTP_PORT",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsPort),
     ///     });
     /// 
-    ///     var smtpHost = new GitLab.Index.ProjectVariable("smtp_host", new()
+    ///     var smtpHost = new GitLab.ProjectVariable("smtp_host", new()
     ///     {
     ///         Key = "SMTP_HOST",
     ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsHost),

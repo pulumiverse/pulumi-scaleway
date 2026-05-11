@@ -152,19 +152,19 @@ export interface IpReverseDnsState {
     /**
      * The IP corresponding to the hostname.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain name.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The IPAM IP ID.
      */
-    ipamIpId?: pulumi.Input<string>;
+    ipamIpId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the IP reverse DNS.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -186,5 +186,5 @@ export interface IpReverseDnsArgs {
     /**
      * `region`) The region of the IP reverse DNS.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

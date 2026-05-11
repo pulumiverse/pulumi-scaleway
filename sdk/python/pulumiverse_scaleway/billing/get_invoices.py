@@ -127,9 +127,9 @@ def get_invoices(invoice_type: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         started_after=pulumi.get(__ret__, 'started_after'),
         started_before=pulumi.get(__ret__, 'started_before'))
-def get_invoices_output(invoice_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        started_after: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        started_before: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_invoices_output(invoice_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        started_after: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        started_before: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInvoicesResult]:
     """
     Gets information about your Scaleway invoices.

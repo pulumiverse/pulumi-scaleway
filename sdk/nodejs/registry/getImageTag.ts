@@ -103,17 +103,17 @@ export interface GetImageTagOutputArgs {
     /**
      * The name of the registry image tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the image tag is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region in which the registry image tag exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The ID of the registry image tag.
      */
-    tagId?: pulumi.Input<string>;
+    tagId?: pulumi.Input<string | undefined>;
 }

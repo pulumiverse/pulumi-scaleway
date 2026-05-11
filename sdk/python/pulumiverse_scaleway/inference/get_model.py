@@ -272,9 +272,9 @@ def get_model(model_id: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         url=pulumi.get(__ret__, 'url'))
-def get_model_output(model_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     url: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_model_output(model_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     url: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetModelResult]:
     """
     The `inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `name` or its `model_id`.

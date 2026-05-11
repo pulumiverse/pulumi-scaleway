@@ -248,12 +248,12 @@ export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.I
  * A collection of arguments for invoking getContainer.
  */
 export interface GetContainerOutputArgs {
-    containerId?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     namespaceId: pulumi.Input<string>;
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

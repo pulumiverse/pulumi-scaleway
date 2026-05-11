@@ -112,11 +112,11 @@ export interface HeadStageState {
     /**
      * The ID of head stage of the pipeline.
      */
-    headStageId?: pulumi.Input<string>;
+    headStageId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -126,7 +126,7 @@ export interface HeadStageArgs {
     /**
      * The ID of head stage of the pipeline.
      */
-    headStageId?: pulumi.Input<string>;
+    headStageId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */

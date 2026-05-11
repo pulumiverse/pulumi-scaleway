@@ -93,18 +93,18 @@ export interface GetHubOutputArgs {
      * The Hub ID.
      * Only one of the `name` and `hubId` should be specified.
      */
-    hubId?: pulumi.Input<string>;
+    hubId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Hub.
      * Only one of the `name` and `hubId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the hub is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the hub exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

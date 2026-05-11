@@ -139,7 +139,7 @@ def get_saml_certificate(certificate_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         origin=pulumi.get(__ret__, 'origin'),
         type=pulumi.get(__ret__, 'type'))
-def get_saml_certificate_output(certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_saml_certificate_output(certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSamlCertificateResult]:
     """
     Get information about a SAML certificate. This data source allows you to retrieve information about a specific SAML certificate by its ID.

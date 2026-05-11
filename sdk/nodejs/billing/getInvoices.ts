@@ -77,13 +77,13 @@ export interface GetInvoicesOutputArgs {
     /**
      * Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
      */
-    invoiceType?: pulumi.Input<string>;
+    invoiceType?: pulumi.Input<string | undefined>;
     /**
      * Invoices with a start date that are greater or equal to `startedAfter` are listed (RFC 3339 format).
      */
-    startedAfter?: pulumi.Input<string>;
+    startedAfter?: pulumi.Input<string | undefined>;
     /**
      * Invoices with a start date that precedes `startedBefore` are listed (RFC 3339 format).
      */
-    startedBefore?: pulumi.Input<string>;
+    startedBefore?: pulumi.Input<string | undefined>;
 }

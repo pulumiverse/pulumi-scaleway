@@ -261,12 +261,12 @@ def get_record(data: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         views=pulumi.get(__ret__, 'views'),
         weighteds=pulumi.get(__ret__, 'weighteds'))
-def get_record_output(data: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      dns_zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      record_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_record_output(data: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      dns_zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      record_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRecordResult]:
     """
     The `domain.Record` data source is used to get information about an existing domain record.

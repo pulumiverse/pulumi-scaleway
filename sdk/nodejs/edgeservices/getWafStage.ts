@@ -116,11 +116,11 @@ export interface GetWafStageOutputArgs {
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the WAF stage. Conflicts with all filter arguments below.
      *
      * The following filter arguments are supported (cannot be used with `wafStageId`):
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }

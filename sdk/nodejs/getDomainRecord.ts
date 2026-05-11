@@ -174,25 +174,25 @@ export interface GetDomainRecordOutputArgs {
     /**
      * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
-    data?: pulumi.Input<string>;
+    data?: pulumi.Input<string | undefined>;
     /**
      * The DNS zone (domain) to which the record belongs. This is a required field in both examples above but is optional in the context of defining the data source.
      */
-    dnsZone?: pulumi.Input<string>;
+    dnsZone?: pulumi.Input<string | undefined>;
     /**
      * The name of the record, which can be an empty string for a root record. Cannot be used with `recordId`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Project associated with the domain.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
      */
-    recordId?: pulumi.Input<string>;
+    recordId?: pulumi.Input<string | undefined>;
     /**
      * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `recordId`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

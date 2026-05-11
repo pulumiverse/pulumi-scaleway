@@ -115,8 +115,8 @@ def get_partners(pop_ids: Optional[Sequence[_builtins.str]] = None,
         partners=pulumi.get(__ret__, 'partners'),
         pop_ids=pulumi.get(__ret__, 'pop_ids'),
         region=pulumi.get(__ret__, 'region'))
-def get_partners_output(pop_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                        region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_partners_output(pop_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                        region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPartnersResult]:
     """
     Gets information about multiple Interlink Partners.

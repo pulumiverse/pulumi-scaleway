@@ -179,47 +179,47 @@ export interface EdgeServicesCacheStageState {
     /**
      * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the cache stage.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The Time To Live (TTL) in seconds. Defines how long content is cached.
      */
-    fallbackTtl?: pulumi.Input<number>;
+    fallbackTtl?: pulumi.Input<number | undefined>;
     /**
      * Defines whether responses to requests with cookies must be stored in the cache.
      */
-    includeCookies?: pulumi.Input<boolean>;
+    includeCookies?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the cache stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    purgeRequests?: pulumi.Input<pulumi.Input<inputs.EdgeServicesCacheStagePurgeRequest>[]>;
+    purgeRequests?: pulumi.Input<pulumi.Input<inputs.EdgeServicesCacheStagePurgeRequest>[] | undefined>;
     /**
      * Trigger a refresh of the cache by changing this field's value.
      */
-    refreshCache?: pulumi.Input<string>;
+    refreshCache?: pulumi.Input<string | undefined>;
     /**
      * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    routeStageId?: pulumi.Input<string>;
+    routeStageId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the cache stage.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -229,15 +229,15 @@ export interface EdgeServicesCacheStageArgs {
     /**
      * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The Time To Live (TTL) in seconds. Defines how long content is cached.
      */
-    fallbackTtl?: pulumi.Input<number>;
+    fallbackTtl?: pulumi.Input<number | undefined>;
     /**
      * Defines whether responses to requests with cookies must be stored in the cache.
      */
-    includeCookies?: pulumi.Input<boolean>;
+    includeCookies?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the pipeline.
      */
@@ -245,21 +245,21 @@ export interface EdgeServicesCacheStageArgs {
     /**
      * `projectId`) The ID of the project the cache stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    purgeRequests?: pulumi.Input<pulumi.Input<inputs.EdgeServicesCacheStagePurgeRequest>[]>;
+    purgeRequests?: pulumi.Input<pulumi.Input<inputs.EdgeServicesCacheStagePurgeRequest>[] | undefined>;
     /**
      * Trigger a refresh of the cache by changing this field's value.
      */
-    refreshCache?: pulumi.Input<string>;
+    refreshCache?: pulumi.Input<string | undefined>;
     /**
      * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    routeStageId?: pulumi.Input<string>;
+    routeStageId?: pulumi.Input<string | undefined>;
     /**
      * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }

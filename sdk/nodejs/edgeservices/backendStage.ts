@@ -171,27 +171,27 @@ export interface BackendStageState {
     /**
      * The date and time of the creation of the backend stage.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
-    lbBackendConfigs?: pulumi.Input<pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfig>[]>;
+    lbBackendConfigs?: pulumi.Input<pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfig>[] | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    s3BackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageS3BackendConfig>;
+    s3BackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageS3BackendConfig | undefined>;
     /**
      * The date and time of the last update of the backend stage.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,7 +201,7 @@ export interface BackendStageArgs {
     /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
-    lbBackendConfigs?: pulumi.Input<pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfig>[]>;
+    lbBackendConfigs?: pulumi.Input<pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfig>[] | undefined>;
     /**
      * The ID of the pipeline.
      */
@@ -209,9 +209,9 @@ export interface BackendStageArgs {
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    s3BackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageS3BackendConfig>;
+    s3BackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageS3BackendConfig | undefined>;
 }

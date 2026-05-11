@@ -165,35 +165,35 @@ export interface LoadbalancerAclState {
     /**
      * Action to undertake when an ACL filter matches.
      */
-    action?: pulumi.Input<inputs.LoadbalancerAclAction>;
+    action?: pulumi.Input<inputs.LoadbalancerAclAction | undefined>;
     /**
      * IsDate and time of ACL's creation (RFC 3339 format)
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ACL description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Load Balancer frontend to attach the ACL to.
      */
-    frontendId?: pulumi.Input<string>;
+    frontendId?: pulumi.Input<string | undefined>;
     /**
      * The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
      */
-    index?: pulumi.Input<number>;
+    index?: pulumi.Input<number | undefined>;
     /**
      * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
-    match?: pulumi.Input<inputs.LoadbalancerAclMatch>;
+    match?: pulumi.Input<inputs.LoadbalancerAclMatch | undefined>;
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * IsDate and time of ACL's update (RFC 3339 format)
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -207,7 +207,7 @@ export interface LoadbalancerAclArgs {
     /**
      * The ACL description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Load Balancer frontend to attach the ACL to.
      */
@@ -219,9 +219,9 @@ export interface LoadbalancerAclArgs {
     /**
      * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
-    match?: pulumi.Input<inputs.LoadbalancerAclMatch>;
+    match?: pulumi.Input<inputs.LoadbalancerAclMatch | undefined>;
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

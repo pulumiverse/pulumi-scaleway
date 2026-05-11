@@ -129,9 +129,9 @@ def get_option(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         option_id=pulumi.get(__ret__, 'option_id'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_option_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      option_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_option_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      option_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOptionResult]:
     """
     Gets information about a baremetal option.

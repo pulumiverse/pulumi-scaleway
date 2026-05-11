@@ -22,7 +22,7 @@ class InstanceUserDataArgs:
                  key: pulumi.Input[_builtins.str],
                  server_id: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str],
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceUserData resource.
 
@@ -80,7 +80,7 @@ class InstanceUserDataArgs:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
 
@@ -92,17 +92,17 @@ class InstanceUserDataArgs:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _InstanceUserDataState:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceUserData resources.
 
@@ -127,43 +127,43 @@ class _InstanceUserDataState:
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Key of the user data.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the server associated with.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value associated with your key
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
 
@@ -175,7 +175,7 @@ class _InstanceUserDataState:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -190,10 +190,10 @@ class InstanceUserData(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway compute Instance User Data values.
@@ -212,6 +212,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumiverse_scaleway as scaleway
 
         config = pulumi.Config()
@@ -233,8 +234,8 @@ class InstanceUserData(pulumi.CustomResource):
             key="foo",
             value="bar")
         # User Data with many keys.
-        data = []
-        for range in [{"key": k, "value": v} for [k, v] in (user_data).items()]:
+        data: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
             data.append(scaleway.instance.UserData(f"data-{range['key']}",
                 server_id=main_server.id,
                 key=range["key"],
@@ -285,6 +286,7 @@ class InstanceUserData(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumiverse_scaleway as scaleway
 
         config = pulumi.Config()
@@ -306,8 +308,8 @@ class InstanceUserData(pulumi.CustomResource):
             key="foo",
             value="bar")
         # User Data with many keys.
-        data = []
-        for range in [{"key": k, "value": v} for [k, v] in (user_data).items()]:
+        data: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
             data.append(scaleway.instance.UserData(f"data-{range['key']}",
                 server_id=main_server.id,
                 key=range["key"],
@@ -338,10 +340,10 @@ class InstanceUserData(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""InstanceUserData is deprecated: scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -372,10 +374,10 @@ class InstanceUserData(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            key: Optional[pulumi.Input[_builtins.str]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            value: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'InstanceUserData':
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            value: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceUserData':
         """
         Get an existing InstanceUserData resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

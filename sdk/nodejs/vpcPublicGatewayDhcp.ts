@@ -207,79 +207,79 @@ export interface VpcPublicGatewayDhcpState {
     /**
      * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the Public Gateway DHCP configuration.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
      */
-    dnsLocalName?: pulumi.Input<string>;
+    dnsLocalName?: pulumi.Input<string | undefined>;
     /**
      * Additional DNS search paths
      */
-    dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsSearches?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
      */
-    enableDynamic?: pulumi.Input<boolean>;
+    enableDynamic?: pulumi.Input<boolean | undefined>;
     /**
      * The Organization ID the Public Gateway DHCP config is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
      */
-    poolHigh?: pulumi.Input<string>;
+    poolHigh?: pulumi.Input<string | undefined>;
     /**
      * Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
      */
-    poolLow?: pulumi.Input<string>;
+    poolLow?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
      * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
-    pushDefaultRoute?: pulumi.Input<boolean>;
+    pushDefaultRoute?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
      */
-    pushDnsServer?: pulumi.Input<boolean>;
+    pushDnsServer?: pulumi.Input<boolean | undefined>;
     /**
      * After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `validLifetime`. Defaults to 51m (3060s).
      */
-    rebindTimer?: pulumi.Input<number>;
+    rebindTimer?: pulumi.Input<number | undefined>;
     /**
      * After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
      */
-    renewTimer?: pulumi.Input<number>;
+    renewTimer?: pulumi.Input<number | undefined>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
      *
      * @deprecated The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
-    subnet?: pulumi.Input<string>;
+    subnet?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the Public Gateway DHCP configuration.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
-    validLifetime?: pulumi.Input<number>;
+    validLifetime?: pulumi.Input<number | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -289,53 +289,53 @@ export interface VpcPublicGatewayDhcpArgs {
     /**
      * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
      */
-    dnsLocalName?: pulumi.Input<string>;
+    dnsLocalName?: pulumi.Input<string | undefined>;
     /**
      * Additional DNS search paths
      */
-    dnsSearches?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsSearches?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsServersOverrides?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
      */
-    enableDynamic?: pulumi.Input<boolean>;
+    enableDynamic?: pulumi.Input<boolean | undefined>;
     /**
      * High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
      */
-    poolHigh?: pulumi.Input<string>;
+    poolHigh?: pulumi.Input<string | undefined>;
     /**
      * Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
      */
-    poolLow?: pulumi.Input<string>;
+    poolLow?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
      * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
-    pushDefaultRoute?: pulumi.Input<boolean>;
+    pushDefaultRoute?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
      */
-    pushDnsServer?: pulumi.Input<boolean>;
+    pushDnsServer?: pulumi.Input<boolean | undefined>;
     /**
      * After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `validLifetime`. Defaults to 51m (3060s).
      */
-    rebindTimer?: pulumi.Input<number>;
+    rebindTimer?: pulumi.Input<number | undefined>;
     /**
      * After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
      */
-    renewTimer?: pulumi.Input<number>;
+    renewTimer?: pulumi.Input<number | undefined>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
      *
@@ -345,9 +345,9 @@ export interface VpcPublicGatewayDhcpArgs {
     /**
      * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
-    validLifetime?: pulumi.Input<number>;
+    validLifetime?: pulumi.Input<number | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

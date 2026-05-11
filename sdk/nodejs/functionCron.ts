@@ -159,28 +159,28 @@ export interface FunctionCronState {
     /**
      * The key-value mapping to define arguments that will be passed to your function’s event object
      */
-    args?: pulumi.Input<string>;
+    args?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the function to link to your CRON trigger.
      */
-    functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string | undefined>;
     /**
      * The name of the function CRON trigger. If not provided, a random name is generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region
      * in which the function was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */
-    schedule?: pulumi.Input<string>;
+    schedule?: pulumi.Input<string | undefined>;
     /**
      * The CRON status.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -198,12 +198,12 @@ export interface FunctionCronArgs {
     /**
      * The name of the function CRON trigger. If not provided, a random name is generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region
      * in which the function was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */

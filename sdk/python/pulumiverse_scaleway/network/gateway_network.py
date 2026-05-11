@@ -23,14 +23,14 @@ class GatewayNetworkArgs:
     def __init__(__self__, *,
                  gateway_id: pulumi.Input[_builtins.str],
                  private_network_id: pulumi.Input[_builtins.str],
-                 cleanup_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_masquerade: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
-                 static_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cleanup_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_masquerade: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipam_configs: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
+                 static_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GatewayNetwork resource.
 
@@ -107,94 +107,94 @@ class GatewayNetworkArgs:
     @_builtins.property
     @pulumi.getter(name="cleanupDhcp")
     @_utilities.deprecated("""DHCP cleanup is no longer needed. Please use ipam_config instead.""")
-    def cleanup_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cleanup_dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         """
         return pulumi.get(self, "cleanup_dhcp")
 
     @cleanup_dhcp.setter
-    def cleanup_dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cleanup_dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cleanup_dhcp", value)
 
     @_builtins.property
     @pulumi.getter(name="dhcpId")
     @_utilities.deprecated("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
-    def dhcp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dhcp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
     @dhcp_id.setter
-    def dhcp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dhcp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dhcp_id", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDhcp")
     @_utilities.deprecated("""DHCP is now managed automatically. Please use ipam_config instead.""")
-    def enable_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
     @enable_dhcp.setter
-    def enable_dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dhcp", value)
 
     @_builtins.property
     @pulumi.getter(name="enableMasquerade")
-    def enable_masquerade(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_masquerade(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         """
         return pulumi.get(self, "enable_masquerade")
 
     @enable_masquerade.setter
-    def enable_masquerade(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_masquerade(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_masquerade", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamConfigs")
-    def ipam_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]:
+    def ipam_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]:
         """
         Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "ipam_configs")
 
     @ipam_configs.setter
-    def ipam_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]):
+    def ipam_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]):
         pulumi.set(self, "ipam_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
     @_utilities.deprecated("""Please use ipam_config instead.""")
-    def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def static_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
     @static_address.setter
-    def static_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def static_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "static_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the gateway network should be created.
 
@@ -205,27 +205,27 @@ class GatewayNetworkArgs:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _GatewayNetworkState:
     def __init__(__self__, *,
-                 cleanup_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_masquerade: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]] = None,
-                 mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cleanup_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_masquerade: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipam_configs: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]] = None,
+                 mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GatewayNetwork resources.
 
@@ -292,166 +292,166 @@ class _GatewayNetworkState:
     @_builtins.property
     @pulumi.getter(name="cleanupDhcp")
     @_utilities.deprecated("""DHCP cleanup is no longer needed. Please use ipam_config instead.""")
-    def cleanup_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cleanup_dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         """
         return pulumi.get(self, "cleanup_dhcp")
 
     @cleanup_dhcp.setter
-    def cleanup_dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cleanup_dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cleanup_dhcp", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the GatewayNetwork.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="dhcpId")
     @_utilities.deprecated("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
-    def dhcp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dhcp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
     @dhcp_id.setter
-    def dhcp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dhcp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dhcp_id", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDhcp")
     @_utilities.deprecated("""DHCP is now managed automatically. Please use ipam_config instead.""")
-    def enable_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
     @enable_dhcp.setter
-    def enable_dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dhcp", value)
 
     @_builtins.property
     @pulumi.getter(name="enableMasquerade")
-    def enable_masquerade(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_masquerade(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         """
         return pulumi.get(self, "enable_masquerade")
 
     @enable_masquerade.setter
-    def enable_masquerade(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_masquerade(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_masquerade", value)
 
     @_builtins.property
     @pulumi.getter(name="gatewayId")
-    def gateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Public Gateway.
         """
         return pulumi.get(self, "gateway_id")
 
     @gateway_id.setter
-    def gateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gateway_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamConfigs")
-    def ipam_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]:
+    def ipam_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]:
         """
         Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "ipam_configs")
 
     @ipam_configs.setter
-    def ipam_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]):
+    def ipam_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]):
         pulumi.set(self, "ipam_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MAC address of the GatewayNetwork.
         """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac_address", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network.
         """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
     @_utilities.deprecated("""Please use ipam_config instead.""")
-    def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def static_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
     @static_address.setter
-    def static_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def static_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "static_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the Public Gateway's connection to the Private Network.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the GatewayNetwork.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the gateway network should be created.
 
@@ -462,7 +462,7 @@ class _GatewayNetworkState:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -472,16 +472,16 @@ class GatewayNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cleanup_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_masquerade: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cleanup_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_masquerade: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipam_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
@@ -667,16 +667,16 @@ class GatewayNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cleanup_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_masquerade: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cleanup_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_masquerade: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipam_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 static_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -716,20 +716,20 @@ class GatewayNetwork(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cleanup_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-            enable_masquerade: Optional[pulumi.Input[_builtins.bool]] = None,
-            gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
-            mac_address: Optional[pulumi.Input[_builtins.str]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
-            private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-            static_address: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'GatewayNetwork':
+            cleanup_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_masquerade: pulumi.Input[Optional[_builtins.bool]] = None,
+            gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ipam_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
+            mac_address: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            static_address: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'GatewayNetwork':
         """
         Get an existing GatewayNetwork resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

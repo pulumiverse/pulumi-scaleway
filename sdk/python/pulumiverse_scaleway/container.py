@@ -22,33 +22,33 @@ __all__ = ['ContainerArgs', 'Container']
 class ContainerArgs:
     def __init__(__self__, *,
                  namespace_id: pulumi.Input[_builtins.str],
-                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_storage_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_sha256: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_options: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Container resource.
 
@@ -162,200 +162,200 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
         """
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "args", value)
 
     @_builtins.property
     @pulumi.getter
-    def commands(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def commands(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         """
         return pulumi.get(self, "commands")
 
     @commands.setter
-    def commands(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def commands(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "commands", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuLimit")
-    def cpu_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
     @cpu_limit.setter
-    def cpu_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_limit", value)
 
     @_builtins.property
     @pulumi.getter
-    def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean indicating whether the container is in a production environment.
         """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
-    def deploy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deploy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deploy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the container.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
     @environment_variables.setter
-    def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "environment_variables", value)
 
     @_builtins.property
     @pulumi.getter(name="healthChecks")
-    def health_checks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
+    def health_checks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
         Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
     @health_checks.setter
-    def health_checks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]):
+    def health_checks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]):
         pulumi.set(self, "health_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
-    def http_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
     @http_option.setter
-    def http_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
     @pulumi.getter(name="localStorageLimit")
-    def local_storage_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def local_storage_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Local storage limit of the container (in MB)
         """
         return pulumi.get(self, "local_storage_limit")
 
     @local_storage_limit.setter
-    def local_storage_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def local_storage_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "local_storage_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConcurrency")
     @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-    def max_concurrency(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_concurrency(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         """
         return pulumi.get(self, "max_concurrency")
 
     @max_concurrency.setter
-    def max_concurrency(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_concurrency(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_concurrency", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
-    def max_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
     @max_scale.setter
-    def max_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_scale", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
-    def memory_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
-    def memory_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
-    def min_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
     @min_scale.setter
-    def min_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_scale", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the container name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to expose the container.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def privacy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def privacy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
     @privacy.setter
-    def privacy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def privacy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "privacy", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the container is connected to.
 
@@ -366,164 +366,164 @@ class ContainerArgs:
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Defaults to provider `region`) The region in which the container was created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="registryImage")
-    def registry_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
     @registry_image.setter
-    def registry_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_image", value)
 
     @_builtins.property
     @pulumi.getter(name="registrySha256")
-    def registry_sha256(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_sha256(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         """
         return pulumi.get(self, "registry_sha256")
 
     @registry_sha256.setter
-    def registry_sha256(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_sha256(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_sha256", value)
 
     @_builtins.property
     @pulumi.getter
-    def sandbox(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sandbox(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Execution environment of the container.
         """
         return pulumi.get(self, "sandbox")
 
     @sandbox.setter
-    def sandbox(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sandbox(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sandbox", value)
 
     @_builtins.property
     @pulumi.getter(name="scalingOptions")
-    def scaling_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]:
+    def scaling_options(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]:
         """
         Configuration block used to decide when to scale up or down. Possible values:
         """
         return pulumi.get(self, "scaling_options")
 
     @scaling_options.setter
-    def scaling_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]):
+    def scaling_options(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]):
         pulumi.set(self, "scaling_options", value)
 
     @_builtins.property
     @pulumi.getter(name="secretEnvironmentVariables")
-    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secret_environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
 
     @secret_environment_variables.setter
-    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The container status.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags associated with the container.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
 class _ContainerState:
     def __init__(__self__, *,
-                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 cron_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 error_message: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_storage_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_sha256: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_options: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 cron_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 error_message: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Container resources.
 
@@ -633,212 +633,212 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter
-    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
         """
         return pulumi.get(self, "args")
 
     @args.setter
-    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "args", value)
 
     @_builtins.property
     @pulumi.getter
-    def commands(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def commands(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         """
         return pulumi.get(self, "commands")
 
     @commands.setter
-    def commands(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def commands(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "commands", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuLimit")
-    def cpu_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
     @cpu_limit.setter
-    def cpu_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="cronStatus")
-    def cron_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cron_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cron status of the container.
         """
         return pulumi.get(self, "cron_status")
 
     @cron_status.setter
-    def cron_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cron_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cron_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean indicating whether the container is in a production environment.
         """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
-    def deploy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deploy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deploy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the container.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="domainName")
-    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The native domain name of the container
         """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
-    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
     @environment_variables.setter
-    def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "environment_variables", value)
 
     @_builtins.property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def error_message(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The error message of the container.
         """
         return pulumi.get(self, "error_message")
 
     @error_message.setter
-    def error_message(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def error_message(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "error_message", value)
 
     @_builtins.property
     @pulumi.getter(name="healthChecks")
-    def health_checks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
+    def health_checks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
         Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
     @health_checks.setter
-    def health_checks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]):
+    def health_checks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]):
         pulumi.set(self, "health_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
-    def http_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
     @http_option.setter
-    def http_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
     @pulumi.getter(name="localStorageLimit")
-    def local_storage_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def local_storage_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Local storage limit of the container (in MB)
         """
         return pulumi.get(self, "local_storage_limit")
 
     @local_storage_limit.setter
-    def local_storage_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def local_storage_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "local_storage_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConcurrency")
     @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-    def max_concurrency(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_concurrency(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
         """
         return pulumi.get(self, "max_concurrency")
 
     @max_concurrency.setter
-    def max_concurrency(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_concurrency(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_concurrency", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
-    def max_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
     @max_scale.setter
-    def max_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_scale", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
-    def memory_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
-    def memory_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
-    def min_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
     @min_scale.setter
-    def min_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_scale", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the container name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Containers namespace ID of the container.
 
@@ -847,36 +847,36 @@ class _ContainerState:
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to expose the container.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def privacy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def privacy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
     @privacy.setter
-    def privacy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def privacy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "privacy", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the container is connected to.
 
@@ -887,127 +887,127 @@ class _ContainerState:
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Defaults to provider `region`) The region in which the container was created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="registryImage")
-    def registry_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
     @registry_image.setter
-    def registry_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_image", value)
 
     @_builtins.property
     @pulumi.getter(name="registrySha256")
-    def registry_sha256(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_sha256(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         """
         return pulumi.get(self, "registry_sha256")
 
     @registry_sha256.setter
-    def registry_sha256(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_sha256(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_sha256", value)
 
     @_builtins.property
     @pulumi.getter
-    def sandbox(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sandbox(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Execution environment of the container.
         """
         return pulumi.get(self, "sandbox")
 
     @sandbox.setter
-    def sandbox(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sandbox(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sandbox", value)
 
     @_builtins.property
     @pulumi.getter(name="scalingOptions")
-    def scaling_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]:
+    def scaling_options(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]:
         """
         Configuration block used to decide when to scale up or down. Possible values:
         """
         return pulumi.get(self, "scaling_options")
 
     @scaling_options.setter
-    def scaling_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]):
+    def scaling_options(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]]):
         pulumi.set(self, "scaling_options", value)
 
     @_builtins.property
     @pulumi.getter(name="secretEnvironmentVariables")
-    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secret_environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
 
     @secret_environment_variables.setter
-    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The container status.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags associated with the container.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
 
@@ -1022,34 +1022,34 @@ class Container(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_storage_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_sha256: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         The `containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
@@ -1519,34 +1519,34 @@ class Container(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_storage_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_sha256: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaling_options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         pulumi.log.warn("""Container is deprecated: scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1602,37 +1602,37 @@ class Container(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            cron_status: Optional[pulumi.Input[_builtins.str]] = None,
-            deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-            environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            error_message: Optional[pulumi.Input[_builtins.str]] = None,
-            health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
-            http_option: Optional[pulumi.Input[_builtins.str]] = None,
-            local_storage_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            max_concurrency: Optional[pulumi.Input[_builtins.int]] = None,
-            max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-            memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-            port: Optional[pulumi.Input[_builtins.int]] = None,
-            privacy: Optional[pulumi.Input[_builtins.str]] = None,
-            private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            registry_image: Optional[pulumi.Input[_builtins.str]] = None,
-            registry_sha256: Optional[pulumi.Input[_builtins.str]] = None,
-            sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-            scaling_options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
-            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None) -> 'Container':
+            args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            cron_status: pulumi.Input[Optional[_builtins.str]] = None,
+            deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
+            http_option: pulumi.Input[Optional[_builtins.str]] = None,
+            local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+            max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            privacy: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            registry_image: pulumi.Input[Optional[_builtins.str]] = None,
+            registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
+            sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+            scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
+            secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'Container':
         """
         Get an existing Container resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

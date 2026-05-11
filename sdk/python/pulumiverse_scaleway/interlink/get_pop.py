@@ -198,9 +198,9 @@ def get_pop(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         pop_id=pulumi.get(__ret__, 'pop_id'),
         region=pulumi.get(__ret__, 'region'))
-def get_pop_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   pop_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_pop_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   pop_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPopResult]:
     """
     Gets information about an Interlink PoP (Point of Presence).

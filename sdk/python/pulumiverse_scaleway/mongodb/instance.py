@@ -23,25 +23,25 @@ class InstanceArgs:
     def __init__(__self__, *,
                  node_number: pulumi.Input[_builtins.int],
                  node_type: pulumi.Input[_builtins.str],
-                 is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
-                 private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input['InstancePublicNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_schedule_frequency_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_schedule_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
+                 private_network: pulumi.Input[Optional['InstancePrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional['InstancePublicNetworkArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
 
@@ -135,43 +135,43 @@ class InstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="isSnapshotScheduleEnabled")
-    def is_snapshot_schedule_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_snapshot_schedule_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether automatic snapshot scheduling is enabled.
         """
         return pulumi.get(self, "is_snapshot_schedule_enabled")
 
     @is_snapshot_schedule_enabled.setter
-    def is_snapshot_schedule_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_snapshot_schedule_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_snapshot_schedule_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the MongoDB® instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password of the user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -179,217 +179,217 @@ class InstanceArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the instance.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['InstancePrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['InstancePrivateNetworkArgs']]:
         """
         Private Network endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['InstancePrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['InstancePrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the MongoDB® instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicNetwork")
-    def public_network(self) -> Optional[pulumi.Input['InstancePublicNetworkArgs']]:
+    def public_network(self) -> pulumi.Input[Optional['InstancePublicNetworkArgs']]:
         """
         Public network endpoint configuration (no arguments).
         """
         return pulumi.get(self, "public_network")
 
     @public_network.setter
-    def public_network(self, value: Optional[pulumi.Input['InstancePublicNetworkArgs']]):
+    def public_network(self, value: pulumi.Input[Optional['InstancePublicNetworkArgs']]):
         pulumi.set(self, "public_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the MongoDB® instance should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of settings to define for the instance.
         """
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Snapshot ID to restore the MongoDB® instance from.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotScheduleFrequencyHours")
-    def snapshot_schedule_frequency_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def snapshot_schedule_frequency_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Snapshot schedule frequency in hours.
         """
         return pulumi.get(self, "snapshot_schedule_frequency_hours")
 
     @snapshot_schedule_frequency_hours.setter
-    def snapshot_schedule_frequency_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def snapshot_schedule_frequency_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "snapshot_schedule_frequency_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotScheduleRetentionDays")
-    def snapshot_schedule_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def snapshot_schedule_retention_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Snapshot schedule retention in days.
         """
         return pulumi.get(self, "snapshot_schedule_retention_days")
 
     @snapshot_schedule_retention_days.setter
-    def snapshot_schedule_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def snapshot_schedule_retention_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "snapshot_schedule_retention_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags attached to the MongoDB® instance.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the user created when the instance is created.
         """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MongoDB® version of the instance.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeSizeInGb")
-    def volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Volume size in GB.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
     @volume_size_in_gb.setter
-    def volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Volume type of the instance.
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
 @pulumi.input_type
 class _InstanceState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
-                 private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input['InstancePublicNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_schedule_frequency_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_schedule_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tls_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
+                 private_network: pulumi.Input[Optional['InstancePrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional['InstancePublicNetworkArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tls_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
 
@@ -470,79 +470,79 @@ class _InstanceState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the MongoDB® instance.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="isSnapshotScheduleEnabled")
-    def is_snapshot_schedule_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_snapshot_schedule_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether automatic snapshot scheduling is enabled.
         """
         return pulumi.get(self, "is_snapshot_schedule_enabled")
 
     @is_snapshot_schedule_enabled.setter
-    def is_snapshot_schedule_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_snapshot_schedule_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_snapshot_schedule_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the MongoDB® instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeNumber")
-    def node_number(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_number(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes in the instance
         """
         return pulumi.get(self, "node_number")
 
     @node_number.setter
-    def node_number(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_number(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_number", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
-    def node_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of MongoDB® instance to create.
         """
         return pulumi.get(self, "node_type")
 
     @node_type.setter
-    def node_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password of the user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -550,211 +550,211 @@ class _InstanceState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the instance.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['InstancePrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['InstancePrivateNetworkArgs']]:
         """
         Private Network endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['InstancePrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['InstancePrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the MongoDB® instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicNetwork")
-    def public_network(self) -> Optional[pulumi.Input['InstancePublicNetworkArgs']]:
+    def public_network(self) -> pulumi.Input[Optional['InstancePublicNetworkArgs']]:
         """
         Public network endpoint configuration (no arguments).
         """
         return pulumi.get(self, "public_network")
 
     @public_network.setter
-    def public_network(self, value: Optional[pulumi.Input['InstancePublicNetworkArgs']]):
+    def public_network(self, value: pulumi.Input[Optional['InstancePublicNetworkArgs']]):
         pulumi.set(self, "public_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the MongoDB® instance should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of settings to define for the instance.
         """
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Snapshot ID to restore the MongoDB® instance from.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotScheduleFrequencyHours")
-    def snapshot_schedule_frequency_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def snapshot_schedule_frequency_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Snapshot schedule frequency in hours.
         """
         return pulumi.get(self, "snapshot_schedule_frequency_hours")
 
     @snapshot_schedule_frequency_hours.setter
-    def snapshot_schedule_frequency_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def snapshot_schedule_frequency_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "snapshot_schedule_frequency_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotScheduleRetentionDays")
-    def snapshot_schedule_retention_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def snapshot_schedule_retention_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Snapshot schedule retention in days.
         """
         return pulumi.get(self, "snapshot_schedule_retention_days")
 
     @snapshot_schedule_retention_days.setter
-    def snapshot_schedule_retention_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def snapshot_schedule_retention_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "snapshot_schedule_retention_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags attached to the MongoDB® instance.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificate")
-    def tls_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         """
         return pulumi.get(self, "tls_certificate")
 
     @tls_certificate.setter
-    def tls_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the MongoDB® instance.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the user created when the instance is created.
         """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MongoDB® version of the instance.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeSizeInGb")
-    def volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Volume size in GB.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
     @volume_size_in_gb.setter
-    def volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Volume type of the instance.
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
@@ -764,27 +764,27 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_schedule_frequency_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_schedule_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway MongoDB® instance.
@@ -898,27 +898,27 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_network: Optional[pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_schedule_frequency_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_schedule_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -970,30 +970,30 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_number: Optional[pulumi.Input[_builtins.int]] = None,
-            node_type: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-            private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_network: Optional[pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snapshot_schedule_frequency_hours: Optional[pulumi.Input[_builtins.int]] = None,
-            snapshot_schedule_retention_days: Optional[pulumi.Input[_builtins.int]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            tls_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            user_name: Optional[pulumi.Input[_builtins.str]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None,
-            volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-            volume_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Instance':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_number: pulumi.Input[Optional[_builtins.int]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+            snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tls_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

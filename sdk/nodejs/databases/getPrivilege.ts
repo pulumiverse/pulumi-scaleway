@@ -115,7 +115,7 @@ export interface GetPrivilegeOutputArgs {
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The user name.
      */

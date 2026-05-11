@@ -179,44 +179,44 @@ export interface SecretVersionState {
     /**
      * The date and time of the secret version's creation (in RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
      */
-    data?: pulumi.Input<string>;
+    data?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
      */
-    dataWo?: pulumi.Input<string>;
+    dataWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
      */
-    dataWoVersion?: pulumi.Input<number>;
+    dataWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Description of the secret version (e.g. `my-new-description`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * ). The region where the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The revision number of the secret version.
      */
-    revision?: pulumi.Input<string>;
+    revision?: pulumi.Input<string | undefined>;
     /**
      * The ID of the secret associated with the version.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * The status of the secret version.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the secret version's last update (in RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -226,24 +226,24 @@ export interface SecretVersionArgs {
     /**
      * The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
      */
-    data?: pulumi.Input<string>;
+    data?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
      */
-    dataWo?: pulumi.Input<string>;
+    dataWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
      */
-    dataWoVersion?: pulumi.Input<number>;
+    dataWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Description of the secret version (e.g. `my-new-description`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * ). The region where the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The ID of the secret associated with the version.
      */

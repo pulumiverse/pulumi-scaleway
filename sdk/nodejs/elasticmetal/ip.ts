@@ -210,51 +210,51 @@ export interface IpState {
     /**
      * The date and time of the creation of the Flexible IP (Format ISO 8601).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A description of the flexible IP.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The IP address of the Flexible IP.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Defines whether the flexible IP has an IPv6 address.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The organization of the Flexible IP.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Flexible IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain associated with this flexible IP.
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The ID of the associated server.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * The status of the flexible IP.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the flexible IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the Flexible IP (Format ISO 8601).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone of the Flexible IP.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -264,29 +264,29 @@ export interface IpArgs {
     /**
      * A description of the flexible IP.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Defines whether the flexible IP has an IPv6 address.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the Project the Flexible IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain associated with this flexible IP.
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The ID of the associated server.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the flexible IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone of the Flexible IP.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

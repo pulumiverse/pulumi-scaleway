@@ -139,13 +139,13 @@ export interface GetPopOutputArgs {
     /**
      * The name of the PoP to filter for. Conflicts with `popId`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the PoP. Can be a plain UUID or a regional ID. Conflicts with `name`.
      */
-    popId?: pulumi.Input<string>;
+    popId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the PoP exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

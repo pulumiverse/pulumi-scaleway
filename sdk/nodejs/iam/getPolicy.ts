@@ -142,11 +142,11 @@ export interface GetPolicyOutputArgs {
     /**
      * The name of the IAM policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the IAM policy.
      *
      * > **Note** You must specify at least one: `name` and/or `policyId`.
      */
-    policyId?: pulumi.Input<string>;
+    policyId?: pulumi.Input<string | undefined>;
 }

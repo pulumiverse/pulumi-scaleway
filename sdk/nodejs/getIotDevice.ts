@@ -93,18 +93,18 @@ export interface GetIotDeviceOutputArgs {
      * The device ID.
      * Only one of the `name` and `deviceId` should be specified.
      */
-    deviceId?: pulumi.Input<string>;
+    deviceId?: pulumi.Input<string | undefined>;
     /**
      * The hub ID.
      */
-    hubId?: pulumi.Input<string>;
+    hubId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Hub.
      * Only one of the `name` and `deviceId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the hub exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

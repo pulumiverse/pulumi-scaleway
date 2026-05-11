@@ -158,23 +158,23 @@ export interface UserState {
     /**
      * ID of the Data Warehouse deployment to which this user belongs.
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * Whether the user has administrator privileges. Defaults to `false`.
      */
-    isAdmin?: pulumi.Input<boolean>;
+    isAdmin?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the ClickHouse user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Password for the ClickHouse user.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the user should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -188,11 +188,11 @@ export interface UserArgs {
     /**
      * Whether the user has administrator privileges. Defaults to `false`.
      */
-    isAdmin?: pulumi.Input<boolean>;
+    isAdmin?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the ClickHouse user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Password for the ClickHouse user.
      */
@@ -200,5 +200,5 @@ export interface UserArgs {
     /**
      * `region`) The region in which the user should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -240,65 +240,65 @@ export interface JobDefinitionState {
     /**
      * The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The command that will be run in the container if specified.
      *
      * @deprecated Please use startupCommand instead
      */
-    command?: pulumi.Input<string>;
+    command?: pulumi.Input<string | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
-    cpuLimit?: pulumi.Input<number>;
+    cpuLimit?: pulumi.Input<number | undefined>;
     /**
      * The cron configuration
      */
-    cron?: pulumi.Input<inputs.JobDefinitionCron>;
+    cron?: pulumi.Input<inputs.JobDefinitionCron | undefined>;
     /**
      * The description of the job
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The environment variables of the container.
      */
-    env?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    env?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The uri of the container image that will be used for the job run.
      */
-    imageUri?: pulumi.Input<string>;
+    imageUri?: pulumi.Input<string | undefined>;
     /**
      * The local storage capacity of the job in MiB.
      */
-    localStorageCapacity?: pulumi.Input<number>;
+    localStorageCapacity?: pulumi.Input<number | undefined>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
-    memoryLimit?: pulumi.Input<number>;
+    memoryLimit?: pulumi.Input<number | undefined>;
     /**
      * The name of the job.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the Job is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the Job.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A reference to a secret stored in Secret Manager.
      */
-    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[]>;
+    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[] | undefined>;
     /**
      * The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
      */
-    startupCommands?: pulumi.Input<pulumi.Input<string>[]>;
+    startupCommands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
-    timeout?: pulumi.Input<string>;
+    timeout?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -308,13 +308,13 @@ export interface JobDefinitionArgs {
     /**
      * The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The command that will be run in the container if specified.
      *
      * @deprecated Please use startupCommand instead
      */
-    command?: pulumi.Input<string>;
+    command?: pulumi.Input<string | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
@@ -322,15 +322,15 @@ export interface JobDefinitionArgs {
     /**
      * The cron configuration
      */
-    cron?: pulumi.Input<inputs.JobDefinitionCron>;
+    cron?: pulumi.Input<inputs.JobDefinitionCron | undefined>;
     /**
      * The description of the job
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The environment variables of the container.
      */
-    env?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    env?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The uri of the container image that will be used for the job run.
      */
@@ -346,25 +346,25 @@ export interface JobDefinitionArgs {
     /**
      * The name of the job.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the Job is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the Job.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A reference to a secret stored in Secret Manager.
      */
-    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[]>;
+    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[] | undefined>;
     /**
      * The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
      */
-    startupCommands?: pulumi.Input<pulumi.Input<string>[]>;
+    startupCommands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
-    timeout?: pulumi.Input<string>;
+    timeout?: pulumi.Input<string | undefined>;
 }

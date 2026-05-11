@@ -21,13 +21,13 @@ class SnsTopicArgs:
     def __init__(__self__, *,
                  access_key: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fifo_topic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnsTopic resource.
 
@@ -85,67 +85,67 @@ class SnsTopicArgs:
 
     @_builtins.property
     @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def content_based_deduplication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to enable content-based deduplication.
         """
         return pulumi.get(self, "content_based_deduplication")
 
     @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def content_based_deduplication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "content_based_deduplication", value)
 
     @_builtins.property
     @pulumi.getter(name="fifoTopic")
-    def fifo_topic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fifo_topic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         """
         return pulumi.get(self, "fifo_topic")
 
     @fifo_topic.setter
-    def fifo_topic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fifo_topic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fifo_topic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region
         in which SNS is enabled.
@@ -153,36 +153,36 @@ class SnsTopicArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="snsEndpoint")
-    def sns_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sns_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sns_endpoint")
 
     @sns_endpoint.setter
-    def sns_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sns_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sns_endpoint", value)
 
 
 @pulumi.input_type
 class _SnsTopicState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fifo_topic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnsTopic resources.
 
@@ -224,103 +224,103 @@ class _SnsTopicState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The access key of the SNS credentials.
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the topic
         """
         return pulumi.get(self, "arn")
 
     @arn.setter
-    def arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
 
     @_builtins.property
     @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def content_based_deduplication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to enable content-based deduplication.
         """
         return pulumi.get(self, "content_based_deduplication")
 
     @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def content_based_deduplication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "content_based_deduplication", value)
 
     @_builtins.property
     @pulumi.getter(name="fifoTopic")
-    def fifo_topic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fifo_topic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
         """
         return pulumi.get(self, "fifo_topic")
 
     @fifo_topic.setter
-    def fifo_topic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fifo_topic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fifo_topic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def owner(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def owner(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Owner of the SNS topic, should have format 'project-${project_id}'
         """
         return pulumi.get(self, "owner")
 
     @owner.setter
-    def owner(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def owner(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "owner", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SNS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region
         in which SNS is enabled.
@@ -328,31 +328,31 @@ class _SnsTopicState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key of the SNS credentials.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="snsEndpoint")
-    def sns_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sns_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sns_endpoint")
 
     @sns_endpoint.setter
-    def sns_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sns_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sns_endpoint", value)
 
 
@@ -362,15 +362,15 @@ class SnsTopic(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fifo_topic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manage Scaleway Messaging and queuing SNS topics.
@@ -476,15 +476,15 @@ class SnsTopic(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fifo_topic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -523,17 +523,17 @@ class SnsTopic(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            arn: Optional[pulumi.Input[_builtins.str]] = None,
-            content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-            fifo_topic: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            owner: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            sns_endpoint: Optional[pulumi.Input[_builtins.str]] = None) -> 'SnsTopic':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+            fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            owner: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None) -> 'SnsTopic':
         """
         Get an existing SnsTopic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

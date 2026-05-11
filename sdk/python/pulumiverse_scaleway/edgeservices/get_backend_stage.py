@@ -199,11 +199,11 @@ def get_backend_stage(backend_stage_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         s3_backend_configs=pulumi.get(__ret__, 's3_backend_configs'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_backend_stage_output(backend_stage_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             bucket_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             bucket_region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             lb_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             pipeline_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_stage_output(backend_stage_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             bucket_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             bucket_region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             lb_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             pipeline_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendStageResult]:
     """
     Gets information about an Edge Services backend stage.

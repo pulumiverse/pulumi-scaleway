@@ -155,43 +155,43 @@ export interface EdgeServicesDnsStageState {
     /**
      * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    cacheStageId?: pulumi.Input<string>;
+    cacheStageId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the DNS stage.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The Default Fully Qualified Domain Name attached to the stage.
      */
-    defaultFqdn?: pulumi.Input<string>;
+    defaultFqdn?: pulumi.Input<string | undefined>;
     /**
      * Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
      */
-    fqdns?: pulumi.Input<pulumi.Input<string>[]>;
+    fqdns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the DNS stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    tlsStageId?: pulumi.Input<string>;
+    tlsStageId?: pulumi.Input<string | undefined>;
     /**
      * The type of the stage.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the DNS stage.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,15 +201,15 @@ export interface EdgeServicesDnsStageArgs {
     /**
      * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    cacheStageId?: pulumi.Input<string>;
+    cacheStageId?: pulumi.Input<string | undefined>;
     /**
      * Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
      */
-    fqdns?: pulumi.Input<pulumi.Input<string>[]>;
+    fqdns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the pipeline.
      */
@@ -217,9 +217,9 @@ export interface EdgeServicesDnsStageArgs {
     /**
      * `projectId`) The ID of the project the DNS stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    tlsStageId?: pulumi.Input<string>;
+    tlsStageId?: pulumi.Input<string | undefined>;
 }

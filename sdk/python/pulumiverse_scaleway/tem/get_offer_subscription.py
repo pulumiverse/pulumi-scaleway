@@ -214,8 +214,8 @@ def get_offer_subscription(project_id: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         sla=pulumi.get(__ret__, 'sla'),
         subscribed_at=pulumi.get(__ret__, 'subscribed_at'))
-def get_offer_subscription_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_offer_subscription_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOfferSubscriptionResult]:
     """
     Gets information about a transactional email offer subscription.

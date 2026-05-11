@@ -133,12 +133,12 @@ export interface GetInstancePrivateNicOutputArgs {
      * The ID of the private network
      * Only one of `privateNicId` and `privateNetworkId` should be specified.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the instance server private nic
      * Only one of `privateNicId` and `privateNetworkId` should be specified.
      */
-    privateNicId?: pulumi.Input<string>;
+    privateNicId?: pulumi.Input<string | undefined>;
     /**
      * The server's id
      */
@@ -147,9 +147,9 @@ export interface GetInstancePrivateNicOutputArgs {
      * The tags associated with the private NIC.
      * As datasource only returns one private NIC, the search with given tags must return only one result
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the private nic exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

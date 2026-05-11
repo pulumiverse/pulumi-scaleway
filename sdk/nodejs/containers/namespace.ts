@@ -179,55 +179,55 @@ export interface NamespaceState {
      *
      * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
-    activateVpcIntegration?: pulumi.Input<boolean>;
+    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the namespace.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Destroy registry on deletion
      *
      * @deprecated Registry namespace is automatically destroyed with namespace
      */
-    destroyRegistry?: pulumi.Input<boolean>;
+    destroyRegistry?: pulumi.Input<boolean | undefined>;
     /**
      * The environment variables of the namespace.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The unique name of the Containers namespace.
      *
      * > **Important** Updates to the `name` argument will recreate the namespace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID with which the namespace is associated.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The unique identifier of the project that contains the namespace.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The registry endpoint of the namespace.
      */
-    registryEndpoint?: pulumi.Input<string>;
+    registryEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The registry namespace ID of the namespace.
      */
-    registryNamespaceId?: pulumi.Input<string>;
+    registryNamespaceId?: pulumi.Input<string | undefined>;
     /**
      * The secret environment variables of the namespace.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of tags associated with the namespace.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -241,41 +241,41 @@ export interface NamespaceArgs {
      *
      * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
-    activateVpcIntegration?: pulumi.Input<boolean>;
+    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the namespace.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Destroy registry on deletion
      *
      * @deprecated Registry namespace is automatically destroyed with namespace
      */
-    destroyRegistry?: pulumi.Input<boolean>;
+    destroyRegistry?: pulumi.Input<boolean | undefined>;
     /**
      * The environment variables of the namespace.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The unique name of the Containers namespace.
      *
      * > **Important** Updates to the `name` argument will recreate the namespace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The unique identifier of the project that contains the namespace.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret environment variables of the namespace.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of tags associated with the namespace.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

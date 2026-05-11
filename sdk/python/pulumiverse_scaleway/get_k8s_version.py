@@ -161,8 +161,8 @@ def get_k8s_version(name: Optional[_builtins.str] = None,
         major_minor_only=pulumi.get(__ret__, 'major_minor_only'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
-def get_k8s_version_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                           region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_k8s_version_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                           region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sVersionResult]:
     """
     The `kubernetes_get_version` data source is used to retrieve information about a Kubernetes version.

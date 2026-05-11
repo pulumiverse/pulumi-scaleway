@@ -102,5 +102,5 @@ export interface GetSamlOutputArgs {
     /**
      * The organization ID
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
 }

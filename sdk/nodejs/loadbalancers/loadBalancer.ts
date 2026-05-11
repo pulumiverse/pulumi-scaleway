@@ -291,24 +291,24 @@ export interface LoadBalancerState {
     /**
      * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
-    assignFlexibleIp?: pulumi.Input<boolean>;
+    assignFlexibleIp?: pulumi.Input<boolean | undefined>;
     /**
      * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
-    assignFlexibleIpv6?: pulumi.Input<boolean>;
+    assignFlexibleIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the Load Balancer.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A boolean to specify whether to use lb_private_network.
      * If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
      */
-    externalPrivateNetworks?: pulumi.Input<boolean>;
+    externalPrivateNetworks?: pulumi.Input<boolean | undefined>;
     /**
      * The Load Balancer public IPv4 address.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
@@ -316,63 +316,63 @@ export interface LoadBalancerState {
      *
      * @deprecated Please use ip_ids
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
      * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The Load Balancer public IPv6 address.
      */
-    ipv6Address?: pulumi.Input<string>;
+    ipv6Address?: pulumi.Input<string | undefined>;
     /**
      * The name of the Load Balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Organization ID the Load Balancer is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateIp>[] | undefined>;
     /**
      * List of private network to connect with your load balancer.
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region of the resource
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
-    releaseIp?: pulumi.Input<boolean>;
+    releaseIp?: pulumi.Input<boolean | undefined>;
     /**
      * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
-    sslCompatibilityLevel?: pulumi.Input<string>;
+    sslCompatibilityLevel?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Load Balancer.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -382,20 +382,20 @@ export interface LoadBalancerArgs {
     /**
      * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
-    assignFlexibleIp?: pulumi.Input<boolean>;
+    assignFlexibleIp?: pulumi.Input<boolean | undefined>;
     /**
      * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
-    assignFlexibleIpv6?: pulumi.Input<boolean>;
+    assignFlexibleIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the Load Balancer.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A boolean to specify whether to use lb_private_network.
      * If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
      */
-    externalPrivateNetworks?: pulumi.Input<boolean>;
+    externalPrivateNetworks?: pulumi.Input<boolean | undefined>;
     /**
      * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
@@ -403,39 +403,39 @@ export interface LoadBalancerArgs {
      *
      * @deprecated Please use ip_ids
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
      * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the Load Balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of private network to connect with your load balancer.
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
-    releaseIp?: pulumi.Input<boolean>;
+    releaseIp?: pulumi.Input<boolean | undefined>;
     /**
      * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
-    sslCompatibilityLevel?: pulumi.Input<string>;
+    sslCompatibilityLevel?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Load Balancer.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
@@ -443,5 +443,5 @@ export interface LoadBalancerArgs {
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

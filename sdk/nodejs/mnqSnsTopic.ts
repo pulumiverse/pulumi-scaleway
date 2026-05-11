@@ -178,48 +178,48 @@ export interface MnqSnsTopicState {
     /**
      * The access key of the SNS credentials.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the topic
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to enable content-based deduplication.
      */
-    contentBasedDeduplication?: pulumi.Input<boolean>;
+    contentBasedDeduplication?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
-    fifoTopic?: pulumi.Input<boolean>;
+    fifoTopic?: pulumi.Input<boolean | undefined>;
     /**
      * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * Owner of the SNS topic, should have format 'project-${project_id}'
      */
-    owner?: pulumi.Input<string>;
+    owner?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    snsEndpoint?: pulumi.Input<string>;
+    snsEndpoint?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -233,28 +233,28 @@ export interface MnqSnsTopicArgs {
     /**
      * Specifies whether to enable content-based deduplication.
      */
-    contentBasedDeduplication?: pulumi.Input<boolean>;
+    contentBasedDeduplication?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
-    fifoTopic?: pulumi.Input<boolean>;
+    fifoTopic?: pulumi.Input<boolean | undefined>;
     /**
      * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
@@ -262,5 +262,5 @@ export interface MnqSnsTopicArgs {
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    snsEndpoint?: pulumi.Input<string>;
+    snsEndpoint?: pulumi.Input<string | undefined>;
 }

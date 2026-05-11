@@ -154,39 +154,39 @@ export interface LoadbalancerIpState {
     /**
      * The IP address
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * If true, creates a flexible IP with an IPv6 address.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The associated Load Balancer ID if any
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The organizationId you want to attach the resource to
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region of the resource
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain associated with this IP.
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with this IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -196,21 +196,21 @@ export interface LoadbalancerIpArgs {
     /**
      * If true, creates a flexible IP with an IPv6 address.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain associated with this IP.
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with this IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

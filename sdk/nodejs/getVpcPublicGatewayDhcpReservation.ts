@@ -292,21 +292,21 @@ export interface GetVpcPublicGatewayDhcpReservationOutputArgs {
      *
      * > Only one of `reservationId` or `macAddress` with `gatewayNetworkId` should be specified.
      */
-    gatewayNetworkId?: pulumi.Input<string>;
+    gatewayNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The MAC address of the reservation to retrieve.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The ID of the reservation (DHCP entry) to retrieve.
      */
-    reservationId?: pulumi.Input<string>;
+    reservationId?: pulumi.Input<string | undefined>;
     /**
      * Whether to wait for `macAddress` to exist in DHCP.
      */
-    waitForDhcp?: pulumi.Input<boolean>;
+    waitForDhcp?: pulumi.Input<boolean | undefined>;
     /**
      * `zone`). The zone in which the reservation exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

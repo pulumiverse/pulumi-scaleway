@@ -203,5 +203,5 @@ export interface GetPublicGatewayPatRuleOutputArgs {
      * `zone`) The zone in which
      * the rule exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

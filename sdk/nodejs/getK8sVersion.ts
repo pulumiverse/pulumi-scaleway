@@ -131,5 +131,5 @@ export interface GetK8sVersionOutputArgs {
     /**
      * `region`) The region in which the version exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

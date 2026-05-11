@@ -248,61 +248,61 @@ export interface GatewayNetworkState {
      *
      * @deprecated DHCP cleanup is no longer needed. Please use ipamConfig instead.
      */
-    cleanupDhcp?: pulumi.Input<boolean>;
+    cleanupDhcp?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time of the creation of the GatewayNetwork.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated DHCP configuration is no longer managed separately. Please use ipamConfig instead.
      */
-    dhcpId?: pulumi.Input<string>;
+    dhcpId?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
      * @deprecated DHCP is now managed automatically. Please use ipamConfig instead.
      */
-    enableDhcp?: pulumi.Input<boolean>;
+    enableDhcp?: pulumi.Input<boolean | undefined>;
     /**
      * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
      */
-    enableMasquerade?: pulumi.Input<boolean>;
+    enableMasquerade?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Public Gateway.
      */
-    gatewayId?: pulumi.Input<string>;
+    gatewayId?: pulumi.Input<string | undefined>;
     /**
      * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
-    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkIpamConfig>[]>;
+    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkIpamConfig>[] | undefined>;
     /**
      * The MAC address of the GatewayNetwork.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkPrivateIp>[] | undefined>;
     /**
      * The ID of the Private Network.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipamConfig instead.
      */
-    staticAddress?: pulumi.Input<string>;
+    staticAddress?: pulumi.Input<string | undefined>;
     /**
      * The status of the Public Gateway's connection to the Private Network.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the GatewayNetwork.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the gateway network should be created.
      *
@@ -310,7 +310,7 @@ export interface GatewayNetworkState {
      * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
      * For more information, please refer to the dedicated guide.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -322,23 +322,23 @@ export interface GatewayNetworkArgs {
      *
      * @deprecated DHCP cleanup is no longer needed. Please use ipamConfig instead.
      */
-    cleanupDhcp?: pulumi.Input<boolean>;
+    cleanupDhcp?: pulumi.Input<boolean | undefined>;
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated DHCP configuration is no longer managed separately. Please use ipamConfig instead.
      */
-    dhcpId?: pulumi.Input<string>;
+    dhcpId?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
      * @deprecated DHCP is now managed automatically. Please use ipamConfig instead.
      */
-    enableDhcp?: pulumi.Input<boolean>;
+    enableDhcp?: pulumi.Input<boolean | undefined>;
     /**
      * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
      */
-    enableMasquerade?: pulumi.Input<boolean>;
+    enableMasquerade?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Public Gateway.
      */
@@ -346,11 +346,11 @@ export interface GatewayNetworkArgs {
     /**
      * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
-    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkIpamConfig>[]>;
+    ipamConfigs?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkIpamConfig>[] | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkPrivateIp>[] | undefined>;
     /**
      * The ID of the Private Network.
      */
@@ -360,7 +360,7 @@ export interface GatewayNetworkArgs {
      *
      * @deprecated Please use ipamConfig instead.
      */
-    staticAddress?: pulumi.Input<string>;
+    staticAddress?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the gateway network should be created.
      *
@@ -368,5 +368,5 @@ export interface GatewayNetworkArgs {
      * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
      * For more information, please refer to the dedicated guide.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

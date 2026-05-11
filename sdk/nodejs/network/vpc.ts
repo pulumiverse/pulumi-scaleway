@@ -169,43 +169,43 @@ export interface VpcState {
     /**
      * Date and time of VPC's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
      */
-    enableCustomRoutesPropagation?: pulumi.Input<boolean>;
+    enableCustomRoutesPropagation?: pulumi.Input<boolean | undefined>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
-    enableRouting?: pulumi.Input<boolean>;
+    enableRouting?: pulumi.Input<boolean | undefined>;
     /**
      * Defines whether the VPC is the default one for its Project.
      */
-    isDefault?: pulumi.Input<boolean>;
+    isDefault?: pulumi.Input<boolean | undefined>;
     /**
      * The name for the VPC. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the VPC is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the VPC is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the VPC.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the VPC.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of VPC's last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -215,25 +215,25 @@ export interface VpcArgs {
     /**
      * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
      */
-    enableCustomRoutesPropagation?: pulumi.Input<boolean>;
+    enableCustomRoutesPropagation?: pulumi.Input<boolean | undefined>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
-    enableRouting?: pulumi.Input<boolean>;
+    enableRouting?: pulumi.Input<boolean | undefined>;
     /**
      * The name for the VPC. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the VPC is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the VPC.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the VPC.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -97,18 +97,18 @@ export interface GetIpOutputArgs {
      * The IPv4 address to retrieve
      * Only one of `address` and `id` should be specified.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The ID of the IP address to retrieve
      * Only one of `address` and `id` should be specified.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

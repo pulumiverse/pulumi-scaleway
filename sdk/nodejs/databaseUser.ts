@@ -181,17 +181,17 @@ export interface DatabaseUserState {
      *
      * > **Important:** Updates to `instanceId` will recreate the database user.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * Grant admin permissions to the database user.
      */
-    isAdmin?: pulumi.Input<boolean>;
+    isAdmin?: pulumi.Input<boolean | undefined>;
     /**
      * database user name.
      *
      * > **Important:** Updates to `name` will recreate the database user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * database user password. The password must meet the following requirements based on ISO27001 standards:
      * - **Length**: 8-128 characters
@@ -203,20 +203,20 @@ export interface DatabaseUserState {
      *
      * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Scaleway region this resource resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -232,13 +232,13 @@ export interface DatabaseUserArgs {
     /**
      * Grant admin permissions to the database user.
      */
-    isAdmin?: pulumi.Input<boolean>;
+    isAdmin?: pulumi.Input<boolean | undefined>;
     /**
      * database user name.
      *
      * > **Important:** Updates to `name` will recreate the database user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * database user password. The password must meet the following requirements based on ISO27001 standards:
      * - **Length**: 8-128 characters
@@ -250,18 +250,18 @@ export interface DatabaseUserArgs {
      *
      * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Database user password in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Scaleway region this resource resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

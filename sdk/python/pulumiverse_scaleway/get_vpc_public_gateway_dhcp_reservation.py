@@ -267,11 +267,11 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[_builti
         updated_at=pulumi.get(__ret__, 'updated_at'),
         wait_for_dhcp=pulumi.get(__ret__, 'wait_for_dhcp'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                   mac_address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                   reservation_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                   wait_for_dhcp: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                                   zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                   mac_address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                   reservation_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                   wait_for_dhcp: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                                   zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
     > **Important:**  The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.

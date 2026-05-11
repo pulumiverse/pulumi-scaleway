@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get configuration information
-        ///     var main = Scaleway.Index.GetConfig.Invoke();
+        ///     var main = Scaleway.GetConfig.Invoke();
         /// 
         /// });
         /// ```
@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get configuration information
-        ///     var main = Scaleway.Index.GetConfig.Invoke();
+        ///     var main = Scaleway.GetConfig.Invoke();
         /// 
         /// });
         /// ```
@@ -70,7 +70,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get configuration information
-        ///     var main = Scaleway.Index.GetConfig.Invoke();
+        ///     var main = Scaleway.GetConfig.Invoke();
         /// 
         /// });
         /// ```

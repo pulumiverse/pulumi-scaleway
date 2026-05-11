@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway
     ///     var key1 = new Scaleway.Iam.SshKey("key1", new()
     ///     {
     ///         Name = "key1",
-    ///         PublicKey = Std.Index.File.Invoke(new()
+    ///         PublicKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "~/.ssh/id_rsa.pub",
     ///         }).Result,
@@ -63,15 +63,15 @@ namespace Pulumiverse.Scaleway
     ///     var key2 = new Scaleway.Iam.SshKey("key2", new()
     ///     {
     ///         Name = "key2",
-    ///         PublicKey = Std.Index.File.Invoke(new()
+    ///         PublicKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "~/.ssh/another_key.pub",
     ///         }).Result,
     ///     });
     /// 
-    ///     var sshKeysHash = Std.Index.Sha256.Invoke(new()
+    ///     var sshKeysHash = Std.Sha256.Invoke(new()
     ///     {
-    ///         Input = Std.Index.Join.Invoke(new()
+    ///         Input = Std.Join.Invoke(new()
     ///         {
     ///             Separator = ",",
     ///             Input = new[]

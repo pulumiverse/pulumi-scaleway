@@ -188,49 +188,49 @@ export interface ApiKeyState {
     /**
      * The access key of the IAM API key.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * ID of the application attached to the API key.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the IAM API key.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The IP Address of the device which created the API key.
      */
-    creationIp?: pulumi.Input<string>;
+    creationIp?: pulumi.Input<string | undefined>;
     /**
      * The default Project ID to use with Object Storage.
      */
-    defaultProjectId?: pulumi.Input<string>;
+    defaultProjectId?: pulumi.Input<string | undefined>;
     /**
      * The description of the API key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the IAM API key is editable.
      */
-    editable?: pulumi.Input<boolean>;
+    editable?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The secret Key of the IAM API key.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the IAM API key.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user attached to the API key.
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -240,23 +240,23 @@ export interface ApiKeyArgs {
     /**
      * ID of the application attached to the API key.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The default Project ID to use with Object Storage.
      */
-    defaultProjectId?: pulumi.Input<string>;
+    defaultProjectId?: pulumi.Input<string | undefined>;
     /**
      * The description of the API key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user attached to the API key.
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }

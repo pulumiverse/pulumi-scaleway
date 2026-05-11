@@ -203,37 +203,37 @@ export interface ObjectItemState {
     /**
      * The name of the bucket, or its Terraform ID.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      *
      * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    contentBase64?: pulumi.Input<string>;
+    contentBase64?: pulumi.Input<string | undefined>;
     /**
      * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * The name of the file to upload, defaults to an empty file.
      */
-    file?: pulumi.Input<string>;
+    file?: pulumi.Input<string | undefined>;
     /**
      * Hash of the file, used to trigger the upload on file change.
      */
-    hash?: pulumi.Input<string>;
+    hash?: pulumi.Input<string | undefined>;
     /**
      * The path to the object.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * Map of metadata used for the object (keys must be lowercase).
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -241,27 +241,27 @@ export interface ObjectItemState {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway region the bucket resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Customer's encryption keys to encrypt data (SSE-C)
      */
-    sseCustomerKey?: pulumi.Input<string>;
+    sseCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * Map of tags.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Visibility of the object, `public-read` or `private`.
      */
-    visibility?: pulumi.Input<string>;
+    visibility?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -275,25 +275,25 @@ export interface ObjectItemArgs {
     /**
      * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      *
      * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    contentBase64?: pulumi.Input<string>;
+    contentBase64?: pulumi.Input<string | undefined>;
     /**
      * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * The name of the file to upload, defaults to an empty file.
      */
-    file?: pulumi.Input<string>;
+    file?: pulumi.Input<string | undefined>;
     /**
      * Hash of the file, used to trigger the upload on file change.
      */
-    hash?: pulumi.Input<string>;
+    hash?: pulumi.Input<string | undefined>;
     /**
      * The path to the object.
      */
@@ -301,7 +301,7 @@ export interface ObjectItemArgs {
     /**
      * Map of metadata used for the object (keys must be lowercase).
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -309,25 +309,25 @@ export interface ObjectItemArgs {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway region the bucket resides in.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Customer's encryption keys to encrypt data (SSE-C)
      */
-    sseCustomerKey?: pulumi.Input<string>;
+    sseCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * Map of tags.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Visibility of the object, `public-read` or `private`.
      */
-    visibility?: pulumi.Input<string>;
+    visibility?: pulumi.Input<string | undefined>;
 }

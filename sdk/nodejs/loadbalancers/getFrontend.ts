@@ -152,14 +152,14 @@ export interface GetFrontendOutputArgs {
      * The frontend ID.
      * - Only one of `name` and `frontendId` should be specified.
      */
-    frontendId?: pulumi.Input<string>;
+    frontendId?: pulumi.Input<string | undefined>;
     /**
      * The Load Balancer ID this frontend is attached to.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The name of the frontend.
      * - When using the `name` you should specify the `lb-id`
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

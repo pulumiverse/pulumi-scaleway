@@ -161,13 +161,13 @@ export interface GetDedicatedConnectionOutputArgs {
     /**
      * The ID of the dedicated connection. Can be a plain UUID or a regional ID. Conflicts with `name`.
      */
-    connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string | undefined>;
     /**
      * The name of the dedicated connection to filter for. Conflicts with `connectionId`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the dedicated connection exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

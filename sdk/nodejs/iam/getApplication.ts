@@ -109,14 +109,14 @@ export interface GetApplicationOutputArgs {
      *
      * > **Note** You must specify at least one: `name` and/or `applicationId`.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IAM application.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the
      * Organization the application is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
 }

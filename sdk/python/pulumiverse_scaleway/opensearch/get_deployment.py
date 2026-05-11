@@ -258,10 +258,10 @@ def get_deployment(deployment_id: Optional[_builtins.str] = None,
         user_name=pulumi.get(__ret__, 'user_name'),
         version=pulumi.get(__ret__, 'version'),
         volumes=pulumi.get(__ret__, 'volumes'))
-def get_deployment_output(deployment_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_deployment_output(deployment_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentResult]:
     """
     Gets information about an OpenSearch deployment.

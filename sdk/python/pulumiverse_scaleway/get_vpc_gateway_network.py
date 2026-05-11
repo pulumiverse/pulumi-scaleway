@@ -244,11 +244,11 @@ def get_vpc_gateway_network(dhcp_id: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   enable_masquerade: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                   gateway_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   gateway_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   private_network_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_gateway_network_output(dhcp_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   enable_masquerade: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                   gateway_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   gateway_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcGatewayNetworkResult]:
     """
     Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).

@@ -93,11 +93,11 @@ import * as utilities from "../utilities";
  * });
  * const smtpPort = new gitlab.ProjectVariable("smtp_port", {
  *     key: "SMTP_PORT",
- *     value: myDomain.then(myDomain => myDomain.smtpsPort),
+ *     value: output(myDomain.then(myDomain => myDomain.smtpsPort)).apply(x =>String(x)),
  * });
  * const smtpHost = new gitlab.ProjectVariable("smtp_host", {
  *     key: "SMTP_HOST",
- *     value: myDomain.then(myDomain => myDomain.smtpsHost),
+ *     value: output(myDomain.then(myDomain => myDomain.smtpsHost)).apply(x =>String(x)),
  * });
  * ```
  *
@@ -339,115 +339,115 @@ export interface DomainState {
      * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
      * > **Important:** This attribute must be set to `true`.
      */
-    acceptTos?: pulumi.Input<boolean>;
+    acceptTos?: pulumi.Input<boolean | undefined>;
     /**
      * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
      */
-    autoconfig?: pulumi.Input<boolean>;
+    autoconfig?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The DKIM public key, as should be recorded in the DNS zone.
      */
-    dkimConfig?: pulumi.Input<string>;
+    dkimConfig?: pulumi.Input<string | undefined>;
     /**
      * DKIM name for the domain, as should be recorded in the DNS zone.
      */
-    dkimName?: pulumi.Input<string>;
+    dkimName?: pulumi.Input<string | undefined>;
     /**
      * DMARC record for the domain, as should be recorded in the DNS zone.
      */
-    dmarcConfig?: pulumi.Input<string>;
+    dmarcConfig?: pulumi.Input<string | undefined>;
     /**
      * DMARC name for the domain, as should be recorded in the DNS zone.
      */
-    dmarcName?: pulumi.Input<string>;
+    dmarcName?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated) The error message if the last check failed.
      *
      * @deprecated last_error is deprecated
      */
-    lastError?: pulumi.Input<string>;
+    lastError?: pulumi.Input<string | undefined>;
     /**
      * The date and time the domain was last found to be valid (RFC 3339 format).
      */
-    lastValidAt?: pulumi.Input<string>;
+    lastValidAt?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway's blackhole MX server to use if you do not have one.
      */
-    mxBlackhole?: pulumi.Input<string>;
+    mxBlackhole?: pulumi.Input<string | undefined>;
     /**
      * MX record configuration for the domain blackhole.
      */
-    mxConfig?: pulumi.Input<string>;
+    mxConfig?: pulumi.Input<string | undefined>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the next scheduled check (RFC 3339 format).
      */
-    nextCheckAt?: pulumi.Input<string>;
+    nextCheckAt?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the domain is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the domain should be created.
      * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The domain's reputation.
      */
-    reputations?: pulumi.Input<pulumi.Input<inputs.tem.DomainReputation>[]>;
+    reputations?: pulumi.Input<pulumi.Input<inputs.tem.DomainReputation>[] | undefined>;
     /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      */
-    revokedAt?: pulumi.Input<string>;
+    revokedAt?: pulumi.Input<string | undefined>;
     /**
      * The SMTP host to use to send emails.
      */
-    smtpHost?: pulumi.Input<string>;
+    smtpHost?: pulumi.Input<string | undefined>;
     /**
      * The SMTP port to use to send emails over TLS.
      */
-    smtpPort?: pulumi.Input<number>;
+    smtpPort?: pulumi.Input<number | undefined>;
     /**
      * The SMTP port to use to send emails over TLS.
      */
-    smtpPortAlternative?: pulumi.Input<number>;
+    smtpPortAlternative?: pulumi.Input<number | undefined>;
     /**
      * The SMTP port to use to send emails.
      */
-    smtpPortUnsecure?: pulumi.Input<number>;
+    smtpPortUnsecure?: pulumi.Input<number | undefined>;
     /**
      * SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
      */
-    smtpsAuthUser?: pulumi.Input<string>;
+    smtpsAuthUser?: pulumi.Input<string | undefined>;
     /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */
-    smtpsPort?: pulumi.Input<number>;
+    smtpsPort?: pulumi.Input<number | undefined>;
     /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */
-    smtpsPortAlternative?: pulumi.Input<number>;
+    smtpsPortAlternative?: pulumi.Input<number | undefined>;
     /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      */
-    spfConfig?: pulumi.Input<string>;
+    spfConfig?: pulumi.Input<string | undefined>;
     /**
      * Complete SPF record value for the domain, as should be recorded in the DNS zone.
      */
-    spfValue?: pulumi.Input<string>;
+    spfValue?: pulumi.Input<string | undefined>;
     /**
      * The status of the domain's reputation.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -462,19 +462,19 @@ export interface DomainArgs {
     /**
      * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
      */
-    autoconfig?: pulumi.Input<boolean>;
+    autoconfig?: pulumi.Input<boolean | undefined>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the domain is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the domain should be created.
      * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

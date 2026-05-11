@@ -148,19 +148,19 @@ export interface GetRoutingPolicyOutputArgs {
     /**
      * The name of the routing policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the routing policy is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the routing policy exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The routing policy ID.
      *
      * > **Note** You must specify at least one: `name` and/or `routingPolicyId`.
      */
-    routingPolicyId?: pulumi.Input<string>;
+    routingPolicyId?: pulumi.Input<string | undefined>;
 }

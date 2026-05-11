@@ -266,7 +266,7 @@ def get_public_gateway_dhcp(dhcp_id: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         valid_lifetime=pulumi.get(__ret__, 'valid_lifetime'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_public_gateway_dhcp_output(dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPublicGatewayDhcpResult]:
     """
     > **Important:**  The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.

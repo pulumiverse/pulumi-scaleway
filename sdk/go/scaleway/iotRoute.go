@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			iot, err := databases.NewInstance(ctx, "iot", &databases.InstanceArgs{
+//			iot2, err := databases.NewInstance(ctx, "iot", &databases.InstanceArgs{
 //				Name:     pulumi.String("iot"),
 //				NodeType: pulumi.String("db-dev-s"),
 //				Engine:   pulumi.String("PostgreSQL-12"),
@@ -74,11 +74,11 @@ import (
 // );
 // `),
 //
-//					Host:     iot.EndpointIp,
-//					Port:     iot.EndpointPort,
+//					Host:     iot2.EndpointIp,
+//					Port:     iot2.EndpointPort,
 //					Dbname:   pulumi.String("rdb"),
-//					Username: iot.UserName,
-//					Password: iot.Password,
+//					Username: iot2.UserName,
+//					Password: iot2.Password,
 //				},
 //			})
 //			if err != nil {

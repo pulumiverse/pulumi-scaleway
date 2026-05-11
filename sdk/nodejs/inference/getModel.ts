@@ -127,10 +127,10 @@ export interface GetModelOutputArgs {
     /**
      * The ID of the model to retrieve. Must be a valid UUID with locality (i.e., Scaleway's zoned UUID format).
      */
-    modelId?: pulumi.Input<string>;
+    modelId?: pulumi.Input<string | undefined>;
     /**
      * The fully qualified name of the model to look up (e.g., "meta/llama-3.1-8b-instruct:fp8"). The provider will search for a model with an exact name match in the selected region and project.
      */
-    name?: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    url?: pulumi.Input<string | undefined>;
 }

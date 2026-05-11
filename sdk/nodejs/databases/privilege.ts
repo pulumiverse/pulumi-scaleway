@@ -188,31 +188,31 @@ export interface PrivilegeState {
     /**
      * Name of the database (e.g. `my-db-name`).
      */
-    databaseName?: pulumi.Input<string>;
+    databaseName?: pulumi.Input<string | undefined>;
     /**
      * The actual permission currently set in Scaleway. May differ from `permission` after database schema changes (new tables, views, or sequences created).
      */
-    effectivePermission?: pulumi.Input<string>;
+    effectivePermission?: pulumi.Input<string | undefined>;
     /**
      * UUID of the Database Instance.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * Desired permission level. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
-    permission?: pulumi.Input<string>;
+    permission?: pulumi.Input<string | undefined>;
     /**
      * Permission synchronization status. Possible values:
      */
-    permissionStatus?: pulumi.Input<string>;
+    permissionStatus?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -234,7 +234,7 @@ export interface PrivilegeArgs {
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */

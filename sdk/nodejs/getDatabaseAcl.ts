@@ -96,5 +96,5 @@ export interface GetDatabaseAclOutputArgs {
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

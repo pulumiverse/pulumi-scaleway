@@ -125,17 +125,17 @@ export interface GetHostingOutputArgs {
     /**
      * The hosting domain name. Only one of `domain` and `webhostingId` should be specified.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * The ID of the organization the hosting is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the hosting is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The hosting id. Only one of `domain` and `webhostingId` should be specified.
      */
-    webhostingId?: pulumi.Input<string>;
+    webhostingId?: pulumi.Input<string | undefined>;
 }

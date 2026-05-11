@@ -401,10 +401,10 @@ def get_database_instance(instance_id: Optional[_builtins.str] = None,
         user_name=pulumi.get(__ret__, 'user_name'),
         volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
         volume_type=pulumi.get(__ret__, 'volume_type'))
-def get_database_instance_output(instance_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_database_instance_output(instance_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseInstanceResult]:
     """
     Gets information about an Database Instance.

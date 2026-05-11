@@ -167,28 +167,28 @@ export interface GetSecretOutputArgs {
      * The name of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Scaleway Organization the Project is associated with. If no default `organizationId` is set, it must be set explicitly in this data source.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The path of the secret.
      * Conflicts with `secretId`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the
      * Project the secret is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ). The region in which the secret exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The ID of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
 }

@@ -112,13 +112,13 @@ export interface GetBaremetalOptionOutputArgs {
     /**
      * The option name. Only one of `name` and `optionId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The option id. Only one of `name` and `optionId` should be specified.
      */
-    optionId?: pulumi.Input<string>;
+    optionId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the option exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

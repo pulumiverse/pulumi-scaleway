@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///             {
         ///                 var ipAddress = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 return $"{Std.Replace.Invoke(new()
         ///                 {
         ///                     Text = ipAddress,
         ///                     Search = ".",
@@ -117,7 +117,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///             {
         ///                 var ipAddress = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 return $"{Std.Replace.Invoke(new()
         ///                 {
         ///                     Text = ipAddress,
         ///                     Search = ".",
@@ -183,7 +183,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///             {
         ///                 var ipAddress = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 return $"{Std.Replace.Invoke(new()
         ///                 {
         ///                     Text = ipAddress,
         ///                     Search = ".",

@@ -156,39 +156,39 @@ export interface DomainZoneState {
     /**
      * The main domain where the DNS zone will be created.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * Message.
      */
-    message?: pulumi.Input<string>;
+    message?: pulumi.Input<string | undefined>;
     /**
      * The list of same servers for the zone.
      */
-    ns?: pulumi.Input<pulumi.Input<string>[]>;
+    ns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The default list of same servers for the zone.
      */
-    nsDefaults?: pulumi.Input<pulumi.Input<string>[]>;
+    nsDefaults?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The master list of same servers for the zone.
      */
-    nsMasters?: pulumi.Input<pulumi.Input<string>[]>;
+    nsMasters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the Project associated with the domain.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The status of the domain zone.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The name of the subdomain (zone name) to create within the domain.
      */
-    subdomain?: pulumi.Input<string>;
+    subdomain?: pulumi.Input<string | undefined>;
     /**
      * The date and time at which the DNS zone was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -202,7 +202,7 @@ export interface DomainZoneArgs {
     /**
      * `projectId`) The ID of the Project associated with the domain.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The name of the subdomain (zone name) to create within the domain.
      */

@@ -149,11 +149,12 @@ def get_projects(organization_id: Optional[_builtins.str] = None,
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
     all = scaleway.account.get_projects()
-    main = []
+    main: list[Any] = []
     def create_main(range_body):
         for range in [{"value": i} for i in range(0, range_body)]:
             main.append(scaleway.account.SshKey(f"main-{range['value']}",
@@ -181,7 +182,7 @@ def get_projects(organization_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         projects=pulumi.get(__ret__, 'projects'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_projects_output(organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_projects_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     The `account_get_projects` data source is used to list all Scaleway projects in an Organization.
@@ -208,11 +209,12 @@ def get_projects_output(organization_id: Optional[pulumi.Input[Optional[_builtin
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
     all = scaleway.account.get_projects()
-    main = []
+    main: list[Any] = []
     def create_main(range_body):
         for range in [{"value": i} for i in range(0, range_body)]:
             main.append(scaleway.account.SshKey(f"main-{range['value']}",

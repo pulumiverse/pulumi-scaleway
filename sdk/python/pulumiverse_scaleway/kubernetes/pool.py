@@ -24,23 +24,23 @@ class PoolArgs:
                  cluster_id: pulumi.Input[_builtins.str],
                  node_type: pulumi.Input[_builtins.str],
                  size: pulumi.Input[_builtins.int],
-                 autohealing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoscaling: Optional[pulumi.Input[_builtins.bool]] = None,
-                 container_runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 upgrade_policy: Optional[pulumi.Input['PoolUpgradePolicyArgs']] = None,
-                 wait_for_pool_ready: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+                 container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 upgrade_policy: pulumi.Input[Optional['PoolUpgradePolicyArgs']] = None,
+                 wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Pool resource.
 
@@ -165,19 +165,19 @@ class PoolArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autohealing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autohealing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables the autohealing feature for this pool.
         """
         return pulumi.get(self, "autohealing")
 
     @autohealing.setter
-    def autohealing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autohealing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autohealing", value)
 
     @_builtins.property
     @pulumi.getter
-    def autoscaling(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscaling(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables the autoscaling feature for this pool.
 
@@ -186,12 +186,12 @@ class PoolArgs:
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
-    def autoscaling(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscaling(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter(name="containerRuntime")
-    def container_runtime(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def container_runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The container runtime of the pool.
 
@@ -200,48 +200,48 @@ class PoolArgs:
         return pulumi.get(self, "container_runtime")
 
     @container_runtime.setter
-    def container_runtime(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def container_runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "container_runtime", value)
 
     @_builtins.property
     @pulumi.getter(name="kubeletArgs")
-    def kubelet_args(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def kubelet_args(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The Kubelet arguments to be used by this pool
         """
         return pulumi.get(self, "kubelet_args")
 
     @kubelet_args.setter
-    def kubelet_args(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def kubelet_args(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "kubelet_args", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name for the pool.
 
@@ -250,12 +250,12 @@ class PoolArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 
@@ -264,12 +264,12 @@ class PoolArgs:
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
-    def public_ip_disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public_ip_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 
@@ -278,24 +278,24 @@ class PoolArgs:
         return pulumi.get(self, "public_ip_disabled")
 
     @public_ip_disabled.setter
-    def public_ip_disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public_ip_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public_ip_disabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the pool should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolumeSizeInGb")
-    def root_volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def root_volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the system volume of the nodes in gigabyte
 
@@ -304,36 +304,36 @@ class PoolArgs:
         return pulumi.get(self, "root_volume_size_in_gb")
 
     @root_volume_size_in_gb.setter
-    def root_volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def root_volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "root_volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolumeType")
-    def root_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         System volume type of the nodes composing the pool
         """
         return pulumi.get(self, "root_volume_type")
 
     @root_volume_type.setter
-    def root_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the security group
         """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the pool.
 
@@ -342,36 +342,36 @@ class PoolArgs:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradePolicy")
-    def upgrade_policy(self) -> Optional[pulumi.Input['PoolUpgradePolicyArgs']]:
+    def upgrade_policy(self) -> pulumi.Input[Optional['PoolUpgradePolicyArgs']]:
         """
         The Pool upgrade policy
         """
         return pulumi.get(self, "upgrade_policy")
 
     @upgrade_policy.setter
-    def upgrade_policy(self, value: Optional[pulumi.Input['PoolUpgradePolicyArgs']]):
+    def upgrade_policy(self, value: pulumi.Input[Optional['PoolUpgradePolicyArgs']]):
         pulumi.set(self, "upgrade_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="waitForPoolReady")
-    def wait_for_pool_ready(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_for_pool_ready(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to wait for the pool to be ready.
         """
         return pulumi.get(self, "wait_for_pool_ready")
 
     @wait_for_pool_ready.setter
-    def wait_for_pool_ready(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_for_pool_ready(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_for_pool_ready", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the pool should be created.
 
@@ -380,39 +380,39 @@ class PoolArgs:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _PoolState:
     def __init__(__self__, *,
-                 autohealing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoscaling: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 container_runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 current_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 nodes: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodeArgs']]]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 upgrade_policy: Optional[pulumi.Input['PoolUpgradePolicyArgs']] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None,
-                 wait_for_pool_ready: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 current_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 nodes: pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodeArgs']]]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_policy: pulumi.Input[Optional['PoolUpgradePolicyArgs']] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pool resources.
 
@@ -518,19 +518,19 @@ class _PoolState:
 
     @_builtins.property
     @pulumi.getter
-    def autohealing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autohealing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables the autohealing feature for this pool.
         """
         return pulumi.get(self, "autohealing")
 
     @autohealing.setter
-    def autohealing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autohealing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autohealing", value)
 
     @_builtins.property
     @pulumi.getter
-    def autoscaling(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoscaling(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables the autoscaling feature for this pool.
 
@@ -539,24 +539,24 @@ class _PoolState:
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
-    def autoscaling(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoscaling(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Kubernetes cluster on which this pool will be created.
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="containerRuntime")
-    def container_runtime(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def container_runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The container runtime of the pool.
 
@@ -565,72 +565,72 @@ class _PoolState:
         return pulumi.get(self, "container_runtime")
 
     @container_runtime.setter
-    def container_runtime(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def container_runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "container_runtime", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The creation date of the pool.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="currentSize")
-    def current_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def current_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the pool at the time the terraform state was updated.
         """
         return pulumi.get(self, "current_size")
 
     @current_size.setter
-    def current_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def current_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "current_size", value)
 
     @_builtins.property
     @pulumi.getter(name="kubeletArgs")
-    def kubelet_args(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def kubelet_args(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The Kubelet arguments to be used by this pool
         """
         return pulumi.get(self, "kubelet_args")
 
     @kubelet_args.setter
-    def kubelet_args(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def kubelet_args(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "kubelet_args", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
-    def max_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_size", value)
 
     @_builtins.property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum size of the pool, used by the autoscaling feature.
         """
         return pulumi.get(self, "min_size")
 
     @min_size.setter
-    def min_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name for the pool.
 
@@ -639,12 +639,12 @@ class _PoolState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
-    def node_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 
@@ -653,24 +653,24 @@ class _PoolState:
         return pulumi.get(self, "node_type")
 
     @node_type.setter
-    def node_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def nodes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodeArgs']]]]:
+    def nodes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodeArgs']]]]:
         """
         (List of) The nodes in the default pool.
         """
         return pulumi.get(self, "nodes")
 
     @nodes.setter
-    def nodes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodeArgs']]]]):
+    def nodes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodeArgs']]]]):
         pulumi.set(self, "nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 
@@ -679,12 +679,12 @@ class _PoolState:
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
-    def public_ip_disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public_ip_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 
@@ -693,24 +693,24 @@ class _PoolState:
         return pulumi.get(self, "public_ip_disabled")
 
     @public_ip_disabled.setter
-    def public_ip_disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public_ip_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public_ip_disabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the pool should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolumeSizeInGb")
-    def root_volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def root_volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the system volume of the nodes in gigabyte
 
@@ -719,36 +719,36 @@ class _PoolState:
         return pulumi.get(self, "root_volume_size_in_gb")
 
     @root_volume_size_in_gb.setter
-    def root_volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def root_volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "root_volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolumeType")
-    def root_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         System volume type of the nodes composing the pool
         """
         return pulumi.get(self, "root_volume_type")
 
     @root_volume_type.setter
-    def root_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the security group
         """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the pool.
 
@@ -757,24 +757,24 @@ class _PoolState:
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the node.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the pool.
 
@@ -783,60 +783,60 @@ class _PoolState:
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The last update date of the pool.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradePolicy")
-    def upgrade_policy(self) -> Optional[pulumi.Input['PoolUpgradePolicyArgs']]:
+    def upgrade_policy(self) -> pulumi.Input[Optional['PoolUpgradePolicyArgs']]:
         """
         The Pool upgrade policy
         """
         return pulumi.get(self, "upgrade_policy")
 
     @upgrade_policy.setter
-    def upgrade_policy(self, value: Optional[pulumi.Input['PoolUpgradePolicyArgs']]):
+    def upgrade_policy(self, value: pulumi.Input[Optional['PoolUpgradePolicyArgs']]):
         pulumi.set(self, "upgrade_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The version of the pool.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
     @_builtins.property
     @pulumi.getter(name="waitForPoolReady")
-    def wait_for_pool_ready(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_for_pool_ready(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to wait for the pool to be ready.
         """
         return pulumi.get(self, "wait_for_pool_ready")
 
     @wait_for_pool_ready.setter
-    def wait_for_pool_ready(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_for_pool_ready(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_for_pool_ready", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the pool should be created.
 
@@ -845,7 +845,7 @@ class _PoolState:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -855,26 +855,26 @@ class Pool(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 autohealing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoscaling: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 container_runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 upgrade_policy: Optional[pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
-                 wait_for_pool_ready: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 upgrade_policy: pulumi.Input[Optional[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
+                 wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
@@ -1108,26 +1108,26 @@ class Pool(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 autohealing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoscaling: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 container_runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 upgrade_policy: Optional[pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
-                 wait_for_pool_ready: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 upgrade_policy: pulumi.Input[Optional[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
+                 wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1181,32 +1181,32 @@ class Pool(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            autohealing: Optional[pulumi.Input[_builtins.bool]] = None,
-            autoscaling: Optional[pulumi.Input[_builtins.bool]] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            container_runtime: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            current_size: Optional[pulumi.Input[_builtins.int]] = None,
-            kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            max_size: Optional[pulumi.Input[_builtins.int]] = None,
-            min_size: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_type: Optional[pulumi.Input[_builtins.str]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PoolNodeArgs', 'PoolNodeArgsDict']]]]] = None,
-            placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_ip_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            root_volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-            root_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-            security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            upgrade_policy: Optional[pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
-            version: Optional[pulumi.Input[_builtins.str]] = None,
-            wait_for_pool_ready: Optional[pulumi.Input[_builtins.bool]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Pool':
+            autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+            autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            current_size: pulumi.Input[Optional[_builtins.int]] = None,
+            kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max_size: pulumi.Input[Optional[_builtins.int]] = None,
+            min_size: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PoolNodeArgs', 'PoolNodeArgsDict']]]]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            upgrade_policy: pulumi.Input[Optional[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Pool':
         """
         Get an existing Pool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

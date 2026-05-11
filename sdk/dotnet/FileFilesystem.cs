@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var file = new Scaleway.Index.FileFilesystem("file", new()
+    ///     var file = new Scaleway.FileFilesystem("file", new()
     ///     {
     ///         Name = "my-nfs-filesystem",
     ///         SizeInGb = 100,

@@ -22,13 +22,13 @@ __all__ = ['DeviceArgs', 'Device']
 class DeviceArgs:
     def __init__(__self__, *,
                  hub_id: pulumi.Input[_builtins.str],
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_multiple_connections: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate: Optional[pulumi.Input['DeviceCertificateArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_filters: Optional[pulumi.Input['DeviceMessageFiltersArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_multiple_connections: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate: pulumi.Input[Optional['DeviceCertificateArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_filters: pulumi.Input[Optional['DeviceMessageFiltersArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Device resource.
 
@@ -77,7 +77,7 @@ class DeviceArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowInsecure")
-    def allow_insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 
@@ -86,12 +86,12 @@ class DeviceArgs:
         return pulumi.get(self, "allow_insecure")
 
     @allow_insecure.setter
-    def allow_insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_insecure", value)
 
     @_builtins.property
     @pulumi.getter(name="allowMultipleConnections")
-    def allow_multiple_connections(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_multiple_connections(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow more than one simultaneous connection using the same device credentials.
 
@@ -100,48 +100,48 @@ class DeviceArgs:
         return pulumi.get(self, "allow_multiple_connections")
 
     @allow_multiple_connections.setter
-    def allow_multiple_connections(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_multiple_connections(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_multiple_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input['DeviceCertificateArgs']]:
+    def certificate(self) -> pulumi.Input[Optional['DeviceCertificateArgs']]:
         """
         The certificate bundle of the device.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input['DeviceCertificateArgs']]):
+    def certificate(self, value: pulumi.Input[Optional['DeviceCertificateArgs']]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the IoT device (e.g. `living room`).
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="messageFilters")
-    def message_filters(self) -> Optional[pulumi.Input['DeviceMessageFiltersArgs']]:
+    def message_filters(self) -> pulumi.Input[Optional['DeviceMessageFiltersArgs']]:
         """
         Rules that define which messages are authorized or denied based on their topic.
         """
         return pulumi.get(self, "message_filters")
 
     @message_filters.setter
-    def message_filters(self, value: Optional[pulumi.Input['DeviceMessageFiltersArgs']]):
+    def message_filters(self, value: pulumi.Input[Optional['DeviceMessageFiltersArgs']]):
         pulumi.set(self, "message_filters", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT device you want to create (e.g. `my-device`).
 
@@ -150,38 +150,38 @@ class DeviceArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _DeviceState:
     def __init__(__self__, *,
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_multiple_connections: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate: Optional[pulumi.Input['DeviceCertificateArgs']] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_connected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_activity_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_filters: Optional[pulumi.Input['DeviceMessageFiltersArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_multiple_connections: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate: pulumi.Input[Optional['DeviceCertificateArgs']] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_connected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_activity_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_filters: pulumi.Input[Optional['DeviceMessageFiltersArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Device resources.
 
@@ -234,7 +234,7 @@ class _DeviceState:
 
     @_builtins.property
     @pulumi.getter(name="allowInsecure")
-    def allow_insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
 
@@ -243,12 +243,12 @@ class _DeviceState:
         return pulumi.get(self, "allow_insecure")
 
     @allow_insecure.setter
-    def allow_insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_insecure", value)
 
     @_builtins.property
     @pulumi.getter(name="allowMultipleConnections")
-    def allow_multiple_connections(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_multiple_connections(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow more than one simultaneous connection using the same device credentials.
 
@@ -257,96 +257,96 @@ class _DeviceState:
         return pulumi.get(self, "allow_multiple_connections")
 
     @allow_multiple_connections.setter
-    def allow_multiple_connections(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_multiple_connections(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_multiple_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input['DeviceCertificateArgs']]:
+    def certificate(self) -> pulumi.Input[Optional['DeviceCertificateArgs']]:
         """
         The certificate bundle of the device.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input['DeviceCertificateArgs']]):
+    def certificate(self, value: pulumi.Input[Optional['DeviceCertificateArgs']]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the device was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the IoT device (e.g. `living room`).
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="hubId")
-    def hub_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hub_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the hub on which this device will be created.
         """
         return pulumi.get(self, "hub_id")
 
     @hub_id.setter
-    def hub_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hub_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hub_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isConnected")
-    def is_connected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_connected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         The current connection status of the device.
         """
         return pulumi.get(self, "is_connected")
 
     @is_connected.setter
-    def is_connected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_connected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_connected", value)
 
     @_builtins.property
     @pulumi.getter(name="lastActivityAt")
-    def last_activity_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_activity_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The last MQTT activity of the device.
         """
         return pulumi.get(self, "last_activity_at")
 
     @last_activity_at.setter
-    def last_activity_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_activity_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_activity_at", value)
 
     @_builtins.property
     @pulumi.getter(name="messageFilters")
-    def message_filters(self) -> Optional[pulumi.Input['DeviceMessageFiltersArgs']]:
+    def message_filters(self) -> pulumi.Input[Optional['DeviceMessageFiltersArgs']]:
         """
         Rules that define which messages are authorized or denied based on their topic.
         """
         return pulumi.get(self, "message_filters")
 
     @message_filters.setter
-    def message_filters(self, value: Optional[pulumi.Input['DeviceMessageFiltersArgs']]):
+    def message_filters(self, value: pulumi.Input[Optional['DeviceMessageFiltersArgs']]):
         pulumi.set(self, "message_filters", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IoT device you want to create (e.g. `my-device`).
 
@@ -355,43 +355,43 @@ class _DeviceState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region you want to attach the resource to
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current status of the device.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the device resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -401,14 +401,14 @@ class Device(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_multiple_connections: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate: Optional[pulumi.Input[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_filters: Optional[pulumi.Input[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_multiple_connections: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate: pulumi.Input[Optional[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_filters: pulumi.Input[Optional[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Note:** This terraform resource is currently in beta and might include breaking change in future releases.
@@ -508,14 +508,14 @@ class Device(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_multiple_connections: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate: Optional[pulumi.Input[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_filters: Optional[pulumi.Input[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_multiple_connections: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate: pulumi.Input[Optional[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_filters: pulumi.Input[Optional[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -552,19 +552,19 @@ class Device(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_multiple_connections: Optional[pulumi.Input[_builtins.bool]] = None,
-            certificate: Optional[pulumi.Input[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            hub_id: Optional[pulumi.Input[_builtins.str]] = None,
-            is_connected: Optional[pulumi.Input[_builtins.bool]] = None,
-            last_activity_at: Optional[pulumi.Input[_builtins.str]] = None,
-            message_filters: Optional[pulumi.Input[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'Device':
+            allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_multiple_connections: pulumi.Input[Optional[_builtins.bool]] = None,
+            certificate: pulumi.Input[Optional[Union['DeviceCertificateArgs', 'DeviceCertificateArgsDict']]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            hub_id: pulumi.Input[Optional[_builtins.str]] = None,
+            is_connected: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_activity_at: pulumi.Input[Optional[_builtins.str]] = None,
+            message_filters: pulumi.Input[Optional[Union['DeviceMessageFiltersArgs', 'DeviceMessageFiltersArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Device':
         """
         Get an existing Device resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

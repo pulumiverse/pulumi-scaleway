@@ -185,59 +185,59 @@ export interface DeviceState {
      *
      * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
-    allowInsecure?: pulumi.Input<boolean>;
+    allowInsecure?: pulumi.Input<boolean | undefined>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
      *
      * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
-    allowMultipleConnections?: pulumi.Input<boolean>;
+    allowMultipleConnections?: pulumi.Input<boolean | undefined>;
     /**
      * The certificate bundle of the device.
      */
-    certificate?: pulumi.Input<inputs.iot.DeviceCertificate>;
+    certificate?: pulumi.Input<inputs.iot.DeviceCertificate | undefined>;
     /**
      * The date and time the device was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The description of the IoT device (e.g. `living room`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the hub on which this device will be created.
      */
-    hubId?: pulumi.Input<string>;
+    hubId?: pulumi.Input<string | undefined>;
     /**
      * The current connection status of the device.
      */
-    isConnected?: pulumi.Input<boolean>;
+    isConnected?: pulumi.Input<boolean | undefined>;
     /**
      * The last MQTT activity of the device.
      */
-    lastActivityAt?: pulumi.Input<string>;
+    lastActivityAt?: pulumi.Input<string | undefined>;
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    messageFilters?: pulumi.Input<inputs.iot.DeviceMessageFilters>;
+    messageFilters?: pulumi.Input<inputs.iot.DeviceMessageFilters | undefined>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      *
      * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The current status of the device.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The date and time the device resource was updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -249,21 +249,21 @@ export interface DeviceArgs {
      *
      * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
-    allowInsecure?: pulumi.Input<boolean>;
+    allowInsecure?: pulumi.Input<boolean | undefined>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
      *
      * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
-    allowMultipleConnections?: pulumi.Input<boolean>;
+    allowMultipleConnections?: pulumi.Input<boolean | undefined>;
     /**
      * The certificate bundle of the device.
      */
-    certificate?: pulumi.Input<inputs.iot.DeviceCertificate>;
+    certificate?: pulumi.Input<inputs.iot.DeviceCertificate | undefined>;
     /**
      * The description of the IoT device (e.g. `living room`).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the hub on which this device will be created.
      */
@@ -271,15 +271,15 @@ export interface DeviceArgs {
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    messageFilters?: pulumi.Input<inputs.iot.DeviceMessageFilters>;
+    messageFilters?: pulumi.Input<inputs.iot.DeviceMessageFilters | undefined>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      *
      * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -167,10 +167,10 @@ def get_registry_namespace(name: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'))
-def get_registry_namespace_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  namespace_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_registry_namespace_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  namespace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryNamespaceResult]:
     """
     Gets information about a registry namespace.

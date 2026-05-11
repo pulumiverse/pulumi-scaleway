@@ -157,37 +157,37 @@ export interface GetRouteOutputArgs {
     /**
      * If true, only routes with an IPv6 destination will be returned.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The next hop private network ID to filter for. Only routes with a matching next hop private network ID will be returned.
      */
-    nexthopPrivateNetworkId?: pulumi.Input<string>;
+    nexthopPrivateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The next hop resource ID to filter for. Only routes with a matching next hop resource ID will be returned.
      */
-    nexthopResourceId?: pulumi.Input<string>;
+    nexthopResourceId?: pulumi.Input<string | undefined>;
     /**
      * The next hop resource type to filter for. Only routes with a matching next hop resource type will be returned.
      */
-    nexthopResourceType?: pulumi.Input<string>;
+    nexthopResourceType?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the route exists.
      *
      * > **Note:** When using filter arguments, the filters must match exactly one route. If zero or multiple routes are found, an error will be returned.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The ID of the route.
      *
      * The following filter arguments are supported (cannot be used with `routeId`):
      */
-    routeId?: pulumi.Input<string>;
+    routeId?: pulumi.Input<string | undefined>;
     /**
      * List of tags to filter for. Only routes with these exact tags will be returned.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The VPC ID to filter for. Only routes within this VPC will be returned.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

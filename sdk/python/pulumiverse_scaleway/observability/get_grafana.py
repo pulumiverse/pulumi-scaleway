@@ -156,7 +156,7 @@ def get_grafana(project_id: Optional[_builtins.str] = None,
         grafana_url=pulumi.get(__ret__, 'grafana_url'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_grafana_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_grafana_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGrafanaResult]:
     """
     Gets information about Scaleway Cockpit's Grafana instance for a specific project.

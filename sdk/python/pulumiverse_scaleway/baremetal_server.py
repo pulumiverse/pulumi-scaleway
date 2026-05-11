@@ -22,30 +22,30 @@ __all__ = ['BaremetalServerArgs', 'BaremetalServer']
 class BaremetalServerArgs:
     def __init__(__self__, *,
                  offer: pulumi.Input[_builtins.str],
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
-                 os: Optional[pulumi.Input[_builtins.str]] = None,
-                 partitioning: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BaremetalServer resource.
 
@@ -153,67 +153,67 @@ class BaremetalServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description for the server.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="installConfigAfterward")
-    def install_config_afterward(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def install_config_afterward(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If True, this boolean allows to create a server without the install config if you want to provide it later.
         """
         return pulumi.get(self, "install_config_afterward")
 
     @install_config_afterward.setter
-    def install_config_afterward(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def install_config_afterward(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "install_config_afterward", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]:
+    def options(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]:
         """
         The options to enable on the server.
         > The `options` block supports:
@@ -221,12 +221,12 @@ class BaremetalServerArgs:
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]):
+    def options(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def os(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def os(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the os to install on the server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
@@ -235,36 +235,36 @@ class BaremetalServerArgs:
         return pulumi.get(self, "os")
 
     @os.setter
-    def os(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def os(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "os", value)
 
     @_builtins.property
     @pulumi.getter
-    def partitioning(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def partitioning(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The partitioning schema in JSON format
         """
         return pulumi.get(self, "partitioning")
 
     @partitioning.setter
-    def partitioning(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def partitioning(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "partitioning", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
@@ -272,72 +272,72 @@ class BaremetalServerArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
         """
         The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def protected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to activate server protection option.
         """
         return pulumi.get(self, "protected")
 
     @protected.setter
-    def protected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def protected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "protected", value)
 
     @_builtins.property
     @pulumi.getter(name="reinstallOnConfigChanges")
-    def reinstall_on_config_changes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reinstall_on_config_changes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If True, this boolean allows to reinstall the server on install config changes.
         > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -345,24 +345,24 @@ class BaremetalServerArgs:
         return pulumi.get(self, "reinstall_on_config_changes")
 
     @reinstall_on_config_changes.setter
-    def reinstall_on_config_changes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reinstall_on_config_changes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reinstall_on_config_changes", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePassword")
-    def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         """
         return pulumi.get(self, "service_password")
 
     @service_password.setter
-    def service_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_password", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePasswordWo")
-    def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
@@ -370,118 +370,118 @@ class BaremetalServerArgs:
         return pulumi.get(self, "service_password_wo")
 
     @service_password_wo.setter
-    def service_password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePasswordWoVersion")
-    def service_password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def service_password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         """
         return pulumi.get(self, "service_password_wo_version")
 
     @service_password_wo_version.setter
-    def service_password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def service_password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "service_password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")
-    def service_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User used for the service to install.
         """
         return pulumi.get(self, "service_user")
 
     @service_user.setter
-    def service_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_user", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of SSH keys allowed to connect to the server.
         """
         return pulumi.get(self, "ssh_key_ids")
 
     @ssh_key_ids.setter
-    def ssh_key_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User used for the installation.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _BaremetalServerState:
     def __init__(__self__, *,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]] = None,
-                 ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]] = None,
-                 ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 os: Optional[pulumi.Input[_builtins.str]] = None,
-                 os_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 partitioning: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpArgs']]]] = None,
+                 ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]] = None,
+                 ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 os_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BaremetalServer resources.
 
@@ -598,115 +598,115 @@ class _BaremetalServerState:
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description for the server.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain of the server.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="installConfigAfterward")
-    def install_config_afterward(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def install_config_afterward(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If True, this boolean allows to create a server without the install config if you want to provide it later.
         """
         return pulumi.get(self, "install_config_afterward")
 
     @install_config_afterward.setter
-    def install_config_afterward(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def install_config_afterward(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "install_config_afterward", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]:
         """
         (List of) The IPs of the server.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpArgs']]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def ipv4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]:
+    def ipv4s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]:
         """
         (List of) The IPv4 addresses of the server.
         """
         return pulumi.get(self, "ipv4s")
 
     @ipv4s.setter
-    def ipv4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]):
+    def ipv4s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]]):
         pulumi.set(self, "ipv4s", value)
 
     @_builtins.property
     @pulumi.getter
-    def ipv6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]:
+    def ipv6s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]:
         """
         (List of) The IPv6 addresses of the server.
         """
         return pulumi.get(self, "ipv6s")
 
     @ipv6s.setter
-    def ipv6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]):
+    def ipv6s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]]):
         pulumi.set(self, "ipv6s", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def offer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The offer UUID of the baremetal server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
@@ -717,36 +717,36 @@ class _BaremetalServerState:
         return pulumi.get(self, "offer")
 
     @offer.setter
-    def offer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offer", value)
 
     @_builtins.property
     @pulumi.getter(name="offerId")
-    def offer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offer_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the offer.
         """
         return pulumi.get(self, "offer_id")
 
     @offer_id.setter
-    def offer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offer_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="offerName")
-    def offer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the offer.
         """
         return pulumi.get(self, "offer_name")
 
     @offer_name.setter
-    def offer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offer_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]:
+    def options(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]:
         """
         The options to enable on the server.
         > The `options` block supports:
@@ -754,24 +754,24 @@ class _BaremetalServerState:
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]):
+    def options(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def os(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def os(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the os to install on the server.
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
@@ -780,48 +780,48 @@ class _BaremetalServerState:
         return pulumi.get(self, "os")
 
     @os.setter
-    def os(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def os(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "os", value)
 
     @_builtins.property
     @pulumi.getter(name="osName")
-    def os_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def os_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the os.
         """
         return pulumi.get(self, "os_name")
 
     @os_name.setter
-    def os_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def os_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "os_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def partitioning(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def partitioning(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The partitioning schema in JSON format
         """
         return pulumi.get(self, "partitioning")
 
     @partitioning.setter
-    def partitioning(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def partitioning(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "partitioning", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
@@ -829,72 +829,72 @@ class _BaremetalServerState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]:
         """
         The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def protected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to activate server protection option.
         """
         return pulumi.get(self, "protected")
 
     @protected.setter
-    def protected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def protected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "protected", value)
 
     @_builtins.property
     @pulumi.getter(name="reinstallOnConfigChanges")
-    def reinstall_on_config_changes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reinstall_on_config_changes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If True, this boolean allows to reinstall the server on install config changes.
         > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -902,24 +902,24 @@ class _BaremetalServerState:
         return pulumi.get(self, "reinstall_on_config_changes")
 
     @reinstall_on_config_changes.setter
-    def reinstall_on_config_changes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reinstall_on_config_changes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reinstall_on_config_changes", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePassword")
-    def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         """
         return pulumi.get(self, "service_password")
 
     @service_password.setter
-    def service_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_password", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePasswordWo")
-    def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password used for the service to install in write-only mode. Only one of `service_password` or `service_password_wo` should be specified. `service_password_wo` will not be set in the Terraform state. To update the `service_password_wo`, you must also update the `service_password_wo_version`. May be required depending on used os.
@@ -927,79 +927,79 @@ class _BaremetalServerState:
         return pulumi.get(self, "service_password_wo")
 
     @service_password_wo.setter
-    def service_password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePasswordWoVersion")
-    def service_password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def service_password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         """
         return pulumi.get(self, "service_password_wo_version")
 
     @service_password_wo_version.setter
-    def service_password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def service_password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "service_password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")
-    def service_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User used for the service to install.
         """
         return pulumi.get(self, "service_user")
 
     @service_user.setter
-    def service_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_user", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyIds")
-    def ssh_key_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of SSH keys allowed to connect to the server.
         """
         return pulumi.get(self, "ssh_key_ids")
 
     @ssh_key_ids.setter
-    def ssh_key_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User used for the installation.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -1014,31 +1014,31 @@ class BaremetalServer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
-                 os: Optional[pulumi.Input[_builtins.str]] = None,
-                 partitioning: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -1165,31 +1165,31 @@ class BaremetalServer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
-                 os: Optional[pulumi.Input[_builtins.str]] = None,
-                 partitioning: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""BaremetalServer is deprecated: scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1247,39 +1247,39 @@ class BaremetalServer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
-            ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpArgs', 'BaremetalServerIpArgsDict']]]]] = None,
-            ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv4Args', 'BaremetalServerIpv4ArgsDict']]]]] = None,
-            ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv6Args', 'BaremetalServerIpv6ArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            offer: Optional[pulumi.Input[_builtins.str]] = None,
-            offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-            offer_name: Optional[pulumi.Input[_builtins.str]] = None,
-            options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            os: Optional[pulumi.Input[_builtins.str]] = None,
-            os_name: Optional[pulumi.Input[_builtins.str]] = None,
-            partitioning: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protected: Optional[pulumi.Input[_builtins.bool]] = None,
-            reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_password: Optional[pulumi.Input[_builtins.str]] = None,
-            service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            service_user: Optional[pulumi.Input[_builtins.str]] = None,
-            ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'BaremetalServer':
+            cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerIpArgs', 'BaremetalServerIpArgsDict']]]]] = None,
+            ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerIpv4Args', 'BaremetalServerIpv4ArgsDict']]]]] = None,
+            ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerIpv6Args', 'BaremetalServerIpv6ArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            offer: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            os: pulumi.Input[Optional[_builtins.str]] = None,
+            os_name: pulumi.Input[Optional[_builtins.str]] = None,
+            partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected: pulumi.Input[Optional[_builtins.bool]] = None,
+            reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_password: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            service_user: pulumi.Input[Optional[_builtins.str]] = None,
+            ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'BaremetalServer':
         """
         Get an existing BaremetalServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

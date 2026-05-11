@@ -83,16 +83,16 @@ export interface GetAccountProjectOutputArgs {
      * The name of the Project.
      * Only one of the `name` and `projectId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the Organization with which the Project is associated.
      *
      * If no default `organizationId` is set, one must be set explicitly in this datasource
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the Project.
      * Only one of the `name` and `projectId` should be specified.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

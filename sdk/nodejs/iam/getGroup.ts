@@ -115,14 +115,14 @@ export interface GetGroupOutputArgs {
      *
      * > **Note** You must specify at least one: `name` and/or `groupId`.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IAM group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the
      * organization the group is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
 }
