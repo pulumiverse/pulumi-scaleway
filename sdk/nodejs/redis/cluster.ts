@@ -272,11 +272,11 @@ export interface ClusterState {
     /**
      * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
-    acls?: pulumi.Input<pulumi.Input<inputs.redis.ClusterAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.redis.ClusterAcl>[] | undefined>;
     /**
      * The PEM of the certificate used by redis, only when `tlsEnabled` is true
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * The number of nodes in the Redis™ cluster.
      *
@@ -295,93 +295,93 @@ export interface ClusterState {
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
      * recreate your cluster as you will be switching to the cluster mode.
      */
-    clusterSize?: pulumi.Input<number>;
+    clusterSize?: pulumi.Input<number | undefined>;
     /**
      * Redis connection URI for the first reachable endpoint (public is preferred over private). Uses scheme `rediss` when TLS is enabled. Database index is always `0`. When a password is available in state, userinfo includes `userName` and the password (Redis ACL). When `passwordWo` is used, the password is omitted because it is not stored in state.
      */
-    connectionString?: pulumi.Input<string>;
+    connectionString?: pulumi.Input<string | undefined>;
     /**
      * The date and time of creation of the Redis™ cluster.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The name of the Redis™ cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
      * > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
      * you cannot downgrade a Redis™ cluster.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateIp>[] | undefined>;
     /**
      * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
      * > The `publicNetwork` block exports:
      */
-    publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork>;
+    publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork | undefined>;
     /**
      * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The tags associated with the Redis™ cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether TLS is enabled or not.
      *
      * > The changes on `tlsEnabled` will force the resource creation.
      */
-    tlsEnabled?: pulumi.Input<boolean>;
+    tlsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time of the last update of the Redis™ cluster.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Identifier for the first user of the Redis™ cluster.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * Redis™ cluster's version (e.g. `6.2.7`).
      *
      * > **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
      * cannot downgrade a Redis™ cluster.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the
      * Redis™ cluster should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -391,7 +391,7 @@ export interface ClusterArgs {
     /**
      * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
-    acls?: pulumi.Input<pulumi.Input<inputs.redis.ClusterAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.redis.ClusterAcl>[] | undefined>;
     /**
      * The number of nodes in the Redis™ cluster.
      *
@@ -410,11 +410,11 @@ export interface ClusterArgs {
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
      * recreate your cluster as you will be switching to the cluster mode.
      */
-    clusterSize?: pulumi.Input<number>;
+    clusterSize?: pulumi.Input<number | undefined>;
     /**
      * The name of the Redis™ cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
@@ -425,50 +425,50 @@ export interface ClusterArgs {
     /**
      * Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateIp>[] | undefined>;
     /**
      * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.redis.ClusterPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
      * > The `publicNetwork` block exports:
      */
-    publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork>;
+    publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork | undefined>;
     /**
      * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The tags associated with the Redis™ cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether TLS is enabled or not.
      *
      * > The changes on `tlsEnabled` will force the resource creation.
      */
-    tlsEnabled?: pulumi.Input<boolean>;
+    tlsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Identifier for the first user of the Redis™ cluster.
      */
@@ -484,5 +484,5 @@ export interface ClusterArgs {
      * `zone`) The zone in which the
      * Redis™ cluster should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

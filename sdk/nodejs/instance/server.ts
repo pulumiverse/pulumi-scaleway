@@ -491,35 +491,35 @@ export interface ServerState {
      *
      * > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
      */
-    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
      * Mandatory for Windows OS. The publicKey value of this key is used to encrypt the admin password.
      * When set to an empty string, it resets this value and adminPasswordEncryptedValue to an empty string so a new password may be generated.
      */
-    adminPasswordEncryptionSshKeyId?: pulumi.Input<string>;
+    adminPasswordEncryptionSshKeyId?: pulumi.Input<string | undefined>;
     /**
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    bootType?: pulumi.Input<string>;
+    bootType?: pulumi.Input<string | undefined>;
     /**
      * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
-    bootscriptId?: pulumi.Input<string>;
+    bootscriptId?: pulumi.Input<string | undefined>;
     /**
      * The cloud init script associated with this server
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
-    enableDynamicIp?: pulumi.Input<boolean>;
+    enableDynamicIp?: pulumi.Input<boolean | undefined>;
     /**
      * List of filesystems attached to the server.
      */
-    filesystems?: pulumi.Input<pulumi.Input<inputs.instance.ServerFilesystem>[]>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.instance.ServerFilesystem>[] | undefined>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -530,78 +530,78 @@ export interface ServerState {
      *
      * To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
      */
-    image?: pulumi.Input<string>;
+    image?: pulumi.Input<string | undefined>;
     /**
      * The ID of the reserved IP that is attached to the server.
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
      *
      * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the server is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
      *
      * > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated) Always false, use instancePlacementGroup resource to known when the placement group policy is respected.
      */
-    placementGroupPolicyRespected?: pulumi.Input<boolean>;
+    placementGroupPolicyRespected?: pulumi.Input<boolean | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateIp>[] | undefined>;
     /**
      * The private network associated with the server.
      * Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to true to activate server protection option.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * The list of public IPs of the server.
      */
-    publicIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPublicIp>[]>;
+    publicIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPublicIp>[] | undefined>;
     /**
      * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
      */
-    replaceOnTypeChange?: pulumi.Input<boolean>;
+    replaceOnTypeChange?: pulumi.Input<boolean | undefined>;
     /**
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
-    rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume>;
+    rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume | undefined>;
     /**
      * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
      *
      * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the server.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -610,7 +610,7 @@ export interface ServerState {
      *
      * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The user data associated with the server.
      * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -619,11 +619,11 @@ export interface ServerState {
      * - UTF-8 encoded file content using file
      * - Binary files using filebase64.
      */
-    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -638,35 +638,35 @@ export interface ServerArgs {
      *
      * > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
      */
-    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
      * Mandatory for Windows OS. The publicKey value of this key is used to encrypt the admin password.
      * When set to an empty string, it resets this value and adminPasswordEncryptedValue to an empty string so a new password may be generated.
      */
-    adminPasswordEncryptionSshKeyId?: pulumi.Input<string>;
+    adminPasswordEncryptionSshKeyId?: pulumi.Input<string | undefined>;
     /**
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    bootType?: pulumi.Input<string>;
+    bootType?: pulumi.Input<string | undefined>;
     /**
      * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
-    bootscriptId?: pulumi.Input<string>;
+    bootscriptId?: pulumi.Input<string | undefined>;
     /**
      * The cloud init script associated with this server
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
-    enableDynamicIp?: pulumi.Input<boolean>;
+    enableDynamicIp?: pulumi.Input<boolean | undefined>;
     /**
      * List of filesystems attached to the server.
      */
-    filesystems?: pulumi.Input<pulumi.Input<inputs.instance.ServerFilesystem>[]>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.instance.ServerFilesystem>[] | undefined>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -677,70 +677,70 @@ export interface ServerArgs {
      *
      * To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
      */
-    image?: pulumi.Input<string>;
+    image?: pulumi.Input<string | undefined>;
     /**
      * The ID of the reserved IP that is attached to the server.
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
      *
      * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
      *
      * > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateIp>[] | undefined>;
     /**
      * The private network associated with the server.
      * Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to true to activate server protection option.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * The list of public IPs of the server.
      */
-    publicIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPublicIp>[]>;
+    publicIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPublicIp>[] | undefined>;
     /**
      * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
      */
-    replaceOnTypeChange?: pulumi.Input<boolean>;
+    replaceOnTypeChange?: pulumi.Input<boolean | undefined>;
     /**
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
-    rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume>;
+    rootVolume?: pulumi.Input<inputs.instance.ServerRootVolume | undefined>;
     /**
      * The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
      *
      * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the server.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -758,9 +758,9 @@ export interface ServerArgs {
      * - UTF-8 encoded file content using file
      * - Binary files using filebase64.
      */
-    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

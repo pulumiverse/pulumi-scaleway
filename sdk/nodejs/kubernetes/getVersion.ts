@@ -127,5 +127,5 @@ export interface GetVersionOutputArgs {
     /**
      * `region`) The region in which the version exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

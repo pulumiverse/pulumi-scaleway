@@ -276,91 +276,91 @@ export interface AppleSiliconServerState {
     /**
      * The commitment period of the server
      */
-    commitment?: pulumi.Input<string>;
+    commitment?: pulumi.Input<string | undefined>;
     /**
      * The date and time the private network was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The minimal date and time on which you can delete this server due to Apple licence
      */
-    deletableAt?: pulumi.Input<string>;
+    deletableAt?: pulumi.Input<string | undefined>;
     /**
      * : Enables the VPC option when set to true.
      */
-    enableVpc?: pulumi.Input<boolean>;
+    enableVpc?: pulumi.Input<boolean | undefined>;
     /**
      * IPv4 address of the server (IPv4 address).
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the server is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the OS to use for the server.
      */
-    osId?: pulumi.Input<string>;
+    osId?: pulumi.Input<string | undefined>;
     /**
      * The password of the server
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the server.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateIp>[] | undefined>;
     /**
      * The private networks to attach to the server
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
-    publicBandwidth?: pulumi.Input<number>;
+    publicBandwidth?: pulumi.Input<number | undefined>;
     /**
      * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
      */
-    runnerIds?: pulumi.Input<pulumi.Input<string>[]>;
+    runnerIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The state of the server.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * The commercial type of the server. You find all the available types on
      * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
      * resource.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date and time the private network was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The username of the server
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * URL of the VNC.
      */
-    vncUrl?: pulumi.Input<string>;
+    vncUrl?: pulumi.Input<string | undefined>;
     /**
      * The current status of the VPC option.
      */
-    vpcStatus?: pulumi.Input<string>;
+    vpcStatus?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which
      * the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -370,40 +370,40 @@ export interface AppleSiliconServerArgs {
     /**
      * The commitment period of the server
      */
-    commitment?: pulumi.Input<string>;
+    commitment?: pulumi.Input<string | undefined>;
     /**
      * : Enables the VPC option when set to true.
      */
-    enableVpc?: pulumi.Input<boolean>;
+    enableVpc?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the OS to use for the server.
      */
-    osId?: pulumi.Input<string>;
+    osId?: pulumi.Input<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the server.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateIp>[] | undefined>;
     /**
      * The private networks to attach to the server
      */
-    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[]>;
+    privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
-    publicBandwidth?: pulumi.Input<number>;
+    publicBandwidth?: pulumi.Input<number | undefined>;
     /**
      * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
      */
-    runnerIds?: pulumi.Input<pulumi.Input<string>[]>;
+    runnerIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The commercial type of the server. You find all the available types on
      * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -414,5 +414,5 @@ export interface AppleSiliconServerArgs {
      * `zone`) The zone in which
      * the server should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

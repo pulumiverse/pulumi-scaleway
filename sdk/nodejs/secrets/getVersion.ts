@@ -208,23 +208,23 @@ export function getVersionOutput(args?: GetVersionOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getVersion.
  */
 export interface GetVersionOutputArgs {
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Scaleway Project associated with the secret version.
      */
-    projectId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
      */
-    revision?: pulumi.Input<string>;
+    revision?: pulumi.Input<string | undefined>;
     /**
      * The ID of the secret associated with the secret version. Only one of `secretId` and `secretName` should be specified.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * The name of the secret associated with the secret version.
      * Only one of `secretId` and `secretName` should be specified.
      */
-    secretName?: pulumi.Input<string>;
+    secretName?: pulumi.Input<string | undefined>;
 }

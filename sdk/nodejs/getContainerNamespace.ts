@@ -148,17 +148,17 @@ export interface GetContainerNamespaceOutputArgs {
     /**
      * The name of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The unique identifier of the project with which the namespace is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the namespace exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -135,7 +135,7 @@ export interface DomainState {
     /**
      * The unique identifier of the function.
      */
-    functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string | undefined>;
     /**
      * The hostname with a CNAME record.
      *
@@ -143,15 +143,15 @@ export interface DomainState {
      *
      * > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the domain was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The URL used to query the function.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,5 +173,5 @@ export interface DomainArgs {
     /**
      * (Defaults to provider `region`) The region in which the domain was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

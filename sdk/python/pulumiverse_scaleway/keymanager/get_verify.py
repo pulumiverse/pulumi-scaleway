@@ -125,10 +125,10 @@ def get_verify(digest: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         signature=pulumi.get(__ret__, 'signature'),
         valid=pulumi.get(__ret__, 'valid'))
-def get_verify_output(digest: Optional[pulumi.Input[_builtins.str]] = None,
-                      key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                      region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      signature: Optional[pulumi.Input[_builtins.str]] = None,
+def get_verify_output(digest: pulumi.Input[Optional[_builtins.str]] = None,
+                      key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      signature: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVerifyResult]:
     """
     The `keymanager_get_verify` data source is used to verify a message signature against a message digest with a given key. The key must have its usage set to asymmetric_signing. The message digest must be generated using the same digest algorithm that is defined in the key's algorithm configuration, and encoded as a base64 string.

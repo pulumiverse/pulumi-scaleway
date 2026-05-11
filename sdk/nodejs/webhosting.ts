@@ -234,85 +234,85 @@ export interface WebhostingState {
     /**
      * The URL to connect to cPanel Dashboard and to Webmail interface.
      */
-    cpanelUrls?: pulumi.Input<pulumi.Input<inputs.WebhostingCpanelUrl>[]>;
+    cpanelUrls?: pulumi.Input<pulumi.Input<inputs.WebhostingCpanelUrl>[] | undefined>;
     /**
      * Date and time of hosting's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The DNS status of the hosting.
      */
-    dnsStatus?: pulumi.Input<string>;
+    dnsStatus?: pulumi.Input<string | undefined>;
     /**
      * The domain name of the hosting.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * The contact email of the client for the hosting.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * List of nameservers associated with the webhosting.
      */
-    nameServers?: pulumi.Input<pulumi.Input<inputs.WebhostingNameServer>[]>;
+    nameServers?: pulumi.Input<pulumi.Input<inputs.WebhostingNameServer>[] | undefined>;
     /**
      * The ID of the selected offer for the hosting.
      */
-    offerId?: pulumi.Input<string>;
+    offerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the active offer.
      */
-    offerName?: pulumi.Input<string>;
+    offerName?: pulumi.Input<string | undefined>;
     /**
      * The IDs of the selected options for the hosting.
      */
-    optionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    optionIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The active options of the hosting.
      */
-    options?: pulumi.Input<pulumi.Input<inputs.WebhostingOption>[]>;
+    options?: pulumi.Input<pulumi.Input<inputs.WebhostingOption>[] | undefined>;
     /**
      * (Deprecated) The organization ID the hosting is associated with.
      *
      * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The hostname of the host platform.
      */
-    platformHostname?: pulumi.Input<string>;
+    platformHostname?: pulumi.Input<string | undefined>;
     /**
      * The number of the host platform.
      */
-    platformNumber?: pulumi.Input<number>;
+    platformNumber?: pulumi.Input<number | undefined>;
     /**
      * `projectId`) The ID of the project the VPC is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of DNS records associated with the webhosting.
      */
-    records?: pulumi.Input<pulumi.Input<inputs.WebhostingRecord>[]>;
+    records?: pulumi.Input<pulumi.Input<inputs.WebhostingRecord>[] | undefined>;
     /**
      * `region`) The region of the Hosting.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The hosting status.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the hosting.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of hosting's last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The main hosting cPanel username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -334,17 +334,17 @@ export interface WebhostingArgs {
     /**
      * The IDs of the selected options for the hosting.
      */
-    optionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    optionIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the project the VPC is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the Hosting.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the hosting.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -28,39 +28,39 @@ __all__ = [
 ]
 
 class AclRuleArgsDict(TypedDict):
-    action: NotRequired[pulumi.Input[_builtins.str]]
+    action: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The policy to apply to the packet.
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The rule description.
     """
-    destination: NotRequired[pulumi.Input[_builtins.str]]
+    destination: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The destination IP range to which this rule applies (CIDR notation with subnet mask).
     """
-    dst_port_high: NotRequired[pulumi.Input[_builtins.int]]
+    dst_port_high: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ending port of the destination port range to which this rule applies (inclusive).
     """
-    dst_port_low: NotRequired[pulumi.Input[_builtins.int]]
+    dst_port_low: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The starting port of the destination port range to which this rule applies (inclusive).
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The protocol to which this rule applies. Default value: ANY.
     """
-    source: NotRequired[pulumi.Input[_builtins.str]]
+    source: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Source IP range to which this rule applies (CIDR notation with subnet mask).
     """
-    src_port_high: NotRequired[pulumi.Input[_builtins.int]]
+    src_port_high: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ending port of the source port range to which this rule applies (inclusive).
     """
-    src_port_low: NotRequired[pulumi.Input[_builtins.int]]
+    src_port_low: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The starting port of the source port range to which this rule applies (inclusive).
     """
@@ -68,15 +68,15 @@ class AclRuleArgsDict(TypedDict):
 @pulumi.input_type
 class AclRuleArgs:
     def __init__(__self__, *,
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination: Optional[pulumi.Input[_builtins.str]] = None,
-                 dst_port_high: Optional[pulumi.Input[_builtins.int]] = None,
-                 dst_port_low: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None,
-                 src_port_high: Optional[pulumi.Input[_builtins.int]] = None,
-                 src_port_low: Optional[pulumi.Input[_builtins.int]] = None):
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination: pulumi.Input[Optional[_builtins.str]] = None,
+                 dst_port_high: pulumi.Input[Optional[_builtins.int]] = None,
+                 dst_port_low: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
+                 src_port_high: pulumi.Input[Optional[_builtins.int]] = None,
+                 src_port_low: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] action: The policy to apply to the packet.
         :param pulumi.Input[_builtins.str] description: The rule description.
@@ -109,119 +109,119 @@ class AclRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The policy to apply to the packet.
         """
         return pulumi.get(self, "action")
 
     @action.setter
-    def action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The rule description.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def destination(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The destination IP range to which this rule applies (CIDR notation with subnet mask).
         """
         return pulumi.get(self, "destination")
 
     @destination.setter
-    def destination(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination", value)
 
     @_builtins.property
     @pulumi.getter(name="dstPortHigh")
-    def dst_port_high(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def dst_port_high(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ending port of the destination port range to which this rule applies (inclusive).
         """
         return pulumi.get(self, "dst_port_high")
 
     @dst_port_high.setter
-    def dst_port_high(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def dst_port_high(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "dst_port_high", value)
 
     @_builtins.property
     @pulumi.getter(name="dstPortLow")
-    def dst_port_low(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def dst_port_low(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The starting port of the destination port range to which this rule applies (inclusive).
         """
         return pulumi.get(self, "dst_port_low")
 
     @dst_port_low.setter
-    def dst_port_low(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def dst_port_low(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "dst_port_low", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol to which this rule applies. Default value: ANY.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Source IP range to which this rule applies (CIDR notation with subnet mask).
         """
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
 
     @_builtins.property
     @pulumi.getter(name="srcPortHigh")
-    def src_port_high(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def src_port_high(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ending port of the source port range to which this rule applies (inclusive).
         """
         return pulumi.get(self, "src_port_high")
 
     @src_port_high.setter
-    def src_port_high(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def src_port_high(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "src_port_high", value)
 
     @_builtins.property
     @pulumi.getter(name="srcPortLow")
-    def src_port_low(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def src_port_low(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The starting port of the source port range to which this rule applies (inclusive).
         """
         return pulumi.get(self, "src_port_low")
 
     @src_port_low.setter
-    def src_port_low(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def src_port_low(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "src_port_low", value)
 
 
 class GatewayNetworkIpamConfigArgsDict(TypedDict):
-    ipam_ip_id: NotRequired[pulumi.Input[_builtins.str]]
+    ipam_ip_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
     """
-    push_default_route: NotRequired[pulumi.Input[_builtins.bool]]
+    push_default_route: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Defines whether to enable the default route on the GatewayNetwork.
     """
@@ -229,8 +229,8 @@ class GatewayNetworkIpamConfigArgsDict(TypedDict):
 @pulumi.input_type
 class GatewayNetworkIpamConfigArgs:
     def __init__(__self__, *,
-                 ipam_ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_default_route: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ipam_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_default_route: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
         :param pulumi.Input[_builtins.bool] push_default_route: Defines whether to enable the default route on the GatewayNetwork.
@@ -242,35 +242,35 @@ class GatewayNetworkIpamConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipamIpId")
-    def ipam_ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipam_ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
         """
         return pulumi.get(self, "ipam_ip_id")
 
     @ipam_ip_id.setter
-    def ipam_ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipam_ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipam_ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pushDefaultRoute")
-    def push_default_route(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def push_default_route(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to enable the default route on the GatewayNetwork.
         """
         return pulumi.get(self, "push_default_route")
 
     @push_default_route.setter
-    def push_default_route(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def push_default_route(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "push_default_route", value)
 
 
 class GatewayNetworkPrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IPv4 address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IPv4 address resource.
     """
@@ -278,8 +278,8 @@ class GatewayNetworkPrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class GatewayNetworkPrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IPv4 address.
         :param pulumi.Input[_builtins.str] id: The ID of the IPv4 address resource.
@@ -291,55 +291,55 @@ class GatewayNetworkPrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IPv4 address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class PrivateNetworkIpv4SubnetArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time of the creation of the subnet.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet ID.
     """
-    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    prefix_length: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
     """
-    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    subnet: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet CIDR.
     """
-    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    subnet_mask: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time of the last update of the subnet.
     """
@@ -347,13 +347,13 @@ class PrivateNetworkIpv4SubnetArgsDict(TypedDict):
 @pulumi.input_type
 class PrivateNetworkIpv4SubnetArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 subnet_mask: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 subnet_mask: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the subnet.
@@ -380,115 +380,115 @@ class PrivateNetworkIpv4SubnetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixLength")
-    def prefix_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefix_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
     @prefix_length.setter
-    def prefix_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefix_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefix_length", value)
 
     @_builtins.property
     @pulumi.getter
-    def subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet CIDR.
         """
         return pulumi.get(self, "subnet")
 
     @subnet.setter
-    def subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="subnetMask")
-    def subnet_mask(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet_mask(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         """
         return pulumi.get(self, "subnet_mask")
 
     @subnet_mask.setter
-    def subnet_mask(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet_mask(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet_mask", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
 class PrivateNetworkIpv6SubnetArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time of the creation of the subnet.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet ID.
     """
-    prefix_length: NotRequired[pulumi.Input[_builtins.int]]
+    prefix_length: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
     """
-    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    subnet: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet CIDR.
     """
-    subnet_mask: NotRequired[pulumi.Input[_builtins.str]]
+    subnet_mask: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date and time of the last update of the subnet.
     """
@@ -496,13 +496,13 @@ class PrivateNetworkIpv6SubnetArgsDict(TypedDict):
 @pulumi.input_type
 class PrivateNetworkIpv6SubnetArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 subnet_mask: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 subnet_mask: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the subnet.
@@ -529,86 +529,86 @@ class PrivateNetworkIpv6SubnetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixLength")
-    def prefix_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefix_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
     @prefix_length.setter
-    def prefix_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefix_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefix_length", value)
 
     @_builtins.property
     @pulumi.getter
-    def subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet CIDR.
         """
         return pulumi.get(self, "subnet")
 
     @subnet.setter
-    def subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="subnetMask")
-    def subnet_mask(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet_mask(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         """
         return pulumi.get(self, "subnet_mask")
 
     @subnet_mask.setter
-    def subnet_mask(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet_mask(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet_mask", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 

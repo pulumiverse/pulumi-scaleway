@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  *             "user2@mail.com",
  *         ],
  *     }).result;
- *     const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: await scaleway.iam.getUser({
+ *     const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: await scaleway.iam.getUser({
  *         email: __value,
  *     }) }), {});
  *     const group = new scaleway.iam.Group("group", {
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  *         externalMembership: true,
  *     });
  *     const members: scaleway.iam.GroupMembership[] = [];
- *     for (const range of Object.entries(usersGetUser).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(usersGetUser).sort().map(([k, v]) => ({key: k, value: v}))) {
  *         members.push(new scaleway.iam.GroupMembership(`members-${range.key}`, {
  *             groupId: group.id,
  *             userId: range.value.id,
@@ -155,17 +155,17 @@ export interface IamGroupMembershipState {
     /**
      * The ID of the application that will be added to the group.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * ID of the group to add members to.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user that will be added to the group
      *
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -175,7 +175,7 @@ export interface IamGroupMembershipArgs {
     /**
      * The ID of the application that will be added to the group.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * ID of the group to add members to.
      */
@@ -185,5 +185,5 @@ export interface IamGroupMembershipArgs {
      *
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }

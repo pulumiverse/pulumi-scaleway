@@ -160,5 +160,5 @@ export interface GetRegistrationOutputArgs {
     /**
      * The project ID to filter by. Defaults to the project ID in the provider configuration.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

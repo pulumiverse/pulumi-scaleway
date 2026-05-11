@@ -120,16 +120,16 @@ export interface SqsState {
     /**
      * The endpoint of the SQS service for this Project.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SQS will be enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SQS will be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -139,10 +139,10 @@ export interface SqsArgs {
     /**
      * `projectId`) The ID of the Project in which SQS will be enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SQS will be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

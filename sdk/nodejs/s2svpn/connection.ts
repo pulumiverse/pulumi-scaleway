@@ -282,103 +282,103 @@ export interface ConnectionState {
     /**
      * BGP configuration for IPv4. See BGP Config below.
      */
-    bgpConfigIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv4>[]>;
+    bgpConfigIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv4>[] | undefined>;
     /**
      * BGP configuration for IPv6. See BGP Config below.
      */
-    bgpConfigIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv6>[]>;
+    bgpConfigIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv6>[] | undefined>;
     /**
      * The BGP IPv4 session information. See BGP Session below.
      */
-    bgpSessionIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpSessionIpv4>[]>;
+    bgpSessionIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpSessionIpv4>[] | undefined>;
     /**
      * The BGP IPv6 session information. See BGP Session below.
      */
-    bgpSessionIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpSessionIpv6>[]>;
+    bgpSessionIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpSessionIpv6>[] | undefined>;
     /**
      * The status of the BGP IPv4 session.
      */
-    bgpStatusIpv4?: pulumi.Input<string>;
+    bgpStatusIpv4?: pulumi.Input<string | undefined>;
     /**
      * The status of the BGP IPv6 session.
      */
-    bgpStatusIpv6?: pulumi.Input<string>;
+    bgpStatusIpv6?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the connection (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the customer gateway to attach to the connection.
      */
-    customerGatewayId?: pulumi.Input<string>;
+    customerGatewayId?: pulumi.Input<string | undefined>;
     /**
      * Defines whether route propagation is enabled or not.
      */
-    enableRoutePropagation?: pulumi.Input<boolean>;
+    enableRoutePropagation?: pulumi.Input<boolean | undefined>;
     /**
      * ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
      */
-    espCiphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionEspCipher>[]>;
+    espCiphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionEspCipher>[] | undefined>;
     /**
      * IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
      */
-    ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[]>;
+    ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[] | undefined>;
     /**
      * Defines who initiates the IPSec tunnel.
      */
-    initiationPolicy?: pulumi.Input<string>;
+    initiationPolicy?: pulumi.Input<string | undefined>;
     /**
      * Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the connection is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the connection is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the connection should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Whether route propagation is enabled.
      */
-    routePropagationEnabled?: pulumi.Input<boolean>;
+    routePropagationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the secret containing the pre-shared key (PSK) for the connection.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * The version of the secret containing the PSK.
      */
-    secretVersion?: pulumi.Input<number>;
+    secretVersion?: pulumi.Input<number | undefined>;
     /**
      * The status of the connection.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the connection.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The status of the IPSec tunnel.
      */
-    tunnelStatus?: pulumi.Input<string>;
+    tunnelStatus?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the connection (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the VPN gateway to attach to the connection.
      */
-    vpnGatewayId?: pulumi.Input<string>;
+    vpnGatewayId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -388,53 +388,53 @@ export interface ConnectionArgs {
     /**
      * BGP configuration for IPv4. See BGP Config below.
      */
-    bgpConfigIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv4>[]>;
+    bgpConfigIpv4s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv4>[] | undefined>;
     /**
      * BGP configuration for IPv6. See BGP Config below.
      */
-    bgpConfigIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv6>[]>;
+    bgpConfigIpv6s?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionBgpConfigIpv6>[] | undefined>;
     /**
      * The ID of the customer gateway to attach to the connection.
      */
-    customerGatewayId?: pulumi.Input<string>;
+    customerGatewayId?: pulumi.Input<string | undefined>;
     /**
      * Defines whether route propagation is enabled or not.
      */
-    enableRoutePropagation?: pulumi.Input<boolean>;
+    enableRoutePropagation?: pulumi.Input<boolean | undefined>;
     /**
      * ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
      */
-    espCiphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionEspCipher>[]>;
+    espCiphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionEspCipher>[] | undefined>;
     /**
      * IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
      */
-    ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[]>;
+    ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[] | undefined>;
     /**
      * Defines who initiates the IPSec tunnel.
      */
-    initiationPolicy?: pulumi.Input<string>;
+    initiationPolicy?: pulumi.Input<string | undefined>;
     /**
      * Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the connection is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the connection should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the connection.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the VPN gateway to attach to the connection.
      */
-    vpnGatewayId?: pulumi.Input<string>;
+    vpnGatewayId?: pulumi.Input<string | undefined>;
 }

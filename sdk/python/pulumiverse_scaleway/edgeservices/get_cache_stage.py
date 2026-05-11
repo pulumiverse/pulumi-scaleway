@@ -210,8 +210,8 @@ def get_cache_stage(cache_stage_id: Optional[_builtins.str] = None,
         route_stage_id=pulumi.get(__ret__, 'route_stage_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         waf_stage_id=pulumi.get(__ret__, 'waf_stage_id'))
-def get_cache_stage_output(cache_stage_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           pipeline_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_cache_stage_output(cache_stage_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           pipeline_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCacheStageResult]:
     """
     Gets information about an Edge Services cache stage.

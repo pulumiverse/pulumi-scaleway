@@ -213,10 +213,10 @@ def get_function_namespace(name: Optional[_builtins.str] = None,
         registry_namespace_id=pulumi.get(__ret__, 'registry_namespace_id'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_function_namespace_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  namespace_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_function_namespace_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  namespace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
     The `functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.

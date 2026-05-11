@@ -75,9 +75,9 @@ import * as utilities from "../utilities";
  *     "5.6.7.8/32": "Home IP",
  * };
  * const main = new scaleway.databases.Acl("main", {
- *     aclRules: Object.entries(allowedIps).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         ip: entry.key,
- *         description: entry.value,
+ *     aclRules: Object.entries(allowedIps).sort().map(([key, entry]) => ({
+ *         ip: key,
+ *         description: entry,
  *     })),
  *     instanceId: mainScalewayRdbInstance.id,
  * });
@@ -180,17 +180,17 @@ export interface AclState {
      *
      * > **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
      */
-    aclRules?: pulumi.Input<pulumi.Input<inputs.databases.AclAclRule>[]>;
+    aclRules?: pulumi.Input<pulumi.Input<inputs.databases.AclAclRule>[] | undefined>;
     /**
      * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -212,5 +212,5 @@ export interface AclArgs {
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

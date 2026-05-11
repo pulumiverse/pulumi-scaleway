@@ -142,7 +142,7 @@ def get_saml(organization_id: Optional[_builtins.str] = None,
         service_provider=pulumi.get(__ret__, 'service_provider'),
         single_sign_on_url=pulumi.get(__ret__, 'single_sign_on_url'),
         status=pulumi.get(__ret__, 'status'))
-def get_saml_output(organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_saml_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSamlResult]:
     """
     Retrieves SAML configuration for an organization. This data source enables you to retrieve the SAML-based single sign-on (SSO) configuration for your Scaleway organization.

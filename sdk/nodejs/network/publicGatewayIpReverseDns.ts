@@ -120,15 +120,15 @@ export interface PublicGatewayIpReverseDnsState {
     /**
      * The Public Gateway IP ID
      */
-    gatewayIpId?: pulumi.Input<string>;
+    gatewayIpId?: pulumi.Input<string | undefined>;
     /**
      * The reverse domain name for this IP address
      */
-    reverse?: pulumi.Input<string>;
+    reverse?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -146,5 +146,5 @@ export interface PublicGatewayIpReverseDnsArgs {
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

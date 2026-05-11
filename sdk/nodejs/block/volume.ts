@@ -166,35 +166,35 @@ export interface VolumeState {
     /**
      * The instance volume to create the block volume from
      */
-    instanceVolumeId?: pulumi.Input<string>;
+    instanceVolumeId?: pulumi.Input<string | undefined>;
     /**
      * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
-    iops?: pulumi.Input<number>;
+    iops?: pulumi.Input<number | undefined>;
     /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Project the volume is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The size of the volume in gigabytes.
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * If set, the new volume will be created from this snapshot.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ). The zone in which the volume should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,7 +204,7 @@ export interface VolumeArgs {
     /**
      * The instance volume to create the block volume from
      */
-    instanceVolumeId?: pulumi.Input<string>;
+    instanceVolumeId?: pulumi.Input<string | undefined>;
     /**
      * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
@@ -212,25 +212,25 @@ export interface VolumeArgs {
     /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Project the volume is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The size of the volume in gigabytes.
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * If set, the new volume will be created from this snapshot.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ). The zone in which the volume should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

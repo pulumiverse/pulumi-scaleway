@@ -125,17 +125,17 @@ export interface GetDeploymentOutputArgs {
     /**
      * The ID of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * The name of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the OpenSearch deployment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the deployment exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

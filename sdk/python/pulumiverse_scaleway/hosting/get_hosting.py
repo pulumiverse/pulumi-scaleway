@@ -296,10 +296,10 @@ def get_hosting(domain: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'),
         webhosting_id=pulumi.get(__ret__, 'webhosting_id'))
-def get_hosting_output(domain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       webhosting_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_hosting_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       webhosting_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHostingResult]:
     """
     Gets information about a webhosting.

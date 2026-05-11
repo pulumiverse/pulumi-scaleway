@@ -193,9 +193,9 @@ def get_instance_group(instance_group_id: Optional[_builtins.str] = None,
         template_id=pulumi.get(__ret__, 'template_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_instance_group_output(instance_group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_group_output(instance_group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceGroupResult]:
     """
     Gets information about an Autoscaling Instance group.

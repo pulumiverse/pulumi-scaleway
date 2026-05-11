@@ -157,35 +157,35 @@ export interface NetworkState {
     /**
      * The date and time the Network was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The endpoint to use when interacting with the network.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * The hub ID to which the Network will be attached to.
      */
-    hubId?: pulumi.Input<string>;
+    hubId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IoT Network you want to create (e.g. `my-net`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the Network is attached to.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The endpoint key to keep secret.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * The prefix that will be prepended to all topics for this Network.
      */
-    topicPrefix?: pulumi.Input<string>;
+    topicPrefix?: pulumi.Input<string | undefined>;
     /**
      * The network type to create (e.g. `sigfox`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -199,15 +199,15 @@ export interface NetworkArgs {
     /**
      * The name of the IoT Network you want to create (e.g. `my-net`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the Network is attached to.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The prefix that will be prepended to all topics for this Network.
      */
-    topicPrefix?: pulumi.Input<string>;
+    topicPrefix?: pulumi.Input<string | undefined>;
     /**
      * The network type to create (e.g. `sigfox`).
      */

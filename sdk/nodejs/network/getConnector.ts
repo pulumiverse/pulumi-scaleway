@@ -151,29 +151,29 @@ export interface GetConnectorOutputArgs {
      *
      * The following arguments can be used to look up a VPC connector via the list API. They all conflict with `connectorId`:
      */
-    connectorId?: pulumi.Input<string>;
+    connectorId?: pulumi.Input<string | undefined>;
     /**
      * The name to filter for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project to filter for.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the connector exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of tags to filter for.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The target VPC ID to filter for.
      */
-    targetVpcId?: pulumi.Input<string>;
+    targetVpcId?: pulumi.Input<string | undefined>;
     /**
      * The source VPC ID to filter for.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

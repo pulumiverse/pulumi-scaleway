@@ -271,43 +271,43 @@ export interface InstanceGroupState {
     /**
      * The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
      */
-    capacities?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupCapacity>[]>;
+    capacities?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupCapacity>[] | undefined>;
     /**
      * Date and time of Instance group's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
      */
-    deleteServersOnDestroy?: pulumi.Input<boolean>;
+    deleteServersOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * The specification of the Load Balancer to link to the Instance group.
      */
-    loadBalancers?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupLoadBalancer>[]>;
+    loadBalancers?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupLoadBalancer>[] | undefined>;
     /**
      * The Instance group name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Instance group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the Instance template to attach to the Instance group.
      */
-    templateId?: pulumi.Input<string>;
+    templateId?: pulumi.Input<string | undefined>;
     /**
      * Date and time of Instance group's last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Instance group exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -317,27 +317,27 @@ export interface InstanceGroupArgs {
     /**
      * The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
      */
-    capacities?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupCapacity>[]>;
+    capacities?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupCapacity>[] | undefined>;
     /**
      * Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
      */
-    deleteServersOnDestroy?: pulumi.Input<boolean>;
+    deleteServersOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * The specification of the Load Balancer to link to the Instance group.
      */
-    loadBalancers?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupLoadBalancer>[]>;
+    loadBalancers?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceGroupLoadBalancer>[] | undefined>;
     /**
      * The Instance group name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Instance group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the Instance template to attach to the Instance group.
      */
@@ -345,5 +345,5 @@ export interface InstanceGroupArgs {
     /**
      * `zone`) The zone in which the Instance group exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

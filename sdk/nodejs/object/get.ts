@@ -134,9 +134,9 @@ export interface GetOutputArgs {
     /**
      * `projectId`) The ID of the project with which the bucket is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the bucket exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

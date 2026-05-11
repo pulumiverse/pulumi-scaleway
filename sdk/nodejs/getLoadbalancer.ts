@@ -141,18 +141,18 @@ export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: p
  * A collection of arguments for invoking getLoadbalancer.
  */
 export interface GetLoadbalancerOutputArgs {
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The Load Balancer name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project the Load Balancer is associated with.
      */
-    projectId?: pulumi.Input<string>;
-    releaseIp?: pulumi.Input<boolean>;
+    projectId?: pulumi.Input<string | undefined>;
+    releaseIp?: pulumi.Input<boolean | undefined>;
     /**
      * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

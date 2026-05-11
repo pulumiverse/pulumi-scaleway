@@ -245,31 +245,31 @@ export interface EdgeServicesRouteStageState {
     /**
      * The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the route stage.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the route stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.EdgeServicesRouteStageRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.EdgeServicesRouteStageRule>[] | undefined>;
     /**
      * The date and time of the last update of the route stage.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -279,7 +279,7 @@ export interface EdgeServicesRouteStageArgs {
     /**
      * The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
@@ -287,13 +287,13 @@ export interface EdgeServicesRouteStageArgs {
     /**
      * `projectId`) The ID of the project the route stage is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.EdgeServicesRouteStageRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.EdgeServicesRouteStageRule>[] | undefined>;
     /**
      * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
      */
-    wafStageId?: pulumi.Input<string>;
+    wafStageId?: pulumi.Input<string | undefined>;
 }

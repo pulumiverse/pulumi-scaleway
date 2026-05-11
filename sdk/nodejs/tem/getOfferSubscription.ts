@@ -116,9 +116,9 @@ export interface GetOfferSubscriptionOutputArgs {
     /**
      * `projectId`) The ID of the project the offer subscription is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region where the offer subscription exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

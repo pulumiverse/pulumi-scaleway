@@ -20,8 +20,8 @@ __all__ = ['GroupMembershipArgs', 'GroupMembership']
 class GroupMembershipArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMembership resource.
 
@@ -51,19 +51,19 @@ class GroupMembershipArgs:
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
-    def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the application that will be added to the group.
         """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
-    def application_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the user that will be added to the group
 
@@ -72,16 +72,16 @@ class GroupMembershipArgs:
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
 @pulumi.input_type
 class _GroupMembershipState:
     def __init__(__self__, *,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMembership resources.
 
@@ -100,31 +100,31 @@ class _GroupMembershipState:
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
-    def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the application that will be added to the group.
         """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
-    def application_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_id", value)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the group to add members to.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the user that will be added to the group
 
@@ -133,7 +133,7 @@ class _GroupMembershipState:
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -143,9 +143,9 @@ class GroupMembership(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Add members to an IAM group.
@@ -172,6 +172,7 @@ class GroupMembership(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_scaleway as scaleway
         import pulumi_std as std
         import pulumiverse_scaleway as scaleway
@@ -180,12 +181,12 @@ class GroupMembership(pulumi.CustomResource):
             "user1@mail.com",
             "user2@mail.com",
         ])["result"]
-        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        members = []
-        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+        members: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted((users_get_user).items())]:
             members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
                 group_id=group.id,
                 user_id=range["value"].id))
@@ -242,6 +243,7 @@ class GroupMembership(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_scaleway as scaleway
         import pulumi_std as std
         import pulumiverse_scaleway as scaleway
@@ -250,12 +252,12 @@ class GroupMembership(pulumi.CustomResource):
             "user1@mail.com",
             "user2@mail.com",
         ])["result"]
-        users_get_user = {__key: scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
+        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        members = []
-        for range in [{"key": k, "value": v} for [k, v] in (users_get_user).items()]:
+        members: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted((users_get_user).items())]:
             members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
                 group_id=group.id,
                 user_id=range["value"].id))
@@ -288,9 +290,9 @@ class GroupMembership(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -317,9 +319,9 @@ class GroupMembership(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            application_id: Optional[pulumi.Input[_builtins.str]] = None,
-            group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'GroupMembership':
+            application_id: pulumi.Input[Optional[_builtins.str]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'GroupMembership':
         """
         Get an existing GroupMembership resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

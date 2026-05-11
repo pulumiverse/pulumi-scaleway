@@ -358,10 +358,10 @@ def get_instance(instance_id: Optional[_builtins.str] = None,
         version=pulumi.get(__ret__, 'version'),
         volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
         volume_type=pulumi.get(__ret__, 'volume_type'))
-def get_instance_output(instance_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_instance_output(instance_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
     Gets information about a MongoDB® Instance.

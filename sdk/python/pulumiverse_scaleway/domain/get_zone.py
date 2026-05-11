@@ -195,9 +195,9 @@ def get_zone(domain: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         subdomain=pulumi.get(__ret__, 'subdomain'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_zone_output(domain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    subdomain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_zone_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    subdomain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetZoneResult]:
     """
     The `domain.Zone` data source is used to get information about a DNS zone within a specific domain and subdomain in Scaleway Domains and DNS.

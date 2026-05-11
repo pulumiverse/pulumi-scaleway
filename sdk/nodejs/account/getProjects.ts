@@ -158,5 +158,5 @@ export interface GetProjectsOutputArgs {
      * The unique identifier of the Organization with which the Projects are associated.
      * If no default `organizationId` is set, one must be set explicitly in this datasource
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
 }

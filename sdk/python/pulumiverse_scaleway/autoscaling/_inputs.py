@@ -30,15 +30,15 @@ __all__ = [
 ]
 
 class InstanceGroupCapacityArgsDict(TypedDict):
-    cooldown_delay: NotRequired[pulumi.Input[_builtins.int]]
+    cooldown_delay: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
     """
-    max_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    max_replicas: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum count of Instances for the Instance group.
     """
-    min_replicas: NotRequired[pulumi.Input[_builtins.int]]
+    min_replicas: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The minimum count of Instances for the Instance group.
     """
@@ -46,9 +46,9 @@ class InstanceGroupCapacityArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceGroupCapacityArgs:
     def __init__(__self__, *,
-                 cooldown_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_replicas: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_replicas: Optional[pulumi.Input[_builtins.int]] = None):
+                 cooldown_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_replicas: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_replicas: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] cooldown_delay: Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
         :param pulumi.Input[_builtins.int] max_replicas: The maximum count of Instances for the Instance group.
@@ -63,51 +63,51 @@ class InstanceGroupCapacityArgs:
 
     @_builtins.property
     @pulumi.getter(name="cooldownDelay")
-    def cooldown_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cooldown_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
         """
         return pulumi.get(self, "cooldown_delay")
 
     @cooldown_delay.setter
-    def cooldown_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cooldown_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cooldown_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="maxReplicas")
-    def max_replicas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_replicas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum count of Instances for the Instance group.
         """
         return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
-    def max_replicas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_replicas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_replicas", value)
 
     @_builtins.property
     @pulumi.getter(name="minReplicas")
-    def min_replicas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_replicas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum count of Instances for the Instance group.
         """
         return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
-    def min_replicas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_replicas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_replicas", value)
 
 
 class InstanceGroupLoadBalancerArgsDict(TypedDict):
-    backend_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    backend_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The Load Balancer backend IDs.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Load Balancer.
     """
-    private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+    private_network_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Private Network attached to the Load Balancer.
     """
@@ -115,9 +115,9 @@ class InstanceGroupLoadBalancerArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceGroupLoadBalancerArgs:
     def __init__(__self__, *,
-                 backend_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] backend_ids: The Load Balancer backend IDs.
         :param pulumi.Input[_builtins.str] id: The ID of the Load Balancer.
@@ -132,38 +132,38 @@ class InstanceGroupLoadBalancerArgs:
 
     @_builtins.property
     @pulumi.getter(name="backendIds")
-    def backend_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def backend_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The Load Balancer backend IDs.
         """
         return pulumi.get(self, "backend_ids")
 
     @backend_ids.setter
-    def backend_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def backend_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "backend_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Load Balancer.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network attached to the Load Balancer.
         """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
 
@@ -180,19 +180,19 @@ class InstancePolicyMetricArgsDict(TypedDict):
     """
     Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
     """
-    cockpit_metric_name: NotRequired[pulumi.Input[_builtins.str]]
+    cockpit_metric_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
     """
-    managed_metric: NotRequired[pulumi.Input[_builtins.str]]
+    managed_metric: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
     """
-    sampling_range_min: NotRequired[pulumi.Input[_builtins.int]]
+    sampling_range_min: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The Interval of time, in minutes, during which metric is sampled.
     """
-    threshold: NotRequired[pulumi.Input[_builtins.int]]
+    threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
     """
@@ -203,10 +203,10 @@ class InstancePolicyMetricArgs:
                  aggregate: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  operator: pulumi.Input[_builtins.str],
-                 cockpit_metric_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_metric: Optional[pulumi.Input[_builtins.str]] = None,
-                 sampling_range_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 threshold: Optional[pulumi.Input[_builtins.int]] = None):
+                 cockpit_metric_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_metric: pulumi.Input[Optional[_builtins.str]] = None,
+                 sampling_range_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 threshold: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] aggregate: How the values sampled for the `metric` should be aggregated.
         :param pulumi.Input[_builtins.str] name: Name or description of the metric policy.
@@ -266,50 +266,50 @@ class InstancePolicyMetricArgs:
 
     @_builtins.property
     @pulumi.getter(name="cockpitMetricName")
-    def cockpit_metric_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cockpit_metric_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
         """
         return pulumi.get(self, "cockpit_metric_name")
 
     @cockpit_metric_name.setter
-    def cockpit_metric_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cockpit_metric_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cockpit_metric_name", value)
 
     @_builtins.property
     @pulumi.getter(name="managedMetric")
-    def managed_metric(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_metric(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
         """
         return pulumi.get(self, "managed_metric")
 
     @managed_metric.setter
-    def managed_metric(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_metric(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_metric", value)
 
     @_builtins.property
     @pulumi.getter(name="samplingRangeMin")
-    def sampling_range_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sampling_range_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Interval of time, in minutes, during which metric is sampled.
         """
         return pulumi.get(self, "sampling_range_min")
 
     @sampling_range_min.setter
-    def sampling_range_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sampling_range_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sampling_range_min", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
         """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "threshold", value)
 
 
@@ -322,23 +322,23 @@ class InstanceTemplateVolumeArgsDict(TypedDict):
     """
     The type of the volume.
     """
-    boot: NotRequired[pulumi.Input[_builtins.bool]]
+    boot: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Force the Instance to boot on this volume.
     """
-    from_empty: NotRequired[pulumi.Input['InstanceTemplateVolumeFromEmptyArgsDict']]
+    from_empty: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgs']]]
     """
     Volume instance template from empty
     """
-    from_snapshot: NotRequired[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgsDict']]
+    from_snapshot: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgs']]]
     """
     Volume instance template from snapshot
     """
-    perf_iops: NotRequired[pulumi.Input[_builtins.int]]
+    perf_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
     """
-    tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    tags: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The list of tags assigned to the volume.
     """
@@ -348,11 +348,11 @@ class InstanceTemplateVolumeArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  volume_type: pulumi.Input[_builtins.str],
-                 boot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 from_empty: Optional[pulumi.Input['InstanceTemplateVolumeFromEmptyArgs']] = None,
-                 from_snapshot: Optional[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgs']] = None,
-                 perf_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 boot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 from_empty: pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgs']] = None,
+                 from_snapshot: pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgs']] = None,
+                 perf_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The name of the volume.
         :param pulumi.Input[_builtins.str] volume_type: The type of the volume.
@@ -401,62 +401,62 @@ class InstanceTemplateVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def boot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def boot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Force the Instance to boot on this volume.
         """
         return pulumi.get(self, "boot")
 
     @boot.setter
-    def boot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def boot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "boot", value)
 
     @_builtins.property
     @pulumi.getter(name="fromEmpty")
-    def from_empty(self) -> Optional[pulumi.Input['InstanceTemplateVolumeFromEmptyArgs']]:
+    def from_empty(self) -> pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgs']]:
         """
         Volume instance template from empty
         """
         return pulumi.get(self, "from_empty")
 
     @from_empty.setter
-    def from_empty(self, value: Optional[pulumi.Input['InstanceTemplateVolumeFromEmptyArgs']]):
+    def from_empty(self, value: pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgs']]):
         pulumi.set(self, "from_empty", value)
 
     @_builtins.property
     @pulumi.getter(name="fromSnapshot")
-    def from_snapshot(self) -> Optional[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgs']]:
+    def from_snapshot(self) -> pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgs']]:
         """
         Volume instance template from snapshot
         """
         return pulumi.get(self, "from_snapshot")
 
     @from_snapshot.setter
-    def from_snapshot(self, value: Optional[pulumi.Input['InstanceTemplateVolumeFromSnapshotArgs']]):
+    def from_snapshot(self, value: pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgs']]):
         pulumi.set(self, "from_snapshot", value)
 
     @_builtins.property
     @pulumi.getter(name="perfIops")
-    def perf_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def perf_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
         """
         return pulumi.get(self, "perf_iops")
 
     @perf_iops.setter
-    def perf_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def perf_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "perf_iops", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags assigned to the volume.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
@@ -493,7 +493,7 @@ class InstanceTemplateVolumeFromSnapshotArgsDict(TypedDict):
     """
     ID of the snapshot to clone
     """
-    size: NotRequired[pulumi.Input[_builtins.int]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Override size (in GB) of the cloned volume
     """
@@ -502,7 +502,7 @@ class InstanceTemplateVolumeFromSnapshotArgsDict(TypedDict):
 class InstanceTemplateVolumeFromSnapshotArgs:
     def __init__(__self__, *,
                  snapshot_id: pulumi.Input[_builtins.str],
-                 size: Optional[pulumi.Input[_builtins.int]] = None):
+                 size: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] snapshot_id: ID of the snapshot to clone
         :param pulumi.Input[_builtins.int] size: Override size (in GB) of the cloned volume
@@ -525,14 +525,14 @@ class InstanceTemplateVolumeFromSnapshotArgs:
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Override size (in GB) of the cloned volume
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
 

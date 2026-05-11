@@ -363,55 +363,55 @@ export interface DomainRecordState {
     /**
      * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
-    data?: pulumi.Input<string>;
+    data?: pulumi.Input<string | undefined>;
     /**
      * The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
      */
-    dnsZone?: pulumi.Input<string>;
+    dnsZone?: pulumi.Input<string | undefined>;
     /**
      * The FQDN of the record.
      */
-    fqdn?: pulumi.Input<string>;
+    fqdn?: pulumi.Input<string | undefined>;
     /**
      * Return record based on client localisation
      */
-    geoIp?: pulumi.Input<inputs.DomainRecordGeoIp>;
+    geoIp?: pulumi.Input<inputs.DomainRecordGeoIp | undefined>;
     /**
      * Return record based on client localisation
      */
-    httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
+    httpService?: pulumi.Input<inputs.DomainRecordHttpService | undefined>;
     /**
      * The name of the record (can be an empty string for a root record).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The priority of the record (mostly used with an `MX` record).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Does the DNS zone is the root zone or not
      */
-    rootZone?: pulumi.Input<boolean>;
+    rootZone?: pulumi.Input<boolean | undefined>;
     /**
      * Time To Live of the record in seconds.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
     /**
      * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Return record based on client subnet
      */
-    views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[]>;
+    views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[] | undefined>;
     /**
      * Return record based on weight
      */
-    weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[]>;
+    weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[] | undefined>;
 }
 
 /**
@@ -429,27 +429,27 @@ export interface DomainRecordArgs {
     /**
      * Return record based on client localisation
      */
-    geoIp?: pulumi.Input<inputs.DomainRecordGeoIp>;
+    geoIp?: pulumi.Input<inputs.DomainRecordGeoIp | undefined>;
     /**
      * Return record based on client localisation
      */
-    httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
+    httpService?: pulumi.Input<inputs.DomainRecordHttpService | undefined>;
     /**
      * The name of the record (can be an empty string for a root record).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The priority of the record (mostly used with an `MX` record).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Time To Live of the record in seconds.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
     /**
      * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
      */
@@ -457,9 +457,9 @@ export interface DomainRecordArgs {
     /**
      * Return record based on client subnet
      */
-    views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[]>;
+    views?: pulumi.Input<pulumi.Input<inputs.DomainRecordView>[] | undefined>;
     /**
      * Return record based on weight
      */
-    weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[]>;
+    weighteds?: pulumi.Input<pulumi.Input<inputs.DomainRecordWeighted>[] | undefined>;
 }

@@ -22,10 +22,10 @@ __all__ = ['DomainArgs', 'Domain']
 class DomainArgs:
     def __init__(__self__, *,
                  accept_tos: pulumi.Input[_builtins.bool],
-                 autoconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Domain resource.
 
@@ -63,19 +63,19 @@ class DomainArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         """
         return pulumi.get(self, "autoconfig")
 
     @autoconfig.setter
-    def autoconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoconfig(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoconfig", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain name, must not be used in another Transactional Email Domain.
         > **Important:** Updates to `name` will recreate the domain.
@@ -83,24 +83,24 @@ class DomainArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the domain is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the domain should be created.
         > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
@@ -108,40 +108,40 @@ class DomainArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _DomainState:
     def __init__(__self__, *,
-                 accept_tos: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 dkim_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 dkim_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dmarc_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 dmarc_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_error: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_valid_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 mx_blackhole: Optional[pulumi.Input[_builtins.str]] = None,
-                 mx_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 next_check_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 reputations: Optional[pulumi.Input[Sequence[pulumi.Input['DomainReputationArgs']]]] = None,
-                 revoked_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 smtp_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 smtp_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 smtp_port_alternative: Optional[pulumi.Input[_builtins.int]] = None,
-                 smtp_port_unsecure: Optional[pulumi.Input[_builtins.int]] = None,
-                 smtps_auth_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 smtps_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 smtps_port_alternative: Optional[pulumi.Input[_builtins.int]] = None,
-                 spf_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 spf_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 accept_tos: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 dkim_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 dkim_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dmarc_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 dmarc_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_error: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_valid_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 mx_blackhole: pulumi.Input[Optional[_builtins.str]] = None,
+                 mx_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 reputations: pulumi.Input[Optional[Sequence[pulumi.Input['DomainReputationArgs']]]] = None,
+                 revoked_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 smtp_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 smtp_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 smtp_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+                 smtp_port_unsecure: pulumi.Input[Optional[_builtins.int]] = None,
+                 smtps_auth_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 smtps_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 smtps_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+                 spf_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 spf_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
 
@@ -236,7 +236,7 @@ class _DomainState:
 
     @_builtins.property
     @pulumi.getter(name="acceptTos")
-    def accept_tos(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def accept_tos(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
         > **Important:** This attribute must be set to `true`.
@@ -244,133 +244,133 @@ class _DomainState:
         return pulumi.get(self, "accept_tos")
 
     @accept_tos.setter
-    def accept_tos(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def accept_tos(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "accept_tos", value)
 
     @_builtins.property
     @pulumi.getter
-    def autoconfig(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoconfig(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
         """
         return pulumi.get(self, "autoconfig")
 
     @autoconfig.setter
-    def autoconfig(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoconfig(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoconfig", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="dkimConfig")
-    def dkim_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dkim_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DKIM public key, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "dkim_config")
 
     @dkim_config.setter
-    def dkim_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dkim_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dkim_config", value)
 
     @_builtins.property
     @pulumi.getter(name="dkimName")
-    def dkim_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dkim_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DKIM name for the domain, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "dkim_name")
 
     @dkim_name.setter
-    def dkim_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dkim_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dkim_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dmarcConfig")
-    def dmarc_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dmarc_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DMARC record for the domain, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "dmarc_config")
 
     @dmarc_config.setter
-    def dmarc_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dmarc_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dmarc_config", value)
 
     @_builtins.property
     @pulumi.getter(name="dmarcName")
-    def dmarc_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dmarc_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DMARC name for the domain, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "dmarc_name")
 
     @dmarc_name.setter
-    def dmarc_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dmarc_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dmarc_name", value)
 
     @_builtins.property
     @pulumi.getter(name="lastError")
     @_utilities.deprecated("""last_error is deprecated""")
-    def last_error(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_error(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) The error message if the last check failed.
         """
         return pulumi.get(self, "last_error")
 
     @last_error.setter
-    def last_error(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_error(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_error", value)
 
     @_builtins.property
     @pulumi.getter(name="lastValidAt")
-    def last_valid_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_valid_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the domain was last found to be valid (RFC 3339 format).
         """
         return pulumi.get(self, "last_valid_at")
 
     @last_valid_at.setter
-    def last_valid_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_valid_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_valid_at", value)
 
     @_builtins.property
     @pulumi.getter(name="mxBlackhole")
-    def mx_blackhole(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mx_blackhole(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Scaleway's blackhole MX server to use if you do not have one.
         """
         return pulumi.get(self, "mx_blackhole")
 
     @mx_blackhole.setter
-    def mx_blackhole(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mx_blackhole(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mx_blackhole", value)
 
     @_builtins.property
     @pulumi.getter(name="mxConfig")
-    def mx_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mx_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MX record configuration for the domain blackhole.
         """
         return pulumi.get(self, "mx_config")
 
     @mx_config.setter
-    def mx_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mx_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mx_config", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain name, must not be used in another Transactional Email Domain.
         > **Important:** Updates to `name` will recreate the domain.
@@ -378,36 +378,36 @@ class _DomainState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nextCheckAt")
-    def next_check_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def next_check_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the next scheduled check (RFC 3339 format).
         """
         return pulumi.get(self, "next_check_at")
 
     @next_check_at.setter
-    def next_check_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def next_check_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "next_check_at", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the domain is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the domain should be created.
         > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
@@ -415,151 +415,151 @@ class _DomainState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def reputations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DomainReputationArgs']]]]:
+    def reputations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DomainReputationArgs']]]]:
         """
         The domain's reputation.
         """
         return pulumi.get(self, "reputations")
 
     @reputations.setter
-    def reputations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DomainReputationArgs']]]]):
+    def reputations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DomainReputationArgs']]]]):
         pulumi.set(self, "reputations", value)
 
     @_builtins.property
     @pulumi.getter(name="revokedAt")
-    def revoked_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def revoked_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the revocation of the domain (RFC 3339 format).
         """
         return pulumi.get(self, "revoked_at")
 
     @revoked_at.setter
-    def revoked_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def revoked_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "revoked_at", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpHost")
-    def smtp_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def smtp_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SMTP host to use to send emails.
         """
         return pulumi.get(self, "smtp_host")
 
     @smtp_host.setter
-    def smtp_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def smtp_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "smtp_host", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpPort")
-    def smtp_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def smtp_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port")
 
     @smtp_port.setter
-    def smtp_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def smtp_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "smtp_port", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpPortAlternative")
-    def smtp_port_alternative(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def smtp_port_alternative(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The SMTP port to use to send emails over TLS.
         """
         return pulumi.get(self, "smtp_port_alternative")
 
     @smtp_port_alternative.setter
-    def smtp_port_alternative(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def smtp_port_alternative(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "smtp_port_alternative", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpPortUnsecure")
-    def smtp_port_unsecure(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def smtp_port_unsecure(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The SMTP port to use to send emails.
         """
         return pulumi.get(self, "smtp_port_unsecure")
 
     @smtp_port_unsecure.setter
-    def smtp_port_unsecure(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def smtp_port_unsecure(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "smtp_port_unsecure", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpsAuthUser")
-    def smtps_auth_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def smtps_auth_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
         """
         return pulumi.get(self, "smtps_auth_user")
 
     @smtps_auth_user.setter
-    def smtps_auth_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def smtps_auth_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "smtps_auth_user", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpsPort")
-    def smtps_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def smtps_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port")
 
     @smtps_port.setter
-    def smtps_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def smtps_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "smtps_port", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpsPortAlternative")
-    def smtps_port_alternative(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def smtps_port_alternative(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The SMTPS port to use to send emails over TLS Wrapper.
         """
         return pulumi.get(self, "smtps_port_alternative")
 
     @smtps_port_alternative.setter
-    def smtps_port_alternative(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def smtps_port_alternative(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "smtps_port_alternative", value)
 
     @_builtins.property
     @pulumi.getter(name="spfConfig")
-    def spf_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def spf_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The snippet of the SPF record that should be registered in the DNS zone.
         """
         return pulumi.get(self, "spf_config")
 
     @spf_config.setter
-    def spf_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def spf_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "spf_config", value)
 
     @_builtins.property
     @pulumi.getter(name="spfValue")
-    def spf_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def spf_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Complete SPF record value for the domain, as should be recorded in the DNS zone.
         """
         return pulumi.get(self, "spf_value")
 
     @spf_value.setter
-    def spf_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def spf_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "spf_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the domain's reputation.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
@@ -569,11 +569,11 @@ class Domain(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accept_tos: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 accept_tos: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Transactional Email Domains.
@@ -652,10 +652,10 @@ class Domain(pulumi.CustomResource):
             value=my_domain.smtps_auth_user)
         smtp_port = gitlab.ProjectVariable("smtp_port",
             key="SMTP_PORT",
-            value=my_domain.smtps_port)
+            value=output(my_domain.smtps_port).apply(lambda x: str(x)))
         smtp_host = gitlab.ProjectVariable("smtp_host",
             key="SMTP_HOST",
-            value=my_domain.smtps_host)
+            value=output(my_domain.smtps_host).apply(lambda x: str(x)))
         ```
 
         ## Import
@@ -761,10 +761,10 @@ class Domain(pulumi.CustomResource):
             value=my_domain.smtps_auth_user)
         smtp_port = gitlab.ProjectVariable("smtp_port",
             key="SMTP_PORT",
-            value=my_domain.smtps_port)
+            value=output(my_domain.smtps_port).apply(lambda x: str(x)))
         smtp_host = gitlab.ProjectVariable("smtp_host",
             key="SMTP_HOST",
-            value=my_domain.smtps_host)
+            value=output(my_domain.smtps_host).apply(lambda x: str(x)))
         ```
 
         ## Import
@@ -791,11 +791,11 @@ class Domain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accept_tos: Optional[pulumi.Input[_builtins.bool]] = None,
-                 autoconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 accept_tos: pulumi.Input[Optional[_builtins.bool]] = None,
+                 autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -846,33 +846,33 @@ class Domain(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accept_tos: Optional[pulumi.Input[_builtins.bool]] = None,
-            autoconfig: Optional[pulumi.Input[_builtins.bool]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            dkim_config: Optional[pulumi.Input[_builtins.str]] = None,
-            dkim_name: Optional[pulumi.Input[_builtins.str]] = None,
-            dmarc_config: Optional[pulumi.Input[_builtins.str]] = None,
-            dmarc_name: Optional[pulumi.Input[_builtins.str]] = None,
-            last_error: Optional[pulumi.Input[_builtins.str]] = None,
-            last_valid_at: Optional[pulumi.Input[_builtins.str]] = None,
-            mx_blackhole: Optional[pulumi.Input[_builtins.str]] = None,
-            mx_config: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            next_check_at: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            reputations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict']]]]] = None,
-            revoked_at: Optional[pulumi.Input[_builtins.str]] = None,
-            smtp_host: Optional[pulumi.Input[_builtins.str]] = None,
-            smtp_port: Optional[pulumi.Input[_builtins.int]] = None,
-            smtp_port_alternative: Optional[pulumi.Input[_builtins.int]] = None,
-            smtp_port_unsecure: Optional[pulumi.Input[_builtins.int]] = None,
-            smtps_auth_user: Optional[pulumi.Input[_builtins.str]] = None,
-            smtps_port: Optional[pulumi.Input[_builtins.int]] = None,
-            smtps_port_alternative: Optional[pulumi.Input[_builtins.int]] = None,
-            spf_config: Optional[pulumi.Input[_builtins.str]] = None,
-            spf_value: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None) -> 'Domain':
+            accept_tos: pulumi.Input[Optional[_builtins.bool]] = None,
+            autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dkim_config: pulumi.Input[Optional[_builtins.str]] = None,
+            dkim_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dmarc_config: pulumi.Input[Optional[_builtins.str]] = None,
+            dmarc_name: pulumi.Input[Optional[_builtins.str]] = None,
+            last_error: pulumi.Input[Optional[_builtins.str]] = None,
+            last_valid_at: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_blackhole: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_config: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            reputations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict']]]]] = None,
+            revoked_at: pulumi.Input[Optional[_builtins.str]] = None,
+            smtp_host: pulumi.Input[Optional[_builtins.str]] = None,
+            smtp_port: pulumi.Input[Optional[_builtins.int]] = None,
+            smtp_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+            smtp_port_unsecure: pulumi.Input[Optional[_builtins.int]] = None,
+            smtps_auth_user: pulumi.Input[Optional[_builtins.str]] = None,
+            smtps_port: pulumi.Input[Optional[_builtins.int]] = None,
+            smtps_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+            spf_config: pulumi.Input[Optional[_builtins.str]] = None,
+            spf_value: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Domain':
         """
         Get an existing Domain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

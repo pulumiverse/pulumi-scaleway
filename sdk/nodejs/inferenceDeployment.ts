@@ -217,75 +217,75 @@ export interface InferenceDeploymentState {
     /**
      * Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
      */
-    acceptEula?: pulumi.Input<boolean>;
+    acceptEula?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time of the creation of the deployment.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The maximum size of the pool.
      */
-    maxSize?: pulumi.Input<number>;
+    maxSize?: pulumi.Input<number | undefined>;
     /**
      * The minimum size of the pool.
      */
-    minSize?: pulumi.Input<number>;
+    minSize?: pulumi.Input<number | undefined>;
     /**
      * The model id used for the deployment.
      */
-    modelId?: pulumi.Input<string>;
+    modelId?: pulumi.Input<string | undefined>;
     /**
      * The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
      */
-    modelName?: pulumi.Input<string>;
+    modelName?: pulumi.Input<string | undefined>;
     /**
      * The deployment name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * Configuration of the deployment's private endpoint.
      */
-    privateEndpoint?: pulumi.Input<inputs.InferenceDeploymentPrivateEndpoint>;
+    privateEndpoint?: pulumi.Input<inputs.InferenceDeploymentPrivateEndpoint | undefined>;
     /**
      * The private IPv4 address associated with the deployment.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.InferenceDeploymentPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.InferenceDeploymentPrivateIp>[] | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Configuration of the deployment's public endpoint.
      */
-    publicEndpoint?: pulumi.Input<inputs.InferenceDeploymentPublicEndpoint>;
+    publicEndpoint?: pulumi.Input<inputs.InferenceDeploymentPublicEndpoint | undefined>;
     /**
      * The number of bits each model parameter should be quantized to
      */
-    quantization?: pulumi.Input<number>;
+    quantization?: pulumi.Input<number | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the pool.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * The status of the deployment.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the deployment.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -295,15 +295,15 @@ export interface InferenceDeploymentArgs {
     /**
      * Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
      */
-    acceptEula?: pulumi.Input<boolean>;
+    acceptEula?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum size of the pool.
      */
-    maxSize?: pulumi.Input<number>;
+    maxSize?: pulumi.Input<number | undefined>;
     /**
      * The minimum size of the pool.
      */
-    minSize?: pulumi.Input<number>;
+    minSize?: pulumi.Input<number | undefined>;
     /**
      * The model id used for the deployment.
      */
@@ -311,7 +311,7 @@ export interface InferenceDeploymentArgs {
     /**
      * The deployment name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
      */
@@ -319,29 +319,29 @@ export interface InferenceDeploymentArgs {
     /**
      * Configuration of the deployment's private endpoint.
      */
-    privateEndpoint?: pulumi.Input<inputs.InferenceDeploymentPrivateEndpoint>;
+    privateEndpoint?: pulumi.Input<inputs.InferenceDeploymentPrivateEndpoint | undefined>;
     /**
      * The private IPv4 address associated with the deployment.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.InferenceDeploymentPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.InferenceDeploymentPrivateIp>[] | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Configuration of the deployment's public endpoint.
      */
-    publicEndpoint?: pulumi.Input<inputs.InferenceDeploymentPublicEndpoint>;
+    publicEndpoint?: pulumi.Input<inputs.InferenceDeploymentPublicEndpoint | undefined>;
     /**
      * The number of bits each model parameter should be quantized to
      */
-    quantization?: pulumi.Input<number>;
+    quantization?: pulumi.Input<number | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

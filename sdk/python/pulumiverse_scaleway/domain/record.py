@@ -24,14 +24,14 @@ class RecordArgs:
                  data: pulumi.Input[_builtins.str],
                  dns_zone: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 geo_ip: Optional[pulumi.Input['RecordGeoIpArgs']] = None,
-                 http_service: Optional[pulumi.Input['RecordHttpServiceArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]] = None,
-                 weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
+                 geo_ip: pulumi.Input[Optional['RecordGeoIpArgs']] = None,
+                 http_service: pulumi.Input[Optional['RecordHttpServiceArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
         """
         The set of arguments for constructing a Record resource.
 
@@ -105,117 +105,117 @@ class RecordArgs:
 
     @_builtins.property
     @pulumi.getter(name="geoIp")
-    def geo_ip(self) -> Optional[pulumi.Input['RecordGeoIpArgs']]:
+    def geo_ip(self) -> pulumi.Input[Optional['RecordGeoIpArgs']]:
         """
         Return record based on client localisation
         """
         return pulumi.get(self, "geo_ip")
 
     @geo_ip.setter
-    def geo_ip(self, value: Optional[pulumi.Input['RecordGeoIpArgs']]):
+    def geo_ip(self, value: pulumi.Input[Optional['RecordGeoIpArgs']]):
         pulumi.set(self, "geo_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="httpService")
-    def http_service(self) -> Optional[pulumi.Input['RecordHttpServiceArgs']]:
+    def http_service(self) -> pulumi.Input[Optional['RecordHttpServiceArgs']]:
         """
         Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
 
     @http_service.setter
-    def http_service(self, value: Optional[pulumi.Input['RecordHttpServiceArgs']]):
+    def http_service(self, value: pulumi.Input[Optional['RecordHttpServiceArgs']]):
         pulumi.set(self, "http_service", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the record (can be an empty string for a root record).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The priority of the record (mostly used with an `MX` record).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time To Live of the record in seconds.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]]:
+    def views(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]]:
         """
         Return record based on client subnet
         """
         return pulumi.get(self, "views")
 
     @views.setter
-    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]]):
+    def views(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]]):
         pulumi.set(self, "views", value)
 
     @_builtins.property
     @pulumi.getter
-    def weighteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]]:
+    def weighteds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]]:
         """
         Return record based on weight
         """
         return pulumi.get(self, "weighteds")
 
     @weighteds.setter
-    def weighteds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]]):
+    def weighteds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]]):
         pulumi.set(self, "weighteds", value)
 
 
 @pulumi.input_type
 class _RecordState:
     def __init__(__self__, *,
-                 data: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 fqdn: Optional[pulumi.Input[_builtins.str]] = None,
-                 geo_ip: Optional[pulumi.Input['RecordGeoIpArgs']] = None,
-                 http_service: Optional[pulumi.Input['RecordHttpServiceArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_zone: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]] = None,
-                 weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
+                 data: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+                 geo_ip: pulumi.Input[Optional['RecordGeoIpArgs']] = None,
+                 http_service: pulumi.Input[Optional['RecordHttpServiceArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_zone: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]] = None):
         """
         Input properties used for looking up and filtering Record resources.
 
@@ -262,158 +262,158 @@ class _RecordState:
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsZone")
-    def dns_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         """
         return pulumi.get(self, "dns_zone")
 
     @dns_zone.setter
-    def dns_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_zone", value)
 
     @_builtins.property
     @pulumi.getter
-    def fqdn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def fqdn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The FQDN of the record.
         """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
-    def fqdn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def fqdn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "fqdn", value)
 
     @_builtins.property
     @pulumi.getter(name="geoIp")
-    def geo_ip(self) -> Optional[pulumi.Input['RecordGeoIpArgs']]:
+    def geo_ip(self) -> pulumi.Input[Optional['RecordGeoIpArgs']]:
         """
         Return record based on client localisation
         """
         return pulumi.get(self, "geo_ip")
 
     @geo_ip.setter
-    def geo_ip(self, value: Optional[pulumi.Input['RecordGeoIpArgs']]):
+    def geo_ip(self, value: pulumi.Input[Optional['RecordGeoIpArgs']]):
         pulumi.set(self, "geo_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="httpService")
-    def http_service(self) -> Optional[pulumi.Input['RecordHttpServiceArgs']]:
+    def http_service(self) -> pulumi.Input[Optional['RecordHttpServiceArgs']]:
         """
         Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
 
     @http_service.setter
-    def http_service(self, value: Optional[pulumi.Input['RecordHttpServiceArgs']]):
+    def http_service(self, value: pulumi.Input[Optional['RecordHttpServiceArgs']]):
         pulumi.set(self, "http_service", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the record (can be an empty string for a root record).
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The priority of the record (mostly used with an `MX` record).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="rootZone")
-    def root_zone(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def root_zone(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Does the DNS zone is the root zone or not
         """
         return pulumi.get(self, "root_zone")
 
     @root_zone.setter
-    def root_zone(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def root_zone(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "root_zone", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time To Live of the record in seconds.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]]:
+    def views(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]]:
         """
         Return record based on client subnet
         """
         return pulumi.get(self, "views")
 
     @views.setter
-    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RecordViewArgs']]]]):
+    def views(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RecordViewArgs']]]]):
         pulumi.set(self, "views", value)
 
     @_builtins.property
     @pulumi.getter
-    def weighteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]]:
+    def weighteds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]]:
         """
         Return record based on weight
         """
         return pulumi.get(self, "weighteds")
 
     @weighteds.setter
-    def weighteds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RecordWeightedArgs']]]]):
+    def weighteds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RecordWeightedArgs']]]]):
         pulumi.set(self, "weighteds", value)
 
 
@@ -423,17 +423,17 @@ class Record(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
-                 http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
-                 weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None,
+                 data: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 geo_ip: pulumi.Input[Optional[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
+                 http_service: pulumi.Input[Optional[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None,
                  __props__=None):
         """
         The `domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
@@ -862,17 +862,17 @@ class Record(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
-                 http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
-                 weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None,
+                 data: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 geo_ip: pulumi.Input[Optional[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
+                 http_service: pulumi.Input[Optional[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -913,19 +913,19 @@ class Record(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_zone: Optional[pulumi.Input[_builtins.str]] = None,
-            fqdn: Optional[pulumi.Input[_builtins.str]] = None,
-            geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
-            http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            root_zone: Optional[pulumi.Input[_builtins.bool]] = None,
-            ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            views: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
-            weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None) -> 'Record':
+            data: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+            geo_ip: pulumi.Input[Optional[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
+            http_service: pulumi.Input[Optional[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            root_zone: pulumi.Input[Optional[_builtins.bool]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordViewArgs', 'RecordViewArgsDict']]]]] = None,
+            weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RecordWeightedArgs', 'RecordWeightedArgsDict']]]]] = None) -> 'Record':
         """
         Get an existing Record resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

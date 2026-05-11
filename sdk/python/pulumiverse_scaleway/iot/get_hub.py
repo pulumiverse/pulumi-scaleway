@@ -275,10 +275,10 @@ def get_hub(hub_id: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_hub_output(hub_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_hub_output(hub_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHubResult]:
     """
     Gets information about an IOT Hub.

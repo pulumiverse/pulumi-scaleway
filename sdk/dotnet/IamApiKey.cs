@@ -74,7 +74,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rotateAfterAYear = new Time.Index.Rotating("rotate_after_a_year", new()
+    ///     var rotateAfterAYear = new Time.Rotating("rotate_after_a_year", new()
     ///     {
     ///         RotationYears = 1,
     ///     });

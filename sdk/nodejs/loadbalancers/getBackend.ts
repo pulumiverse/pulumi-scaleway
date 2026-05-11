@@ -158,14 +158,14 @@ export interface GetBackendOutputArgs {
      * The backend ID.
      * - Only one of `name` and `backendId` should be specified.
      */
-    backendId?: pulumi.Input<string>;
+    backendId?: pulumi.Input<string | undefined>;
     /**
      * Load Balancer ID this backend is attached to.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The name of the backend.
      * - When using `name` you should specify the `lb-id`
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

@@ -140,21 +140,21 @@ export interface GetBackendStageOutputArgs {
      *
      * The following filter arguments are supported (cannot be used with `backendStageId`):
      */
-    backendStageId?: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string | undefined>;
     /**
      * Filter by S3 bucket name.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Filter by S3 bucket region.
      */
-    bucketRegion?: pulumi.Input<string>;
+    bucketRegion?: pulumi.Input<string | undefined>;
     /**
      * Filter by Load Balancer ID.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
 }

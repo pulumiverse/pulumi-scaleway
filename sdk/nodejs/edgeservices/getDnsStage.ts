@@ -130,13 +130,13 @@ export interface GetDnsStageOutputArgs {
      *
      * The following filter arguments are supported (cannot be used with `dnsStageId`):
      */
-    dnsStageId?: pulumi.Input<string>;
+    dnsStageId?: pulumi.Input<string | undefined>;
     /**
      * FQDN to filter for (in the format subdomain.example.com).
      */
-    fqdn?: pulumi.Input<string>;
+    fqdn?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
 }

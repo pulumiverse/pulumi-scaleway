@@ -201,15 +201,15 @@ export interface ObjectBucketWebsiteConfigurationState {
     /**
      * The name of the bucket.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The name of the error file for the website detailed below.
      */
-    errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
+    errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
      * The name of the index file for the website detailed below.
      */
-    indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
+    indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -217,19 +217,19 @@ export interface ObjectBucketWebsiteConfigurationState {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
      */
-    websiteDomain?: pulumi.Input<string>;
+    websiteDomain?: pulumi.Input<string | undefined>;
     /**
      * The website endpoint.
      */
-    websiteEndpoint?: pulumi.Input<string>;
+    websiteEndpoint?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -243,7 +243,7 @@ export interface ObjectBucketWebsiteConfigurationArgs {
     /**
      * The name of the error file for the website detailed below.
      */
-    errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
+    errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
      * The name of the index file for the website detailed below.
      */
@@ -255,9 +255,9 @@ export interface ObjectBucketWebsiteConfigurationArgs {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -192,48 +192,48 @@ export interface MnqSnsTopicSubscriptionState {
     /**
      * The access key of the SNS credentials.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the topic subscription
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * Endpoint of the subscription
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Protocol of the SNS topic subscription.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * Activate JSON redrive policy.
      */
-    redrivePolicy?: pulumi.Input<boolean>;
+    redrivePolicy?: pulumi.Input<boolean | undefined>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    snsEndpoint?: pulumi.Input<string>;
+    snsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the topic. Either `topicId` or `topicArn` is required.
      */
-    topicArn?: pulumi.Input<string>;
+    topicArn?: pulumi.Input<string | undefined>;
     /**
      * The ID of the topic. Either `topicId` or `topicArn` is required. Conflicts with `topicArn`.
      */
-    topicId?: pulumi.Input<string>;
+    topicId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -247,11 +247,11 @@ export interface MnqSnsTopicSubscriptionArgs {
     /**
      * Endpoint of the subscription
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Protocol of the SNS topic subscription.
      */
@@ -259,12 +259,12 @@ export interface MnqSnsTopicSubscriptionArgs {
     /**
      * Activate JSON redrive policy.
      */
-    redrivePolicy?: pulumi.Input<boolean>;
+    redrivePolicy?: pulumi.Input<boolean | undefined>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
@@ -272,13 +272,13 @@ export interface MnqSnsTopicSubscriptionArgs {
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    snsEndpoint?: pulumi.Input<string>;
+    snsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the topic. Either `topicId` or `topicArn` is required.
      */
-    topicArn?: pulumi.Input<string>;
+    topicArn?: pulumi.Input<string | undefined>;
     /**
      * The ID of the topic. Either `topicId` or `topicArn` is required. Conflicts with `topicArn`.
      */
-    topicId?: pulumi.Input<string>;
+    topicId?: pulumi.Input<string | undefined>;
 }

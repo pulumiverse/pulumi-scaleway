@@ -134,22 +134,22 @@ export interface GetVpcOutputArgs {
     /**
      * Whether the targeted VPC is the default VPC.
      */
-    isDefault?: pulumi.Input<boolean>;
+    isDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Organization the VPC is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the VPC is associated with.
      */
-    projectId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * ID of the VPC. A maximum of one of `name` and `vpcId` should be specified.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

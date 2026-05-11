@@ -26,7 +26,7 @@ class PolicyRuleArgsDict(TypedDict):
     """
     Names of permission sets bind to the rule.
     """
-    condition: NotRequired[pulumi.Input[_builtins.str]]
+    condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The condition of the rule.
 
@@ -36,11 +36,11 @@ class PolicyRuleArgsDict(TypedDict):
     scw iam permission-set list
     ```
     """
-    organization_id: NotRequired[pulumi.Input[_builtins.str]]
+    organization_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
     """
-    project_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of project IDs scoped to the rule.
 
@@ -51,9 +51,9 @@ class PolicyRuleArgsDict(TypedDict):
 class PolicyRuleArgs:
     def __init__(__self__, *,
                  permission_set_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permission_set_names: Names of permission sets bind to the rule.
         :param pulumi.Input[_builtins.str] condition: The condition of the rule.
@@ -90,7 +90,7 @@ class PolicyRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The condition of the rule.
 
@@ -103,24 +103,24 @@ class PolicyRuleArgs:
         return pulumi.get(self, "condition")
 
     @condition.setter
-    def condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "condition", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectIds")
-    def project_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of project IDs scoped to the rule.
 
@@ -129,7 +129,7 @@ class PolicyRuleArgs:
         return pulumi.get(self, "project_ids")
 
     @project_ids.setter
-    def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_ids", value)
 
 

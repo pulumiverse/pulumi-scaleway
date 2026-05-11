@@ -281,10 +281,10 @@ def get_vpc_public_gateway(name: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         upstream_dns_servers=pulumi.get(__ret__, 'upstream_dns_servers'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  public_gateway_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_public_gateway_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  public_gateway_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayResult]:
     """
     Gets information about a Public Gateway.

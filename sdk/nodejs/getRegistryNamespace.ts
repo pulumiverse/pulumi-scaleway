@@ -93,19 +93,19 @@ export interface GetRegistryNamespaceOutputArgs {
     /**
      * The namespace name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace id.
      *
      * > **Note** You must specify at least one: `name` and/or `imageId`.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the namespace is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the namespace exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

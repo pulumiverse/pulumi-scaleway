@@ -225,19 +225,19 @@ export interface ObjectBucketAclState {
     /**
      * A configuration block that sets the ACL permissions for an object per grantee documented below.
      */
-    accessControlPolicy?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicy>;
+    accessControlPolicy?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicy | undefined>;
     /**
      * The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
      */
-    acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string | undefined>;
     /**
      * The name of the bucket, or its Terraform ID.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The project ID of the expected bucket owner.
      */
-    expectedBucketOwner?: pulumi.Input<string>;
+    expectedBucketOwner?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -245,11 +245,11 @@ export interface ObjectBucketAclState {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -259,11 +259,11 @@ export interface ObjectBucketAclArgs {
     /**
      * A configuration block that sets the ACL permissions for an object per grantee documented below.
      */
-    accessControlPolicy?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicy>;
+    accessControlPolicy?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicy | undefined>;
     /**
      * The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
      */
-    acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string | undefined>;
     /**
      * The name of the bucket, or its Terraform ID.
      */
@@ -271,7 +271,7 @@ export interface ObjectBucketAclArgs {
     /**
      * The project ID of the expected bucket owner.
      */
-    expectedBucketOwner?: pulumi.Input<string>;
+    expectedBucketOwner?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -279,9 +279,9 @@ export interface ObjectBucketAclArgs {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

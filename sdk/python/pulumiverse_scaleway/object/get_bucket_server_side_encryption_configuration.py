@@ -122,8 +122,8 @@ def get_bucket_server_side_encryption_configuration(bucket: Optional[_builtins.s
         bucket_server_side_encryption_configuration_id=pulumi.get(__ret__, 'bucket_server_side_encryption_configuration_id'),
         id=pulumi.get(__ret__, 'id'),
         rules=pulumi.get(__ret__, 'rules'))
-def get_bucket_server_side_encryption_configuration_output(bucket: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                           bucket_server_side_encryption_configuration_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_bucket_server_side_encryption_configuration_output(bucket: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                           bucket_server_side_encryption_configuration_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketServerSideEncryptionConfigurationResult]:
     """
     Get information about a bucket server side encryption configuration. This data source allows you to retrieve information about the server-side encryption configuration of a bucket.

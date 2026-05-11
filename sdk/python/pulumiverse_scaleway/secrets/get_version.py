@@ -271,12 +271,12 @@ def get_version(organization_id: Optional[_builtins.str] = None,
         secret_name=pulumi.get(__ret__, 'secret_name'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_version_output(organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       revision: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       secret_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       secret_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_version_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       revision: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       secret_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       secret_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVersionResult]:
     """
     The `secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.

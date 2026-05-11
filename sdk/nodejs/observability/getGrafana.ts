@@ -205,5 +205,5 @@ export interface GetGrafanaOutputArgs {
     /**
      * The ID of the project the Grafana instance is associated with. If not provided, the default project configured in the provider is used.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

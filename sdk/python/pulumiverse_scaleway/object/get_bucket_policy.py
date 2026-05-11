@@ -132,9 +132,9 @@ def get_bucket_policy(bucket: Optional[_builtins.str] = None,
         policy=pulumi.get(__ret__, 'policy'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'))
-def get_bucket_policy_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                             project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_bucket_policy_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                             project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketPolicyResult]:
     """
     The `object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.

@@ -22,12 +22,12 @@ __all__ = ['IpArgs', 'Ip']
 class IpArgs:
     def __init__(__self__, *,
                  sources: pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]],
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Ip resource.
 
@@ -69,7 +69,7 @@ class IpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request a specific IP in the specified source pool.
 
@@ -78,86 +78,86 @@ class IpArgs:
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="customResources")
-    def custom_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]]:
+    def custom_resources(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]]:
         """
         The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         """
         return pulumi.get(self, "custom_resources")
 
     @custom_resources.setter
-    def custom_resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]]):
+    def custom_resources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]]):
         pulumi.set(self, "custom_resources", value)
 
     @_builtins.property
     @pulumi.getter(name="isIpv6")
-    def is_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to request an IPv6 address instead of IPv4.
         """
         return pulumi.get(self, "is_ipv6")
 
     @is_ipv6.setter
-    def is_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the IP.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the IP.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _IpState:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 address_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['IpResourceArgs']]]] = None,
-                 reverses: Optional[pulumi.Input[Sequence[pulumi.Input['IpReverseArgs']]]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 address_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 resources: pulumi.Input[Optional[Sequence[pulumi.Input['IpResourceArgs']]]] = None,
+                 reverses: pulumi.Input[Optional[Sequence[pulumi.Input['IpReverseArgs']]]] = None,
+                 sources: pulumi.Input[Optional[Sequence[pulumi.Input['IpSourceArgs']]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Ip resources.
 
@@ -206,7 +206,7 @@ class _IpState:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request a specific IP in the specified source pool.
 
@@ -215,151 +215,151 @@ class _IpState:
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="addressCidr")
-    def address_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         the IP address in CIDR notation.
         """
         return pulumi.get(self, "address_cidr")
 
     @address_cidr.setter
-    def address_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of IP's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="customResources")
-    def custom_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]]:
+    def custom_resources(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]]:
         """
         The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         """
         return pulumi.get(self, "custom_resources")
 
     @custom_resources.setter
-    def custom_resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]]]):
+    def custom_resources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpCustomResourceArgs']]]]):
         pulumi.set(self, "custom_resources", value)
 
     @_builtins.property
     @pulumi.getter(name="isIpv6")
-    def is_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to request an IPv6 address instead of IPv4.
         """
         return pulumi.get(self, "is_ipv6")
 
     @is_ipv6.setter
-    def is_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the IP is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the IP.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpResourceArgs']]]]:
+    def resources(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpResourceArgs']]]]:
         """
         The IP resource.
         """
         return pulumi.get(self, "resources")
 
     @resources.setter
-    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpResourceArgs']]]]):
+    def resources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpResourceArgs']]]]):
         pulumi.set(self, "resources", value)
 
     @_builtins.property
     @pulumi.getter
-    def reverses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpReverseArgs']]]]:
+    def reverses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpReverseArgs']]]]:
         """
         The reverse DNS for this IP.
         """
         return pulumi.get(self, "reverses")
 
     @reverses.setter
-    def reverses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpReverseArgs']]]]):
+    def reverses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpReverseArgs']]]]):
         pulumi.set(self, "reverses", value)
 
     @_builtins.property
     @pulumi.getter
-    def sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]]]:
+    def sources(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpSourceArgs']]]]:
         """
         The source in which to book the IP.
         """
         return pulumi.get(self, "sources")
 
     @sources.setter
-    def sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]]]):
+    def sources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpSourceArgs']]]]):
         pulumi.set(self, "sources", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the IP.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of IP's last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The zone of the IP.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -369,13 +369,13 @@ class Ip(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Books and manages IPAM IPs.
@@ -596,13 +596,13 @@ class Ip(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -639,19 +639,19 @@ class Ip(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            address: Optional[pulumi.Input[_builtins.str]] = None,
-            address_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
-            is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpResourceArgs', 'IpResourceArgsDict']]]]] = None,
-            reverses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpReverseArgs', 'IpReverseArgsDict']]]]] = None,
-            sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Ip':
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            address_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]]] = None,
+            is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpResourceArgs', 'IpResourceArgsDict']]]]] = None,
+            reverses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpReverseArgs', 'IpReverseArgsDict']]]]] = None,
+            sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpSourceArgs', 'IpSourceArgsDict']]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Ip':
         """
         Get an existing Ip resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

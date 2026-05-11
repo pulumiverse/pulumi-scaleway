@@ -116,17 +116,17 @@ export interface GetInstancePolicyOutputArgs {
     /**
      * The ID of the Instance group the policy belongs to. Required when looking up by `name`.
      */
-    instanceGroupId?: pulumi.Input<string>;
+    instanceGroupId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Instance policy. Only one of `name` and `instancePolicyId` should be specified.
      */
-    instancePolicyId?: pulumi.Input<string>;
+    instancePolicyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Instance policy. Only one of `name` and `instancePolicyId` should be specified. When using `name`, `instanceGroupId` is required.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Instance policy exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

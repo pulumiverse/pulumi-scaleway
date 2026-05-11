@@ -234,37 +234,37 @@ export interface GetIpamIpsOutputArgs {
     /**
      * Defines whether to filter only for IPs which are attached to a resource.
      */
-    attached?: pulumi.Input<boolean>;
+    attached?: pulumi.Input<boolean | undefined>;
     /**
      * The linked MAC address to filter for.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network to filter for.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project to filter for.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region to filter for.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Filter for a resource attached to the IP, using resource ID, type or name.
      */
-    resource?: pulumi.Input<inputs.GetIpamIpsResourceArgs>;
+    resource?: pulumi.Input<inputs.GetIpamIpsResourceArgs | undefined>;
     /**
      * The IP tags to filter for.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of IP to filter for (`ipv4` or `ipv6`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Only IPs that are zonal, and in this zone, will be returned.
      */
-    zonal?: pulumi.Input<string>;
+    zonal?: pulumi.Input<string | undefined>;
 }

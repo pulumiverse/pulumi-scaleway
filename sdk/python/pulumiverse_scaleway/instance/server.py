@@ -22,30 +22,30 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 admin_password_encryption_ssh_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bootscript_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dynamic_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]] = None,
-                 image: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]] = None,
-                 replace_on_type_change: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_volume: Optional[pulumi.Input['ServerRootVolumeArgs']] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 admin_password_encryption_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bootscript_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dynamic_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystems: pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]] = None,
+                 replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_volume: pulumi.Input[Optional['ServerRootVolumeArgs']] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
 
@@ -178,7 +178,7 @@ class ServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")
-    def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def additional_volume_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
         attached to the server. Updates to this field will trigger a stop/start of the server.
@@ -190,12 +190,12 @@ class ServerArgs:
         return pulumi.get(self, "additional_volume_ids")
 
     @additional_volume_ids.setter
-    def additional_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def additional_volume_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_volume_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="adminPasswordEncryptionSshKeyId")
-    def admin_password_encryption_ssh_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_password_encryption_ssh_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
         Mandatory for Windows OS. The public_key value of this key is used to encrypt the admin password.
@@ -204,73 +204,73 @@ class ServerArgs:
         return pulumi.get(self, "admin_password_encryption_ssh_key_id")
 
     @admin_password_encryption_ssh_key_id.setter
-    def admin_password_encryption_ssh_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_password_encryption_ssh_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_password_encryption_ssh_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="bootType")
-    def boot_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         """
         return pulumi.get(self, "boot_type")
 
     @boot_type.setter
-    def boot_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_type", value)
 
     @_builtins.property
     @pulumi.getter(name="bootscriptId")
     @_utilities.deprecated("""bootscript is not supported anymore.""")
-    def bootscript_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bootscript_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the target bootscript (set boot_type to bootscript)
         """
         return pulumi.get(self, "bootscript_id")
 
     @bootscript_id.setter
-    def bootscript_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bootscript_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bootscript_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cloud init script associated with this server
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDynamicIp")
-    def enable_dynamic_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dynamic_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true a dynamic IP will be attached to the server.
         """
         return pulumi.get(self, "enable_dynamic_ip")
 
     @enable_dynamic_ip.setter
-    def enable_dynamic_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dynamic_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dynamic_ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def filesystems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]]:
+    def filesystems(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]]:
         """
         List of filesystems attached to the server.
         """
         return pulumi.get(self, "filesystems")
 
     @filesystems.setter
-    def filesystems(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]]):
+    def filesystems(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]]):
         pulumi.set(self, "filesystems", value)
 
     @_builtins.property
     @pulumi.getter
-    def image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -284,24 +284,24 @@ class ServerArgs:
         return pulumi.get(self, "image")
 
     @image.setter
-    def image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
 
@@ -310,24 +310,24 @@ class ServerArgs:
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 
@@ -336,24 +336,24 @@ class ServerArgs:
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
         The private network associated with the server.
         Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -361,72 +361,72 @@ class ServerArgs:
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def protected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to activate server protection option.
         """
         return pulumi.get(self, "protected")
 
     @protected.setter
-    def protected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def protected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "protected", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
-    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]]:
+    def public_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]]:
         """
         The list of public IPs of the server.
         """
         return pulumi.get(self, "public_ips")
 
     @public_ips.setter
-    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]]):
+    def public_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]]):
         pulumi.set(self, "public_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="replaceOnTypeChange")
-    def replace_on_type_change(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def replace_on_type_change(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         """
         return pulumi.get(self, "replace_on_type_change")
 
     @replace_on_type_change.setter
-    def replace_on_type_change(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def replace_on_type_change(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "replace_on_type_change", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolume")
-    def root_volume(self) -> Optional[pulumi.Input['ServerRootVolumeArgs']]:
+    def root_volume(self) -> pulumi.Input[Optional['ServerRootVolumeArgs']]:
         """
         Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
 
     @root_volume.setter
-    def root_volume(self, value: Optional[pulumi.Input['ServerRootVolumeArgs']]):
+    def root_volume(self, value: pulumi.Input[Optional['ServerRootVolumeArgs']]):
         pulumi.set(self, "root_volume", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 
@@ -435,36 +435,36 @@ class ServerArgs:
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def user_data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The user data associated with the server.
         Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -476,52 +476,52 @@ class ServerArgs:
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def user_data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "user_data", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _ServerState:
     def __init__(__self__, *,
-                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 admin_password_encryption_ssh_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bootscript_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dynamic_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]] = None,
-                 image: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_policy_respected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]] = None,
-                 replace_on_type_change: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_volume: Optional[pulumi.Input['ServerRootVolumeArgs']] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 admin_password_encryption_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bootscript_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dynamic_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystems: pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]] = None,
+                 replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_volume: pulumi.Input[Optional['ServerRootVolumeArgs']] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
 
@@ -644,7 +644,7 @@ class _ServerState:
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")
-    def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def additional_volume_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
         attached to the server. Updates to this field will trigger a stop/start of the server.
@@ -656,12 +656,12 @@ class _ServerState:
         return pulumi.get(self, "additional_volume_ids")
 
     @additional_volume_ids.setter
-    def additional_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def additional_volume_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_volume_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="adminPasswordEncryptionSshKeyId")
-    def admin_password_encryption_ssh_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_password_encryption_ssh_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
         Mandatory for Windows OS. The public_key value of this key is used to encrypt the admin password.
@@ -670,73 +670,73 @@ class _ServerState:
         return pulumi.get(self, "admin_password_encryption_ssh_key_id")
 
     @admin_password_encryption_ssh_key_id.setter
-    def admin_password_encryption_ssh_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_password_encryption_ssh_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_password_encryption_ssh_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="bootType")
-    def boot_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         """
         return pulumi.get(self, "boot_type")
 
     @boot_type.setter
-    def boot_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_type", value)
 
     @_builtins.property
     @pulumi.getter(name="bootscriptId")
     @_utilities.deprecated("""bootscript is not supported anymore.""")
-    def bootscript_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bootscript_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the target bootscript (set boot_type to bootscript)
         """
         return pulumi.get(self, "bootscript_id")
 
     @bootscript_id.setter
-    def bootscript_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bootscript_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bootscript_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cloud init script associated with this server
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDynamicIp")
-    def enable_dynamic_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_dynamic_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true a dynamic IP will be attached to the server.
         """
         return pulumi.get(self, "enable_dynamic_ip")
 
     @enable_dynamic_ip.setter
-    def enable_dynamic_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_dynamic_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_dynamic_ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def filesystems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]]:
+    def filesystems(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]]:
         """
         List of filesystems attached to the server.
         """
         return pulumi.get(self, "filesystems")
 
     @filesystems.setter
-    def filesystems(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerFilesystemArgs']]]]):
+    def filesystems(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerFilesystemArgs']]]]):
         pulumi.set(self, "filesystems", value)
 
     @_builtins.property
     @pulumi.getter
-    def image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
         to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -750,24 +750,24 @@ class _ServerState:
         return pulumi.get(self, "image")
 
     @image.setter
-    def image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
-    def ip_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the reserved IP that is attached to the server.
         """
         return pulumi.get(self, "ip_id")
 
     @ip_id.setter
-    def ip_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
-    def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
 
@@ -776,36 +776,36 @@ class _ServerState:
         return pulumi.get(self, "ip_ids")
 
     @ip_ids.setter
-    def ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 
@@ -814,36 +814,36 @@ class _ServerState:
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupPolicyRespected")
-    def placement_group_policy_respected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def placement_group_policy_respected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Deprecated) Always false, use instance_placement_group resource to known when the placement group policy is respected.
         """
         return pulumi.get(self, "placement_group_policy_respected")
 
     @placement_group_policy_respected.setter
-    def placement_group_policy_respected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def placement_group_policy_respected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "placement_group_policy_respected", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
         The private network associated with the server.
         Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
@@ -851,72 +851,72 @@ class _ServerState:
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protected(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def protected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to activate server protection option.
         """
         return pulumi.get(self, "protected")
 
     @protected.setter
-    def protected(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def protected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "protected", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
-    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]]:
+    def public_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]]:
         """
         The list of public IPs of the server.
         """
         return pulumi.get(self, "public_ips")
 
     @public_ips.setter
-    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPublicIpArgs']]]]):
+    def public_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPublicIpArgs']]]]):
         pulumi.set(self, "public_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="replaceOnTypeChange")
-    def replace_on_type_change(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def replace_on_type_change(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         """
         return pulumi.get(self, "replace_on_type_change")
 
     @replace_on_type_change.setter
-    def replace_on_type_change(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def replace_on_type_change(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "replace_on_type_change", value)
 
     @_builtins.property
     @pulumi.getter(name="rootVolume")
-    def root_volume(self) -> Optional[pulumi.Input['ServerRootVolumeArgs']]:
+    def root_volume(self) -> pulumi.Input[Optional['ServerRootVolumeArgs']]:
         """
         Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
         """
         return pulumi.get(self, "root_volume")
 
     @root_volume.setter
-    def root_volume(self, value: Optional[pulumi.Input['ServerRootVolumeArgs']]):
+    def root_volume(self, value: pulumi.Input[Optional['ServerRootVolumeArgs']]):
         pulumi.set(self, "root_volume", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
 
@@ -925,36 +925,36 @@ class _ServerState:
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the server.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -966,12 +966,12 @@ class _ServerState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def user_data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The user data associated with the server.
         Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -983,19 +983,19 @@ class _ServerState:
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def user_data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "user_data", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -1005,31 +1005,31 @@ class Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 admin_password_encryption_ssh_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bootscript_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dynamic_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
-                 image: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
-                 replace_on_type_change: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_volume: Optional[pulumi.Input[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 admin_password_encryption_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bootscript_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dynamic_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
+                 replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_volume: pulumi.Input[Optional[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway compute Instances. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances).
@@ -1529,31 +1529,31 @@ class Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 admin_password_encryption_ssh_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bootscript_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_dynamic_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
-                 image: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected: Optional[pulumi.Input[_builtins.bool]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
-                 replace_on_type_change: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_volume: Optional[pulumi.Input[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 admin_password_encryption_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bootscript_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dynamic_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 filesystems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
+                 replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_volume: pulumi.Input[Optional[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1604,33 +1604,33 @@ class Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            admin_password_encryption_ssh_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_type: Optional[pulumi.Input[_builtins.str]] = None,
-            bootscript_id: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_dynamic_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-            filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
-            image: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            placement_group_policy_respected: Optional[pulumi.Input[_builtins.bool]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protected: Optional[pulumi.Input[_builtins.bool]] = None,
-            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
-            replace_on_type_change: Optional[pulumi.Input[_builtins.bool]] = None,
-            root_volume: Optional[pulumi.Input[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
-            security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Server':
+            additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            admin_password_encryption_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_type: pulumi.Input[Optional[_builtins.str]] = None,
+            bootscript_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_dynamic_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            filesystems: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerFilesystemArgs', 'ServerFilesystemArgsDict']]]]] = None,
+            image: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            placement_group_policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected: pulumi.Input[Optional[_builtins.bool]] = None,
+            public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPublicIpArgs', 'ServerPublicIpArgsDict']]]]] = None,
+            replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
+            root_volume: pulumi.Input[Optional[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict']]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Server':
         """
         Get an existing Server resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

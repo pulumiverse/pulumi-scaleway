@@ -24,9 +24,9 @@ class LoadbalancerAclArgs:
                  action: pulumi.Input['LoadbalancerAclActionArgs'],
                  frontend_id: pulumi.Input[_builtins.str],
                  index: pulumi.Input[_builtins.int],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 match: Optional[pulumi.Input['LoadbalancerAclMatchArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 match: pulumi.Input[Optional['LoadbalancerAclMatchArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LoadbalancerAcl resource.
 
@@ -85,52 +85,52 @@ class LoadbalancerAclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL description.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def match(self) -> Optional[pulumi.Input['LoadbalancerAclMatchArgs']]:
+    def match(self) -> pulumi.Input[Optional['LoadbalancerAclMatchArgs']]:
         """
         The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
     @match.setter
-    def match(self, value: Optional[pulumi.Input['LoadbalancerAclMatchArgs']]):
+    def match(self, value: pulumi.Input[Optional['LoadbalancerAclMatchArgs']]):
         pulumi.set(self, "match", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _LoadbalancerAclState:
     def __init__(__self__, *,
-                 action: Optional[pulumi.Input['LoadbalancerAclActionArgs']] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 index: Optional[pulumi.Input[_builtins.int]] = None,
-                 match: Optional[pulumi.Input['LoadbalancerAclMatchArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 action: pulumi.Input[Optional['LoadbalancerAclActionArgs']] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 index: pulumi.Input[Optional[_builtins.int]] = None,
+                 match: pulumi.Input[Optional['LoadbalancerAclMatchArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerAcl resources.
 
@@ -162,98 +162,98 @@ class _LoadbalancerAclState:
 
     @_builtins.property
     @pulumi.getter
-    def action(self) -> Optional[pulumi.Input['LoadbalancerAclActionArgs']]:
+    def action(self) -> pulumi.Input[Optional['LoadbalancerAclActionArgs']]:
         """
         Action to undertake when an ACL filter matches.
         """
         return pulumi.get(self, "action")
 
     @action.setter
-    def action(self, value: Optional[pulumi.Input['LoadbalancerAclActionArgs']]):
+    def action(self, value: pulumi.Input[Optional['LoadbalancerAclActionArgs']]):
         pulumi.set(self, "action", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL description.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="frontendId")
-    def frontend_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontend_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Load Balancer frontend to attach the ACL to.
         """
         return pulumi.get(self, "frontend_id")
 
     @frontend_id.setter
-    def frontend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontend_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontend_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def index(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def index(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         """
         return pulumi.get(self, "index")
 
     @index.setter
-    def index(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def index(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "index", value)
 
     @_builtins.property
     @pulumi.getter
-    def match(self) -> Optional[pulumi.Input['LoadbalancerAclMatchArgs']]:
+    def match(self) -> pulumi.Input[Optional['LoadbalancerAclMatchArgs']]:
         """
         The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
     @match.setter
-    def match(self, value: Optional[pulumi.Input['LoadbalancerAclMatchArgs']]):
+    def match(self, value: pulumi.Input[Optional['LoadbalancerAclMatchArgs']]):
         pulumi.set(self, "match", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -268,12 +268,12 @@ class LoadbalancerAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 index: Optional[pulumi.Input[_builtins.int]] = None,
-                 match: Optional[pulumi.Input[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 action: pulumi.Input[Optional[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 index: pulumi.Input[Optional[_builtins.int]] = None,
+                 match: pulumi.Input[Optional[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancer ACLs.
@@ -383,12 +383,12 @@ class LoadbalancerAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 index: Optional[pulumi.Input[_builtins.int]] = None,
-                 match: Optional[pulumi.Input[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 action: pulumi.Input[Optional[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 index: pulumi.Input[Optional[_builtins.int]] = None,
+                 match: pulumi.Input[Optional[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""LoadbalancerAcl is deprecated: scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -423,14 +423,14 @@ class LoadbalancerAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            action: Optional[pulumi.Input[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-            index: Optional[pulumi.Input[_builtins.int]] = None,
-            match: Optional[pulumi.Input[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'LoadbalancerAcl':
+            action: pulumi.Input[Optional[Union['LoadbalancerAclActionArgs', 'LoadbalancerAclActionArgsDict']]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            index: pulumi.Input[Optional[_builtins.int]] = None,
+            match: pulumi.Input[Optional[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'LoadbalancerAcl':
         """
         Get an existing LoadbalancerAcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

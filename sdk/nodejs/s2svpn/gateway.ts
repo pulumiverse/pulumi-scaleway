@@ -194,63 +194,63 @@ export interface GatewayState {
     /**
      * The AS Number of the VPN gateway (typically 12876 for Scaleway).
      */
-    asn?: pulumi.Input<number>;
+    asn?: pulumi.Input<number | undefined>;
     /**
      * The date and time of the creation of the VPN gateway (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The VPN gateway type (commercial offer type).
      */
-    gatewayType?: pulumi.Input<string>;
+    gatewayType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the IPAM private IPv4 address to attach to the VPN gateway.
      */
-    ipamPrivateIpv4Id?: pulumi.Input<string>;
+    ipamPrivateIpv4Id?: pulumi.Input<string | undefined>;
     /**
      * The ID of the IPAM private IPv6 address to attach to the VPN gateway.
      */
-    ipamPrivateIpv6Id?: pulumi.Input<string>;
+    ipamPrivateIpv6Id?: pulumi.Input<string | undefined>;
     /**
      * The name of the VPN gateway. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the VPN gateway is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network to attach to the VPN gateway.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the VPN gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The public endpoint configuration of the VPN gateway. See Public Config below.
      */
-    publicConfigs?: pulumi.Input<pulumi.Input<inputs.s2svpn.GatewayPublicConfig>[]>;
+    publicConfigs?: pulumi.Input<pulumi.Input<inputs.s2svpn.GatewayPublicConfig>[] | undefined>;
     /**
      * `region`) The region in which the VPN gateway should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The status of the VPN gateway.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the VPN gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the VPN gateway (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the VPN gateway should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -264,15 +264,15 @@ export interface GatewayArgs {
     /**
      * The ID of the IPAM private IPv4 address to attach to the VPN gateway.
      */
-    ipamPrivateIpv4Id?: pulumi.Input<string>;
+    ipamPrivateIpv4Id?: pulumi.Input<string | undefined>;
     /**
      * The ID of the IPAM private IPv6 address to attach to the VPN gateway.
      */
-    ipamPrivateIpv6Id?: pulumi.Input<string>;
+    ipamPrivateIpv6Id?: pulumi.Input<string | undefined>;
     /**
      * The name of the VPN gateway. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network to attach to the VPN gateway.
      */
@@ -280,21 +280,21 @@ export interface GatewayArgs {
     /**
      * `projectId`) The ID of the project the VPN gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The public endpoint configuration of the VPN gateway. See Public Config below.
      */
-    publicConfigs?: pulumi.Input<pulumi.Input<inputs.s2svpn.GatewayPublicConfig>[]>;
+    publicConfigs?: pulumi.Input<pulumi.Input<inputs.s2svpn.GatewayPublicConfig>[] | undefined>;
     /**
      * `region`) The region in which the VPN gateway should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the VPN gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the VPN gateway should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

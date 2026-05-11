@@ -259,54 +259,54 @@ export interface ObjectBucketState {
      *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
-    acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string | undefined>;
     /**
      * API URL of the bucket
      */
-    apiEndpoint?: pulumi.Input<string>;
+    apiEndpoint?: pulumi.Input<string | undefined>;
     /**
      * List of CORS rules
      */
-    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
+    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[] | undefined>;
     /**
      * The endpoint URL of the bucket.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
      */
-    lifecycleRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRule>[]>;
+    lifecycleRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRule>[] | undefined>;
     /**
      * The name of the bucket.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Enable object lock
      */
-    objectLockEnabled?: pulumi.Input<boolean>;
+    objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allow multiple versions of an object in the same bucket
      */
-    versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
+    versioning?: pulumi.Input<inputs.ObjectBucketVersioning | undefined>;
 }
 
 /**
@@ -320,44 +320,44 @@ export interface ObjectBucketArgs {
      *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
-    acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string | undefined>;
     /**
      * List of CORS rules
      */
-    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
+    corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[] | undefined>;
     /**
      * Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
      */
-    lifecycleRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRule>[]>;
+    lifecycleRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRule>[] | undefined>;
     /**
      * The name of the bucket.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Enable object lock
      */
-    objectLockEnabled?: pulumi.Input<boolean>;
+    objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allow multiple versions of an object in the same bucket
      */
-    versioning?: pulumi.Input<inputs.ObjectBucketVersioning>;
+    versioning?: pulumi.Input<inputs.ObjectBucketVersioning | undefined>;
 }

@@ -129,10 +129,10 @@ def get_os(name: Optional[_builtins.str] = None,
         os_id=pulumi.get(__ret__, 'os_id'),
         version=pulumi.get(__ret__, 'version'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_os_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  os_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  version: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_os_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  os_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  version: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOsResult]:
     """
     Gets information about a baremetal operating system.

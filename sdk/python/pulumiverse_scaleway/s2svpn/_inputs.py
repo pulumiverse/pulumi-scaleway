@@ -36,11 +36,11 @@ class ConnectionBgpConfigIpv4ArgsDict(TypedDict):
     """
     The routing policy ID used for this BGP session.
     """
-    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    peer_private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on customer side (within the tunnel).
     """
-    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on Scaleway side (within the tunnel).
     """
@@ -49,8 +49,8 @@ class ConnectionBgpConfigIpv4ArgsDict(TypedDict):
 class ConnectionBgpConfigIpv4Args:
     def __init__(__self__, *,
                  routing_policy_id: pulumi.Input[_builtins.str],
-                 peer_private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ip: Optional[pulumi.Input[_builtins.str]] = None):
+                 peer_private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ip: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] routing_policy_id: The routing policy ID used for this BGP session.
         :param pulumi.Input[_builtins.str] peer_private_ip: The BGP peer IP on customer side (within the tunnel).
@@ -76,26 +76,26 @@ class ConnectionBgpConfigIpv4Args:
 
     @_builtins.property
     @pulumi.getter(name="peerPrivateIp")
-    def peer_private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peer_private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on customer side (within the tunnel).
         """
         return pulumi.get(self, "peer_private_ip")
 
     @peer_private_ip.setter
-    def peer_private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peer_private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peer_private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIp")
-    def private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on Scaleway side (within the tunnel).
         """
         return pulumi.get(self, "private_ip")
 
     @private_ip.setter
-    def private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_ip", value)
 
 
@@ -104,11 +104,11 @@ class ConnectionBgpConfigIpv6ArgsDict(TypedDict):
     """
     The routing policy ID used for this BGP session.
     """
-    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    peer_private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on customer side (within the tunnel).
     """
-    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on Scaleway side (within the tunnel).
     """
@@ -117,8 +117,8 @@ class ConnectionBgpConfigIpv6ArgsDict(TypedDict):
 class ConnectionBgpConfigIpv6Args:
     def __init__(__self__, *,
                  routing_policy_id: pulumi.Input[_builtins.str],
-                 peer_private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ip: Optional[pulumi.Input[_builtins.str]] = None):
+                 peer_private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ip: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] routing_policy_id: The routing policy ID used for this BGP session.
         :param pulumi.Input[_builtins.str] peer_private_ip: The BGP peer IP on customer side (within the tunnel).
@@ -144,39 +144,39 @@ class ConnectionBgpConfigIpv6Args:
 
     @_builtins.property
     @pulumi.getter(name="peerPrivateIp")
-    def peer_private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peer_private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on customer side (within the tunnel).
         """
         return pulumi.get(self, "peer_private_ip")
 
     @peer_private_ip.setter
-    def peer_private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peer_private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peer_private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIp")
-    def private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on Scaleway side (within the tunnel).
         """
         return pulumi.get(self, "private_ip")
 
     @private_ip.setter
-    def private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_ip", value)
 
 
 class ConnectionBgpSessionIpv4ArgsDict(TypedDict):
-    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    peer_private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on customer side (within the tunnel).
     """
-    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on Scaleway side (within the tunnel).
     """
-    routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    routing_policy_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The routing policy ID used for this BGP session.
     """
@@ -184,9 +184,9 @@ class ConnectionBgpSessionIpv4ArgsDict(TypedDict):
 @pulumi.input_type
 class ConnectionBgpSessionIpv4Args:
     def __init__(__self__, *,
-                 peer_private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 peer_private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] peer_private_ip: The BGP peer IP on customer side (within the tunnel).
         :param pulumi.Input[_builtins.str] private_ip: The BGP peer IP on Scaleway side (within the tunnel).
@@ -201,51 +201,51 @@ class ConnectionBgpSessionIpv4Args:
 
     @_builtins.property
     @pulumi.getter(name="peerPrivateIp")
-    def peer_private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peer_private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on customer side (within the tunnel).
         """
         return pulumi.get(self, "peer_private_ip")
 
     @peer_private_ip.setter
-    def peer_private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peer_private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peer_private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIp")
-    def private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on Scaleway side (within the tunnel).
         """
         return pulumi.get(self, "private_ip")
 
     @private_ip.setter
-    def private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyId")
-    def routing_policy_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The routing policy ID used for this BGP session.
         """
         return pulumi.get(self, "routing_policy_id")
 
     @routing_policy_id.setter
-    def routing_policy_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_id", value)
 
 
 class ConnectionBgpSessionIpv6ArgsDict(TypedDict):
-    peer_private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    peer_private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on customer side (within the tunnel).
     """
-    private_ip: NotRequired[pulumi.Input[_builtins.str]]
+    private_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The BGP peer IP on Scaleway side (within the tunnel).
     """
-    routing_policy_id: NotRequired[pulumi.Input[_builtins.str]]
+    routing_policy_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The routing policy ID used for this BGP session.
     """
@@ -253,9 +253,9 @@ class ConnectionBgpSessionIpv6ArgsDict(TypedDict):
 @pulumi.input_type
 class ConnectionBgpSessionIpv6Args:
     def __init__(__self__, *,
-                 peer_private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_policy_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 peer_private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_policy_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] peer_private_ip: The BGP peer IP on customer side (within the tunnel).
         :param pulumi.Input[_builtins.str] private_ip: The BGP peer IP on Scaleway side (within the tunnel).
@@ -270,38 +270,38 @@ class ConnectionBgpSessionIpv6Args:
 
     @_builtins.property
     @pulumi.getter(name="peerPrivateIp")
-    def peer_private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def peer_private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on customer side (within the tunnel).
         """
         return pulumi.get(self, "peer_private_ip")
 
     @peer_private_ip.setter
-    def peer_private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def peer_private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "peer_private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIp")
-    def private_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The BGP peer IP on Scaleway side (within the tunnel).
         """
         return pulumi.get(self, "private_ip")
 
     @private_ip.setter
-    def private_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="routingPolicyId")
-    def routing_policy_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_policy_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The routing policy ID used for this BGP session.
         """
         return pulumi.get(self, "routing_policy_id")
 
     @routing_policy_id.setter
-    def routing_policy_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_policy_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_policy_id", value)
 
 
@@ -310,11 +310,11 @@ class ConnectionEspCipherArgsDict(TypedDict):
     """
     The encryption algorithm
     """
-    dh_group: NotRequired[pulumi.Input[_builtins.str]]
+    dh_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Diffie-Hellman group
     """
-    integrity: NotRequired[pulumi.Input[_builtins.str]]
+    integrity: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The integrity/hash algorithm
     """
@@ -323,8 +323,8 @@ class ConnectionEspCipherArgsDict(TypedDict):
 class ConnectionEspCipherArgs:
     def __init__(__self__, *,
                  encryption: pulumi.Input[_builtins.str],
-                 dh_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 integrity: Optional[pulumi.Input[_builtins.str]] = None):
+                 dh_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 integrity: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] encryption: The encryption algorithm
         :param pulumi.Input[_builtins.str] dh_group: The Diffie-Hellman group
@@ -350,26 +350,26 @@ class ConnectionEspCipherArgs:
 
     @_builtins.property
     @pulumi.getter(name="dhGroup")
-    def dh_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dh_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Diffie-Hellman group
         """
         return pulumi.get(self, "dh_group")
 
     @dh_group.setter
-    def dh_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dh_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dh_group", value)
 
     @_builtins.property
     @pulumi.getter
-    def integrity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integrity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The integrity/hash algorithm
         """
         return pulumi.get(self, "integrity")
 
     @integrity.setter
-    def integrity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integrity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integrity", value)
 
 
@@ -378,11 +378,11 @@ class ConnectionIkev2CipherArgsDict(TypedDict):
     """
     The encryption algorithm
     """
-    dh_group: NotRequired[pulumi.Input[_builtins.str]]
+    dh_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Diffie-Hellman group
     """
-    integrity: NotRequired[pulumi.Input[_builtins.str]]
+    integrity: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The integrity/hash algorithm
     """
@@ -391,8 +391,8 @@ class ConnectionIkev2CipherArgsDict(TypedDict):
 class ConnectionIkev2CipherArgs:
     def __init__(__self__, *,
                  encryption: pulumi.Input[_builtins.str],
-                 dh_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 integrity: Optional[pulumi.Input[_builtins.str]] = None):
+                 dh_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 integrity: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] encryption: The encryption algorithm
         :param pulumi.Input[_builtins.str] dh_group: The Diffie-Hellman group
@@ -418,35 +418,35 @@ class ConnectionIkev2CipherArgs:
 
     @_builtins.property
     @pulumi.getter(name="dhGroup")
-    def dh_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dh_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Diffie-Hellman group
         """
         return pulumi.get(self, "dh_group")
 
     @dh_group.setter
-    def dh_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dh_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dh_group", value)
 
     @_builtins.property
     @pulumi.getter
-    def integrity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integrity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The integrity/hash algorithm
         """
         return pulumi.get(self, "integrity")
 
     @integrity.setter
-    def integrity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integrity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integrity", value)
 
 
 class GatewayPublicConfigArgsDict(TypedDict):
-    ipam_ipv4_id: NotRequired[pulumi.Input[_builtins.str]]
+    ipam_ipv4_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
     """
-    ipam_ipv6_id: NotRequired[pulumi.Input[_builtins.str]]
+    ipam_ipv6_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
     """
@@ -454,8 +454,8 @@ class GatewayPublicConfigArgsDict(TypedDict):
 @pulumi.input_type
 class GatewayPublicConfigArgs:
     def __init__(__self__, *,
-                 ipam_ipv4_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipam_ipv6_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 ipam_ipv4_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipam_ipv6_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] ipam_ipv4_id: The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
         :param pulumi.Input[_builtins.str] ipam_ipv6_id: The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
@@ -467,26 +467,26 @@ class GatewayPublicConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipamIpv4Id")
-    def ipam_ipv4_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipam_ipv4_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
         """
         return pulumi.get(self, "ipam_ipv4_id")
 
     @ipam_ipv4_id.setter
-    def ipam_ipv4_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipam_ipv4_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipam_ipv4_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipamIpv6Id")
-    def ipam_ipv6_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipam_ipv6_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
         """
         return pulumi.get(self, "ipam_ipv6_id")
 
     @ipam_ipv6_id.setter
-    def ipam_ipv6_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipam_ipv6_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipam_ipv6_id", value)
 
 

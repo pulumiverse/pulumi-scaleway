@@ -129,13 +129,13 @@ export interface GetZoneOutputArgs {
     /**
      * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
-    subdomain?: pulumi.Input<string>;
+    subdomain?: pulumi.Input<string | undefined>;
 }

@@ -118,17 +118,17 @@ export interface GetBaremetalOsOutputArgs {
     /**
      * The os name. Only one of `name` and `osId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The operating system id. Only one of `name` and `osId` should be specified.
      */
-    osId?: pulumi.Input<string>;
+    osId?: pulumi.Input<string | undefined>;
     /**
      * The os version.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the os exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

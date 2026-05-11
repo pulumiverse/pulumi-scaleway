@@ -30,7 +30,7 @@ __all__ = [
 ]
 
 class AlertManagerContactPointArgsDict(TypedDict):
-    email: NotRequired[pulumi.Input[_builtins.str]]
+    email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Email addresses for the alert receivers
     """
@@ -38,7 +38,7 @@ class AlertManagerContactPointArgsDict(TypedDict):
 @pulumi.input_type
 class AlertManagerContactPointArgs:
     def __init__(__self__, *,
-                 email: Optional[pulumi.Input[_builtins.str]] = None):
+                 email: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] email: Email addresses for the alert receivers
         """
@@ -47,35 +47,35 @@ class AlertManagerContactPointArgs:
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email addresses for the alert receivers
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
 
 class CockpitEndpointArgsDict(TypedDict):
-    alertmanager_url: NotRequired[pulumi.Input[_builtins.str]]
+    alertmanager_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
     """
-    grafana_url: NotRequired[pulumi.Input[_builtins.str]]
+    grafana_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Deprecated) URL for Grafana.
     """
-    logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    logs_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
     """
-    metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    metrics_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
     """
-    traces_url: NotRequired[pulumi.Input[_builtins.str]]
+    traces_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
     """
@@ -83,11 +83,11 @@ class CockpitEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class CockpitEndpointArgs:
     def __init__(__self__, *,
-                 alertmanager_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 grafana_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 logs_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 metrics_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 traces_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 alertmanager_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 grafana_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 logs_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 metrics_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 traces_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] alertmanager_url: (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         :param pulumi.Input[_builtins.str] grafana_url: (Deprecated) URL for Grafana.
@@ -108,71 +108,71 @@ class CockpitEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="alertmanagerUrl")
-    def alertmanager_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alertmanager_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
         """
         return pulumi.get(self, "alertmanager_url")
 
     @alertmanager_url.setter
-    def alertmanager_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alertmanager_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alertmanager_url", value)
 
     @_builtins.property
     @pulumi.getter(name="grafanaUrl")
-    def grafana_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def grafana_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) URL for Grafana.
         """
         return pulumi.get(self, "grafana_url")
 
     @grafana_url.setter
-    def grafana_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def grafana_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "grafana_url", value)
 
     @_builtins.property
     @pulumi.getter(name="logsUrl")
-    def logs_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logs_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "logs_url")
 
     @logs_url.setter
-    def logs_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logs_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logs_url", value)
 
     @_builtins.property
     @pulumi.getter(name="metricsUrl")
-    def metrics_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def metrics_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "metrics_url")
 
     @metrics_url.setter
-    def metrics_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def metrics_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "metrics_url", value)
 
     @_builtins.property
     @pulumi.getter(name="tracesUrl")
-    def traces_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def traces_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
         """
         return pulumi.get(self, "traces_url")
 
     @traces_url.setter
-    def traces_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def traces_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "traces_url", value)
 
 
 class CockpitPushUrlArgsDict(TypedDict):
-    push_logs_url: NotRequired[pulumi.Input[_builtins.str]]
+    push_logs_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Push URL for logs (Grafana Loki)
     """
-    push_metrics_url: NotRequired[pulumi.Input[_builtins.str]]
+    push_metrics_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Push URL for metrics (Grafana Mimir)
     """
@@ -180,8 +180,8 @@ class CockpitPushUrlArgsDict(TypedDict):
 @pulumi.input_type
 class CockpitPushUrlArgs:
     def __init__(__self__, *,
-                 push_logs_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_metrics_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 push_logs_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_metrics_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] push_logs_url: Push URL for logs (Grafana Loki)
         :param pulumi.Input[_builtins.str] push_metrics_url: Push URL for metrics (Grafana Mimir)
@@ -193,26 +193,26 @@ class CockpitPushUrlArgs:
 
     @_builtins.property
     @pulumi.getter(name="pushLogsUrl")
-    def push_logs_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def push_logs_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Push URL for logs (Grafana Loki)
         """
         return pulumi.get(self, "push_logs_url")
 
     @push_logs_url.setter
-    def push_logs_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def push_logs_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "push_logs_url", value)
 
     @_builtins.property
     @pulumi.getter(name="pushMetricsUrl")
-    def push_metrics_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def push_metrics_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Push URL for metrics (Grafana Mimir)
         """
         return pulumi.get(self, "push_metrics_url")
 
     @push_metrics_url.setter
-    def push_metrics_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def push_metrics_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "push_metrics_url", value)
 
 
@@ -221,7 +221,7 @@ class ExporterDatadogDestinationArgsDict(TypedDict):
     """
     Datadog API key. Sensitive.
     """
-    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
     """
@@ -230,7 +230,7 @@ class ExporterDatadogDestinationArgsDict(TypedDict):
 class ExporterDatadogDestinationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[_builtins.str],
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api_key: Datadog API key. Sensitive.
         :param pulumi.Input[_builtins.str] endpoint: Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
@@ -253,14 +253,14 @@ class ExporterDatadogDestinationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
 
@@ -269,7 +269,7 @@ class ExporterOtlpDestinationArgsDict(TypedDict):
     """
     OTLP endpoint URL.
     """
-    headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    headers: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Headers to include in requests.
     """
@@ -278,7 +278,7 @@ class ExporterOtlpDestinationArgsDict(TypedDict):
 class ExporterOtlpDestinationArgs:
     def __init__(__self__, *,
                  endpoint: pulumi.Input[_builtins.str],
-                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint: OTLP endpoint URL.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: Headers to include in requests.
@@ -301,51 +301,51 @@ class ExporterOtlpDestinationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def headers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Headers to include in requests.
         """
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def headers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "headers", value)
 
 
 class TokenScopesArgsDict(TypedDict):
-    query_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    query_logs: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to query logs.
     """
-    query_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    query_metrics: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to query metrics.
     """
-    query_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    query_traces: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to query traces.
     """
-    setup_alerts: NotRequired[pulumi.Input[_builtins.bool]]
+    setup_alerts: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to set up alerts.
     """
-    setup_logs_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    setup_logs_rules: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to set up logs rules.
     """
-    setup_metrics_rules: NotRequired[pulumi.Input[_builtins.bool]]
+    setup_metrics_rules: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to set up metrics rules.
     """
-    write_logs: NotRequired[pulumi.Input[_builtins.bool]]
+    write_logs: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to write logs.
     """
-    write_metrics: NotRequired[pulumi.Input[_builtins.bool]]
+    write_metrics: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to write metrics.
     """
-    write_traces: NotRequired[pulumi.Input[_builtins.bool]]
+    write_traces: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Permission to write traces.
     """
@@ -353,15 +353,15 @@ class TokenScopesArgsDict(TypedDict):
 @pulumi.input_type
 class TokenScopesArgs:
     def __init__(__self__, *,
-                 query_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 query_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 query_traces: Optional[pulumi.Input[_builtins.bool]] = None,
-                 setup_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 setup_logs_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 setup_metrics_rules: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_traces: Optional[pulumi.Input[_builtins.bool]] = None):
+                 query_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_traces: pulumi.Input[Optional[_builtins.bool]] = None,
+                 setup_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 setup_logs_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 setup_metrics_rules: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_traces: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] query_logs: Permission to query logs.
         :param pulumi.Input[_builtins.bool] query_metrics: Permission to query metrics.
@@ -394,110 +394,110 @@ class TokenScopesArgs:
 
     @_builtins.property
     @pulumi.getter(name="queryLogs")
-    def query_logs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def query_logs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to query logs.
         """
         return pulumi.get(self, "query_logs")
 
     @query_logs.setter
-    def query_logs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def query_logs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "query_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="queryMetrics")
-    def query_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def query_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to query metrics.
         """
         return pulumi.get(self, "query_metrics")
 
     @query_metrics.setter
-    def query_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def query_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "query_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="queryTraces")
-    def query_traces(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def query_traces(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to query traces.
         """
         return pulumi.get(self, "query_traces")
 
     @query_traces.setter
-    def query_traces(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def query_traces(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "query_traces", value)
 
     @_builtins.property
     @pulumi.getter(name="setupAlerts")
-    def setup_alerts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def setup_alerts(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to set up alerts.
         """
         return pulumi.get(self, "setup_alerts")
 
     @setup_alerts.setter
-    def setup_alerts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def setup_alerts(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "setup_alerts", value)
 
     @_builtins.property
     @pulumi.getter(name="setupLogsRules")
-    def setup_logs_rules(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def setup_logs_rules(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to set up logs rules.
         """
         return pulumi.get(self, "setup_logs_rules")
 
     @setup_logs_rules.setter
-    def setup_logs_rules(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def setup_logs_rules(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "setup_logs_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="setupMetricsRules")
-    def setup_metrics_rules(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def setup_metrics_rules(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to set up metrics rules.
         """
         return pulumi.get(self, "setup_metrics_rules")
 
     @setup_metrics_rules.setter
-    def setup_metrics_rules(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def setup_metrics_rules(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "setup_metrics_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="writeLogs")
-    def write_logs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_logs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to write logs.
         """
         return pulumi.get(self, "write_logs")
 
     @write_logs.setter
-    def write_logs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_logs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="writeMetrics")
-    def write_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to write metrics.
         """
         return pulumi.get(self, "write_metrics")
 
     @write_metrics.setter
-    def write_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="writeTraces")
-    def write_traces(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_traces(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Permission to write traces.
         """
         return pulumi.get(self, "write_traces")
 
     @write_traces.setter
-    def write_traces(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_traces(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_traces", value)
 
 

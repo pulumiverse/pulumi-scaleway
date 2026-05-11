@@ -135,13 +135,13 @@ export interface GetPartnerOutputArgs {
     /**
      * The name of the partner to filter for. Conflicts with `partnerId`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the partner. Can be a plain UUID or a regional ID. Conflicts with `name`.
      */
-    partnerId?: pulumi.Input<string>;
+    partnerId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the partner operates.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

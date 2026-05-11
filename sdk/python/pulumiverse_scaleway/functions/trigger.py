@@ -22,11 +22,11 @@ __all__ = ['TriggerArgs', 'Trigger']
 class TriggerArgs:
     def __init__(__self__, *,
                  function_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input['TriggerNatsArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input['TriggerSqsArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional['TriggerNatsArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional['TriggerSqsArgs']] = None):
         """
         The set of arguments for constructing a Trigger resource.
 
@@ -63,74 +63,74 @@ class TriggerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the trigger.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nats(self) -> Optional[pulumi.Input['TriggerNatsArgs']]:
+    def nats(self) -> pulumi.Input[Optional['TriggerNatsArgs']]:
         """
         The configuration for the Scaleway NATS account used by the trigger
         """
         return pulumi.get(self, "nats")
 
     @nats.setter
-    def nats(self, value: Optional[pulumi.Input['TriggerNatsArgs']]):
+    def nats(self, value: pulumi.Input[Optional['TriggerNatsArgs']]):
         pulumi.set(self, "nats", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def sqs(self) -> Optional[pulumi.Input['TriggerSqsArgs']]:
+    def sqs(self) -> pulumi.Input[Optional['TriggerSqsArgs']]:
         """
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
 
     @sqs.setter
-    def sqs(self, value: Optional[pulumi.Input['TriggerSqsArgs']]):
+    def sqs(self, value: pulumi.Input[Optional['TriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
 
 
 @pulumi.input_type
 class _TriggerState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input['TriggerNatsArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input['TriggerSqsArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional['TriggerNatsArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional['TriggerSqsArgs']] = None):
         """
         Input properties used for looking up and filtering Trigger resources.
 
@@ -156,74 +156,74 @@ class _TriggerState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the trigger.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="functionId")
-    def function_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def function_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the function to create a trigger for.
         """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
-    def function_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def function_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "function_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nats(self) -> Optional[pulumi.Input['TriggerNatsArgs']]:
+    def nats(self) -> pulumi.Input[Optional['TriggerNatsArgs']]:
         """
         The configuration for the Scaleway NATS account used by the trigger
         """
         return pulumi.get(self, "nats")
 
     @nats.setter
-    def nats(self, value: Optional[pulumi.Input['TriggerNatsArgs']]):
+    def nats(self, value: pulumi.Input[Optional['TriggerNatsArgs']]):
         pulumi.set(self, "nats", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def sqs(self) -> Optional[pulumi.Input['TriggerSqsArgs']]:
+    def sqs(self) -> pulumi.Input[Optional['TriggerSqsArgs']]:
         """
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
 
     @sqs.setter
-    def sqs(self, value: Optional[pulumi.Input['TriggerSqsArgs']]):
+    def sqs(self, value: pulumi.Input[Optional['TriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
 
 
@@ -233,12 +233,12 @@ class Trigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None,
                  __props__=None):
         """
         The `functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
@@ -366,12 +366,12 @@ class Trigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -401,12 +401,12 @@ class Trigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            function_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nats: Optional[pulumi.Input[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            sqs: Optional[pulumi.Input[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None) -> 'Trigger':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            function_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nats: pulumi.Input[Optional[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            sqs: pulumi.Input[Optional[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None) -> 'Trigger':
         """
         Get an existing Trigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

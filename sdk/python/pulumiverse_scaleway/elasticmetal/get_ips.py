@@ -179,10 +179,10 @@ def get_ips(project_id: Optional[_builtins.str] = None,
         server_ids=pulumi.get(__ret__, 'server_ids'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_ips_output(project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   server_ids: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                   tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                   zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_ips_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   server_ids: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                   tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                   zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsResult]:
     """
     Gets information about multiple Flexible IPs.

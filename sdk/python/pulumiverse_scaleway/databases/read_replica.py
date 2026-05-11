@@ -22,10 +22,10 @@ __all__ = ['ReadReplicaArgs', 'ReadReplica']
 class ReadReplicaArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
-                 direct_access: Optional[pulumi.Input['ReadReplicaDirectAccessArgs']] = None,
-                 private_network: Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
+                 direct_access: pulumi.Input[Optional['ReadReplicaDirectAccessArgs']] = None,
+                 private_network: pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 same_zone: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ReadReplica resource.
 
@@ -64,31 +64,31 @@ class ReadReplicaArgs:
 
     @_builtins.property
     @pulumi.getter(name="directAccess")
-    def direct_access(self) -> Optional[pulumi.Input['ReadReplicaDirectAccessArgs']]:
+    def direct_access(self) -> pulumi.Input[Optional['ReadReplicaDirectAccessArgs']]:
         """
         Creates a direct access endpoint to rdb replica.
         """
         return pulumi.get(self, "direct_access")
 
     @direct_access.setter
-    def direct_access(self, value: Optional[pulumi.Input['ReadReplicaDirectAccessArgs']]):
+    def direct_access(self, value: pulumi.Input[Optional['ReadReplicaDirectAccessArgs']]):
         pulumi.set(self, "direct_access", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']]:
         """
         Create an endpoint in a Private Netork.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region
         in which the Read Replica should be created.
@@ -96,30 +96,30 @@ class ReadReplicaArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="sameZone")
-    def same_zone(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def same_zone(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         return pulumi.get(self, "same_zone")
 
     @same_zone.setter
-    def same_zone(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def same_zone(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "same_zone", value)
 
 
 @pulumi.input_type
 class _ReadReplicaState:
     def __init__(__self__, *,
-                 direct_access: Optional[pulumi.Input['ReadReplicaDirectAccessArgs']] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network: Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 same_zone: Optional[pulumi.Input[_builtins.bool]] = None):
+                 direct_access: pulumi.Input[Optional['ReadReplicaDirectAccessArgs']] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network: pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 same_zone: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ReadReplica resources.
 
@@ -145,19 +145,19 @@ class _ReadReplicaState:
 
     @_builtins.property
     @pulumi.getter(name="directAccess")
-    def direct_access(self) -> Optional[pulumi.Input['ReadReplicaDirectAccessArgs']]:
+    def direct_access(self) -> pulumi.Input[Optional['ReadReplicaDirectAccessArgs']]:
         """
         Creates a direct access endpoint to rdb replica.
         """
         return pulumi.get(self, "direct_access")
 
     @direct_access.setter
-    def direct_access(self, value: Optional[pulumi.Input['ReadReplicaDirectAccessArgs']]):
+    def direct_access(self, value: pulumi.Input[Optional['ReadReplicaDirectAccessArgs']]):
         pulumi.set(self, "direct_access", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UUID of the rdb instance.
 
@@ -166,24 +166,24 @@ class _ReadReplicaState:
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']]:
         """
         Create an endpoint in a Private Netork.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['ReadReplicaPrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['ReadReplicaPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region
         in which the Read Replica should be created.
@@ -191,19 +191,19 @@ class _ReadReplicaState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="sameZone")
-    def same_zone(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def same_zone(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
         return pulumi.get(self, "same_zone")
 
     @same_zone.setter
-    def same_zone(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def same_zone(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "same_zone", value)
 
 
@@ -213,11 +213,11 @@ class ReadReplica(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network: Optional[pulumi.Input[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 same_zone: Optional[pulumi.Input[_builtins.bool]] = None,
+                 direct_access: pulumi.Input[Optional[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network: pulumi.Input[Optional[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 same_zone: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Creates and manages Read Replicas.
@@ -421,11 +421,11 @@ class ReadReplica(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network: Optional[pulumi.Input[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 same_zone: Optional[pulumi.Input[_builtins.bool]] = None,
+                 direct_access: pulumi.Input[Optional[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network: pulumi.Input[Optional[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 same_zone: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -454,11 +454,11 @@ class ReadReplica(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            direct_access: Optional[pulumi.Input[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_network: Optional[pulumi.Input[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            same_zone: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ReadReplica':
+            direct_access: pulumi.Input[Optional[Union['ReadReplicaDirectAccessArgs', 'ReadReplicaDirectAccessArgsDict']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network: pulumi.Input[Optional[Union['ReadReplicaPrivateNetworkArgs', 'ReadReplicaPrivateNetworkArgsDict']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            same_zone: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ReadReplica':
         """
         Get an existing ReadReplica resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

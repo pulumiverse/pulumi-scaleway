@@ -19,11 +19,11 @@ __all__ = ['SdbDatabaseArgs', 'SdbDatabase']
 @pulumi.input_type
 class SdbDatabaseArgs:
     def __init__(__self__, *,
-                 max_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SdbDatabase resource.
 
@@ -48,31 +48,31 @@ class SdbDatabaseArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxCpu")
-    def max_cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of CPU units for your database. Defaults to 15.
         """
         return pulumi.get(self, "max_cpu")
 
     @max_cpu.setter
-    def max_cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="minCpu")
-    def min_cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of CPU units for your database. Defaults to 0.
         """
         return pulumi.get(self, "min_cpu")
 
     @min_cpu.setter
-    def min_cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_cpu", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the database (e.g. `my-new-database`).
 
@@ -81,43 +81,43 @@ class SdbDatabaseArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _SdbDatabaseState:
     def __init__(__self__, *,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SdbDatabase resources.
 
@@ -145,43 +145,43 @@ class _SdbDatabaseState:
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the database.
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="maxCpu")
-    def max_cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of CPU units for your database. Defaults to 15.
         """
         return pulumi.get(self, "max_cpu")
 
     @max_cpu.setter
-    def max_cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_cpu", value)
 
     @_builtins.property
     @pulumi.getter(name="minCpu")
-    def min_cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_cpu(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of CPU units for your database. Defaults to 0.
         """
         return pulumi.get(self, "min_cpu")
 
     @min_cpu.setter
-    def min_cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_cpu(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_cpu", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the database (e.g. `my-new-database`).
 
@@ -190,31 +190,31 @@ class _SdbDatabaseState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -229,11 +229,11 @@ class SdbDatabase(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 max_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
@@ -394,11 +394,11 @@ class SdbDatabase(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 max_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""SdbDatabase is deprecated: scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -425,12 +425,12 @@ class SdbDatabase(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            max_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-            min_cpu: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None) -> 'SdbDatabase':
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> 'SdbDatabase':
         """
         Get an existing SdbDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

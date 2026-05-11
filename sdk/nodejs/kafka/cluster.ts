@@ -256,67 +256,67 @@ export interface ClusterState {
     /**
      * Date and time of cluster creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Name of the Kafka cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the cluster. Changing this forces recreation of the cluster.
      */
-    nodeAmount?: pulumi.Input<number>;
+    nodeAmount?: pulumi.Input<number | undefined>;
     /**
      * Node type to use for the cluster. Changing this forces recreation of the cluster.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * Password for the Kafka user. Required if `userName` is specified. Changing this forces recreation of the cluster.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Private network endpoint information.
      */
-    privateNetwork?: pulumi.Input<inputs.kafka.ClusterPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.kafka.ClusterPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Public endpoint information.
      */
-    publicNetworks?: pulumi.Input<pulumi.Input<inputs.kafka.ClusterPublicNetwork>[]>;
+    publicNetworks?: pulumi.Input<pulumi.Input<inputs.kafka.ClusterPublicNetwork>[] | undefined>;
     /**
      * `region`) The region in which the cluster should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The status of the cluster (e.g., "ready", "creating", "configuring").
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of cluster last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Volume size in GB. Changing this forces recreation of the cluster.
      */
-    volumeSizeInGb?: pulumi.Input<number>;
+    volumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * Type of volume where data is stored (e.g., "sbs5k", "sbs15k"). Changing this forces recreation of the cluster.
      */
-    volumeType?: pulumi.Input<string>;
+    volumeType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -326,7 +326,7 @@ export interface ClusterArgs {
     /**
      * Name of the Kafka cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the cluster. Changing this forces recreation of the cluster.
      */
@@ -338,27 +338,27 @@ export interface ClusterArgs {
     /**
      * Password for the Kafka user. Required if `userName` is specified. Changing this forces recreation of the cluster.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Private network endpoint information.
      */
-    privateNetwork?: pulumi.Input<inputs.kafka.ClusterPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.kafka.ClusterPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the cluster should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
      */

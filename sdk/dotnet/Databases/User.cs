@@ -40,7 +40,7 @@ namespace Pulumiverse.Scaleway.Databases
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var dbPassword = new Random.Index.Password("db_password", new()
+    ///     var dbPassword = new Random.Password("db_password", new()
     ///     {
     ///         Length = 20,
     ///         Special = true,

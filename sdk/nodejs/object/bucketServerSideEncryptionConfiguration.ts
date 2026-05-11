@@ -137,11 +137,11 @@ export interface BucketServerSideEncryptionConfigurationState {
     /**
      * The bucket's name or regional ID.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * Set of server-side encryption configuration rules
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.object.BucketServerSideEncryptionConfigurationRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.object.BucketServerSideEncryptionConfigurationRule>[] | undefined>;
 }
 
 /**

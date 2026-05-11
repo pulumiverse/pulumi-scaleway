@@ -263,92 +263,92 @@ export interface IamUserState {
     /**
      * The ID of the account root user associated with the user.
      */
-    accountRootUserId?: pulumi.Input<string>;
+    accountRootUserId?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the creation of the IAM user.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Whether the IAM user is deletable.
      */
-    deletable?: pulumi.Input<boolean>;
+    deletable?: pulumi.Input<boolean | undefined>;
     /**
      * The email of the IAM user. For Guest users, this argument is not editable.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * The user's first name.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * The date of the last login.
      */
-    lastLoginAt?: pulumi.Input<string>;
+    lastLoginAt?: pulumi.Input<string | undefined>;
     /**
      * The user's last name.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * The user's locale (e.g., en_US).
      */
-    locale?: pulumi.Input<string>;
+    locale?: pulumi.Input<string | undefined>;
     /**
      * Whether the user is locked.
      */
-    locked?: pulumi.Input<boolean>;
+    locked?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the MFA is enabled.
      */
-    mfa?: pulumi.Input<boolean>;
+    mfa?: pulumi.Input<boolean | undefined>;
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The password for first access. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The user's phone number.
      */
-    phoneNumber?: pulumi.Input<string>;
+    phoneNumber?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to send an email containing the password for first access.
      */
-    sendPasswordEmail?: pulumi.Input<boolean>;
+    sendPasswordEmail?: pulumi.Input<boolean | undefined>;
     /**
      * Whether or not to send a welcome email that includes onboarding information.
      */
-    sendWelcomeEmail?: pulumi.Input<boolean>;
+    sendWelcomeEmail?: pulumi.Input<boolean | undefined>;
     /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the user.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the IAM user.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The username of the IAM user.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -362,48 +362,48 @@ export interface IamUserArgs {
     /**
      * The user's first name.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * The user's last name.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * The user's locale (e.g., en_US).
      */
-    locale?: pulumi.Input<string>;
+    locale?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The password for first access. Only one of `password` or `passwordWo` should be specified.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The password for first access in write-only mode. Only one of `password` or `passwordWo` should be specified. `passwordWo` will not be set in the Terraform state. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The user's phone number.
      */
-    phoneNumber?: pulumi.Input<string>;
+    phoneNumber?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to send an email containing the password for first access.
      */
-    sendPasswordEmail?: pulumi.Input<boolean>;
+    sendPasswordEmail?: pulumi.Input<boolean | undefined>;
     /**
      * Whether or not to send a welcome email that includes onboarding information.
      */
-    sendWelcomeEmail?: pulumi.Input<boolean>;
+    sendWelcomeEmail?: pulumi.Input<boolean | undefined>;
     /**
      * The tags associated with the user.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The username of the IAM user.
      */

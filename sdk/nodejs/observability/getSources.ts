@@ -248,21 +248,21 @@ export interface GetSourcesOutputArgs {
     /**
      * Filter sources by name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Filter sources by origin. Possible values are: `scaleway`, `custom`.
      */
-    origin?: pulumi.Input<string>;
+    origin?: pulumi.Input<string | undefined>;
     /**
      * The project ID the cockpit sources are associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region in which the cockpit sources are located.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

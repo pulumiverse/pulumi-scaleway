@@ -101,29 +101,29 @@ export interface GetRoutesOutputArgs {
     /**
      * Routes with an IPv6 destination will be listed.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
      */
-    nexthopPrivateNetworkId?: pulumi.Input<string>;
+    nexthopPrivateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
      */
-    nexthopResourceId?: pulumi.Input<string>;
+    nexthopResourceId?: pulumi.Input<string | undefined>;
     /**
      * The next hop resource type to filter for. routes with a similar next hop resource type are listed.
      */
-    nexthopResourceType?: pulumi.Input<string>;
+    nexthopResourceType?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the routes exist.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of tags to filter for. routes with these exact tags are listed.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The VPC ID to filter for. routes with a similar VPC ID are listed.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

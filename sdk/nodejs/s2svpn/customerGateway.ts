@@ -187,43 +187,43 @@ export interface CustomerGatewayState {
     /**
      * The AS Number of the customer gateway. Must be different from Scaleway's ASN (12876). For testing, you can use a private ASN (64512-65535).
      */
-    asn?: pulumi.Input<number>;
+    asn?: pulumi.Input<number | undefined>;
     /**
      * The date and time of the creation of the customer gateway (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The public IPv4 address of the customer gateway (your VPN endpoint).
      */
-    ipv4Public?: pulumi.Input<string>;
+    ipv4Public?: pulumi.Input<string | undefined>;
     /**
      * The public IPv6 address of the customer gateway (your VPN endpoint).
      */
-    ipv6Public?: pulumi.Input<string>;
+    ipv6Public?: pulumi.Input<string | undefined>;
     /**
      * The name of the customer gateway. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the customer gateway is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the customer gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the customer gateway should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the customer gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the customer gateway (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -237,25 +237,25 @@ export interface CustomerGatewayArgs {
     /**
      * The public IPv4 address of the customer gateway (your VPN endpoint).
      */
-    ipv4Public?: pulumi.Input<string>;
+    ipv4Public?: pulumi.Input<string | undefined>;
     /**
      * The public IPv6 address of the customer gateway (your VPN endpoint).
      */
-    ipv6Public?: pulumi.Input<string>;
+    ipv6Public?: pulumi.Input<string | undefined>;
     /**
      * The name of the customer gateway. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the customer gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the customer gateway should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the customer gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

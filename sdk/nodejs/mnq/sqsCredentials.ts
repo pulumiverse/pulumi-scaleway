@@ -136,27 +136,27 @@ export interface SqsCredentialsState {
     /**
      * The ID of the key.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the SQS credentials.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * . List of permissions associated with these credentials.
      */
-    permissions?: pulumi.Input<inputs.mnq.SqsCredentialsPermissions>;
+    permissions?: pulumi.Input<inputs.mnq.SqsCredentialsPermissions | undefined>;
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret value of the key.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -166,17 +166,17 @@ export interface SqsCredentialsArgs {
     /**
      * The unique name of the SQS credentials.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * . List of permissions associated with these credentials.
      */
-    permissions?: pulumi.Input<inputs.mnq.SqsCredentialsPermissions>;
+    permissions?: pulumi.Input<inputs.mnq.SqsCredentialsPermissions | undefined>;
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

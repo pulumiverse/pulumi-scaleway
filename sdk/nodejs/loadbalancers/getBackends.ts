@@ -118,10 +118,10 @@ export interface GetBackendsOutputArgs {
     /**
      * The backend name to filter for. Backends with a matching name are listed.
      */
-    name?: pulumi.Input<string>;
-    projectId?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which backends exist.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -188,35 +188,35 @@ export interface VpcPublicGatewayDhcpReservationState {
     /**
      * The date and time of the creation of the Public Gateway DHCP configuration.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the owning GatewayNetwork.
      */
-    gatewayNetworkId?: pulumi.Input<string>;
+    gatewayNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The hostname of the client machine.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The IP address to give to the machine.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * The MAC address for the static entry.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the Public Gateway DHCP configuration.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the public gateway DHCP config should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -238,5 +238,5 @@ export interface VpcPublicGatewayDhcpReservationArgs {
     /**
      * `zone`) The zone in which the public gateway DHCP config should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

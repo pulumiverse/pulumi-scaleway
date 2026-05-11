@@ -122,15 +122,15 @@ class ContainerHealthCheckHttpArgs:
 
 
 class ContainerScalingOptionArgsDict(TypedDict):
-    concurrent_requests_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    concurrent_requests_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Scale depending on the number of concurrent requests being processed per container instance.
     """
-    cpu_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    cpu_usage_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Scale depending on the CPU usage of a container instance.
     """
-    memory_usage_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    memory_usage_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Scale depending on the memory usage of a container instance.
     """
@@ -138,9 +138,9 @@ class ContainerScalingOptionArgsDict(TypedDict):
 @pulumi.input_type
 class ContainerScalingOptionArgs:
     def __init__(__self__, *,
-                 concurrent_requests_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_usage_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_usage_threshold: Optional[pulumi.Input[_builtins.int]] = None):
+                 concurrent_requests_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_usage_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_usage_threshold: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] concurrent_requests_threshold: Scale depending on the number of concurrent requests being processed per container instance.
         :param pulumi.Input[_builtins.int] cpu_usage_threshold: Scale depending on the CPU usage of a container instance.
@@ -155,38 +155,38 @@ class ContainerScalingOptionArgs:
 
     @_builtins.property
     @pulumi.getter(name="concurrentRequestsThreshold")
-    def concurrent_requests_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def concurrent_requests_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Scale depending on the number of concurrent requests being processed per container instance.
         """
         return pulumi.get(self, "concurrent_requests_threshold")
 
     @concurrent_requests_threshold.setter
-    def concurrent_requests_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def concurrent_requests_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "concurrent_requests_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuUsageThreshold")
-    def cpu_usage_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_usage_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Scale depending on the CPU usage of a container instance.
         """
         return pulumi.get(self, "cpu_usage_threshold")
 
     @cpu_usage_threshold.setter
-    def cpu_usage_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_usage_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_usage_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryUsageThreshold")
-    def memory_usage_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_usage_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Scale depending on the memory usage of a container instance.
         """
         return pulumi.get(self, "memory_usage_threshold")
 
     @memory_usage_threshold.setter
-    def memory_usage_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_usage_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_usage_threshold", value)
 
 
@@ -195,15 +195,15 @@ class TriggerNatsArgsDict(TypedDict):
     """
     The subject to listen to.
     """
-    account_id: NotRequired[pulumi.Input[_builtins.str]]
+    account_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     unique identifier of the Messaging and Queuing NATS account.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
     """
@@ -212,9 +212,9 @@ class TriggerNatsArgsDict(TypedDict):
 class TriggerNatsArgs:
     def __init__(__self__, *,
                  subject: pulumi.Input[_builtins.str],
-                 account_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] subject: The subject to listen to.
         :param pulumi.Input[_builtins.str] account_id: unique identifier of the Messaging and Queuing NATS account.
@@ -243,38 +243,38 @@ class TriggerNatsArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountId")
-    def account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
-    def account_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -283,15 +283,15 @@ class TriggerSqsArgsDict(TypedDict):
     """
     The name of the SQS queue.
     """
-    namespace_id: NotRequired[pulumi.Input[_builtins.str]]
+    namespace_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the Messaging and Queuing namespace. This argument is deprecated.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where SQS is enabled (defaults to provider `region`)
     """
@@ -300,9 +300,9 @@ class TriggerSqsArgsDict(TypedDict):
 class TriggerSqsArgs:
     def __init__(__self__, *,
                  queue: pulumi.Input[_builtins.str],
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] queue: The name of the SQS queue.
         :param pulumi.Input[_builtins.str] namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
@@ -335,38 +335,38 @@ class TriggerSqsArgs:
     @_builtins.property
     @pulumi.getter(name="namespaceId")
     @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the Messaging and Queuing namespace. This argument is deprecated.
         """
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where SQS is enabled (defaults to provider `region`)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 

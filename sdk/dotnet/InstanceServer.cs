@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway
     ///         SizeInGb = 15,
     ///     });
     /// 
-    ///     var terraformInstanceFilesystem = new Scaleway.Index.FileFilesystem("terraform_instance_filesystem", new()
+    ///     var terraformInstanceFilesystem = new Scaleway.FileFilesystem("terraform_instance_filesystem", new()
     ///     {
     ///         Name = "filesystem-instance-terraform",
     ///         SizeInGb = 100,

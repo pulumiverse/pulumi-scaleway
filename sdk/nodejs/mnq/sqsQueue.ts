@@ -245,67 +245,67 @@ export interface SqsQueueState {
     /**
      * The access key of the SQS queue.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the queue
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
-    contentBasedDeduplication?: pulumi.Input<boolean>;
+    contentBasedDeduplication?: pulumi.Input<boolean | undefined>;
     /**
      * Configuration for the dead letter queue. See Dead Letter Queue below for details.
      */
-    deadLetterQueue?: pulumi.Input<inputs.mnq.SqsQueueDeadLetterQueue>;
+    deadLetterQueue?: pulumi.Input<inputs.mnq.SqsQueueDeadLetterQueue | undefined>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
-    fifoQueue?: pulumi.Input<boolean>;
+    fifoQueue?: pulumi.Input<boolean | undefined>;
     /**
      * The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
      */
-    messageMaxAge?: pulumi.Input<number>;
+    messageMaxAge?: pulumi.Input<number | undefined>;
     /**
      * The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
      */
-    messageMaxSize?: pulumi.Input<number>;
+    messageMaxSize?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
      */
-    receiveWaitTimeSeconds?: pulumi.Input<number>;
+    receiveWaitTimeSeconds?: pulumi.Input<number | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SQS queue.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
      */
-    sqsEndpoint?: pulumi.Input<string>;
+    sqsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The URL of the queue.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
      */
-    visibilityTimeoutSeconds?: pulumi.Input<number>;
+    visibilityTimeoutSeconds?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -319,43 +319,43 @@ export interface SqsQueueArgs {
     /**
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
-    contentBasedDeduplication?: pulumi.Input<boolean>;
+    contentBasedDeduplication?: pulumi.Input<boolean | undefined>;
     /**
      * Configuration for the dead letter queue. See Dead Letter Queue below for details.
      */
-    deadLetterQueue?: pulumi.Input<inputs.mnq.SqsQueueDeadLetterQueue>;
+    deadLetterQueue?: pulumi.Input<inputs.mnq.SqsQueueDeadLetterQueue | undefined>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
-    fifoQueue?: pulumi.Input<boolean>;
+    fifoQueue?: pulumi.Input<boolean | undefined>;
     /**
      * The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
      */
-    messageMaxAge?: pulumi.Input<number>;
+    messageMaxAge?: pulumi.Input<number | undefined>;
     /**
      * The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
      */
-    messageMaxSize?: pulumi.Input<number>;
+    messageMaxSize?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
      */
-    receiveWaitTimeSeconds?: pulumi.Input<number>;
+    receiveWaitTimeSeconds?: pulumi.Input<number | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the SQS queue.
      */
@@ -363,9 +363,9 @@ export interface SqsQueueArgs {
     /**
      * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
      */
-    sqsEndpoint?: pulumi.Input<string>;
+    sqsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
      */
-    visibilityTimeoutSeconds?: pulumi.Input<number>;
+    visibilityTimeoutSeconds?: pulumi.Input<number | undefined>;
 }

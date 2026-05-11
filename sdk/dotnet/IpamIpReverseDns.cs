@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway
     ///         DnsZone = "example.com",
     ///         Name = "",
     ///         Type = "AAAA",
-    ///         Data = Std.Index.Cidrhost.Invoke(new()
+    ///         Data = Std.Cidrhost.Invoke(new()
     ///         {
     ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
     ///             Host = 42,
@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         IpamIpId = ipam01.Apply(getIpResult =&gt; getIpResult.Id),
     ///         Hostname = "example.com",
-    ///         Address = Std.Index.Cidrhost.Invoke(new()
+    ///         Address = Std.Cidrhost.Invoke(new()
     ///         {
     ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
     ///             Host = 42,

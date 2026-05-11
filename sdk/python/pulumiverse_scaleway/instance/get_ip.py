@@ -180,10 +180,10 @@ def get_ip(address: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_ip_output(address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                  zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_ip_output(address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                  zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpResult]:
     """
     Gets information about an instance IP.

@@ -109,13 +109,13 @@ export interface GetInstanceGroupOutputArgs {
     /**
      * The ID of the Instance group. Only one of `name` and `instanceGroupId` should be specified.
      */
-    instanceGroupId?: pulumi.Input<string>;
+    instanceGroupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Instance group. Only one of `name` and `instanceGroupId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Instance group exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

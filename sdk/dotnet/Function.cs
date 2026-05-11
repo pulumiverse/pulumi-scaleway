@@ -79,7 +79,7 @@ namespace Pulumiverse.Scaleway
     ///         Privacy = "private",
     ///         Timeout = 10,
     ///         ZipFile = "function.zip",
-    ///         ZipHash = Std.Index.Filesha256.Invoke(new()
+    ///         ZipHash = Std.Filesha256.Invoke(new()
     ///         {
     ///             Input = "function.zip",
     ///         }).Result,
@@ -149,7 +149,7 @@ namespace Pulumiverse.Scaleway
     ///         Handler = "Handle",
     ///         Privacy = "private",
     ///         ZipFile = "function.zip",
-    ///         ZipHash = Std.Index.Filesha256.Invoke(new()
+    ///         ZipHash = Std.Filesha256.Invoke(new()
     ///         {
     ///             Input = "function.zip",
     ///         }).Result,

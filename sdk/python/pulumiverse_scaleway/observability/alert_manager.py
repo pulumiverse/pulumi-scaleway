@@ -21,11 +21,11 @@ __all__ = ['AlertManagerArgs', 'AlertManager']
 @pulumi.input_type
 class AlertManagerArgs:
     def __init__(__self__, *,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]] = None,
-                 enable_managed_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preconfigured_alert_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 contact_points: pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]] = None,
+                 enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AlertManager resource.
 
@@ -51,75 +51,75 @@ class AlertManagerArgs:
 
     @_builtins.property
     @pulumi.getter(name="contactPoints")
-    def contact_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]:
+    def contact_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]:
         """
         A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
         """
         return pulumi.get(self, "contact_points")
 
     @contact_points.setter
-    def contact_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]):
+    def contact_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]):
         pulumi.set(self, "contact_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableManagedAlerts")
     @_utilities.deprecated("""Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.""")
-    def enable_managed_alerts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_managed_alerts(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **Deprecated** (Optional, Boolean) Use `preconfigured_alert_ids` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         """
         return pulumi.get(self, "enable_managed_alerts")
 
     @enable_managed_alerts.setter
-    def enable_managed_alerts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_managed_alerts(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_managed_alerts", value)
 
     @_builtins.property
     @pulumi.getter(name="preconfiguredAlertIds")
-    def preconfigured_alert_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preconfigured_alert_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of preconfigured alert rule IDs to enable explicitly. Use the `observability_get_preconfigured_alert` data source to list available alerts.
         """
         return pulumi.get(self, "preconfigured_alert_ids")
 
     @preconfigured_alert_ids.setter
-    def preconfigured_alert_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preconfigured_alert_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preconfigured_alert_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _AlertManagerState:
     def __init__(__self__, *,
-                 alert_manager_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]] = None,
-                 enable_managed_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preconfigured_alert_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 alert_manager_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 contact_points: pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]] = None,
+                 enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlertManager resources.
 
@@ -148,75 +148,75 @@ class _AlertManagerState:
 
     @_builtins.property
     @pulumi.getter(name="alertManagerUrl")
-    def alert_manager_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alert_manager_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL of the alert manager.
         """
         return pulumi.get(self, "alert_manager_url")
 
     @alert_manager_url.setter
-    def alert_manager_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alert_manager_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alert_manager_url", value)
 
     @_builtins.property
     @pulumi.getter(name="contactPoints")
-    def contact_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]:
+    def contact_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]:
         """
         A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
         """
         return pulumi.get(self, "contact_points")
 
     @contact_points.setter
-    def contact_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]):
+    def contact_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AlertManagerContactPointArgs']]]]):
         pulumi.set(self, "contact_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableManagedAlerts")
     @_utilities.deprecated("""Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.""")
-    def enable_managed_alerts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_managed_alerts(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **Deprecated** (Optional, Boolean) Use `preconfigured_alert_ids` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         """
         return pulumi.get(self, "enable_managed_alerts")
 
     @enable_managed_alerts.setter
-    def enable_managed_alerts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_managed_alerts(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_managed_alerts", value)
 
     @_builtins.property
     @pulumi.getter(name="preconfiguredAlertIds")
-    def preconfigured_alert_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def preconfigured_alert_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of preconfigured alert rule IDs to enable explicitly. Use the `observability_get_preconfigured_alert` data source to list available alerts.
         """
         return pulumi.get(self, "preconfigured_alert_ids")
 
     @preconfigured_alert_ids.setter
-    def preconfigured_alert_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def preconfigured_alert_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "preconfigured_alert_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project the Cockpit is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -226,11 +226,11 @@ class AlertManager(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
-                 enable_managed_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preconfigured_alert_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 contact_points: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
+                 enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
@@ -405,11 +405,11 @@ class AlertManager(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
-                 enable_managed_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preconfigured_alert_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 contact_points: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
+                 enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -437,12 +437,12 @@ class AlertManager(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alert_manager_url: Optional[pulumi.Input[_builtins.str]] = None,
-            contact_points: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
-            enable_managed_alerts: Optional[pulumi.Input[_builtins.bool]] = None,
-            preconfigured_alert_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None) -> 'AlertManager':
+            alert_manager_url: pulumi.Input[Optional[_builtins.str]] = None,
+            contact_points: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertManagerContactPointArgs', 'AlertManagerContactPointArgsDict']]]]] = None,
+            enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
+            preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> 'AlertManager':
         """
         Get an existing AlertManager resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

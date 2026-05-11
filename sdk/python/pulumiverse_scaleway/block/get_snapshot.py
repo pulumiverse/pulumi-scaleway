@@ -159,11 +159,11 @@ def get_snapshot(name: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_snapshot_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        snapshot_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        volume_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_snapshot_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        snapshot_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        volume_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnapshotResult]:
     """
     The `block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.

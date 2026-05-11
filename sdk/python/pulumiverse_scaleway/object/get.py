@@ -233,10 +233,10 @@ def get(bucket: Optional[_builtins.str] = None,
         storage_class=pulumi.get(__ret__, 'storage_class'),
         tags=pulumi.get(__ret__, 'tags'),
         visibility=pulumi.get(__ret__, 'visibility'))
-def get_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
-               key: Optional[pulumi.Input[_builtins.str]] = None,
-               project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-               region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
+               key: pulumi.Input[Optional[_builtins.str]] = None,
+               project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+               region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResult]:
     """
     The `object.Item` data source is used to retrieve information about an Object Storage object.

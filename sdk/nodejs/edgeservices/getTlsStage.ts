@@ -136,19 +136,19 @@ export interface GetTlsStageOutputArgs {
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * Secret ID to filter for.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * Secret region to filter for.
      */
-    secretRegion?: pulumi.Input<string>;
+    secretRegion?: pulumi.Input<string | undefined>;
     /**
      * The ID of the TLS stage. Conflicts with all filter arguments below.
      *
      * The following filter arguments are supported (cannot be used with `tlsStageId`):
      */
-    tlsStageId?: pulumi.Input<string>;
+    tlsStageId?: pulumi.Input<string | undefined>;
 }

@@ -122,18 +122,18 @@ export interface GetInstanceSnapshotOutputArgs {
      * The snapshot name.
      * Only one of `name` and `snapshotId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the snapshot is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The snapshot id.
      * Only one of `name` and `snapshotId` should be specified.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the snapshot exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

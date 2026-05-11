@@ -254,9 +254,9 @@ def get_lb_frontend(frontend_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         timeout_client=pulumi.get(__ret__, 'timeout_client'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           lb_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_lb_frontend_output(frontend_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           lb_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbFrontendResult]:
     """
     Get information about Scaleway Load Balancer frontends.

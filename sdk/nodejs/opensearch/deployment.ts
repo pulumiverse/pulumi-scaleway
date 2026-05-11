@@ -266,31 +266,31 @@ export interface DeploymentState {
     /**
      * Date and time of deployment creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * List of endpoints for accessing the deployment.
      */
-    endpoints?: pulumi.Input<pulumi.Input<inputs.opensearch.DeploymentEndpoint>[]>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.opensearch.DeploymentEndpoint>[] | undefined>;
     /**
      * Name of the OpenSearch deployment. If not specified, a random name will be generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the cluster. Changing this forces recreation of the deployment.
      */
-    nodeAmount?: pulumi.Input<number>;
+    nodeAmount?: pulumi.Input<number | undefined>;
     /**
      * Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Private network configuration
      */
-    privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
@@ -298,39 +298,39 @@ export interface DeploymentState {
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
      */
-    publicDashboardUrl?: pulumi.Input<string>;
+    publicDashboardUrl?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the deployment should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The status of the deployment (e.g., "ready", "creating", "upgrading").
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of deployment last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Username for the deployment. If not specified, the default username will be used. Changing this forces recreation of the deployment.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Volume configuration for the cluster.
      */
-    volume?: pulumi.Input<inputs.opensearch.DeploymentVolume>;
+    volume?: pulumi.Input<inputs.opensearch.DeploymentVolume | undefined>;
 }
 
 /**
@@ -340,7 +340,7 @@ export interface DeploymentArgs {
     /**
      * Name of the OpenSearch deployment. If not specified, a random name will be generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes in the cluster. Changing this forces recreation of the deployment.
      */
@@ -352,11 +352,11 @@ export interface DeploymentArgs {
     /**
      * Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Private network configuration
      */
-    privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
@@ -364,19 +364,19 @@ export interface DeploymentArgs {
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the deployment should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the deployment.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Username for the deployment. If not specified, the default username will be used. Changing this forces recreation of the deployment.
      */
-    userName?: pulumi.Input<string>;
+    userName?: pulumi.Input<string | undefined>;
     /**
      * OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
      */
@@ -384,5 +384,5 @@ export interface DeploymentArgs {
     /**
      * Volume configuration for the cluster.
      */
-    volume?: pulumi.Input<inputs.opensearch.DeploymentVolume>;
+    volume?: pulumi.Input<inputs.opensearch.DeploymentVolume | undefined>;
 }

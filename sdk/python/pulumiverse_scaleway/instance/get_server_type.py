@@ -229,8 +229,8 @@ def get_server_type(name: Optional[_builtins.str] = None,
         ram=pulumi.get(__ret__, 'ram'),
         volumes=pulumi.get(__ret__, 'volumes'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_server_type_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                           zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_server_type_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                           zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerTypeResult]:
     """
     Gets information about a server type.

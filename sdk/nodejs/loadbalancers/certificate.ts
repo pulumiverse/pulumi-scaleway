@@ -167,43 +167,43 @@ export interface CertificateState {
     /**
      * Main domain of the certificate
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * The custom type certificate type configuration
      */
-    customCertificate?: pulumi.Input<inputs.loadbalancers.CertificateCustomCertificate>;
+    customCertificate?: pulumi.Input<inputs.loadbalancers.CertificateCustomCertificate | undefined>;
     /**
      * The identifier (SHA-1) of the certificate
      */
-    fingerprint?: pulumi.Input<string>;
+    fingerprint?: pulumi.Input<string | undefined>;
     /**
      * The load-balancer ID
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The Let's Encrypt type certificate configuration
      */
-    letsencrypt?: pulumi.Input<inputs.loadbalancers.CertificateLetsencrypt>;
+    letsencrypt?: pulumi.Input<inputs.loadbalancers.CertificateLetsencrypt | undefined>;
     /**
      * The name of the load-balancer certificate
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The not valid after validity bound timestamp
      */
-    notValidAfter?: pulumi.Input<string>;
+    notValidAfter?: pulumi.Input<string | undefined>;
     /**
      * The not valid before validity bound timestamp
      */
-    notValidBefore?: pulumi.Input<string>;
+    notValidBefore?: pulumi.Input<string | undefined>;
     /**
      * Certificate status
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The alternative domain names of the certificate
      */
-    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -213,7 +213,7 @@ export interface CertificateArgs {
     /**
      * The custom type certificate type configuration
      */
-    customCertificate?: pulumi.Input<inputs.loadbalancers.CertificateCustomCertificate>;
+    customCertificate?: pulumi.Input<inputs.loadbalancers.CertificateCustomCertificate | undefined>;
     /**
      * The load-balancer ID
      */
@@ -221,9 +221,9 @@ export interface CertificateArgs {
     /**
      * The Let's Encrypt type certificate configuration
      */
-    letsencrypt?: pulumi.Input<inputs.loadbalancers.CertificateLetsencrypt>;
+    letsencrypt?: pulumi.Input<inputs.loadbalancers.CertificateLetsencrypt | undefined>;
     /**
      * The name of the load-balancer certificate
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

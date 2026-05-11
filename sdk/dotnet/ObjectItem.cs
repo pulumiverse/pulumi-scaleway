@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway
     ///         Bucket = someBucket.Id,
     ///         Key = "object_path",
     ///         File = "myfile",
-    ///         Hash = Std.Index.Filemd5.Invoke(new()
+    ///         Hash = Std.Filemd5.Invoke(new()
     ///         {
     ///             Input = "myfile",
     ///         }).Result,

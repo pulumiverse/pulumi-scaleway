@@ -118,11 +118,11 @@ export interface GetRouteStageOutputArgs {
     /**
      * The ID of the pipeline.
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the route stage. Conflicts with all filter arguments below.
      *
      * The following filter arguments are supported (cannot be used with `routeStageId`):
      */
-    routeStageId?: pulumi.Input<string>;
+    routeStageId?: pulumi.Input<string | undefined>;
 }

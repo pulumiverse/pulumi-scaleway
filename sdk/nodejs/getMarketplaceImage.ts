@@ -96,12 +96,12 @@ export interface GetMarketplaceImageOutputArgs {
     /**
      * The local image type, `instanceLocal` or `instanceSbs`.
      */
-    imageType?: pulumi.Input<string>;
+    imageType?: pulumi.Input<string | undefined>;
     /**
      * The instance type the image is compatible with.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
      */
-    instanceType?: pulumi.Input<string>;
+    instanceType?: pulumi.Input<string | undefined>;
     /**
      * Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find the right `label`.
@@ -110,5 +110,5 @@ export interface GetMarketplaceImageOutputArgs {
     /**
      * `zone`) The zone in which the image exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -169,43 +169,43 @@ export interface RoutingPolicyState {
     /**
      * The date and time of the creation of the routing policy (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Defines whether the routing policy is for IPv6 prefixes. Defaults to `false` (IPv4).
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the routing policy. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the routing policy is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * List of IP prefixes (in CIDR notation) to accept from the peer gateway. These are the routes that the customer gateway can announce to Scaleway.
      */
-    prefixFilterIns?: pulumi.Input<pulumi.Input<string>[]>;
+    prefixFilterIns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP prefixes (in CIDR notation) to advertise to the peer gateway. These are the routes that Scaleway will announce to the customer gateway.
      */
-    prefixFilterOuts?: pulumi.Input<pulumi.Input<string>[]>;
+    prefixFilterOuts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the project the routing policy is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the routing policy should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the routing policy.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the routing policy (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -215,29 +215,29 @@ export interface RoutingPolicyArgs {
     /**
      * Defines whether the routing policy is for IPv6 prefixes. Defaults to `false` (IPv4).
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the routing policy. If not provided, it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of IP prefixes (in CIDR notation) to accept from the peer gateway. These are the routes that the customer gateway can announce to Scaleway.
      */
-    prefixFilterIns?: pulumi.Input<pulumi.Input<string>[]>;
+    prefixFilterIns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP prefixes (in CIDR notation) to advertise to the peer gateway. These are the routes that Scaleway will announce to the customer gateway.
      */
-    prefixFilterOuts?: pulumi.Input<pulumi.Input<string>[]>;
+    prefixFilterOuts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the project the routing policy is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the routing policy should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the routing policy.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

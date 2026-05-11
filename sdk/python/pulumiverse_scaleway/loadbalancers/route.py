@@ -21,10 +21,10 @@ class RouteArgs:
     def __init__(__self__, *,
                  backend_id: pulumi.Input[_builtins.str],
                  frontend_id: pulumi.Input[_builtins.str],
-                 match_host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_path_begin: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_sni: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None):
+                 match_host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_path_begin: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_sni: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_subdomains: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Route resource.
 
@@ -79,7 +79,7 @@ class RouteArgs:
 
     @_builtins.property
     @pulumi.getter(name="matchHostHeader")
-    def match_host_header(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_host_header(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -89,12 +89,12 @@ class RouteArgs:
         return pulumi.get(self, "match_host_header")
 
     @match_host_header.setter
-    def match_host_header(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_host_header(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_host_header", value)
 
     @_builtins.property
     @pulumi.getter(name="matchPathBegin")
-    def match_path_begin(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_path_begin(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to match in the URL beginning path from an incoming request.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -102,12 +102,12 @@ class RouteArgs:
         return pulumi.get(self, "match_path_begin")
 
     @match_path_begin.setter
-    def match_path_begin(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_path_begin(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_path_begin", value)
 
     @_builtins.property
     @pulumi.getter(name="matchSni")
-    def match_sni(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_sni(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -117,33 +117,33 @@ class RouteArgs:
         return pulumi.get(self, "match_sni")
 
     @match_sni.setter
-    def match_sni(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_sni(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_sni", value)
 
     @_builtins.property
     @pulumi.getter(name="matchSubdomains")
-    def match_subdomains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def match_subdomains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, all subdomains will match.
         """
         return pulumi.get(self, "match_subdomains")
 
     @match_subdomains.setter
-    def match_subdomains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def match_subdomains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "match_subdomains", value)
 
 
 @pulumi.input_type
 class _RouteState:
     def __init__(__self__, *,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_path_begin: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_sni: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_path_begin: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_sni: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Route resources.
 
@@ -182,43 +182,43 @@ class _RouteState:
 
     @_builtins.property
     @pulumi.getter(name="backendId")
-    def backend_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the backend the route is associated with.
         """
         return pulumi.get(self, "backend_id")
 
     @backend_id.setter
-    def backend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date on which the route was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="frontendId")
-    def frontend_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontend_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the frontend the route is associated with.
         """
         return pulumi.get(self, "frontend_id")
 
     @frontend_id.setter
-    def frontend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontend_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontend_id", value)
 
     @_builtins.property
     @pulumi.getter(name="matchHostHeader")
-    def match_host_header(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_host_header(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -228,12 +228,12 @@ class _RouteState:
         return pulumi.get(self, "match_host_header")
 
     @match_host_header.setter
-    def match_host_header(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_host_header(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_host_header", value)
 
     @_builtins.property
     @pulumi.getter(name="matchPathBegin")
-    def match_path_begin(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_path_begin(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to match in the URL beginning path from an incoming request.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -241,12 +241,12 @@ class _RouteState:
         return pulumi.get(self, "match_path_begin")
 
     @match_path_begin.setter
-    def match_path_begin(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_path_begin(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_path_begin", value)
 
     @_builtins.property
     @pulumi.getter(name="matchSni")
-    def match_sni(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match_sni(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
         Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
@@ -256,31 +256,31 @@ class _RouteState:
         return pulumi.get(self, "match_sni")
 
     @match_sni.setter
-    def match_sni(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match_sni(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match_sni", value)
 
     @_builtins.property
     @pulumi.getter(name="matchSubdomains")
-    def match_subdomains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def match_subdomains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, all subdomains will match.
         """
         return pulumi.get(self, "match_subdomains")
 
     @match_subdomains.setter
-    def match_subdomains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def match_subdomains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "match_subdomains", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date on which the route was last updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -290,12 +290,12 @@ class Route(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_path_begin: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_sni: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_path_begin: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_sni: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancer routes.
@@ -540,12 +540,12 @@ class Route(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_host_header: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_path_begin: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_sni: Optional[pulumi.Input[_builtins.str]] = None,
-                 match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_host_header: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_path_begin: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_sni: pulumi.Input[Optional[_builtins.str]] = None,
+                 match_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -579,14 +579,14 @@ class Route(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
-            match_host_header: Optional[pulumi.Input[_builtins.str]] = None,
-            match_path_begin: Optional[pulumi.Input[_builtins.str]] = None,
-            match_sni: Optional[pulumi.Input[_builtins.str]] = None,
-            match_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'Route':
+            backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            match_host_header: pulumi.Input[Optional[_builtins.str]] = None,
+            match_path_begin: pulumi.Input[Optional[_builtins.str]] = None,
+            match_sni: pulumi.Input[Optional[_builtins.str]] = None,
+            match_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

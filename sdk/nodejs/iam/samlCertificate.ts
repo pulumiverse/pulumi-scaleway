@@ -121,27 +121,27 @@ export interface SamlCertificateState {
     /**
      * The content of the SAML certificate
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * (String) The expiration date and time of the SAML certificate
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The organization ID. If not provided, the default organization configured in the provider is used.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * (String) The origin of the SAML certificate. Possible values are: `scaleway`, `identityProvider`.
      */
-    origin?: pulumi.Input<string>;
+    origin?: pulumi.Input<string | undefined>;
     /**
      * The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
      */
-    samlId?: pulumi.Input<string>;
+    samlId?: pulumi.Input<string | undefined>;
     /**
      * The type of the SAML certificate. Possible values are: `signing`, `encryption`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -155,11 +155,11 @@ export interface SamlCertificateArgs {
     /**
      * The organization ID. If not provided, the default organization configured in the provider is used.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
      */
-    samlId?: pulumi.Input<string>;
+    samlId?: pulumi.Input<string | undefined>;
     /**
      * The type of the SAML certificate. Possible values are: `signing`, `encryption`.
      */

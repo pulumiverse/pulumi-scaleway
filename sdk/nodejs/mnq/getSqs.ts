@@ -96,9 +96,9 @@ export interface GetSqsOutputArgs {
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

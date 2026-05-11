@@ -60,5 +60,5 @@ export interface GetProductsOutputArgs {
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

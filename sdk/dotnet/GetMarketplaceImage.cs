@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });
@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myImage = Scaleway.Index.GetMarketplaceImage.Invoke(new()
+        ///     var myImage = Scaleway.GetMarketplaceImage.Invoke(new()
         ///     {
         ///         Label = "ubuntu_jammy",
         ///     });

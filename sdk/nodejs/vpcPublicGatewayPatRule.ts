@@ -200,39 +200,39 @@ export interface VpcPublicGatewayPatRuleState {
     /**
      * The date and time of the creation of the PAT rule configuration.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Public Gateway.
      */
-    gatewayId?: pulumi.Input<string>;
+    gatewayId?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the PAT rule configuration is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The private IP address to forward data to.
      */
-    privateIp?: pulumi.Input<string>;
+    privateIp?: pulumi.Input<string | undefined>;
     /**
      * The private port to translate to.
      */
-    privatePort?: pulumi.Input<number>;
+    privatePort?: pulumi.Input<number | undefined>;
     /**
      * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * The public port to listen on.
      */
-    publicPort?: pulumi.Input<number>;
+    publicPort?: pulumi.Input<number | undefined>;
     /**
      * The date and time of the last update of the PAT rule configuration.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -254,7 +254,7 @@ export interface VpcPublicGatewayPatRuleArgs {
     /**
      * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * The public port to listen on.
      */
@@ -262,5 +262,5 @@ export interface VpcPublicGatewayPatRuleArgs {
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

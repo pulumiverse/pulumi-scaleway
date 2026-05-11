@@ -178,12 +178,12 @@ def get_pops(dedicated_available: Optional[_builtins.bool] = None,
         partner_id=pulumi.get(__ret__, 'partner_id'),
         pops=pulumi.get(__ret__, 'pops'),
         region=pulumi.get(__ret__, 'region'))
-def get_pops_output(dedicated_available: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                    hosting_provider_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    link_bandwidth_mbps: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    partner_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_pops_output(dedicated_available: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                    hosting_provider_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    link_bandwidth_mbps: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                    name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    partner_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPopsResult]:
     """
     Gets information about multiple Interlink PoPs (Points of Presence).

@@ -26,11 +26,11 @@ __all__ = [
 ]
 
 class InstancePrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IPv4 address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
@@ -38,8 +38,8 @@ class InstancePrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class InstancePrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IPv4 address.
         :param pulumi.Input[_builtins.str] id: The ID of the endpoint.
@@ -51,26 +51,26 @@ class InstancePrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IPv4 address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -79,19 +79,19 @@ class InstancePrivateNetworkArgsDict(TypedDict):
     """
     The ID of the Private Network.
     """
-    dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    dns_records: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of DNS records for your endpoint.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
-    ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of IP addresses for your endpoint.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port of the endpoint.
     """
@@ -100,10 +100,10 @@ class InstancePrivateNetworkArgsDict(TypedDict):
 class InstancePrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[_builtins.str],
-                 dns_records: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 dns_records: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] pn_id: The ID of the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_records: List of DNS records for your endpoint.
@@ -135,63 +135,63 @@ class InstancePrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="dnsRecords")
-    def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def dns_records(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of DNS records for your endpoint.
         """
         return pulumi.get(self, "dns_records")
 
     @dns_records.setter
-    def dns_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def dns_records(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "dns_records", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IP addresses for your endpoint.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
 class InstancePublicNetworkArgsDict(TypedDict):
-    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    dns_record: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The DNS record of your endpoint
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port of the endpoint.
     """
@@ -199,9 +199,9 @@ class InstancePublicNetworkArgsDict(TypedDict):
 @pulumi.input_type
 class InstancePublicNetworkArgs:
     def __init__(__self__, *,
-                 dns_record: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 dns_record: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] dns_record: The DNS record of your endpoint
         :param pulumi.Input[_builtins.str] id: The ID of the endpoint.
@@ -216,38 +216,38 @@ class InstancePublicNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="dnsRecord")
-    def dns_record(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_record(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DNS record of your endpoint
         """
         return pulumi.get(self, "dns_record")
 
     @dns_record.setter
-    def dns_record(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_record(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_record", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
@@ -256,11 +256,11 @@ class UserRoleArgsDict(TypedDict):
     """
     The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
     """
-    any_database: NotRequired[pulumi.Input[_builtins.bool]]
+    any_database: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Apply the role to all databases. Cannot be used with `database_name`.
     """
-    database_name: NotRequired[pulumi.Input[_builtins.str]]
+    database_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The database name for the role. Cannot be used with `any_database`.
     """
@@ -269,8 +269,8 @@ class UserRoleArgsDict(TypedDict):
 class UserRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 any_database: Optional[pulumi.Input[_builtins.bool]] = None,
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 any_database: pulumi.Input[Optional[_builtins.bool]] = None,
+                 database_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] role: The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
         :param pulumi.Input[_builtins.bool] any_database: Apply the role to all databases. Cannot be used with `database_name`.
@@ -296,26 +296,26 @@ class UserRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="anyDatabase")
-    def any_database(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def any_database(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Apply the role to all databases. Cannot be used with `database_name`.
         """
         return pulumi.get(self, "any_database")
 
     @any_database.setter
-    def any_database(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def any_database(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_database", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The database name for the role. Cannot be used with `any_database`.
         """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
-    def database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database_name", value)
 
 

@@ -103,7 +103,7 @@ def get_products(region: Optional[_builtins.str] = None,
         names=pulumi.get(__ret__, 'names'),
         products=pulumi.get(__ret__, 'products'),
         region=pulumi.get(__ret__, 'region'))
-def get_products_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_products_output(region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProductsResult]:
     """
     Use this data source to access information about an existing resource.

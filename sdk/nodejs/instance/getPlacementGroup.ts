@@ -94,17 +94,17 @@ export interface GetPlacementGroupOutputArgs {
     /**
      * The placement group name. Only one of `name` and `placementGroupId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The placement group id. Only one of `name` and `placementGroupId` should be specified.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the placement group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the placement group exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

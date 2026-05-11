@@ -135,27 +135,27 @@ export interface BlockedListState {
     /**
      * The ID of the domain affected by the blocklist. Must be in the format `{region}/{domain_id}`.
      */
-    domainId?: pulumi.Input<string>;
+    domainId?: pulumi.Input<string | undefined>;
     /**
      * The email address to block.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project this blocklist belongs to. Defaults to the provider's project ID.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Reason for blocking the email address.
      */
-    reason?: pulumi.Input<string>;
+    reason?: pulumi.Input<string | undefined>;
     /**
      * The region in which the blocklist is created. Defaults to the provider's region.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Type of the blocklist. Possible values are:
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,15 +173,15 @@ export interface BlockedListArgs {
     /**
      * The ID of the project this blocklist belongs to. Defaults to the provider's project ID.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Reason for blocking the email address.
      */
-    reason?: pulumi.Input<string>;
+    reason?: pulumi.Input<string | undefined>;
     /**
      * The region in which the blocklist is created. Defaults to the provider's region.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Type of the blocklist. Possible values are:
      */

@@ -341,127 +341,127 @@ export interface KubernetesNodePoolState {
     /**
      * Enables the autohealing feature for this pool.
      */
-    autohealing?: pulumi.Input<boolean>;
+    autohealing?: pulumi.Input<boolean | undefined>;
     /**
      * Enables the autoscaling feature for this pool.
      *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
-    autoscaling?: pulumi.Input<boolean>;
+    autoscaling?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Kubernetes cluster on which this pool will be created.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The container runtime of the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    containerRuntime?: pulumi.Input<string>;
+    containerRuntime?: pulumi.Input<string | undefined>;
     /**
      * The creation date of the pool.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The size of the pool at the time the terraform state was updated.
      */
-    currentSize?: pulumi.Input<number>;
+    currentSize?: pulumi.Input<number | undefined>;
     /**
      * The Kubelet arguments to be used by this pool
      */
-    kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
-    maxSize?: pulumi.Input<number>;
+    maxSize?: pulumi.Input<number | undefined>;
     /**
      * The minimum size of the pool, used by the autoscaling feature.
      */
-    minSize?: pulumi.Input<number>;
+    minSize?: pulumi.Input<number | undefined>;
     /**
      * The name for the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    nodeType?: pulumi.Input<string>;
+    nodeType?: pulumi.Input<string | undefined>;
     /**
      * (List of) The nodes in the default pool.
      */
-    nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNode>[]>;
+    nodes?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNode>[] | undefined>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    publicIpDisabled?: pulumi.Input<boolean>;
+    publicIpDisabled?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region in which the pool should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the system volume of the nodes in gigabyte
      *
      * > Note: The minimal volume size of a node is 20GB.
      */
-    rootVolumeSizeInGb?: pulumi.Input<number>;
+    rootVolumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * System volume type of the nodes composing the pool
      */
-    rootVolumeType?: pulumi.Input<string>;
+    rootVolumeType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the security group
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The size of the pool.
      *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * The status of the node.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the pool.
      *
      * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The last update date of the pool.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The Pool upgrade policy
      */
-    upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy>;
+    upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy | undefined>;
     /**
      * The version of the pool.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * Whether to wait for the pool to be ready.
      */
-    waitForPoolReady?: pulumi.Input<boolean>;
+    waitForPoolReady?: pulumi.Input<boolean | undefined>;
     /**
      * `zone`) The zone in which the pool should be created.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -471,13 +471,13 @@ export interface KubernetesNodePoolArgs {
     /**
      * Enables the autohealing feature for this pool.
      */
-    autohealing?: pulumi.Input<boolean>;
+    autohealing?: pulumi.Input<boolean | undefined>;
     /**
      * Enables the autoscaling feature for this pool.
      *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
-    autoscaling?: pulumi.Input<boolean>;
+    autoscaling?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Kubernetes cluster on which this pool will be created.
      */
@@ -487,25 +487,25 @@ export interface KubernetesNodePoolArgs {
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    containerRuntime?: pulumi.Input<string>;
+    containerRuntime?: pulumi.Input<string | undefined>;
     /**
      * The Kubelet arguments to be used by this pool
      */
-    kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
-    maxSize?: pulumi.Input<number>;
+    maxSize?: pulumi.Input<number | undefined>;
     /**
      * The minimum size of the pool, used by the autoscaling feature.
      */
-    minSize?: pulumi.Input<number>;
+    minSize?: pulumi.Input<number | undefined>;
     /**
      * The name for the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
      *
@@ -517,31 +517,31 @@ export interface KubernetesNodePoolArgs {
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    publicIpDisabled?: pulumi.Input<boolean>;
+    publicIpDisabled?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region in which the pool should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the system volume of the nodes in gigabyte
      *
      * > Note: The minimal volume size of a node is 20GB.
      */
-    rootVolumeSizeInGb?: pulumi.Input<number>;
+    rootVolumeSizeInGb?: pulumi.Input<number | undefined>;
     /**
      * System volume type of the nodes composing the pool
      */
-    rootVolumeType?: pulumi.Input<string>;
+    rootVolumeType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the security group
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The size of the pool.
      *
@@ -553,19 +553,19 @@ export interface KubernetesNodePoolArgs {
      *
      * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The Pool upgrade policy
      */
-    upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy>;
+    upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy | undefined>;
     /**
      * Whether to wait for the pool to be ready.
      */
-    waitForPoolReady?: pulumi.Input<boolean>;
+    waitForPoolReady?: pulumi.Input<boolean | undefined>;
     /**
      * `zone`) The zone in which the pool should be created.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     ///         {
     ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
     ///         },
-    ///         CloudInit = Std.Index.File.Invoke(new()
+    ///         CloudInit = Std.File.Invoke(new()
     ///         {
     ///             Input = "userdata.yaml",
     ///         }).Result,

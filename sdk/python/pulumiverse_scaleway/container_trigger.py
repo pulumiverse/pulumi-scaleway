@@ -22,11 +22,11 @@ __all__ = ['ContainerTriggerArgs', 'ContainerTrigger']
 class ContainerTriggerArgs:
     def __init__(__self__, *,
                  container_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional['ContainerTriggerNatsArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional['ContainerTriggerSqsArgs']] = None):
         """
         The set of arguments for constructing a ContainerTrigger resource.
 
@@ -63,74 +63,74 @@ class ContainerTriggerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the trigger.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nats(self) -> Optional[pulumi.Input['ContainerTriggerNatsArgs']]:
+    def nats(self) -> pulumi.Input[Optional['ContainerTriggerNatsArgs']]:
         """
         The configuration for the Scaleway NATS account used by the trigger
         """
         return pulumi.get(self, "nats")
 
     @nats.setter
-    def nats(self, value: Optional[pulumi.Input['ContainerTriggerNatsArgs']]):
+    def nats(self, value: pulumi.Input[Optional['ContainerTriggerNatsArgs']]):
         pulumi.set(self, "nats", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def sqs(self) -> Optional[pulumi.Input['ContainerTriggerSqsArgs']]:
+    def sqs(self) -> pulumi.Input[Optional['ContainerTriggerSqsArgs']]:
         """
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
 
     @sqs.setter
-    def sqs(self, value: Optional[pulumi.Input['ContainerTriggerSqsArgs']]):
+    def sqs(self, value: pulumi.Input[Optional['ContainerTriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
 
 
 @pulumi.input_type
 class _ContainerTriggerState:
     def __init__(__self__, *,
-                 container_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
+                 container_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional['ContainerTriggerNatsArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional['ContainerTriggerSqsArgs']] = None):
         """
         Input properties used for looking up and filtering ContainerTrigger resources.
 
@@ -156,74 +156,74 @@ class _ContainerTriggerState:
 
     @_builtins.property
     @pulumi.getter(name="containerId")
-    def container_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def container_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the container to create a trigger for.
         """
         return pulumi.get(self, "container_id")
 
     @container_id.setter
-    def container_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def container_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "container_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the trigger.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the trigger. If not provided, a random name is generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nats(self) -> Optional[pulumi.Input['ContainerTriggerNatsArgs']]:
+    def nats(self) -> pulumi.Input[Optional['ContainerTriggerNatsArgs']]:
         """
         The configuration for the Scaleway NATS account used by the trigger
         """
         return pulumi.get(self, "nats")
 
     @nats.setter
-    def nats(self, value: Optional[pulumi.Input['ContainerTriggerNatsArgs']]):
+    def nats(self, value: pulumi.Input[Optional['ContainerTriggerNatsArgs']]):
         pulumi.set(self, "nats", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def sqs(self) -> Optional[pulumi.Input['ContainerTriggerSqsArgs']]:
+    def sqs(self) -> pulumi.Input[Optional['ContainerTriggerSqsArgs']]:
         """
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
 
     @sqs.setter
-    def sqs(self, value: Optional[pulumi.Input['ContainerTriggerSqsArgs']]):
+    def sqs(self, value: pulumi.Input[Optional['ContainerTriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
 
 
@@ -238,12 +238,12 @@ class ContainerTrigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 container_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
+                 container_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
                  __props__=None):
         """
         The `containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
@@ -371,12 +371,12 @@ class ContainerTrigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 container_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nats: Optional[pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs: Optional[pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
+                 container_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
                  __props__=None):
         pulumi.log.warn("""ContainerTrigger is deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -405,12 +405,12 @@ class ContainerTrigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            container_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nats: Optional[pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            sqs: Optional[pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None) -> 'ContainerTrigger':
+            container_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None) -> 'ContainerTrigger':
         """
         Get an existing ContainerTrigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

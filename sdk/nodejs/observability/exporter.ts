@@ -208,47 +208,47 @@ export interface ExporterState {
     /**
      * Date and time of creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Datadog destination configuration. Cannot be used with `otlpDestination`.
      */
-    datadogDestination?: pulumi.Input<inputs.observability.ExporterDatadogDestination>;
+    datadogDestination?: pulumi.Input<inputs.observability.ExporterDatadogDestination | undefined>;
     /**
      * ID of the data source linked to the data export. Use `scaleway.observability.getSources` to find available data sources.
      */
-    datasourceId?: pulumi.Input<string>;
+    datasourceId?: pulumi.Input<string | undefined>;
     /**
      * Description of the data export.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * List of Scaleway products to export. Use `["all"]` to export all products. Use `scaleway.observability.getProducts` for valid product names. Defaults to `["all"]`.
      */
-    exportedProducts?: pulumi.Input<pulumi.Input<string>[]>;
+    exportedProducts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the data export.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * OTLP destination configuration. Cannot be used with `datadogDestination`.
      */
-    otlpDestination?: pulumi.Input<inputs.observability.ExporterOtlpDestination>;
+    otlpDestination?: pulumi.Input<inputs.observability.ExporterOtlpDestination | undefined>;
     /**
      * ) The ID of the Project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the exporter is located.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Status of the data export (`creating`, `ready`, `error`).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Date and time of last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -258,7 +258,7 @@ export interface ExporterArgs {
     /**
      * Datadog destination configuration. Cannot be used with `otlpDestination`.
      */
-    datadogDestination?: pulumi.Input<inputs.observability.ExporterDatadogDestination>;
+    datadogDestination?: pulumi.Input<inputs.observability.ExporterDatadogDestination | undefined>;
     /**
      * ID of the data source linked to the data export. Use `scaleway.observability.getSources` to find available data sources.
      */
@@ -266,25 +266,25 @@ export interface ExporterArgs {
     /**
      * Description of the data export.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * List of Scaleway products to export. Use `["all"]` to export all products. Use `scaleway.observability.getProducts` for valid product names. Defaults to `["all"]`.
      */
-    exportedProducts?: pulumi.Input<pulumi.Input<string>[]>;
+    exportedProducts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the data export.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * OTLP destination configuration. Cannot be used with `datadogDestination`.
      */
-    otlpDestination?: pulumi.Input<inputs.observability.ExporterOtlpDestination>;
+    otlpDestination?: pulumi.Input<inputs.observability.ExporterOtlpDestination | undefined>;
     /**
      * ) The ID of the Project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ) The region where the exporter is located.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -22,16 +22,16 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 commitment: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 commitment: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 os_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+                 runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
 
@@ -89,79 +89,79 @@ class ServerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def commitment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def commitment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The commitment period of the server
         """
         return pulumi.get(self, "commitment")
 
     @commitment.setter
-    def commitment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def commitment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "commitment", value)
 
     @_builtins.property
     @pulumi.getter(name="enableVpc")
-    def enable_vpc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_vpc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables the VPC option when set to true.
         """
         return pulumi.get(self, "enable_vpc")
 
     @enable_vpc.setter
-    def enable_vpc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_vpc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_vpc", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="osId")
-    def os_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def os_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the OS to use for the server.
         """
         return pulumi.get(self, "os_id")
 
     @os_id.setter
-    def os_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def os_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "os_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the server.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
         The private networks to attach to the server
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is
         associated with.
@@ -169,36 +169,36 @@ class ServerArgs:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicBandwidth")
-    def public_bandwidth(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_bandwidth(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         """
         return pulumi.get(self, "public_bandwidth")
 
     @public_bandwidth.setter
-    def public_bandwidth(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_bandwidth(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_bandwidth", value)
 
     @_builtins.property
     @pulumi.getter(name="runnerIds")
-    def runner_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def runner_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         """
         return pulumi.get(self, "runner_ids")
 
     @runner_ids.setter
-    def runner_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def runner_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "runner_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which
         the server should be created.
@@ -206,34 +206,34 @@ class ServerArgs:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _ServerState:
     def __init__(__self__, *,
-                 commitment: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 deletable_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 vnc_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 commitment: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 deletable_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 os_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+                 runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 vnc_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
 
@@ -308,139 +308,139 @@ class _ServerState:
 
     @_builtins.property
     @pulumi.getter
-    def commitment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def commitment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The commitment period of the server
         """
         return pulumi.get(self, "commitment")
 
     @commitment.setter
-    def commitment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def commitment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "commitment", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="deletableAt")
-    def deletable_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deletable_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimal date and time on which you can delete this server due to Apple licence
         """
         return pulumi.get(self, "deletable_at")
 
     @deletable_at.setter
-    def deletable_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deletable_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deletable_at", value)
 
     @_builtins.property
     @pulumi.getter(name="enableVpc")
-    def enable_vpc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_vpc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         : Enables the VPC option when set to true.
         """
         return pulumi.get(self, "enable_vpc")
 
     @enable_vpc.setter
-    def enable_vpc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_vpc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_vpc", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address of the server (IPv4 address).
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the server is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="osId")
-    def os_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def os_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the OS to use for the server.
         """
         return pulumi.get(self, "os_id")
 
     @os_id.setter
-    def os_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def os_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "os_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password of the server
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the server.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
+    def private_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
         The private networks to attach to the server
         """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
-    def private_networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
+    def private_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]):
         pulumi.set(self, "private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the server is
         associated with.
@@ -448,48 +448,48 @@ class _ServerState:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicBandwidth")
-    def public_bandwidth(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_bandwidth(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         """
         return pulumi.get(self, "public_bandwidth")
 
     @public_bandwidth.setter
-    def public_bandwidth(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_bandwidth(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_bandwidth", value)
 
     @_builtins.property
     @pulumi.getter(name="runnerIds")
-    def runner_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def runner_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         """
         return pulumi.get(self, "runner_ids")
 
     @runner_ids.setter
-    def runner_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def runner_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "runner_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the server.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The commercial type of the server. You find all the available types on
         the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -498,60 +498,60 @@ class _ServerState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username of the server
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="vncUrl")
-    def vnc_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vnc_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL of the VNC.
         """
         return pulumi.get(self, "vnc_url")
 
     @vnc_url.setter
-    def vnc_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vnc_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vnc_url", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcStatus")
-    def vpc_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current status of the VPC option.
         """
         return pulumi.get(self, "vpc_status")
 
     @vpc_status.setter
-    def vpc_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which
         the server should be created.
@@ -559,7 +559,7 @@ class _ServerState:
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -569,17 +569,17 @@ class Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 commitment: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 commitment: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 os_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+                 runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `applesilicon.Server` resource creates and manages Scaleway Apple silicon servers.
@@ -754,17 +754,17 @@ class Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 commitment: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 commitment: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 os_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+                 runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -811,27 +811,27 @@ class Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            commitment: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            deletable_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
-            ip: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            os_id: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
-            runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None,
-            vnc_url: Optional[pulumi.Input[_builtins.str]] = None,
-            vpc_status: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'Server':
+            commitment: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            deletable_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            os_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+            runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            vnc_url: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_status: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Server':
         """
         Get an existing Server resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

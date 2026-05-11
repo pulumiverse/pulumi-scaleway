@@ -24,15 +24,15 @@ __all__ = [
 ]
 
 class SnsCredentialsPermissionsArgsDict(TypedDict):
-    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    can_manage: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can manage the associated resource(s).
     """
-    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    can_publish: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can publish messages to the service.
     """
-    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    can_receive: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can receive messages from the service.
     """
@@ -40,9 +40,9 @@ class SnsCredentialsPermissionsArgsDict(TypedDict):
 @pulumi.input_type
 class SnsCredentialsPermissionsArgs:
     def __init__(__self__, *,
-                 can_manage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 can_publish: Optional[pulumi.Input[_builtins.bool]] = None,
-                 can_receive: Optional[pulumi.Input[_builtins.bool]] = None):
+                 can_manage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 can_publish: pulumi.Input[Optional[_builtins.bool]] = None,
+                 can_receive: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] can_manage: . Defines whether the user can manage the associated resource(s).
         :param pulumi.Input[_builtins.bool] can_publish: . Defines whether the user can publish messages to the service.
@@ -57,51 +57,51 @@ class SnsCredentialsPermissionsArgs:
 
     @_builtins.property
     @pulumi.getter(name="canManage")
-    def can_manage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_manage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
     @can_manage.setter
-    def can_manage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_manage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_manage", value)
 
     @_builtins.property
     @pulumi.getter(name="canPublish")
-    def can_publish(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_publish(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
     @can_publish.setter
-    def can_publish(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_publish(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_publish", value)
 
     @_builtins.property
     @pulumi.getter(name="canReceive")
-    def can_receive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_receive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
     @can_receive.setter
-    def can_receive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_receive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_receive", value)
 
 
 class SqsCredentialsPermissionsArgsDict(TypedDict):
-    can_manage: NotRequired[pulumi.Input[_builtins.bool]]
+    can_manage: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can manage the associated resource(s).
     """
-    can_publish: NotRequired[pulumi.Input[_builtins.bool]]
+    can_publish: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can publish messages to the service.
     """
-    can_receive: NotRequired[pulumi.Input[_builtins.bool]]
+    can_receive: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     . Defines whether the user can receive messages from the service.
     """
@@ -109,9 +109,9 @@ class SqsCredentialsPermissionsArgsDict(TypedDict):
 @pulumi.input_type
 class SqsCredentialsPermissionsArgs:
     def __init__(__self__, *,
-                 can_manage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 can_publish: Optional[pulumi.Input[_builtins.bool]] = None,
-                 can_receive: Optional[pulumi.Input[_builtins.bool]] = None):
+                 can_manage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 can_publish: pulumi.Input[Optional[_builtins.bool]] = None,
+                 can_receive: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] can_manage: . Defines whether the user can manage the associated resource(s).
         :param pulumi.Input[_builtins.bool] can_publish: . Defines whether the user can publish messages to the service.
@@ -126,38 +126,38 @@ class SqsCredentialsPermissionsArgs:
 
     @_builtins.property
     @pulumi.getter(name="canManage")
-    def can_manage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_manage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
     @can_manage.setter
-    def can_manage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_manage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_manage", value)
 
     @_builtins.property
     @pulumi.getter(name="canPublish")
-    def can_publish(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_publish(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
     @can_publish.setter
-    def can_publish(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_publish(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_publish", value)
 
     @_builtins.property
     @pulumi.getter(name="canReceive")
-    def can_receive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def can_receive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
     @can_receive.setter
-    def can_receive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def can_receive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "can_receive", value)
 
 

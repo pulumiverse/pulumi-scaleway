@@ -143,14 +143,14 @@ export interface GetBaremetalServerOutputArgs {
     /**
      * The server name. Only one of `name` and `serverId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the baremetal server is associated with.
      */
-    projectId?: pulumi.Input<string>;
-    serverId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the server exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

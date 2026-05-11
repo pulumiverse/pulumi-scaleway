@@ -131,17 +131,17 @@ export interface GetOfferOutputArgs {
     /**
      * Name of the control panel (Cpanel or Plesk). This argument is only used when `offerId` is not specified.
      */
-    controlPanel?: pulumi.Input<string>;
+    controlPanel?: pulumi.Input<string | undefined>;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The offer id. Only one of `name` and `offerId` should be specified.
      */
-    offerId?: pulumi.Input<string>;
+    offerId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which offer exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

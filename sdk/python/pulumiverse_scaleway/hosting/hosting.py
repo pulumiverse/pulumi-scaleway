@@ -24,10 +24,10 @@ class HostingArgs:
                  domain: pulumi.Input[_builtins.str],
                  email: pulumi.Input[_builtins.str],
                  offer_id: pulumi.Input[_builtins.str],
-                 option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Hosting resource.
 
@@ -89,76 +89,76 @@ class HostingArgs:
 
     @_builtins.property
     @pulumi.getter(name="optionIds")
-    def option_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def option_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The IDs of the selected options for the hosting.
         """
         return pulumi.get(self, "option_ids")
 
     @option_ids.setter
-    def option_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def option_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "option_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the Hosting.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the hosting.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _HostingState:
     def __init__(__self__, *,
-                 cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_servers: Optional[pulumi.Input[Sequence[pulumi.Input['HostingNameServerArgs']]]] = None,
-                 offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input['HostingOptionArgs']]]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 platform_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 platform_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 records: Optional[pulumi.Input[Sequence[pulumi.Input['HostingRecordArgs']]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 cpanel_urls: pulumi.Input[Optional[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_servers: pulumi.Input[Optional[Sequence[pulumi.Input['HostingNameServerArgs']]]] = None,
+                 offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input['HostingOptionArgs']]]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 platform_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 platform_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 records: pulumi.Input[Optional[Sequence[pulumi.Input['HostingRecordArgs']]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Hosting resources.
 
@@ -229,243 +229,243 @@ class _HostingState:
 
     @_builtins.property
     @pulumi.getter(name="cpanelUrls")
-    def cpanel_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]]:
+    def cpanel_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]]:
         """
         The URL to connect to cPanel Dashboard and to Webmail interface.
         """
         return pulumi.get(self, "cpanel_urls")
 
     @cpanel_urls.setter
-    def cpanel_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]]):
+    def cpanel_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['HostingCpanelUrlArgs']]]]):
         pulumi.set(self, "cpanel_urls", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of hosting's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsStatus")
-    def dns_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The DNS status of the hosting.
         """
         return pulumi.get(self, "dns_status")
 
     @dns_status.setter
-    def dns_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain name of the hosting.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The contact email of the client for the hosting.
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="nameServers")
-    def name_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HostingNameServerArgs']]]]:
+    def name_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['HostingNameServerArgs']]]]:
         """
         List of nameservers associated with the webhosting.
         """
         return pulumi.get(self, "name_servers")
 
     @name_servers.setter
-    def name_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HostingNameServerArgs']]]]):
+    def name_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['HostingNameServerArgs']]]]):
         pulumi.set(self, "name_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="offerId")
-    def offer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offer_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the selected offer for the hosting.
         """
         return pulumi.get(self, "offer_id")
 
     @offer_id.setter
-    def offer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offer_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="offerName")
-    def offer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the active offer.
         """
         return pulumi.get(self, "offer_name")
 
     @offer_name.setter
-    def offer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offer_name", value)
 
     @_builtins.property
     @pulumi.getter(name="optionIds")
-    def option_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def option_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The IDs of the selected options for the hosting.
         """
         return pulumi.get(self, "option_ids")
 
     @option_ids.setter
-    def option_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def option_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "option_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HostingOptionArgs']]]]:
+    def options(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['HostingOptionArgs']]]]:
         """
         The active options of the hosting.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HostingOptionArgs']]]]):
+    def options(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['HostingOptionArgs']]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
     @_utilities.deprecated("""The organization_id field is deprecated and will be removed in the next major version.""")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) The organization ID the hosting is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="platformHostname")
-    def platform_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def platform_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname of the host platform.
         """
         return pulumi.get(self, "platform_hostname")
 
     @platform_hostname.setter
-    def platform_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def platform_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "platform_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="platformNumber")
-    def platform_number(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def platform_number(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of the host platform.
         """
         return pulumi.get(self, "platform_number")
 
     @platform_number.setter
-    def platform_number(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def platform_number(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "platform_number", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the VPC is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HostingRecordArgs']]]]:
+    def records(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['HostingRecordArgs']]]]:
         """
         List of DNS records associated with the webhosting.
         """
         return pulumi.get(self, "records")
 
     @records.setter
-    def records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HostingRecordArgs']]]]):
+    def records(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['HostingRecordArgs']]]]):
         pulumi.set(self, "records", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the Hosting.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hosting status.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the hosting.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of hosting's last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The main hosting cPanel username.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -475,13 +475,13 @@ class Hosting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Web Hostings.
@@ -580,13 +580,13 @@ class Hosting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -634,26 +634,26 @@ class Hosting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict']]]]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_status: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            email: Optional[pulumi.Input[_builtins.str]] = None,
-            name_servers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict']]]]] = None,
-            offer_id: Optional[pulumi.Input[_builtins.str]] = None,
-            offer_name: Optional[pulumi.Input[_builtins.str]] = None,
-            option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict']]]]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            platform_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            platform_number: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            records: Optional[pulumi.Input[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict']]]]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'Hosting':
+            cpanel_urls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_status: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            name_servers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict']]]]] = None,
+            offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict']]]]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            platform_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            platform_number: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'Hosting':
         """
         Get an existing Hosting resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

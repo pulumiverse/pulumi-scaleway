@@ -34,21 +34,21 @@ __all__ = [
 ]
 
 class AclAclRuleArgsDict(TypedDict):
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A text describing this rule.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the ACL resource. It is the same as the ID of the cluster.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 
     > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
     """
-    scaleway_ranges: NotRequired[pulumi.Input[_builtins.bool]]
+    scaleway_ranges: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
     Only one rule with this field set to true can be added.
@@ -59,10 +59,10 @@ class AclAclRuleArgsDict(TypedDict):
 @pulumi.input_type
 class AclAclRuleArgs:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 scaleway_ranges: Optional[pulumi.Input[_builtins.bool]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 scaleway_ranges: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] description: A text describing this rule.
         :param pulumi.Input[_builtins.str] id: The ID of the ACL resource. It is the same as the ID of the cluster.
@@ -85,31 +85,31 @@ class AclAclRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A text describing this rule.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the ACL resource. It is the same as the ID of the cluster.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 
@@ -118,12 +118,12 @@ class AclAclRuleArgs:
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="scalewayRanges")
-    def scaleway_ranges(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def scaleway_ranges(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
         Only one rule with this field set to true can be added.
@@ -133,7 +133,7 @@ class AclAclRuleArgs:
         return pulumi.get(self, "scaleway_ranges")
 
     @scaleway_ranges.setter
-    def scaleway_ranges(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def scaleway_ranges(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "scaleway_ranges", value)
 
 
@@ -207,43 +207,43 @@ class ClusterAutoUpgradeArgs:
 
 
 class ClusterAutoscalerConfigArgsDict(TypedDict):
-    balance_similar_node_groups: NotRequired[pulumi.Input[_builtins.bool]]
+    balance_similar_node_groups: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Detect similar node groups and balance the number of nodes between them.
     """
-    disable_scale_down: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_scale_down: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disables the scale down feature of the autoscaler.
     """
-    estimator: NotRequired[pulumi.Input[_builtins.str]]
+    estimator: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of resource estimator to be used in scale up.
     """
-    expander: NotRequired[pulumi.Input[_builtins.str]]
+    expander: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of node group expander to be used in scale up.
     """
-    expendable_pods_priority_cutoff: NotRequired[pulumi.Input[_builtins.int]]
+    expendable_pods_priority_cutoff: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
     """
-    ignore_daemonsets_utilization: NotRequired[pulumi.Input[_builtins.bool]]
+    ignore_daemonsets_utilization: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Ignore DaemonSet pods when calculating resource utilization for scaling down.
     """
-    max_graceful_termination_sec: NotRequired[pulumi.Input[_builtins.int]]
+    max_graceful_termination_sec: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
     """
-    scale_down_delay_after_add: NotRequired[pulumi.Input[_builtins.str]]
+    scale_down_delay_after_add: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How long after scale up that scale down evaluation resumes.
     """
-    scale_down_unneeded_time: NotRequired[pulumi.Input[_builtins.str]]
+    scale_down_unneeded_time: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How long a node should be unneeded before it is eligible for scale down.
     """
-    scale_down_utilization_threshold: NotRequired[pulumi.Input[_builtins.float]]
+    scale_down_utilization_threshold: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
     """
@@ -251,16 +251,16 @@ class ClusterAutoscalerConfigArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterAutoscalerConfigArgs:
     def __init__(__self__, *,
-                 balance_similar_node_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_scale_down: Optional[pulumi.Input[_builtins.bool]] = None,
-                 estimator: Optional[pulumi.Input[_builtins.str]] = None,
-                 expander: Optional[pulumi.Input[_builtins.str]] = None,
-                 expendable_pods_priority_cutoff: Optional[pulumi.Input[_builtins.int]] = None,
-                 ignore_daemonsets_utilization: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_graceful_termination_sec: Optional[pulumi.Input[_builtins.int]] = None,
-                 scale_down_delay_after_add: Optional[pulumi.Input[_builtins.str]] = None,
-                 scale_down_unneeded_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 scale_down_utilization_threshold: Optional[pulumi.Input[_builtins.float]] = None):
+                 balance_similar_node_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_scale_down: pulumi.Input[Optional[_builtins.bool]] = None,
+                 estimator: pulumi.Input[Optional[_builtins.str]] = None,
+                 expander: pulumi.Input[Optional[_builtins.str]] = None,
+                 expendable_pods_priority_cutoff: pulumi.Input[Optional[_builtins.int]] = None,
+                 ignore_daemonsets_utilization: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_graceful_termination_sec: pulumi.Input[Optional[_builtins.int]] = None,
+                 scale_down_delay_after_add: pulumi.Input[Optional[_builtins.str]] = None,
+                 scale_down_unneeded_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 scale_down_utilization_threshold: pulumi.Input[Optional[_builtins.float]] = None):
         """
         :param pulumi.Input[_builtins.bool] balance_similar_node_groups: Detect similar node groups and balance the number of nodes between them.
         :param pulumi.Input[_builtins.bool] disable_scale_down: Disables the scale down feature of the autoscaler.
@@ -296,139 +296,139 @@ class ClusterAutoscalerConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="balanceSimilarNodeGroups")
-    def balance_similar_node_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def balance_similar_node_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Detect similar node groups and balance the number of nodes between them.
         """
         return pulumi.get(self, "balance_similar_node_groups")
 
     @balance_similar_node_groups.setter
-    def balance_similar_node_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def balance_similar_node_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "balance_similar_node_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="disableScaleDown")
-    def disable_scale_down(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_scale_down(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables the scale down feature of the autoscaler.
         """
         return pulumi.get(self, "disable_scale_down")
 
     @disable_scale_down.setter
-    def disable_scale_down(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_scale_down(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_scale_down", value)
 
     @_builtins.property
     @pulumi.getter
-    def estimator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def estimator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of resource estimator to be used in scale up.
         """
         return pulumi.get(self, "estimator")
 
     @estimator.setter
-    def estimator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def estimator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "estimator", value)
 
     @_builtins.property
     @pulumi.getter
-    def expander(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expander(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of node group expander to be used in scale up.
         """
         return pulumi.get(self, "expander")
 
     @expander.setter
-    def expander(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expander(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expander", value)
 
     @_builtins.property
     @pulumi.getter(name="expendablePodsPriorityCutoff")
-    def expendable_pods_priority_cutoff(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expendable_pods_priority_cutoff(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         """
         return pulumi.get(self, "expendable_pods_priority_cutoff")
 
     @expendable_pods_priority_cutoff.setter
-    def expendable_pods_priority_cutoff(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expendable_pods_priority_cutoff(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expendable_pods_priority_cutoff", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreDaemonsetsUtilization")
-    def ignore_daemonsets_utilization(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_daemonsets_utilization(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Ignore DaemonSet pods when calculating resource utilization for scaling down.
         """
         return pulumi.get(self, "ignore_daemonsets_utilization")
 
     @ignore_daemonsets_utilization.setter
-    def ignore_daemonsets_utilization(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_daemonsets_utilization(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_daemonsets_utilization", value)
 
     @_builtins.property
     @pulumi.getter(name="maxGracefulTerminationSec")
-    def max_graceful_termination_sec(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_graceful_termination_sec(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         """
         return pulumi.get(self, "max_graceful_termination_sec")
 
     @max_graceful_termination_sec.setter
-    def max_graceful_termination_sec(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_graceful_termination_sec(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_graceful_termination_sec", value)
 
     @_builtins.property
     @pulumi.getter(name="scaleDownDelayAfterAdd")
-    def scale_down_delay_after_add(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scale_down_delay_after_add(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How long after scale up that scale down evaluation resumes.
         """
         return pulumi.get(self, "scale_down_delay_after_add")
 
     @scale_down_delay_after_add.setter
-    def scale_down_delay_after_add(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scale_down_delay_after_add(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scale_down_delay_after_add", value)
 
     @_builtins.property
     @pulumi.getter(name="scaleDownUnneededTime")
-    def scale_down_unneeded_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scale_down_unneeded_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How long a node should be unneeded before it is eligible for scale down.
         """
         return pulumi.get(self, "scale_down_unneeded_time")
 
     @scale_down_unneeded_time.setter
-    def scale_down_unneeded_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scale_down_unneeded_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scale_down_unneeded_time", value)
 
     @_builtins.property
     @pulumi.getter(name="scaleDownUtilizationThreshold")
-    def scale_down_utilization_threshold(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def scale_down_utilization_threshold(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         """
         return pulumi.get(self, "scale_down_utilization_threshold")
 
     @scale_down_utilization_threshold.setter
-    def scale_down_utilization_threshold(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def scale_down_utilization_threshold(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "scale_down_utilization_threshold", value)
 
 
 class ClusterKubeconfigArgsDict(TypedDict):
-    cluster_ca_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    cluster_ca_certificate: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The CA certificate of the Kubernetes API server.
     """
-    config_file: NotRequired[pulumi.Input[_builtins.str]]
+    config_file: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The raw kubeconfig file.
     """
-    host: NotRequired[pulumi.Input[_builtins.str]]
+    host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The URL of the Kubernetes API server.
     """
-    token: NotRequired[pulumi.Input[_builtins.str]]
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The token to connect to the Kubernetes API server.
     """
@@ -436,10 +436,10 @@ class ClusterKubeconfigArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterKubeconfigArgs:
     def __init__(__self__, *,
-                 cluster_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 cluster_ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cluster_ca_certificate: The CA certificate of the Kubernetes API server.
         :param pulumi.Input[_builtins.str] config_file: The raw kubeconfig file.
@@ -457,50 +457,50 @@ class ClusterKubeconfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="clusterCaCertificate")
-    def cluster_ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The CA certificate of the Kubernetes API server.
         """
         return pulumi.get(self, "cluster_ca_certificate")
 
     @cluster_ca_certificate.setter
-    def cluster_ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_ca_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="configFile")
-    def config_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The raw kubeconfig file.
         """
         return pulumi.get(self, "config_file")
 
     @config_file.setter
-    def config_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_file", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL of the Kubernetes API server.
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token to connect to the Kubernetes API server.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
 
@@ -513,23 +513,23 @@ class ClusterOpenIdConnectConfigArgsDict(TypedDict):
     """
     URL of the provider which allows the API server to discover public signing keys
     """
-    groups_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    groups_claims: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     JWT claim to use as the user's group
     """
-    groups_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    groups_prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Prefix prepended to group claims
     """
-    required_claims: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    required_claims: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Multiple key=value pairs that describes a required claim in the ID Token
     """
-    username_claim: NotRequired[pulumi.Input[_builtins.str]]
+    username_claim: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JWT claim to use as the user name
     """
-    username_prefix: NotRequired[pulumi.Input[_builtins.str]]
+    username_prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Prefix prepended to username
     """
@@ -539,11 +539,11 @@ class ClusterOpenIdConnectConfigArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
                  issuer_url: pulumi.Input[_builtins.str],
-                 groups_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 groups_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 required_claims: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 username_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_prefix: Optional[pulumi.Input[_builtins.str]] = None):
+                 groups_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 groups_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 required_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 username_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_prefix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] client_id: A client id that all tokens must be issued for
         :param pulumi.Input[_builtins.str] issuer_url: URL of the provider which allows the API server to discover public signing keys
@@ -592,89 +592,89 @@ class ClusterOpenIdConnectConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="groupsClaims")
-    def groups_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def groups_claims(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         JWT claim to use as the user's group
         """
         return pulumi.get(self, "groups_claims")
 
     @groups_claims.setter
-    def groups_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def groups_claims(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "groups_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsPrefix")
-    def groups_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix prepended to group claims
         """
         return pulumi.get(self, "groups_prefix")
 
     @groups_prefix.setter
-    def groups_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredClaims")
-    def required_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_claims(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Multiple key=value pairs that describes a required claim in the ID Token
         """
         return pulumi.get(self, "required_claims")
 
     @required_claims.setter
-    def required_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_claims(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameClaim")
-    def username_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JWT claim to use as the user name
         """
         return pulumi.get(self, "username_claim")
 
     @username_claim.setter
-    def username_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="usernamePrefix")
-    def username_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix prepended to username
         """
         return pulumi.get(self, "username_prefix")
 
     @username_prefix.setter
-    def username_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_prefix", value)
 
 
 class PoolNodeArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP address resource.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name for the pool.
 
     > **Important:** Updates to this field will recreate a new resource.
     """
-    private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgsDict']]]]
+    private_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]]
     """
     The list of private IPv4 and IPv6 addresses associated with the node.
     """
-    public_ip: NotRequired[pulumi.Input[_builtins.str]]
+    public_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
     """
-    public_ip_v6: NotRequired[pulumi.Input[_builtins.str]]
+    public_ip_v6: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The status of the node.
     """
@@ -682,12 +682,12 @@ class PoolNodeArgsDict(TypedDict):
 @pulumi.input_type
 class PoolNodeArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]] = None,
-                 public_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip_v6: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]] = None,
+                 public_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip_v6: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
         :param pulumi.Input[_builtins.str] name: The name for the pool.
@@ -719,19 +719,19 @@ class PoolNodeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name for the pool.
 
@@ -740,66 +740,66 @@ class PoolNodeArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]:
         """
         The list of private IPv4 and IPv6 addresses associated with the node.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIp")
     @_utilities.deprecated("""Please use the official Kubernetes provider and the kubernetes_nodes data source""")
-    def public_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip")
 
     @public_ip.setter
-    def public_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpV6")
     @_utilities.deprecated("""Please use the official Kubernetes provider and the kubernetes_nodes data source""")
-    def public_ip_v6(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_ip_v6(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip_v6")
 
     @public_ip_v6.setter
-    def public_ip_v6(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_ip_v6(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_ip_v6", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the node.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
 class PoolNodePrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IP address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the IP address resource.
     """
@@ -807,8 +807,8 @@ class PoolNodePrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class PoolNodePrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IP address.
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
@@ -820,35 +820,35 @@ class PoolNodePrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IP address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class PoolUpgradePolicyArgsDict(TypedDict):
-    max_surge: NotRequired[pulumi.Input[_builtins.int]]
+    max_surge: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of nodes to be created during the upgrade
     """
-    max_unavailable: NotRequired[pulumi.Input[_builtins.int]]
+    max_unavailable: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of nodes that can be not ready at the same time
     """
@@ -856,8 +856,8 @@ class PoolUpgradePolicyArgsDict(TypedDict):
 @pulumi.input_type
 class PoolUpgradePolicyArgs:
     def __init__(__self__, *,
-                 max_surge: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_unavailable: Optional[pulumi.Input[_builtins.int]] = None):
+                 max_surge: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_unavailable: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] max_surge: The maximum number of nodes to be created during the upgrade
         :param pulumi.Input[_builtins.int] max_unavailable: The maximum number of nodes that can be not ready at the same time
@@ -869,26 +869,26 @@ class PoolUpgradePolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxSurge")
-    def max_surge(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_surge(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of nodes to be created during the upgrade
         """
         return pulumi.get(self, "max_surge")
 
     @max_surge.setter
-    def max_surge(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_surge(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_surge", value)
 
     @_builtins.property
     @pulumi.getter(name="maxUnavailable")
-    def max_unavailable(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_unavailable(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of nodes that can be not ready at the same time
         """
         return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
-    def max_unavailable(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_unavailable(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_unavailable", value)
 
 

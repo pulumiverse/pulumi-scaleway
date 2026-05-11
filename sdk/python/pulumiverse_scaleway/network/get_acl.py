@@ -141,9 +141,9 @@ def get_acl(is_ipv6: Optional[_builtins.bool] = None,
         region=pulumi.get(__ret__, 'region'),
         rules=pulumi.get(__ret__, 'rules'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_acl_output(is_ipv6: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_acl_output(is_ipv6: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclResult]:
     """
     Gets information about a VPC ACL (Access Control List).

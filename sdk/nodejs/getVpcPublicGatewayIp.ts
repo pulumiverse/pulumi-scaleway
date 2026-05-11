@@ -87,5 +87,5 @@ export function getVpcPublicGatewayIpOutput(args?: GetVpcPublicGatewayIpOutputAr
  * A collection of arguments for invoking getVpcPublicGatewayIp.
  */
 export interface GetVpcPublicGatewayIpOutputArgs {
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
 }

@@ -284,11 +284,11 @@ def get_sources(name: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         url=pulumi.get(__ret__, 'url'))
-def get_sources_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       origin: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_sources_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       origin: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSourcesResult]:
     """
     Gets information about multiple Cockpit data sources.

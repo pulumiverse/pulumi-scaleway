@@ -108,23 +108,23 @@ export interface SamlState {
     /**
      * (Computed) The entity ID of the Service Provider.
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * The organization ID. If not provided, the default organization ID will be used.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The Service Provider information. It contains:
      */
-    serviceProvider?: pulumi.Input<inputs.iam.SamlServiceProvider>;
+    serviceProvider?: pulumi.Input<inputs.iam.SamlServiceProvider | undefined>;
     /**
      * (Computed) The single sign-on URL of the SAML Identity Provider.
      */
-    singleSignOnUrl?: pulumi.Input<string>;
+    singleSignOnUrl?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The status of the SAML configuration.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -134,5 +134,5 @@ export interface SamlArgs {
     /**
      * The organization ID. If not provided, the default organization ID will be used.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
 }

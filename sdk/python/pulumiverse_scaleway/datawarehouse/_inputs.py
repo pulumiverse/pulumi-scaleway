@@ -30,15 +30,15 @@ class DeploymentPrivateNetworkArgsDict(TypedDict):
     """
     The ID of the private network. Format: `{region}/{id}` or just `{id}`.
     """
-    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    dns_record: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     DNS record for the private endpoint.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the private endpoint.
     """
-    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgsDict']]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]]
     """
     List of services exposed on the private endpoint.
     """
@@ -47,9 +47,9 @@ class DeploymentPrivateNetworkArgsDict(TypedDict):
 class DeploymentPrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[_builtins.str],
-                 dns_record: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 services: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]] = None):
+                 dns_record: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 services: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] pn_id: The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         :param pulumi.Input[_builtins.str] dns_record: DNS record for the private endpoint.
@@ -78,47 +78,47 @@ class DeploymentPrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="dnsRecord")
-    def dns_record(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_record(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DNS record for the private endpoint.
         """
         return pulumi.get(self, "dns_record")
 
     @dns_record.setter
-    def dns_record(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_record(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_record", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]:
+    def services(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]:
         """
         List of services exposed on the private endpoint.
         """
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]):
+    def services(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]):
         pulumi.set(self, "services", value)
 
 
 class DeploymentPrivateNetworkServiceArgsDict(TypedDict):
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port number.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Service protocol (e.g., "tcp", "https", "mysql").
     """
@@ -126,8 +126,8 @@ class DeploymentPrivateNetworkServiceArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPrivateNetworkServiceArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] port: TCP port number.
         :param pulumi.Input[_builtins.str] protocol: Service protocol (e.g., "tcp", "https", "mysql").
@@ -139,39 +139,39 @@ class DeploymentPrivateNetworkServiceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port number.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service protocol (e.g., "tcp", "https", "mysql").
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
 class DeploymentPublicNetworkArgsDict(TypedDict):
-    dns_record: NotRequired[pulumi.Input[_builtins.str]]
+    dns_record: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     DNS record for the private endpoint.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the private endpoint.
     """
-    services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgsDict']]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]]
     """
     List of services exposed on the private endpoint.
     """
@@ -179,9 +179,9 @@ class DeploymentPublicNetworkArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPublicNetworkArgs:
     def __init__(__self__, *,
-                 dns_record: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 services: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]] = None):
+                 dns_record: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 services: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] dns_record: DNS record for the private endpoint.
         :param pulumi.Input[_builtins.str] id: The ID of the private endpoint.
@@ -196,47 +196,47 @@ class DeploymentPublicNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="dnsRecord")
-    def dns_record(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_record(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DNS record for the private endpoint.
         """
         return pulumi.get(self, "dns_record")
 
     @dns_record.setter
-    def dns_record(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_record(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_record", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private endpoint.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]:
+    def services(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]:
         """
         List of services exposed on the private endpoint.
         """
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]):
+    def services(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]):
         pulumi.set(self, "services", value)
 
 
 class DeploymentPublicNetworkServiceArgsDict(TypedDict):
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port number.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Service protocol (e.g., "tcp", "https", "mysql").
     """
@@ -244,8 +244,8 @@ class DeploymentPublicNetworkServiceArgsDict(TypedDict):
 @pulumi.input_type
 class DeploymentPublicNetworkServiceArgs:
     def __init__(__self__, *,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] port: TCP port number.
         :param pulumi.Input[_builtins.str] protocol: Service protocol (e.g., "tcp", "https", "mysql").
@@ -257,26 +257,26 @@ class DeploymentPublicNetworkServiceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port number.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service protocol (e.g., "tcp", "https", "mysql").
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 

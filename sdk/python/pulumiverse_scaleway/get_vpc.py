@@ -205,12 +205,12 @@ def get_vpc(is_default: Optional[_builtins.bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_vpc_output(is_default: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                   name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                   vpc_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_vpc_output(is_default: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                   name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                   vpc_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcResult]:
     """
     Gets information about a Scaleway Virtual Private Cloud.

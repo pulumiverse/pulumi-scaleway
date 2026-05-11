@@ -153,5 +153,5 @@ export interface GetKeyManagerKeyOutputArgs {
     /**
      * `region`) The region in which the key was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

@@ -21,16 +21,16 @@ __all__ = ['PrivateNetworkArgs', 'PrivateNetwork']
 @pulumi.input_type
 class PrivateNetworkArgs:
     def __init__(__self__, *,
-                 enable_default_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipv4_subnet: Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]] = None,
-                 is_regional: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 enable_default_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipv4_subnet: pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']] = None,
+                 ipv6_subnets: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]] = None,
+                 is_regional: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateNetwork resource.
 
@@ -74,143 +74,143 @@ class PrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableDefaultRoutePropagation")
-    def enable_default_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_default_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether default v4 and v6 routes are propagated for this Private Network.
         """
         return pulumi.get(self, "enable_default_route_propagation")
 
     @enable_default_route_propagation.setter
-    def enable_default_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_default_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_default_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4Subnet")
-    def ipv4_subnet(self) -> Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']]:
+    def ipv4_subnet(self) -> pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']]:
         """
         The IPv4 subnet to associate with the Private Network.
         """
         return pulumi.get(self, "ipv4_subnet")
 
     @ipv4_subnet.setter
-    def ipv4_subnet(self, value: Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']]):
+    def ipv4_subnet(self, value: pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']]):
         pulumi.set(self, "ipv4_subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Subnets")
-    def ipv6_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]:
+    def ipv6_subnets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]:
         """
         The IPv6 subnets to associate with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
     @ipv6_subnets.setter
-    def ipv6_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]):
+    def ipv6_subnets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]):
         pulumi.set(self, "ipv6_subnets", value)
 
     @_builtins.property
     @pulumi.getter(name="isRegional")
     @_utilities.deprecated("""This field is deprecated and will be removed in the next major version""")
-    def is_regional(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_regional(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Private Networks are now all necessarily regional.
         """
         return pulumi.get(self, "is_regional")
 
     @is_regional.setter
-    def is_regional(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_regional(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_regional", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Private Network. If not provided, it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the private network is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the Private Network.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Private Network.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VPC in which to create the Private Network.
         """
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This field is deprecated and will be removed in the next major version, please use `region` instead""")
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Use `region` instead.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _PrivateNetworkState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_default_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipv4_subnet: Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]] = None,
-                 is_regional: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipv4_subnet: pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']] = None,
+                 ipv6_subnets: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]] = None,
+                 is_regional: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateNetwork resources.
 
@@ -263,160 +263,160 @@ class _PrivateNetworkState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDefaultRoutePropagation")
-    def enable_default_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_default_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether default v4 and v6 routes are propagated for this Private Network.
         """
         return pulumi.get(self, "enable_default_route_propagation")
 
     @enable_default_route_propagation.setter
-    def enable_default_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_default_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_default_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4Subnet")
-    def ipv4_subnet(self) -> Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']]:
+    def ipv4_subnet(self) -> pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']]:
         """
         The IPv4 subnet to associate with the Private Network.
         """
         return pulumi.get(self, "ipv4_subnet")
 
     @ipv4_subnet.setter
-    def ipv4_subnet(self, value: Optional[pulumi.Input['PrivateNetworkIpv4SubnetArgs']]):
+    def ipv4_subnet(self, value: pulumi.Input[Optional['PrivateNetworkIpv4SubnetArgs']]):
         pulumi.set(self, "ipv4_subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Subnets")
-    def ipv6_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]:
+    def ipv6_subnets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]:
         """
         The IPv6 subnets to associate with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
     @ipv6_subnets.setter
-    def ipv6_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]):
+    def ipv6_subnets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateNetworkIpv6SubnetArgs']]]]):
         pulumi.set(self, "ipv6_subnets", value)
 
     @_builtins.property
     @pulumi.getter(name="isRegional")
     @_utilities.deprecated("""This field is deprecated and will be removed in the next major version""")
-    def is_regional(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_regional(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Private Networks are now all necessarily regional.
         """
         return pulumi.get(self, "is_regional")
 
     @is_regional.setter
-    def is_regional(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_regional(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_regional", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Private Network. If not provided, it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID the Private Network is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the private network is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region of the Private Network.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Private Network.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VPC in which to create the Private Network.
         """
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
-    def vpc_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpc_id", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This field is deprecated and will be removed in the next major version, please use `region` instead""")
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Use `region` instead.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -426,16 +426,16 @@ class PrivateNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enable_default_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipv4_subnet: Optional[pulumi.Input[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
-                 is_regional: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_default_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipv4_subnet: pulumi.Input[Optional[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
+                 ipv6_subnets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
+                 is_regional: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway VPC Private Networks.
@@ -579,16 +579,16 @@ class PrivateNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enable_default_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ipv4_subnet: Optional[pulumi.Input[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
-                 ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
-                 is_regional: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 enable_default_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ipv4_subnet: pulumi.Input[Optional[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
+                 ipv6_subnets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
+                 is_regional: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -623,19 +623,19 @@ class PrivateNetwork(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_default_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-            ipv4_subnet: Optional[pulumi.Input[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
-            ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
-            is_regional: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'PrivateNetwork':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_default_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+            ipv4_subnet: pulumi.Input[Optional[Union['PrivateNetworkIpv4SubnetArgs', 'PrivateNetworkIpv4SubnetArgsDict']]] = None,
+            ipv6_subnets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateNetworkIpv6SubnetArgs', 'PrivateNetworkIpv6SubnetArgsDict']]]]] = None,
+            is_regional: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'PrivateNetwork':
         """
         Get an existing PrivateNetwork resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

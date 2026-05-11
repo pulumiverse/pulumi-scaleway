@@ -126,14 +126,14 @@ export interface GetPublicGatewayOutputArgs {
     /**
      * Exact name of the Public Gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project the Public Gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
-    publicGatewayId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
+    publicGatewayId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The Public Gateway's zone.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

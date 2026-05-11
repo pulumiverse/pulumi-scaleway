@@ -21,19 +21,19 @@ __all__ = ['ConnectionArgs', 'Connection']
 @pulumi.input_type
 class ConnectionArgs:
     def __init__(__self__, *,
-                 bgp_config_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]] = None,
-                 bgp_config_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]] = None,
-                 customer_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 esp_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]] = None,
-                 ikev2_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]] = None,
-                 initiation_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 bgp_config_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]] = None,
+                 bgp_config_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]] = None,
+                 customer_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 esp_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]] = None,
+                 ikev2_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]] = None,
+                 initiation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Connection resource.
 
@@ -80,189 +80,189 @@ class ConnectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="bgpConfigIpv4s")
-    def bgp_config_ipv4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]:
+    def bgp_config_ipv4s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]:
         """
         BGP configuration for IPv4. See BGP Config below.
         """
         return pulumi.get(self, "bgp_config_ipv4s")
 
     @bgp_config_ipv4s.setter
-    def bgp_config_ipv4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]):
+    def bgp_config_ipv4s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]):
         pulumi.set(self, "bgp_config_ipv4s", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpConfigIpv6s")
-    def bgp_config_ipv6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]:
+    def bgp_config_ipv6s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]:
         """
         BGP configuration for IPv6. See BGP Config below.
         """
         return pulumi.get(self, "bgp_config_ipv6s")
 
     @bgp_config_ipv6s.setter
-    def bgp_config_ipv6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]):
+    def bgp_config_ipv6s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]):
         pulumi.set(self, "bgp_config_ipv6s", value)
 
     @_builtins.property
     @pulumi.getter(name="customerGatewayId")
-    def customer_gateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def customer_gateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the customer gateway to attach to the connection.
         """
         return pulumi.get(self, "customer_gateway_id")
 
     @customer_gateway_id.setter
-    def customer_gateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def customer_gateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "customer_gateway_id", value)
 
     @_builtins.property
     @pulumi.getter(name="enableRoutePropagation")
-    def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether route propagation is enabled or not.
         """
         return pulumi.get(self, "enable_route_propagation")
 
     @enable_route_propagation.setter
-    def enable_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter(name="espCiphers")
-    def esp_ciphers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]:
+    def esp_ciphers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]:
         """
         ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         """
         return pulumi.get(self, "esp_ciphers")
 
     @esp_ciphers.setter
-    def esp_ciphers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]):
+    def esp_ciphers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]):
         pulumi.set(self, "esp_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="ikev2Ciphers")
-    def ikev2_ciphers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]:
+    def ikev2_ciphers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]:
         """
         IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
         """
         return pulumi.get(self, "ikev2_ciphers")
 
     @ikev2_ciphers.setter
-    def ikev2_ciphers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]):
+    def ikev2_ciphers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]):
         pulumi.set(self, "ikev2_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="initiationPolicy")
-    def initiation_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def initiation_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines who initiates the IPSec tunnel.
         """
         return pulumi.get(self, "initiation_policy")
 
     @initiation_policy.setter
-    def initiation_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def initiation_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "initiation_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="isIpv6")
-    def is_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         """
         return pulumi.get(self, "is_ipv6")
 
     @is_ipv6.setter
-    def is_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ipv6", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the connection.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the connection is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the connection should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags to apply to the connection.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="vpnGatewayId")
-    def vpn_gateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpn_gateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the VPN gateway to attach to the connection.
         """
         return pulumi.get(self, "vpn_gateway_id")
 
     @vpn_gateway_id.setter
-    def vpn_gateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpn_gateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpn_gateway_id", value)
 
 
 @pulumi.input_type
 class _ConnectionState:
     def __init__(__self__, *,
-                 bgp_config_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]] = None,
-                 bgp_config_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]] = None,
-                 bgp_session_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]] = None,
-                 bgp_session_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]] = None,
-                 bgp_status_ipv4: Optional[pulumi.Input[_builtins.str]] = None,
-                 bgp_status_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 customer_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 esp_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]] = None,
-                 ikev2_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]] = None,
-                 initiation_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 route_propagation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tunnel_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 bgp_config_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]] = None,
+                 bgp_config_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]] = None,
+                 bgp_session_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]] = None,
+                 bgp_session_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]] = None,
+                 bgp_status_ipv4: pulumi.Input[Optional[_builtins.str]] = None,
+                 bgp_status_ipv6: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 customer_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 esp_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]] = None,
+                 ikev2_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]] = None,
+                 initiation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 route_propagation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tunnel_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
 
@@ -345,302 +345,302 @@ class _ConnectionState:
 
     @_builtins.property
     @pulumi.getter(name="bgpConfigIpv4s")
-    def bgp_config_ipv4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]:
+    def bgp_config_ipv4s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]:
         """
         BGP configuration for IPv4. See BGP Config below.
         """
         return pulumi.get(self, "bgp_config_ipv4s")
 
     @bgp_config_ipv4s.setter
-    def bgp_config_ipv4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]):
+    def bgp_config_ipv4s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv4Args']]]]):
         pulumi.set(self, "bgp_config_ipv4s", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpConfigIpv6s")
-    def bgp_config_ipv6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]:
+    def bgp_config_ipv6s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]:
         """
         BGP configuration for IPv6. See BGP Config below.
         """
         return pulumi.get(self, "bgp_config_ipv6s")
 
     @bgp_config_ipv6s.setter
-    def bgp_config_ipv6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]):
+    def bgp_config_ipv6s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpConfigIpv6Args']]]]):
         pulumi.set(self, "bgp_config_ipv6s", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpSessionIpv4s")
-    def bgp_session_ipv4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]]:
+    def bgp_session_ipv4s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]]:
         """
         The BGP IPv4 session information. See BGP Session below.
         """
         return pulumi.get(self, "bgp_session_ipv4s")
 
     @bgp_session_ipv4s.setter
-    def bgp_session_ipv4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]]):
+    def bgp_session_ipv4s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv4Args']]]]):
         pulumi.set(self, "bgp_session_ipv4s", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpSessionIpv6s")
-    def bgp_session_ipv6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]]:
+    def bgp_session_ipv6s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]]:
         """
         The BGP IPv6 session information. See BGP Session below.
         """
         return pulumi.get(self, "bgp_session_ipv6s")
 
     @bgp_session_ipv6s.setter
-    def bgp_session_ipv6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]]):
+    def bgp_session_ipv6s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionBgpSessionIpv6Args']]]]):
         pulumi.set(self, "bgp_session_ipv6s", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpStatusIpv4")
-    def bgp_status_ipv4(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bgp_status_ipv4(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the BGP IPv4 session.
         """
         return pulumi.get(self, "bgp_status_ipv4")
 
     @bgp_status_ipv4.setter
-    def bgp_status_ipv4(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bgp_status_ipv4(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bgp_status_ipv4", value)
 
     @_builtins.property
     @pulumi.getter(name="bgpStatusIpv6")
-    def bgp_status_ipv6(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bgp_status_ipv6(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the BGP IPv6 session.
         """
         return pulumi.get(self, "bgp_status_ipv6")
 
     @bgp_status_ipv6.setter
-    def bgp_status_ipv6(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bgp_status_ipv6(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bgp_status_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the creation of the connection (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="customerGatewayId")
-    def customer_gateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def customer_gateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the customer gateway to attach to the connection.
         """
         return pulumi.get(self, "customer_gateway_id")
 
     @customer_gateway_id.setter
-    def customer_gateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def customer_gateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "customer_gateway_id", value)
 
     @_builtins.property
     @pulumi.getter(name="enableRoutePropagation")
-    def enable_route_propagation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_route_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether route propagation is enabled or not.
         """
         return pulumi.get(self, "enable_route_propagation")
 
     @enable_route_propagation.setter
-    def enable_route_propagation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_route_propagation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_route_propagation", value)
 
     @_builtins.property
     @pulumi.getter(name="espCiphers")
-    def esp_ciphers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]:
+    def esp_ciphers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]:
         """
         ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         """
         return pulumi.get(self, "esp_ciphers")
 
     @esp_ciphers.setter
-    def esp_ciphers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]):
+    def esp_ciphers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionEspCipherArgs']]]]):
         pulumi.set(self, "esp_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="ikev2Ciphers")
-    def ikev2_ciphers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]:
+    def ikev2_ciphers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]:
         """
         IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
         """
         return pulumi.get(self, "ikev2_ciphers")
 
     @ikev2_ciphers.setter
-    def ikev2_ciphers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]):
+    def ikev2_ciphers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]]]):
         pulumi.set(self, "ikev2_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="initiationPolicy")
-    def initiation_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def initiation_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines who initiates the IPSec tunnel.
         """
         return pulumi.get(self, "initiation_policy")
 
     @initiation_policy.setter
-    def initiation_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def initiation_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "initiation_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="isIpv6")
-    def is_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         """
         return pulumi.get(self, "is_ipv6")
 
     @is_ipv6.setter
-    def is_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ipv6", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the connection.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Organization ID the connection is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the connection is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region in which the connection should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="routePropagationEnabled")
-    def route_propagation_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def route_propagation_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether route propagation is enabled.
         """
         return pulumi.get(self, "route_propagation_enabled")
 
     @route_propagation_enabled.setter
-    def route_propagation_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def route_propagation_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "route_propagation_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the secret containing the pre-shared key (PSK) for the connection.
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretVersion")
-    def secret_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the secret containing the PSK.
         """
         return pulumi.get(self, "secret_version")
 
     @secret_version.setter
-    def secret_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the connection.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags to apply to the connection.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="tunnelStatus")
-    def tunnel_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tunnel_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the IPSec tunnel.
         """
         return pulumi.get(self, "tunnel_status")
 
     @tunnel_status.setter
-    def tunnel_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tunnel_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tunnel_status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time of the last update of the connection (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="vpnGatewayId")
-    def vpn_gateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vpn_gateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the VPN gateway to attach to the connection.
         """
         return pulumi.get(self, "vpn_gateway_id")
 
     @vpn_gateway_id.setter
-    def vpn_gateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vpn_gateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vpn_gateway_id", value)
 
 
@@ -650,19 +650,19 @@ class Connection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bgp_config_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
-                 bgp_config_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
-                 customer_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 esp_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
-                 ikev2_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
-                 initiation_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 bgp_config_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
+                 bgp_config_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
+                 customer_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 esp_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
+                 ikev2_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
+                 initiation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Site-to-Site VPN Connections.
@@ -831,19 +831,19 @@ class Connection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bgp_config_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
-                 bgp_config_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
-                 customer_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 esp_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
-                 ikev2_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
-                 initiation_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 bgp_config_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
+                 bgp_config_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
+                 customer_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 esp_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
+                 ikev2_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
+                 initiation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -888,31 +888,31 @@ class Connection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bgp_config_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
-            bgp_config_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
-            bgp_session_ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpSessionIpv4Args', 'ConnectionBgpSessionIpv4ArgsDict']]]]] = None,
-            bgp_session_ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionBgpSessionIpv6Args', 'ConnectionBgpSessionIpv6ArgsDict']]]]] = None,
-            bgp_status_ipv4: Optional[pulumi.Input[_builtins.str]] = None,
-            bgp_status_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            customer_gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_route_propagation: Optional[pulumi.Input[_builtins.bool]] = None,
-            esp_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
-            ikev2_ciphers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
-            initiation_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            route_propagation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_version: Optional[pulumi.Input[_builtins.int]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            tunnel_status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            vpn_gateway_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Connection':
+            bgp_config_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv4Args', 'ConnectionBgpConfigIpv4ArgsDict']]]]] = None,
+            bgp_config_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpConfigIpv6Args', 'ConnectionBgpConfigIpv6ArgsDict']]]]] = None,
+            bgp_session_ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpSessionIpv4Args', 'ConnectionBgpSessionIpv4ArgsDict']]]]] = None,
+            bgp_session_ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionBgpSessionIpv6Args', 'ConnectionBgpSessionIpv6ArgsDict']]]]] = None,
+            bgp_status_ipv4: pulumi.Input[Optional[_builtins.str]] = None,
+            bgp_status_ipv6: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_route_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
+            esp_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]]] = None,
+            ikev2_ciphers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]]] = None,
+            initiation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            route_propagation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_version: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tunnel_status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Connection':
         """
         Get an existing Connection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

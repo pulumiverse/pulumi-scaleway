@@ -233,63 +233,63 @@ export interface InstanceImageState {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      */
-    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the extra volumes attached to the image.
      */
-    additionalVolumes?: pulumi.Input<pulumi.Input<inputs.InstanceImageAdditionalVolume>[]>;
+    additionalVolumes?: pulumi.Input<pulumi.Input<inputs.InstanceImageAdditionalVolume>[] | undefined>;
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */
-    architecture?: pulumi.Input<string>;
+    architecture?: pulumi.Input<string | undefined>;
     /**
      * Date of the image creation.
      */
-    creationDate?: pulumi.Input<string>;
+    creationDate?: pulumi.Input<string | undefined>;
     /**
      * ID of the server the image is based on (in case it is a backup).
      */
-    fromServerId?: pulumi.Input<string>;
+    fromServerId?: pulumi.Input<string | undefined>;
     /**
      * Date of image latest update.
      */
-    modificationDate?: pulumi.Input<string>;
+    modificationDate?: pulumi.Input<string | undefined>;
     /**
      * The name of the image. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the image is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the image is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to `true` if the image is public.
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the snapshot of the volume to be used as root in the image.
      */
-    rootVolumeId?: pulumi.Input<string>;
+    rootVolumeId?: pulumi.Input<string | undefined>;
     /**
      * The description of the root volume attached to the image.
      */
-    rootVolumes?: pulumi.Input<pulumi.Input<inputs.InstanceImageRootVolume>[]>;
+    rootVolumes?: pulumi.Input<pulumi.Input<inputs.InstanceImageRootVolume>[] | undefined>;
     /**
      * State of the image. Possible values are: `available`, `creating` or `error`.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the image.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The zone in which the image should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -299,23 +299,23 @@ export interface InstanceImageArgs {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      */
-    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */
-    architecture?: pulumi.Input<string>;
+    architecture?: pulumi.Input<string | undefined>;
     /**
      * The name of the image. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the image is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Set to `true` if the image is public.
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the snapshot of the volume to be used as root in the image.
      */
@@ -323,9 +323,9 @@ export interface InstanceImageArgs {
     /**
      * A list of tags to apply to the image.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The zone in which the image should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

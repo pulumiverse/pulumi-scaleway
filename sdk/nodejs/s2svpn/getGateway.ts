@@ -170,19 +170,19 @@ export interface GetGatewayOutputArgs {
     /**
      * The name of the VPN gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the VPN gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the VPN gateway exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The VPN gateway ID.
      *
      * > **Note** You must specify at least one: `name` and/or `vpnGatewayId`.
      */
-    vpnGatewayId?: pulumi.Input<string>;
+    vpnGatewayId?: pulumi.Input<string | undefined>;
 }

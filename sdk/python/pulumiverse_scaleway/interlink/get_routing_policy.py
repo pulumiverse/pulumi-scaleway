@@ -228,10 +228,10 @@ def get_routing_policy(name: Optional[_builtins.str] = None,
         routing_policy_id=pulumi.get(__ret__, 'routing_policy_id'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_routing_policy_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              routing_policy_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_routing_policy_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              routing_policy_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRoutingPolicyResult]:
     """
     Gets information about an Interlink Routing Policy.

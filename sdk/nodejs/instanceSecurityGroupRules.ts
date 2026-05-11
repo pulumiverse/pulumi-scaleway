@@ -54,9 +54,9 @@ import * as utilities from "./utilities";
  *     "7.8.9.10/24",
  * ];
  * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
- *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *     inboundRules: trusted.map(entry => ({
  *         action: "accept",
- *         ipRange: entry.value,
+ *         ipRange: entry,
  *         port: 80,
  *     })),
  *     securityGroupId: main.id,
@@ -91,10 +91,10 @@ import * as utilities from "./utilities";
  *     },
  * ];
  * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
- *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *     inboundRules: trusted.map(entry => ({
  *         action: "accept",
- *         ipRange: entry.value.ipRange,
- *         port: entry.value.port,
+ *         ipRange: entry.ipRange,
+ *         port: Number(entry.port),
  *     })),
  *     securityGroupId: main.id,
  * });
@@ -192,15 +192,15 @@ export interface InstanceSecurityGroupRulesState {
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[] | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[] | undefined>;
     /**
      * The ID of the security group.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,11 +210,11 @@ export interface InstanceSecurityGroupRulesArgs {
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesInboundRule>[] | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupRulesOutboundRule>[] | undefined>;
     /**
      * The ID of the security group.
      */

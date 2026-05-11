@@ -279,8 +279,8 @@ def get_key(key_id: Optional[_builtins.str] = None,
         unprotected=pulumi.get(__ret__, 'unprotected'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         usage=pulumi.get(__ret__, 'usage'))
-def get_key_output(key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyResult]:
     """
     Gets information about a Key Manager Key. For more information, refer to the [Key Manager API documentation](https://www.scaleway.com/en/developers/api/key-manager/#path-keys-get-key-metadata).

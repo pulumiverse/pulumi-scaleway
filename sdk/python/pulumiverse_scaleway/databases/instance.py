@@ -22,30 +22,30 @@ __all__ = ['InstanceArgs', 'Instance']
 class InstanceArgs:
     def __init__(__self__, *,
                  node_type: pulumi.Input[_builtins.str],
-                 backup_same_region: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_schedule_frequency: Optional[pulumi.Input[_builtins.int]] = None,
-                 backup_schedule_retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest: Optional[pulumi.Input[_builtins.bool]] = None,
-                 engine: Optional[pulumi.Input[_builtins.str]] = None,
-                 init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancer: Optional[pulumi.Input['InstanceLoadBalancerArgs']] = None,
-                 logs_policy: Optional[pulumi.Input['InstanceLogsPolicyArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
-                 private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+                 backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+                 engine: pulumi.Input[Optional[_builtins.str]] = None,
+                 init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancer: pulumi.Input[Optional['InstanceLoadBalancerArgs']] = None,
+                 logs_policy: pulumi.Input[Optional['InstanceLogsPolicyArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
+                 private_network: pulumi.Input[Optional['InstancePrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Instance resource.
 
@@ -164,67 +164,67 @@ class InstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="backupSameRegion")
-    def backup_same_region(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backup_same_region(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean to store logical backups in the same region as the database instance
         """
         return pulumi.get(self, "backup_same_region")
 
     @backup_same_region.setter
-    def backup_same_region(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backup_same_region(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backup_same_region", value)
 
     @_builtins.property
     @pulumi.getter(name="backupScheduleFrequency")
-    def backup_schedule_frequency(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def backup_schedule_frequency(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
     @backup_schedule_frequency.setter
-    def backup_schedule_frequency(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def backup_schedule_frequency(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "backup_schedule_frequency", value)
 
     @_builtins.property
     @pulumi.getter(name="backupScheduleRetention")
-    def backup_schedule_retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def backup_schedule_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
     @backup_schedule_retention.setter
-    def backup_schedule_retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def backup_schedule_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "backup_schedule_retention", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBackup")
-    def disable_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
     @disable_backup.setter
-    def disable_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRest")
-    def encryption_at_rest(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encryption_at_rest(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable encryption at rest for the Database Instance.
         """
         return pulumi.get(self, "encryption_at_rest")
 
     @encryption_at_rest.setter
-    def encryption_at_rest(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encryption_at_rest(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encryption_at_rest", value)
 
     @_builtins.property
     @pulumi.getter
-    def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def engine(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
 
@@ -237,24 +237,24 @@ class InstanceArgs:
         return pulumi.get(self, "engine")
 
     @engine.setter
-    def engine(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def engine(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "engine", value)
 
     @_builtins.property
     @pulumi.getter(name="initSettings")
-    def init_settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def init_settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of engine settings to be set at database initialisation.
         """
         return pulumi.get(self, "init_settings")
 
     @init_settings.setter
-    def init_settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def init_settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "init_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="isHaCluster")
-    def is_ha_cluster(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ha_cluster(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable high availability for the Database Instance.
 
@@ -263,60 +263,60 @@ class InstanceArgs:
         return pulumi.get(self, "is_ha_cluster")
 
     @is_ha_cluster.setter
-    def is_ha_cluster(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ha_cluster(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ha_cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="loadBalancer")
-    def load_balancer(self) -> Optional[pulumi.Input['InstanceLoadBalancerArgs']]:
+    def load_balancer(self) -> pulumi.Input[Optional['InstanceLoadBalancerArgs']]:
         """
         List of Load Balancer endpoints of the Database Instance.
         """
         return pulumi.get(self, "load_balancer")
 
     @load_balancer.setter
-    def load_balancer(self, value: Optional[pulumi.Input['InstanceLoadBalancerArgs']]):
+    def load_balancer(self, value: pulumi.Input[Optional['InstanceLoadBalancerArgs']]):
         pulumi.set(self, "load_balancer", value)
 
     @_builtins.property
     @pulumi.getter(name="logsPolicy")
-    def logs_policy(self) -> Optional[pulumi.Input['InstanceLogsPolicyArgs']]:
+    def logs_policy(self) -> pulumi.Input[Optional['InstanceLogsPolicyArgs']]:
         """
         Logs policy configuration
         """
         return pulumi.get(self, "logs_policy")
 
     @logs_policy.setter
-    def logs_policy(self, value: Optional[pulumi.Input['InstanceLogsPolicyArgs']]):
+    def logs_policy(self, value: pulumi.Input[Optional['InstanceLogsPolicyArgs']]):
         pulumi.set(self, "logs_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -324,48 +324,48 @@ class InstanceArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['InstancePrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['InstancePrivateNetworkArgs']]:
         """
         List of Private Networks endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['InstancePrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['InstancePrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the Database
         Instance is associated with.
@@ -373,12 +373,12 @@ class InstanceArgs:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region
         in which the Database Instance should be created.
@@ -386,48 +386,48 @@ class InstanceArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the first user of the Database Instance.
 
@@ -436,12 +436,12 @@ class InstanceArgs:
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeSizeInGb")
-    def volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
@@ -450,56 +450,56 @@ class InstanceArgs:
         return pulumi.get(self, "volume_size_in_gb")
 
     @volume_size_in_gb.setter
-    def volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
 @pulumi.input_type
 class _InstanceState:
     def __init__(__self__, *,
-                 backup_same_region: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_schedule_frequency: Optional[pulumi.Input[_builtins.int]] = None,
-                 backup_schedule_retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 engine: Optional[pulumi.Input[_builtins.str]] = None,
-                 init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancer: Optional[pulumi.Input['InstanceLoadBalancerArgs']] = None,
-                 logs_policy: Optional[pulumi.Input['InstanceLogsPolicyArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
-                 private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 upgradable_versions: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+                 backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 engine: pulumi.Input[Optional[_builtins.str]] = None,
+                 init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancer: pulumi.Input[Optional['InstanceLoadBalancerArgs']] = None,
+                 logs_policy: pulumi.Input[Optional['InstanceLogsPolicyArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
+                 private_network: pulumi.Input[Optional['InstancePrivateNetworkArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 upgradable_versions: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
 
@@ -626,105 +626,105 @@ class _InstanceState:
 
     @_builtins.property
     @pulumi.getter(name="backupSameRegion")
-    def backup_same_region(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backup_same_region(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean to store logical backups in the same region as the database instance
         """
         return pulumi.get(self, "backup_same_region")
 
     @backup_same_region.setter
-    def backup_same_region(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backup_same_region(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backup_same_region", value)
 
     @_builtins.property
     @pulumi.getter(name="backupScheduleFrequency")
-    def backup_schedule_frequency(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def backup_schedule_frequency(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
     @backup_schedule_frequency.setter
-    def backup_schedule_frequency(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def backup_schedule_frequency(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "backup_schedule_frequency", value)
 
     @_builtins.property
     @pulumi.getter(name="backupScheduleRetention")
-    def backup_schedule_retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def backup_schedule_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
     @backup_schedule_retention.setter
-    def backup_schedule_retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def backup_schedule_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "backup_schedule_retention", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Certificate of the Database Instance.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBackup")
-    def disable_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
     @disable_backup.setter
-    def disable_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRest")
-    def encryption_at_rest(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encryption_at_rest(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable encryption at rest for the Database Instance.
         """
         return pulumi.get(self, "encryption_at_rest")
 
     @encryption_at_rest.setter
-    def encryption_at_rest(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encryption_at_rest(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encryption_at_rest", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointIp")
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
-    def endpoint_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_ip")
 
     @endpoint_ip.setter
-    def endpoint_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointPort")
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
-    def endpoint_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def endpoint_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_port")
 
     @endpoint_port.setter
-    def endpoint_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def endpoint_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "endpoint_port", value)
 
     @_builtins.property
     @pulumi.getter
-    def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def engine(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
 
@@ -737,24 +737,24 @@ class _InstanceState:
         return pulumi.get(self, "engine")
 
     @engine.setter
-    def engine(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def engine(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "engine", value)
 
     @_builtins.property
     @pulumi.getter(name="initSettings")
-    def init_settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def init_settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of engine settings to be set at database initialisation.
         """
         return pulumi.get(self, "init_settings")
 
     @init_settings.setter
-    def init_settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def init_settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "init_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="isHaCluster")
-    def is_ha_cluster(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ha_cluster(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable or disable high availability for the Database Instance.
 
@@ -763,48 +763,48 @@ class _InstanceState:
         return pulumi.get(self, "is_ha_cluster")
 
     @is_ha_cluster.setter
-    def is_ha_cluster(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ha_cluster(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ha_cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="loadBalancer")
-    def load_balancer(self) -> Optional[pulumi.Input['InstanceLoadBalancerArgs']]:
+    def load_balancer(self) -> pulumi.Input[Optional['InstanceLoadBalancerArgs']]:
         """
         List of Load Balancer endpoints of the Database Instance.
         """
         return pulumi.get(self, "load_balancer")
 
     @load_balancer.setter
-    def load_balancer(self, value: Optional[pulumi.Input['InstanceLoadBalancerArgs']]):
+    def load_balancer(self, value: pulumi.Input[Optional['InstanceLoadBalancerArgs']]):
         pulumi.set(self, "load_balancer", value)
 
     @_builtins.property
     @pulumi.getter(name="logsPolicy")
-    def logs_policy(self) -> Optional[pulumi.Input['InstanceLogsPolicyArgs']]:
+    def logs_policy(self) -> pulumi.Input[Optional['InstanceLogsPolicyArgs']]:
         """
         Logs policy configuration
         """
         return pulumi.get(self, "logs_policy")
 
     @logs_policy.setter
-    def logs_policy(self, value: Optional[pulumi.Input['InstanceLogsPolicyArgs']]):
+    def logs_policy(self, value: pulumi.Input[Optional['InstanceLogsPolicyArgs']]):
         pulumi.set(self, "logs_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
-    def node_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of Database Instance you want to create (e.g. `db-dev-s`).
 
@@ -816,36 +816,36 @@ class _InstanceState:
         return pulumi.get(self, "node_type")
 
     @node_type.setter
-    def node_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_type", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the Database Instance is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
@@ -853,48 +853,48 @@ class _InstanceState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
-    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+    def private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
         """
         The private IPv4 address associated with the resource.
         """
         return pulumi.get(self, "private_ips")
 
     @private_ips.setter
-    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+    def private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['InstancePrivateNetworkArgs']]:
+    def private_network(self) -> pulumi.Input[Optional['InstancePrivateNetworkArgs']]:
         """
         List of Private Networks endpoints of the Database Instance.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['InstancePrivateNetworkArgs']]):
+    def private_network(self, value: pulumi.Input[Optional['InstancePrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the Database
         Instance is associated with.
@@ -902,24 +902,24 @@ class _InstanceState:
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="readReplicas")
-    def read_replicas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]]:
+    def read_replicas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]]:
         """
         List of read replicas of the Database Instance.
         """
         return pulumi.get(self, "read_replicas")
 
     @read_replicas.setter
-    def read_replicas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]]):
+    def read_replicas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]]):
         pulumi.set(self, "read_replicas", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`) The region
         in which the Database Instance should be created.
@@ -927,60 +927,60 @@ class _InstanceState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def settings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradableVersions")
-    def upgradable_versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]]:
+    def upgradable_versions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]]:
         """
         List of available engine versions for upgrade. Each version contains:
         """
         return pulumi.get(self, "upgradable_versions")
 
     @upgradable_versions.setter
-    def upgradable_versions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]]):
+    def upgradable_versions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceUpgradableVersionArgs']]]]):
         pulumi.set(self, "upgradable_versions", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the first user of the Database Instance.
 
@@ -989,12 +989,12 @@ class _InstanceState:
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeSizeInGb")
-    def volume_size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def volume_size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
@@ -1003,19 +1003,19 @@ class _InstanceState:
         return pulumi.get(self, "volume_size_in_gb")
 
     @volume_size_in_gb.setter
-    def volume_size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def volume_size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "volume_size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeType")
-    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
     @volume_type.setter
-    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
 
@@ -1025,31 +1025,31 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_same_region: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_schedule_frequency: Optional[pulumi.Input[_builtins.int]] = None,
-                 backup_schedule_retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest: Optional[pulumi.Input[_builtins.bool]] = None,
-                 engine: Optional[pulumi.Input[_builtins.str]] = None,
-                 init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancer: Optional[pulumi.Input[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
-                 logs_policy: Optional[pulumi.Input[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+                 backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+                 engine: pulumi.Input[Optional[_builtins.str]] = None,
+                 init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancer: pulumi.Input[Optional[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
+                 logs_policy: pulumi.Input[Optional[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
@@ -1222,31 +1222,31 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup_same_region: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_schedule_frequency: Optional[pulumi.Input[_builtins.int]] = None,
-                 backup_schedule_retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest: Optional[pulumi.Input[_builtins.bool]] = None,
-                 engine: Optional[pulumi.Input[_builtins.str]] = None,
-                 init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancer: Optional[pulumi.Input[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
-                 logs_policy: Optional[pulumi.Input[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+                 backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+                 engine: pulumi.Input[Optional[_builtins.str]] = None,
+                 init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancer: pulumi.Input[Optional[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
+                 logs_policy: pulumi.Input[Optional[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1303,37 +1303,37 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup_same_region: Optional[pulumi.Input[_builtins.bool]] = None,
-            backup_schedule_frequency: Optional[pulumi.Input[_builtins.int]] = None,
-            backup_schedule_retention: Optional[pulumi.Input[_builtins.int]] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-            encryption_at_rest: Optional[pulumi.Input[_builtins.bool]] = None,
-            endpoint_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoint_port: Optional[pulumi.Input[_builtins.int]] = None,
-            engine: Optional[pulumi.Input[_builtins.str]] = None,
-            init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-            load_balancer: Optional[pulumi.Input[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
-            logs_policy: Optional[pulumi.Input[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_type: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-            private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceReadReplicaArgs', 'InstanceReadReplicaArgsDict']]]]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            upgradable_versions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceUpgradableVersionArgs', 'InstanceUpgradableVersionArgsDict']]]]] = None,
-            user_name: Optional[pulumi.Input[_builtins.str]] = None,
-            volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
-            volume_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Instance':
+            backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+            backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+            backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_port: pulumi.Input[Optional[_builtins.int]] = None,
+            engine: pulumi.Input[Optional[_builtins.str]] = None,
+            init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+            load_balancer: pulumi.Input[Optional[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
+            logs_policy: pulumi.Input[Optional[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceReadReplicaArgs', 'InstanceReadReplicaArgsDict']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            upgradable_versions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceUpgradableVersionArgs', 'InstanceUpgradableVersionArgsDict']]]]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

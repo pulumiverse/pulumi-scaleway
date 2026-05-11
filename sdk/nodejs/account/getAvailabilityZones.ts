@@ -95,5 +95,5 @@ export interface GetAvailabilityZonesOutputArgs {
     /**
      * Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

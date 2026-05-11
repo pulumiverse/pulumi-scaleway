@@ -151,39 +151,39 @@ export interface RunnerState {
     /**
      * The CI/CD provider for the runner. Must be either 'github' or 'gitlab'
      */
-    ciProvider?: pulumi.Input<string>;
+    ciProvider?: pulumi.Input<string | undefined>;
     /**
      * The error message if the runner is in error state
      */
-    errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string | undefined>;
     /**
      * A list of labels applied to the runner. Only for github provider
      */
-    labels?: pulumi.Input<pulumi.Input<string>[]>;
+    labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the runner
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The status of the runner
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The token used to authenticate the runner to run
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The URL of the runner to run
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The zone of the runner
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -197,11 +197,11 @@ export interface RunnerArgs {
     /**
      * The name of the runner
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The token used to authenticate the runner to run
      */
@@ -213,5 +213,5 @@ export interface RunnerArgs {
     /**
      * The zone of the runner
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

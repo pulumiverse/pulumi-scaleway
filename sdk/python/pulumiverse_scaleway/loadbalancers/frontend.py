@@ -24,14 +24,14 @@ class FrontendArgs:
                  backend_id: pulumi.Input[_builtins.str],
                  inbound_port: pulumi.Input[_builtins.int],
                  lb_id: pulumi.Input[_builtins.str],
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]] = None,
-                 certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_rate_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_access_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_acls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_client: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]] = None,
+                 certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_client: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Frontend resource.
 
@@ -112,19 +112,19 @@ class FrontendArgs:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]]:
         """
         A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         """
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateIds")
-    def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def certificate_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of certificate IDs that should be used by the frontend.
 
@@ -133,48 +133,48 @@ class FrontendArgs:
         return pulumi.get(self, "certificate_ids")
 
     @certificate_ids.setter
-    def certificate_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def certificate_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "certificate_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionRateLimit")
-    def connection_rate_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_rate_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         """
         return pulumi.get(self, "connection_rate_limit")
 
     @connection_rate_limit.setter
-    def connection_rate_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_rate_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_rate_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAccessLogs")
-    def enable_access_logs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_access_logs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to enable access logs on the frontend.
         """
         return pulumi.get(self, "enable_access_logs")
 
     @enable_access_logs.setter
-    def enable_access_logs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_access_logs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_access_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="enableHttp3")
-    def enable_http3(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_http3(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Activates HTTP/3 protocol.
         """
         return pulumi.get(self, "enable_http3")
 
     @enable_http3.setter
-    def enable_http3(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_http3(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_http3", value)
 
     @_builtins.property
     @pulumi.getter(name="externalAcls")
-    def external_acls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_acls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use lb_acl.
         If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -182,51 +182,51 @@ class FrontendArgs:
         return pulumi.get(self, "external_acls")
 
     @external_acls.setter
-    def external_acls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_acls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_acls", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutClient")
-    def timeout_client(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_client(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum inactivity time on the client side. (e.g. `1s`)
         """
         return pulumi.get(self, "timeout_client")
 
     @timeout_client.setter
-    def timeout_client(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_client(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_client", value)
 
 
 @pulumi.input_type
 class _FrontendState:
     def __init__(__self__, *,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]] = None,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_rate_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_access_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_acls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_client: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]] = None,
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_client: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Frontend resources.
 
@@ -284,19 +284,19 @@ class _FrontendState:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]]:
         """
         A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         """
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter(name="backendId")
-    def backend_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Load Balancer backend this frontend is attached to.
 
@@ -305,25 +305,25 @@ class _FrontendState:
         return pulumi.get(self, "backend_id")
 
     @backend_id.setter
-    def backend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend_id", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
     @_utilities.deprecated("""Please use certificate_ids""")
-    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
-    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_id", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateIds")
-    def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def certificate_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of certificate IDs that should be used by the frontend.
 
@@ -332,60 +332,60 @@ class _FrontendState:
         return pulumi.get(self, "certificate_ids")
 
     @certificate_ids.setter
-    def certificate_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def certificate_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "certificate_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionRateLimit")
-    def connection_rate_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_rate_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         """
         return pulumi.get(self, "connection_rate_limit")
 
     @connection_rate_limit.setter
-    def connection_rate_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_rate_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_rate_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the frontend was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAccessLogs")
-    def enable_access_logs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_access_logs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defines whether to enable access logs on the frontend.
         """
         return pulumi.get(self, "enable_access_logs")
 
     @enable_access_logs.setter
-    def enable_access_logs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_access_logs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_access_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="enableHttp3")
-    def enable_http3(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_http3(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Activates HTTP/3 protocol.
         """
         return pulumi.get(self, "enable_http3")
 
     @enable_http3.setter
-    def enable_http3(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_http3(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_http3", value)
 
     @_builtins.property
     @pulumi.getter(name="externalAcls")
-    def external_acls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_acls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean to specify whether to use lb_acl.
         If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -393,67 +393,67 @@ class _FrontendState:
         return pulumi.get(self, "external_acls")
 
     @external_acls.setter
-    def external_acls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_acls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_acls", value)
 
     @_builtins.property
     @pulumi.getter(name="inboundPort")
-    def inbound_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def inbound_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port to listen to on the front side.
         """
         return pulumi.get(self, "inbound_port")
 
     @inbound_port.setter
-    def inbound_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def inbound_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "inbound_port", value)
 
     @_builtins.property
     @pulumi.getter(name="lbId")
-    def lb_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lb_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Load Balancer this frontend is attached to.
         """
         return pulumi.get(self, "lb_id")
 
     @lb_id.setter
-    def lb_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lb_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lb_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutClient")
-    def timeout_client(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timeout_client(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum inactivity time on the client side. (e.g. `1s`)
         """
         return pulumi.get(self, "timeout_client")
 
     @timeout_client.setter
-    def timeout_client(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timeout_client(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timeout_client", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the frontend resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -463,17 +463,17 @@ class Frontend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_rate_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_access_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_acls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_client: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_client: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancer frontends.
@@ -749,17 +749,17 @@ class Frontend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
-                 backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_rate_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_access_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_acls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inbound_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_client: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
+                 backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inbound_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_client: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -801,20 +801,20 @@ class Frontend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
-            backend_id: Optional[pulumi.Input[_builtins.str]] = None,
-            certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-            certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            connection_rate_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_access_logs: Optional[pulumi.Input[_builtins.bool]] = None,
-            enable_http3: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_acls: Optional[pulumi.Input[_builtins.bool]] = None,
-            inbound_port: Optional[pulumi.Input[_builtins.int]] = None,
-            lb_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_client: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'Frontend':
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
+            backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+            inbound_port: pulumi.Input[Optional[_builtins.int]] = None,
+            lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_client: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Frontend':
         """
         Get an existing Frontend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

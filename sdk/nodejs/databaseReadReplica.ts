@@ -195,26 +195,26 @@ export interface DatabaseReadReplicaState {
     /**
      * Creates a direct access endpoint to rdb replica.
      */
-    directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess>;
+    directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess | undefined>;
     /**
      * UUID of the rdb instance.
      *
      * > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * Create an endpoint in a Private Netork.
      */
-    privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork | undefined>;
     /**
      * `region`) The region
      * in which the Read Replica should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
      */
-    sameZone?: pulumi.Input<boolean>;
+    sameZone?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -224,7 +224,7 @@ export interface DatabaseReadReplicaArgs {
     /**
      * Creates a direct access endpoint to rdb replica.
      */
-    directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess>;
+    directAccess?: pulumi.Input<inputs.DatabaseReadReplicaDirectAccess | undefined>;
     /**
      * UUID of the rdb instance.
      *
@@ -234,14 +234,14 @@ export interface DatabaseReadReplicaArgs {
     /**
      * Create an endpoint in a Private Netork.
      */
-    privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.DatabaseReadReplicaPrivateNetwork | undefined>;
     /**
      * `region`) The region
      * in which the Read Replica should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
      */
-    sameZone?: pulumi.Input<boolean>;
+    sameZone?: pulumi.Input<boolean | undefined>;
 }

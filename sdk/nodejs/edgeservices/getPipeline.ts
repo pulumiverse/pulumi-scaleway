@@ -121,15 +121,15 @@ export interface GetPipelineOutputArgs {
     /**
      * The pipeline name to filter for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the pipeline. Conflicts with all filter arguments below.
      *
      * The following filter arguments are supported (cannot be used with `pipelineId`):
      */
-    pipelineId?: pulumi.Input<string>;
+    pipelineId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project to filter for.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

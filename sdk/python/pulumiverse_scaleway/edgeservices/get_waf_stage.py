@@ -169,8 +169,8 @@ def get_waf_stage(pipeline_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         waf_stage_id=pulumi.get(__ret__, 'waf_stage_id'))
-def get_waf_stage_output(pipeline_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         waf_stage_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_waf_stage_output(pipeline_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         waf_stage_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWafStageResult]:
     """
     Gets information about an Edge Services WAF (Web Application Firewall) stage.

@@ -233,35 +233,35 @@ export interface RouteState {
     /**
      * The date and time the Route was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    database?: pulumi.Input<inputs.iot.RouteDatabase>;
+    database?: pulumi.Input<inputs.iot.RouteDatabase | undefined>;
     /**
      * The hub ID to which the Route will be attached to.
      */
-    hubId?: pulumi.Input<string>;
+    hubId?: pulumi.Input<string | undefined>;
     /**
      * The name of the IoT Route you want to create (e.g. `my-route`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the Route is attached to.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    rest?: pulumi.Input<inputs.iot.RouteRest>;
+    rest?: pulumi.Input<inputs.iot.RouteRest | undefined>;
     /**
      * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    s3?: pulumi.Input<inputs.iot.RouteS3>;
+    s3?: pulumi.Input<inputs.iot.RouteS3 | undefined>;
     /**
      * The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
      */
-    topic?: pulumi.Input<string>;
+    topic?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -271,7 +271,7 @@ export interface RouteArgs {
     /**
      * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    database?: pulumi.Input<inputs.iot.RouteDatabase>;
+    database?: pulumi.Input<inputs.iot.RouteDatabase | undefined>;
     /**
      * The hub ID to which the Route will be attached to.
      */
@@ -279,19 +279,19 @@ export interface RouteArgs {
     /**
      * The name of the IoT Route you want to create (e.g. `my-route`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the Route is attached to.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    rest?: pulumi.Input<inputs.iot.RouteRest>;
+    rest?: pulumi.Input<inputs.iot.RouteRest | undefined>;
     /**
      * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    s3?: pulumi.Input<inputs.iot.RouteS3>;
+    s3?: pulumi.Input<inputs.iot.RouteS3 | undefined>;
     /**
      * The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
      */

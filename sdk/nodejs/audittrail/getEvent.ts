@@ -331,57 +331,57 @@ export interface GetEventOutputArgs {
     /**
      * Name of the method of the API call performed.
      */
-    methodName?: pulumi.Input<string>;
+    methodName?: pulumi.Input<string | undefined>;
     /**
      * Defines the order in which events are returned. Possible values are `recordedAtAsc` and `recordedAtDesc`. Default value: `recordedAtDesc`.
      */
-    orderBy?: pulumi.Input<string>;
+    orderBy?: pulumi.Input<string | undefined>;
     /**
      * `organizationId`) ID of the Organization containing the Audit Trail events.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * ID of the User or IAM application at the origin of the event.
      */
-    principalId?: pulumi.Input<string>;
+    principalId?: pulumi.Input<string | undefined>;
     /**
      * Name of the Scaleway product in a hyphenated format.
      */
-    productName?: pulumi.Input<string>;
+    productName?: pulumi.Input<string | undefined>;
     /**
      * ID of the Project containing the Audit Trail events.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The `recordedAfter` parameter defines the earliest timestamp from which Audit Trail events are retrieved. Returns `one hour ago` by default (Format ISO 8601).
      */
-    recordedAfter?: pulumi.Input<string>;
+    recordedAfter?: pulumi.Input<string | undefined>;
     /**
      * The `recordedBefore` parameter defines the latest timestamp up to which Audit Trail events are retrieved. Must be later than recorded_after. Returns `now` by default (Format ISO 8601).
      */
-    recordedBefore?: pulumi.Input<string>;
+    recordedBefore?: pulumi.Input<string | undefined>;
     /**
      * The region you want to target. Defaults to the region specified in the provider configuration.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * ID of the Scaleway resource associated with the listed events.
      */
-    resourceId?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string | undefined>;
     /**
      * Type of the scaleway resources associated with the listed events. Possible values are: `secmSecret`, `secmSecretVersion`, `kubeCluster`, `kubePool`, `kubeNode`, `kubeAcl`, `keymKey`, `iamUser`, `iamApplication`, `iamGroup`, `iamPolicy`, `iamApiKey`, `iamSshKey`, `iamRule`, `iamSaml`, `iamSamlCertificate`, `secretManagerSecret`, `secretManagerVersion`, `keyManagerKey`, `accountUser`, `accountOrganization`, `accountProject`, `instanceServer`, `instancePlacementGroup`, `instanceSecurityGroup`, `instanceVolume`, `instanceSnapshot`, `instanceImage`, `appleSiliconServer`, `baremetalServer`, `baremetalSetting`, `ipamIp`, `sbsVolume`, `sbsSnapshot`, `loadBalancerLb`, `loadBalancerIp`, `loadBalancerFrontend`, `loadBalancerBackend`, `loadBalancerRoute`, `loadBalancerAcl`, `loadBalancerCertificate`, `sfsFilesystem`, or `vpcPrivateNetwork`.
      */
-    resourceType?: pulumi.Input<string>;
+    resourceType?: pulumi.Input<string | undefined>;
     /**
      * Name of the service of the API call performed.
      */
-    serviceName?: pulumi.Input<string>;
+    serviceName?: pulumi.Input<string | undefined>;
     /**
      * IP address at the origin of the event.
      */
-    sourceIp?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string | undefined>;
     /**
      * HTTP status code of the request.
      */
-    status?: pulumi.Input<number>;
+    status?: pulumi.Input<number | undefined>;
 }

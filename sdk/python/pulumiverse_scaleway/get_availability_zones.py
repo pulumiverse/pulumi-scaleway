@@ -107,7 +107,7 @@ def get_availability_zones(region: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         zones=pulumi.get(__ret__, 'zones'))
-def get_availability_zones_output(region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_availability_zones_output(region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAvailabilityZonesResult]:
     """
     The `account_get_availability_zones` data source is used to retrieve information about the available zones based on its Region.

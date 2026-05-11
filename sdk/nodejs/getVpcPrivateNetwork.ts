@@ -154,21 +154,21 @@ export interface GetVpcPrivateNetworkOutputArgs {
     /**
      * Name of the Private Network. Cannot be used with `privateNetworkId`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * ID of the Private Network. Cannot be used with `name` or `vpcId`.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project the Private Network is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the Private Network exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

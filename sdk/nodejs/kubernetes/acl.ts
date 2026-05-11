@@ -163,23 +163,23 @@ export interface AclState {
      *
      * > **Important:** This block cannot be defined if the `noIpAllowed` field is set to true.
      */
-    aclRules?: pulumi.Input<pulumi.Input<inputs.kubernetes.AclAclRule>[]>;
+    aclRules?: pulumi.Input<pulumi.Input<inputs.kubernetes.AclAclRule>[] | undefined>;
     /**
      * UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
      *
      * > **Important:** Updates to `clusterId` will recreate the ACL.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * If set to true, no IP will be allowed and the cluster will be in full-isolation.
      *
      * > **Important:** This field cannot be set to true if the `aclRules` block is defined.
      */
-    noIpAllowed?: pulumi.Input<boolean>;
+    noIpAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region in which the ACL rule should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -191,7 +191,7 @@ export interface AclArgs {
      *
      * > **Important:** This block cannot be defined if the `noIpAllowed` field is set to true.
      */
-    aclRules?: pulumi.Input<pulumi.Input<inputs.kubernetes.AclAclRule>[]>;
+    aclRules?: pulumi.Input<pulumi.Input<inputs.kubernetes.AclAclRule>[] | undefined>;
     /**
      * UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
      *
@@ -203,9 +203,9 @@ export interface AclArgs {
      *
      * > **Important:** This field cannot be set to true if the `aclRules` block is defined.
      */
-    noIpAllowed?: pulumi.Input<boolean>;
+    noIpAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region in which the ACL rule should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

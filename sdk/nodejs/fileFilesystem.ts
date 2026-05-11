@@ -156,46 +156,46 @@ export interface FileFilesystemState {
     /**
      * The date and time when the File Storage filesystem was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The name of the filesystem. If not provided, a random name will be generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The number of active attachments (mounts) on the filesystem.
      */
-    numberOfAttachments?: pulumi.Input<number>;
+    numberOfAttachments?: pulumi.Input<number | undefined>;
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
      * - Minimum: 100 GB (100000000000 bytes)
      * - Maximum: 10 TB (10000000000000 bytes)
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * The current status of the filesystem. Possible values include creating, available, etc.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * A list of tags associated with the filesystem.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update to the File Storage filesystem.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -205,16 +205,16 @@ export interface FileFilesystemArgs {
     /**
      * The name of the filesystem. If not provided, a random name will be generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
      * - Minimum: 100 GB (100000000000 bytes)
@@ -224,5 +224,5 @@ export interface FileFilesystemArgs {
     /**
      * A list of tags associated with the filesystem.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

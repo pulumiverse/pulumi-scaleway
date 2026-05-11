@@ -96,9 +96,9 @@ export interface GetSnsOutputArgs {
     /**
      * `projectId`) The ID of the Project in which sns is enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which sns is enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

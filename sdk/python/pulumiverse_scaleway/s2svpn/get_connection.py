@@ -420,10 +420,10 @@ def get_connection(connection_id: Optional[_builtins.str] = None,
         tunnel_status=pulumi.get(__ret__, 'tunnel_status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpn_gateway_id=pulumi.get(__ret__, 'vpn_gateway_id'))
-def get_connection_output(connection_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_connection_output(connection_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConnectionResult]:
     """
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).

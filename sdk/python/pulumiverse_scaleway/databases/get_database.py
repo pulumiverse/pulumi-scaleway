@@ -149,9 +149,9 @@ def get_database(instance_id: Optional[_builtins.str] = None,
         owner=pulumi.get(__ret__, 'owner'),
         region=pulumi.get(__ret__, 'region'),
         size=pulumi.get(__ret__, 'size'))
-def get_database_output(instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                        name: Optional[pulumi.Input[_builtins.str]] = None,
-                        region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_database_output(instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                        name: pulumi.Input[Optional[_builtins.str]] = None,
+                        region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseResult]:
     """
     Gets information about a database.

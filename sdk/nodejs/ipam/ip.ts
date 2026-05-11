@@ -249,55 +249,55 @@ export interface IpState {
      *
      * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * the IP address in CIDR notation.
      */
-    addressCidr?: pulumi.Input<string>;
+    addressCidr?: pulumi.Input<string | undefined>;
     /**
      * Date and time of IP's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
      */
-    customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[]>;
+    customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[] | undefined>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the IP.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The IP resource.
      */
-    resources?: pulumi.Input<pulumi.Input<inputs.ipam.IpResource>[]>;
+    resources?: pulumi.Input<pulumi.Input<inputs.ipam.IpResource>[] | undefined>;
     /**
      * The reverse DNS for this IP.
      */
-    reverses?: pulumi.Input<pulumi.Input<inputs.ipam.IpReverse>[]>;
+    reverses?: pulumi.Input<pulumi.Input<inputs.ipam.IpReverse>[] | undefined>;
     /**
      * The source in which to book the IP.
      */
-    sources?: pulumi.Input<pulumi.Input<inputs.ipam.IpSource>[]>;
+    sources?: pulumi.Input<pulumi.Input<inputs.ipam.IpSource>[] | undefined>;
     /**
      * The tags associated with the IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of IP's last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The zone of the IP.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -309,23 +309,23 @@ export interface IpArgs {
      *
      * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
      */
-    customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[]>;
+    customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[] | undefined>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region of the IP.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The source in which to book the IP.
      */
@@ -333,5 +333,5 @@ export interface IpArgs {
     /**
      * The tags associated with the IP.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

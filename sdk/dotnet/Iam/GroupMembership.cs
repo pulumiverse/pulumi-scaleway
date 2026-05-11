@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway.Iam
     /// 
     /// return await Deployment.RunAsync(async() =&gt; 
     /// {
-    ///     var users = Std.Index.Toset.Invoke(new()
+    ///     var users = Std.Toset.Invoke(new()
     ///     {
     ///         Input = new[]
     ///         {

@@ -259,73 +259,73 @@ export interface KeyManagerKeyState {
      * – The cryptographic algorithm to use. Valid values depend on the `usage`:
      * - For `symmetricEncryption`:
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * The date and time when the key was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * – A description for the key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the key is locked.
      */
-    locked?: pulumi.Input<boolean>;
+    locked?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the key.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * – The origin of the key. Valid values are:
      */
-    origin?: pulumi.Input<string>;
+    origin?: pulumi.Input<string | undefined>;
     /**
      * – The ID of the project the key belongs to.
      *
      * **Key Usage and Algorithm (both required):**
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Whether the key is protected from deletion.
      */
-    protected?: pulumi.Input<boolean>;
+    protected?: pulumi.Input<boolean | undefined>;
     /**
      * The region in which to create the key (e.g., `fr-par`).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The date and time when the key was last rotated.
      */
-    rotatedAt?: pulumi.Input<string>;
+    rotatedAt?: pulumi.Input<string | undefined>;
     /**
      * The number of times the key has been rotated.
      */
-    rotationCount?: pulumi.Input<number>;
+    rotationCount?: pulumi.Input<number | undefined>;
     /**
      * – Rotation policy for the key:
      */
-    rotationPolicy?: pulumi.Input<inputs.KeyManagerKeyRotationPolicy>;
+    rotationPolicy?: pulumi.Input<inputs.KeyManagerKeyRotationPolicy | undefined>;
     /**
      * The state of the key (e.g., `enabled`).
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * – A list of tags to assign to the key.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * – If `true`, the key can be deleted. Defaults to `false` (protected).
      */
-    unprotected?: pulumi.Input<boolean>;
+    unprotected?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time when the key was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * – The usage type of the key. Valid values:
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -340,37 +340,37 @@ export interface KeyManagerKeyArgs {
     /**
      * – A description for the key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the key.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * – The origin of the key. Valid values are:
      */
-    origin?: pulumi.Input<string>;
+    origin?: pulumi.Input<string | undefined>;
     /**
      * – The ID of the project the key belongs to.
      *
      * **Key Usage and Algorithm (both required):**
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region in which to create the key (e.g., `fr-par`).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * – Rotation policy for the key:
      */
-    rotationPolicy?: pulumi.Input<inputs.KeyManagerKeyRotationPolicy>;
+    rotationPolicy?: pulumi.Input<inputs.KeyManagerKeyRotationPolicy | undefined>;
     /**
      * – A list of tags to assign to the key.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * – If `true`, the key can be deleted. Defaults to `false` (protected).
      */
-    unprotected?: pulumi.Input<boolean>;
+    unprotected?: pulumi.Input<boolean | undefined>;
     /**
      * – The usage type of the key. Valid values:
      */

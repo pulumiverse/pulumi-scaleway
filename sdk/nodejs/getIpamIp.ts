@@ -279,43 +279,43 @@ export interface GetIpamIpOutputArgs {
     /**
      * Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipamIpId`.
      */
-    attached?: pulumi.Input<boolean>;
+    attached?: pulumi.Input<boolean | undefined>;
     /**
      * The IPAM IP ID. Cannot be used with any other arguments.
      */
-    ipamIpId?: pulumi.Input<string>;
+    ipamIpId?: pulumi.Input<string | undefined>;
     /**
      * The MAC address linked to the IP. Cannot be used with `ipamIpId`.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the IP belongs to. Cannot be used with `ipamIpId`.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the IP exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Filter by resource ID, type or name. Cannot be used with `ipamIpId`.
      * If specified, `type` is required, and at least one of `id` or `name` must be set.
      */
-    resource?: pulumi.Input<inputs.GetIpamIpResourceArgs>;
+    resource?: pulumi.Input<inputs.GetIpamIpResourceArgs | undefined>;
     /**
      * The tags associated with the IP. Cannot be used with `ipamIpId`.
      * As datasource only returns one IP, the search with given tags must return only one result.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipamIpId`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Only IPs that are zonal, and in this zone, will be returned.
      */
-    zonal?: pulumi.Input<string>;
+    zonal?: pulumi.Input<string | undefined>;
 }

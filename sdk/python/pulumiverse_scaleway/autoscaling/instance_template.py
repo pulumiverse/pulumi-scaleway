@@ -22,18 +22,18 @@ __all__ = ['InstanceTemplateArgs', 'InstanceTemplate']
 class InstanceTemplateArgs:
     def __init__(__self__, *,
                  commercial_type: pulumi.Input[_builtins.str],
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips_v4_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips_v6_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceTemplate resource.
 
@@ -91,168 +91,168 @@ class InstanceTemplateArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter(name="imageId")
-    def image_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
-    def image_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Instance group template.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance placement group ID. This is optional, but it is highly recommended to set a preference for Instance location within Availability Zone.
         """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkIds")
-    def private_network_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def private_network_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The private Network IDs to attach to the new Instance.
         """
         return pulumi.get(self, "private_network_ids")
 
     @private_network_ids.setter
-    def private_network_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def private_network_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "private_network_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Instance template is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpsV4Count")
-    def public_ips_v4_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_ips_v4_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of flexible IPv4 addresses to attach to the new Instance.
         """
         return pulumi.get(self, "public_ips_v4_count")
 
     @public_ips_v4_count.setter
-    def public_ips_v4_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_ips_v4_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_ips_v4_count", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpsV6Count")
-    def public_ips_v6_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_ips_v6_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of flexible IPv6 addresses to attach to the new Instance.
         """
         return pulumi.get(self, "public_ips_v6_count")
 
     @public_ips_v6_count.setter
-    def public_ips_v6_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_ips_v6_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_ips_v6_count", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance security group ID.
         """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Instance template.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]:
+    def volumes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]:
         """
         The template of Instance volume.
         """
         return pulumi.get(self, "volumes")
 
     @volumes.setter
-    def volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]):
+    def volumes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]):
         pulumi.set(self, "volumes", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Instance template exists.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _InstanceTemplateState:
     def __init__(__self__, *,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 commercial_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips_v4_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips_v6_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 commercial_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceTemplate resources.
 
@@ -308,194 +308,194 @@ class _InstanceTemplateState:
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")
-    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_init(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         """
         return pulumi.get(self, "cloud_init")
 
     @cloud_init.setter
-    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_init(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter(name="commercialType")
-    def commercial_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def commercial_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of Instance commercial type.
         """
         return pulumi.get(self, "commercial_type")
 
     @commercial_type.setter
-    def commercial_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def commercial_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "commercial_type", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of Instance group's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="imageId")
-    def image_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
         """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
-    def image_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Instance group template.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
-    def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance placement group ID. This is optional, but it is highly recommended to set a preference for Instance location within Availability Zone.
         """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
-    def placement_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkIds")
-    def private_network_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def private_network_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The private Network IDs to attach to the new Instance.
         """
         return pulumi.get(self, "private_network_ids")
 
     @private_network_ids.setter
-    def private_network_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def private_network_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "private_network_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Instance template is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpsV4Count")
-    def public_ips_v4_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_ips_v4_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of flexible IPv4 addresses to attach to the new Instance.
         """
         return pulumi.get(self, "public_ips_v4_count")
 
     @public_ips_v4_count.setter
-    def public_ips_v4_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_ips_v4_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_ips_v4_count", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpsV6Count")
-    def public_ips_v6_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def public_ips_v6_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of flexible IPv6 addresses to attach to the new Instance.
         """
         return pulumi.get(self, "public_ips_v6_count")
 
     @public_ips_v6_count.setter
-    def public_ips_v6_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def public_ips_v6_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_ips_v6_count", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupId")
-    def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The instance security group ID.
         """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
-    def security_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Instance template status
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Instance template.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of Instance group's last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]:
+    def volumes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]:
         """
         The template of Instance volume.
         """
         return pulumi.get(self, "volumes")
 
     @volumes.setter
-    def volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]):
+    def volumes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceTemplateVolumeArgs']]]]):
         pulumi.set(self, "volumes", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Instance template exists.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -505,19 +505,19 @@ class InstanceTemplate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 commercial_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips_v4_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips_v6_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 commercial_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Books and manages Autoscaling Instance templates.
@@ -636,19 +636,19 @@ class InstanceTemplate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-                 commercial_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips_v4_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips_v6_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+                 commercial_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -686,22 +686,22 @@ class InstanceTemplate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
-            commercial_type: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            image_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            placement_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_network_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            public_ips_v4_count: Optional[pulumi.Input[_builtins.int]] = None,
-            public_ips_v6_count: Optional[pulumi.Input[_builtins.int]] = None,
-            security_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'InstanceTemplate':
+            cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+            commercial_type: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            image_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+            public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceTemplate':
         """
         Get an existing InstanceTemplate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

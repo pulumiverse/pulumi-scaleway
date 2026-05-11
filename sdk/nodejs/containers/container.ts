@@ -479,87 +479,87 @@ export interface ContainerState {
     /**
      * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
      */
-    commands?: pulumi.Input<pulumi.Input<string>[]>;
+    commands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container.
      */
-    cpuLimit?: pulumi.Input<number>;
+    cpuLimit?: pulumi.Input<number | undefined>;
     /**
      * The cron status of the container.
      */
-    cronStatus?: pulumi.Input<string>;
+    cronStatus?: pulumi.Input<string | undefined>;
     /**
      * Boolean indicating whether the container is in a production environment.
      */
-    deploy?: pulumi.Input<boolean>;
+    deploy?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the container.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The native domain name of the container
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The error message of the container.
      */
-    errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string | undefined>;
     /**
      * Health check configuration block of the container.
      */
-    healthChecks?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheck>[]>;
+    healthChecks?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheck>[] | undefined>;
     /**
      * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
-    httpOption?: pulumi.Input<string>;
+    httpOption?: pulumi.Input<string | undefined>;
     /**
      * Local storage limit of the container (in MB)
      */
-    localStorageLimit?: pulumi.Input<number>;
+    localStorageLimit?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
-    maxConcurrency?: pulumi.Input<number>;
+    maxConcurrency?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of instances this container can scale to.
      */
-    maxScale?: pulumi.Input<number>;
+    maxScale?: pulumi.Input<number | undefined>;
     /**
      * The memory resources in MB to allocate to each container.
      */
-    memoryLimit?: pulumi.Input<number>;
+    memoryLimit?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of container instances running continuously.
      */
-    minScale?: pulumi.Input<number>;
+    minScale?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the container name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Containers namespace ID of the container.
      *
      * > **Important** Updating the `name` argument will recreate the container.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * The port to expose the container.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
-    privacy?: pulumi.Input<string>;
+    privacy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the container is connected to.
      *
@@ -567,47 +567,47 @@ export interface ContainerState {
      *
      * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
      */
-    registryImage?: pulumi.Input<string>;
+    registryImage?: pulumi.Input<string | undefined>;
     /**
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
-    registrySha256?: pulumi.Input<string>;
+    registrySha256?: pulumi.Input<string | undefined>;
     /**
      * Execution environment of the container.
      */
-    sandbox?: pulumi.Input<string>;
+    sandbox?: pulumi.Input<string | undefined>;
     /**
      * Configuration block used to decide when to scale up or down. Possible values:
      */
-    scalingOptions?: pulumi.Input<pulumi.Input<inputs.containers.ContainerScalingOption>[]>;
+    scalingOptions?: pulumi.Input<pulumi.Input<inputs.containers.ContainerScalingOption>[] | undefined>;
     /**
      * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The container status.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The list of tags associated with the container.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -617,61 +617,61 @@ export interface ContainerArgs {
     /**
      * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
      */
-    commands?: pulumi.Input<pulumi.Input<string>[]>;
+    commands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container.
      */
-    cpuLimit?: pulumi.Input<number>;
+    cpuLimit?: pulumi.Input<number | undefined>;
     /**
      * Boolean indicating whether the container is in a production environment.
      */
-    deploy?: pulumi.Input<boolean>;
+    deploy?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the container.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Health check configuration block of the container.
      */
-    healthChecks?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheck>[]>;
+    healthChecks?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheck>[] | undefined>;
     /**
      * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
-    httpOption?: pulumi.Input<string>;
+    httpOption?: pulumi.Input<string | undefined>;
     /**
      * Local storage limit of the container (in MB)
      */
-    localStorageLimit?: pulumi.Input<number>;
+    localStorageLimit?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
-    maxConcurrency?: pulumi.Input<number>;
+    maxConcurrency?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of instances this container can scale to.
      */
-    maxScale?: pulumi.Input<number>;
+    maxScale?: pulumi.Input<number | undefined>;
     /**
      * The memory resources in MB to allocate to each container.
      */
-    memoryLimit?: pulumi.Input<number>;
+    memoryLimit?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of container instances running continuously.
      */
-    minScale?: pulumi.Input<number>;
+    minScale?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the container name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Containers namespace ID of the container.
      *
@@ -681,11 +681,11 @@ export interface ContainerArgs {
     /**
      * The port to expose the container.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
-    privacy?: pulumi.Input<string>;
+    privacy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the container is connected to.
      *
@@ -693,45 +693,45 @@ export interface ContainerArgs {
      *
      * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
      */
-    registryImage?: pulumi.Input<string>;
+    registryImage?: pulumi.Input<string | undefined>;
     /**
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
-    registrySha256?: pulumi.Input<string>;
+    registrySha256?: pulumi.Input<string | undefined>;
     /**
      * Execution environment of the container.
      */
-    sandbox?: pulumi.Input<string>;
+    sandbox?: pulumi.Input<string | undefined>;
     /**
      * Configuration block used to decide when to scale up or down. Possible values:
      */
-    scalingOptions?: pulumi.Input<pulumi.Input<inputs.containers.ContainerScalingOption>[]>;
+    scalingOptions?: pulumi.Input<pulumi.Input<inputs.containers.ContainerScalingOption>[] | undefined>;
     /**
      * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The container status.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The list of tags associated with the container.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
 }

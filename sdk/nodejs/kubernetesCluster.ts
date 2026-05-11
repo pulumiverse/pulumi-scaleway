@@ -71,7 +71,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
- * import * as helm from "@pulumi/helm";
+ * import * as kubernetes from "@pulumi/kubernetes";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Example with an Helm provider
@@ -100,33 +100,20 @@ import * as utilities from "./utilities";
  *     zone: "fr-par-1",
  *     projectId: cluster.projectId,
  * });
- * const nginxIngress = new helm.index.Release("nginx_ingress", {
+ * const nginxIngress = new kubernetes.helm.sh/v3.Release("nginx_ingress", {
  *     name: "nginx-ingress",
  *     namespace: "kube-system",
- *     repository: "https://kubernetes.github.io/ingress-nginx",
+ *     repositoryOpts: {
+ *         repo: "https://kubernetes.github.io/ingress-nginx",
+ *     },
  *     chart: "ingress-nginx",
- *     set: [
- *         {
- *             name: "controller.service.loadBalancerIP",
- *             value: nginxIp.ipAddress,
- *         },
- *         {
- *             name: "controller.config.use-proxy-protocol",
- *             value: "true",
- *         },
- *         {
- *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2",
- *             value: "true",
- *         },
- *         {
- *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone",
- *             value: nginxIp.zone,
- *         },
- *         {
- *             name: "controller.service.externalTrafficPolicy",
- *             value: "Local",
- *         },
- *     ],
+ *     values: {
+ *         "controller.service.loadBalancerIP": nginxIp.ipAddress,
+ *         "controller.config.use-proxy-protocol": "true",
+ *         "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
+ *         "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone": nginxIp.zone,
+ *         "controller.service.externalTrafficPolicy": "Local",
+ *     },
  * });
  * ```
  *
@@ -494,69 +481,69 @@ export interface KubernetesClusterState {
     /**
      * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
-    admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
+    admissionPlugins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Additional Subject Alternative Names for the Kubernetes API server certificate
      */
-    apiserverCertSans?: pulumi.Input<pulumi.Input<string>[]>;
+    apiserverCertSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The URL of the Kubernetes API server.
      */
-    apiserverUrl?: pulumi.Input<string>;
+    apiserverUrl?: pulumi.Input<string | undefined>;
     /**
      * The auto upgrade configuration.
      */
-    autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade>;
+    autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade | undefined>;
     /**
      * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
-    autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig>;
+    autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig | undefined>;
     /**
      * The Container Network Interface (CNI) for the Kubernetes cluster.
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    cni?: pulumi.Input<string>;
+    cni?: pulumi.Input<string | undefined>;
     /**
      * The creation date of the cluster.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
      * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      */
-    deleteAdditionalResources?: pulumi.Input<boolean>;
+    deleteAdditionalResources?: pulumi.Input<boolean | undefined>;
     /**
      * A description for the Kubernetes cluster.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
-    featureGates?: pulumi.Input<pulumi.Input<string>[]>;
+    featureGates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The kubeconfig configuration file of the Kubernetes cluster
      */
-    kubeconfigs?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterKubeconfig>[]>;
+    kubeconfigs?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterKubeconfig>[] | undefined>;
     /**
      * The name for the Kubernetes cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The OpenID Connect configuration of the cluster
      */
-    openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig>;
+    openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig | undefined>;
     /**
      * The organization ID the cluster is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The subnet used for the Pod CIDR.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    podCidr?: pulumi.Input<string>;
+    podCidr?: pulumi.Input<string | undefined>;
     /**
      * The ID of the private network of the cluster.
      *
@@ -565,37 +552,37 @@ export interface KubernetesClusterState {
      * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
      * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the cluster should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The subnet used for the Service CIDR.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    serviceCidr?: pulumi.Input<string>;
+    serviceCidr?: pulumi.Input<string | undefined>;
     /**
      * The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    serviceDnsIp?: pulumi.Input<string>;
+    serviceDnsIp?: pulumi.Input<string | undefined>;
     /**
      * The status of the Kubernetes cluster.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Kubernetes cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of Kubernetes cluster. Possible values are:
      *
@@ -605,23 +592,23 @@ export interface KubernetesClusterState {
      *
      * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The last update date of the cluster.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Set to `true` if a newer Kubernetes version is available.
      */
-    upgradeAvailable?: pulumi.Input<boolean>;
+    upgradeAvailable?: pulumi.Input<boolean | undefined>;
     /**
      * The version of the Kubernetes cluster.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
     /**
      * The DNS wildcard that points to all ready nodes.
      */
-    wildcardDns?: pulumi.Input<string>;
+    wildcardDns?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -631,19 +618,19 @@ export interface KubernetesClusterArgs {
     /**
      * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
-    admissionPlugins?: pulumi.Input<pulumi.Input<string>[]>;
+    admissionPlugins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Additional Subject Alternative Names for the Kubernetes API server certificate
      */
-    apiserverCertSans?: pulumi.Input<pulumi.Input<string>[]>;
+    apiserverCertSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The auto upgrade configuration.
      */
-    autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade>;
+    autoUpgrade?: pulumi.Input<inputs.KubernetesClusterAutoUpgrade | undefined>;
     /**
      * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
-    autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig>;
+    autoscalerConfig?: pulumi.Input<inputs.KubernetesClusterAutoscalerConfig | undefined>;
     /**
      * The Container Network Interface (CNI) for the Kubernetes cluster.
      * > **Important:** Updates to this field will recreate a new resource.
@@ -658,26 +645,26 @@ export interface KubernetesClusterArgs {
     /**
      * A description for the Kubernetes cluster.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
-    featureGates?: pulumi.Input<pulumi.Input<string>[]>;
+    featureGates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name for the Kubernetes cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The OpenID Connect configuration of the cluster
      */
-    openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig>;
+    openIdConnectConfig?: pulumi.Input<inputs.KubernetesClusterOpenIdConnectConfig | undefined>;
     /**
      * The subnet used for the Pod CIDR.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    podCidr?: pulumi.Input<string>;
+    podCidr?: pulumi.Input<string | undefined>;
     /**
      * The ID of the private network of the cluster.
      *
@@ -686,33 +673,33 @@ export interface KubernetesClusterArgs {
      * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
      * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the cluster should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The subnet used for the Service CIDR.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    serviceCidr?: pulumi.Input<string>;
+    serviceCidr?: pulumi.Input<string | undefined>;
     /**
      * The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
      *
      * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
      * unsetting it to go back to the default value will not have any effect.
      */
-    serviceDnsIp?: pulumi.Input<string>;
+    serviceDnsIp?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Kubernetes cluster.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of Kubernetes cluster. Possible values are:
      *
@@ -722,7 +709,7 @@ export interface KubernetesClusterArgs {
      *
      * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The version of the Kubernetes cluster.
      */

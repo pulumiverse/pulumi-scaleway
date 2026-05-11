@@ -143,10 +143,10 @@ def get_vpcs(name: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         vpcs=pulumi.get(__ret__, 'vpcs'))
-def get_vpcs_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_vpcs_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcsResult]:
     """
     Gets information about multiple Virtual Private Clouds.

@@ -253,47 +253,47 @@ export interface RegistrationState {
     /**
      * : Administrative contact information.
      */
-    administrativeContacts?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationAdministrativeContact>[]>;
+    administrativeContacts?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationAdministrativeContact>[] | undefined>;
     /**
      * : Enables or disables auto-renewal.
      */
-    autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean | undefined>;
     /**
      * : Enables or disables DNSSEC.
      */
-    dnssec?: pulumi.Input<boolean>;
+    dnssec?: pulumi.Input<boolean | undefined>;
     /**
      * : A list of domain names to be registered.
      */
-    domainNames?: pulumi.Input<pulumi.Input<string>[]>;
+    domainNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * DNSSEC DS record configuration.
      */
-    dsRecords?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationDsRecord>[]>;
+    dsRecords?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationDsRecord>[] | undefined>;
     /**
      * : The registration period in years.
      */
-    durationInYears?: pulumi.Input<number>;
+    durationInYears?: pulumi.Input<number | undefined>;
     /**
      * : Details of the owner contact.
      */
-    ownerContact?: pulumi.Input<inputs.domain.RegistrationOwnerContact>;
+    ownerContact?: pulumi.Input<inputs.domain.RegistrationOwnerContact | undefined>;
     /**
      * : The ID of an existing owner contact.
      */
-    ownerContactId?: pulumi.Input<string>;
+    ownerContactId?: pulumi.Input<string | undefined>;
     /**
      * : The Scaleway project ID.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * ID of the task that created the domain.
      */
-    taskId?: pulumi.Input<string>;
+    taskId?: pulumi.Input<string | undefined>;
     /**
      * : Technical contact information.
      */
-    technicalContacts?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationTechnicalContact>[]>;
+    technicalContacts?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationTechnicalContact>[] | undefined>;
 }
 
 /**
@@ -303,11 +303,11 @@ export interface RegistrationArgs {
     /**
      * : Enables or disables auto-renewal.
      */
-    autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean | undefined>;
     /**
      * : Enables or disables DNSSEC.
      */
-    dnssec?: pulumi.Input<boolean>;
+    dnssec?: pulumi.Input<boolean | undefined>;
     /**
      * : A list of domain names to be registered.
      */
@@ -315,17 +315,17 @@ export interface RegistrationArgs {
     /**
      * : The registration period in years.
      */
-    durationInYears?: pulumi.Input<number>;
+    durationInYears?: pulumi.Input<number | undefined>;
     /**
      * : Details of the owner contact.
      */
-    ownerContact?: pulumi.Input<inputs.domain.RegistrationOwnerContact>;
+    ownerContact?: pulumi.Input<inputs.domain.RegistrationOwnerContact | undefined>;
     /**
      * : The ID of an existing owner contact.
      */
-    ownerContactId?: pulumi.Input<string>;
+    ownerContactId?: pulumi.Input<string | undefined>;
     /**
      * : The Scaleway project ID.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

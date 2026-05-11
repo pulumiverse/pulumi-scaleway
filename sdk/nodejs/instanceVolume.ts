@@ -157,45 +157,45 @@ export interface InstanceVolumeState {
     /**
      * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
-    fromSnapshotId?: pulumi.Input<string>;
+    fromSnapshotId?: pulumi.Input<string | undefined>;
     /**
      * If true, consider that this volume may have been migrated and no longer exists.
      */
-    migrateToSbs?: pulumi.Input<boolean>;
+    migrateToSbs?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the volume is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the volume is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The id of the associated server.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      *
      * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -205,29 +205,29 @@ export interface InstanceVolumeArgs {
     /**
      * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
-    fromSnapshotId?: pulumi.Input<string>;
+    fromSnapshotId?: pulumi.Input<string | undefined>;
     /**
      * If true, consider that this volume may have been migrated and no longer exists.
      */
-    migrateToSbs?: pulumi.Input<boolean>;
+    migrateToSbs?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the volume is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      *
      * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
-    sizeInGb?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
      */
@@ -235,5 +235,5 @@ export interface InstanceVolumeArgs {
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -90,21 +90,21 @@ export interface GetSnapshotOutputArgs {
     /**
      * The name of the snapshot. Only one of name or snapshotId should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the Project to which the snapshot is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the snapshot. Only one of `name` and `snapshotId` should be specified.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the volume from which the snapshot was created.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * ) The zone in which the snapshot exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

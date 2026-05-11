@@ -154,10 +154,10 @@ def get_servers(name: Optional[_builtins.str] = None,
         servers=pulumi.get(__ret__, 'servers'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_servers_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       tags: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                       zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_servers_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                       zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
     Gets information about multiple instance servers.

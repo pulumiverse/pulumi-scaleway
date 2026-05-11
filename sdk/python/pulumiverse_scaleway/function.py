@@ -23,23 +23,23 @@ class FunctionArgs:
                  namespace_id: pulumi.Input[_builtins.str],
                  privacy: pulumi.Input[_builtins.str],
                  runtime: pulumi.Input[_builtins.str],
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 zip_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 zip_hash: Optional[pulumi.Input[_builtins.str]] = None):
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 zip_hash: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Function resource.
 
@@ -160,103 +160,103 @@ class FunctionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
-    def deploy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deploy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deploy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the function.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         """
         return pulumi.get(self, "environment_variables")
 
     @environment_variables.setter
-    def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "environment_variables", value)
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
-    def http_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
     @http_option.setter
-    def http_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
-    def max_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         """
         return pulumi.get(self, "max_scale")
 
     @max_scale.setter
-    def max_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_scale", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
-    def memory_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each function. Defaults to 256 MB.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
-    def memory_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
-    def min_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         """
         return pulumi.get(self, "min_scale")
 
     @min_scale.setter
-    def min_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_scale", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the function name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the function is connected to.
 
@@ -265,133 +265,133 @@ class FunctionArgs:
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the functions namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def sandbox(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sandbox(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Execution environment of the function.
         """
         return pulumi.get(self, "sandbox")
 
     @sandbox.setter
-    def sandbox(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sandbox(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sandbox", value)
 
     @_builtins.property
     @pulumi.getter(name="secretEnvironmentVariables")
-    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secret_environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         """
         return pulumi.get(self, "secret_environment_variables")
 
     @secret_environment_variables.setter
-    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags associated with the function.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="zipFile")
-    def zip_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zip_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the zip file containing your function sources to upload.
         """
         return pulumi.get(self, "zip_file")
 
     @zip_file.setter
-    def zip_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zip_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zip_file", value)
 
     @_builtins.property
     @pulumi.getter(name="zipHash")
-    def zip_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zip_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         return pulumi.get(self, "zip_hash")
 
     @zip_hash.setter
-    def zip_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zip_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zip_hash", value)
 
 
 @pulumi.input_type
 class _FunctionState:
     def __init__(__self__, *,
-                 cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 handler: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 zip_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 zip_hash: Optional[pulumi.Input[_builtins.str]] = None):
+                 cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 handler: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 zip_hash: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
 
@@ -475,139 +475,139 @@ class _FunctionState:
 
     @_builtins.property
     @pulumi.getter(name="cpuLimit")
-    def cpu_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cpu_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CPU limit in mVCPU for your function.
         """
         return pulumi.get(self, "cpu_limit")
 
     @cpu_limit.setter
-    def cpu_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cpu_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cpu_limit", value)
 
     @_builtins.property
     @pulumi.getter
-    def deploy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
         """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
-    def deploy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deploy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deploy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the function.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="domainName")
-    def domain_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The native domain name of the function.
         """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
-    def domain_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
-    def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
         """
         return pulumi.get(self, "environment_variables")
 
     @environment_variables.setter
-    def environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def handler(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def handler(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
         """
         return pulumi.get(self, "handler")
 
     @handler.setter
-    def handler(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def handler(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "handler", value)
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
-    def http_option(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
     @http_option.setter
-    def http_option(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_option(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
-    def max_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
         """
         return pulumi.get(self, "max_scale")
 
     @max_scale.setter
-    def max_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_scale", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
-    def memory_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each function. Defaults to 256 MB.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
-    def memory_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
-    def min_scale(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_scale(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         """
         return pulumi.get(self, "min_scale")
 
     @min_scale.setter
-    def min_scale(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_scale(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_scale", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the function name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Functions namespace ID of the function.
 
@@ -616,36 +616,36 @@ class _FunctionState:
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization ID the function is associated with.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def privacy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def privacy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
     @privacy.setter
-    def privacy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def privacy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "privacy", value)
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the function is connected to.
 
@@ -654,115 +654,115 @@ class _FunctionState:
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
-    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the functions namespace is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def runtime(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         """
         return pulumi.get(self, "runtime")
 
     @runtime.setter
-    def runtime(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "runtime", value)
 
     @_builtins.property
     @pulumi.getter
-    def sandbox(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sandbox(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Execution environment of the function.
         """
         return pulumi.get(self, "sandbox")
 
     @sandbox.setter
-    def sandbox(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sandbox(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sandbox", value)
 
     @_builtins.property
     @pulumi.getter(name="secretEnvironmentVariables")
-    def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secret_environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         """
         return pulumi.get(self, "secret_environment_variables")
 
     @secret_environment_variables.setter
-    def secret_environment_variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of tags associated with the function.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="zipFile")
-    def zip_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zip_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the zip file containing your function sources to upload.
         """
         return pulumi.get(self, "zip_file")
 
     @zip_file.setter
-    def zip_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zip_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zip_file", value)
 
     @_builtins.property
     @pulumi.getter(name="zipHash")
-    def zip_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zip_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
         """
         return pulumi.get(self, "zip_hash")
 
     @zip_hash.setter
-    def zip_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zip_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zip_hash", value)
 
 
@@ -777,27 +777,27 @@ class Function(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 handler: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 zip_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 zip_hash: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 handler: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 zip_hash: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `functions.Function` resource allows you to create and manage [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
@@ -1046,27 +1046,27 @@ class Function(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 handler: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_option: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 privacy: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 runtime: Optional[pulumi.Input[_builtins.str]] = None,
-                 sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 zip_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 zip_hash: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 handler: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 zip_hash: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""Function is deprecated: scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1121,30 +1121,30 @@ class Function(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            deploy: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            domain_name: Optional[pulumi.Input[_builtins.str]] = None,
-            environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            handler: Optional[pulumi.Input[_builtins.str]] = None,
-            http_option: Optional[pulumi.Input[_builtins.str]] = None,
-            max_scale: Optional[pulumi.Input[_builtins.int]] = None,
-            memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            min_scale: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            privacy: Optional[pulumi.Input[_builtins.str]] = None,
-            private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            runtime: Optional[pulumi.Input[_builtins.str]] = None,
-            sandbox: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            zip_file: Optional[pulumi.Input[_builtins.str]] = None,
-            zip_hash: Optional[pulumi.Input[_builtins.str]] = None) -> 'Function':
+            cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            handler: pulumi.Input[Optional[_builtins.str]] = None,
+            http_option: pulumi.Input[Optional[_builtins.str]] = None,
+            max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            privacy: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            runtime: pulumi.Input[Optional[_builtins.str]] = None,
+            sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+            zip_hash: pulumi.Input[Optional[_builtins.str]] = None) -> 'Function':
         """
         Get an existing Function resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

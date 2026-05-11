@@ -103,18 +103,18 @@ export interface GetLoadbalancerIpOutputArgs {
      * The IP address.
      * Only one of `ipAddress` and `ipId` should be specified.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * The IP ID.
      * Only one of `ipAddress` and `ipId` should be specified.
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Project the Load Balancer IP is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the IP was reserved.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

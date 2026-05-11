@@ -157,27 +157,27 @@ export interface ContainerTriggerState {
     /**
      * The unique identifier of the container to create a trigger for.
      */
-    containerId?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string | undefined>;
     /**
      * The description of the trigger.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The configuration for the Scaleway NATS account used by the trigger
      */
-    nats?: pulumi.Input<inputs.ContainerTriggerNats>;
+    nats?: pulumi.Input<inputs.ContainerTriggerNats | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The configuration of the Scaleway SQS queue used by the trigger
      */
-    sqs?: pulumi.Input<inputs.ContainerTriggerSqs>;
+    sqs?: pulumi.Input<inputs.ContainerTriggerSqs | undefined>;
 }
 
 /**
@@ -191,21 +191,21 @@ export interface ContainerTriggerArgs {
     /**
      * The description of the trigger.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The configuration for the Scaleway NATS account used by the trigger
      */
-    nats?: pulumi.Input<inputs.ContainerTriggerNats>;
+    nats?: pulumi.Input<inputs.ContainerTriggerNats | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The configuration of the Scaleway SQS queue used by the trigger
      */
-    sqs?: pulumi.Input<inputs.ContainerTriggerSqs>;
+    sqs?: pulumi.Input<inputs.ContainerTriggerSqs | undefined>;
 }

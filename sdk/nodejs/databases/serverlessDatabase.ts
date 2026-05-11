@@ -172,29 +172,29 @@ export interface ServerlessDatabaseState {
     /**
      * The endpoint of the database.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of CPU units for your database. Defaults to 15.
      */
-    maxCpu?: pulumi.Input<number>;
+    maxCpu?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of CPU units for your database. Defaults to 0.
      */
-    minCpu?: pulumi.Input<number>;
+    minCpu?: pulumi.Input<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
      *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,23 +204,23 @@ export interface ServerlessDatabaseArgs {
     /**
      * The maximum number of CPU units for your database. Defaults to 15.
      */
-    maxCpu?: pulumi.Input<number>;
+    maxCpu?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of CPU units for your database. Defaults to 0.
      */
-    minCpu?: pulumi.Input<number>;
+    minCpu?: pulumi.Input<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
      *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

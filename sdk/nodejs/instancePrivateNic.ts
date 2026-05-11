@@ -202,35 +202,35 @@ export interface InstancePrivateNicState {
     /**
      * IPAM ip list, should be for internal use only
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
      */
-    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The MAC address of the private NIC.
      */
-    macAddress?: pulumi.Input<string>;
+    macAddress?: pulumi.Input<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.InstancePrivateNicPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.InstancePrivateNicPrivateIp>[] | undefined>;
     /**
      * The ID of the private network attached to.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server associated with.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the private NIC.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the server must be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -240,15 +240,15 @@ export interface InstancePrivateNicArgs {
     /**
      * IPAM ip list, should be for internal use only
      */
-    ipIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
      */
-    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    privateIps?: pulumi.Input<pulumi.Input<inputs.InstancePrivateNicPrivateIp>[]>;
+    privateIps?: pulumi.Input<pulumi.Input<inputs.InstancePrivateNicPrivateIp>[] | undefined>;
     /**
      * The ID of the private network attached to.
      */
@@ -260,9 +260,9 @@ export interface InstancePrivateNicArgs {
     /**
      * The tags associated with the private NIC.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the server must be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

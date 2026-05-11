@@ -147,25 +147,25 @@ export interface GetPopsOutputArgs {
     /**
      * Filter for PoPs with a dedicated connection available for self-hosted links.
      */
-    dedicatedAvailable?: pulumi.Input<boolean>;
+    dedicatedAvailable?: pulumi.Input<boolean | undefined>;
     /**
      * Hosting provider name to filter for.
      */
-    hostingProviderName?: pulumi.Input<string>;
+    hostingProviderName?: pulumi.Input<string | undefined>;
     /**
      * Filter for PoPs with a shared connection allowing this bandwidth size.
      */
-    linkBandwidthMbps?: pulumi.Input<number>;
+    linkBandwidthMbps?: pulumi.Input<number | undefined>;
     /**
      * PoP name to filter for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Filter for PoPs hosting an available shared connection from this partner.
      */
-    partnerId?: pulumi.Input<string>;
+    partnerId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region to list PoPs from.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

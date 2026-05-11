@@ -207,21 +207,21 @@ export interface GetKubernetesNodePoolOutputArgs {
     /**
      * The cluster ID. Required when `name` is set.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The pool's ID. Only one of `name` and `poolId` should be specified.
      */
-    poolId?: pulumi.Input<string>;
+    poolId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the pool exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The size of the pool.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
 }

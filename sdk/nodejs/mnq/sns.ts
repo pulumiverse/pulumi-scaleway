@@ -121,16 +121,16 @@ export interface SnsState {
     /**
      * The endpoint of the SNS service for this Project.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project in which SNS will be enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SNS will be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -140,10 +140,10 @@ export interface SnsArgs {
     /**
      * `projectId`) The ID of the project in which SNS will be enabled.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region
      * in which SNS will be enabled.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

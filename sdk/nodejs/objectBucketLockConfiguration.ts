@@ -153,7 +153,7 @@ export interface ObjectBucketLockConfigurationState {
     /**
      * The name of the bucket, or its Terraform ID.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      *
@@ -161,15 +161,15 @@ export interface ObjectBucketLockConfigurationState {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Specifies the object lock rule for the specified object.
      */
-    rule?: pulumi.Input<inputs.ObjectBucketLockConfigurationRule>;
+    rule?: pulumi.Input<inputs.ObjectBucketLockConfigurationRule | undefined>;
 }
 
 /**
@@ -187,11 +187,11 @@ export interface ObjectBucketLockConfigurationArgs {
      * If you are using a project different from the default one, you have to specify the `projectId` for every child resource of the bucket,
      * like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Specifies the object lock rule for the specified object.
      */

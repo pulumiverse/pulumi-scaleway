@@ -119,9 +119,9 @@ export interface GetObjectBucketPolicyOutputArgs {
      *
      * For more information on Object Storage and Scaleway Projects, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/iam/api-cli/using-api-key-object-storage/).
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the Object Storage exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

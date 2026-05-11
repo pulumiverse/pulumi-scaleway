@@ -100,7 +100,7 @@ namespace Pulumiverse.Scaleway
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Helm = Pulumi.Helm;
+    /// using Kubernetes = Pulumi.Kubernetes;
     /// using Null = Pulumi.Null;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
@@ -126,7 +126,7 @@ namespace Pulumiverse.Scaleway
     ///         Size = 1,
     ///     });
     /// 
-    ///     var kubeconfig = new Null.Index.Resource("kubeconfig", new()
+    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
     ///     {
     ///         Triggers = 
     ///         {
@@ -148,39 +148,22 @@ namespace Pulumiverse.Scaleway
     ///         ProjectId = cluster.ProjectId,
     ///     });
     /// 
-    ///     var nginxIngress = new Helm.Index.Release("nginx_ingress", new()
+    ///     var nginxIngress = new Kubernetes.Helm.sh.V3.Release("nginx_ingress", new()
     ///     {
     ///         Name = "nginx-ingress",
     ///         Namespace = "kube-system",
-    ///         Repository = "https://kubernetes.github.io/ingress-nginx",
-    ///         Chart = "ingress-nginx",
-    ///         Set = new[]
+    ///         RepositoryOpts = 
     ///         {
-    ///             
-    ///             {
-    ///                 { "name", "controller.service.loadBalancerIP" },
-    ///                 { "value", nginxIp.IpAddress },
-    ///             },
-    ///             
-    ///             {
-    ///                 { "name", "controller.config.use-proxy-protocol" },
-    ///                 { "value", "true" },
-    ///             },
-    ///             
-    ///             {
-    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2" },
-    ///                 { "value", "true" },
-    ///             },
-    ///             
-    ///             {
-    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone" },
-    ///                 { "value", nginxIp.Zone },
-    ///             },
-    ///             
-    ///             {
-    ///                 { "name", "controller.service.externalTrafficPolicy" },
-    ///                 { "value", "Local" },
-    ///             },
+    ///             { "repo", "https://kubernetes.github.io/ingress-nginx" },
+    ///         },
+    ///         Chart = "ingress-nginx",
+    ///         Values = 
+    ///         {
+    ///             { "controller.service.loadBalancerIP", nginxIp.IpAddress },
+    ///             { "controller.config.use-proxy-protocol", "true" },
+    ///             { "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2", "true" },
+    ///             { "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone", nginxIp.Zone },
+    ///             { "controller.service.externalTrafficPolicy", "Local" },
     ///         },
     ///     });
     /// 
@@ -218,7 +201,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     // The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
     ///     // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-    ///     var kubeconfig = new Null.Index.Resource("kubeconfig", new()
+    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
     ///     {
     ///         Triggers = 
     ///         {

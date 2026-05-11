@@ -207,7 +207,7 @@ export interface CockpitState {
      *
      * @deprecated Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
      */
-    endpoints?: pulumi.Input<pulumi.Input<inputs.observability.CockpitEndpoint>[]>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.observability.CockpitEndpoint>[] | undefined>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
      * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
@@ -216,23 +216,23 @@ export interface CockpitState {
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated) The ID of the current pricing plan.
      *
      * @deprecated The 'plan_id' attribute is deprecated and will be removed in a future release.
      */
-    planId?: pulumi.Input<string>;
+    planId?: pulumi.Input<string | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * [DEPRECATED] Push_url
      *
      * @deprecated Please use `scaleway.observability.Source` instead
      */
-    pushUrls?: pulumi.Input<pulumi.Input<inputs.observability.CockpitPushUrl>[]>;
+    pushUrls?: pulumi.Input<pulumi.Input<inputs.observability.CockpitPushUrl>[] | undefined>;
 }
 
 /**
@@ -247,9 +247,9 @@ export interface CockpitArgs {
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
-    plan?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

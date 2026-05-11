@@ -23,18 +23,18 @@ class MnqSqsQueueArgs:
     def __init__(__self__, *,
                  access_key: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_letter_queue: Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']] = None,
-                 fifo_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 message_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_letter_queue: pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']] = None,
+                 fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a MnqSqsQueue resource.
 
@@ -106,168 +106,168 @@ class MnqSqsQueueArgs:
 
     @_builtins.property
     @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def content_based_deduplication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to enable content-based deduplication. Defaults to `false`.
         """
         return pulumi.get(self, "content_based_deduplication")
 
     @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def content_based_deduplication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "content_based_deduplication", value)
 
     @_builtins.property
     @pulumi.getter(name="deadLetterQueue")
-    def dead_letter_queue(self) -> Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']]:
+    def dead_letter_queue(self) -> pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']]:
         """
         Configuration for the dead letter queue. See Dead Letter Queue below for details.
         """
         return pulumi.get(self, "dead_letter_queue")
 
     @dead_letter_queue.setter
-    def dead_letter_queue(self, value: Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']]):
+    def dead_letter_queue(self, value: pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']]):
         pulumi.set(self, "dead_letter_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="fifoQueue")
-    def fifo_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fifo_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         """
         return pulumi.get(self, "fifo_queue")
 
     @fifo_queue.setter
-    def fifo_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fifo_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fifo_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="messageMaxAge")
-    def message_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def message_max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         """
         return pulumi.get(self, "message_max_age")
 
     @message_max_age.setter
-    def message_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def message_max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "message_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="messageMaxSize")
-    def message_max_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def message_max_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
         """
         return pulumi.get(self, "message_max_size")
 
     @message_max_size.setter
-    def message_max_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def message_max_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "message_max_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="receiveWaitTimeSeconds")
-    def receive_wait_time_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def receive_wait_time_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         """
         return pulumi.get(self, "receive_wait_time_seconds")
 
     @receive_wait_time_seconds.setter
-    def receive_wait_time_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def receive_wait_time_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "receive_wait_time_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="sqsEndpoint")
-    def sqs_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sqs_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sqs_endpoint")
 
     @sqs_endpoint.setter
-    def sqs_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sqs_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sqs_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="visibilityTimeoutSeconds")
-    def visibility_timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def visibility_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
         return pulumi.get(self, "visibility_timeout_seconds")
 
     @visibility_timeout_seconds.setter
-    def visibility_timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def visibility_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "visibility_timeout_seconds", value)
 
 
 @pulumi.input_type
 class _MnqSqsQueueState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_letter_queue: Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']] = None,
-                 fifo_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 message_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_letter_queue: pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']] = None,
+                 fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MnqSqsQueue resources.
 
@@ -323,194 +323,194 @@ class _MnqSqsQueueState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The access key of the SQS queue.
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the queue
         """
         return pulumi.get(self, "arn")
 
     @arn.setter
-    def arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
 
     @_builtins.property
     @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def content_based_deduplication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to enable content-based deduplication. Defaults to `false`.
         """
         return pulumi.get(self, "content_based_deduplication")
 
     @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def content_based_deduplication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "content_based_deduplication", value)
 
     @_builtins.property
     @pulumi.getter(name="deadLetterQueue")
-    def dead_letter_queue(self) -> Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']]:
+    def dead_letter_queue(self) -> pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']]:
         """
         Configuration for the dead letter queue. See Dead Letter Queue below for details.
         """
         return pulumi.get(self, "dead_letter_queue")
 
     @dead_letter_queue.setter
-    def dead_letter_queue(self, value: Optional[pulumi.Input['MnqSqsQueueDeadLetterQueueArgs']]):
+    def dead_letter_queue(self, value: pulumi.Input[Optional['MnqSqsQueueDeadLetterQueueArgs']]):
         pulumi.set(self, "dead_letter_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="fifoQueue")
-    def fifo_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fifo_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         """
         return pulumi.get(self, "fifo_queue")
 
     @fifo_queue.setter
-    def fifo_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fifo_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fifo_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="messageMaxAge")
-    def message_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def message_max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         """
         return pulumi.get(self, "message_max_age")
 
     @message_max_age.setter
-    def message_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def message_max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "message_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="messageMaxSize")
-    def message_max_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def message_max_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
         """
         return pulumi.get(self, "message_max_size")
 
     @message_max_size.setter
-    def message_max_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def message_max_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "message_max_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
         return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project in which SQS is enabled.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="receiveWaitTimeSeconds")
-    def receive_wait_time_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def receive_wait_time_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
         """
         return pulumi.get(self, "receive_wait_time_seconds")
 
     @receive_wait_time_seconds.setter
-    def receive_wait_time_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def receive_wait_time_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "receive_wait_time_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `region`). The region in which SQS is enabled.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key of the SQS queue.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="sqsEndpoint")
-    def sqs_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sqs_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
         """
         return pulumi.get(self, "sqs_endpoint")
 
     @sqs_endpoint.setter
-    def sqs_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sqs_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sqs_endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL of the queue.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter(name="visibilityTimeoutSeconds")
-    def visibility_timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def visibility_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
         return pulumi.get(self, "visibility_timeout_seconds")
 
     @visibility_timeout_seconds.setter
-    def visibility_timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def visibility_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "visibility_timeout_seconds", value)
 
 
@@ -525,20 +525,20 @@ class MnqSqsQueue(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_letter_queue: Optional[pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
-                 fifo_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 message_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+                 fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Messaging and Queuing SQS queues.
@@ -722,20 +722,20 @@ class MnqSqsQueue(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_letter_queue: Optional[pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
-                 fifo_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 message_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_max_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sqs_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+                 fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         pulumi.log.warn("""MnqSqsQueue is deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -778,22 +778,22 @@ class MnqSqsQueue(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            arn: Optional[pulumi.Input[_builtins.str]] = None,
-            content_based_deduplication: Optional[pulumi.Input[_builtins.bool]] = None,
-            dead_letter_queue: Optional[pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
-            fifo_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-            message_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-            message_max_size: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            name_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            receive_wait_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            sqs_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            visibility_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None) -> 'MnqSqsQueue':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+            dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+            fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+            message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None) -> 'MnqSqsQueue':
         """
         Get an existing MnqSqsQueue resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

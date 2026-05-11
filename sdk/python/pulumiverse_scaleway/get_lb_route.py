@@ -187,7 +187,7 @@ def get_lb_route(route_id: Optional[_builtins.str] = None,
         match_subdomains=pulumi.get(__ret__, 'match_subdomains'),
         route_id=pulumi.get(__ret__, 'route_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_lb_route_output(route_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_lb_route_output(route_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLbRouteResult]:
     """
     Get information about Scaleway Load Balancer routes.

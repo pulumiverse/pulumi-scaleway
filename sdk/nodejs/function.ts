@@ -338,103 +338,103 @@ export interface FunctionState {
     /**
      * The CPU limit in mVCPU for your function.
      */
-    cpuLimit?: pulumi.Input<number>;
+    cpuLimit?: pulumi.Input<number | undefined>;
     /**
      * Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
      */
-    deploy?: pulumi.Input<boolean>;
+    deploy?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the function.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The native domain name of the function.
      */
-    domainName?: pulumi.Input<string>;
+    domainName?: pulumi.Input<string | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
      */
-    handler?: pulumi.Input<string>;
+    handler?: pulumi.Input<string | undefined>;
     /**
      * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
-    httpOption?: pulumi.Input<string>;
+    httpOption?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
      */
-    maxScale?: pulumi.Input<number>;
+    maxScale?: pulumi.Input<number | undefined>;
     /**
      * The memory resources in MB to allocate to each function. Defaults to 256 MB.
      */
-    memoryLimit?: pulumi.Input<number>;
+    memoryLimit?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `minScale` greater than 0 will cause your function to run constantly.
      */
-    minScale?: pulumi.Input<number>;
+    minScale?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the function name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Functions namespace ID of the function.
      *
      * > **Important** Updating the `name` argument will recreate the function.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the function is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
      */
-    privacy?: pulumi.Input<string>;
+    privacy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the function is connected to.
      *
      * > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the functions namespace is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the namespace should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */
-    runtime?: pulumi.Input<string>;
+    runtime?: pulumi.Input<string | undefined>;
     /**
      * Execution environment of the function.
      */
-    sandbox?: pulumi.Input<string>;
+    sandbox?: pulumi.Input<string | undefined>;
     /**
      * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of tags associated with the function.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Path to the zip file containing your function sources to upload.
      */
-    zipFile?: pulumi.Input<string>;
+    zipFile?: pulumi.Input<string | undefined>;
     /**
      * The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
      */
-    zipHash?: pulumi.Input<string>;
+    zipHash?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -444,15 +444,15 @@ export interface FunctionArgs {
     /**
      * Define whether the function should be deployed. Terraform will wait for the function to be deployed. Your function will be redeployed if you update the source zip file.
      */
-    deploy?: pulumi.Input<boolean>;
+    deploy?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the function.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#environment-variables) of the function.
      */
-    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Handler of the function, depends on the runtime. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-create-a-new-function) for the list of supported runtimes.
      */
@@ -460,23 +460,23 @@ export interface FunctionArgs {
     /**
      * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
-    httpOption?: pulumi.Input<string>;
+    httpOption?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `maxScale` value.
      */
-    maxScale?: pulumi.Input<number>;
+    maxScale?: pulumi.Input<number | undefined>;
     /**
      * The memory resources in MB to allocate to each function. Defaults to 256 MB.
      */
-    memoryLimit?: pulumi.Input<number>;
+    memoryLimit?: pulumi.Input<number | undefined>;
     /**
      * The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `minScale` greater than 0 will cause your function to run constantly.
      */
-    minScale?: pulumi.Input<number>;
+    minScale?: pulumi.Input<number | undefined>;
     /**
      * The unique name of the function name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Functions namespace ID of the function.
      *
@@ -492,15 +492,15 @@ export interface FunctionArgs {
      *
      * > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the functions namespace is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`). The region in which the namespace should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */
@@ -508,25 +508,25 @@ export interface FunctionArgs {
     /**
      * Execution environment of the function.
      */
-    sandbox?: pulumi.Input<string>;
+    sandbox?: pulumi.Input<string | undefined>;
     /**
      * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
-    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of tags associated with the function.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
      */
-    timeout?: pulumi.Input<number>;
+    timeout?: pulumi.Input<number | undefined>;
     /**
      * Path to the zip file containing your function sources to upload.
      */
-    zipFile?: pulumi.Input<string>;
+    zipFile?: pulumi.Input<string | undefined>;
     /**
      * The hash of your source zip file, changing it will redeploy the function. Can be any string, changing it will simply trigger a state change. You can use any Terraform hash function to trigger a change on your zip change (see examples).
      */
-    zipHash?: pulumi.Input<string>;
+    zipHash?: pulumi.Input<string | undefined>;
 }

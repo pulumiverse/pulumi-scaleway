@@ -222,9 +222,9 @@ def get_loadbalancer_certificate(certificate_id: Optional[_builtins.str] = None,
         not_valid_before=pulumi.get(__ret__, 'not_valid_before'),
         status=pulumi.get(__ret__, 'status'),
         subject_alternative_names=pulumi.get(__ret__, 'subject_alternative_names'))
-def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        lb_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_loadbalancer_certificate_output(certificate_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        lb_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadbalancerCertificateResult]:
     """
     Get information about Scaleway Load Balancer certificates.

@@ -268,95 +268,95 @@ export interface LinkState {
     /**
      * Desired bandwidth for the link. Must be compatible with available link bandwidths and remaining bandwidth capacity of the connection.
      */
-    bandwidthMbps?: pulumi.Input<number>;
+    bandwidthMbps?: pulumi.Input<number | undefined>;
     /**
      * Status of the link's BGP IPv4 session.
      */
-    bgpV4Status?: pulumi.Input<string>;
+    bgpV4Status?: pulumi.Input<string | undefined>;
     /**
      * Status of the link's BGP IPv6 session.
      */
-    bgpV6Status?: pulumi.Input<string>;
+    bgpV6Status?: pulumi.Input<string | undefined>;
     /**
      * If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partnerId`.
      */
-    connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string | undefined>;
     /**
      * Creation date of the link (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Defines whether route propagation is enabled or not. Defaults to `false`.
      */
-    enableRoutePropagation?: pulumi.Input<boolean>;
+    enableRoutePropagation?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the link. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Organization ID.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Used to identify a link from a user or partner's point of view.
      */
-    pairingKey?: pulumi.Input<string>;
+    pairingKey?: pulumi.Input<string | undefined>;
     /**
      * If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
      */
-    partnerId?: pulumi.Input<string>;
+    partnerId?: pulumi.Input<string | undefined>;
     /**
      * For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
      */
-    peerAsn?: pulumi.Input<number>;
+    peerAsn?: pulumi.Input<number | undefined>;
     /**
      * BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
      */
-    peerBgpConfigs?: pulumi.Input<pulumi.Input<inputs.interlink.LinkPeerBgpConfig>[]>;
+    peerBgpConfigs?: pulumi.Input<pulumi.Input<inputs.interlink.LinkPeerBgpConfig>[] | undefined>;
     /**
      * PoP (location) where the link will be created.
      */
-    popId?: pulumi.Input<string>;
+    popId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the link is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the link should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
      */
-    routingPolicyV4Id?: pulumi.Input<string>;
+    routingPolicyV4Id?: pulumi.Input<string | undefined>;
     /**
      * If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
      */
-    routingPolicyV6Id?: pulumi.Input<string>;
+    routingPolicyV6Id?: pulumi.Input<string | undefined>;
     /**
      * BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
      */
-    scwBgpConfigs?: pulumi.Input<pulumi.Input<inputs.interlink.LinkScwBgpConfig>[]>;
+    scwBgpConfigs?: pulumi.Input<pulumi.Input<inputs.interlink.LinkScwBgpConfig>[] | undefined>;
     /**
      * Status of the link.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the link.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Last modification date of the link (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
      */
-    vlan?: pulumi.Input<number>;
+    vlan?: pulumi.Input<number | undefined>;
     /**
      * ID of the Scaleway VPC to attach to the link.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -370,23 +370,23 @@ export interface LinkArgs {
     /**
      * If set, creates a self-hosted link using this dedicated physical connection. Conflicts with `partnerId`.
      */
-    connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string | undefined>;
     /**
      * Defines whether route propagation is enabled or not. Defaults to `false`.
      */
-    enableRoutePropagation?: pulumi.Input<boolean>;
+    enableRoutePropagation?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the link. If not provided, a name will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
      */
-    partnerId?: pulumi.Input<string>;
+    partnerId?: pulumi.Input<string | undefined>;
     /**
      * For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
      */
-    peerAsn?: pulumi.Input<number>;
+    peerAsn?: pulumi.Input<number | undefined>;
     /**
      * PoP (location) where the link will be created.
      */
@@ -394,29 +394,29 @@ export interface LinkArgs {
     /**
      * `projectId`) The ID of the project the link is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the link should be created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
      */
-    routingPolicyV4Id?: pulumi.Input<string>;
+    routingPolicyV4Id?: pulumi.Input<string | undefined>;
     /**
      * If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
      */
-    routingPolicyV6Id?: pulumi.Input<string>;
+    routingPolicyV6Id?: pulumi.Input<string | undefined>;
     /**
      * List of tags to apply to the link.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * For self-hosted links only, the VLAN ID. If the VLAN is not available (already taken or out of range), an error is returned.
      */
-    vlan?: pulumi.Input<number>;
+    vlan?: pulumi.Input<number | undefined>;
     /**
      * ID of the Scaleway VPC to attach to the link.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }

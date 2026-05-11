@@ -120,10 +120,10 @@ export interface GetAclsOutputArgs {
     /**
      * The ACL name to filter for. ACLs with a matching name are listed.
      */
-    name?: pulumi.Input<string>;
-    projectId?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the ACLs exist.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -192,10 +192,10 @@ def get_loadbalancer_ip(ip_address: Optional[_builtins.str] = None,
         reverse=pulumi.get(__ret__, 'reverse'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               ip_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_loadbalancer_ip_output(ip_address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               ip_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoadbalancerIpResult]:
     """
     Gets information about a Load Balancer IP address.

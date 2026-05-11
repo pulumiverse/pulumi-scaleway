@@ -81,17 +81,17 @@ export interface GetVolumeOutputArgs {
     /**
      * The name of the volume. Only one of `name` and `volumeId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the Project to which the volume is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
     /**
      * ). The zone in which the volume exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

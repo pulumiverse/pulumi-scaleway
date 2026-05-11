@@ -84,10 +84,10 @@ import * as utilities from "./utilities";
  *     "192.168.0.3",
  * ];
  * const dummy = new scaleway.instance.SecurityGroup("dummy", {
- *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *     inboundRules: trusted.map(entry => ({
  *         action: "accept",
  *         port: 22,
- *         ipRange: entry.value,
+ *         ipRange: entry,
  *     })),
  *     inboundDefaultPolicy: "drop",
  *     outboundDefaultPolicy: "accept",
@@ -244,56 +244,56 @@ export interface InstanceSecurityGroupState {
     /**
      * The description of the security group.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
      */
-    enableDefaultSecurity?: pulumi.Input<boolean>;
+    enableDefaultSecurity?: pulumi.Input<boolean | undefined>;
     /**
      * A boolean to specify whether to use instance_security_group_rules.
      * If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
      */
-    externalRules?: pulumi.Input<boolean>;
+    externalRules?: pulumi.Input<boolean | undefined>;
     /**
      * The default policy on incoming traffic. Possible values are: `accept` or `drop`.
      */
-    inboundDefaultPolicy?: pulumi.Input<string>;
+    inboundDefaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupInboundRule>[] | undefined>;
     /**
      * The name of the security group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization ID the security group is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
      */
-    outboundDefaultPolicy?: pulumi.Input<string>;
+    outboundDefaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupOutboundRule>[] | undefined>;
     /**
      * `projectId`) The ID of the project the security group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * A boolean to specify whether the security group should be stateful or not.
      */
-    stateful?: pulumi.Input<boolean>;
+    stateful?: pulumi.Input<boolean | undefined>;
     /**
      * The tags of the security group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the security group should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -303,50 +303,50 @@ export interface InstanceSecurityGroupArgs {
     /**
      * The description of the security group.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
      */
-    enableDefaultSecurity?: pulumi.Input<boolean>;
+    enableDefaultSecurity?: pulumi.Input<boolean | undefined>;
     /**
      * A boolean to specify whether to use instance_security_group_rules.
      * If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
      */
-    externalRules?: pulumi.Input<boolean>;
+    externalRules?: pulumi.Input<boolean | undefined>;
     /**
      * The default policy on incoming traffic. Possible values are: `accept` or `drop`.
      */
-    inboundDefaultPolicy?: pulumi.Input<string>;
+    inboundDefaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupInboundRule>[]>;
+    inboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupInboundRule>[] | undefined>;
     /**
      * The name of the security group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
      */
-    outboundDefaultPolicy?: pulumi.Input<string>;
+    outboundDefaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupOutboundRule>[]>;
+    outboundRules?: pulumi.Input<pulumi.Input<inputs.InstanceSecurityGroupOutboundRule>[] | undefined>;
     /**
      * `projectId`) The ID of the project the security group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * A boolean to specify whether the security group should be stateful or not.
      */
-    stateful?: pulumi.Input<boolean>;
+    stateful?: pulumi.Input<boolean | undefined>;
     /**
      * The tags of the security group.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the security group should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

@@ -22,13 +22,13 @@ __all__ = ['ExporterArgs', 'Exporter']
 class ExporterArgs:
     def __init__(__self__, *,
                  datasource_id: pulumi.Input[_builtins.str],
-                 datadog_destination: Optional[pulumi.Input['ExporterDatadogDestinationArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 exported_products: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 otlp_destination: Optional[pulumi.Input['ExporterOtlpDestinationArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 datadog_destination: pulumi.Input[Optional['ExporterDatadogDestinationArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 otlp_destination: pulumi.Input[Optional['ExporterOtlpDestinationArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Exporter resource.
 
@@ -71,103 +71,103 @@ class ExporterArgs:
 
     @_builtins.property
     @pulumi.getter(name="datadogDestination")
-    def datadog_destination(self) -> Optional[pulumi.Input['ExporterDatadogDestinationArgs']]:
+    def datadog_destination(self) -> pulumi.Input[Optional['ExporterDatadogDestinationArgs']]:
         """
         Datadog destination configuration. Cannot be used with `otlp_destination`.
         """
         return pulumi.get(self, "datadog_destination")
 
     @datadog_destination.setter
-    def datadog_destination(self, value: Optional[pulumi.Input['ExporterDatadogDestinationArgs']]):
+    def datadog_destination(self, value: pulumi.Input[Optional['ExporterDatadogDestinationArgs']]):
         pulumi.set(self, "datadog_destination", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the data export.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="exportedProducts")
-    def exported_products(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def exported_products(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Scaleway products to export. Use `["all"]` to export all products. Use `observability_get_products` for valid product names. Defaults to `["all"]`.
         """
         return pulumi.get(self, "exported_products")
 
     @exported_products.setter
-    def exported_products(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def exported_products(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "exported_products", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the data export.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="otlpDestination")
-    def otlp_destination(self) -> Optional[pulumi.Input['ExporterOtlpDestinationArgs']]:
+    def otlp_destination(self) -> pulumi.Input[Optional['ExporterOtlpDestinationArgs']]:
         """
         OTLP destination configuration. Cannot be used with `datadog_destination`.
         """
         return pulumi.get(self, "otlp_destination")
 
     @otlp_destination.setter
-    def otlp_destination(self, value: Optional[pulumi.Input['ExporterOtlpDestinationArgs']]):
+    def otlp_destination(self, value: pulumi.Input[Optional['ExporterOtlpDestinationArgs']]):
         pulumi.set(self, "otlp_destination", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The region where the exporter is located.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
 class _ExporterState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_destination: Optional[pulumi.Input['ExporterDatadogDestinationArgs']] = None,
-                 datasource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 exported_products: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 otlp_destination: Optional[pulumi.Input['ExporterOtlpDestinationArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_destination: pulumi.Input[Optional['ExporterDatadogDestinationArgs']] = None,
+                 datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 otlp_destination: pulumi.Input[Optional['ExporterOtlpDestinationArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Exporter resources.
 
@@ -208,134 +208,134 @@ class _ExporterState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="datadogDestination")
-    def datadog_destination(self) -> Optional[pulumi.Input['ExporterDatadogDestinationArgs']]:
+    def datadog_destination(self) -> pulumi.Input[Optional['ExporterDatadogDestinationArgs']]:
         """
         Datadog destination configuration. Cannot be used with `otlp_destination`.
         """
         return pulumi.get(self, "datadog_destination")
 
     @datadog_destination.setter
-    def datadog_destination(self, value: Optional[pulumi.Input['ExporterDatadogDestinationArgs']]):
+    def datadog_destination(self, value: pulumi.Input[Optional['ExporterDatadogDestinationArgs']]):
         pulumi.set(self, "datadog_destination", value)
 
     @_builtins.property
     @pulumi.getter(name="datasourceId")
-    def datasource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datasource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the data source linked to the data export. Use `observability_get_sources` to find available data sources.
         """
         return pulumi.get(self, "datasource_id")
 
     @datasource_id.setter
-    def datasource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datasource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datasource_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the data export.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="exportedProducts")
-    def exported_products(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def exported_products(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Scaleway products to export. Use `["all"]` to export all products. Use `observability_get_products` for valid product names. Defaults to `["all"]`.
         """
         return pulumi.get(self, "exported_products")
 
     @exported_products.setter
-    def exported_products(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def exported_products(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "exported_products", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the data export.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="otlpDestination")
-    def otlp_destination(self) -> Optional[pulumi.Input['ExporterOtlpDestinationArgs']]:
+    def otlp_destination(self) -> pulumi.Input[Optional['ExporterOtlpDestinationArgs']]:
         """
         OTLP destination configuration. Cannot be used with `datadog_destination`.
         """
         return pulumi.get(self, "otlp_destination")
 
     @otlp_destination.setter
-    def otlp_destination(self, value: Optional[pulumi.Input['ExporterOtlpDestinationArgs']]):
+    def otlp_destination(self, value: pulumi.Input[Optional['ExporterOtlpDestinationArgs']]):
         pulumi.set(self, "otlp_destination", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The ID of the Project.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ) The region where the exporter is located.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the data export (`creating`, `ready`, `error`).
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -345,14 +345,14 @@ class Exporter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datadog_destination: Optional[pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
-                 datasource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 exported_products: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 otlp_destination: Optional[pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+                 datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `observability.Exporter` resource allows you to create and manage [data exports](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-exports) in Scaleway's Cockpit. Data exports send metrics and logs from Scaleway products to external destinations like Datadog or OTLP-compatible endpoints.
@@ -522,14 +522,14 @@ class Exporter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datadog_destination: Optional[pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
-                 datasource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 exported_products: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 otlp_destination: Optional[pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+                 datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -562,17 +562,17 @@ class Exporter(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            datadog_destination: Optional[pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
-            datasource_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            exported_products: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            otlp_destination: Optional[pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'Exporter':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+            datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Exporter':
         """
         Get an existing Exporter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

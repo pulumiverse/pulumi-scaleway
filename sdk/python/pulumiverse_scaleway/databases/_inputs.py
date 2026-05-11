@@ -40,7 +40,7 @@ class AclAclRuleArgsDict(TypedDict):
     """
     The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A text describing this rule. Default description: `IP allowed`
     """
@@ -49,7 +49,7 @@ class AclAclRuleArgsDict(TypedDict):
 class AclAclRuleArgs:
     def __init__(__self__, *,
                  ip: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] ip: The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         :param pulumi.Input[_builtins.str] description: A text describing this rule. Default description: `IP allowed`
@@ -72,35 +72,35 @@ class AclAclRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A text describing this rule. Default description: `IP allowed`
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
 
 class InstanceLoadBalancerArgsDict(TypedDict):
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
-    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hostname of the endpoint.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv4 address on the network.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the Database Instance.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Port in the Private Network.
     """
@@ -108,11 +108,11 @@ class InstanceLoadBalancerArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceLoadBalancerArgs:
     def __init__(__self__, *,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[_builtins.str] hostname: Hostname of the endpoint.
@@ -133,71 +133,71 @@ class InstanceLoadBalancerArgs:
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
 class InstanceLogsPolicyArgsDict(TypedDict):
-    max_age_retention: NotRequired[pulumi.Input[_builtins.int]]
+    max_age_retention: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The max age (in days) of remote logs to keep on the Database Instance
     """
-    total_disk_retention: NotRequired[pulumi.Input[_builtins.int]]
+    total_disk_retention: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The max disk size of remote logs to keep on the Database Instance.
     """
@@ -205,8 +205,8 @@ class InstanceLogsPolicyArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceLogsPolicyArgs:
     def __init__(__self__, *,
-                 max_age_retention: Optional[pulumi.Input[_builtins.int]] = None,
-                 total_disk_retention: Optional[pulumi.Input[_builtins.int]] = None):
+                 max_age_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 total_disk_retention: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
         :param pulumi.Input[_builtins.int] total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
@@ -218,35 +218,35 @@ class InstanceLogsPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxAgeRetention")
-    def max_age_retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_age_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The max age (in days) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "max_age_retention")
 
     @max_age_retention.setter
-    def max_age_retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_age_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_age_retention", value)
 
     @_builtins.property
     @pulumi.getter(name="totalDiskRetention")
-    def total_disk_retention(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def total_disk_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
 
     @total_disk_retention.setter
-    def total_disk_retention(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def total_disk_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "total_disk_retention", value)
 
 
 class InstancePrivateIpArgsDict(TypedDict):
-    address: NotRequired[pulumi.Input[_builtins.str]]
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private IPv4 address.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Version ID to use in upgrade requests.
     """
@@ -254,8 +254,8 @@ class InstancePrivateIpArgsDict(TypedDict):
 @pulumi.input_type
 class InstancePrivateIpArgs:
     def __init__(__self__, *,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IPv4 address.
         :param pulumi.Input[_builtins.str] id: Version ID to use in upgrade requests.
@@ -267,26 +267,26 @@ class InstancePrivateIpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private IPv4 address.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version ID to use in upgrade requests.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -295,35 +295,35 @@ class InstancePrivateNetworkArgsDict(TypedDict):
     """
     The private network ID
     """
-    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    enable_ipam: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether or not the private network endpoint should be configured with IPAM
     """
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint.
     """
-    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hostname of the endpoint.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv4 address on the network.
     """
-    ip_net: NotRequired[pulumi.Input[_builtins.str]]
+    ip_net: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IP with the given mask within the private subnet
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the Database Instance.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Port in the Private Network.
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The zone you want to attach the resource to
     """
@@ -332,14 +332,14 @@ class InstancePrivateNetworkArgsDict(TypedDict):
 class InstancePrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[_builtins.str],
-                 enable_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_net: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 enable_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_net: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] pn_id: The private network ID
         :param pulumi.Input[_builtins.bool] enable_ipam: Whether or not the private network endpoint should be configured with IPAM
@@ -383,111 +383,111 @@ class InstancePrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableIpam")
-    def enable_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_ipam(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the private network endpoint should be configured with IPAM
         """
         return pulumi.get(self, "enable_ipam")
 
     @enable_ipam.setter
-    def enable_ipam(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_ipam(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_ipam", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="ipNet")
-    def ip_net(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_net(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP with the given mask within the private subnet
         """
         return pulumi.get(self, "ip_net")
 
     @ip_net.setter
-    def ip_net(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_net(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_net", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The zone you want to attach the resource to
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 class InstanceReadReplicaArgsDict(TypedDict):
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv4 address on the network.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the Database Instance.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Port in the Private Network.
     """
@@ -495,9 +495,9 @@ class InstanceReadReplicaArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceReadReplicaArgs:
     def __init__(__self__, *,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] ip: IPv4 address on the network.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
@@ -512,55 +512,55 @@ class InstanceReadReplicaArgs:
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
 class InstanceUpgradableVersionArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Version ID to use in upgrade requests.
     """
-    minor_version: NotRequired[pulumi.Input[_builtins.str]]
+    minor_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minor version string (e.g., `15.5.0`).
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the Database Instance.
     """
-    version: NotRequired[pulumi.Input[_builtins.str]]
+    version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Version string (e.g., `15.5`).
     """
@@ -568,10 +568,10 @@ class InstanceUpgradableVersionArgsDict(TypedDict):
 @pulumi.input_type
 class InstanceUpgradableVersionArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 minor_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 minor_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: Version ID to use in upgrade requests.
         :param pulumi.Input[_builtins.str] minor_version: Minor version string (e.g., `15.5.0`).
@@ -589,71 +589,71 @@ class InstanceUpgradableVersionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version ID to use in upgrade requests.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="minorVersion")
-    def minor_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def minor_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minor version string (e.g., `15.5.0`).
         """
         return pulumi.get(self, "minor_version")
 
     @minor_version.setter
-    def minor_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def minor_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "minor_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version string (e.g., `15.5`).
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
 class ReadReplicaDirectAccessArgsDict(TypedDict):
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint of the Read Replica.
     """
-    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hostname of the endpoint. Only one of IP and hostname may be set.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the endpoint.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port of the endpoint.
     """
@@ -661,11 +661,11 @@ class ReadReplicaDirectAccessArgsDict(TypedDict):
 @pulumi.input_type
 class ReadReplicaDirectAccessArgs:
     def __init__(__self__, *,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint_id: The ID of the endpoint of the Read Replica.
         :param pulumi.Input[_builtins.str] hostname: Hostname of the endpoint. Only one of IP and hostname may be set.
@@ -686,62 +686,62 @@ class ReadReplicaDirectAccessArgs:
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the endpoint.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
@@ -750,37 +750,37 @@ class ReadReplicaPrivateNetworkArgsDict(TypedDict):
     """
     UUID of the Private Netork to be connected to the Read Replica.
     """
-    enable_ipam: NotRequired[pulumi.Input[_builtins.bool]]
+    enable_ipam: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
     > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
     """
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the endpoint of the Read Replica.
     """
-    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hostname of the endpoint. Only one of IP and hostname may be set.
     """
-    ip: NotRequired[pulumi.Input[_builtins.str]]
+    ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the endpoint.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     TCP port of the endpoint.
     """
-    service_ip: NotRequired[pulumi.Input[_builtins.str]]
+    service_ip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private network zone
     """
@@ -789,14 +789,14 @@ class ReadReplicaPrivateNetworkArgsDict(TypedDict):
 class ReadReplicaPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[_builtins.str],
-                 enable_ipam: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 enable_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private_network_id: UUID of the Private Netork to be connected to the Read Replica.
         :param pulumi.Input[_builtins.bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -842,7 +842,7 @@ class ReadReplicaPrivateNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableIpam")
-    def enable_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_ipam(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
@@ -851,91 +851,91 @@ class ReadReplicaPrivateNetworkArgs:
         return pulumi.get(self, "enable_ipam")
 
     @enable_ipam.setter
-    def enable_ipam(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_ipam(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_ipam", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the endpoint.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceIp")
-    def service_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         """
         return pulumi.get(self, "service_ip")
 
     @service_ip.setter
-    def service_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private network zone
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 

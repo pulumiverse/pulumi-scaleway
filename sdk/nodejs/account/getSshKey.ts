@@ -85,15 +85,15 @@ export interface GetSshKeyOutputArgs {
     /**
      * The name of the SSH key.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The unique identifier of the project with which the SSH key is associated.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the SSH key.
      *
      * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
-    sshKeyId?: pulumi.Input<string>;
+    sshKeyId?: pulumi.Input<string | undefined>;
 }

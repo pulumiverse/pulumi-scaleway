@@ -113,9 +113,9 @@ export interface GetBucketServerSideEncryptionConfigurationOutputArgs {
     /**
      * The bucket's name or regional ID. Conflicts with `bucketServerSideEncryptionConfigurationId`.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
      */
-    bucketServerSideEncryptionConfigurationId?: pulumi.Input<string>;
+    bucketServerSideEncryptionConfigurationId?: pulumi.Input<string | undefined>;
 }

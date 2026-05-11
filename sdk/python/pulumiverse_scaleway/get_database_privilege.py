@@ -162,10 +162,10 @@ def get_database_privilege(database_name: Optional[_builtins.str] = None,
         permission_status=pulumi.get(__ret__, 'permission_status'),
         region=pulumi.get(__ret__, 'region'),
         user_name=pulumi.get(__ret__, 'user_name'))
-def get_database_privilege_output(database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_database_privilege_output(database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  user_name: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabasePrivilegeResult]:
     """
     Gets information about the privileges in a database.

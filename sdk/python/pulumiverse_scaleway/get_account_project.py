@@ -139,9 +139,9 @@ def get_account_project(name: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_account_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               organization_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_account_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
     The `account.Project` data source is used to retrieve information about a Scaleway project.

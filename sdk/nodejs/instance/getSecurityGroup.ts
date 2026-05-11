@@ -101,17 +101,17 @@ export interface GetSecurityGroupOutputArgs {
     /**
      * The security group name. Only one of `name` and `securityGroupId` should be specified.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the project the security group is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The security group id. Only one of `name` and `securityGroupId` should be specified.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the security group exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

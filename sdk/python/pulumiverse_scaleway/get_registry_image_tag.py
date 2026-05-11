@@ -194,11 +194,11 @@ def get_registry_image_tag(image_id: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         tag_id=pulumi.get(__ret__, 'tag_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_registry_image_tag_output(image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                  name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  tag_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_registry_image_tag_output(image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                  name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  tag_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryImageTagResult]:
     """
     Gets information about a specific tag of a Container Registry image.

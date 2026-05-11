@@ -164,10 +164,10 @@ def get_volume(name: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_volume_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      volume_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_volume_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      volume_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumeResult]:
     """
     The `block.Volume` data source is used to retrieve information about a Block Storage volume.

@@ -290,10 +290,10 @@ def get_gateway(name: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpn_gateway_id=pulumi.get(__ret__, 'vpn_gateway_id'),
         zone=pulumi.get(__ret__, 'zone'))
-def get_gateway_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       vpn_gateway_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_gateway_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       vpn_gateway_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGatewayResult]:
     """
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).

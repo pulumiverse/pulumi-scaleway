@@ -203,59 +203,59 @@ export interface DatabaseBackupState {
     /**
      * Creation date (Format ISO 8601).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Name of the database of this backup.
      */
-    databaseName?: pulumi.Input<string>;
+    databaseName?: pulumi.Input<string | undefined>;
     /**
      * URL you can download the backup from (when exporting).
      */
-    downloadUrl?: pulumi.Input<string>;
+    downloadUrl?: pulumi.Input<string | undefined>;
     /**
      * Expiration date of the download link (Format ISO 8601).
      */
-    downloadUrlExpiresAt?: pulumi.Input<string>;
+    downloadUrlExpiresAt?: pulumi.Input<string | undefined>;
     /**
      * Expiration date (Format ISO 8601).
      *
      * > **Important:** `expiresAt` cannot be removed after being set.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the backup.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * Name of the instance of the backup.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Name of the database (e.g. `my-database`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Whether the backup is stored in the same region as the source instance.
      */
-    sameRegion?: pulumi.Input<boolean>;
+    sameRegion?: pulumi.Input<boolean | undefined>;
     /**
      * Size of the backup (in bytes).
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Updated date (Format ISO 8601).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -271,7 +271,7 @@ export interface DatabaseBackupArgs {
      *
      * > **Important:** `expiresAt` cannot be removed after being set.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * UUID of the Database Instance.
      *
@@ -281,9 +281,9 @@ export interface DatabaseBackupArgs {
     /**
      * Name of the database (e.g. `my-database`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

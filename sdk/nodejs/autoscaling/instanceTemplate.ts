@@ -202,67 +202,67 @@ export interface InstanceTemplateState {
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * The name of Instance commercial type.
      */
-    commercialType?: pulumi.Input<string>;
+    commercialType?: pulumi.Input<string | undefined>;
     /**
      * Date and time of Instance group's creation (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    imageId?: pulumi.Input<string>;
+    imageId?: pulumi.Input<string | undefined>;
     /**
      * The Instance group template.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The instance placement group ID. This is optional, but it is highly recommended to set a preference for Instance location within Availability Zone.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * The private Network IDs to attach to the new Instance.
      */
-    privateNetworkIds?: pulumi.Input<pulumi.Input<string>[]>;
+    privateNetworkIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance template is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The number of flexible IPv4 addresses to attach to the new Instance.
      */
-    publicIpsV4Count?: pulumi.Input<number>;
+    publicIpsV4Count?: pulumi.Input<number | undefined>;
     /**
      * The number of flexible IPv6 addresses to attach to the new Instance.
      */
-    publicIpsV6Count?: pulumi.Input<number>;
+    publicIpsV6Count?: pulumi.Input<number | undefined>;
     /**
      * The instance security group ID.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The Instance template status
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Instance template.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time of Instance group's last update (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The template of Instance volume.
      */
-    volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceTemplateVolume>[]>;
+    volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceTemplateVolume>[] | undefined>;
     /**
      * `zone`) The zone in which the Instance template exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -272,7 +272,7 @@ export interface InstanceTemplateArgs {
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * The name of Instance commercial type.
      */
@@ -280,45 +280,45 @@ export interface InstanceTemplateArgs {
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    imageId?: pulumi.Input<string>;
+    imageId?: pulumi.Input<string | undefined>;
     /**
      * The Instance group template.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The instance placement group ID. This is optional, but it is highly recommended to set a preference for Instance location within Availability Zone.
      */
-    placementGroupId?: pulumi.Input<string>;
+    placementGroupId?: pulumi.Input<string | undefined>;
     /**
      * The private Network IDs to attach to the new Instance.
      */
-    privateNetworkIds?: pulumi.Input<pulumi.Input<string>[]>;
+    privateNetworkIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance template is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The number of flexible IPv4 addresses to attach to the new Instance.
      */
-    publicIpsV4Count?: pulumi.Input<number>;
+    publicIpsV4Count?: pulumi.Input<number | undefined>;
     /**
      * The number of flexible IPv6 addresses to attach to the new Instance.
      */
-    publicIpsV6Count?: pulumi.Input<number>;
+    publicIpsV6Count?: pulumi.Input<number | undefined>;
     /**
      * The instance security group ID.
      */
-    securityGroupId?: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Instance template.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The template of Instance volume.
      */
-    volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceTemplateVolume>[]>;
+    volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.InstanceTemplateVolume>[] | undefined>;
     /**
      * `zone`) The zone in which the Instance template exists.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

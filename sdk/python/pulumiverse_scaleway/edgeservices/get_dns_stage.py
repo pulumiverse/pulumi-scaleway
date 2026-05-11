@@ -213,9 +213,9 @@ def get_dns_stage(dns_stage_id: Optional[_builtins.str] = None,
         tls_stage_id=pulumi.get(__ret__, 'tls_stage_id'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_dns_stage_output(dns_stage_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         fqdn: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         pipeline_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_dns_stage_output(dns_stage_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         fqdn: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         pipeline_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDnsStageResult]:
     """
     Gets information about an Edge Services DNS stage.

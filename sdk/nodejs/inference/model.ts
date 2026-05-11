@@ -227,68 +227,68 @@ export interface ModelState {
     /**
      * The date and time of the creation of the model
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A textual description of the model (if available).
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the model requires end-user license agreement acceptance before use.
      */
-    hasEula?: pulumi.Input<boolean>;
+    hasEula?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the model. This must be unique within the project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of supported node types and their quantization options. Each entry contains:
      */
-    nodesSupports?: pulumi.Input<pulumi.Input<inputs.inference.ModelNodesSupport>[]>;
+    nodesSupports?: pulumi.Input<pulumi.Input<inputs.inference.ModelNodesSupport>[] | undefined>;
     /**
      * Size, in bits, of the model parameters.
      */
-    parameterSizeBits?: pulumi.Input<number>;
+    parameterSizeBits?: pulumi.Input<number | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
      */
-    secretWo?: pulumi.Input<string>;
+    secretWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only secret. Required when using `secretWo`.
      */
-    secretWoVersion?: pulumi.Input<number>;
+    secretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Total size, in bytes, of the model archive.
      */
-    sizeBytes?: pulumi.Input<number>;
+    sizeBytes?: pulumi.Input<number | undefined>;
     /**
      * The current status of the model (e.g., ready, error, etc.).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Tags associated with the model.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The date and time of the last update of the model
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -298,28 +298,28 @@ export interface ModelArgs {
     /**
      * The name of the model. This must be unique within the project.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Authentication token used to pull the model from a private or gated URL in write-only mode. `secretWo` will not be stored in the Terraform state. Only one of `secret` or `secretWo` should be specified. Requires `secretWoVersion` to be set.
      */
-    secretWo?: pulumi.Input<string>;
+    secretWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the write-only secret. Required when using `secretWo`.
      */
-    secretWoVersion?: pulumi.Input<number>;
+    secretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
      */

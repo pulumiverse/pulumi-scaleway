@@ -145,27 +145,27 @@ export interface DatabaseState {
      *
      * > **Important:** Updates to `instanceId` will recreate the database.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * Whether the database is managed or not.
      */
-    managed?: pulumi.Input<boolean>;
+    managed?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the database (e.g. `my-new-database`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the owner of the database.
      */
-    owner?: pulumi.Input<string>;
+    owner?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Size of the database (in bytes).
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -181,9 +181,9 @@ export interface DatabaseArgs {
     /**
      * Name of the database (e.g. `my-new-database`).
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `region`) The region in which the resource exists.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

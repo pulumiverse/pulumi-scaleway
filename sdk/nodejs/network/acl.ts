@@ -134,23 +134,23 @@ export interface AclState {
     /**
      * The action to take for packets which do not match any rules.
      */
-    defaultPolicy?: pulumi.Input<string>;
+    defaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region of the ACL.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of Network ACL rules.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.network.AclRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.network.AclRule>[] | undefined>;
     /**
      * The VPC ID the ACL belongs to.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -160,19 +160,19 @@ export interface AclArgs {
     /**
      * The action to take for packets which do not match any rules.
      */
-    defaultPolicy?: pulumi.Input<string>;
+    defaultPolicy?: pulumi.Input<string | undefined>;
     /**
      * Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
      */
-    isIpv6?: pulumi.Input<boolean>;
+    isIpv6?: pulumi.Input<boolean | undefined>;
     /**
      * `region`) The region of the ACL.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The list of Network ACL rules.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.network.AclRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.network.AclRule>[] | undefined>;
     /**
      * The VPC ID the ACL belongs to.
      */

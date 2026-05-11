@@ -160,35 +160,35 @@ export interface PrivateNetworkState {
     /**
      * The date and time of the creation of the Private Network attachment (RFC 3339 format).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
      */
-    ipamIpIds?: pulumi.Input<string>;
+    ipamIpIds?: pulumi.Input<string | undefined>;
     /**
      * The load-balancer ID to attach the private network to.
      */
-    lbId?: pulumi.Input<string>;
+    lbId?: pulumi.Input<string | undefined>;
     /**
      * The private network ID to attach.
      */
-    privateNetworkId?: pulumi.Input<string>;
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the Project the Private Network attachment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The status of the Private Network attachment.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the Private Network attachment (RFC 3339 format).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Private Network should be attached.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -198,7 +198,7 @@ export interface PrivateNetworkArgs {
     /**
      * The IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
      */
-    ipamIpIds?: pulumi.Input<string>;
+    ipamIpIds?: pulumi.Input<string | undefined>;
     /**
      * The load-balancer ID to attach the private network to.
      */
@@ -210,9 +210,9 @@ export interface PrivateNetworkArgs {
     /**
      * `projectId`) The ID of the Project the Private Network attachment is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * `zone`) The zone in which the Private Network should be attached.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

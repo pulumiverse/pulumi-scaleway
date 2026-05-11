@@ -253,79 +253,79 @@ export interface VpcPublicGatewayState {
     /**
      * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
      */
-    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The bandwidth available of the gateway
      */
-    bandwidth?: pulumi.Input<number>;
+    bandwidth?: pulumi.Input<number | undefined>;
     /**
      * Enable SSH bastion on the gateway.
      */
-    bastionEnabled?: pulumi.Input<boolean>;
+    bastionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The port on which the SSH bastion will listen.
      */
-    bastionPort?: pulumi.Input<number>;
+    bastionPort?: pulumi.Input<number | undefined>;
     /**
      * The date and time of the creation of the Public Gateway.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Enable SMTP on the gateway.
      */
-    enableSmtp?: pulumi.Input<boolean>;
+    enableSmtp?: pulumi.Input<boolean | undefined>;
     /**
      * Attach an existing flexible IP to the gateway.
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
      *
      * @deprecated All gateways now use IPAM. This field is no longer needed
      */
-    moveToIpam?: pulumi.Input<boolean>;
+    moveToIpam?: pulumi.Input<boolean | undefined>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The Organization ID the Public Gateway is associated with.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the public gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
-    refreshSshKeys?: pulumi.Input<string>;
+    refreshSshKeys?: pulumi.Input<string | undefined>;
     /**
      * The status of the public gateway.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the Public Gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The gateway type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the Public Gateway.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      *
      * @deprecated This field is no longer supported in the v2 API
      */
-    upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
+    upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -335,45 +335,45 @@ export interface VpcPublicGatewayArgs {
     /**
      * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
      */
-    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Enable SSH bastion on the gateway.
      */
-    bastionEnabled?: pulumi.Input<boolean>;
+    bastionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The port on which the SSH bastion will listen.
      */
-    bastionPort?: pulumi.Input<number>;
+    bastionPort?: pulumi.Input<number | undefined>;
     /**
      * Enable SMTP on the gateway.
      */
-    enableSmtp?: pulumi.Input<boolean>;
+    enableSmtp?: pulumi.Input<boolean | undefined>;
     /**
      * Attach an existing flexible IP to the gateway.
      */
-    ipId?: pulumi.Input<string>;
+    ipId?: pulumi.Input<string | undefined>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
      *
      * @deprecated All gateways now use IPAM. This field is no longer needed
      */
-    moveToIpam?: pulumi.Input<boolean>;
+    moveToIpam?: pulumi.Input<boolean | undefined>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the public gateway is associated with.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
-    refreshSshKeys?: pulumi.Input<string>;
+    refreshSshKeys?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the Public Gateway.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The gateway type.
      */
@@ -381,5 +381,5 @@ export interface VpcPublicGatewayArgs {
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }

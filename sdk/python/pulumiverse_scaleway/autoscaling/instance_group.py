@@ -22,13 +22,13 @@ __all__ = ['InstanceGroupArgs', 'InstanceGroup']
 class InstanceGroupArgs:
     def __init__(__self__, *,
                  template_id: pulumi.Input[_builtins.str],
-                 capacities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]] = None,
-                 delete_servers_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 capacities: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]] = None,
+                 delete_servers_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancers: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a InstanceGroup resource.
 
@@ -71,102 +71,102 @@ class InstanceGroupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def capacities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]:
+    def capacities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]:
         """
         The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
         """
         return pulumi.get(self, "capacities")
 
     @capacities.setter
-    def capacities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]):
+    def capacities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]):
         pulumi.set(self, "capacities", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteServersOnDestroy")
-    def delete_servers_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_servers_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
         """
         return pulumi.get(self, "delete_servers_on_destroy")
 
     @delete_servers_on_destroy.setter
-    def delete_servers_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_servers_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_servers_on_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="loadBalancers")
-    def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]:
+    def load_balancers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]:
         """
         The specification of the Load Balancer to link to the Instance group.
         """
         return pulumi.get(self, "load_balancers")
 
     @load_balancers.setter
-    def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]):
+    def load_balancers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]):
         pulumi.set(self, "load_balancers", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Instance group name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Instance group is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Instance group.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Instance group exists.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
 class _InstanceGroupState:
     def __init__(__self__, *,
-                 capacities: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_servers_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 capacities: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_servers_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancers: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering InstanceGroup resources.
 
@@ -204,122 +204,122 @@ class _InstanceGroupState:
 
     @_builtins.property
     @pulumi.getter
-    def capacities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]:
+    def capacities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]:
         """
         The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
         """
         return pulumi.get(self, "capacities")
 
     @capacities.setter
-    def capacities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]):
+    def capacities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupCapacityArgs']]]]):
         pulumi.set(self, "capacities", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of Instance group's creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteServersOnDestroy")
-    def delete_servers_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_servers_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
         """
         return pulumi.get(self, "delete_servers_on_destroy")
 
     @delete_servers_on_destroy.setter
-    def delete_servers_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_servers_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_servers_on_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="loadBalancers")
-    def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]:
+    def load_balancers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]:
         """
         The specification of the Load Balancer to link to the Instance group.
         """
         return pulumi.get(self, "load_balancers")
 
     @load_balancers.setter
-    def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]):
+    def load_balancers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceGroupLoadBalancerArgs']]]]):
         pulumi.set(self, "load_balancers", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Instance group name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the Project the Instance group is associated with.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the Instance group.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="templateId")
-    def template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Instance template to attach to the Instance group.
         """
         return pulumi.get(self, "template_id")
 
     @template_id.setter
-    def template_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template_id", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time of Instance group's last update (RFC 3339 format).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `zone`) The zone in which the Instance group exists.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -329,14 +329,14 @@ class InstanceGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capacities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
-                 delete_servers_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 capacities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
+                 delete_servers_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Books and manages Autoscaling Instance groups.
@@ -642,14 +642,14 @@ class InstanceGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capacities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
-                 delete_servers_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None,
+                 capacities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
+                 delete_servers_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 load_balancers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -681,16 +681,16 @@ class InstanceGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capacities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_servers_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            template_id: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            zone: Optional[pulumi.Input[_builtins.str]] = None) -> 'InstanceGroup':
+            capacities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupCapacityArgs', 'InstanceGroupCapacityArgsDict']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_servers_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            load_balancers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceGroupLoadBalancerArgs', 'InstanceGroupLoadBalancerArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceGroup':
         """
         Get an existing InstanceGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -26,27 +26,29 @@ import (
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/interlink"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// // List all partners in a region
-// _, err := interlink.GetPartners(ctx, &interlink.GetPartnersArgs{
-// Region: pulumi.StringRef("fr-par"),
-// }, nil);
-// if err != nil {
-// return err
-// }
-// // List partners available at specific PoPs
-// _, err = interlink.GetPartners(ctx, &interlink.GetPartnersArgs{
-// PopIds: interface{}{
-// main.Id,
-// },
-// }, nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// List all partners in a region
+//			_, err := interlink.GetPartners(ctx, &interlink.GetPartnersArgs{
+//				Region: pulumi.StringRef("fr-par"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// List partners available at specific PoPs
+//			_, err = interlink.GetPartners(ctx, &interlink.GetPartnersArgs{
+//				PopIds: pulumi.StringArray{
+//					main.Id,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetPartners(ctx *pulumi.Context, args *GetPartnersArgs, opts ...pulumi.InvokeOption) (*GetPartnersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
