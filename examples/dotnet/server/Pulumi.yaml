@@ -1,3 +1,0 @@
-name: pulumi-scaleway-example-csharp-server
-runtime: dotnet
-description: A minimal C# Pulumi program
