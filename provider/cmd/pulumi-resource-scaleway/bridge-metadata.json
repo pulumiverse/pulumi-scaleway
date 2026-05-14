@@ -320,8 +320,28 @@
                             }
                         }
                     },
+                    "liveness_probe": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
                     "scaling_option": {
                         "maxItemsOne": false
+                    },
+                    "startup_probe": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
                     },
                     "tags": {
                         "maxItemsOne": false
@@ -388,11 +408,27 @@
                 ],
                 "majorVersion": 1,
                 "fields": {
-                    "nats": {
+                    "cron": {
                         "maxItemsOne": true
+                    },
+                    "destination_config": {
+                        "maxItemsOne": true
+                    },
+                    "nats": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "server_urls": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "sqs": {
                         "maxItemsOne": true
+                    },
+                    "tags": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1019,6 +1055,10 @@
             },
             "scaleway_iam_saml_certificate": {
                 "current": "scaleway:iam/samlCertificate:SamlCertificate",
+                "majorVersion": 1
+            },
+            "scaleway_iam_scim": {
+                "current": "scaleway:iam/scim:Scim",
                 "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
@@ -3110,8 +3150,28 @@
                             }
                         }
                     },
+                    "liveness_probe": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "scaling_option": {
                         "maxItemsOne": false
+                    },
+                    "startup_probe": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "http": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "tags": {
                         "maxItemsOne": false
@@ -3586,6 +3646,10 @@
             },
             "scaleway_iam_saml_certificate": {
                 "current": "scaleway:iam/getSamlCertificate:getSamlCertificate",
+                "majorVersion": 1
+            },
+            "scaleway_iam_scim": {
+                "current": "scaleway:iam/getScim:getScim",
                 "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
@@ -5311,7 +5375,11 @@
             "scaleway_container": {
                 "aliases": [
                     "scaleway:index/container:Container"
-                ]
+                ],
+                "maxItemsOneOverrides": {
+                    "health_check": false,
+                    "health_check.$.http": false
+                }
             },
             "scaleway_container_cron": {
                 "aliases": [
@@ -6315,6 +6383,7 @@
             "scaleway:iam/policy:Policy": 0,
             "scaleway:iam/saml:Saml": 1,
             "scaleway:iam/samlCertificate:SamlCertificate": 1,
+            "scaleway:iam/scim:Scim": 1,
             "scaleway:iam/sshKey:SshKey": 0,
             "scaleway:iam/user:User": 0,
             "scaleway:index/accountProject:AccountProject": 0,
@@ -6567,6 +6636,7 @@
             "scaleway:iam/getPolicy:getPolicy": 0,
             "scaleway:iam/getSaml:getSaml": 1,
             "scaleway:iam/getSamlCertificate:getSamlCertificate": 1,
+            "scaleway:iam/getScim:getScim": 1,
             "scaleway:iam/getSshKey:getSshKey": 0,
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,
