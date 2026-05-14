@@ -17,10 +17,10 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
         /// <summary>
         /// Path to use for the HTTP health check.
         /// </summary>
-        public readonly string Path;
+        public readonly string? Path;
 
         [OutputConstructor]
-        private ContainerHealthCheckHttp(string path)
+        private ContainerHealthCheckHttp(string? path)
         {
             Path = path;
         }

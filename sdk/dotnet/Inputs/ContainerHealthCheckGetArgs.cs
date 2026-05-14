@@ -14,16 +14,16 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ContainerHealthCheckGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Number of consecutive health check failures before considering the container unhealthy.
+        /// Number of consecutive failures before considering the container has to be restarted.
         /// </summary>
-        [Input("failureThreshold", required: true)]
-        public Input<int> FailureThreshold { get; set; } = null!;
+        [Input("failureThreshold")]
+        public Input<int>? FailureThreshold { get; set; }
 
-        [Input("https", required: true)]
+        [Input("https")]
         private InputList<Inputs.ContainerHealthCheckHttpGetArgs>? _https;
 
         /// <summary>
-        /// HTTP health check configuration.
+        /// Perform HTTP check on the container with the specified path.
         /// </summary>
         public InputList<Inputs.ContainerHealthCheckHttpGetArgs> Https
         {
@@ -32,10 +32,16 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Period between health checks (in seconds).
+        /// Time interval between checks (in duration notation, e.g. "30s").
         /// </summary>
-        [Input("interval", required: true)]
-        public Input<string> Interval { get; set; } = null!;
+        [Input("interval")]
+        public Input<string>? Interval { get; set; }
+
+        /// <summary>
+        /// When set to `True`, performs TCP checks on the container.
+        /// </summary>
+        [Input("tcp")]
+        public Input<bool>? Tcp { get; set; }
 
         public ContainerHealthCheckGetArgs()
         {

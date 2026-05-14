@@ -33,6 +33,7 @@ class DeploymentArgs:
                  private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 shard_count: pulumi.Input[Optional[_builtins.int]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -53,6 +54,7 @@ class DeploymentArgs:
                
                > **Note:** A public endpoint is always created automatically alongside any private network configuration.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
+        :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
         """
@@ -75,6 +77,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if shard_count is not None:
+            pulumi.set(__self__, "shard_count", shard_count)
         if started is not None:
             pulumi.set(__self__, "started", started)
         if tags is not None:
@@ -228,6 +232,18 @@ class DeploymentArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="shardCount")
+    def shard_count(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        """
+        return pulumi.get(self, "shard_count")
+
+    @shard_count.setter
+    def shard_count(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "shard_count", value)
+
+    @_builtins.property
     @pulumi.getter
     def started(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -268,6 +284,7 @@ class _DeploymentState:
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 shard_count: pulumi.Input[Optional[_builtins.int]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -292,6 +309,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
+        :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "provisioning").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -324,6 +342,8 @@ class _DeploymentState:
             pulumi.set(__self__, "region", region)
         if replica_count is not None:
             pulumi.set(__self__, "replica_count", replica_count)
+        if shard_count is not None:
+            pulumi.set(__self__, "shard_count", shard_count)
         if started is not None:
             pulumi.set(__self__, "started", started)
         if status is not None:
@@ -495,6 +515,18 @@ class _DeploymentState:
         pulumi.set(self, "replica_count", value)
 
     @_builtins.property
+    @pulumi.getter(name="shardCount")
+    def shard_count(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        """
+        return pulumi.get(self, "shard_count")
+
+    @shard_count.setter
+    def shard_count(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "shard_count", value)
+
+    @_builtins.property
     @pulumi.getter
     def started(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -572,6 +604,7 @@ class Deployment(pulumi.CustomResource):
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 shard_count: pulumi.Input[Optional[_builtins.int]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -666,6 +699,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
+        :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
         :param pulumi.Input[_builtins.str] version: ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
@@ -776,6 +810,7 @@ class Deployment(pulumi.CustomResource):
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 shard_count: pulumi.Input[Optional[_builtins.int]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -807,6 +842,7 @@ class Deployment(pulumi.CustomResource):
             if replica_count is None and not opts.urn:
                 raise TypeError("Missing required property 'replica_count'")
             __props__.__dict__["replica_count"] = replica_count
+            __props__.__dict__["shard_count"] = shard_count
             __props__.__dict__["started"] = started
             __props__.__dict__["tags"] = tags
             if version is None and not opts.urn:
@@ -841,6 +877,7 @@ class Deployment(pulumi.CustomResource):
             ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+            shard_count: pulumi.Input[Optional[_builtins.int]] = None,
             started: pulumi.Input[Optional[_builtins.bool]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -869,6 +906,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
+        :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "provisioning").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -892,6 +930,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["ram_per_cpu"] = ram_per_cpu
         __props__.__dict__["region"] = region
         __props__.__dict__["replica_count"] = replica_count
+        __props__.__dict__["shard_count"] = shard_count
         __props__.__dict__["started"] = started
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -1005,6 +1044,14 @@ class Deployment(pulumi.CustomResource):
         Number of replicas. Can be updated in place via the deployment configuration API.
         """
         return pulumi.get(self, "replica_count")
+
+    @_builtins.property
+    @pulumi.getter(name="shardCount")
+    def shard_count(self) -> pulumi.Output[_builtins.int]:
+        """
+        Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        """
+        return pulumi.get(self, "shard_count")
 
     @_builtins.property
     @pulumi.getter

@@ -781,6 +781,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "iam/scim",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/scim:Scim": "Scim"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "iam/sshKey",
   "fqn": "pulumiverse_scaleway.iam",
   "classes": {

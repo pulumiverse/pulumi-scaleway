@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.containers.Namespace` resource allows you to
- * for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Namespace` resource allows you to manage Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
  *
@@ -66,21 +65,13 @@ export class ContainerNamespace extends pulumi.CustomResource {
     }
 
     /**
-     * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    declare public readonly activateVpcIntegration: pulumi.Output<boolean | undefined>;
-    /**
      * The description of the namespace.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Destroy registry on deletion
      *
-     * @deprecated Registry namespace is automatically destroyed with namespace
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     declare public readonly destroyRegistry: pulumi.Output<boolean | undefined>;
     /**
@@ -106,11 +97,15 @@ export class ContainerNamespace extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * The registry endpoint of the namespace.
+     * (Deprecated) The registry endpoint of the namespace.
+     *
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     declare public /*out*/ readonly registryEndpoint: pulumi.Output<string>;
     /**
-     * The registry namespace ID of the namespace.
+     * (Deprecated) The registry namespace ID of the namespace.
+     *
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     declare public /*out*/ readonly registryNamespaceId: pulumi.Output<string>;
     /**
@@ -138,7 +133,6 @@ export class ContainerNamespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContainerNamespaceState | undefined;
-            resourceInputs["activateVpcIntegration"] = state?.activateVpcIntegration;
             resourceInputs["description"] = state?.description;
             resourceInputs["destroyRegistry"] = state?.destroyRegistry;
             resourceInputs["environmentVariables"] = state?.environmentVariables;
@@ -152,7 +146,6 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as ContainerNamespaceArgs | undefined;
-            resourceInputs["activateVpcIntegration"] = args?.activateVpcIntegration;
             resourceInputs["description"] = args?.description;
             resourceInputs["destroyRegistry"] = args?.destroyRegistry;
             resourceInputs["environmentVariables"] = args?.environmentVariables;
@@ -177,21 +170,13 @@ export class ContainerNamespace extends pulumi.CustomResource {
  */
 export interface ContainerNamespaceState {
     /**
-     * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
-    /**
      * The description of the namespace.
      */
     description?: pulumi.Input<string | undefined>;
     /**
      * Destroy registry on deletion
      *
-     * @deprecated Registry namespace is automatically destroyed with namespace
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     destroyRegistry?: pulumi.Input<boolean | undefined>;
     /**
@@ -217,11 +202,15 @@ export interface ContainerNamespaceState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The registry endpoint of the namespace.
+     * (Deprecated) The registry endpoint of the namespace.
+     *
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     registryEndpoint?: pulumi.Input<string | undefined>;
     /**
-     * The registry namespace ID of the namespace.
+     * (Deprecated) The registry namespace ID of the namespace.
+     *
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     registryNamespaceId?: pulumi.Input<string | undefined>;
     /**
@@ -239,21 +228,13 @@ export interface ContainerNamespaceState {
  */
 export interface ContainerNamespaceArgs {
     /**
-     * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
-    /**
      * The description of the namespace.
      */
     description?: pulumi.Input<string | undefined>;
     /**
      * Destroy registry on deletion
      *
-     * @deprecated Registry namespace is automatically destroyed with namespace
+     * @deprecated A registry is no longer created alongside the namespace, it has to be handled separately.
      */
     destroyRegistry?: pulumi.Input<boolean | undefined>;
     /**

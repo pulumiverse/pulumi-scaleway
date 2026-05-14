@@ -30,10 +30,14 @@ class ContainerArgs:
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_connections_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 liveness_probe: pulumi.Input[Optional['ContainerLivenessProbeArgs']] = None,
                  local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_storage_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  max_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  min_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  port: pulumi.Input[Optional[_builtins.int]] = None,
@@ -46,44 +50,56 @@ class ContainerArgs:
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 startup_probe: pulumi.Input[Optional['ContainerStartupProbeArgs']] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Container resource.
 
         :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
-               
-               > **Important** Updating the `name` argument will recreate the container.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
+               
+               > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+               
+               > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
+        :param pulumi.Input[_builtins.bool] https_connections_only: Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        :param pulumi.Input[_builtins.str] image: The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        :param pulumi.Input['ContainerLivenessProbeArgs'] liveness_probe: Defines how to check if the container is running.
         :param pulumi.Input[_builtins.int] local_storage_limit: Local storage limit of the container (in MB)
-        :param pulumi.Input[_builtins.int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+               
+               > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
+        :param pulumi.Input[_builtins.int] local_storage_limit_bytes: Local storage limit of the container (in bytes).
         :param pulumi.Input[_builtins.int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[_builtins.int] memory_limit: The memory resources in MB to allocate to each container.
+               
+               > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
+        :param pulumi.Input[_builtins.int] memory_limit_bytes: The memory resources in bytes to allocate to each container.
         :param pulumi.Input[_builtins.int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[_builtins.str] name: The unique name of the container name.
+               
+               > **Important** Updating the `name` argument will recreate the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+               
+               - > **Important:** Exactly one of `image` or `registry_image` must be set.
         :param pulumi.Input[_builtins.str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
-        :param pulumi.Input[_builtins.str] status: The container status.
+        :param pulumi.Input['ContainerStartupProbeArgs'] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
@@ -95,26 +111,46 @@ class ContainerArgs:
         if cpu_limit is not None:
             pulumi.set(__self__, "cpu_limit", cpu_limit)
         if deploy is not None:
+            warnings.warn("""Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""", DeprecationWarning)
+            pulumi.log.warn("""deploy is deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""")
+        if deploy is not None:
             pulumi.set(__self__, "deploy", deploy)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if health_checks is not None:
+            warnings.warn("""Please use liveness_probe instead""", DeprecationWarning)
+            pulumi.log.warn("""health_checks is deprecated: Please use liveness_probe instead""")
+        if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if http_option is not None:
+            warnings.warn("""Please use https_connections_only instead""", DeprecationWarning)
+            pulumi.log.warn("""http_option is deprecated: Please use https_connections_only instead""")
+        if http_option is not None:
             pulumi.set(__self__, "http_option", http_option)
+        if https_connections_only is not None:
+            pulumi.set(__self__, "https_connections_only", https_connections_only)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
+        if liveness_probe is not None:
+            pulumi.set(__self__, "liveness_probe", liveness_probe)
+        if local_storage_limit is not None:
+            warnings.warn("""Please use local_storage_limit_bytes instead""", DeprecationWarning)
+            pulumi.log.warn("""local_storage_limit is deprecated: Please use local_storage_limit_bytes instead""")
         if local_storage_limit is not None:
             pulumi.set(__self__, "local_storage_limit", local_storage_limit)
-        if max_concurrency is not None:
-            warnings.warn("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""", DeprecationWarning)
-            pulumi.log.warn("""max_concurrency is deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-        if max_concurrency is not None:
-            pulumi.set(__self__, "max_concurrency", max_concurrency)
+        if local_storage_limit_bytes is not None:
+            pulumi.set(__self__, "local_storage_limit_bytes", local_storage_limit_bytes)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
+            warnings.warn("""Please use memory_limit_bytes instead""", DeprecationWarning)
+            pulumi.log.warn("""memory_limit is deprecated: Please use memory_limit_bytes instead""")
+        if memory_limit is not None:
             pulumi.set(__self__, "memory_limit", memory_limit)
+        if memory_limit_bytes is not None:
+            pulumi.set(__self__, "memory_limit_bytes", memory_limit_bytes)
         if min_scale is not None:
             pulumi.set(__self__, "min_scale", min_scale)
         if name is not None:
@@ -130,6 +166,9 @@ class ContainerArgs:
         if region is not None:
             pulumi.set(__self__, "region", region)
         if registry_image is not None:
+            warnings.warn("""Please use image instead""", DeprecationWarning)
+            pulumi.log.warn("""registry_image is deprecated: Please use image instead""")
+        if registry_image is not None:
             pulumi.set(__self__, "registry_image", registry_image)
         if registry_sha256 is not None:
             pulumi.set(__self__, "registry_sha256", registry_sha256)
@@ -139,8 +178,8 @@ class ContainerArgs:
             pulumi.set(__self__, "scaling_options", scaling_options)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
+        if startup_probe is not None:
+            pulumi.set(__self__, "startup_probe", startup_probe)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if timeout is not None:
@@ -151,8 +190,6 @@ class ContainerArgs:
     def namespace_id(self) -> pulumi.Input[_builtins.str]:
         """
         The Containers namespace ID of the container.
-
-        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -198,9 +235,12 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""")
     def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean indicating whether the container is in a production environment.
+
+        > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         """
         return pulumi.get(self, "deploy")
 
@@ -234,6 +274,7 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter(name="healthChecks")
+    @_utilities.deprecated("""Please use liveness_probe instead""")
     def health_checks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
         Health check configuration block of the container.
@@ -246,9 +287,12 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
+    @_utilities.deprecated("""Please use https_connections_only instead""")
     def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+
+        > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
         """
         return pulumi.get(self, "http_option")
 
@@ -257,10 +301,49 @@ class ContainerArgs:
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
+    @pulumi.getter(name="httpsConnectionsOnly")
+    def https_connections_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        """
+        return pulumi.get(self, "https_connections_only")
+
+    @https_connections_only.setter
+    def https_connections_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "https_connections_only", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        """
+        return pulumi.get(self, "image")
+
+    @image.setter
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "image", value)
+
+    @_builtins.property
+    @pulumi.getter(name="livenessProbe")
+    def liveness_probe(self) -> pulumi.Input[Optional['ContainerLivenessProbeArgs']]:
+        """
+        Defines how to check if the container is running.
+        """
+        return pulumi.get(self, "liveness_probe")
+
+    @liveness_probe.setter
+    def liveness_probe(self, value: pulumi.Input[Optional['ContainerLivenessProbeArgs']]):
+        pulumi.set(self, "liveness_probe", value)
+
+    @_builtins.property
     @pulumi.getter(name="localStorageLimit")
+    @_utilities.deprecated("""Please use local_storage_limit_bytes instead""")
     def local_storage_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Local storage limit of the container (in MB)
+
+        > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
         """
         return pulumi.get(self, "local_storage_limit")
 
@@ -269,17 +352,16 @@ class ContainerArgs:
         pulumi.set(self, "local_storage_limit", value)
 
     @_builtins.property
-    @pulumi.getter(name="maxConcurrency")
-    @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-    def max_concurrency(self) -> pulumi.Input[Optional[_builtins.int]]:
+    @pulumi.getter(name="localStorageLimitBytes")
+    def local_storage_limit_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        Local storage limit of the container (in bytes).
         """
-        return pulumi.get(self, "max_concurrency")
+        return pulumi.get(self, "local_storage_limit_bytes")
 
-    @max_concurrency.setter
-    def max_concurrency(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "max_concurrency", value)
+    @local_storage_limit_bytes.setter
+    def local_storage_limit_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "local_storage_limit_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
@@ -295,15 +377,30 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
+    @_utilities.deprecated("""Please use memory_limit_bytes instead""")
     def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each container.
+
+        > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
     def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimitBytes")
+    def memory_limit_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The memory resources in bytes to allocate to each container.
+        """
+        return pulumi.get(self, "memory_limit_bytes")
+
+    @memory_limit_bytes.setter
+    def memory_limit_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "memory_limit_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
@@ -322,6 +419,8 @@ class ContainerArgs:
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the container name.
+
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "name")
 
@@ -359,8 +458,6 @@ class ContainerArgs:
         """
         The ID of the Private Network the container is connected to.
 
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
-
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
@@ -395,9 +492,12 @@ class ContainerArgs:
 
     @_builtins.property
     @pulumi.getter(name="registryImage")
+    @_utilities.deprecated("""Please use image instead""")
     def registry_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+
+        - > **Important:** Exactly one of `image` or `registry_image` must be set.
         """
         return pulumi.get(self, "registry_image")
 
@@ -454,16 +554,16 @@ class ContainerArgs:
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
-    @pulumi.getter
-    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
+    @pulumi.getter(name="startupProbe")
+    def startup_probe(self) -> pulumi.Input[Optional['ContainerStartupProbeArgs']]:
         """
-        The container status.
+        Defines how to check if the container has started successfully.
         """
-        return pulumi.get(self, "status")
+        return pulumi.get(self, "startup_probe")
 
-    @status.setter
-    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "status", value)
+    @startup_probe.setter
+    def startup_probe(self, value: pulumi.Input[Optional['ContainerStartupProbeArgs']]):
+        pulumi.set(self, "startup_probe", value)
 
     @_builtins.property
     @pulumi.getter
@@ -504,10 +604,14 @@ class _ContainerState:
                  error_message: pulumi.Input[Optional[_builtins.str]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_connections_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 liveness_probe: pulumi.Input[Optional['ContainerLivenessProbeArgs']] = None,
                  local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_storage_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  max_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  min_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -515,12 +619,14 @@ class _ContainerState:
                  privacy: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  registry_image: pulumi.Input[Optional[_builtins.str]] = None,
                  registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 startup_probe: pulumi.Input[Optional['ContainerStartupProbeArgs']] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None):
@@ -532,35 +638,49 @@ class _ContainerState:
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.str] cron_status: The cron status of the container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
+               
+               > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+               
+               > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
+        :param pulumi.Input[_builtins.bool] https_connections_only: Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        :param pulumi.Input[_builtins.str] image: The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        :param pulumi.Input['ContainerLivenessProbeArgs'] liveness_probe: Defines how to check if the container is running.
         :param pulumi.Input[_builtins.int] local_storage_limit: Local storage limit of the container (in MB)
-        :param pulumi.Input[_builtins.int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+               
+               > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
+        :param pulumi.Input[_builtins.int] local_storage_limit_bytes: Local storage limit of the container (in bytes).
         :param pulumi.Input[_builtins.int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[_builtins.int] memory_limit: The memory resources in MB to allocate to each container.
+               
+               > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
+        :param pulumi.Input[_builtins.int] memory_limit_bytes: The memory resources in bytes to allocate to each container.
         :param pulumi.Input[_builtins.int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[_builtins.str] name: The unique name of the container name.
-        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
                
                > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
                
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
-               
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        :param pulumi.Input[_builtins.str] public_endpoint: The native domain name of the container
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+               
+               - > **Important:** Exactly one of `image` or `registry_image` must be set.
         :param pulumi.Input[_builtins.str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        :param pulumi.Input['ContainerStartupProbeArgs'] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[_builtins.str] status: The container status.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
@@ -574,9 +694,15 @@ class _ContainerState:
         if cron_status is not None:
             pulumi.set(__self__, "cron_status", cron_status)
         if deploy is not None:
+            warnings.warn("""Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""", DeprecationWarning)
+            pulumi.log.warn("""deploy is deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""")
+        if deploy is not None:
             pulumi.set(__self__, "deploy", deploy)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domain_name is not None:
+            warnings.warn("""This attribute will be removed in the future, please use public_endpoint instead""", DeprecationWarning)
+            pulumi.log.warn("""domain_name is deprecated: This attribute will be removed in the future, please use public_endpoint instead""")
         if domain_name is not None:
             pulumi.set(__self__, "domain_name", domain_name)
         if environment_variables is not None:
@@ -584,20 +710,37 @@ class _ContainerState:
         if error_message is not None:
             pulumi.set(__self__, "error_message", error_message)
         if health_checks is not None:
+            warnings.warn("""Please use liveness_probe instead""", DeprecationWarning)
+            pulumi.log.warn("""health_checks is deprecated: Please use liveness_probe instead""")
+        if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if http_option is not None:
+            warnings.warn("""Please use https_connections_only instead""", DeprecationWarning)
+            pulumi.log.warn("""http_option is deprecated: Please use https_connections_only instead""")
+        if http_option is not None:
             pulumi.set(__self__, "http_option", http_option)
+        if https_connections_only is not None:
+            pulumi.set(__self__, "https_connections_only", https_connections_only)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
+        if liveness_probe is not None:
+            pulumi.set(__self__, "liveness_probe", liveness_probe)
+        if local_storage_limit is not None:
+            warnings.warn("""Please use local_storage_limit_bytes instead""", DeprecationWarning)
+            pulumi.log.warn("""local_storage_limit is deprecated: Please use local_storage_limit_bytes instead""")
         if local_storage_limit is not None:
             pulumi.set(__self__, "local_storage_limit", local_storage_limit)
-        if max_concurrency is not None:
-            warnings.warn("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""", DeprecationWarning)
-            pulumi.log.warn("""max_concurrency is deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-        if max_concurrency is not None:
-            pulumi.set(__self__, "max_concurrency", max_concurrency)
+        if local_storage_limit_bytes is not None:
+            pulumi.set(__self__, "local_storage_limit_bytes", local_storage_limit_bytes)
         if max_scale is not None:
             pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit is not None:
+            warnings.warn("""Please use memory_limit_bytes instead""", DeprecationWarning)
+            pulumi.log.warn("""memory_limit is deprecated: Please use memory_limit_bytes instead""")
+        if memory_limit is not None:
             pulumi.set(__self__, "memory_limit", memory_limit)
+        if memory_limit_bytes is not None:
+            pulumi.set(__self__, "memory_limit_bytes", memory_limit_bytes)
         if min_scale is not None:
             pulumi.set(__self__, "min_scale", min_scale)
         if name is not None:
@@ -612,8 +755,13 @@ class _ContainerState:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if public_endpoint is not None:
+            pulumi.set(__self__, "public_endpoint", public_endpoint)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if registry_image is not None:
+            warnings.warn("""Please use image instead""", DeprecationWarning)
+            pulumi.log.warn("""registry_image is deprecated: Please use image instead""")
         if registry_image is not None:
             pulumi.set(__self__, "registry_image", registry_image)
         if registry_sha256 is not None:
@@ -624,6 +772,8 @@ class _ContainerState:
             pulumi.set(__self__, "scaling_options", scaling_options)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if startup_probe is not None:
+            pulumi.set(__self__, "startup_probe", startup_probe)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -681,9 +831,12 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""")
     def deploy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean indicating whether the container is in a production environment.
+
+        > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         """
         return pulumi.get(self, "deploy")
 
@@ -705,6 +858,7 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="domainName")
+    @_utilities.deprecated("""This attribute will be removed in the future, please use public_endpoint instead""")
     def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The native domain name of the container
@@ -741,6 +895,7 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="healthChecks")
+    @_utilities.deprecated("""Please use liveness_probe instead""")
     def health_checks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]]:
         """
         Health check configuration block of the container.
@@ -753,9 +908,12 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
+    @_utilities.deprecated("""Please use https_connections_only instead""")
     def http_option(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+
+        > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
         """
         return pulumi.get(self, "http_option")
 
@@ -764,10 +922,49 @@ class _ContainerState:
         pulumi.set(self, "http_option", value)
 
     @_builtins.property
+    @pulumi.getter(name="httpsConnectionsOnly")
+    def https_connections_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        """
+        return pulumi.get(self, "https_connections_only")
+
+    @https_connections_only.setter
+    def https_connections_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "https_connections_only", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        """
+        return pulumi.get(self, "image")
+
+    @image.setter
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "image", value)
+
+    @_builtins.property
+    @pulumi.getter(name="livenessProbe")
+    def liveness_probe(self) -> pulumi.Input[Optional['ContainerLivenessProbeArgs']]:
+        """
+        Defines how to check if the container is running.
+        """
+        return pulumi.get(self, "liveness_probe")
+
+    @liveness_probe.setter
+    def liveness_probe(self, value: pulumi.Input[Optional['ContainerLivenessProbeArgs']]):
+        pulumi.set(self, "liveness_probe", value)
+
+    @_builtins.property
     @pulumi.getter(name="localStorageLimit")
+    @_utilities.deprecated("""Please use local_storage_limit_bytes instead""")
     def local_storage_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Local storage limit of the container (in MB)
+
+        > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
         """
         return pulumi.get(self, "local_storage_limit")
 
@@ -776,17 +973,16 @@ class _ContainerState:
         pulumi.set(self, "local_storage_limit", value)
 
     @_builtins.property
-    @pulumi.getter(name="maxConcurrency")
-    @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-    def max_concurrency(self) -> pulumi.Input[Optional[_builtins.int]]:
+    @pulumi.getter(name="localStorageLimitBytes")
+    def local_storage_limit_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        Local storage limit of the container (in bytes).
         """
-        return pulumi.get(self, "max_concurrency")
+        return pulumi.get(self, "local_storage_limit_bytes")
 
-    @max_concurrency.setter
-    def max_concurrency(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "max_concurrency", value)
+    @local_storage_limit_bytes.setter
+    def local_storage_limit_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "local_storage_limit_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
@@ -802,15 +998,30 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
+    @_utilities.deprecated("""Please use memory_limit_bytes instead""")
     def memory_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The memory resources in MB to allocate to each container.
+
+        > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
         """
         return pulumi.get(self, "memory_limit")
 
     @memory_limit.setter
     def memory_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "memory_limit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimitBytes")
+    def memory_limit_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The memory resources in bytes to allocate to each container.
+        """
+        return pulumi.get(self, "memory_limit_bytes")
+
+    @memory_limit_bytes.setter
+    def memory_limit_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "memory_limit_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="minScale")
@@ -829,6 +1040,8 @@ class _ContainerState:
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the container name.
+
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "name")
 
@@ -841,8 +1054,6 @@ class _ContainerState:
     def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Containers namespace ID of the container.
-
-        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -880,8 +1091,6 @@ class _ContainerState:
         """
         The ID of the Private Network the container is connected to.
 
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
-
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
@@ -903,6 +1112,18 @@ class _ContainerState:
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
+    @pulumi.getter(name="publicEndpoint")
+    def public_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The native domain name of the container
+        """
+        return pulumi.get(self, "public_endpoint")
+
+    @public_endpoint.setter
+    def public_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "public_endpoint", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -916,9 +1137,12 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="registryImage")
+    @_utilities.deprecated("""Please use image instead""")
     def registry_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+
+        - > **Important:** Exactly one of `image` or `registry_image` must be set.
         """
         return pulumi.get(self, "registry_image")
 
@@ -975,6 +1199,18 @@ class _ContainerState:
         pulumi.set(self, "secret_environment_variables", value)
 
     @_builtins.property
+    @pulumi.getter(name="startupProbe")
+    def startup_probe(self) -> pulumi.Input[Optional['ContainerStartupProbeArgs']]:
+        """
+        Defines how to check if the container has started successfully.
+        """
+        return pulumi.get(self, "startup_probe")
+
+    @startup_probe.setter
+    def startup_probe(self, value: pulumi.Input[Optional['ContainerStartupProbeArgs']]):
+        pulumi.set(self, "startup_probe", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1025,10 +1261,14 @@ class Container(pulumi.CustomResource):
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_connections_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 liveness_probe: pulumi.Input[Optional[Union['ContainerLivenessProbeArgs', 'ContainerLivenessProbeArgsDict']]] = None,
                  local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_storage_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  max_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  min_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1042,7 +1282,7 @@ class Container(pulumi.CustomResource):
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 startup_probe: pulumi.Input[Optional[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -1055,32 +1295,29 @@ class Container(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.containers.Namespace("main",
-            name="my-ns-test",
-            description="test container")
+        main = scaleway.containers.Namespace("main")
         main_container = scaleway.containers.Container("main",
-            name="my-container-02",
-            description="environment variables test",
+            name="my-container",
+            description="This container has a description.",
             tags=[
                 "tag1",
                 "tag2",
             ],
             namespace_id=main.id,
-            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
-            port=9997,
+            image="nginx:latest",
+            port=80,
             cpu_limit=1024,
-            memory_limit=2048,
+            memory_limit_bytes=2048000000,
             min_scale=3,
             max_scale=5,
             timeout=600,
-            max_concurrency=80,
-            privacy="private",
             protocol="http1",
-            deploy=True,
             commands=[
                 "bash",
                 "-c",
@@ -1097,6 +1334,58 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
+
+        ### Redeploy the container everytime an update is made
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.registry.get_namespace(name="my-registry")
+        main_get_image = scaleway.registry.get_image(namespace_id=main.id,
+            name="nginx-1-29-2-alpine")
+        main_namespace = scaleway.containers.Namespace("main")
+        main_container = scaleway.containers.Container("main",
+            name="my-container",
+            namespace_id=main_namespace.id,
+            image=f"{main.endpoint}/{main_get_image.name}:{main_get_image.tags[0]}",
+            port=80,
+            registry_sha256=std.timestamp()["result"])
+        ```
+
+        ### Redeploy the container when the image changes
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+        # Ideally, you would create the namespace separately.
+        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
+        # in the referenced namespace.
+        main = scaleway.registry.Namespace("main", name="some-unique-name")
+        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
+            name="nginx")
+        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest"))
+        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
+        main_container = scaleway.containers.Container("main",
+            name="nginx-latest",
+            namespace_id=main_namespace.id,
+            image=pulumi.Output.all(
+                nginx=nginx,
+                nginx_latest=nginx_latest
+        ).apply(lambda resolved_outputs: f"{main_scaleway_registry_namespace['endpoint']}/{nginx.name}:{nginx_latest.name}")
+        ,
+            port=80,
+            registry_sha256=nginx_latest.digest)
+        ```
+
+        ### Managing authentication of private containers with IAM
 
         ```python
         import pulumi
@@ -1118,36 +1407,10 @@ class Container(pulumi.CustomResource):
         private = scaleway.containers.Namespace("private", name="private-container-namespace")
         private_container = scaleway.containers.Container("private",
             namespace_id=private.id,
-            registry_image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
-            privacy="private",
-            deploy=True)
+            image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+            privacy="private")
         pulumi.export("secretKey", api_key.secret_key)
         pulumi.export("containerEndpoint", private_container.domain_name)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
-        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
-        # Ideally, you would create the namespace separately.
-        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
-        # in the referenced namespace.
-        main = scaleway.registry.Namespace("main", name="some-unique-name")
-        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
-            name="nginx")
-        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
-            name="latest"))
-        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
-        main_container = scaleway.containers.Container("main",
-            name="nginx-latest",
-            namespace_id=main_namespace.id,
-            registry_image=main.endpoint.apply(lambda endpoint: f"{endpoint}/nginx:latest"),
-            registry_sha256=nginx_latest.digest,
-            port=80,
-            deploy=True)
         ```
 
         ## Protocols
@@ -1173,7 +1436,7 @@ class Container(pulumi.CustomResource):
 
         You can determine the computing resources to allocate to each container.
 
-        The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
+        The `memory_limit_bytes` must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
 
         | Memory (in MB) | vCPU |
         |----------------|------|
@@ -1204,15 +1467,16 @@ class Container(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.containers.Container("main",
-            name="my-container-02",
+            name="my-container",
             namespace_id=main_scaleway_container_namespace["id"],
-            health_checks=[{
-                "https": [{
+            liveness_probe={
+                "http": {
                     "path": "/ping",
-                }],
+                },
                 "failure_threshold": 40,
                 "interval": "5s",
-            }])
+                "timeout": "1m",
+            })
         ```
 
         ~>**Important:** Another probe type can be set to TCP with the API, but currently the SDK has not been updated with this parameter.
@@ -1223,7 +1487,6 @@ class Container(pulumi.CustomResource):
 
         Scaling option block configuration allows you to choose which parameter will scale up/down containers.
         Options are number of concurrent requests, CPU or memory usage.
-        It replaces current `max_concurrency` that has been deprecated.
 
         Example:
 
@@ -1257,34 +1520,46 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
+               
+               > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+               
+               > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
+        :param pulumi.Input[_builtins.bool] https_connections_only: Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        :param pulumi.Input[_builtins.str] image: The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        :param pulumi.Input[Union['ContainerLivenessProbeArgs', 'ContainerLivenessProbeArgsDict']] liveness_probe: Defines how to check if the container is running.
         :param pulumi.Input[_builtins.int] local_storage_limit: Local storage limit of the container (in MB)
-        :param pulumi.Input[_builtins.int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+               
+               > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
+        :param pulumi.Input[_builtins.int] local_storage_limit_bytes: Local storage limit of the container (in bytes).
         :param pulumi.Input[_builtins.int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[_builtins.int] memory_limit: The memory resources in MB to allocate to each container.
+               
+               > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
+        :param pulumi.Input[_builtins.int] memory_limit_bytes: The memory resources in bytes to allocate to each container.
         :param pulumi.Input[_builtins.int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[_builtins.str] name: The unique name of the container name.
-        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
                
                > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+               
+               - > **Important:** Exactly one of `image` or `registry_image` must be set.
         :param pulumi.Input[_builtins.str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
-        :param pulumi.Input[_builtins.str] status: The container status.
+        :param pulumi.Input[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
@@ -1303,32 +1578,29 @@ class Container(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.containers.Namespace("main",
-            name="my-ns-test",
-            description="test container")
+        main = scaleway.containers.Namespace("main")
         main_container = scaleway.containers.Container("main",
-            name="my-container-02",
-            description="environment variables test",
+            name="my-container",
+            description="This container has a description.",
             tags=[
                 "tag1",
                 "tag2",
             ],
             namespace_id=main.id,
-            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
-            port=9997,
+            image="nginx:latest",
+            port=80,
             cpu_limit=1024,
-            memory_limit=2048,
+            memory_limit_bytes=2048000000,
             min_scale=3,
             max_scale=5,
             timeout=600,
-            max_concurrency=80,
-            privacy="private",
             protocol="http1",
-            deploy=True,
             commands=[
                 "bash",
                 "-c",
@@ -1345,6 +1617,58 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
+
+        ### Redeploy the container everytime an update is made
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.registry.get_namespace(name="my-registry")
+        main_get_image = scaleway.registry.get_image(namespace_id=main.id,
+            name="nginx-1-29-2-alpine")
+        main_namespace = scaleway.containers.Namespace("main")
+        main_container = scaleway.containers.Container("main",
+            name="my-container",
+            namespace_id=main_namespace.id,
+            image=f"{main.endpoint}/{main_get_image.name}:{main_get_image.tags[0]}",
+            port=80,
+            registry_sha256=std.timestamp()["result"])
+        ```
+
+        ### Redeploy the container when the image changes
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+        # Ideally, you would create the namespace separately.
+        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
+        # in the referenced namespace.
+        main = scaleway.registry.Namespace("main", name="some-unique-name")
+        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
+            name="nginx")
+        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest"))
+        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
+        main_container = scaleway.containers.Container("main",
+            name="nginx-latest",
+            namespace_id=main_namespace.id,
+            image=pulumi.Output.all(
+                nginx=nginx,
+                nginx_latest=nginx_latest
+        ).apply(lambda resolved_outputs: f"{main_scaleway_registry_namespace['endpoint']}/{nginx.name}:{nginx_latest.name}")
+        ,
+            port=80,
+            registry_sha256=nginx_latest.digest)
+        ```
+
+        ### Managing authentication of private containers with IAM
 
         ```python
         import pulumi
@@ -1366,36 +1690,10 @@ class Container(pulumi.CustomResource):
         private = scaleway.containers.Namespace("private", name="private-container-namespace")
         private_container = scaleway.containers.Container("private",
             namespace_id=private.id,
-            registry_image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
-            privacy="private",
-            deploy=True)
+            image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+            privacy="private")
         pulumi.export("secretKey", api_key.secret_key)
         pulumi.export("containerEndpoint", private_container.domain_name)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
-        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
-        # Ideally, you would create the namespace separately.
-        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
-        # in the referenced namespace.
-        main = scaleway.registry.Namespace("main", name="some-unique-name")
-        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
-            name="nginx")
-        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
-            name="latest"))
-        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
-        main_container = scaleway.containers.Container("main",
-            name="nginx-latest",
-            namespace_id=main_namespace.id,
-            registry_image=main.endpoint.apply(lambda endpoint: f"{endpoint}/nginx:latest"),
-            registry_sha256=nginx_latest.digest,
-            port=80,
-            deploy=True)
         ```
 
         ## Protocols
@@ -1421,7 +1719,7 @@ class Container(pulumi.CustomResource):
 
         You can determine the computing resources to allocate to each container.
 
-        The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
+        The `memory_limit_bytes` must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
 
         | Memory (in MB) | vCPU |
         |----------------|------|
@@ -1452,15 +1750,16 @@ class Container(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         main = scaleway.containers.Container("main",
-            name="my-container-02",
+            name="my-container",
             namespace_id=main_scaleway_container_namespace["id"],
-            health_checks=[{
-                "https": [{
+            liveness_probe={
+                "http": {
                     "path": "/ping",
-                }],
+                },
                 "failure_threshold": 40,
                 "interval": "5s",
-            }])
+                "timeout": "1m",
+            })
         ```
 
         ~>**Important:** Another probe type can be set to TCP with the API, but currently the SDK has not been updated with this parameter.
@@ -1471,7 +1770,6 @@ class Container(pulumi.CustomResource):
 
         Scaling option block configuration allows you to choose which parameter will scale up/down containers.
         Options are number of concurrent requests, CPU or memory usage.
-        It replaces current `max_concurrency` that has been deprecated.
 
         Example:
 
@@ -1522,10 +1820,14 @@ class Container(pulumi.CustomResource):
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
+                 https_connections_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 liveness_probe: pulumi.Input[Optional[Union['ContainerLivenessProbeArgs', 'ContainerLivenessProbeArgsDict']]] = None,
                  local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_storage_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  max_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  min_scale: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1539,7 +1841,7 @@ class Container(pulumi.CustomResource):
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 startup_probe: pulumi.Input[Optional[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -1559,10 +1861,14 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["http_option"] = http_option
+            __props__.__dict__["https_connections_only"] = https_connections_only
+            __props__.__dict__["image"] = image
+            __props__.__dict__["liveness_probe"] = liveness_probe
             __props__.__dict__["local_storage_limit"] = local_storage_limit
-            __props__.__dict__["max_concurrency"] = max_concurrency
+            __props__.__dict__["local_storage_limit_bytes"] = local_storage_limit_bytes
             __props__.__dict__["max_scale"] = max_scale
             __props__.__dict__["memory_limit"] = memory_limit
+            __props__.__dict__["memory_limit_bytes"] = memory_limit_bytes
             __props__.__dict__["min_scale"] = min_scale
             __props__.__dict__["name"] = name
             if namespace_id is None and not opts.urn:
@@ -1578,12 +1884,14 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["sandbox"] = sandbox
             __props__.__dict__["scaling_options"] = scaling_options
             __props__.__dict__["secret_environment_variables"] = None if secret_environment_variables is None else pulumi.Output.secret(secret_environment_variables)
-            __props__.__dict__["status"] = status
+            __props__.__dict__["startup_probe"] = startup_probe
             __props__.__dict__["tags"] = tags
             __props__.__dict__["timeout"] = timeout
             __props__.__dict__["cron_status"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["error_message"] = None
+            __props__.__dict__["public_endpoint"] = None
+            __props__.__dict__["status"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/container:Container")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
@@ -1609,10 +1917,14 @@ class Container(pulumi.CustomResource):
             error_message: pulumi.Input[Optional[_builtins.str]] = None,
             health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
             http_option: pulumi.Input[Optional[_builtins.str]] = None,
+            https_connections_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            image: pulumi.Input[Optional[_builtins.str]] = None,
+            liveness_probe: pulumi.Input[Optional[Union['ContainerLivenessProbeArgs', 'ContainerLivenessProbeArgsDict']]] = None,
             local_storage_limit: pulumi.Input[Optional[_builtins.int]] = None,
-            max_concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+            local_storage_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             max_scale: pulumi.Input[Optional[_builtins.int]] = None,
             memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            memory_limit_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             min_scale: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1620,12 +1932,14 @@ class Container(pulumi.CustomResource):
             privacy: pulumi.Input[Optional[_builtins.str]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            public_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             registry_image: pulumi.Input[Optional[_builtins.str]] = None,
             registry_sha256: pulumi.Input[Optional[_builtins.str]] = None,
             sandbox: pulumi.Input[Optional[_builtins.str]] = None,
             scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
             secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            startup_probe: pulumi.Input[Optional[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'Container':
@@ -1641,35 +1955,49 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.str] cron_status: The cron status of the container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
+               
+               > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+               
+               > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
+        :param pulumi.Input[_builtins.bool] https_connections_only: Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        :param pulumi.Input[_builtins.str] image: The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        :param pulumi.Input[Union['ContainerLivenessProbeArgs', 'ContainerLivenessProbeArgsDict']] liveness_probe: Defines how to check if the container is running.
         :param pulumi.Input[_builtins.int] local_storage_limit: Local storage limit of the container (in MB)
-        :param pulumi.Input[_builtins.int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+               
+               > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
+        :param pulumi.Input[_builtins.int] local_storage_limit_bytes: Local storage limit of the container (in bytes).
         :param pulumi.Input[_builtins.int] max_scale: The maximum number of instances this container can scale to.
         :param pulumi.Input[_builtins.int] memory_limit: The memory resources in MB to allocate to each container.
+               
+               > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
+        :param pulumi.Input[_builtins.int] memory_limit_bytes: The memory resources in bytes to allocate to each container.
         :param pulumi.Input[_builtins.int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[_builtins.str] name: The unique name of the container name.
-        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
                
                > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
                
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
-               
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        :param pulumi.Input[_builtins.str] public_endpoint: The native domain name of the container
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+               
+               - > **Important:** Exactly one of `image` or `registry_image` must be set.
         :param pulumi.Input[_builtins.str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        :param pulumi.Input[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[_builtins.str] status: The container status.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
@@ -1689,10 +2017,14 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["http_option"] = http_option
+        __props__.__dict__["https_connections_only"] = https_connections_only
+        __props__.__dict__["image"] = image
+        __props__.__dict__["liveness_probe"] = liveness_probe
         __props__.__dict__["local_storage_limit"] = local_storage_limit
-        __props__.__dict__["max_concurrency"] = max_concurrency
+        __props__.__dict__["local_storage_limit_bytes"] = local_storage_limit_bytes
         __props__.__dict__["max_scale"] = max_scale
         __props__.__dict__["memory_limit"] = memory_limit
+        __props__.__dict__["memory_limit_bytes"] = memory_limit_bytes
         __props__.__dict__["min_scale"] = min_scale
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace_id"] = namespace_id
@@ -1700,12 +2032,14 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["privacy"] = privacy
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["public_endpoint"] = public_endpoint
         __props__.__dict__["region"] = region
         __props__.__dict__["registry_image"] = registry_image
         __props__.__dict__["registry_sha256"] = registry_sha256
         __props__.__dict__["sandbox"] = sandbox
         __props__.__dict__["scaling_options"] = scaling_options
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
+        __props__.__dict__["startup_probe"] = startup_probe
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
@@ -1745,9 +2079,12 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.""")
     def deploy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Boolean indicating whether the container is in a production environment.
+
+        > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         """
         return pulumi.get(self, "deploy")
 
@@ -1761,6 +2098,7 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="domainName")
+    @_utilities.deprecated("""This attribute will be removed in the future, please use public_endpoint instead""")
     def domain_name(self) -> pulumi.Output[_builtins.str]:
         """
         The native domain name of the container
@@ -1785,6 +2123,7 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="healthChecks")
+    @_utilities.deprecated("""Please use liveness_probe instead""")
     def health_checks(self) -> pulumi.Output[Sequence['outputs.ContainerHealthCheck']]:
         """
         Health check configuration block of the container.
@@ -1793,28 +2132,57 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
-    def http_option(self) -> pulumi.Output[Optional[_builtins.str]]:
+    @_utilities.deprecated("""Please use https_connections_only instead""")
+    def http_option(self) -> pulumi.Output[_builtins.str]:
         """
         Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+
+        > **Important:** Only one of `https_connections_only` or `http_option` can be set at a time.
         """
         return pulumi.get(self, "http_option")
 
     @_builtins.property
+    @pulumi.getter(name="httpsConnectionsOnly")
+    def https_connections_only(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        """
+        return pulumi.get(self, "https_connections_only")
+
+    @_builtins.property
+    @pulumi.getter
+    def image(self) -> pulumi.Output[_builtins.str]:
+        """
+        The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        """
+        return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="livenessProbe")
+    def liveness_probe(self) -> pulumi.Output['outputs.ContainerLivenessProbe']:
+        """
+        Defines how to check if the container is running.
+        """
+        return pulumi.get(self, "liveness_probe")
+
+    @_builtins.property
     @pulumi.getter(name="localStorageLimit")
+    @_utilities.deprecated("""Please use local_storage_limit_bytes instead""")
     def local_storage_limit(self) -> pulumi.Output[_builtins.int]:
         """
         Local storage limit of the container (in MB)
+
+        > **Important:** Only one of `local_storage_limit_bytes` or `local_storage_limit` can be set at a time.
         """
         return pulumi.get(self, "local_storage_limit")
 
     @_builtins.property
-    @pulumi.getter(name="maxConcurrency")
-    @_utilities.deprecated("""Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.""")
-    def max_concurrency(self) -> pulumi.Output[_builtins.int]:
+    @pulumi.getter(name="localStorageLimitBytes")
+    def local_storage_limit_bytes(self) -> pulumi.Output[_builtins.int]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        Local storage limit of the container (in bytes).
         """
-        return pulumi.get(self, "max_concurrency")
+        return pulumi.get(self, "local_storage_limit_bytes")
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
@@ -1826,11 +2194,22 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
+    @_utilities.deprecated("""Please use memory_limit_bytes instead""")
     def memory_limit(self) -> pulumi.Output[_builtins.int]:
         """
         The memory resources in MB to allocate to each container.
+
+        > **Important:** Only one of `memory_limit` or `memory_limit_bytes` can be set at a time.
         """
         return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimitBytes")
+    def memory_limit_bytes(self) -> pulumi.Output[_builtins.int]:
+        """
+        The memory resources in bytes to allocate to each container.
+        """
+        return pulumi.get(self, "memory_limit_bytes")
 
     @_builtins.property
     @pulumi.getter(name="minScale")
@@ -1845,6 +2224,8 @@ class Container(pulumi.CustomResource):
     def name(self) -> pulumi.Output[_builtins.str]:
         """
         The unique name of the container name.
+
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "name")
 
@@ -1853,8 +2234,6 @@ class Container(pulumi.CustomResource):
     def namespace_id(self) -> pulumi.Output[_builtins.str]:
         """
         The Containers namespace ID of the container.
-
-        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -1880,8 +2259,6 @@ class Container(pulumi.CustomResource):
         """
         The ID of the Private Network the container is connected to.
 
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
-
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
@@ -1895,6 +2272,14 @@ class Container(pulumi.CustomResource):
         return pulumi.get(self, "protocol")
 
     @_builtins.property
+    @pulumi.getter(name="publicEndpoint")
+    def public_endpoint(self) -> pulumi.Output[_builtins.str]:
+        """
+        The native domain name of the container
+        """
+        return pulumi.get(self, "public_endpoint")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1904,9 +2289,12 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="registryImage")
+    @_utilities.deprecated("""Please use image instead""")
     def registry_image(self) -> pulumi.Output[_builtins.str]:
         """
         The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+
+        - > **Important:** Exactly one of `image` or `registry_image` must be set.
         """
         return pulumi.get(self, "registry_image")
 
@@ -1941,6 +2329,14 @@ class Container(pulumi.CustomResource):
         The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
+
+    @_builtins.property
+    @pulumi.getter(name="startupProbe")
+    def startup_probe(self) -> pulumi.Output[Optional['outputs.ContainerStartupProbe']]:
+        """
+        Defines how to check if the container has started successfully.
+        """
+        return pulumi.get(self, "startup_probe")
 
     @_builtins.property
     @pulumi.getter

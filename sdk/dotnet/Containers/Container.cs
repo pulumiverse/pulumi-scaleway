@@ -19,6 +19,8 @@ namespace Pulumiverse.Scaleway.Containers
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,33 +29,26 @@ namespace Pulumiverse.Scaleway.Containers
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Containers.Namespace("main", new()
-    ///     {
-    ///         Name = "my-ns-test",
-    ///         Description = "test container",
-    ///     });
+    ///     var main = new Scaleway.Containers.Namespace("main");
     /// 
     ///     var mainContainer = new Scaleway.Containers.Container("main", new()
     ///     {
-    ///         Name = "my-container-02",
-    ///         Description = "environment variables test",
+    ///         Name = "my-container",
+    ///         Description = "This container has a description.",
     ///         Tags = new[]
     ///         {
     ///             "tag1",
     ///             "tag2",
     ///         },
     ///         NamespaceId = main.Id,
-    ///         RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/alpine:test"),
-    ///         Port = 9997,
+    ///         Image = "nginx:latest",
+    ///         Port = 80,
     ///         CpuLimit = 1024,
-    ///         MemoryLimit = 2048,
+    ///         MemoryLimitBytes = 2048000000,
     ///         MinScale = 3,
     ///         MaxScale = 5,
     ///         Timeout = 600,
-    ///         MaxConcurrency = 80,
-    ///         Privacy = "private",
     ///         Protocol = "http1",
-    ///         Deploy = true,
     ///         Commands = new[]
     ///         {
     ///             "bash",
@@ -77,6 +72,104 @@ namespace Pulumiverse.Scaleway.Containers
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Redeploy the container everytime an update is made
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = Scaleway.Registry.GetNamespace.Invoke(new()
+    ///     {
+    ///         Name = "my-registry",
+    ///     });
+    /// 
+    ///     var mainGetImage = Scaleway.Registry.GetImage.Invoke(new()
+    ///     {
+    ///         NamespaceId = main.Apply(getNamespaceResult =&gt; getNamespaceResult.Id),
+    ///         Name = "nginx-1-29-2-alpine",
+    ///     });
+    /// 
+    ///     var mainNamespace = new Scaleway.Containers.Namespace("main");
+    /// 
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
+    ///     {
+    ///         Name = "my-container",
+    ///         NamespaceId = mainNamespace.Id,
+    ///         Image = Output.Tuple(main, mainGetImage, mainGetImage).Apply(values =&gt;
+    ///         {
+    ///             var main = values.Item1;
+    ///             var mainGetImage = values.Item2;
+    ///             var mainGetImage1 = values.Item3;
+    ///             return $"{main.Apply(getNamespaceResult =&gt; getNamespaceResult.Endpoint)}/{mainGetImage.Apply(getImageResult =&gt; getImageResult.Name)}:{mainGetImage1.Tags[0]}";
+    ///         }),
+    ///         Port = 80,
+    ///         RegistrySha256 = Std.Timestamp.Invoke().Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Redeploy the container when the image changes
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+    ///     // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+    ///     // Ideally, you would create the namespace separately.
+    ///     // For demonstration purposes, this example assumes the "nginx:latest" image is already available
+    ///     // in the referenced namespace.
+    ///     var main = new Scaleway.Registry.Namespace("main", new()
+    ///     {
+    ///         Name = "some-unique-name",
+    ///     });
+    /// 
+    ///     var nginx = Scaleway.Registry.GetImage.Invoke(new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Name = "nginx",
+    ///     });
+    /// 
+    ///     var nginxLatest = Scaleway.Registry.GetImageTag.Invoke(new()
+    ///     {
+    ///         ImageId = nginx.Apply(getImageResult =&gt; getImageResult.Id),
+    ///         Name = "latest",
+    ///     });
+    /// 
+    ///     var mainNamespace = new Scaleway.Containers.Namespace("main", new()
+    ///     {
+    ///         Name = "my-container-namespace",
+    ///     });
+    /// 
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
+    ///     {
+    ///         Name = "nginx-latest",
+    ///         NamespaceId = mainNamespace.Id,
+    ///         Image = Output.Tuple(nginx, nginxLatest).Apply(values =&gt;
+    ///         {
+    ///             var nginx = values.Item1;
+    ///             var nginxLatest = values.Item2;
+    ///             return $"{mainScalewayRegistryNamespace.Endpoint}/{nginx.Apply(getImageResult =&gt; getImageResult.Name)}:{nginxLatest.Apply(getImageTagResult =&gt; getImageTagResult.Name)}";
+    ///         }),
+    ///         Port = 80,
+    ///         RegistrySha256 = nginxLatest.Apply(getImageTagResult =&gt; getImageTagResult.Digest),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Managing authentication of private containers with IAM
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -131,9 +224,8 @@ namespace Pulumiverse.Scaleway.Containers
     ///     var privateContainer = new Scaleway.Containers.Container("private", new()
     ///     {
     ///         NamespaceId = @private.Id,
-    ///         RegistryImage = "rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+    ///         Image = "rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
     ///         Privacy = "private",
-    ///         Deploy = true,
     ///     });
     /// 
     ///     return new Dictionary&lt;string, object?&gt;
@@ -141,54 +233,6 @@ namespace Pulumiverse.Scaleway.Containers
     ///         ["secretKey"] = apiKey.SecretKey,
     ///         ["containerEndpoint"] = privateContainer.DomainName,
     ///     };
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
-    ///     // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
-    ///     // Ideally, you would create the namespace separately.
-    ///     // For demonstration purposes, this example assumes the "nginx:latest" image is already available
-    ///     // in the referenced namespace.
-    ///     var main = new Scaleway.Registry.Namespace("main", new()
-    ///     {
-    ///         Name = "some-unique-name",
-    ///     });
-    /// 
-    ///     var nginx = Scaleway.Registry.GetImage.Invoke(new()
-    ///     {
-    ///         NamespaceId = main.Id,
-    ///         Name = "nginx",
-    ///     });
-    /// 
-    ///     var nginxLatest = Scaleway.Registry.GetImageTag.Invoke(new()
-    ///     {
-    ///         ImageId = nginx.Apply(getImageResult =&gt; getImageResult.Id),
-    ///         Name = "latest",
-    ///     });
-    /// 
-    ///     var mainNamespace = new Scaleway.Containers.Namespace("main", new()
-    ///     {
-    ///         Name = "my-container-namespace",
-    ///     });
-    /// 
-    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
-    ///     {
-    ///         Name = "nginx-latest",
-    ///         NamespaceId = mainNamespace.Id,
-    ///         RegistryImage = main.Endpoint.Apply(endpoint =&gt; $"{endpoint}/nginx:latest"),
-    ///         RegistrySha256 = nginxLatest.Apply(getImageTagResult =&gt; getImageTagResult.Digest),
-    ///         Port = 80,
-    ///         Deploy = true,
-    ///     });
-    /// 
     /// });
     /// ```
     /// 
@@ -215,7 +259,7 @@ namespace Pulumiverse.Scaleway.Containers
     /// 
     /// You can determine the computing resources to allocate to each container.
     /// 
-    /// The `MemoryLimit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
+    /// The `MemoryLimitBytes` must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
     /// 
     /// | Memory (in MB) | vCPU |
     /// |----------------|------|
@@ -251,22 +295,17 @@ namespace Pulumiverse.Scaleway.Containers
     /// {
     ///     var main = new Scaleway.Containers.Container("main", new()
     ///     {
-    ///         Name = "my-container-02",
+    ///         Name = "my-container",
     ///         NamespaceId = mainScalewayContainerNamespace.Id,
-    ///         HealthChecks = new[]
+    ///         LivenessProbe = new Scaleway.Containers.Inputs.ContainerLivenessProbeArgs
     ///         {
-    ///             new Scaleway.Containers.Inputs.ContainerHealthCheckArgs
+    ///             Http = new Scaleway.Containers.Inputs.ContainerLivenessProbeHttpArgs
     ///             {
-    ///                 Https = new[]
-    ///                 {
-    ///                     new Scaleway.Containers.Inputs.ContainerHealthCheckHttpArgs
-    ///                     {
-    ///                         Path = "/ping",
-    ///                     },
-    ///                 },
-    ///                 FailureThreshold = 40,
-    ///                 Interval = "5s",
+    ///                 Path = "/ping",
     ///             },
+    ///             FailureThreshold = 40,
+    ///             Interval = "5s",
+    ///             Timeout = "1m",
     ///         },
     ///     });
     /// 
@@ -281,7 +320,6 @@ namespace Pulumiverse.Scaleway.Containers
     /// 
     /// Scaling option block configuration allows you to choose which parameter will scale up/down containers.
     /// Options are number of concurrent requests, CPU or memory usage.
-    /// It replaces current `MaxConcurrency` that has been deprecated.
     /// 
     /// Example:
     /// 
@@ -349,6 +387,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
+        /// 
+        /// &gt; **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
@@ -385,21 +425,43 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
+        /// 
+        /// &gt; **Important:** Only one of `HttpsConnectionsOnly` or `HttpOption` can be set at a time.
         /// </summary>
         [Output("httpOption")]
-        public Output<string?> HttpOption { get; private set; } = null!;
+        public Output<string> HttpOption { get; private set; } = null!;
+
+        /// <summary>
+        /// Allows both HTTP and HTTPS (`False`) or redirect HTTP to HTTPS (`True`). Defaults to `False`.
+        /// </summary>
+        [Output("httpsConnectionsOnly")]
+        public Output<bool> HttpsConnectionsOnly { get; private set; } = null!;
+
+        /// <summary>
+        /// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// </summary>
+        [Output("image")]
+        public Output<string> Image { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines how to check if the container is running.
+        /// </summary>
+        [Output("livenessProbe")]
+        public Output<Outputs.ContainerLivenessProbe> LivenessProbe { get; private set; } = null!;
 
         /// <summary>
         /// Local storage limit of the container (in MB)
+        /// 
+        /// &gt; **Important:** Only one of `LocalStorageLimitBytes` or `LocalStorageLimit` can be set at a time.
         /// </summary>
         [Output("localStorageLimit")]
         public Output<int> LocalStorageLimit { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        /// Local storage limit of the container (in bytes).
         /// </summary>
-        [Output("maxConcurrency")]
-        public Output<int> MaxConcurrency { get; private set; } = null!;
+        [Output("localStorageLimitBytes")]
+        public Output<int> LocalStorageLimitBytes { get; private set; } = null!;
 
         /// <summary>
         /// The maximum number of instances this container can scale to.
@@ -409,9 +471,17 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The memory resources in MB to allocate to each container.
+        /// 
+        /// &gt; **Important:** Only one of `MemoryLimit` or `MemoryLimitBytes` can be set at a time.
         /// </summary>
         [Output("memoryLimit")]
         public Output<int> MemoryLimit { get; private set; } = null!;
+
+        /// <summary>
+        /// The memory resources in bytes to allocate to each container.
+        /// </summary>
+        [Output("memoryLimitBytes")]
+        public Output<int> MemoryLimitBytes { get; private set; } = null!;
 
         /// <summary>
         /// The minimum number of container instances running continuously.
@@ -421,14 +491,14 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The unique name of the container name.
+        /// 
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
         /// The Containers namespace ID of the container.
-        /// 
-        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -448,8 +518,6 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
-        /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("privateNetworkId")]
@@ -462,6 +530,12 @@ namespace Pulumiverse.Scaleway.Containers
         public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
+        /// The native domain name of the container
+        /// </summary>
+        [Output("publicEndpoint")]
+        public Output<string> PublicEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Output("region")]
@@ -469,6 +543,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// 
+        /// - &gt; **Important:** Exactly one of `Image` or `RegistryImage` must be set.
         /// </summary>
         [Output("registryImage")]
         public Output<string> RegistryImage { get; private set; } = null!;
@@ -496,6 +572,12 @@ namespace Pulumiverse.Scaleway.Containers
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines how to check if the container has started successfully.
+        /// </summary>
+        [Output("startupProbe")]
+        public Output<Outputs.ContainerStartupProbe?> StartupProbe { get; private set; } = null!;
 
         /// <summary>
         /// The container status.
@@ -602,6 +684,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
+        /// 
+        /// &gt; **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -630,6 +714,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// Health check configuration block of the container.
         /// </summary>
+        [Obsolete(@"Please use LivenessProbe instead")]
         public InputList<Inputs.ContainerHealthCheckArgs> HealthChecks
         {
             get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ContainerHealthCheckArgs>());
@@ -638,21 +723,43 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
+        /// 
+        /// &gt; **Important:** Only one of `HttpsConnectionsOnly` or `HttpOption` can be set at a time.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
+        /// Allows both HTTP and HTTPS (`False`) or redirect HTTP to HTTPS (`True`). Defaults to `False`.
+        /// </summary>
+        [Input("httpsConnectionsOnly")]
+        public Input<bool>? HttpsConnectionsOnly { get; set; }
+
+        /// <summary>
+        /// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// </summary>
+        [Input("image")]
+        public Input<string>? Image { get; set; }
+
+        /// <summary>
+        /// Defines how to check if the container is running.
+        /// </summary>
+        [Input("livenessProbe")]
+        public Input<Inputs.ContainerLivenessProbeArgs>? LivenessProbe { get; set; }
+
+        /// <summary>
         /// Local storage limit of the container (in MB)
+        /// 
+        /// &gt; **Important:** Only one of `LocalStorageLimitBytes` or `LocalStorageLimit` can be set at a time.
         /// </summary>
         [Input("localStorageLimit")]
         public Input<int>? LocalStorageLimit { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        /// Local storage limit of the container (in bytes).
         /// </summary>
-        [Input("maxConcurrency")]
-        public Input<int>? MaxConcurrency { get; set; }
+        [Input("localStorageLimitBytes")]
+        public Input<int>? LocalStorageLimitBytes { get; set; }
 
         /// <summary>
         /// The maximum number of instances this container can scale to.
@@ -662,9 +769,17 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The memory resources in MB to allocate to each container.
+        /// 
+        /// &gt; **Important:** Only one of `MemoryLimit` or `MemoryLimitBytes` can be set at a time.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
+
+        /// <summary>
+        /// The memory resources in bytes to allocate to each container.
+        /// </summary>
+        [Input("memoryLimitBytes")]
+        public Input<int>? MemoryLimitBytes { get; set; }
 
         /// <summary>
         /// The minimum number of container instances running continuously.
@@ -674,14 +789,14 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The unique name of the container name.
+        /// 
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The Containers namespace ID of the container.
-        /// 
-        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -700,8 +815,6 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The ID of the Private Network the container is connected to.
-        /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -722,6 +835,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// 
+        /// - &gt; **Important:** Exactly one of `Image` or `RegistryImage` must be set.
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
@@ -767,10 +882,10 @@ namespace Pulumiverse.Scaleway.Containers
         }
 
         /// <summary>
-        /// The container status.
+        /// Defines how to check if the container has started successfully.
         /// </summary>
-        [Input("status")]
-        public Input<string>? Status { get; set; }
+        [Input("startupProbe")]
+        public Input<Inputs.ContainerStartupProbeArgs>? StartupProbe { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -836,6 +951,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Boolean indicating whether the container is in a production environment.
+        /// 
+        /// &gt; **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -876,6 +993,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// Health check configuration block of the container.
         /// </summary>
+        [Obsolete(@"Please use LivenessProbe instead")]
         public InputList<Inputs.ContainerHealthCheckGetArgs> HealthChecks
         {
             get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ContainerHealthCheckGetArgs>());
@@ -884,21 +1002,43 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
+        /// 
+        /// &gt; **Important:** Only one of `HttpsConnectionsOnly` or `HttpOption` can be set at a time.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
+        /// Allows both HTTP and HTTPS (`False`) or redirect HTTP to HTTPS (`True`). Defaults to `False`.
+        /// </summary>
+        [Input("httpsConnectionsOnly")]
+        public Input<bool>? HttpsConnectionsOnly { get; set; }
+
+        /// <summary>
+        /// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// </summary>
+        [Input("image")]
+        public Input<string>? Image { get; set; }
+
+        /// <summary>
+        /// Defines how to check if the container is running.
+        /// </summary>
+        [Input("livenessProbe")]
+        public Input<Inputs.ContainerLivenessProbeGetArgs>? LivenessProbe { get; set; }
+
+        /// <summary>
         /// Local storage limit of the container (in MB)
+        /// 
+        /// &gt; **Important:** Only one of `LocalStorageLimitBytes` or `LocalStorageLimit` can be set at a time.
         /// </summary>
         [Input("localStorageLimit")]
         public Input<int>? LocalStorageLimit { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
+        /// Local storage limit of the container (in bytes).
         /// </summary>
-        [Input("maxConcurrency")]
-        public Input<int>? MaxConcurrency { get; set; }
+        [Input("localStorageLimitBytes")]
+        public Input<int>? LocalStorageLimitBytes { get; set; }
 
         /// <summary>
         /// The maximum number of instances this container can scale to.
@@ -908,9 +1048,17 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The memory resources in MB to allocate to each container.
+        /// 
+        /// &gt; **Important:** Only one of `MemoryLimit` or `MemoryLimitBytes` can be set at a time.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
+
+        /// <summary>
+        /// The memory resources in bytes to allocate to each container.
+        /// </summary>
+        [Input("memoryLimitBytes")]
+        public Input<int>? MemoryLimitBytes { get; set; }
 
         /// <summary>
         /// The minimum number of container instances running continuously.
@@ -920,14 +1068,14 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The unique name of the container name.
+        /// 
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The Containers namespace ID of the container.
-        /// 
-        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
@@ -947,8 +1095,6 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
-        /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("privateNetworkId")]
@@ -961,6 +1107,12 @@ namespace Pulumiverse.Scaleway.Containers
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// The native domain name of the container
+        /// </summary>
+        [Input("publicEndpoint")]
+        public Input<string>? PublicEndpoint { get; set; }
+
+        /// <summary>
         /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
@@ -968,6 +1120,8 @@ namespace Pulumiverse.Scaleway.Containers
 
         /// <summary>
         /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// 
+        /// - &gt; **Important:** Exactly one of `Image` or `RegistryImage` must be set.
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
@@ -1011,6 +1165,12 @@ namespace Pulumiverse.Scaleway.Containers
                 _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        /// <summary>
+        /// Defines how to check if the container has started successfully.
+        /// </summary>
+        [Input("startupProbe")]
+        public Input<Inputs.ContainerStartupProbeGetArgs>? StartupProbe { get; set; }
 
         /// <summary>
         /// The container status.

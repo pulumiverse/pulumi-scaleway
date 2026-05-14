@@ -197,7 +197,6 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetContainerNamespaceResult
     {
-        public readonly bool ActivateVpcIntegration;
         /// <summary>
         /// The description of the namespace.
         /// </summary>
@@ -220,11 +219,11 @@ namespace Pulumiverse.Scaleway
         public readonly string? ProjectId;
         public readonly string? Region;
         /// <summary>
-        /// The registry endpoint of the namespace.
+        /// (Deprecated) The registry endpoint of the namespace.
         /// </summary>
         public readonly string RegistryEndpoint;
         /// <summary>
-        /// The unique identifier of the registry namespace of the Serverless Containers namespace.
+        /// (Deprecated) The unique identifier of the registry namespace of the Serverless Containers namespace.
         /// </summary>
         public readonly string RegistryNamespaceId;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
@@ -232,8 +231,6 @@ namespace Pulumiverse.Scaleway
 
         [OutputConstructor]
         private GetContainerNamespaceResult(
-            bool activateVpcIntegration,
-
             string description,
 
             bool destroyRegistry,
@@ -260,7 +257,6 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags)
         {
-            ActivateVpcIntegration = activateVpcIntegration;
             Description = description;
             DestroyRegistry = destroyRegistry;
             EnvironmentVariables = environmentVariables;

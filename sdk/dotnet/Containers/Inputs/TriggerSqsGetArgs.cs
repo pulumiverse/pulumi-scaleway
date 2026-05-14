@@ -13,11 +13,27 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
 
     public sealed class TriggerSqsGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey", required: true)]
+        private Input<string>? _accessKey;
+
         /// <summary>
-        /// ID of the Messaging and Queuing namespace. This argument is deprecated.
+        /// The access key for accessing the SQS queue.
         /// </summary>
-        [Input("namespaceId")]
-        public Input<string>? NamespaceId { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        /// </summary>
+        [Input("endpoint", required: true)]
+        public Input<string> Endpoint { get; set; } = null!;
 
         /// <summary>
         /// The ID of the project in which SQS is enabled, (defaults to provider `ProjectId`)
@@ -26,16 +42,38 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The name of the SQS queue.
+        /// The name of the SQS queue.  This argument is no longer supported.
         /// </summary>
-        [Input("queue", required: true)]
-        public Input<string> Queue { get; set; } = null!;
+        [Input("queue")]
+        public Input<string>? Queue { get; set; }
+
+        /// <summary>
+        /// The URL of the SQS queue to monitor for messages.
+        /// </summary>
+        [Input("queueUrl", required: true)]
+        public Input<string> QueueUrl { get; set; } = null!;
 
         /// <summary>
         /// Region where SQS is enabled (defaults to provider `Region`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
+        /// <summary>
+        /// The secret key for accessing the SQS queue.
+        /// </summary>
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public TriggerSqsGetArgs()
         {

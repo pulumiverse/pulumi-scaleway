@@ -261,20 +261,54 @@ export interface CockpitTokenScopes {
 
 export interface ContainerHealthCheck {
     /**
-     * Number of consecutive health check failures before considering the container unhealthy.
+     * Number of consecutive failures before considering the container has to be restarted.
      */
-    failureThreshold: pulumi.Input<number>;
+    failureThreshold?: pulumi.Input<number | undefined>;
     /**
-     * HTTP health check configuration.
+     * Perform HTTP check on the container with the specified path.
      */
-    https: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheckHttp>[]>;
+    https?: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheckHttp>[] | undefined>;
     /**
-     * Period between health checks (in seconds).
+     * Time interval between checks (in duration notation, e.g. "30s").
      */
-    interval: pulumi.Input<string>;
+    interval?: pulumi.Input<string | undefined>;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ContainerHealthCheckHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path?: pulumi.Input<string | undefined>;
+}
+
+export interface ContainerLivenessProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: pulumi.Input<number>;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    http?: pulumi.Input<inputs.ContainerLivenessProbeHttp | undefined>;
+    /**
+     * Time interval between checks (in duration notation, e.g. "30s").
+     */
+    interval: pulumi.Input<string>;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp?: pulumi.Input<boolean | undefined>;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: pulumi.Input<string>;
+}
+
+export interface ContainerLivenessProbeHttp {
     /**
      * Path to use for the HTTP health check.
      */
@@ -296,13 +330,77 @@ export interface ContainerScalingOption {
     memoryUsageThreshold?: pulumi.Input<number | undefined>;
 }
 
+export interface ContainerStartupProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: pulumi.Input<number>;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    http?: pulumi.Input<inputs.ContainerStartupProbeHttp | undefined>;
+    /**
+     * Time interval between checks (in duration notation).
+     */
+    interval: pulumi.Input<string>;
+    /**
+     * Perform TCP check on the container
+     */
+    tcp?: pulumi.Input<boolean | undefined>;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: pulumi.Input<string>;
+}
+
+export interface ContainerStartupProbeHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: pulumi.Input<string>;
+}
+
+export interface ContainerTriggerCron {
+    /**
+     * Body to send to the container when the trigger is invoked.
+     */
+    body?: pulumi.Input<string | undefined>;
+    /**
+     * Additional headers to send to the container when the trigger is invoked.
+     */
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * UNIX cron schedule to run job (e.g., "* * * * *").
+     */
+    schedule: pulumi.Input<string>;
+    /**
+     * Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+     */
+    timezone: pulumi.Input<string>;
+}
+
+export interface ContainerTriggerDestinationConfig {
+    /**
+     * The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+     */
+    httpMethod: pulumi.Input<string>;
+    /**
+     * The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+     */
+    httpPath: pulumi.Input<string>;
+}
+
 export interface ContainerTriggerNats {
     /**
-     * unique identifier of the Messaging and Queuing NATS account.
+     * unique identifier of the Messaging and Queuing NATS account  .
      */
     accountId?: pulumi.Input<string | undefined>;
     /**
-     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+     * The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+     */
+    credentialsFileContent: pulumi.Input<string>;
+    /**
+     * The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
@@ -310,30 +408,46 @@ export interface ContainerTriggerNats {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The subject to listen to.
+     * The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+     */
+    serverUrls: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * NATS subject to subscribe to (e.g., \"my-subject\")."
      */
     subject: pulumi.Input<string>;
 }
 
 export interface ContainerTriggerSqs {
     /**
-     * ID of the Messaging and Queuing namespace. This argument is deprecated.
-     *
-     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
+     * The access key for accessing the SQS queue.
      */
-    namespaceId?: pulumi.Input<string | undefined>;
+    accessKey: pulumi.Input<string>;
+    /**
+     * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+     */
+    endpoint: pulumi.Input<string>;
     /**
      * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The name of the SQS queue.
+     * The name of the SQS queue.  This argument is no longer supported.
+     *
+     * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
      */
-    queue: pulumi.Input<string>;
+    queue?: pulumi.Input<string | undefined>;
+    /**
+     * The URL of the SQS queue to monitor for messages.
+     */
+    queueUrl: pulumi.Input<string>;
     /**
      * Region where SQS is enabled (defaults to provider `region`)
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The secret key for accessing the SQS queue.
+     */
+    secretKey: pulumi.Input<string>;
 }
 
 export interface DatabaseAclAclRule {
@@ -2584,20 +2698,54 @@ export namespace block {
 export namespace containers {
     export interface ContainerHealthCheck {
         /**
-         * Number of consecutive health check failures before considering the container unhealthy.
+         * Number of consecutive failures before considering the container has to be restarted.
          */
-        failureThreshold: pulumi.Input<number>;
+        failureThreshold?: pulumi.Input<number | undefined>;
         /**
-         * HTTP health check configuration.
+         * Perform HTTP check on the container with the specified path.
          */
-        https: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheckHttp>[]>;
+        https?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheckHttp>[] | undefined>;
         /**
-         * Period between health checks (in seconds).
+         * Time interval between checks (in duration notation, e.g. "30s").
          */
-        interval: pulumi.Input<string>;
+        interval?: pulumi.Input<string | undefined>;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ContainerHealthCheckHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path?: pulumi.Input<string | undefined>;
+    }
+
+    export interface ContainerLivenessProbe {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: pulumi.Input<number>;
+        /**
+         * Perform HTTP check on the container with the specified path.
+         */
+        http?: pulumi.Input<inputs.containers.ContainerLivenessProbeHttp | undefined>;
+        /**
+         * Time interval between checks (in duration notation, e.g. "30s").
+         */
+        interval: pulumi.Input<string>;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp?: pulumi.Input<boolean | undefined>;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: pulumi.Input<string>;
+    }
+
+    export interface ContainerLivenessProbeHttp {
         /**
          * Path to use for the HTTP health check.
          */
@@ -2619,13 +2767,77 @@ export namespace containers {
         memoryUsageThreshold?: pulumi.Input<number | undefined>;
     }
 
+    export interface ContainerStartupProbe {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: pulumi.Input<number>;
+        /**
+         * Perform HTTP check on the container with the specified path.
+         */
+        http?: pulumi.Input<inputs.containers.ContainerStartupProbeHttp | undefined>;
+        /**
+         * Time interval between checks (in duration notation).
+         */
+        interval: pulumi.Input<string>;
+        /**
+         * Perform TCP check on the container
+         */
+        tcp?: pulumi.Input<boolean | undefined>;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: pulumi.Input<string>;
+    }
+
+    export interface ContainerStartupProbeHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path: pulumi.Input<string>;
+    }
+
+    export interface TriggerCron {
+        /**
+         * Body to send to the container when the trigger is invoked.
+         */
+        body?: pulumi.Input<string | undefined>;
+        /**
+         * Additional headers to send to the container when the trigger is invoked.
+         */
+        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * UNIX cron schedule to run job (e.g., "* * * * *").
+         */
+        schedule: pulumi.Input<string>;
+        /**
+         * Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+         */
+        timezone: pulumi.Input<string>;
+    }
+
+    export interface TriggerDestinationConfig {
+        /**
+         * The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+         */
+        httpMethod: pulumi.Input<string>;
+        /**
+         * The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+         */
+        httpPath: pulumi.Input<string>;
+    }
+
     export interface TriggerNats {
         /**
-         * unique identifier of the Messaging and Queuing NATS account.
+         * unique identifier of the Messaging and Queuing NATS account  .
          */
         accountId?: pulumi.Input<string | undefined>;
         /**
-         * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+         * The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+         */
+        credentialsFileContent: pulumi.Input<string>;
+        /**
+         * The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
          */
         projectId?: pulumi.Input<string | undefined>;
         /**
@@ -2633,30 +2845,46 @@ export namespace containers {
          */
         region?: pulumi.Input<string | undefined>;
         /**
-         * The subject to listen to.
+         * The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+         */
+        serverUrls: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * NATS subject to subscribe to (e.g., \"my-subject\")."
          */
         subject: pulumi.Input<string>;
     }
 
     export interface TriggerSqs {
         /**
-         * ID of the Messaging and Queuing namespace. This argument is deprecated.
-         *
-         * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
+         * The access key for accessing the SQS queue.
          */
-        namespaceId?: pulumi.Input<string | undefined>;
+        accessKey: pulumi.Input<string>;
+        /**
+         * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+         */
+        endpoint: pulumi.Input<string>;
         /**
          * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
          */
         projectId?: pulumi.Input<string | undefined>;
         /**
-         * The name of the SQS queue.
+         * The name of the SQS queue.  This argument is no longer supported.
+         *
+         * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
          */
-        queue: pulumi.Input<string>;
+        queue?: pulumi.Input<string | undefined>;
+        /**
+         * The URL of the SQS queue to monitor for messages.
+         */
+        queueUrl: pulumi.Input<string>;
         /**
          * Region where SQS is enabled (defaults to provider `region`)
          */
         region?: pulumi.Input<string | undefined>;
+        /**
+         * The secret key for accessing the SQS queue.
+         */
+        secretKey: pulumi.Input<string>;
     }
 }
 

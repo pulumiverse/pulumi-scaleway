@@ -82,7 +82,13 @@ export interface GetContainerArgs {
  * A collection of values returned by getContainer.
  */
 export interface GetContainerResult {
+    /**
+     * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+     */
     readonly args: string[];
+    /**
+     * Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
+     */
     readonly commands: string[];
     readonly containerId?: string;
     /**
@@ -93,20 +99,17 @@ export interface GetContainerResult {
      * The cron status of the container.
      */
     readonly cronStatus: string;
-    /**
-     * Boolean indicating whether the container is on a production environment.
-     */
     readonly deploy: boolean;
     /**
      * The description of the container.
      */
     readonly description: string;
     /**
-     * The container domain name.
+     * The native domain name of the container
      */
     readonly domainName: string;
     /**
-     * The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
+     * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
     readonly environmentVariables: {[key: string]: string};
     /**
@@ -114,27 +117,49 @@ export interface GetContainerResult {
      */
     readonly errorMessage: string;
     /**
-     * Health check configuration block of the container.
+     * (Deprecated) Health check configuration block of the container.
      */
     readonly healthChecks: outputs.containers.GetContainerHealthCheck[];
+    /**
+     * (Deprecated) Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+     */
     readonly httpOption: string;
+    /**
+     * Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+     */
+    readonly httpsConnectionsOnly: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+     */
+    readonly image: string;
+    /**
+     * Defines how to check if the container is running.
+     */
+    readonly livenessProbes: outputs.containers.GetContainerLivenessProbe[];
+    /**
+     * (Deprecated) Local storage limit of the container (in MB)
+     */
     readonly localStorageLimit: number;
     /**
-     * The maximum number of simultaneous requests your container can handle at the same time.
+     * Local storage limit of the container (in bytes).
      */
-    readonly maxConcurrency: number;
+    readonly localStorageLimitBytes: number;
     /**
-     * The maximum number of instances the container can scale to.
+     * The maximum number of instances this container can scale to.
      */
     readonly maxScale: number;
     /**
-     * The memory resources in MB to allocate to each container.
+     * (Deprecated) The memory resources in MB to allocate to each container.
      */
     readonly memoryLimit: number;
+    /**
+     * The memory resources in bytes to allocate to each container.
+     */
+    readonly memoryLimitBytes: number;
     /**
      * The minimum number of container instances running continuously.
      */
@@ -146,9 +171,12 @@ export interface GetContainerResult {
      */
     readonly port: number;
     /**
-     * The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
+     * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     readonly privacy: string;
+    /**
+     * The ID of the Private Network the container is connected to.
+     */
     readonly privateNetworkId: string;
     readonly projectId?: string;
     /**
@@ -156,33 +184,41 @@ export interface GetContainerResult {
      */
     readonly protocol: string;
     /**
+     * The native domain name of the container
+     */
+    readonly publicEndpoint: string;
+    /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
     readonly region?: string;
     /**
-     * The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
+     * (Deprecated) The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
      */
     readonly registryImage: string;
-    /**
-     * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
-     */
     readonly registrySha256: string;
     /**
-     * (Optional) Execution environment of the container.
+     * Execution environment of the container.
      */
     readonly sandbox: string;
     /**
      * Configuration block used to decide when to scale up or down. Possible values:
      */
     readonly scalingOptions: outputs.containers.GetContainerScalingOption[];
+    /**
+     * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+     */
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly startupProbes: outputs.containers.GetContainerStartupProbe[];
     /**
      * The container status.
      */
     readonly status: string;
+    /**
+     * The list of tags associated with the container.
+     */
     readonly tags: string[];
     /**
-     * The maximum amount of time your container can spend processing a request before being stopped.
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
     readonly timeout: number;
 }

@@ -256,7 +256,13 @@ namespace Pulumiverse.Scaleway.Containers
     [OutputType]
     public sealed class GetContainerResult
     {
+        /// <summary>
+        /// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        /// </summary>
         public readonly ImmutableArray<string> Args;
+        /// <summary>
+        /// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
+        /// </summary>
         public readonly ImmutableArray<string> Commands;
         public readonly string? ContainerId;
         /// <summary>
@@ -267,20 +273,17 @@ namespace Pulumiverse.Scaleway.Containers
         /// The cron status of the container.
         /// </summary>
         public readonly string CronStatus;
-        /// <summary>
-        /// Boolean indicating whether the container is on a production environment.
-        /// </summary>
         public readonly bool Deploy;
         /// <summary>
         /// The description of the container.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The container domain name.
+        /// The native domain name of the container
         /// </summary>
         public readonly string DomainName;
         /// <summary>
-        /// The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
         public readonly ImmutableDictionary<string, string> EnvironmentVariables;
         /// <summary>
@@ -288,27 +291,49 @@ namespace Pulumiverse.Scaleway.Containers
         /// </summary>
         public readonly string ErrorMessage;
         /// <summary>
-        /// Health check configuration block of the container.
+        /// (Deprecated) Health check configuration block of the container.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerHealthCheckResult> HealthChecks;
+        /// <summary>
+        /// (Deprecated) Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
+        /// </summary>
         public readonly string HttpOption;
+        /// <summary>
+        /// Allows both HTTP and HTTPS (`False`) or redirect HTTP to HTTPS (`True`). Defaults to `False`.
+        /// </summary>
+        public readonly bool HttpsConnectionsOnly;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        /// </summary>
+        public readonly string Image;
+        /// <summary>
+        /// Defines how to check if the container is running.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetContainerLivenessProbeResult> LivenessProbes;
+        /// <summary>
+        /// (Deprecated) Local storage limit of the container (in MB)
+        /// </summary>
         public readonly int LocalStorageLimit;
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time.
+        /// Local storage limit of the container (in bytes).
         /// </summary>
-        public readonly int MaxConcurrency;
+        public readonly int LocalStorageLimitBytes;
         /// <summary>
-        /// The maximum number of instances the container can scale to.
+        /// The maximum number of instances this container can scale to.
         /// </summary>
         public readonly int MaxScale;
         /// <summary>
-        /// The memory resources in MB to allocate to each container.
+        /// (Deprecated) The memory resources in MB to allocate to each container.
         /// </summary>
         public readonly int MemoryLimit;
+        /// <summary>
+        /// The memory resources in bytes to allocate to each container.
+        /// </summary>
+        public readonly int MemoryLimitBytes;
         /// <summary>
         /// The minimum number of container instances running continuously.
         /// </summary>
@@ -320,9 +345,12 @@ namespace Pulumiverse.Scaleway.Containers
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
+        /// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         public readonly string Privacy;
+        /// <summary>
+        /// The ID of the Private Network the container is connected to.
+        /// </summary>
         public readonly string PrivateNetworkId;
         public readonly string? ProjectId;
         /// <summary>
@@ -330,33 +358,41 @@ namespace Pulumiverse.Scaleway.Containers
         /// </summary>
         public readonly string Protocol;
         /// <summary>
+        /// The native domain name of the container
+        /// </summary>
+        public readonly string PublicEndpoint;
+        /// <summary>
         /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
+        /// (Deprecated) The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         /// </summary>
         public readonly string RegistryImage;
-        /// <summary>
-        /// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
-        /// </summary>
         public readonly string RegistrySha256;
         /// <summary>
-        /// (Optional) Execution environment of the container.
+        /// Execution environment of the container.
         /// </summary>
         public readonly string Sandbox;
         /// <summary>
         /// Configuration block used to decide when to scale up or down. Possible values:
         /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerScalingOptionResult> ScalingOptions;
+        /// <summary>
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        public readonly ImmutableArray<Outputs.GetContainerStartupProbeResult> StartupProbes;
         /// <summary>
         /// The container status.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// The list of tags associated with the container.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The maximum amount of time your container can spend processing a request before being stopped.
+        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         /// </summary>
         public readonly int Timeout;
 
@@ -386,15 +422,23 @@ namespace Pulumiverse.Scaleway.Containers
 
             string httpOption,
 
+            bool httpsConnectionsOnly,
+
             string id,
+
+            string image,
+
+            ImmutableArray<Outputs.GetContainerLivenessProbeResult> livenessProbes,
 
             int localStorageLimit,
 
-            int maxConcurrency,
+            int localStorageLimitBytes,
 
             int maxScale,
 
             int memoryLimit,
+
+            int memoryLimitBytes,
 
             int minScale,
 
@@ -412,6 +456,8 @@ namespace Pulumiverse.Scaleway.Containers
 
             string protocol,
 
+            string publicEndpoint,
+
             string? region,
 
             string registryImage,
@@ -423,6 +469,8 @@ namespace Pulumiverse.Scaleway.Containers
             ImmutableArray<Outputs.GetContainerScalingOptionResult> scalingOptions,
 
             ImmutableDictionary<string, string> secretEnvironmentVariables,
+
+            ImmutableArray<Outputs.GetContainerStartupProbeResult> startupProbes,
 
             string status,
 
@@ -442,11 +490,15 @@ namespace Pulumiverse.Scaleway.Containers
             ErrorMessage = errorMessage;
             HealthChecks = healthChecks;
             HttpOption = httpOption;
+            HttpsConnectionsOnly = httpsConnectionsOnly;
             Id = id;
+            Image = image;
+            LivenessProbes = livenessProbes;
             LocalStorageLimit = localStorageLimit;
-            MaxConcurrency = maxConcurrency;
+            LocalStorageLimitBytes = localStorageLimitBytes;
             MaxScale = maxScale;
             MemoryLimit = memoryLimit;
+            MemoryLimitBytes = memoryLimitBytes;
             MinScale = minScale;
             Name = name;
             NamespaceId = namespaceId;
@@ -455,12 +507,14 @@ namespace Pulumiverse.Scaleway.Containers
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
             Protocol = protocol;
+            PublicEndpoint = publicEndpoint;
             Region = region;
             RegistryImage = registryImage;
             RegistrySha256 = registrySha256;
             Sandbox = sandbox;
             ScalingOptions = scalingOptions;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            StartupProbes = startupProbes;
             Status = status;
             Tags = tags;
             Timeout = timeout;

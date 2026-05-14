@@ -107,7 +107,6 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetFunctionNamespaceResult
     {
-        public readonly bool ActivateVpcIntegration;
         /// <summary>
         /// The description of the namespace.
         /// </summary>
@@ -141,8 +140,6 @@ namespace Pulumiverse.Scaleway
 
         [OutputConstructor]
         private GetFunctionNamespaceResult(
-            bool activateVpcIntegration,
-
             string description,
 
             ImmutableDictionary<string, string> environmentVariables,
@@ -167,7 +164,6 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags)
         {
-            ActivateVpcIntegration = activateVpcIntegration;
             Description = description;
             EnvironmentVariables = environmentVariables;
             Id = id;

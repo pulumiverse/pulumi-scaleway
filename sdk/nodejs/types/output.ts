@@ -261,20 +261,54 @@ export interface CockpitTokenScopes {
 
 export interface ContainerHealthCheck {
     /**
-     * Number of consecutive health check failures before considering the container unhealthy.
+     * Number of consecutive failures before considering the container has to be restarted.
      */
     failureThreshold: number;
     /**
-     * HTTP health check configuration.
+     * Perform HTTP check on the container with the specified path.
      */
     https: outputs.ContainerHealthCheckHttp[];
     /**
-     * Period between health checks (in seconds).
+     * Time interval between checks (in duration notation, e.g. "30s").
      */
     interval: string;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp: boolean;
 }
 
 export interface ContainerHealthCheckHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
+}
+
+export interface ContainerLivenessProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: number;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    http?: outputs.ContainerLivenessProbeHttp;
+    /**
+     * Time interval between checks (in duration notation, e.g. "30s").
+     */
+    interval: string;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp?: boolean;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: string;
+}
+
+export interface ContainerLivenessProbeHttp {
     /**
      * Path to use for the HTTP health check.
      */
@@ -296,13 +330,77 @@ export interface ContainerScalingOption {
     memoryUsageThreshold?: number;
 }
 
+export interface ContainerStartupProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: number;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    http?: outputs.ContainerStartupProbeHttp;
+    /**
+     * Time interval between checks (in duration notation).
+     */
+    interval: string;
+    /**
+     * Perform TCP check on the container
+     */
+    tcp?: boolean;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: string;
+}
+
+export interface ContainerStartupProbeHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
+}
+
+export interface ContainerTriggerCron {
+    /**
+     * Body to send to the container when the trigger is invoked.
+     */
+    body?: string;
+    /**
+     * Additional headers to send to the container when the trigger is invoked.
+     */
+    headers?: {[key: string]: string};
+    /**
+     * UNIX cron schedule to run job (e.g., "* * * * *").
+     */
+    schedule: string;
+    /**
+     * Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+     */
+    timezone: string;
+}
+
+export interface ContainerTriggerDestinationConfig {
+    /**
+     * The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+     */
+    httpMethod: string;
+    /**
+     * The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+     */
+    httpPath: string;
+}
+
 export interface ContainerTriggerNats {
     /**
-     * unique identifier of the Messaging and Queuing NATS account.
+     * unique identifier of the Messaging and Queuing NATS account  .
      */
     accountId?: string;
     /**
-     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+     * The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+     */
+    credentialsFileContent: string;
+    /**
+     * The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId: string;
     /**
@@ -310,30 +408,46 @@ export interface ContainerTriggerNats {
      */
     region: string;
     /**
-     * The subject to listen to.
+     * The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+     */
+    serverUrls: string[];
+    /**
+     * NATS subject to subscribe to (e.g., \"my-subject\")."
      */
     subject: string;
 }
 
 export interface ContainerTriggerSqs {
     /**
-     * ID of the Messaging and Queuing namespace. This argument is deprecated.
-     *
-     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
+     * The access key for accessing the SQS queue.
      */
-    namespaceId?: string;
+    accessKey: string;
+    /**
+     * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+     */
+    endpoint: string;
     /**
      * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * The name of the SQS queue.
+     * The name of the SQS queue.  This argument is no longer supported.
+     *
+     * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
      */
-    queue: string;
+    queue?: string;
+    /**
+     * The URL of the SQS queue to monitor for messages.
+     */
+    queueUrl: string;
     /**
      * Region where SQS is enabled (defaults to provider `region`)
      */
     region: string;
+    /**
+     * The secret key for accessing the SQS queue.
+     */
+    secretKey: string;
 }
 
 export interface DatabaseAclAclRule {
@@ -1082,20 +1196,54 @@ export interface GetCockpitPushUrl {
 
 export interface GetContainerHealthCheck {
     /**
-     * Number of consecutive health check failures before considering the container unhealthy.
+     * Number of consecutive failures before considering the container has to be restarted.
      */
     failureThreshold: number;
     /**
-     * HTTP health check configuration.
+     * Perform HTTP check on the container with the specified path.
      */
     https: outputs.GetContainerHealthCheckHttp[];
     /**
-     * Period between health checks (in seconds).
+     * Time interval between checks (in duration notation, e.g. "30s").
      */
     interval: string;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp: boolean;
 }
 
 export interface GetContainerHealthCheckHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
+}
+
+export interface GetContainerLivenessProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: number;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    https: outputs.GetContainerLivenessProbeHttp[];
+    /**
+     * Time interval between checks (in duration notation, e.g. "30s").
+     */
+    interval: string;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp: boolean;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: string;
+}
+
+export interface GetContainerLivenessProbeHttp {
     /**
      * Path to use for the HTTP health check.
      */
@@ -1115,6 +1263,36 @@ export interface GetContainerScalingOption {
      * Scale depending on the memory usage of a container instance.
      */
     memoryUsageThreshold: number;
+}
+
+export interface GetContainerStartupProbe {
+    /**
+     * Number of consecutive failures before considering the container has to be restarted.
+     */
+    failureThreshold: number;
+    /**
+     * Perform HTTP check on the container with the specified path.
+     */
+    https: outputs.GetContainerStartupProbeHttp[];
+    /**
+     * Time interval between checks (in duration notation, e.g. "30s").
+     */
+    interval: string;
+    /**
+     * When set to `true`, performs TCP checks on the container.
+     */
+    tcp: boolean;
+    /**
+     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     */
+    timeout: string;
+}
+
+export interface GetContainerStartupProbeHttp {
+    /**
+     * Path to use for the HTTP health check.
+     */
+    path: string;
 }
 
 export interface GetDatabaseAclAclRule {
@@ -5318,20 +5496,54 @@ export namespace block {
 export namespace containers {
     export interface ContainerHealthCheck {
         /**
-         * Number of consecutive health check failures before considering the container unhealthy.
+         * Number of consecutive failures before considering the container has to be restarted.
          */
         failureThreshold: number;
         /**
-         * HTTP health check configuration.
+         * Perform HTTP check on the container with the specified path.
          */
         https: outputs.containers.ContainerHealthCheckHttp[];
         /**
-         * Period between health checks (in seconds).
+         * Time interval between checks (in duration notation, e.g. "30s").
          */
         interval: string;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp: boolean;
     }
 
     export interface ContainerHealthCheckHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path: string;
+    }
+
+    export interface ContainerLivenessProbe {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: number;
+        /**
+         * Perform HTTP check on the container with the specified path.
+         */
+        http?: outputs.containers.ContainerLivenessProbeHttp;
+        /**
+         * Time interval between checks (in duration notation, e.g. "30s").
+         */
+        interval: string;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp?: boolean;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: string;
+    }
+
+    export interface ContainerLivenessProbeHttp {
         /**
          * Path to use for the HTTP health check.
          */
@@ -5353,22 +5565,86 @@ export namespace containers {
         memoryUsageThreshold?: number;
     }
 
-    export interface GetContainerHealthCheck {
+    export interface ContainerStartupProbe {
         /**
-         * Number of consecutive health check failures before considering the container unhealthy.
+         * Number of consecutive failures before considering the container has to be restarted.
          */
         failureThreshold: number;
         /**
-         * HTTP health check configuration.
+         * Perform HTTP check on the container with the specified path.
+         */
+        http?: outputs.containers.ContainerStartupProbeHttp;
+        /**
+         * Time interval between checks (in duration notation).
+         */
+        interval: string;
+        /**
+         * Perform TCP check on the container
+         */
+        tcp?: boolean;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: string;
+    }
+
+    export interface ContainerStartupProbeHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path: string;
+    }
+
+    export interface GetContainerHealthCheck {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: number;
+        /**
+         * Perform HTTP check on the container with the specified path.
          */
         https: outputs.containers.GetContainerHealthCheckHttp[];
         /**
-         * Period between health checks (in seconds).
+         * Time interval between checks (in duration notation, e.g. "30s").
          */
         interval: string;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp: boolean;
     }
 
     export interface GetContainerHealthCheckHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path: string;
+    }
+
+    export interface GetContainerLivenessProbe {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: number;
+        /**
+         * Perform HTTP check on the container with the specified path.
+         */
+        https: outputs.containers.GetContainerLivenessProbeHttp[];
+        /**
+         * Time interval between checks (in duration notation, e.g. "30s").
+         */
+        interval: string;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp: boolean;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: string;
+    }
+
+    export interface GetContainerLivenessProbeHttp {
         /**
          * Path to use for the HTTP health check.
          */
@@ -5390,13 +5666,77 @@ export namespace containers {
         memoryUsageThreshold: number;
     }
 
+    export interface GetContainerStartupProbe {
+        /**
+         * Number of consecutive failures before considering the container has to be restarted.
+         */
+        failureThreshold: number;
+        /**
+         * Perform HTTP check on the container with the specified path.
+         */
+        https: outputs.containers.GetContainerStartupProbeHttp[];
+        /**
+         * Time interval between checks (in duration notation, e.g. "30s").
+         */
+        interval: string;
+        /**
+         * When set to `true`, performs TCP checks on the container.
+         */
+        tcp: boolean;
+        /**
+         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         */
+        timeout: string;
+    }
+
+    export interface GetContainerStartupProbeHttp {
+        /**
+         * Path to use for the HTTP health check.
+         */
+        path: string;
+    }
+
+    export interface TriggerCron {
+        /**
+         * Body to send to the container when the trigger is invoked.
+         */
+        body?: string;
+        /**
+         * Additional headers to send to the container when the trigger is invoked.
+         */
+        headers?: {[key: string]: string};
+        /**
+         * UNIX cron schedule to run job (e.g., "* * * * *").
+         */
+        schedule: string;
+        /**
+         * Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+         */
+        timezone: string;
+    }
+
+    export interface TriggerDestinationConfig {
+        /**
+         * The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+         */
+        httpMethod: string;
+        /**
+         * The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+         */
+        httpPath: string;
+    }
+
     export interface TriggerNats {
         /**
-         * unique identifier of the Messaging and Queuing NATS account.
+         * unique identifier of the Messaging and Queuing NATS account  .
          */
         accountId?: string;
         /**
-         * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+         * The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+         */
+        credentialsFileContent: string;
+        /**
+         * The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
          */
         projectId: string;
         /**
@@ -5404,30 +5744,46 @@ export namespace containers {
          */
         region: string;
         /**
-         * The subject to listen to.
+         * The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+         */
+        serverUrls: string[];
+        /**
+         * NATS subject to subscribe to (e.g., \"my-subject\")."
          */
         subject: string;
     }
 
     export interface TriggerSqs {
         /**
-         * ID of the Messaging and Queuing namespace. This argument is deprecated.
-         *
-         * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
+         * The access key for accessing the SQS queue.
          */
-        namespaceId?: string;
+        accessKey: string;
+        /**
+         * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+         */
+        endpoint: string;
         /**
          * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
          */
         projectId: string;
         /**
-         * The name of the SQS queue.
+         * The name of the SQS queue.  This argument is no longer supported.
+         *
+         * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
          */
-        queue: string;
+        queue?: string;
+        /**
+         * The URL of the SQS queue to monitor for messages.
+         */
+        queueUrl: string;
         /**
          * Region where SQS is enabled (defaults to provider `region`)
          */
         region: string;
+        /**
+         * The secret key for accessing the SQS queue.
+         */
+        secretKey: string;
     }
 
 }

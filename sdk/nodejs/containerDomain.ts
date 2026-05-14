@@ -31,31 +31,28 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
  *
- * const main = new scaleway.containers.Namespace("main", {
- *     name: "my-ns-test",
- *     description: "test container",
- * });
+ * const main = new scaleway.containers.Namespace("main", {});
  * const app = new scaleway.containers.Container("app", {
  *     name: "app",
  *     namespaceId: main.id,
- *     registryImage: pulumi.interpolate`${main.registryEndpoint}/nginx:alpine`,
+ *     image: "nginx:latest",
  *     port: 80,
- *     cpuLimit: 140,
- *     memoryLimit: 256,
- *     minScale: 1,
- *     maxScale: 1,
- *     timeout: 600,
- *     maxConcurrency: 80,
  *     privacy: "public",
  *     protocol: "http1",
- *     deploy: true,
  * });
  * const appRecord = new scaleway.domain.Record("app", {
- *     dnsZone: "domain.tld",
+ *     dnsZone: "scaleway-terraform.com",
  *     name: "subdomain",
  *     type: "CNAME",
- *     data: pulumi.interpolate`${app.domainName}.`,
+ *     data: std.format({
+ *         input: "%s.",
+ *         args: [std.trimprefix({
+ *             input: app.publicEndpoint,
+ *             prefix: "https://",
+ *         }).result],
+ *     }).result,
  *     ttl: 3600,
  * });
  * const appDomain = new scaleway.containers.Domain("app", {
@@ -116,7 +113,9 @@ export class ContainerDomain extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * The URL used to query the container.
+     * (Deprecated) The URL used to query the container.
+     *
+     * @deprecated URL won't be displayed on v1
      */
     declare public /*out*/ readonly url: pulumi.Output<string>;
 
@@ -175,7 +174,9 @@ export interface ContainerDomainState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The URL used to query the container.
+     * (Deprecated) The URL used to query the container.
+     *
+     * @deprecated URL won't be displayed on v1
      */
     url?: pulumi.Input<string | undefined>;
 }

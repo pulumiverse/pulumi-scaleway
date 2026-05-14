@@ -14,13 +14,19 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ContainerTriggerNatsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// unique identifier of the Messaging and Queuing NATS account.
+        /// unique identifier of the Messaging and Queuing NATS account  .
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
         /// <summary>
-        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
+        /// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+        /// </summary>
+        [Input("credentialsFileContent", required: true)]
+        public Input<string> CredentialsFileContent { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -31,8 +37,20 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("serverUrls", required: true)]
+        private InputList<string>? _serverUrls;
+
         /// <summary>
-        /// The subject to listen to.
+        /// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+        /// </summary>
+        public InputList<string> ServerUrls
+        {
+            get => _serverUrls ?? (_serverUrls = new InputList<string>());
+            set => _serverUrls = value;
+        }
+
+        /// <summary>
+        /// NATS subject to subscribe to (e.g., \"my-subject\")."
         /// </summary>
         [Input("subject", required: true)]
         public Input<string> Subject { get; set; } = null!;

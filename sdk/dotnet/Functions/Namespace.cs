@@ -52,14 +52,6 @@ namespace Pulumiverse.Scaleway.Functions
     public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Output("activateVpcIntegration")]
-        public Output<bool?> ActivateVpcIntegration { get; private set; } = null!;
-
-        /// <summary>
         /// The description of the namespace.
         /// </summary>
         [Output("description")]
@@ -177,14 +169,6 @@ namespace Pulumiverse.Scaleway.Functions
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Input("activateVpcIntegration")]
-        public Input<bool>? ActivateVpcIntegration { get; set; }
-
-        /// <summary>
         /// The description of the namespace.
         /// </summary>
         [Input("description")]
@@ -258,14 +242,6 @@ namespace Pulumiverse.Scaleway.Functions
 
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Input("activateVpcIntegration")]
-        public Input<bool>? ActivateVpcIntegration { get; set; }
-
         /// <summary>
         /// The description of the namespace.
         /// </summary>

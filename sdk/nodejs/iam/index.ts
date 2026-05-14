@@ -45,6 +45,11 @@ export const getSamlCertificate: typeof import("./getSamlCertificate").getSamlCe
 export const getSamlCertificateOutput: typeof import("./getSamlCertificate").getSamlCertificateOutput = null as any;
 utilities.lazyLoad(exports, ["getSamlCertificate","getSamlCertificateOutput"], () => require("./getSamlCertificate"));
 
+export { GetScimArgs, GetScimResult, GetScimOutputArgs } from "./getScim";
+export const getScim: typeof import("./getScim").getScim = null as any;
+export const getScimOutput: typeof import("./getScim").getScimOutput = null as any;
+utilities.lazyLoad(exports, ["getScim","getScimOutput"], () => require("./getScim"));
+
 export { GetSshKeyArgs, GetSshKeyResult, GetSshKeyOutputArgs } from "./getSshKey";
 export const getSshKey: typeof import("./getSshKey").getSshKey = null as any;
 export const getSshKeyOutput: typeof import("./getSshKey").getSshKeyOutput = null as any;
@@ -80,6 +85,11 @@ export type SamlCertificate = import("./samlCertificate").SamlCertificate;
 export const SamlCertificate: typeof import("./samlCertificate").SamlCertificate = null as any;
 utilities.lazyLoad(exports, ["SamlCertificate"], () => require("./samlCertificate"));
 
+export { ScimArgs, ScimState } from "./scim";
+export type Scim = import("./scim").Scim;
+export const Scim: typeof import("./scim").Scim = null as any;
+utilities.lazyLoad(exports, ["Scim"], () => require("./scim"));
+
 export { SshKeyArgs, SshKeyState } from "./sshKey";
 export type SshKey = import("./sshKey").SshKey;
 export const SshKey: typeof import("./sshKey").SshKey = null as any;
@@ -109,6 +119,8 @@ const _module = {
                 return new Saml(name, <any>undefined, { urn })
             case "scaleway:iam/samlCertificate:SamlCertificate":
                 return new SamlCertificate(name, <any>undefined, { urn })
+            case "scaleway:iam/scim:Scim":
+                return new Scim(name, <any>undefined, { urn })
             case "scaleway:iam/sshKey:SshKey":
                 return new SshKey(name, <any>undefined, { urn })
             case "scaleway:iam/user:User":
@@ -125,5 +137,6 @@ pulumi.runtime.registerResourceModule("scaleway", "iam/groupMembership", _module
 pulumi.runtime.registerResourceModule("scaleway", "iam/policy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/saml", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/samlCertificate", _module)
+pulumi.runtime.registerResourceModule("scaleway", "iam/scim", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/sshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/user", _module)

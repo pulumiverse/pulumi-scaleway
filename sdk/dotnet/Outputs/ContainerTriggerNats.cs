@@ -15,11 +15,15 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class ContainerTriggerNats
     {
         /// <summary>
-        /// unique identifier of the Messaging and Queuing NATS account.
+        /// unique identifier of the Messaging and Queuing NATS account  .
         /// </summary>
         public readonly string? AccountId;
         /// <summary>
-        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
+        /// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+        /// </summary>
+        public readonly string CredentialsFileContent;
+        /// <summary>
+        /// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
@@ -27,7 +31,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The subject to listen to.
+        /// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+        /// </summary>
+        public readonly ImmutableArray<string> ServerUrls;
+        /// <summary>
+        /// NATS subject to subscribe to (e.g., \"my-subject\")."
         /// </summary>
         public readonly string Subject;
 
@@ -35,15 +43,21 @@ namespace Pulumiverse.Scaleway.Outputs
         private ContainerTriggerNats(
             string? accountId,
 
+            string credentialsFileContent,
+
             string? projectId,
 
             string? region,
 
+            ImmutableArray<string> serverUrls,
+
             string subject)
         {
             AccountId = accountId;
+            CredentialsFileContent = credentialsFileContent;
             ProjectId = projectId;
             Region = region;
+            ServerUrls = serverUrls;
             Subject = subject;
         }
     }

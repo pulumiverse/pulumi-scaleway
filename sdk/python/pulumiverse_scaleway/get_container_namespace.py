@@ -28,10 +28,7 @@ class GetContainerNamespaceResult:
     """
     A collection of values returned by getContainerNamespace.
     """
-    def __init__(__self__, activate_vpc_integration=None, description=None, destroy_registry=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
-        if activate_vpc_integration and not isinstance(activate_vpc_integration, bool):
-            raise TypeError("Expected argument 'activate_vpc_integration' to be a bool")
-        pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
+    def __init__(__self__, description=None, destroy_registry=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -71,11 +68,6 @@ class GetContainerNamespaceResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    def activate_vpc_integration(self) -> _builtins.bool:
-        return pulumi.get(self, "activate_vpc_integration")
 
     @_builtins.property
     @pulumi.getter
@@ -138,7 +130,7 @@ class GetContainerNamespaceResult:
     @pulumi.getter(name="registryEndpoint")
     def registry_endpoint(self) -> _builtins.str:
         """
-        The registry endpoint of the namespace.
+        (Deprecated) The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -146,7 +138,7 @@ class GetContainerNamespaceResult:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> _builtins.str:
         """
-        The unique identifier of the registry namespace of the Serverless Containers namespace.
+        (Deprecated) The unique identifier of the registry namespace of the Serverless Containers namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -167,7 +159,6 @@ class AwaitableGetContainerNamespaceResult(GetContainerNamespaceResult):
         if False:
             yield self
         return GetContainerNamespaceResult(
-            activate_vpc_integration=self.activate_vpc_integration,
             description=self.description,
             destroy_registry=self.destroy_registry,
             environment_variables=self.environment_variables,
@@ -226,7 +217,6 @@ def get_container_namespace(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getContainerNamespace:getContainerNamespace', __args__, opts=opts, typ=GetContainerNamespaceResult).value
 
     return AwaitableGetContainerNamespaceResult(
-        activate_vpc_integration=pulumi.get(__ret__, 'activate_vpc_integration'),
         description=pulumi.get(__ret__, 'description'),
         destroy_registry=pulumi.get(__ret__, 'destroy_registry'),
         environment_variables=pulumi.get(__ret__, 'environment_variables'),
@@ -282,7 +272,6 @@ def get_container_namespace_output(name: pulumi.Input[Optional[Optional[_builtin
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getContainerNamespace:getContainerNamespace', __args__, opts=opts, typ=GetContainerNamespaceResult)
     return __ret__.apply(lambda __response__: GetContainerNamespaceResult(
-        activate_vpc_integration=pulumi.get(__response__, 'activate_vpc_integration'),
         description=pulumi.get(__response__, 'description'),
         destroy_registry=pulumi.get(__response__, 'destroy_registry'),
         environment_variables=pulumi.get(__response__, 'environment_variables'),

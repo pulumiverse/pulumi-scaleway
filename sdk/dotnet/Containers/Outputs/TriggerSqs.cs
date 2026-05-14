@@ -15,36 +15,57 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
     public sealed class TriggerSqs
     {
         /// <summary>
-        /// ID of the Messaging and Queuing namespace. This argument is deprecated.
+        /// The access key for accessing the SQS queue.
         /// </summary>
-        public readonly string? NamespaceId;
+        public readonly string AccessKey;
+        /// <summary>
+        /// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        /// </summary>
+        public readonly string Endpoint;
         /// <summary>
         /// The ID of the project in which SQS is enabled, (defaults to provider `ProjectId`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// The name of the SQS queue.
+        /// The name of the SQS queue.  This argument is no longer supported.
         /// </summary>
-        public readonly string Queue;
+        public readonly string? Queue;
+        /// <summary>
+        /// The URL of the SQS queue to monitor for messages.
+        /// </summary>
+        public readonly string QueueUrl;
         /// <summary>
         /// Region where SQS is enabled (defaults to provider `Region`)
         /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// The secret key for accessing the SQS queue.
+        /// </summary>
+        public readonly string SecretKey;
 
         [OutputConstructor]
         private TriggerSqs(
-            string? namespaceId,
+            string accessKey,
+
+            string endpoint,
 
             string? projectId,
 
-            string queue,
+            string? queue,
 
-            string? region)
+            string queueUrl,
+
+            string? region,
+
+            string secretKey)
         {
-            NamespaceId = namespaceId;
+            AccessKey = accessKey;
+            Endpoint = endpoint;
             ProjectId = projectId;
             Queue = queue;
+            QueueUrl = queueUrl;
             Region = region;
+            SecretKey = secretKey;
         }
     }
 }

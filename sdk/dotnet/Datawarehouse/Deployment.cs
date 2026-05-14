@@ -201,6 +201,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Output<int> ReplicaCount { get; private set; } = null!;
 
         /// <summary>
+        /// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        /// </summary>
+        [Output("shardCount")]
+        public Output<int> ShardCount { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
         /// </summary>
         [Output("started")]
@@ -372,6 +378,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Input<int> ReplicaCount { get; set; } = null!;
 
         /// <summary>
+        /// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        /// </summary>
+        [Input("shardCount")]
+        public Input<int>? ShardCount { get; set; }
+
+        /// <summary>
         /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
         /// </summary>
         [Input("started")]
@@ -509,6 +521,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Input("replicaCount")]
         public Input<int>? ReplicaCount { get; set; }
+
+        /// <summary>
+        /// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        /// </summary>
+        [Input("shardCount")]
+        public Input<int>? ShardCount { get; set; }
 
         /// <summary>
         /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.

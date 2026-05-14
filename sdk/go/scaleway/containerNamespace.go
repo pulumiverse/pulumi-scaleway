@@ -11,8 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `containers.Namespace` resource allows you to
-// for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+// The `containers.Namespace` resource allows you to manage Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 //
@@ -59,17 +58,11 @@ import (
 type ContainerNamespace struct {
 	pulumi.CustomResourceState
 
-	// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-	//
-	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	//
-	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	ActivateVpcIntegration pulumi.BoolPtrOutput `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Destroy registry on deletion
 	//
-	// Deprecated: Registry namespace is automatically destroyed with namespace
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	DestroyRegistry pulumi.BoolPtrOutput `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
@@ -83,9 +76,13 @@ type ContainerNamespace struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// The registry endpoint of the namespace.
+	// (Deprecated) The registry endpoint of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
-	// The registry namespace ID of the namespace.
+	// (Deprecated) The registry namespace ID of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
@@ -130,17 +127,11 @@ func GetContainerNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerNamespace resources.
 type containerNamespaceState struct {
-	// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-	//
-	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	//
-	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	ActivateVpcIntegration *bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
 	// Destroy registry on deletion
 	//
-	// Deprecated: Registry namespace is automatically destroyed with namespace
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
@@ -154,9 +145,13 @@ type containerNamespaceState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the namespace is created.
 	Region *string `pulumi:"region"`
-	// The registry endpoint of the namespace.
+	// (Deprecated) The registry endpoint of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryEndpoint *string `pulumi:"registryEndpoint"`
-	// The registry namespace ID of the namespace.
+	// (Deprecated) The registry namespace ID of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
@@ -165,17 +160,11 @@ type containerNamespaceState struct {
 }
 
 type ContainerNamespaceState struct {
-	// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-	//
-	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	//
-	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	ActivateVpcIntegration pulumi.BoolPtrInput
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
 	// Destroy registry on deletion
 	//
-	// Deprecated: Registry namespace is automatically destroyed with namespace
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
@@ -189,9 +178,13 @@ type ContainerNamespaceState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the namespace is created.
 	Region pulumi.StringPtrInput
-	// The registry endpoint of the namespace.
+	// (Deprecated) The registry endpoint of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryEndpoint pulumi.StringPtrInput
-	// The registry namespace ID of the namespace.
+	// (Deprecated) The registry namespace ID of the namespace.
+	//
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	RegistryNamespaceId pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
@@ -204,17 +197,11 @@ func (ContainerNamespaceState) ElementType() reflect.Type {
 }
 
 type containerNamespaceArgs struct {
-	// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-	//
-	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	//
-	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	ActivateVpcIntegration *bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
 	// Destroy registry on deletion
 	//
-	// Deprecated: Registry namespace is automatically destroyed with namespace
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
@@ -234,17 +221,11 @@ type containerNamespaceArgs struct {
 
 // The set of arguments for constructing a ContainerNamespace resource.
 type ContainerNamespaceArgs struct {
-	// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-	//
-	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	//
-	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-	ActivateVpcIntegration pulumi.BoolPtrInput
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
 	// Destroy registry on deletion
 	//
-	// Deprecated: Registry namespace is automatically destroyed with namespace
+	// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
@@ -349,15 +330,6 @@ func (o ContainerNamespaceOutput) ToContainerNamespaceOutputWithContext(ctx cont
 	return o
 }
 
-// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-//
-// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-//
-// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-func (o ContainerNamespaceOutput) ActivateVpcIntegration() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ContainerNamespace) pulumi.BoolPtrOutput { return v.ActivateVpcIntegration }).(pulumi.BoolPtrOutput)
-}
-
 // The description of the namespace.
 func (o ContainerNamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -365,7 +337,7 @@ func (o ContainerNamespaceOutput) Description() pulumi.StringPtrOutput {
 
 // Destroy registry on deletion
 //
-// Deprecated: Registry namespace is automatically destroyed with namespace
+// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 func (o ContainerNamespaceOutput) DestroyRegistry() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.BoolPtrOutput { return v.DestroyRegistry }).(pulumi.BoolPtrOutput)
 }
@@ -397,12 +369,16 @@ func (o ContainerNamespaceOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The registry endpoint of the namespace.
+// (Deprecated) The registry endpoint of the namespace.
+//
+// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 func (o ContainerNamespaceOutput) RegistryEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
-// The registry namespace ID of the namespace.
+// (Deprecated) The registry namespace ID of the namespace.
+//
+// Deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.
 func (o ContainerNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }
