@@ -60,6 +60,7 @@ import (
 //
 //	"fmt"
 //
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
@@ -68,41 +69,39 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
-//				Name:        pulumi.String("my-ns-test"),
-//				Description: pulumi.String("test container"),
-//			})
+//			main, err := containers.NewNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
 //			app, err := containers.NewContainer(ctx, "app", &containers.ContainerArgs{
 //				Name:        pulumi.String("app"),
 //				NamespaceId: main.ID(),
-//				RegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
-//					return fmt.Sprintf("%v/nginx:alpine", registryEndpoint), nil
-//				}).(pulumi.StringOutput),
-//				Port:           pulumi.Int(80),
-//				CpuLimit:       pulumi.Int(140),
-//				MemoryLimit:    pulumi.Int(256),
-//				MinScale:       pulumi.Int(1),
-//				MaxScale:       pulumi.Int(1),
-//				Timeout:        pulumi.Int(600),
-//				MaxConcurrency: pulumi.Int(80),
-//				Privacy:        pulumi.String("public"),
-//				Protocol:       pulumi.String("http1"),
-//				Deploy:         pulumi.Bool(true),
+//				Image:       pulumi.String("nginx:latest"),
+//				Port:        pulumi.Int(80),
+//				Privacy:     pulumi.String("public"),
+//				Protocol:    pulumi.String("http1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			invokeFormat, err := std.Format(ctx, map[string]interface{}{
+//				"input": "%s.",
+//				"args": []interface{}{
+//					std.Trimprefix(ctx, map[string]interface{}{
+//						"input":  app.PublicEndpoint,
+//						"prefix": "https://",
+//					}, nil).Result,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			appRecord, err := domain.NewRecord(ctx, "app", &domain.RecordArgs{
-//				DnsZone: pulumi.String("domain.tld"),
+//				DnsZone: pulumi.String("scaleway-terraform.com"),
 //				Name:    pulumi.String("subdomain"),
 //				Type:    pulumi.String("CNAME"),
-//				Data: app.DomainName.ApplyT(func(domainName string) (string, error) {
-//					return fmt.Sprintf("%v.", domainName), nil
-//				}).(pulumi.StringOutput),
-//				Ttl: pulumi.Int(3600),
+//				Data:    invokeFormat.Result,
+//				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -140,7 +139,9 @@ type Domain struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// The URL used to query the container.
+	// (Deprecated) The URL used to query the container.
+	//
+	// Deprecated: URL won't be displayed on v1
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -192,7 +193,9 @@ type domainState struct {
 	Hostname *string `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
 	Region *string `pulumi:"region"`
-	// The URL used to query the container.
+	// (Deprecated) The URL used to query the container.
+	//
+	// Deprecated: URL won't be displayed on v1
 	Url *string `pulumi:"url"`
 }
 
@@ -203,7 +206,9 @@ type DomainState struct {
 	Hostname pulumi.StringPtrInput
 	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrInput
-	// The URL used to query the container.
+	// (Deprecated) The URL used to query the container.
+	//
+	// Deprecated: URL won't be displayed on v1
 	Url pulumi.StringPtrInput
 }
 
@@ -332,7 +337,9 @@ func (o DomainOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The URL used to query the container.
+// (Deprecated) The URL used to query the container.
+//
+// Deprecated: URL won't be displayed on v1
 func (o DomainOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

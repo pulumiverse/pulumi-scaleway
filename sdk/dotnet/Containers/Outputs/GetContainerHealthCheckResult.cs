@@ -15,17 +15,21 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
     public sealed class GetContainerHealthCheckResult
     {
         /// <summary>
-        /// Number of consecutive health check failures before considering the container unhealthy.
+        /// Number of consecutive failures before considering the container has to be restarted.
         /// </summary>
         public readonly int FailureThreshold;
         /// <summary>
-        /// HTTP health check configuration.
+        /// Perform HTTP check on the container with the specified path.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerHealthCheckHttpResult> Https;
         /// <summary>
-        /// Period between health checks (in seconds).
+        /// Time interval between checks (in duration notation, e.g. "30s").
         /// </summary>
         public readonly string Interval;
+        /// <summary>
+        /// When set to `True`, performs TCP checks on the container.
+        /// </summary>
+        public readonly bool Tcp;
 
         [OutputConstructor]
         private GetContainerHealthCheckResult(
@@ -33,11 +37,14 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
 
             ImmutableArray<Outputs.GetContainerHealthCheckHttpResult> https,
 
-            string interval)
+            string interval,
+
+            bool tcp)
         {
             FailureThreshold = failureThreshold;
             Https = https;
             Interval = interval;
+            Tcp = tcp;
         }
     }
 }

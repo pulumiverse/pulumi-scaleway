@@ -30,11 +30,18 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.Containers.Trigger("main", new()
     ///     {
     ///         ContainerId = mainScalewayContainer.Id,
-    ///         Name = "my-trigger",
+    ///         Name = "my-sqs-trigger",
+    ///         DestinationConfig = new Scaleway.Containers.Inputs.TriggerDestinationConfigArgs
+    ///         {
+    ///             HttpPath = "/",
+    ///             HttpMethod = "get",
+    ///         },
     ///         Sqs = new Scaleway.Containers.Inputs.TriggerSqsArgs
     ///         {
-    ///             ProjectId = mainScalewayMnqSqs.ProjectId,
-    ///             Queue = "MyQueue",
+    ///             Endpoint = mainScalewayMnqSqsQueue.SqsEndpoint,
+    ///             QueueUrl = mainScalewayMnqSqsQueue.Url,
+    ///             AccessKey = mainScalewayMnqSqsCredentials.AccessKey,
+    ///             SecretKey = mainScalewayMnqSqsCredentials.SecretKey,
     ///             Region = mainScalewayMnqSqs.Region,
     ///         },
     ///     });
@@ -55,12 +62,56 @@ namespace Pulumiverse.Scaleway
     ///     var main = new Scaleway.Containers.Trigger("main", new()
     ///     {
     ///         ContainerId = mainScalewayContainer.Id,
-    ///         Name = "my-trigger",
+    ///         Name = "my-nats-trigger",
+    ///         DestinationConfig = new Scaleway.Containers.Inputs.TriggerDestinationConfigArgs
+    ///         {
+    ///             HttpPath = "/ping",
+    ///             HttpMethod = "get",
+    ///         },
     ///         Nats = new Scaleway.Containers.Inputs.TriggerNatsArgs
     ///         {
-    ///             AccountId = mainScalewayMnqNatsAccount.Id,
-    ///             Subject = "MySubject",
+    ///             Subject = "TestSubject",
+    ///             ServerUrls = new[]
+    ///             {
+    ///                 mainScalewayMnqNatsAccount.Endpoint,
+    ///             },
+    ///             CredentialsFileContent = mainScalewayMnqNatsCredentials.File,
     ///             Region = mainScalewayMnqNatsAccount.Region,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Cron
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Containers.Trigger("main", new()
+    ///     {
+    ///         ContainerId = mainScalewayContainer.Id,
+    ///         Name = "my-cron-trigger",
+    ///         DestinationConfig = new Scaleway.Containers.Inputs.TriggerDestinationConfigArgs
+    ///         {
+    ///             HttpPath = "/patch/here",
+    ///             HttpMethod = "patch",
+    ///         },
+    ///         Cron = new Scaleway.Containers.Inputs.TriggerCronArgs
+    ///         {
+    ///             Schedule = "5 4 1 * *",
+    ///             Timezone = "Europe/Paris",
+    ///             Body = "{\"message\": \"This is the content to send to the container.\"}",
+    ///             Headers = 
+    ///             {
+    ///                 { "Content-Length", "45" },
+    ///                 { "Content-Type", "application/json" },
+    ///             },
     ///         },
     ///     });
     /// 
@@ -81,15 +132,29 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The unique identifier of the container to create a trigger for.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
+
+        /// <summary>
+        /// The configuration for the cron source of the trigger
+        /// </summary>
+        [Output("cron")]
+        public Output<Outputs.ContainerTriggerCron?> Cron { get; private set; } = null!;
 
         /// <summary>
         /// The description of the trigger.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The configuration of the destination to trigger.
+        /// </summary>
+        [Output("destinationConfig")]
+        public Output<Outputs.ContainerTriggerDestinationConfig> DestinationConfig { get; private set; } = null!;
 
         /// <summary>
         /// The unique name of the trigger. If not provided, a random name is generated.
@@ -114,6 +179,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("sqs")]
         public Output<Outputs.ContainerTriggerSqs?> Sqs { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of tags associated with the trigger.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -164,15 +235,29 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The unique identifier of the container to create a trigger for.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
+
+        /// <summary>
+        /// The configuration for the cron source of the trigger
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.ContainerTriggerCronArgs>? Cron { get; set; }
 
         /// <summary>
         /// The description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The configuration of the destination to trigger.
+        /// </summary>
+        [Input("destinationConfig", required: true)]
+        public Input<Inputs.ContainerTriggerDestinationConfigArgs> DestinationConfig { get; set; } = null!;
 
         /// <summary>
         /// The unique name of the trigger. If not provided, a random name is generated.
@@ -198,6 +283,18 @@ namespace Pulumiverse.Scaleway
         [Input("sqs")]
         public Input<Inputs.ContainerTriggerSqsArgs>? Sqs { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of tags associated with the trigger.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         public ContainerTriggerArgs()
         {
         }
@@ -208,15 +305,29 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The unique identifier of the container to create a trigger for.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
+
+        /// <summary>
+        /// The configuration for the cron source of the trigger
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.ContainerTriggerCronGetArgs>? Cron { get; set; }
 
         /// <summary>
         /// The description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The configuration of the destination to trigger.
+        /// </summary>
+        [Input("destinationConfig")]
+        public Input<Inputs.ContainerTriggerDestinationConfigGetArgs>? DestinationConfig { get; set; }
 
         /// <summary>
         /// The unique name of the trigger. If not provided, a random name is generated.
@@ -241,6 +352,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.ContainerTriggerSqsGetArgs>? Sqs { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of tags associated with the trigger.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         public ContainerTriggerState()
         {

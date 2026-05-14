@@ -77,7 +77,6 @@ type LookupNamespaceArgs struct {
 
 // A collection of values returned by getNamespace.
 type LookupNamespaceResult struct {
-	ActivateVpcIntegration bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description     string `pulumi:"description"`
 	DestroyRegistry bool   `pulumi:"destroyRegistry"`
@@ -91,9 +90,9 @@ type LookupNamespaceResult struct {
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
-	// The registry endpoint of the namespace.
+	// (Deprecated) The registry endpoint of the namespace.
 	RegistryEndpoint string `pulumi:"registryEndpoint"`
-	// The unique identifier of the registry namespace of the Serverless Containers namespace.
+	// (Deprecated) The unique identifier of the registry namespace of the Serverless Containers namespace.
 	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	Tags                       []string          `pulumi:"tags"`
@@ -139,10 +138,6 @@ func (o LookupNamespaceResultOutput) ToLookupNamespaceResultOutputWithContext(ct
 	return o
 }
 
-func (o LookupNamespaceResultOutput) ActivateVpcIntegration() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupNamespaceResult) bool { return v.ActivateVpcIntegration }).(pulumi.BoolOutput)
-}
-
 // The description of the namespace.
 func (o LookupNamespaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.Description }).(pulumi.StringOutput)
@@ -183,12 +178,12 @@ func (o LookupNamespaceResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The registry endpoint of the namespace.
+// (Deprecated) The registry endpoint of the namespace.
 func (o LookupNamespaceResultOutput) RegistryEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
-// The unique identifier of the registry namespace of the Serverless Containers namespace.
+// (Deprecated) The unique identifier of the registry namespace of the Serverless Containers namespace.
 func (o LookupNamespaceResultOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }

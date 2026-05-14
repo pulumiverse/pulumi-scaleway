@@ -20,12 +20,12 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ```go
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
@@ -34,34 +34,26 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
-//				Name:        pulumi.String("my-ns-test"),
-//				Description: pulumi.String("test container"),
-//			})
+//			main, err := containers.NewNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				Name:        pulumi.String("my-container-02"),
-//				Description: pulumi.String("environment variables test"),
+//				Name:        pulumi.String("my-container"),
+//				Description: pulumi.String("This container has a description."),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tag1"),
 //					pulumi.String("tag2"),
 //				},
-//				NamespaceId: main.ID(),
-//				RegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
-//					return fmt.Sprintf("%v/alpine:test", registryEndpoint), nil
-//				}).(pulumi.StringOutput),
-//				Port:           pulumi.Int(9997),
-//				CpuLimit:       pulumi.Int(1024),
-//				MemoryLimit:    pulumi.Int(2048),
-//				MinScale:       pulumi.Int(3),
-//				MaxScale:       pulumi.Int(5),
-//				Timeout:        pulumi.Int(600),
-//				MaxConcurrency: pulumi.Int(80),
-//				Privacy:        pulumi.String("private"),
-//				Protocol:       pulumi.String("http1"),
-//				Deploy:         pulumi.Bool(true),
+//				NamespaceId:      main.ID(),
+//				Image:            pulumi.String("nginx:latest"),
+//				Port:             pulumi.Int(80),
+//				CpuLimit:         pulumi.Int(1024),
+//				MemoryLimitBytes: pulumi.Int(2048000000),
+//				MinScale:         pulumi.Int(3),
+//				MaxScale:         pulumi.Int(5),
+//				Timeout:          pulumi.Int(600),
+//				Protocol:         pulumi.String("http1"),
 //				Commands: pulumi.StringArray{
 //					pulumi.String("bash"),
 //					pulumi.String("-c"),
@@ -86,6 +78,127 @@ import (
 //	}
 //
 // ```
+//
+// ### Redeploy the container everytime an update is made
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/registry"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := registry.LookupNamespace(ctx, &registry.LookupNamespaceArgs{
+//				Name: pulumi.StringRef("my-registry"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainGetImage, err := registry.GetImage(ctx, &registry.GetImageArgs{
+//				NamespaceId: pulumi.StringRef(main.Id),
+//				Name:        pulumi.StringRef("nginx-1-29-2-alpine"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainNamespace, err := containers.NewNamespace(ctx, "main", nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeTimestamp, err := std.Timestamp(ctx, map[string]interface{}{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
+//				Name:           pulumi.String("my-container"),
+//				NamespaceId:    mainNamespace.ID(),
+//				Image:          pulumi.Sprintf("%v/%v:%v", main.Endpoint, mainGetImage.Name, mainGetImage.Tags[0]),
+//				Port:           pulumi.Int(80),
+//				RegistrySha256: invokeTimestamp.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Redeploy the container when the image changes
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/registry"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+//			// with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+//			// Ideally, you would create the namespace separately.
+//			// For demonstration purposes, this example assumes the "nginx:latest" image is already available
+//			// in the referenced namespace.
+//			main, err := registry.NewNamespace(ctx, "main", &registry.NamespaceArgs{
+//				Name: pulumi.String("some-unique-name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			nginx := registry.GetImageOutput(ctx, registry.GetImageOutputArgs{
+//				NamespaceId: main.ID(),
+//				Name:        pulumi.String("nginx"),
+//			}, nil)
+//			nginxLatest := nginx.ApplyT(func(nginx registry.GetImageResult) (registry.GetImageTagResult, error) {
+//				return registry.GetImageTagResult(interface{}(registry.GetImageTag(ctx, &registry.GetImageTagArgs{
+//					ImageId: nginx.Id,
+//					Name:    pulumi.StringRef(pulumi.StringRef("latest")),
+//				}, nil))), nil
+//			}).(registry.GetImageTagResultOutput)
+//			mainNamespace, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
+//				Name: pulumi.String("my-container-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
+//				Name:        pulumi.String("nginx-latest"),
+//				NamespaceId: mainNamespace.ID(),
+//				Image: pulumi.All(nginx, nginxLatest).ApplyT(func(_args []interface{}) (string, error) {
+//					nginx := _args[0].(registry.GetImageResult)
+//					nginxLatest := _args[1].(registry.GetImageTagResult)
+//					return fmt.Sprintf("%v/%v:%v", mainScalewayRegistryNamespace.Endpoint, nginx.Name, nginxLatest.Name), nil
+//				}).(pulumi.StringOutput),
+//				Port: pulumi.Int(80),
+//				RegistrySha256: pulumi.String(nginxLatest.ApplyT(func(nginxLatest registry.GetImageTagResult) (*string, error) {
+//					return &nginxLatest.Digest, nil
+//				}).(pulumi.StringPtrOutput)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Managing authentication of private containers with IAM
 //
 // ```go
 // package main
@@ -145,79 +258,15 @@ import (
 //				return err
 //			}
 //			privateContainer, err := containers.NewContainer(ctx, "private", &containers.ContainerArgs{
-//				NamespaceId:   private.ID(),
-//				RegistryImage: pulumi.String("rg.fr-par.scw.cloud/my-registry-ns/my-image:latest"),
-//				Privacy:       pulumi.String("private"),
-//				Deploy:        pulumi.Bool(true),
+//				NamespaceId: private.ID(),
+//				Image:       pulumi.String("rg.fr-par.scw.cloud/my-registry-ns/my-image:latest"),
+//				Privacy:     pulumi.String("private"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ctx.Export("secretKey", apiKey.SecretKey)
 //			ctx.Export("containerEndpoint", privateContainer.DomainName)
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/registry"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
-//			// with the `registry_sha256` argument to trigger container redeployments when the image is updated.
-//			// Ideally, you would create the namespace separately.
-//			// For demonstration purposes, this example assumes the "nginx:latest" image is already available
-//			// in the referenced namespace.
-//			main, err := registry.NewNamespace(ctx, "main", &registry.NamespaceArgs{
-//				Name: pulumi.String("some-unique-name"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			nginx := registry.GetImageOutput(ctx, registry.GetImageOutputArgs{
-//				NamespaceId: main.ID(),
-//				Name:        pulumi.String("nginx"),
-//			}, nil)
-//			nginxLatest := nginx.ApplyT(func(nginx registry.GetImageResult) (registry.GetImageTagResult, error) {
-//				return registry.GetImageTagResult(interface{}(registry.GetImageTag(ctx, &registry.GetImageTagArgs{
-//					ImageId: nginx.Id,
-//					Name:    pulumi.StringRef(pulumi.StringRef("latest")),
-//				}, nil))), nil
-//			}).(registry.GetImageTagResultOutput)
-//			mainNamespace, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
-//				Name: pulumi.String("my-container-namespace"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				Name:        pulumi.String("nginx-latest"),
-//				NamespaceId: mainNamespace.ID(),
-//				RegistryImage: main.Endpoint.ApplyT(func(endpoint string) (string, error) {
-//					return fmt.Sprintf("%v/nginx:latest", endpoint), nil
-//				}).(pulumi.StringOutput),
-//				RegistrySha256: pulumi.String(nginxLatest.ApplyT(func(nginxLatest registry.GetImageTagResult) (*string, error) {
-//					return &nginxLatest.Digest, nil
-//				}).(pulumi.StringPtrOutput)),
-//				Port:   pulumi.Int(80),
-//				Deploy: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
@@ -247,7 +296,7 @@ import (
 //
 // You can determine the computing resources to allocate to each container.
 //
-// The `memoryLimit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
+// The `memoryLimitBytes` must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
 //
 // | Memory (in MB) | vCPU |
 // |----------------|------|
@@ -286,18 +335,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				Name:        pulumi.String("my-container-02"),
+//				Name:        pulumi.String("my-container"),
 //				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
-//				HealthChecks: containers.ContainerHealthCheckArray{
-//					&containers.ContainerHealthCheckArgs{
-//						Https: containers.ContainerHealthCheckHttpArray{
-//							&containers.ContainerHealthCheckHttpArgs{
-//								Path: pulumi.String("/ping"),
-//							},
-//						},
-//						FailureThreshold: pulumi.Int(40),
-//						Interval:         pulumi.String("5s"),
+//				LivenessProbe: &containers.ContainerLivenessProbeArgs{
+//					Http: &containers.ContainerLivenessProbeHttpArgs{
+//						Path: pulumi.String("/ping"),
 //					},
+//					FailureThreshold: pulumi.Int(40),
+//					Interval:         pulumi.String("5s"),
+//					Timeout:          pulumi.String("1m"),
 //				},
 //			})
 //			if err != nil {
@@ -317,7 +363,6 @@ import (
 //
 // Scaling option block configuration allows you to choose which parameter will scale up/down containers.
 // Options are number of concurrent requests, CPU or memory usage.
-// It replaces current `maxConcurrency` that has been deprecated.
 //
 // Example:
 //
@@ -373,36 +418,62 @@ type Container struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
+	//
+	// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+	//
+	// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The native domain name of the container
+	//
+	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Health check configuration block of the container.
+	//
+	// Deprecated: Please use livenessProbe instead
 	HealthChecks ContainerHealthCheckArrayOutput `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-	HttpOption pulumi.StringPtrOutput `pulumi:"httpOption"`
-	// Local storage limit of the container (in MB)
-	LocalStorageLimit pulumi.IntOutput `pulumi:"localStorageLimit"`
-	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
-	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
+	// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+	//
+	// Deprecated: Please use httpsConnectionsOnly instead
+	HttpOption pulumi.StringOutput `pulumi:"httpOption"`
+	// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+	HttpsConnectionsOnly pulumi.BoolOutput `pulumi:"httpsConnectionsOnly"`
+	// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	Image pulumi.StringOutput `pulumi:"image"`
+	// Defines how to check if the container is running.
+	LivenessProbe ContainerLivenessProbeOutput `pulumi:"livenessProbe"`
+	// Local storage limit of the container (in MB)
+	//
+	// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+	//
+	// Deprecated: Please use localStorageLimitBytes instead
+	LocalStorageLimit pulumi.IntOutput `pulumi:"localStorageLimit"`
+	// Local storage limit of the container (in bytes).
+	LocalStorageLimitBytes pulumi.IntOutput `pulumi:"localStorageLimitBytes"`
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntOutput `pulumi:"maxScale"`
 	// The memory resources in MB to allocate to each container.
+	//
+	// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+	//
+	// Deprecated: Please use memoryLimitBytes instead
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
+	// The memory resources in bytes to allocate to each container.
+	MemoryLimitBytes pulumi.IntOutput `pulumi:"memoryLimitBytes"`
 	// The minimum number of container instances running continuously.
 	MinScale pulumi.IntOutput `pulumi:"minScale"`
 	// The unique name of the container name.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The Containers namespace ID of the container.
 	//
 	// > **Important** Updating the `name` argument will recreate the container.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The Containers namespace ID of the container.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The port to expose the container.
 	Port pulumi.IntOutput `pulumi:"port"`
@@ -410,15 +481,19 @@ type Container struct {
 	Privacy pulumi.StringPtrOutput `pulumi:"privacy"`
 	// The ID of the Private Network the container is connected to.
 	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
-	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
+	// The native domain name of the container
+	PublicEndpoint pulumi.StringOutput `pulumi:"publicEndpoint"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	//
+	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+	//
+	// Deprecated: Please use image instead
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrOutput `pulumi:"registrySha256"`
@@ -428,6 +503,8 @@ type Container struct {
 	ScalingOptions ContainerScalingOptionArrayOutput `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// Defines how to check if the container has started successfully.
+	StartupProbe ContainerStartupProbePtrOutput `pulumi:"startupProbe"`
 	// The container status.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The list of tags associated with the container.
@@ -491,36 +568,62 @@ type containerState struct {
 	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
+	//
+	// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+	//
+	// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
 	// The native domain name of the container
+	//
+	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName *string `pulumi:"domainName"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
 	ErrorMessage *string `pulumi:"errorMessage"`
 	// Health check configuration block of the container.
+	//
+	// Deprecated: Please use livenessProbe instead
 	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-	HttpOption *string `pulumi:"httpOption"`
-	// Local storage limit of the container (in MB)
-	LocalStorageLimit *int `pulumi:"localStorageLimit"`
-	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
-	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-	MaxConcurrency *int `pulumi:"maxConcurrency"`
+	// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+	//
+	// Deprecated: Please use httpsConnectionsOnly instead
+	HttpOption *string `pulumi:"httpOption"`
+	// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+	HttpsConnectionsOnly *bool `pulumi:"httpsConnectionsOnly"`
+	// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	Image *string `pulumi:"image"`
+	// Defines how to check if the container is running.
+	LivenessProbe *ContainerLivenessProbe `pulumi:"livenessProbe"`
+	// Local storage limit of the container (in MB)
+	//
+	// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+	//
+	// Deprecated: Please use localStorageLimitBytes instead
+	LocalStorageLimit *int `pulumi:"localStorageLimit"`
+	// Local storage limit of the container (in bytes).
+	LocalStorageLimitBytes *int `pulumi:"localStorageLimitBytes"`
 	// The maximum number of instances this container can scale to.
 	MaxScale *int `pulumi:"maxScale"`
 	// The memory resources in MB to allocate to each container.
+	//
+	// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+	//
+	// Deprecated: Please use memoryLimitBytes instead
 	MemoryLimit *int `pulumi:"memoryLimit"`
+	// The memory resources in bytes to allocate to each container.
+	MemoryLimitBytes *int `pulumi:"memoryLimitBytes"`
 	// The minimum number of container instances running continuously.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the container name.
-	Name *string `pulumi:"name"`
-	// The Containers namespace ID of the container.
 	//
 	// > **Important** Updating the `name` argument will recreate the container.
+	Name *string `pulumi:"name"`
+	// The Containers namespace ID of the container.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The port to expose the container.
 	Port *int `pulumi:"port"`
@@ -528,15 +631,19 @@ type containerState struct {
 	Privacy *string `pulumi:"privacy"`
 	// The ID of the Private Network the container is connected to.
 	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
-	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol *string `pulumi:"protocol"`
+	// The native domain name of the container
+	PublicEndpoint *string `pulumi:"publicEndpoint"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	//
+	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+	//
+	// Deprecated: Please use image instead
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
@@ -546,6 +653,8 @@ type containerState struct {
 	ScalingOptions []ContainerScalingOption `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// Defines how to check if the container has started successfully.
+	StartupProbe *ContainerStartupProbe `pulumi:"startupProbe"`
 	// The container status.
 	Status *string `pulumi:"status"`
 	// The list of tags associated with the container.
@@ -564,36 +673,62 @@ type ContainerState struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
 	// Boolean indicating whether the container is in a production environment.
+	//
+	// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+	//
+	// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
 	// The native domain name of the container
+	//
+	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringPtrInput
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
 	ErrorMessage pulumi.StringPtrInput
 	// Health check configuration block of the container.
+	//
+	// Deprecated: Please use livenessProbe instead
 	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-	HttpOption pulumi.StringPtrInput
-	// Local storage limit of the container (in MB)
-	LocalStorageLimit pulumi.IntPtrInput
-	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
-	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-	MaxConcurrency pulumi.IntPtrInput
+	// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+	//
+	// Deprecated: Please use httpsConnectionsOnly instead
+	HttpOption pulumi.StringPtrInput
+	// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+	HttpsConnectionsOnly pulumi.BoolPtrInput
+	// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	Image pulumi.StringPtrInput
+	// Defines how to check if the container is running.
+	LivenessProbe ContainerLivenessProbePtrInput
+	// Local storage limit of the container (in MB)
+	//
+	// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+	//
+	// Deprecated: Please use localStorageLimitBytes instead
+	LocalStorageLimit pulumi.IntPtrInput
+	// Local storage limit of the container (in bytes).
+	LocalStorageLimitBytes pulumi.IntPtrInput
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntPtrInput
 	// The memory resources in MB to allocate to each container.
+	//
+	// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+	//
+	// Deprecated: Please use memoryLimitBytes instead
 	MemoryLimit pulumi.IntPtrInput
+	// The memory resources in bytes to allocate to each container.
+	MemoryLimitBytes pulumi.IntPtrInput
 	// The minimum number of container instances running continuously.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the container name.
-	Name pulumi.StringPtrInput
-	// The Containers namespace ID of the container.
 	//
 	// > **Important** Updating the `name` argument will recreate the container.
+	Name pulumi.StringPtrInput
+	// The Containers namespace ID of the container.
 	NamespaceId pulumi.StringPtrInput
 	// The port to expose the container.
 	Port pulumi.IntPtrInput
@@ -601,15 +736,19 @@ type ContainerState struct {
 	Privacy pulumi.StringPtrInput
 	// The ID of the Private Network the container is connected to.
 	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
-	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	PrivateNetworkId pulumi.StringPtrInput
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrInput
+	// The native domain name of the container
+	PublicEndpoint pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	//
+	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+	//
+	// Deprecated: Please use image instead
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
@@ -619,6 +758,8 @@ type ContainerState struct {
 	ScalingOptions ContainerScalingOptionArrayInput
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// Defines how to check if the container has started successfully.
+	StartupProbe ContainerStartupProbePtrInput
 	// The container status.
 	Status pulumi.StringPtrInput
 	// The list of tags associated with the container.
@@ -639,40 +780,62 @@ type containerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean indicating whether the container is in a production environment.
+	//
+	// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+	//
+	// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Health check configuration block of the container.
+	//
+	// Deprecated: Please use livenessProbe instead
 	HealthChecks []ContainerHealthCheck `pulumi:"healthChecks"`
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-	HttpOption *string `pulumi:"httpOption"`
-	// Local storage limit of the container (in MB)
-	LocalStorageLimit *int `pulumi:"localStorageLimit"`
-	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
-	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-	MaxConcurrency *int `pulumi:"maxConcurrency"`
+	// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+	//
+	// Deprecated: Please use httpsConnectionsOnly instead
+	HttpOption *string `pulumi:"httpOption"`
+	// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+	HttpsConnectionsOnly *bool `pulumi:"httpsConnectionsOnly"`
+	// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	Image *string `pulumi:"image"`
+	// Defines how to check if the container is running.
+	LivenessProbe *ContainerLivenessProbe `pulumi:"livenessProbe"`
+	// Local storage limit of the container (in MB)
+	//
+	// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+	//
+	// Deprecated: Please use localStorageLimitBytes instead
+	LocalStorageLimit *int `pulumi:"localStorageLimit"`
+	// Local storage limit of the container (in bytes).
+	LocalStorageLimitBytes *int `pulumi:"localStorageLimitBytes"`
 	// The maximum number of instances this container can scale to.
 	MaxScale *int `pulumi:"maxScale"`
 	// The memory resources in MB to allocate to each container.
+	//
+	// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+	//
+	// Deprecated: Please use memoryLimitBytes instead
 	MemoryLimit *int `pulumi:"memoryLimit"`
+	// The memory resources in bytes to allocate to each container.
+	MemoryLimitBytes *int `pulumi:"memoryLimitBytes"`
 	// The minimum number of container instances running continuously.
 	MinScale *int `pulumi:"minScale"`
 	// The unique name of the container name.
-	Name *string `pulumi:"name"`
-	// The Containers namespace ID of the container.
 	//
 	// > **Important** Updating the `name` argument will recreate the container.
+	Name *string `pulumi:"name"`
+	// The Containers namespace ID of the container.
 	NamespaceId string `pulumi:"namespaceId"`
 	// The port to expose the container.
 	Port *int `pulumi:"port"`
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
 	// The ID of the Private Network the container is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
@@ -681,6 +844,10 @@ type containerArgs struct {
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	//
+	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+	//
+	// Deprecated: Please use image instead
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 *string `pulumi:"registrySha256"`
@@ -690,8 +857,8 @@ type containerArgs struct {
 	ScalingOptions []ContainerScalingOption `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
-	// The container status.
-	Status *string `pulumi:"status"`
+	// Defines how to check if the container has started successfully.
+	StartupProbe *ContainerStartupProbe `pulumi:"startupProbe"`
 	// The list of tags associated with the container.
 	Tags []string `pulumi:"tags"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
@@ -707,40 +874,62 @@ type ContainerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit pulumi.IntPtrInput
 	// Boolean indicating whether the container is in a production environment.
+	//
+	// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+	//
+	// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
 	// Health check configuration block of the container.
+	//
+	// Deprecated: Please use livenessProbe instead
 	HealthChecks ContainerHealthCheckArrayInput
 	// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-	HttpOption pulumi.StringPtrInput
-	// Local storage limit of the container (in MB)
-	LocalStorageLimit pulumi.IntPtrInput
-	// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
 	//
-	// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-	MaxConcurrency pulumi.IntPtrInput
+	// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+	//
+	// Deprecated: Please use httpsConnectionsOnly instead
+	HttpOption pulumi.StringPtrInput
+	// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+	HttpsConnectionsOnly pulumi.BoolPtrInput
+	// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	Image pulumi.StringPtrInput
+	// Defines how to check if the container is running.
+	LivenessProbe ContainerLivenessProbePtrInput
+	// Local storage limit of the container (in MB)
+	//
+	// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+	//
+	// Deprecated: Please use localStorageLimitBytes instead
+	LocalStorageLimit pulumi.IntPtrInput
+	// Local storage limit of the container (in bytes).
+	LocalStorageLimitBytes pulumi.IntPtrInput
 	// The maximum number of instances this container can scale to.
 	MaxScale pulumi.IntPtrInput
 	// The memory resources in MB to allocate to each container.
+	//
+	// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+	//
+	// Deprecated: Please use memoryLimitBytes instead
 	MemoryLimit pulumi.IntPtrInput
+	// The memory resources in bytes to allocate to each container.
+	MemoryLimitBytes pulumi.IntPtrInput
 	// The minimum number of container instances running continuously.
 	MinScale pulumi.IntPtrInput
 	// The unique name of the container name.
-	Name pulumi.StringPtrInput
-	// The Containers namespace ID of the container.
 	//
 	// > **Important** Updating the `name` argument will recreate the container.
+	Name pulumi.StringPtrInput
+	// The Containers namespace ID of the container.
 	NamespaceId pulumi.StringInput
 	// The port to expose the container.
 	Port pulumi.IntPtrInput
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
 	// The ID of the Private Network the container is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	PrivateNetworkId pulumi.StringPtrInput
@@ -749,6 +938,10 @@ type ContainerArgs struct {
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+	//
+	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+	//
+	// Deprecated: Please use image instead
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
 	RegistrySha256 pulumi.StringPtrInput
@@ -758,8 +951,8 @@ type ContainerArgs struct {
 	ScalingOptions ContainerScalingOptionArrayInput
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
-	// The container status.
-	Status pulumi.StringPtrInput
+	// Defines how to check if the container has started successfully.
+	StartupProbe ContainerStartupProbePtrInput
 	// The list of tags associated with the container.
 	Tags pulumi.StringArrayInput
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
@@ -874,6 +1067,10 @@ func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 }
 
 // Boolean indicating whether the container is in a production environment.
+//
+// > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
+//
+// Deprecated: Containers are now automatically deployed or redeployed; setting this attribute will not have any effect.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -884,6 +1081,8 @@ func (o ContainerOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The native domain name of the container
+//
+// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 func (o ContainerOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
 }
@@ -899,25 +1098,48 @@ func (o ContainerOutput) ErrorMessage() pulumi.StringOutput {
 }
 
 // Health check configuration block of the container.
+//
+// Deprecated: Please use livenessProbe instead
 func (o ContainerOutput) HealthChecks() ContainerHealthCheckArrayOutput {
 	return o.ApplyT(func(v *Container) ContainerHealthCheckArrayOutput { return v.HealthChecks }).(ContainerHealthCheckArrayOutput)
 }
 
 // Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
-func (o ContainerOutput) HttpOption() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.HttpOption }).(pulumi.StringPtrOutput)
+//
+// > **Important:** Only one of `httpsConnectionsOnly` or `httpOption` can be set at a time.
+//
+// Deprecated: Please use httpsConnectionsOnly instead
+func (o ContainerOutput) HttpOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.HttpOption }).(pulumi.StringOutput)
+}
+
+// Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+func (o ContainerOutput) HttpsConnectionsOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Container) pulumi.BoolOutput { return v.HttpsConnectionsOnly }).(pulumi.BoolOutput)
+}
+
+// The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+func (o ContainerOutput) Image() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Image }).(pulumi.StringOutput)
+}
+
+// Defines how to check if the container is running.
+func (o ContainerOutput) LivenessProbe() ContainerLivenessProbeOutput {
+	return o.ApplyT(func(v *Container) ContainerLivenessProbeOutput { return v.LivenessProbe }).(ContainerLivenessProbeOutput)
 }
 
 // Local storage limit of the container (in MB)
+//
+// > **Important:** Only one of `localStorageLimitBytes` or `localStorageLimit` can be set at a time.
+//
+// Deprecated: Please use localStorageLimitBytes instead
 func (o ContainerOutput) LocalStorageLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.LocalStorageLimit }).(pulumi.IntOutput)
 }
 
-// The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
-//
-// Deprecated: Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
-func (o ContainerOutput) MaxConcurrency() pulumi.IntOutput {
-	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MaxConcurrency }).(pulumi.IntOutput)
+// Local storage limit of the container (in bytes).
+func (o ContainerOutput) LocalStorageLimitBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.LocalStorageLimitBytes }).(pulumi.IntOutput)
 }
 
 // The maximum number of instances this container can scale to.
@@ -926,8 +1148,17 @@ func (o ContainerOutput) MaxScale() pulumi.IntOutput {
 }
 
 // The memory resources in MB to allocate to each container.
+//
+// > **Important:** Only one of `memoryLimit` or `memoryLimitBytes` can be set at a time.
+//
+// Deprecated: Please use memoryLimitBytes instead
 func (o ContainerOutput) MemoryLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MemoryLimit }).(pulumi.IntOutput)
+}
+
+// The memory resources in bytes to allocate to each container.
+func (o ContainerOutput) MemoryLimitBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MemoryLimitBytes }).(pulumi.IntOutput)
 }
 
 // The minimum number of container instances running continuously.
@@ -936,13 +1167,13 @@ func (o ContainerOutput) MinScale() pulumi.IntOutput {
 }
 
 // The unique name of the container name.
+//
+// > **Important** Updating the `name` argument will recreate the container.
 func (o ContainerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // The Containers namespace ID of the container.
-//
-// > **Important** Updating the `name` argument will recreate the container.
 func (o ContainerOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
@@ -959,8 +1190,6 @@ func (o ContainerOutput) Privacy() pulumi.StringPtrOutput {
 
 // The ID of the Private Network the container is connected to.
 //
-// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
-//
 // Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
 func (o ContainerOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
@@ -971,12 +1200,21 @@ func (o ContainerOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
+// The native domain name of the container
+func (o ContainerOutput) PublicEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.PublicEndpoint }).(pulumi.StringOutput)
+}
+
 // (Defaults to provider `region`) The region in which the container was created.
 func (o ContainerOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+//
+// - > **Important:** Exactly one of `image` or `registryImage` must be set.
+//
+// Deprecated: Please use image instead
 func (o ContainerOutput) RegistryImage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.RegistryImage }).(pulumi.StringOutput)
 }
@@ -999,6 +1237,11 @@ func (o ContainerOutput) ScalingOptions() ContainerScalingOptionArrayOutput {
 // The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 func (o ContainerOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// Defines how to check if the container has started successfully.
+func (o ContainerOutput) StartupProbe() ContainerStartupProbePtrOutput {
+	return o.ApplyT(func(v *Container) ContainerStartupProbePtrOutput { return v.StartupProbe }).(ContainerStartupProbePtrOutput)
 }
 
 // The container status.

@@ -84,7 +84,7 @@ class _ContainerDomainState:
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the container exists.
-        :param pulumi.Input[_builtins.str] url: The URL used to query the container.
+        :param pulumi.Input[_builtins.str] url: (Deprecated) The URL used to query the container.
         """
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
@@ -92,6 +92,9 @@ class _ContainerDomainState:
             pulumi.set(__self__, "hostname", hostname)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if url is not None:
+            warnings.warn("""URL won't be displayed on v1""", DeprecationWarning)
+            pulumi.log.warn("""url is deprecated: URL won't be displayed on v1""")
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -133,9 +136,10 @@ class _ContainerDomainState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""URL won't be displayed on v1""")
     def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The URL used to query the container.
+        (Deprecated) The URL used to query the container.
         """
         return pulumi.get(self, "url")
 
@@ -184,30 +188,24 @@ class ContainerDomain(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.containers.Namespace("main",
-            name="my-ns-test",
-            description="test container")
+        main = scaleway.containers.Namespace("main")
         app = scaleway.containers.Container("app",
             name="app",
             namespace_id=main.id,
-            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
+            image="nginx:latest",
             port=80,
-            cpu_limit=140,
-            memory_limit=256,
-            min_scale=1,
-            max_scale=1,
-            timeout=600,
-            max_concurrency=80,
             privacy="public",
-            protocol="http1",
-            deploy=True)
+            protocol="http1")
         app_record = scaleway.domain.Record("app",
-            dns_zone="domain.tld",
+            dns_zone="scaleway-terraform.com",
             name="subdomain",
             type="CNAME",
-            data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
+            data=std.format(input="%s.",
+                args=[std.trimprefix(input=app.public_endpoint,
+                    prefix="https://")["result"]])["result"],
             ttl=3600)
         app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
@@ -264,30 +262,24 @@ class ContainerDomain(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.containers.Namespace("main",
-            name="my-ns-test",
-            description="test container")
+        main = scaleway.containers.Namespace("main")
         app = scaleway.containers.Container("app",
             name="app",
             namespace_id=main.id,
-            registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
+            image="nginx:latest",
             port=80,
-            cpu_limit=140,
-            memory_limit=256,
-            min_scale=1,
-            max_scale=1,
-            timeout=600,
-            max_concurrency=80,
             privacy="public",
-            protocol="http1",
-            deploy=True)
+            protocol="http1")
         app_record = scaleway.domain.Record("app",
-            dns_zone="domain.tld",
+            dns_zone="scaleway-terraform.com",
             name="subdomain",
             type="CNAME",
-            data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
+            data=std.format(input="%s.",
+                args=[std.trimprefix(input=app.public_endpoint,
+                    prefix="https://")["result"]])["result"],
             ttl=3600)
         app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
@@ -367,7 +359,7 @@ class ContainerDomain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the container exists.
-        :param pulumi.Input[_builtins.str] url: The URL used to query the container.
+        :param pulumi.Input[_builtins.str] url: (Deprecated) The URL used to query the container.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -405,9 +397,10 @@ class ContainerDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""URL won't be displayed on v1""")
     def url(self) -> pulumi.Output[_builtins.str]:
         """
-        The URL used to query the container.
+        (Deprecated) The URL used to query the container.
         """
         return pulumi.get(self, "url")
 

@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// The unique identifier of the container.
         /// 
-        /// &gt; Only one of `NamespaceId` or `ContainerId` must be set.
+        /// &gt; **Important:** Only one of `NamespaceId` or `ContainerId` must be set.
         /// </summary>
         [Output("containerId")]
         public Output<string?> ContainerId { get; private set; } = null!;
@@ -94,7 +94,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// `Region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updating any of the arguments above will recreate the token.
+        /// &gt; **Important:** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// The unique identifier of the container.
         /// 
-        /// &gt; Only one of `NamespaceId` or `ContainerId` must be set.
+        /// &gt; **Important:** Only one of `NamespaceId` or `ContainerId` must be set.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -189,7 +189,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// `Region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updating any of the arguments above will recreate the token.
+        /// &gt; **Important:** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -205,7 +205,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// The unique identifier of the container.
         /// 
-        /// &gt; Only one of `NamespaceId` or `ContainerId` must be set.
+        /// &gt; **Important:** Only one of `NamespaceId` or `ContainerId` must be set.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -231,7 +231,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// <summary>
         /// `Region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updating any of the arguments above will recreate the token.
+        /// &gt; **Important:** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

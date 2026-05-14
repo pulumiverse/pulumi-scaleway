@@ -21,10 +21,16 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.containers.Trigger("main", {
  *     containerId: mainScalewayContainer.id,
- *     name: "my-trigger",
+ *     name: "my-sqs-trigger",
+ *     destinationConfig: {
+ *         httpPath: "/",
+ *         httpMethod: "get",
+ *     },
  *     sqs: {
- *         projectId: mainScalewayMnqSqs.projectId,
- *         queue: "MyQueue",
+ *         endpoint: mainScalewayMnqSqsQueue.sqsEndpoint,
+ *         queueUrl: mainScalewayMnqSqsQueue.url,
+ *         accessKey: mainScalewayMnqSqsCredentials.accessKey,
+ *         secretKey: mainScalewayMnqSqsCredentials.secretKey,
  *         region: mainScalewayMnqSqs.region,
  *     },
  * });
@@ -38,11 +44,41 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.containers.Trigger("main", {
  *     containerId: mainScalewayContainer.id,
- *     name: "my-trigger",
+ *     name: "my-nats-trigger",
+ *     destinationConfig: {
+ *         httpPath: "/ping",
+ *         httpMethod: "get",
+ *     },
  *     nats: {
- *         accountId: mainScalewayMnqNatsAccount.id,
- *         subject: "MySubject",
+ *         subject: "TestSubject",
+ *         serverUrls: [mainScalewayMnqNatsAccount.endpoint],
+ *         credentialsFileContent: mainScalewayMnqNatsCredentials.file,
  *         region: mainScalewayMnqNatsAccount.region,
+ *     },
+ * });
+ * ```
+ *
+ * ### Cron
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.containers.Trigger("main", {
+ *     containerId: mainScalewayContainer.id,
+ *     name: "my-cron-trigger",
+ *     destinationConfig: {
+ *         httpPath: "/patch/here",
+ *         httpMethod: "patch",
+ *     },
+ *     cron: {
+ *         schedule: "5 4 1 * *",
+ *         timezone: "Europe/Paris",
+ *         body: "{\"message\": \"This is the content to send to the container.\"}",
+ *         headers: {
+ *             "Content-Length": "45",
+ *             "Content-Type": "application/json",
+ *         },
  *     },
  * });
  * ```
@@ -88,12 +124,22 @@ export class ContainerTrigger extends pulumi.CustomResource {
 
     /**
      * The unique identifier of the container to create a trigger for.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
      */
     declare public readonly containerId: pulumi.Output<string>;
+    /**
+     * The configuration for the cron source of the trigger
+     */
+    declare public readonly cron: pulumi.Output<outputs.ContainerTriggerCron | undefined>;
     /**
      * The description of the trigger.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
+    /**
+     * The configuration of the destination to trigger.
+     */
+    declare public readonly destinationConfig: pulumi.Output<outputs.ContainerTriggerDestinationConfig>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
@@ -110,6 +156,10 @@ export class ContainerTrigger extends pulumi.CustomResource {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     declare public readonly sqs: pulumi.Output<outputs.ContainerTriggerSqs | undefined>;
+    /**
+     * The list of tags associated with the trigger.
+     */
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ContainerTrigger resource with the given unique name, arguments, and options.
@@ -128,22 +178,31 @@ export class ContainerTrigger extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ContainerTriggerState | undefined;
             resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["cron"] = state?.cron;
             resourceInputs["description"] = state?.description;
+            resourceInputs["destinationConfig"] = state?.destinationConfig;
             resourceInputs["name"] = state?.name;
             resourceInputs["nats"] = state?.nats;
             resourceInputs["region"] = state?.region;
             resourceInputs["sqs"] = state?.sqs;
+            resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as ContainerTriggerArgs | undefined;
             if (args?.containerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'containerId'");
             }
+            if (args?.destinationConfig === undefined && !opts.urn) {
+                throw new Error("Missing required property 'destinationConfig'");
+            }
             resourceInputs["containerId"] = args?.containerId;
+            resourceInputs["cron"] = args?.cron;
             resourceInputs["description"] = args?.description;
+            resourceInputs["destinationConfig"] = args?.destinationConfig;
             resourceInputs["name"] = args?.name;
             resourceInputs["nats"] = args?.nats;
             resourceInputs["region"] = args?.region;
             resourceInputs["sqs"] = args?.sqs;
+            resourceInputs["tags"] = args?.tags;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ContainerTrigger.__pulumiType, name, resourceInputs, opts);
@@ -156,12 +215,22 @@ export class ContainerTrigger extends pulumi.CustomResource {
 export interface ContainerTriggerState {
     /**
      * The unique identifier of the container to create a trigger for.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
      */
     containerId?: pulumi.Input<string | undefined>;
+    /**
+     * The configuration for the cron source of the trigger
+     */
+    cron?: pulumi.Input<inputs.ContainerTriggerCron | undefined>;
     /**
      * The description of the trigger.
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * The configuration of the destination to trigger.
+     */
+    destinationConfig?: pulumi.Input<inputs.ContainerTriggerDestinationConfig | undefined>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
@@ -178,6 +247,10 @@ export interface ContainerTriggerState {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.ContainerTriggerSqs | undefined>;
+    /**
+     * The list of tags associated with the trigger.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -186,12 +259,22 @@ export interface ContainerTriggerState {
 export interface ContainerTriggerArgs {
     /**
      * The unique identifier of the container to create a trigger for.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
      */
     containerId: pulumi.Input<string>;
+    /**
+     * The configuration for the cron source of the trigger
+     */
+    cron?: pulumi.Input<inputs.ContainerTriggerCron | undefined>;
     /**
      * The description of the trigger.
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * The configuration of the destination to trigger.
+     */
+    destinationConfig: pulumi.Input<inputs.ContainerTriggerDestinationConfig>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
@@ -208,4 +291,8 @@ export interface ContainerTriggerArgs {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.ContainerTriggerSqs | undefined>;
+    /**
+     * The list of tags associated with the trigger.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

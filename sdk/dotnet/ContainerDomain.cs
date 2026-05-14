@@ -47,38 +47,39 @@ namespace Pulumiverse.Scaleway
     /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Containers.Namespace("main", new()
-    ///     {
-    ///         Name = "my-ns-test",
-    ///         Description = "test container",
-    ///     });
+    ///     var main = new Scaleway.Containers.Namespace("main");
     /// 
     ///     var app = new Scaleway.Containers.Container("app", new()
     ///     {
     ///         Name = "app",
     ///         NamespaceId = main.Id,
-    ///         RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/nginx:alpine"),
+    ///         Image = "nginx:latest",
     ///         Port = 80,
-    ///         CpuLimit = 140,
-    ///         MemoryLimit = 256,
-    ///         MinScale = 1,
-    ///         MaxScale = 1,
-    ///         Timeout = 600,
-    ///         MaxConcurrency = 80,
     ///         Privacy = "public",
     ///         Protocol = "http1",
-    ///         Deploy = true,
     ///     });
     /// 
     ///     var appRecord = new Scaleway.Domain.Record("app", new()
     ///     {
-    ///         DnsZone = "domain.tld",
+    ///         DnsZone = "scaleway-terraform.com",
     ///         Name = "subdomain",
     ///         Type = "CNAME",
-    ///         Data = app.DomainName.Apply(domainName =&gt; $"{domainName}."),
+    ///         Data = Std.Format.Invoke(new()
+    ///         {
+    ///             Input = "%s.",
+    ///             Args = new[]
+    ///             {
+    ///                 Std.Trimprefix.Invoke(new()
+    ///                 {
+    ///                     Input = app.PublicEndpoint,
+    ///                     Prefix = "https://",
+    ///                 }).Result,
+    ///             },
+    ///         }).Result,
     ///         Ttl = 3600,
     ///     });
     /// 
@@ -127,7 +128,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The URL used to query the container.
+        /// (Deprecated) The URL used to query the container.
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -224,7 +225,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The URL used to query the container.
+        /// (Deprecated) The URL used to query the container.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

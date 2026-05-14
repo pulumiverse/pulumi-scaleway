@@ -16,8 +16,8 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// Path to use for the HTTP health check.
         /// </summary>
-        [Input("path", required: true)]
-        public Input<string> Path { get; set; } = null!;
+        [Input("path")]
+        public Input<string>? Path { get; set; }
 
         public ContainerHealthCheckHttpArgs()
         {

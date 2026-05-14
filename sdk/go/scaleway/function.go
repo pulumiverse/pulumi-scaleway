@@ -243,8 +243,6 @@ type Function struct {
 	// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
 	Privacy pulumi.StringOutput `pulumi:"privacy"`
 	// The ID of the Private Network the function is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -346,8 +344,6 @@ type functionState struct {
 	// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
 	// The ID of the Private Network the function is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -401,8 +397,6 @@ type FunctionState struct {
 	// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
 	// The ID of the Private Network the function is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -454,8 +448,6 @@ type functionArgs struct {
 	// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
 	Privacy string `pulumi:"privacy"`
 	// The ID of the Private Network the function is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -504,8 +496,6 @@ type FunctionArgs struct {
 	// The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
 	Privacy pulumi.StringInput
 	// The ID of the Private Network the function is connected to.
-	//
-	// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -687,8 +677,6 @@ func (o FunctionOutput) Privacy() pulumi.StringOutput {
 }
 
 // The ID of the Private Network the function is connected to.
-//
-// > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
 func (o FunctionOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }

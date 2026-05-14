@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Saml{}
 	case "scaleway:iam/samlCertificate:SamlCertificate":
 		r = &SamlCertificate{}
+	case "scaleway:iam/scim:Scim":
+		r = &Scim{}
 	case "scaleway:iam/sshKey:SshKey":
 		r = &SshKey{}
 	case "scaleway:iam/user:User":
@@ -85,6 +87,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"iam/samlCertificate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"iam/scim",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

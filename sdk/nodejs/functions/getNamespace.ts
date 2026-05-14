@@ -46,7 +46,6 @@ export interface GetNamespaceArgs {
  * A collection of values returned by getNamespace.
  */
 export interface GetNamespaceResult {
-    readonly activateVpcIntegration: boolean;
     /**
      * The description of the namespace.
      */

@@ -38,7 +38,6 @@ type LookupNamespaceArgs struct {
 
 // A collection of values returned by getNamespace.
 type LookupNamespaceResult struct {
-	ActivateVpcIntegration bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description string `pulumi:"description"`
 	// The environment variables of the namespace.
@@ -97,10 +96,6 @@ func (o LookupNamespaceResultOutput) ToLookupNamespaceResultOutput() LookupNames
 
 func (o LookupNamespaceResultOutput) ToLookupNamespaceResultOutputWithContext(ctx context.Context) LookupNamespaceResultOutput {
 	return o
-}
-
-func (o LookupNamespaceResultOutput) ActivateVpcIntegration() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupNamespaceResult) bool { return v.ActivateVpcIntegration }).(pulumi.BoolOutput)
 }
 
 // The description of the namespace.

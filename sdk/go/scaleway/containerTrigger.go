@@ -34,10 +34,16 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := containers.NewTrigger(ctx, "main", &containers.TriggerArgs{
 //				ContainerId: pulumi.Any(mainScalewayContainer.Id),
-//				Name:        pulumi.String("my-trigger"),
+//				Name:        pulumi.String("my-sqs-trigger"),
+//				DestinationConfig: &containers.TriggerDestinationConfigArgs{
+//					HttpPath:   pulumi.String("/"),
+//					HttpMethod: pulumi.String("get"),
+//				},
 //				Sqs: &containers.TriggerSqsArgs{
-//					ProjectId: pulumi.Any(mainScalewayMnqSqs.ProjectId),
-//					Queue:     pulumi.String("MyQueue"),
+//					Endpoint:  pulumi.Any(mainScalewayMnqSqsQueue.SqsEndpoint),
+//					QueueUrl:  pulumi.Any(mainScalewayMnqSqsQueue.Url),
+//					AccessKey: pulumi.Any(mainScalewayMnqSqsCredentials.AccessKey),
+//					SecretKey: pulumi.Any(mainScalewayMnqSqsCredentials.SecretKey),
 //					Region:    pulumi.Any(mainScalewayMnqSqs.Region),
 //				},
 //			})
@@ -66,11 +72,58 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := containers.NewTrigger(ctx, "main", &containers.TriggerArgs{
 //				ContainerId: pulumi.Any(mainScalewayContainer.Id),
-//				Name:        pulumi.String("my-trigger"),
+//				Name:        pulumi.String("my-nats-trigger"),
+//				DestinationConfig: &containers.TriggerDestinationConfigArgs{
+//					HttpPath:   pulumi.String("/ping"),
+//					HttpMethod: pulumi.String("get"),
+//				},
 //				Nats: &containers.TriggerNatsArgs{
-//					AccountId: pulumi.Any(mainScalewayMnqNatsAccount.Id),
-//					Subject:   pulumi.String("MySubject"),
-//					Region:    pulumi.Any(mainScalewayMnqNatsAccount.Region),
+//					Subject: pulumi.String("TestSubject"),
+//					ServerUrls: pulumi.StringArray{
+//						mainScalewayMnqNatsAccount.Endpoint,
+//					},
+//					CredentialsFileContent: pulumi.Any(mainScalewayMnqNatsCredentials.File),
+//					Region:                 pulumi.Any(mainScalewayMnqNatsAccount.Region),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Cron
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := containers.NewTrigger(ctx, "main", &containers.TriggerArgs{
+//				ContainerId: pulumi.Any(mainScalewayContainer.Id),
+//				Name:        pulumi.String("my-cron-trigger"),
+//				DestinationConfig: &containers.TriggerDestinationConfigArgs{
+//					HttpPath:   pulumi.String("/patch/here"),
+//					HttpMethod: pulumi.String("patch"),
+//				},
+//				Cron: &containers.TriggerCronArgs{
+//					Schedule: pulumi.String("5 4 1 * *"),
+//					Timezone: pulumi.String("Europe/Paris"),
+//					Body:     pulumi.String("{\"message\": \"This is the content to send to the container.\"}"),
+//					Headers: pulumi.StringMap{
+//						"Content-Length": pulumi.String("45"),
+//						"Content-Type":   pulumi.String("application/json"),
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -95,9 +148,15 @@ type ContainerTrigger struct {
 	pulumi.CustomResourceState
 
 	// The unique identifier of the container to create a trigger for.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
+	// The configuration for the cron source of the trigger
+	Cron ContainerTriggerCronPtrOutput `pulumi:"cron"`
 	// The description of the trigger.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The configuration of the destination to trigger.
+	DestinationConfig ContainerTriggerDestinationConfigOutput `pulumi:"destinationConfig"`
 	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The configuration for the Scaleway NATS account used by the trigger
@@ -106,6 +165,8 @@ type ContainerTrigger struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs ContainerTriggerSqsPtrOutput `pulumi:"sqs"`
+	// The list of tags associated with the trigger.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
 
 // NewContainerTrigger registers a new resource with the given unique name, arguments, and options.
@@ -117,6 +178,9 @@ func NewContainerTrigger(ctx *pulumi.Context,
 
 	if args.ContainerId == nil {
 		return nil, errors.New("invalid value for required argument 'ContainerId'")
+	}
+	if args.DestinationConfig == nil {
+		return nil, errors.New("invalid value for required argument 'DestinationConfig'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ContainerTrigger
@@ -142,9 +206,15 @@ func GetContainerTrigger(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ContainerTrigger resources.
 type containerTriggerState struct {
 	// The unique identifier of the container to create a trigger for.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
 	ContainerId *string `pulumi:"containerId"`
+	// The configuration for the cron source of the trigger
+	Cron *ContainerTriggerCron `pulumi:"cron"`
 	// The description of the trigger.
 	Description *string `pulumi:"description"`
+	// The configuration of the destination to trigger.
+	DestinationConfig *ContainerTriggerDestinationConfig `pulumi:"destinationConfig"`
 	// The unique name of the trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
 	// The configuration for the Scaleway NATS account used by the trigger
@@ -153,13 +223,21 @@ type containerTriggerState struct {
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *ContainerTriggerSqs `pulumi:"sqs"`
+	// The list of tags associated with the trigger.
+	Tags []string `pulumi:"tags"`
 }
 
 type ContainerTriggerState struct {
 	// The unique identifier of the container to create a trigger for.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
 	ContainerId pulumi.StringPtrInput
+	// The configuration for the cron source of the trigger
+	Cron ContainerTriggerCronPtrInput
 	// The description of the trigger.
 	Description pulumi.StringPtrInput
+	// The configuration of the destination to trigger.
+	DestinationConfig ContainerTriggerDestinationConfigPtrInput
 	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
 	// The configuration for the Scaleway NATS account used by the trigger
@@ -168,6 +246,8 @@ type ContainerTriggerState struct {
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs ContainerTriggerSqsPtrInput
+	// The list of tags associated with the trigger.
+	Tags pulumi.StringArrayInput
 }
 
 func (ContainerTriggerState) ElementType() reflect.Type {
@@ -176,9 +256,15 @@ func (ContainerTriggerState) ElementType() reflect.Type {
 
 type containerTriggerArgs struct {
 	// The unique identifier of the container to create a trigger for.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
 	ContainerId string `pulumi:"containerId"`
+	// The configuration for the cron source of the trigger
+	Cron *ContainerTriggerCron `pulumi:"cron"`
 	// The description of the trigger.
 	Description *string `pulumi:"description"`
+	// The configuration of the destination to trigger.
+	DestinationConfig ContainerTriggerDestinationConfig `pulumi:"destinationConfig"`
 	// The unique name of the trigger. If not provided, a random name is generated.
 	Name *string `pulumi:"name"`
 	// The configuration for the Scaleway NATS account used by the trigger
@@ -187,14 +273,22 @@ type containerTriggerArgs struct {
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *ContainerTriggerSqs `pulumi:"sqs"`
+	// The list of tags associated with the trigger.
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a ContainerTrigger resource.
 type ContainerTriggerArgs struct {
 	// The unique identifier of the container to create a trigger for.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
 	ContainerId pulumi.StringInput
+	// The configuration for the cron source of the trigger
+	Cron ContainerTriggerCronPtrInput
 	// The description of the trigger.
 	Description pulumi.StringPtrInput
+	// The configuration of the destination to trigger.
+	DestinationConfig ContainerTriggerDestinationConfigInput
 	// The unique name of the trigger. If not provided, a random name is generated.
 	Name pulumi.StringPtrInput
 	// The configuration for the Scaleway NATS account used by the trigger
@@ -203,6 +297,8 @@ type ContainerTriggerArgs struct {
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs ContainerTriggerSqsPtrInput
+	// The list of tags associated with the trigger.
+	Tags pulumi.StringArrayInput
 }
 
 func (ContainerTriggerArgs) ElementType() reflect.Type {
@@ -293,13 +389,25 @@ func (o ContainerTriggerOutput) ToContainerTriggerOutputWithContext(ctx context.
 }
 
 // The unique identifier of the container to create a trigger for.
+//
+// > **Important:** Updates to this field will recreate the resource.
 func (o ContainerTriggerOutput) ContainerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerTrigger) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// The configuration for the cron source of the trigger
+func (o ContainerTriggerOutput) Cron() ContainerTriggerCronPtrOutput {
+	return o.ApplyT(func(v *ContainerTrigger) ContainerTriggerCronPtrOutput { return v.Cron }).(ContainerTriggerCronPtrOutput)
 }
 
 // The description of the trigger.
 func (o ContainerTriggerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTrigger) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The configuration of the destination to trigger.
+func (o ContainerTriggerOutput) DestinationConfig() ContainerTriggerDestinationConfigOutput {
+	return o.ApplyT(func(v *ContainerTrigger) ContainerTriggerDestinationConfigOutput { return v.DestinationConfig }).(ContainerTriggerDestinationConfigOutput)
 }
 
 // The unique name of the trigger. If not provided, a random name is generated.
@@ -320,6 +428,11 @@ func (o ContainerTriggerOutput) Region() pulumi.StringPtrOutput {
 // The configuration of the Scaleway SQS queue used by the trigger
 func (o ContainerTriggerOutput) Sqs() ContainerTriggerSqsPtrOutput {
 	return o.ApplyT(func(v *ContainerTrigger) ContainerTriggerSqsPtrOutput { return v.Sqs }).(ContainerTriggerSqsPtrOutput)
+}
+
+// The list of tags associated with the trigger.
+func (o ContainerTriggerOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ContainerTrigger) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 type ContainerTriggerArrayOutput struct{ *pulumi.OutputState }

@@ -11,8 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Containers
 {
     /// <summary>
-    /// The `scaleway.containers.Namespace` resource allows you to
-    /// for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Namespace` resource allows you to manage Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
     /// 
@@ -51,14 +50,6 @@ namespace Pulumiverse.Scaleway.Containers
     [ScalewayResourceType("scaleway:containers/namespace:Namespace")]
     public partial class Namespace : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Output("activateVpcIntegration")]
-        public Output<bool?> ActivateVpcIntegration { get; private set; } = null!;
-
         /// <summary>
         /// The description of the namespace.
         /// </summary>
@@ -104,13 +95,13 @@ namespace Pulumiverse.Scaleway.Containers
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The registry endpoint of the namespace.
+        /// (Deprecated) The registry endpoint of the namespace.
         /// </summary>
         [Output("registryEndpoint")]
         public Output<string> RegistryEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The registry namespace ID of the namespace.
+        /// (Deprecated) The registry namespace ID of the namespace.
         /// </summary>
         [Output("registryNamespaceId")]
         public Output<string> RegistryNamespaceId { get; private set; } = null!;
@@ -182,14 +173,6 @@ namespace Pulumiverse.Scaleway.Containers
 
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Input("activateVpcIntegration")]
-        public Input<bool>? ActivateVpcIntegration { get; set; }
-
         /// <summary>
         /// The description of the namespace.
         /// </summary>
@@ -271,14 +254,6 @@ namespace Pulumiverse.Scaleway.Containers
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-        /// 
-        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        /// </summary>
-        [Input("activateVpcIntegration")]
-        public Input<bool>? ActivateVpcIntegration { get; set; }
-
-        /// <summary>
         /// The description of the namespace.
         /// </summary>
         [Input("description")]
@@ -329,13 +304,13 @@ namespace Pulumiverse.Scaleway.Containers
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The registry endpoint of the namespace.
+        /// (Deprecated) The registry endpoint of the namespace.
         /// </summary>
         [Input("registryEndpoint")]
         public Input<string>? RegistryEndpoint { get; set; }
 
         /// <summary>
-        /// The registry namespace ID of the namespace.
+        /// (Deprecated) The registry namespace ID of the namespace.
         /// </summary>
         [Input("registryNamespaceId")]
         public Input<string>? RegistryNamespaceId { get; set; }

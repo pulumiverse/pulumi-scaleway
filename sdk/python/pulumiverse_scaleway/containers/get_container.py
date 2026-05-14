@@ -27,7 +27,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, id=None, local_storage_limit=None, max_concurrency=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_network_id=None, project_id=None, protocol=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, status=None, tags=None, timeout=None):
+    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, https_connections_only=None, id=None, image=None, liveness_probes=None, local_storage_limit=None, local_storage_limit_bytes=None, max_scale=None, memory_limit=None, memory_limit_bytes=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_network_id=None, project_id=None, protocol=None, public_endpoint=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, startup_probes=None, status=None, tags=None, timeout=None):
         if args and not isinstance(args, list):
             raise TypeError("Expected argument 'args' to be a list")
         pulumi.set(__self__, "args", args)
@@ -64,21 +64,33 @@ class GetContainerResult:
         if http_option and not isinstance(http_option, str):
             raise TypeError("Expected argument 'http_option' to be a str")
         pulumi.set(__self__, "http_option", http_option)
+        if https_connections_only and not isinstance(https_connections_only, bool):
+            raise TypeError("Expected argument 'https_connections_only' to be a bool")
+        pulumi.set(__self__, "https_connections_only", https_connections_only)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if image and not isinstance(image, str):
+            raise TypeError("Expected argument 'image' to be a str")
+        pulumi.set(__self__, "image", image)
+        if liveness_probes and not isinstance(liveness_probes, list):
+            raise TypeError("Expected argument 'liveness_probes' to be a list")
+        pulumi.set(__self__, "liveness_probes", liveness_probes)
         if local_storage_limit and not isinstance(local_storage_limit, int):
             raise TypeError("Expected argument 'local_storage_limit' to be a int")
         pulumi.set(__self__, "local_storage_limit", local_storage_limit)
-        if max_concurrency and not isinstance(max_concurrency, int):
-            raise TypeError("Expected argument 'max_concurrency' to be a int")
-        pulumi.set(__self__, "max_concurrency", max_concurrency)
+        if local_storage_limit_bytes and not isinstance(local_storage_limit_bytes, int):
+            raise TypeError("Expected argument 'local_storage_limit_bytes' to be a int")
+        pulumi.set(__self__, "local_storage_limit_bytes", local_storage_limit_bytes)
         if max_scale and not isinstance(max_scale, int):
             raise TypeError("Expected argument 'max_scale' to be a int")
         pulumi.set(__self__, "max_scale", max_scale)
         if memory_limit and not isinstance(memory_limit, int):
             raise TypeError("Expected argument 'memory_limit' to be a int")
         pulumi.set(__self__, "memory_limit", memory_limit)
+        if memory_limit_bytes and not isinstance(memory_limit_bytes, int):
+            raise TypeError("Expected argument 'memory_limit_bytes' to be a int")
+        pulumi.set(__self__, "memory_limit_bytes", memory_limit_bytes)
         if min_scale and not isinstance(min_scale, int):
             raise TypeError("Expected argument 'min_scale' to be a int")
         pulumi.set(__self__, "min_scale", min_scale)
@@ -103,6 +115,9 @@ class GetContainerResult:
         if protocol and not isinstance(protocol, str):
             raise TypeError("Expected argument 'protocol' to be a str")
         pulumi.set(__self__, "protocol", protocol)
+        if public_endpoint and not isinstance(public_endpoint, str):
+            raise TypeError("Expected argument 'public_endpoint' to be a str")
+        pulumi.set(__self__, "public_endpoint", public_endpoint)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -121,6 +136,9 @@ class GetContainerResult:
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if startup_probes and not isinstance(startup_probes, list):
+            raise TypeError("Expected argument 'startup_probes' to be a list")
+        pulumi.set(__self__, "startup_probes", startup_probes)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -134,11 +152,17 @@ class GetContainerResult:
     @_builtins.property
     @pulumi.getter
     def args(self) -> Sequence[_builtins.str]:
+        """
+        Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        """
         return pulumi.get(self, "args")
 
     @_builtins.property
     @pulumi.getter
     def commands(self) -> Sequence[_builtins.str]:
+        """
+        Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
+        """
         return pulumi.get(self, "commands")
 
     @_builtins.property
@@ -165,9 +189,6 @@ class GetContainerResult:
     @_builtins.property
     @pulumi.getter
     def deploy(self) -> _builtins.bool:
-        """
-        Boolean indicating whether the container is on a production environment.
-        """
         return pulumi.get(self, "deploy")
 
     @_builtins.property
@@ -182,7 +203,7 @@ class GetContainerResult:
     @pulumi.getter(name="domainName")
     def domain_name(self) -> _builtins.str:
         """
-        The container domain name.
+        The native domain name of the container
         """
         return pulumi.get(self, "domain_name")
 
@@ -190,7 +211,7 @@ class GetContainerResult:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Mapping[str, _builtins.str]:
         """
-        The [environment](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) variables of the container.
+        The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -206,14 +227,25 @@ class GetContainerResult:
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Sequence['outputs.GetContainerHealthCheckResult']:
         """
-        Health check configuration block of the container.
+        (Deprecated) Health check configuration block of the container.
         """
         return pulumi.get(self, "health_checks")
 
     @_builtins.property
     @pulumi.getter(name="httpOption")
     def http_option(self) -> _builtins.str:
+        """
+        (Deprecated) Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        """
         return pulumi.get(self, "http_option")
+
+    @_builtins.property
+    @pulumi.getter(name="httpsConnectionsOnly")
+    def https_connections_only(self) -> _builtins.bool:
+        """
+        Allows both HTTP and HTTPS (`false`) or redirect HTTP to HTTPS (`true`). Defaults to `false`.
+        """
+        return pulumi.get(self, "https_connections_only")
 
     @_builtins.property
     @pulumi.getter
@@ -224,23 +256,42 @@ class GetContainerResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter
+    def image(self) -> _builtins.str:
+        """
+        The image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
+        """
+        return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="livenessProbes")
+    def liveness_probes(self) -> Sequence['outputs.GetContainerLivenessProbeResult']:
+        """
+        Defines how to check if the container is running.
+        """
+        return pulumi.get(self, "liveness_probes")
+
+    @_builtins.property
     @pulumi.getter(name="localStorageLimit")
     def local_storage_limit(self) -> _builtins.int:
+        """
+        (Deprecated) Local storage limit of the container (in MB)
+        """
         return pulumi.get(self, "local_storage_limit")
 
     @_builtins.property
-    @pulumi.getter(name="maxConcurrency")
-    def max_concurrency(self) -> _builtins.int:
+    @pulumi.getter(name="localStorageLimitBytes")
+    def local_storage_limit_bytes(self) -> _builtins.int:
         """
-        The maximum number of simultaneous requests your container can handle at the same time.
+        Local storage limit of the container (in bytes).
         """
-        return pulumi.get(self, "max_concurrency")
+        return pulumi.get(self, "local_storage_limit_bytes")
 
     @_builtins.property
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> _builtins.int:
         """
-        The maximum number of instances the container can scale to.
+        The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
@@ -248,9 +299,17 @@ class GetContainerResult:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> _builtins.int:
         """
-        The memory resources in MB to allocate to each container.
+        (Deprecated) The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryLimitBytes")
+    def memory_limit_bytes(self) -> _builtins.int:
+        """
+        The memory resources in bytes to allocate to each container.
+        """
+        return pulumi.get(self, "memory_limit_bytes")
 
     @_builtins.property
     @pulumi.getter(name="minScale")
@@ -282,13 +341,16 @@ class GetContainerResult:
     @pulumi.getter
     def privacy(self) -> _builtins.str:
         """
-        The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
+        The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
     @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> _builtins.str:
+        """
+        The ID of the Private Network the container is connected to.
+        """
         return pulumi.get(self, "private_network_id")
 
     @_builtins.property
@@ -305,6 +367,14 @@ class GetContainerResult:
         return pulumi.get(self, "protocol")
 
     @_builtins.property
+    @pulumi.getter(name="publicEndpoint")
+    def public_endpoint(self) -> _builtins.str:
+        """
+        The native domain name of the container
+        """
+        return pulumi.get(self, "public_endpoint")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
         """
@@ -316,23 +386,20 @@ class GetContainerResult:
     @pulumi.getter(name="registryImage")
     def registry_image(self) -> _builtins.str:
         """
-        The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
+        (Deprecated) The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
     @_builtins.property
     @pulumi.getter(name="registrySha256")
     def registry_sha256(self) -> _builtins.str:
-        """
-        The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
-        """
         return pulumi.get(self, "registry_sha256")
 
     @_builtins.property
     @pulumi.getter
     def sandbox(self) -> _builtins.str:
         """
-        (Optional) Execution environment of the container.
+        Execution environment of the container.
         """
         return pulumi.get(self, "sandbox")
 
@@ -347,7 +414,15 @@ class GetContainerResult:
     @_builtins.property
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Mapping[str, _builtins.str]:
+        """
+        The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        """
         return pulumi.get(self, "secret_environment_variables")
+
+    @_builtins.property
+    @pulumi.getter(name="startupProbes")
+    def startup_probes(self) -> Sequence['outputs.GetContainerStartupProbeResult']:
+        return pulumi.get(self, "startup_probes")
 
     @_builtins.property
     @pulumi.getter
@@ -360,13 +435,16 @@ class GetContainerResult:
     @_builtins.property
     @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
+        """
+        The list of tags associated with the container.
+        """
         return pulumi.get(self, "tags")
 
     @_builtins.property
     @pulumi.getter
     def timeout(self) -> _builtins.int:
         """
-        The maximum amount of time your container can spend processing a request before being stopped.
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
         return pulumi.get(self, "timeout")
 
@@ -389,11 +467,15 @@ class AwaitableGetContainerResult(GetContainerResult):
             error_message=self.error_message,
             health_checks=self.health_checks,
             http_option=self.http_option,
+            https_connections_only=self.https_connections_only,
             id=self.id,
+            image=self.image,
+            liveness_probes=self.liveness_probes,
             local_storage_limit=self.local_storage_limit,
-            max_concurrency=self.max_concurrency,
+            local_storage_limit_bytes=self.local_storage_limit_bytes,
             max_scale=self.max_scale,
             memory_limit=self.memory_limit,
+            memory_limit_bytes=self.memory_limit_bytes,
             min_scale=self.min_scale,
             name=self.name,
             namespace_id=self.namespace_id,
@@ -402,12 +484,14 @@ class AwaitableGetContainerResult(GetContainerResult):
             private_network_id=self.private_network_id,
             project_id=self.project_id,
             protocol=self.protocol,
+            public_endpoint=self.public_endpoint,
             region=self.region,
             registry_image=self.registry_image,
             registry_sha256=self.registry_sha256,
             sandbox=self.sandbox,
             scaling_options=self.scaling_options,
             secret_environment_variables=self.secret_environment_variables,
+            startup_probes=self.startup_probes,
             status=self.status,
             tags=self.tags,
             timeout=self.timeout)
@@ -487,11 +571,15 @@ def get_container(container_id: Optional[_builtins.str] = None,
         error_message=pulumi.get(__ret__, 'error_message'),
         health_checks=pulumi.get(__ret__, 'health_checks'),
         http_option=pulumi.get(__ret__, 'http_option'),
+        https_connections_only=pulumi.get(__ret__, 'https_connections_only'),
         id=pulumi.get(__ret__, 'id'),
+        image=pulumi.get(__ret__, 'image'),
+        liveness_probes=pulumi.get(__ret__, 'liveness_probes'),
         local_storage_limit=pulumi.get(__ret__, 'local_storage_limit'),
-        max_concurrency=pulumi.get(__ret__, 'max_concurrency'),
+        local_storage_limit_bytes=pulumi.get(__ret__, 'local_storage_limit_bytes'),
         max_scale=pulumi.get(__ret__, 'max_scale'),
         memory_limit=pulumi.get(__ret__, 'memory_limit'),
+        memory_limit_bytes=pulumi.get(__ret__, 'memory_limit_bytes'),
         min_scale=pulumi.get(__ret__, 'min_scale'),
         name=pulumi.get(__ret__, 'name'),
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
@@ -500,12 +588,14 @@ def get_container(container_id: Optional[_builtins.str] = None,
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
+        public_endpoint=pulumi.get(__ret__, 'public_endpoint'),
         region=pulumi.get(__ret__, 'region'),
         registry_image=pulumi.get(__ret__, 'registry_image'),
         registry_sha256=pulumi.get(__ret__, 'registry_sha256'),
         sandbox=pulumi.get(__ret__, 'sandbox'),
         scaling_options=pulumi.get(__ret__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        startup_probes=pulumi.get(__ret__, 'startup_probes'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         timeout=pulumi.get(__ret__, 'timeout'))
@@ -582,11 +672,15 @@ def get_container_output(container_id: pulumi.Input[Optional[Optional[_builtins.
         error_message=pulumi.get(__response__, 'error_message'),
         health_checks=pulumi.get(__response__, 'health_checks'),
         http_option=pulumi.get(__response__, 'http_option'),
+        https_connections_only=pulumi.get(__response__, 'https_connections_only'),
         id=pulumi.get(__response__, 'id'),
+        image=pulumi.get(__response__, 'image'),
+        liveness_probes=pulumi.get(__response__, 'liveness_probes'),
         local_storage_limit=pulumi.get(__response__, 'local_storage_limit'),
-        max_concurrency=pulumi.get(__response__, 'max_concurrency'),
+        local_storage_limit_bytes=pulumi.get(__response__, 'local_storage_limit_bytes'),
         max_scale=pulumi.get(__response__, 'max_scale'),
         memory_limit=pulumi.get(__response__, 'memory_limit'),
+        memory_limit_bytes=pulumi.get(__response__, 'memory_limit_bytes'),
         min_scale=pulumi.get(__response__, 'min_scale'),
         name=pulumi.get(__response__, 'name'),
         namespace_id=pulumi.get(__response__, 'namespace_id'),
@@ -595,12 +689,14 @@ def get_container_output(container_id: pulumi.Input[Optional[Optional[_builtins.
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         protocol=pulumi.get(__response__, 'protocol'),
+        public_endpoint=pulumi.get(__response__, 'public_endpoint'),
         region=pulumi.get(__response__, 'region'),
         registry_image=pulumi.get(__response__, 'registry_image'),
         registry_sha256=pulumi.get(__response__, 'registry_sha256'),
         sandbox=pulumi.get(__response__, 'sandbox'),
         scaling_options=pulumi.get(__response__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        startup_probes=pulumi.get(__response__, 'startup_probes'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         timeout=pulumi.get(__response__, 'timeout')))

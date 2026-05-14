@@ -58,8 +58,6 @@ class FunctionArgs:
         :param pulumi.Input[_builtins.int] min_scale: The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
         :param pulumi.Input[_builtins.str] name: The unique name of the function name.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the function is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the functions namespace is associated with.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the function.
@@ -259,8 +257,6 @@ class FunctionArgs:
     def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the function is connected to.
-
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -412,8 +408,6 @@ class _FunctionState:
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the function is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the functions namespace is associated with.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
@@ -648,8 +642,6 @@ class _FunctionState:
     def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the function is connected to.
-
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -909,8 +901,6 @@ class Function(pulumi.CustomResource):
                > **Important** Updating the `name` argument will recreate the function.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the function is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the functions namespace is associated with.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
@@ -1165,8 +1155,6 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your function. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-functions/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the function is connected to.
-               
-               > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the functions namespace is associated with.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
@@ -1326,8 +1314,6 @@ class Function(pulumi.CustomResource):
     def private_network_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The ID of the Private Network the function is connected to.
-
-        > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
         """
         return pulumi.get(self, "private_network_id")
 

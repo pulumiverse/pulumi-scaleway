@@ -268,8 +268,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the Private Network the function is connected to.
-        /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -455,8 +453,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the Private Network the function is connected to.
-        /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -633,8 +629,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the Private Network the function is connected to.
-        /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

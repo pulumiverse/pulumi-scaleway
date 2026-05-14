@@ -71,7 +71,7 @@ export class ContainerToken extends pulumi.CustomResource {
     /**
      * The unique identifier of the container.
      *
-     * > Only one of `namespaceId` or `containerId` must be set.
+     * > **Important:** Only one of `namespaceId` or `containerId` must be set.
      */
     declare public readonly containerId: pulumi.Output<string | undefined>;
     /**
@@ -89,7 +89,7 @@ export class ContainerToken extends pulumi.CustomResource {
     /**
      * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updating any of the arguments above will recreate the token.
+     * > **Important:** Updating any of the arguments above will recreate the token.
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
@@ -142,7 +142,7 @@ export interface ContainerTokenState {
     /**
      * The unique identifier of the container.
      *
-     * > Only one of `namespaceId` or `containerId` must be set.
+     * > **Important:** Only one of `namespaceId` or `containerId` must be set.
      */
     containerId?: pulumi.Input<string | undefined>;
     /**
@@ -160,7 +160,7 @@ export interface ContainerTokenState {
     /**
      * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updating any of the arguments above will recreate the token.
+     * > **Important:** Updating any of the arguments above will recreate the token.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -176,7 +176,7 @@ export interface ContainerTokenArgs {
     /**
      * The unique identifier of the container.
      *
-     * > Only one of `namespaceId` or `containerId` must be set.
+     * > **Important:** Only one of `namespaceId` or `containerId` must be set.
      */
     containerId?: pulumi.Input<string | undefined>;
     /**
@@ -194,7 +194,7 @@ export interface ContainerTokenArgs {
     /**
      * `region`). The region in which the namespace is created.
      *
-     * > **Important** Updating any of the arguments above will recreate the token.
+     * > **Important:** Updating any of the arguments above will recreate the token.
      */
     region?: pulumi.Input<string | undefined>;
 }

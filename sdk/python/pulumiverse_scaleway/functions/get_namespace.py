@@ -26,10 +26,7 @@ class GetNamespaceResult:
     """
     A collection of values returned by getNamespace.
     """
-    def __init__(__self__, activate_vpc_integration=None, description=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
-        if activate_vpc_integration and not isinstance(activate_vpc_integration, bool):
-            raise TypeError("Expected argument 'activate_vpc_integration' to be a bool")
-        pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
+    def __init__(__self__, description=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -66,11 +63,6 @@ class GetNamespaceResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    def activate_vpc_integration(self) -> _builtins.bool:
-        return pulumi.get(self, "activate_vpc_integration")
 
     @_builtins.property
     @pulumi.getter
@@ -157,7 +149,6 @@ class AwaitableGetNamespaceResult(GetNamespaceResult):
         if False:
             yield self
         return GetNamespaceResult(
-            activate_vpc_integration=self.activate_vpc_integration,
             description=self.description,
             environment_variables=self.environment_variables,
             id=self.id,
@@ -197,7 +188,6 @@ def get_namespace(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:functions/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult).value
 
     return AwaitableGetNamespaceResult(
-        activate_vpc_integration=pulumi.get(__ret__, 'activate_vpc_integration'),
         description=pulumi.get(__ret__, 'description'),
         environment_variables=pulumi.get(__ret__, 'environment_variables'),
         id=pulumi.get(__ret__, 'id'),
@@ -234,7 +224,6 @@ def get_namespace_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] =
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:functions/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult)
     return __ret__.apply(lambda __response__: GetNamespaceResult(
-        activate_vpc_integration=pulumi.get(__response__, 'activate_vpc_integration'),
         description=pulumi.get(__response__, 'description'),
         environment_variables=pulumi.get(__response__, 'environment_variables'),
         id=pulumi.get(__response__, 'id'),

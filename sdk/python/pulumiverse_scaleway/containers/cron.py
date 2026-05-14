@@ -224,6 +224,9 @@ class Cron(pulumi.CustomResource):
                  schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Important:** The resource `containers.Cron` has been deprecated and will be removed in the future.
+        Please use `containers.Trigger` with a cron configuration instead.
+
         The `containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
@@ -282,6 +285,9 @@ class Cron(pulumi.CustomResource):
                  args: CronArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Important:** The resource `containers.Cron` has been deprecated and will be removed in the future.
+        Please use `containers.Trigger` with a cron configuration instead.
+
         The `containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.

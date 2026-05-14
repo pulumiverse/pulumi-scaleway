@@ -167,6 +167,10 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly replicaCount: pulumi.Output<number>;
     /**
+     * Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+     */
+    declare public readonly shardCount: pulumi.Output<number>;
+    /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */
     declare public readonly started: pulumi.Output<boolean | undefined>;
@@ -213,6 +217,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["ramPerCpu"] = state?.ramPerCpu;
             resourceInputs["region"] = state?.region;
             resourceInputs["replicaCount"] = state?.replicaCount;
+            resourceInputs["shardCount"] = state?.shardCount;
             resourceInputs["started"] = state?.started;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -246,6 +251,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["ramPerCpu"] = args?.ramPerCpu;
             resourceInputs["region"] = args?.region;
             resourceInputs["replicaCount"] = args?.replicaCount;
+            resourceInputs["shardCount"] = args?.shardCount;
             resourceInputs["started"] = args?.started;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["version"] = args?.version;
@@ -321,6 +327,10 @@ export interface DeploymentState {
      */
     replicaCount?: pulumi.Input<number | undefined>;
     /**
+     * Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+     */
+    shardCount?: pulumi.Input<number | undefined>;
+    /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */
     started?: pulumi.Input<boolean | undefined>;
@@ -393,6 +403,10 @@ export interface DeploymentArgs {
      * Number of replicas. Can be updated in place via the deployment configuration API.
      */
     replicaCount: pulumi.Input<number>;
+    /**
+     * Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+     */
+    shardCount?: pulumi.Input<number | undefined>;
     /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */

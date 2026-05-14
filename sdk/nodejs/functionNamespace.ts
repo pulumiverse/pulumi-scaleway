@@ -66,14 +66,6 @@ export class FunctionNamespace extends pulumi.CustomResource {
     }
 
     /**
-     * Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    declare public readonly activateVpcIntegration: pulumi.Output<boolean | undefined>;
-    /**
      * The description of the namespace.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
@@ -132,7 +124,6 @@ export class FunctionNamespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FunctionNamespaceState | undefined;
-            resourceInputs["activateVpcIntegration"] = state?.activateVpcIntegration;
             resourceInputs["description"] = state?.description;
             resourceInputs["environmentVariables"] = state?.environmentVariables;
             resourceInputs["name"] = state?.name;
@@ -145,7 +136,6 @@ export class FunctionNamespace extends pulumi.CustomResource {
             resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as FunctionNamespaceArgs | undefined;
-            resourceInputs["activateVpcIntegration"] = args?.activateVpcIntegration;
             resourceInputs["description"] = args?.description;
             resourceInputs["environmentVariables"] = args?.environmentVariables;
             resourceInputs["name"] = args?.name;
@@ -168,14 +158,6 @@ export class FunctionNamespace extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FunctionNamespace resources.
  */
 export interface FunctionNamespaceState {
-    /**
-     * Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the namespace.
      */
@@ -224,14 +206,6 @@ export interface FunctionNamespaceState {
  * The set of arguments for constructing a FunctionNamespace resource.
  */
 export interface FunctionNamespaceArgs {
-    /**
-     * Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-     *
-     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     *
-     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-     */
-    activateVpcIntegration?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the namespace.
      */

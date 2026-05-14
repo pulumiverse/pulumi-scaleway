@@ -77,7 +77,7 @@ type Token struct {
 
 	// The unique identifier of the container.
 	//
-	// > Only one of `namespaceId` or `containerId` must be set.
+	// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrOutput `pulumi:"containerId"`
 	// The description of the token.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -87,7 +87,7 @@ type Token struct {
 	NamespaceId pulumi.StringPtrOutput `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updating any of the arguments above will recreate the token.
+	// > **Important:** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The token.
 	Value pulumi.StringOutput `pulumi:"value"`
@@ -135,7 +135,7 @@ func GetToken(ctx *pulumi.Context,
 type tokenState struct {
 	// The unique identifier of the container.
 	//
-	// > Only one of `namespaceId` or `containerId` must be set.
+	// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 	ContainerId *string `pulumi:"containerId"`
 	// The description of the token.
 	Description *string `pulumi:"description"`
@@ -145,7 +145,7 @@ type tokenState struct {
 	NamespaceId *string `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updating any of the arguments above will recreate the token.
+	// > **Important:** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
 	Value *string `pulumi:"value"`
@@ -154,7 +154,7 @@ type tokenState struct {
 type TokenState struct {
 	// The unique identifier of the container.
 	//
-	// > Only one of `namespaceId` or `containerId` must be set.
+	// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrInput
 	// The description of the token.
 	Description pulumi.StringPtrInput
@@ -164,7 +164,7 @@ type TokenState struct {
 	NamespaceId pulumi.StringPtrInput
 	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updating any of the arguments above will recreate the token.
+	// > **Important:** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
 	Value pulumi.StringPtrInput
@@ -177,7 +177,7 @@ func (TokenState) ElementType() reflect.Type {
 type tokenArgs struct {
 	// The unique identifier of the container.
 	//
-	// > Only one of `namespaceId` or `containerId` must be set.
+	// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 	ContainerId *string `pulumi:"containerId"`
 	// The description of the token.
 	Description *string `pulumi:"description"`
@@ -187,7 +187,7 @@ type tokenArgs struct {
 	NamespaceId *string `pulumi:"namespaceId"`
 	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updating any of the arguments above will recreate the token.
+	// > **Important:** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 }
 
@@ -195,7 +195,7 @@ type tokenArgs struct {
 type TokenArgs struct {
 	// The unique identifier of the container.
 	//
-	// > Only one of `namespaceId` or `containerId` must be set.
+	// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 	ContainerId pulumi.StringPtrInput
 	// The description of the token.
 	Description pulumi.StringPtrInput
@@ -205,7 +205,7 @@ type TokenArgs struct {
 	NamespaceId pulumi.StringPtrInput
 	// `region`). The region in which the namespace is created.
 	//
-	// > **Important** Updating any of the arguments above will recreate the token.
+	// > **Important:** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 }
 
@@ -298,7 +298,7 @@ func (o TokenOutput) ToTokenOutputWithContext(ctx context.Context) TokenOutput {
 
 // The unique identifier of the container.
 //
-// > Only one of `namespaceId` or `containerId` must be set.
+// > **Important:** Only one of `namespaceId` or `containerId` must be set.
 func (o TokenOutput) ContainerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.ContainerId }).(pulumi.StringPtrOutput)
 }
@@ -320,7 +320,7 @@ func (o TokenOutput) NamespaceId() pulumi.StringPtrOutput {
 
 // `region`). The region in which the namespace is created.
 //
-// > **Important** Updating any of the arguments above will recreate the token.
+// > **Important:** Updating any of the arguments above will recreate the token.
 func (o TokenOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }

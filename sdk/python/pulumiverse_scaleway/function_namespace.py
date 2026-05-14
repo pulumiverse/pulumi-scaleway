@@ -19,7 +19,6 @@ __all__ = ['FunctionNamespaceArgs', 'FunctionNamespace']
 @pulumi.input_type
 class FunctionNamespaceArgs:
     def __init__(__self__, *,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -30,9 +29,6 @@ class FunctionNamespaceArgs:
         """
         The set of arguments for constructing a FunctionNamespace resource.
 
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[_builtins.str] name: The unique name of the Functions namespace.
@@ -43,11 +39,6 @@ class FunctionNamespaceArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
-        if activate_vpc_integration is not None:
-            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
-            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-        if activate_vpc_integration is not None:
-            pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
@@ -62,21 +53,6 @@ class FunctionNamespaceArgs:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
-
-    @activate_vpc_integration.setter
-    def activate_vpc_integration(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "activate_vpc_integration", value)
 
     @_builtins.property
     @pulumi.getter
@@ -168,7 +144,6 @@ class FunctionNamespaceArgs:
 @pulumi.input_type
 class _FunctionNamespaceState:
     def __init__(__self__, *,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -182,9 +157,6 @@ class _FunctionNamespaceState:
         """
         Input properties used for looking up and filtering FunctionNamespace resources.
 
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[_builtins.str] name: The unique name of the Functions namespace.
@@ -198,11 +170,6 @@ class _FunctionNamespaceState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
-        if activate_vpc_integration is not None:
-            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
-            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-        if activate_vpc_integration is not None:
-            pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if environment_variables is not None:
@@ -223,21 +190,6 @@ class _FunctionNamespaceState:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
-
-    @activate_vpc_integration.setter
-    def activate_vpc_integration(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "activate_vpc_integration", value)
 
     @_builtins.property
     @pulumi.getter
@@ -373,7 +325,6 @@ class FunctionNamespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -414,9 +365,6 @@ class FunctionNamespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[_builtins.str] name: The unique name of the Functions namespace.
@@ -478,7 +426,6 @@ class FunctionNamespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -496,7 +443,6 @@ class FunctionNamespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FunctionNamespaceArgs.__new__(FunctionNamespaceArgs)
 
-            __props__.__dict__["activate_vpc_integration"] = activate_vpc_integration
             __props__.__dict__["description"] = description
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["name"] = name
@@ -519,7 +465,6 @@ class FunctionNamespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -537,9 +482,6 @@ class FunctionNamespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[_builtins.str] name: The unique name of the Functions namespace.
@@ -557,7 +499,6 @@ class FunctionNamespace(pulumi.CustomResource):
 
         __props__ = _FunctionNamespaceState.__new__(_FunctionNamespaceState)
 
-        __props__.__dict__["activate_vpc_integration"] = activate_vpc_integration
         __props__.__dict__["description"] = description
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["name"] = name
@@ -569,17 +510,6 @@ class FunctionNamespace(pulumi.CustomResource):
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
         __props__.__dict__["tags"] = tags
         return FunctionNamespace(resource_name, opts=opts, __props__=__props__)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Output[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
 
     @_builtins.property
     @pulumi.getter

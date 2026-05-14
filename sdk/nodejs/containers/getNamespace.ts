@@ -67,7 +67,6 @@ export interface GetNamespaceArgs {
  * A collection of values returned by getNamespace.
  */
 export interface GetNamespaceResult {
-    readonly activateVpcIntegration: boolean;
     /**
      * The description of the namespace.
      */
@@ -90,11 +89,11 @@ export interface GetNamespaceResult {
     readonly projectId?: string;
     readonly region?: string;
     /**
-     * The registry endpoint of the namespace.
+     * (Deprecated) The registry endpoint of the namespace.
      */
     readonly registryEndpoint: string;
     /**
-     * The unique identifier of the registry namespace of the Serverless Containers namespace.
+     * (Deprecated) The unique identifier of the registry namespace of the Serverless Containers namespace.
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};

@@ -19,7 +19,6 @@ __all__ = ['ContainerNamespaceArgs', 'ContainerNamespace']
 @pulumi.input_type
 class ContainerNamespaceArgs:
     def __init__(__self__, *,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  destroy_registry: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -31,9 +30,6 @@ class ContainerNamespaceArgs:
         """
         The set of arguments for constructing a ContainerNamespace resource.
 
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
@@ -45,16 +41,11 @@ class ContainerNamespaceArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
-        if activate_vpc_integration is not None:
-            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
-            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-        if activate_vpc_integration is not None:
-            pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if destroy_registry is not None:
-            warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-            pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
+            warnings.warn("""A registry is no longer created alongside the namespace, it has to be handled separately.""", DeprecationWarning)
+            pulumi.log.warn("""destroy_registry is deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.""")
         if destroy_registry is not None:
             pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
@@ -71,21 +62,6 @@ class ContainerNamespaceArgs:
             pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
-
-    @activate_vpc_integration.setter
-    def activate_vpc_integration(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "activate_vpc_integration", value)
-
-    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -99,7 +75,7 @@ class ContainerNamespaceArgs:
 
     @_builtins.property
     @pulumi.getter(name="destroyRegistry")
-    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def destroy_registry(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Destroy registry on deletion
@@ -188,7 +164,6 @@ class ContainerNamespaceArgs:
 @pulumi.input_type
 class _ContainerNamespaceState:
     def __init__(__self__, *,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  destroy_registry: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -203,9 +178,6 @@ class _ContainerNamespaceState:
         """
         Input properties used for looking up and filtering ContainerNamespace resources.
 
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
@@ -215,21 +187,16 @@ class _ContainerNamespaceState:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID with which the namespace is associated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
-        :param pulumi.Input[_builtins.str] registry_endpoint: The registry endpoint of the namespace.
-        :param pulumi.Input[_builtins.str] registry_namespace_id: The registry namespace ID of the namespace.
+        :param pulumi.Input[_builtins.str] registry_endpoint: (Deprecated) The registry endpoint of the namespace.
+        :param pulumi.Input[_builtins.str] registry_namespace_id: (Deprecated) The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
-        if activate_vpc_integration is not None:
-            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
-            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-        if activate_vpc_integration is not None:
-            pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if destroy_registry is not None:
-            warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
-            pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
+            warnings.warn("""A registry is no longer created alongside the namespace, it has to be handled separately.""", DeprecationWarning)
+            pulumi.log.warn("""destroy_registry is deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.""")
         if destroy_registry is not None:
             pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
@@ -243,28 +210,19 @@ class _ContainerNamespaceState:
         if region is not None:
             pulumi.set(__self__, "region", region)
         if registry_endpoint is not None:
+            warnings.warn("""A registry is no longer created alongside the namespace, it has to be handled separately.""", DeprecationWarning)
+            pulumi.log.warn("""registry_endpoint is deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.""")
+        if registry_endpoint is not None:
             pulumi.set(__self__, "registry_endpoint", registry_endpoint)
+        if registry_namespace_id is not None:
+            warnings.warn("""A registry is no longer created alongside the namespace, it has to be handled separately.""", DeprecationWarning)
+            pulumi.log.warn("""registry_namespace_id is deprecated: A registry is no longer created alongside the namespace, it has to be handled separately.""")
         if registry_namespace_id is not None:
             pulumi.set(__self__, "registry_namespace_id", registry_namespace_id)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
-
-    @activate_vpc_integration.setter
-    def activate_vpc_integration(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "activate_vpc_integration", value)
 
     @_builtins.property
     @pulumi.getter
@@ -280,7 +238,7 @@ class _ContainerNamespaceState:
 
     @_builtins.property
     @pulumi.getter(name="destroyRegistry")
-    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def destroy_registry(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Destroy registry on deletion
@@ -355,9 +313,10 @@ class _ContainerNamespaceState:
 
     @_builtins.property
     @pulumi.getter(name="registryEndpoint")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def registry_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The registry endpoint of the namespace.
+        (Deprecated) The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
@@ -367,9 +326,10 @@ class _ContainerNamespaceState:
 
     @_builtins.property
     @pulumi.getter(name="registryNamespaceId")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def registry_namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The registry namespace ID of the namespace.
+        (Deprecated) The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -413,7 +373,6 @@ class ContainerNamespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  destroy_registry: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -424,8 +383,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        The `containers.Namespace` resource allows you to
-        for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Namespace` resource allows you to manage Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
@@ -455,9 +413,6 @@ class ContainerNamespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
@@ -476,8 +431,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `containers.Namespace` resource allows you to
-        for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Namespace` resource allows you to manage Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
 
@@ -520,7 +474,6 @@ class ContainerNamespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  destroy_registry: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -539,7 +492,6 @@ class ContainerNamespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ContainerNamespaceArgs.__new__(ContainerNamespaceArgs)
 
-            __props__.__dict__["activate_vpc_integration"] = activate_vpc_integration
             __props__.__dict__["description"] = description
             __props__.__dict__["destroy_registry"] = destroy_registry
             __props__.__dict__["environment_variables"] = environment_variables
@@ -563,7 +515,6 @@ class ContainerNamespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            activate_vpc_integration: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             destroy_registry: pulumi.Input[Optional[_builtins.bool]] = None,
             environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -582,9 +533,6 @@ class ContainerNamespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-               
-               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[_builtins.str] description: The description of the namespace.
         :param pulumi.Input[_builtins.bool] destroy_registry: Destroy registry on deletion
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The environment variables of the namespace.
@@ -594,8 +542,8 @@ class ContainerNamespace(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID with which the namespace is associated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
-        :param pulumi.Input[_builtins.str] registry_endpoint: The registry endpoint of the namespace.
-        :param pulumi.Input[_builtins.str] registry_namespace_id: The registry namespace ID of the namespace.
+        :param pulumi.Input[_builtins.str] registry_endpoint: (Deprecated) The registry endpoint of the namespace.
+        :param pulumi.Input[_builtins.str] registry_namespace_id: (Deprecated) The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
@@ -603,7 +551,6 @@ class ContainerNamespace(pulumi.CustomResource):
 
         __props__ = _ContainerNamespaceState.__new__(_ContainerNamespaceState)
 
-        __props__.__dict__["activate_vpc_integration"] = activate_vpc_integration
         __props__.__dict__["description"] = description
         __props__.__dict__["destroy_registry"] = destroy_registry
         __props__.__dict__["environment_variables"] = environment_variables
@@ -618,17 +565,6 @@ class ContainerNamespace(pulumi.CustomResource):
         return ContainerNamespace(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter(name="activateVpcIntegration")
-    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
-    def activate_vpc_integration(self) -> pulumi.Output[Optional[_builtins.bool]]:
-        """
-        Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
-
-        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
-        """
-        return pulumi.get(self, "activate_vpc_integration")
-
-    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -638,7 +574,7 @@ class ContainerNamespace(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="destroyRegistry")
-    @_utilities.deprecated("""Registry namespace is automatically destroyed with namespace""")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def destroy_registry(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Destroy registry on deletion
@@ -689,17 +625,19 @@ class ContainerNamespace(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="registryEndpoint")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def registry_endpoint(self) -> pulumi.Output[_builtins.str]:
         """
-        The registry endpoint of the namespace.
+        (Deprecated) The registry endpoint of the namespace.
         """
         return pulumi.get(self, "registry_endpoint")
 
     @_builtins.property
     @pulumi.getter(name="registryNamespaceId")
+    @_utilities.deprecated("""A registry is no longer created alongside the namespace, it has to be handled separately.""")
     def registry_namespace_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The registry namespace ID of the namespace.
+        (Deprecated) The registry namespace ID of the namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 

@@ -32,7 +32,13 @@ __all__ = [
     'CockpitTokenScopes',
     'ContainerHealthCheck',
     'ContainerHealthCheckHttp',
+    'ContainerLivenessProbe',
+    'ContainerLivenessProbeHttp',
     'ContainerScalingOption',
+    'ContainerStartupProbe',
+    'ContainerStartupProbeHttp',
+    'ContainerTriggerCron',
+    'ContainerTriggerDestinationConfig',
     'ContainerTriggerNats',
     'ContainerTriggerSqs',
     'DatabaseAclAclRule',
@@ -163,7 +169,11 @@ __all__ = [
     'GetCockpitPushUrlResult',
     'GetContainerHealthCheckResult',
     'GetContainerHealthCheckHttpResult',
+    'GetContainerLivenessProbeResult',
+    'GetContainerLivenessProbeHttpResult',
     'GetContainerScalingOptionResult',
+    'GetContainerStartupProbeResult',
+    'GetContainerStartupProbeHttpResult',
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstanceLogsPolicyResult',
@@ -1144,45 +1154,160 @@ class ContainerHealthCheck(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 failure_threshold: _builtins.int,
-                 https: Sequence['outputs.ContainerHealthCheckHttp'],
-                 interval: _builtins.str):
+                 failure_threshold: Optional[_builtins.int] = None,
+                 https: Optional[Sequence['outputs.ContainerHealthCheckHttp']] = None,
+                 interval: Optional[_builtins.str] = None,
+                 tcp: Optional[_builtins.bool] = None):
         """
-        :param _builtins.int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
-        :param Sequence['ContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
-        :param _builtins.str interval: Period between health checks (in seconds).
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param Sequence['ContainerHealthCheckHttpArgs'] https: Perform HTTP check on the container with the specified path.
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
-        pulumi.set(__self__, "failure_threshold", failure_threshold)
-        pulumi.set(__self__, "https", https)
-        pulumi.set(__self__, "interval", interval)
+        if failure_threshold is not None:
+            pulumi.set(__self__, "failure_threshold", failure_threshold)
+        if https is not None:
+            pulumi.set(__self__, "https", https)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if tcp is not None:
+            pulumi.set(__self__, "tcp", tcp)
 
     @_builtins.property
     @pulumi.getter(name="failureThreshold")
-    def failure_threshold(self) -> _builtins.int:
+    def failure_threshold(self) -> Optional[_builtins.int]:
         """
-        Number of consecutive health check failures before considering the container unhealthy.
+        Number of consecutive failures before considering the container has to be restarted.
         """
         return pulumi.get(self, "failure_threshold")
 
     @_builtins.property
     @pulumi.getter
-    def https(self) -> Sequence['outputs.ContainerHealthCheckHttp']:
+    def https(self) -> Optional[Sequence['outputs.ContainerHealthCheckHttp']]:
         """
-        HTTP health check configuration.
+        Perform HTTP check on the container with the specified path.
         """
         return pulumi.get(self, "https")
 
     @_builtins.property
     @pulumi.getter
-    def interval(self) -> _builtins.str:
+    def interval(self) -> Optional[_builtins.str]:
         """
-        Period between health checks (in seconds).
+        Time interval between checks (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> Optional[_builtins.bool]:
+        """
+        When set to `true`, performs TCP checks on the container.
+        """
+        return pulumi.get(self, "tcp")
 
 
 @pulumi.output_type
 class ContainerHealthCheckHttp(dict):
+    def __init__(__self__, *,
+                 path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str path: Path to use for the HTTP health check.
+        """
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class ContainerLivenessProbe(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureThreshold":
+            suggest = "failure_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerLivenessProbe. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerLivenessProbe.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerLivenessProbe.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failure_threshold: _builtins.int,
+                 interval: _builtins.str,
+                 timeout: _builtins.str,
+                 http: Optional['outputs.ContainerLivenessProbeHttp'] = None,
+                 tcp: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param 'ContainerLivenessProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "timeout", timeout)
+        if http is not None:
+            pulumi.set(__self__, "http", http)
+        if tcp is not None:
+            pulumi.set(__self__, "tcp", tcp)
+
+    @_builtins.property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> _builtins.int:
+        """
+        Number of consecutive failures before considering the container has to be restarted.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        Time interval between checks (in duration notation, e.g. "30s").
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> _builtins.str:
+        """
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def http(self) -> Optional['outputs.ContainerLivenessProbeHttp']:
+        """
+        Perform HTTP check on the container with the specified path.
+        """
+        return pulumi.get(self, "http")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> Optional[_builtins.bool]:
+        """
+        When set to `true`, performs TCP checks on the container.
+        """
+        return pulumi.get(self, "tcp")
+
+
+@pulumi.output_type
+class ContainerLivenessProbeHttp(dict):
     def __init__(__self__, *,
                  path: _builtins.str):
         """
@@ -1264,11 +1389,215 @@ class ContainerScalingOption(dict):
 
 
 @pulumi.output_type
+class ContainerStartupProbe(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureThreshold":
+            suggest = "failure_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerStartupProbe. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerStartupProbe.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerStartupProbe.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failure_threshold: _builtins.int,
+                 interval: _builtins.str,
+                 timeout: _builtins.str,
+                 http: Optional['outputs.ContainerStartupProbeHttp'] = None,
+                 tcp: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param _builtins.str interval: Time interval between checks (in duration notation).
+        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param 'ContainerStartupProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
+        :param _builtins.bool tcp: Perform TCP check on the container
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "timeout", timeout)
+        if http is not None:
+            pulumi.set(__self__, "http", http)
+        if tcp is not None:
+            pulumi.set(__self__, "tcp", tcp)
+
+    @_builtins.property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> _builtins.int:
+        """
+        Number of consecutive failures before considering the container has to be restarted.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        Time interval between checks (in duration notation).
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> _builtins.str:
+        """
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def http(self) -> Optional['outputs.ContainerStartupProbeHttp']:
+        """
+        Perform HTTP check on the container with the specified path.
+        """
+        return pulumi.get(self, "http")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> Optional[_builtins.bool]:
+        """
+        Perform TCP check on the container
+        """
+        return pulumi.get(self, "tcp")
+
+
+@pulumi.output_type
+class ContainerStartupProbeHttp(dict):
+    def __init__(__self__, *,
+                 path: _builtins.str):
+        """
+        :param _builtins.str path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class ContainerTriggerCron(dict):
+    def __init__(__self__, *,
+                 schedule: _builtins.str,
+                 timezone: _builtins.str,
+                 body: Optional[_builtins.str] = None,
+                 headers: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        :param _builtins.str schedule: UNIX cron schedule to run job (e.g., "* * * * *").
+        :param _builtins.str timezone: Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+        :param _builtins.str body: Body to send to the container when the trigger is invoked.
+        :param Mapping[str, _builtins.str] headers: Additional headers to send to the container when the trigger is invoked.
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+        if body is not None:
+            pulumi.set(__self__, "body", body)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        UNIX cron schedule to run job (e.g., "* * * * *").
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        """
+        Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+        """
+        return pulumi.get(self, "timezone")
+
+    @_builtins.property
+    @pulumi.getter
+    def body(self) -> Optional[_builtins.str]:
+        """
+        Body to send to the container when the trigger is invoked.
+        """
+        return pulumi.get(self, "body")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional headers to send to the container when the trigger is invoked.
+        """
+        return pulumi.get(self, "headers")
+
+
+@pulumi.output_type
+class ContainerTriggerDestinationConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpMethod":
+            suggest = "http_method"
+        elif key == "httpPath":
+            suggest = "http_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerTriggerDestinationConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerTriggerDestinationConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerTriggerDestinationConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_method: _builtins.str,
+                 http_path: _builtins.str):
+        """
+        :param _builtins.str http_method: The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+        :param _builtins.str http_path: The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+        """
+        pulumi.set(__self__, "http_method", http_method)
+        pulumi.set(__self__, "http_path", http_path)
+
+    @_builtins.property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> _builtins.str:
+        """
+        The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+        """
+        return pulumi.get(self, "http_method")
+
+    @_builtins.property
+    @pulumi.getter(name="httpPath")
+    def http_path(self) -> _builtins.str:
+        """
+        The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+        """
+        return pulumi.get(self, "http_path")
+
+
+@pulumi.output_type
 class ContainerTriggerNats(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "accountId":
+        if key == "credentialsFileContent":
+            suggest = "credentials_file_content"
+        elif key == "serverUrls":
+            suggest = "server_urls"
+        elif key == "accountId":
             suggest = "account_id"
         elif key == "projectId":
             suggest = "project_id"
@@ -1285,16 +1614,22 @@ class ContainerTriggerNats(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 credentials_file_content: _builtins.str,
+                 server_urls: Sequence[_builtins.str],
                  subject: _builtins.str,
                  account_id: Optional[_builtins.str] = None,
                  project_id: Optional[_builtins.str] = None,
                  region: Optional[_builtins.str] = None):
         """
-        :param _builtins.str subject: The subject to listen to.
-        :param _builtins.str account_id: unique identifier of the Messaging and Queuing NATS account.
-        :param _builtins.str project_id: THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        :param _builtins.str credentials_file_content: The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+        :param Sequence[_builtins.str] server_urls: The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+        :param _builtins.str subject: NATS subject to subscribe to (e.g., \\"my-subject\\")."
+        :param _builtins.str account_id: unique identifier of the Messaging and Queuing NATS account  .
+        :param _builtins.str project_id: The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         :param _builtins.str region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
+        pulumi.set(__self__, "credentials_file_content", credentials_file_content)
+        pulumi.set(__self__, "server_urls", server_urls)
         pulumi.set(__self__, "subject", subject)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
@@ -1304,10 +1639,26 @@ class ContainerTriggerNats(dict):
             pulumi.set(__self__, "region", region)
 
     @_builtins.property
+    @pulumi.getter(name="credentialsFileContent")
+    def credentials_file_content(self) -> _builtins.str:
+        """
+        The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+        """
+        return pulumi.get(self, "credentials_file_content")
+
+    @_builtins.property
+    @pulumi.getter(name="serverUrls")
+    def server_urls(self) -> Sequence[_builtins.str]:
+        """
+        The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+        """
+        return pulumi.get(self, "server_urls")
+
+    @_builtins.property
     @pulumi.getter
     def subject(self) -> _builtins.str:
         """
-        The subject to listen to.
+        NATS subject to subscribe to (e.g., \\"my-subject\\")."
         """
         return pulumi.get(self, "subject")
 
@@ -1315,7 +1666,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[_builtins.str]:
         """
-        unique identifier of the Messaging and Queuing NATS account.
+        unique identifier of the Messaging and Queuing NATS account  .
         """
         return pulumi.get(self, "account_id")
 
@@ -1323,7 +1674,7 @@ class ContainerTriggerNats(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[_builtins.str]:
         """
-        THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
 
@@ -1341,8 +1692,12 @@ class ContainerTriggerSqs(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "namespaceId":
-            suggest = "namespace_id"
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "queueUrl":
+            suggest = "queue_url"
+        elif key == "secretKey":
+            suggest = "secret_key"
         elif key == "projectId":
             suggest = "project_id"
 
@@ -1358,40 +1713,64 @@ class ContainerTriggerSqs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 queue: _builtins.str,
-                 namespace_id: Optional[_builtins.str] = None,
+                 access_key: _builtins.str,
+                 endpoint: _builtins.str,
+                 queue_url: _builtins.str,
+                 secret_key: _builtins.str,
                  project_id: Optional[_builtins.str] = None,
+                 queue: Optional[_builtins.str] = None,
                  region: Optional[_builtins.str] = None):
         """
-        :param _builtins.str queue: The name of the SQS queue.
-        :param _builtins.str namespace_id: ID of the Messaging and Queuing namespace. This argument is deprecated.
+        :param _builtins.str access_key: The access key for accessing the SQS queue.
+        :param _builtins.str endpoint: Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        :param _builtins.str queue_url: The URL of the SQS queue to monitor for messages.
+        :param _builtins.str secret_key: The secret key for accessing the SQS queue.
         :param _builtins.str project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        :param _builtins.str queue: The name of the SQS queue.  This argument is no longer supported.
         :param _builtins.str region: Region where SQS is enabled (defaults to provider `region`)
         """
-        pulumi.set(__self__, "queue", queue)
-        if namespace_id is not None:
-            pulumi.set(__self__, "namespace_id", namespace_id)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "queue_url", queue_url)
+        pulumi.set(__self__, "secret_key", secret_key)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if queue is not None:
+            pulumi.set(__self__, "queue", queue)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
     @_builtins.property
-    @pulumi.getter
-    def queue(self) -> _builtins.str:
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> _builtins.str:
         """
-        The name of the SQS queue.
+        The access key for accessing the SQS queue.
         """
-        return pulumi.get(self, "queue")
+        return pulumi.get(self, "access_key")
 
     @_builtins.property
-    @pulumi.getter(name="namespaceId")
-    @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-    def namespace_id(self) -> Optional[_builtins.str]:
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
         """
-        ID of the Messaging and Queuing namespace. This argument is deprecated.
+        Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
         """
-        return pulumi.get(self, "namespace_id")
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="queueUrl")
+    def queue_url(self) -> _builtins.str:
+        """
+        The URL of the SQS queue to monitor for messages.
+        """
+        return pulumi.get(self, "queue_url")
+
+    @_builtins.property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> _builtins.str:
+        """
+        The secret key for accessing the SQS queue.
+        """
+        return pulumi.get(self, "secret_key")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -1400,6 +1779,15 @@ class ContainerTriggerSqs(dict):
         The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""This field is no longer supported, please use queue_url instead to identify the queue.""")
+    def queue(self) -> Optional[_builtins.str]:
+        """
+        The name of the SQS queue.  This argument is no longer supported.
+        """
+        return pulumi.get(self, "queue")
 
     @_builtins.property
     @pulumi.getter
@@ -9229,21 +9617,24 @@ class GetContainerHealthCheckResult(dict):
     def __init__(__self__, *,
                  failure_threshold: _builtins.int,
                  https: Sequence['outputs.GetContainerHealthCheckHttpResult'],
-                 interval: _builtins.str):
+                 interval: _builtins.str,
+                 tcp: _builtins.bool):
         """
-        :param _builtins.int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
-        :param Sequence['GetContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
-        :param _builtins.str interval: Period between health checks (in seconds).
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param Sequence['GetContainerHealthCheckHttpArgs'] https: Perform HTTP check on the container with the specified path.
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
         pulumi.set(__self__, "failure_threshold", failure_threshold)
         pulumi.set(__self__, "https", https)
         pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "tcp", tcp)
 
     @_builtins.property
     @pulumi.getter(name="failureThreshold")
     def failure_threshold(self) -> _builtins.int:
         """
-        Number of consecutive health check failures before considering the container unhealthy.
+        Number of consecutive failures before considering the container has to be restarted.
         """
         return pulumi.get(self, "failure_threshold")
 
@@ -9251,7 +9642,7 @@ class GetContainerHealthCheckResult(dict):
     @pulumi.getter
     def https(self) -> Sequence['outputs.GetContainerHealthCheckHttpResult']:
         """
-        HTTP health check configuration.
+        Perform HTTP check on the container with the specified path.
         """
         return pulumi.get(self, "https")
 
@@ -9259,13 +9650,101 @@ class GetContainerHealthCheckResult(dict):
     @pulumi.getter
     def interval(self) -> _builtins.str:
         """
-        Period between health checks (in seconds).
+        Time interval between checks (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> _builtins.bool:
+        """
+        When set to `true`, performs TCP checks on the container.
+        """
+        return pulumi.get(self, "tcp")
 
 
 @pulumi.output_type
 class GetContainerHealthCheckHttpResult(dict):
+    def __init__(__self__, *,
+                 path: _builtins.str):
+        """
+        :param _builtins.str path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
+
+
+@pulumi.output_type
+class GetContainerLivenessProbeResult(dict):
+    def __init__(__self__, *,
+                 failure_threshold: _builtins.int,
+                 https: Sequence['outputs.GetContainerLivenessProbeHttpResult'],
+                 interval: _builtins.str,
+                 tcp: _builtins.bool,
+                 timeout: _builtins.str):
+        """
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param Sequence['GetContainerLivenessProbeHttpArgs'] https: Perform HTTP check on the container with the specified path.
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
+        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "tcp", tcp)
+        pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> _builtins.int:
+        """
+        Number of consecutive failures before considering the container has to be restarted.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def https(self) -> Sequence['outputs.GetContainerLivenessProbeHttpResult']:
+        """
+        Perform HTTP check on the container with the specified path.
+        """
+        return pulumi.get(self, "https")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        Time interval between checks (in duration notation, e.g. "30s").
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> _builtins.bool:
+        """
+        When set to `true`, performs TCP checks on the container.
+        """
+        return pulumi.get(self, "tcp")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> _builtins.str:
+        """
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class GetContainerLivenessProbeHttpResult(dict):
     def __init__(__self__, *,
                  path: _builtins.str):
         """
@@ -9320,6 +9799,86 @@ class GetContainerScalingOptionResult(dict):
         Scale depending on the memory usage of a container instance.
         """
         return pulumi.get(self, "memory_usage_threshold")
+
+
+@pulumi.output_type
+class GetContainerStartupProbeResult(dict):
+    def __init__(__self__, *,
+                 failure_threshold: _builtins.int,
+                 https: Sequence['outputs.GetContainerStartupProbeHttpResult'],
+                 interval: _builtins.str,
+                 tcp: _builtins.bool,
+                 timeout: _builtins.str):
+        """
+        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
+        :param Sequence['GetContainerStartupProbeHttpArgs'] https: Perform HTTP check on the container with the specified path.
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
+        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        pulumi.set(__self__, "failure_threshold", failure_threshold)
+        pulumi.set(__self__, "https", https)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "tcp", tcp)
+        pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter(name="failureThreshold")
+    def failure_threshold(self) -> _builtins.int:
+        """
+        Number of consecutive failures before considering the container has to be restarted.
+        """
+        return pulumi.get(self, "failure_threshold")
+
+    @_builtins.property
+    @pulumi.getter
+    def https(self) -> Sequence['outputs.GetContainerStartupProbeHttpResult']:
+        """
+        Perform HTTP check on the container with the specified path.
+        """
+        return pulumi.get(self, "https")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        Time interval between checks (in duration notation, e.g. "30s").
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp(self) -> _builtins.bool:
+        """
+        When set to `true`, performs TCP checks on the container.
+        """
+        return pulumi.get(self, "tcp")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> _builtins.str:
+        """
+        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class GetContainerStartupProbeHttpResult(dict):
+    def __init__(__self__, *,
+                 path: _builtins.str):
+        """
+        :param _builtins.str path: Path to use for the HTTP health check.
+        """
+        pulumi.set(__self__, "path", path)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Path to use for the HTTP health check.
+        """
+        return pulumi.get(self, "path")
 
 
 @pulumi.output_type

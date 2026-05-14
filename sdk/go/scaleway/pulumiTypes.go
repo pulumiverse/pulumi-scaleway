@@ -1943,12 +1943,14 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 }
 
 type ContainerHealthCheck struct {
-	// Number of consecutive health check failures before considering the container unhealthy.
-	FailureThreshold int `pulumi:"failureThreshold"`
-	// HTTP health check configuration.
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold *int `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
 	Https []ContainerHealthCheckHttp `pulumi:"https"`
-	// Period between health checks (in seconds).
-	Interval string `pulumi:"interval"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval *string `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp *bool `pulumi:"tcp"`
 }
 
 // ContainerHealthCheckInput is an input type that accepts ContainerHealthCheckArgs and ContainerHealthCheckOutput values.
@@ -1963,12 +1965,14 @@ type ContainerHealthCheckInput interface {
 }
 
 type ContainerHealthCheckArgs struct {
-	// Number of consecutive health check failures before considering the container unhealthy.
-	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
-	// HTTP health check configuration.
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold pulumi.IntPtrInput `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
 	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Period between health checks (in seconds).
-	Interval pulumi.StringInput `pulumi:"interval"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval pulumi.StringPtrInput `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
 }
 
 func (ContainerHealthCheckArgs) ElementType() reflect.Type {
@@ -2022,19 +2026,24 @@ func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutputWithContext(ctx 
 	return o
 }
 
-// Number of consecutive health check failures before considering the container unhealthy.
-func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntOutput {
-	return o.ApplyT(func(v ContainerHealthCheck) int { return v.FailureThreshold }).(pulumi.IntOutput)
+// Number of consecutive failures before considering the container has to be restarted.
+func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) *int { return v.FailureThreshold }).(pulumi.IntPtrOutput)
 }
 
-// HTTP health check configuration.
+// Perform HTTP check on the container with the specified path.
 func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
 }
 
-// Period between health checks (in seconds).
-func (o ContainerHealthCheckOutput) Interval() pulumi.StringOutput {
-	return o.ApplyT(func(v ContainerHealthCheck) string { return v.Interval }).(pulumi.StringOutput)
+// Time interval between checks (in duration notation, e.g. "30s").
+func (o ContainerHealthCheckOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) *string { return v.Interval }).(pulumi.StringPtrOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o ContainerHealthCheckOutput) Tcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContainerHealthCheck) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
 
 type ContainerHealthCheckArrayOutput struct{ *pulumi.OutputState }
@@ -2059,7 +2068,7 @@ func (o ContainerHealthCheckArrayOutput) Index(i pulumi.IntInput) ContainerHealt
 
 type ContainerHealthCheckHttp struct {
 	// Path to use for the HTTP health check.
-	Path string `pulumi:"path"`
+	Path *string `pulumi:"path"`
 }
 
 // ContainerHealthCheckHttpInput is an input type that accepts ContainerHealthCheckHttpArgs and ContainerHealthCheckHttpOutput values.
@@ -2075,7 +2084,7 @@ type ContainerHealthCheckHttpInput interface {
 
 type ContainerHealthCheckHttpArgs struct {
 	// Path to use for the HTTP health check.
-	Path pulumi.StringInput `pulumi:"path"`
+	Path pulumi.StringPtrInput `pulumi:"path"`
 }
 
 func (ContainerHealthCheckHttpArgs) ElementType() reflect.Type {
@@ -2130,8 +2139,8 @@ func (o ContainerHealthCheckHttpOutput) ToContainerHealthCheckHttpOutputWithCont
 }
 
 // Path to use for the HTTP health check.
-func (o ContainerHealthCheckHttpOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v ContainerHealthCheckHttp) string { return v.Path }).(pulumi.StringOutput)
+func (o ContainerHealthCheckHttpOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerHealthCheckHttp) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
 type ContainerHealthCheckHttpArrayOutput struct{ *pulumi.OutputState }
@@ -2152,6 +2161,356 @@ func (o ContainerHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) ContainerH
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContainerHealthCheckHttp {
 		return vs[0].([]ContainerHealthCheckHttp)[vs[1].(int)]
 	}).(ContainerHealthCheckHttpOutput)
+}
+
+type ContainerLivenessProbe struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Http *ContainerLivenessProbeHttp `pulumi:"http"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval string `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp *bool `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout string `pulumi:"timeout"`
+}
+
+// ContainerLivenessProbeInput is an input type that accepts ContainerLivenessProbeArgs and ContainerLivenessProbeOutput values.
+// You can construct a concrete instance of `ContainerLivenessProbeInput` via:
+//
+//	ContainerLivenessProbeArgs{...}
+type ContainerLivenessProbeInput interface {
+	pulumi.Input
+
+	ToContainerLivenessProbeOutput() ContainerLivenessProbeOutput
+	ToContainerLivenessProbeOutputWithContext(context.Context) ContainerLivenessProbeOutput
+}
+
+type ContainerLivenessProbeArgs struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Http ContainerLivenessProbeHttpPtrInput `pulumi:"http"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval pulumi.StringInput `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout pulumi.StringInput `pulumi:"timeout"`
+}
+
+func (ContainerLivenessProbeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerLivenessProbe)(nil)).Elem()
+}
+
+func (i ContainerLivenessProbeArgs) ToContainerLivenessProbeOutput() ContainerLivenessProbeOutput {
+	return i.ToContainerLivenessProbeOutputWithContext(context.Background())
+}
+
+func (i ContainerLivenessProbeArgs) ToContainerLivenessProbeOutputWithContext(ctx context.Context) ContainerLivenessProbeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbeOutput)
+}
+
+func (i ContainerLivenessProbeArgs) ToContainerLivenessProbePtrOutput() ContainerLivenessProbePtrOutput {
+	return i.ToContainerLivenessProbePtrOutputWithContext(context.Background())
+}
+
+func (i ContainerLivenessProbeArgs) ToContainerLivenessProbePtrOutputWithContext(ctx context.Context) ContainerLivenessProbePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbeOutput).ToContainerLivenessProbePtrOutputWithContext(ctx)
+}
+
+// ContainerLivenessProbePtrInput is an input type that accepts ContainerLivenessProbeArgs, ContainerLivenessProbePtr and ContainerLivenessProbePtrOutput values.
+// You can construct a concrete instance of `ContainerLivenessProbePtrInput` via:
+//
+//	        ContainerLivenessProbeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerLivenessProbePtrInput interface {
+	pulumi.Input
+
+	ToContainerLivenessProbePtrOutput() ContainerLivenessProbePtrOutput
+	ToContainerLivenessProbePtrOutputWithContext(context.Context) ContainerLivenessProbePtrOutput
+}
+
+type containerLivenessProbePtrType ContainerLivenessProbeArgs
+
+func ContainerLivenessProbePtr(v *ContainerLivenessProbeArgs) ContainerLivenessProbePtrInput {
+	return (*containerLivenessProbePtrType)(v)
+}
+
+func (*containerLivenessProbePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerLivenessProbe)(nil)).Elem()
+}
+
+func (i *containerLivenessProbePtrType) ToContainerLivenessProbePtrOutput() ContainerLivenessProbePtrOutput {
+	return i.ToContainerLivenessProbePtrOutputWithContext(context.Background())
+}
+
+func (i *containerLivenessProbePtrType) ToContainerLivenessProbePtrOutputWithContext(ctx context.Context) ContainerLivenessProbePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbePtrOutput)
+}
+
+type ContainerLivenessProbeOutput struct{ *pulumi.OutputState }
+
+func (ContainerLivenessProbeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerLivenessProbe)(nil)).Elem()
+}
+
+func (o ContainerLivenessProbeOutput) ToContainerLivenessProbeOutput() ContainerLivenessProbeOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeOutput) ToContainerLivenessProbeOutputWithContext(ctx context.Context) ContainerLivenessProbeOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeOutput) ToContainerLivenessProbePtrOutput() ContainerLivenessProbePtrOutput {
+	return o.ToContainerLivenessProbePtrOutputWithContext(context.Background())
+}
+
+func (o ContainerLivenessProbeOutput) ToContainerLivenessProbePtrOutputWithContext(ctx context.Context) ContainerLivenessProbePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerLivenessProbe) *ContainerLivenessProbe {
+		return &v
+	}).(ContainerLivenessProbePtrOutput)
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o ContainerLivenessProbeOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v ContainerLivenessProbe) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o ContainerLivenessProbeOutput) Http() ContainerLivenessProbeHttpPtrOutput {
+	return o.ApplyT(func(v ContainerLivenessProbe) *ContainerLivenessProbeHttp { return v.Http }).(ContainerLivenessProbeHttpPtrOutput)
+}
+
+// Time interval between checks (in duration notation, e.g. "30s").
+func (o ContainerLivenessProbeOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerLivenessProbe) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o ContainerLivenessProbeOutput) Tcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContainerLivenessProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o ContainerLivenessProbeOutput) Timeout() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerLivenessProbe) string { return v.Timeout }).(pulumi.StringOutput)
+}
+
+type ContainerLivenessProbePtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerLivenessProbePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerLivenessProbe)(nil)).Elem()
+}
+
+func (o ContainerLivenessProbePtrOutput) ToContainerLivenessProbePtrOutput() ContainerLivenessProbePtrOutput {
+	return o
+}
+
+func (o ContainerLivenessProbePtrOutput) ToContainerLivenessProbePtrOutputWithContext(ctx context.Context) ContainerLivenessProbePtrOutput {
+	return o
+}
+
+func (o ContainerLivenessProbePtrOutput) Elem() ContainerLivenessProbeOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) ContainerLivenessProbe {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerLivenessProbe
+		return ret
+	}).(ContainerLivenessProbeOutput)
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o ContainerLivenessProbePtrOutput) FailureThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FailureThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o ContainerLivenessProbePtrOutput) Http() ContainerLivenessProbeHttpPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) *ContainerLivenessProbeHttp {
+		if v == nil {
+			return nil
+		}
+		return v.Http
+	}).(ContainerLivenessProbeHttpPtrOutput)
+}
+
+// Time interval between checks (in duration notation, e.g. "30s").
+func (o ContainerLivenessProbePtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o ContainerLivenessProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Tcp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o ContainerLivenessProbePtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbe) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContainerLivenessProbeHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// ContainerLivenessProbeHttpInput is an input type that accepts ContainerLivenessProbeHttpArgs and ContainerLivenessProbeHttpOutput values.
+// You can construct a concrete instance of `ContainerLivenessProbeHttpInput` via:
+//
+//	ContainerLivenessProbeHttpArgs{...}
+type ContainerLivenessProbeHttpInput interface {
+	pulumi.Input
+
+	ToContainerLivenessProbeHttpOutput() ContainerLivenessProbeHttpOutput
+	ToContainerLivenessProbeHttpOutputWithContext(context.Context) ContainerLivenessProbeHttpOutput
+}
+
+type ContainerLivenessProbeHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (ContainerLivenessProbeHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (i ContainerLivenessProbeHttpArgs) ToContainerLivenessProbeHttpOutput() ContainerLivenessProbeHttpOutput {
+	return i.ToContainerLivenessProbeHttpOutputWithContext(context.Background())
+}
+
+func (i ContainerLivenessProbeHttpArgs) ToContainerLivenessProbeHttpOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbeHttpOutput)
+}
+
+func (i ContainerLivenessProbeHttpArgs) ToContainerLivenessProbeHttpPtrOutput() ContainerLivenessProbeHttpPtrOutput {
+	return i.ToContainerLivenessProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerLivenessProbeHttpArgs) ToContainerLivenessProbeHttpPtrOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbeHttpOutput).ToContainerLivenessProbeHttpPtrOutputWithContext(ctx)
+}
+
+// ContainerLivenessProbeHttpPtrInput is an input type that accepts ContainerLivenessProbeHttpArgs, ContainerLivenessProbeHttpPtr and ContainerLivenessProbeHttpPtrOutput values.
+// You can construct a concrete instance of `ContainerLivenessProbeHttpPtrInput` via:
+//
+//	        ContainerLivenessProbeHttpArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerLivenessProbeHttpPtrInput interface {
+	pulumi.Input
+
+	ToContainerLivenessProbeHttpPtrOutput() ContainerLivenessProbeHttpPtrOutput
+	ToContainerLivenessProbeHttpPtrOutputWithContext(context.Context) ContainerLivenessProbeHttpPtrOutput
+}
+
+type containerLivenessProbeHttpPtrType ContainerLivenessProbeHttpArgs
+
+func ContainerLivenessProbeHttpPtr(v *ContainerLivenessProbeHttpArgs) ContainerLivenessProbeHttpPtrInput {
+	return (*containerLivenessProbeHttpPtrType)(v)
+}
+
+func (*containerLivenessProbeHttpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (i *containerLivenessProbeHttpPtrType) ToContainerLivenessProbeHttpPtrOutput() ContainerLivenessProbeHttpPtrOutput {
+	return i.ToContainerLivenessProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (i *containerLivenessProbeHttpPtrType) ToContainerLivenessProbeHttpPtrOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerLivenessProbeHttpPtrOutput)
+}
+
+type ContainerLivenessProbeHttpOutput struct{ *pulumi.OutputState }
+
+func (ContainerLivenessProbeHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (o ContainerLivenessProbeHttpOutput) ToContainerLivenessProbeHttpOutput() ContainerLivenessProbeHttpOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeHttpOutput) ToContainerLivenessProbeHttpOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeHttpOutput) ToContainerLivenessProbeHttpPtrOutput() ContainerLivenessProbeHttpPtrOutput {
+	return o.ToContainerLivenessProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerLivenessProbeHttpOutput) ToContainerLivenessProbeHttpPtrOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerLivenessProbeHttp) *ContainerLivenessProbeHttp {
+		return &v
+	}).(ContainerLivenessProbeHttpPtrOutput)
+}
+
+// Path to use for the HTTP health check.
+func (o ContainerLivenessProbeHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerLivenessProbeHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type ContainerLivenessProbeHttpPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerLivenessProbeHttpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (o ContainerLivenessProbeHttpPtrOutput) ToContainerLivenessProbeHttpPtrOutput() ContainerLivenessProbeHttpPtrOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeHttpPtrOutput) ToContainerLivenessProbeHttpPtrOutputWithContext(ctx context.Context) ContainerLivenessProbeHttpPtrOutput {
+	return o
+}
+
+func (o ContainerLivenessProbeHttpPtrOutput) Elem() ContainerLivenessProbeHttpOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbeHttp) ContainerLivenessProbeHttp {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerLivenessProbeHttp
+		return ret
+	}).(ContainerLivenessProbeHttpOutput)
+}
+
+// Path to use for the HTTP health check.
+func (o ContainerLivenessProbeHttpPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerLivenessProbeHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Path
+	}).(pulumi.StringPtrOutput)
 }
 
 type ContainerScalingOption struct {
@@ -2269,14 +2628,718 @@ func (o ContainerScalingOptionArrayOutput) Index(i pulumi.IntInput) ContainerSca
 	}).(ContainerScalingOptionOutput)
 }
 
+type ContainerStartupProbe struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Http *ContainerStartupProbeHttp `pulumi:"http"`
+	// Time interval between checks (in duration notation).
+	Interval string `pulumi:"interval"`
+	// Perform TCP check on the container
+	Tcp *bool `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout string `pulumi:"timeout"`
+}
+
+// ContainerStartupProbeInput is an input type that accepts ContainerStartupProbeArgs and ContainerStartupProbeOutput values.
+// You can construct a concrete instance of `ContainerStartupProbeInput` via:
+//
+//	ContainerStartupProbeArgs{...}
+type ContainerStartupProbeInput interface {
+	pulumi.Input
+
+	ToContainerStartupProbeOutput() ContainerStartupProbeOutput
+	ToContainerStartupProbeOutputWithContext(context.Context) ContainerStartupProbeOutput
+}
+
+type ContainerStartupProbeArgs struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Http ContainerStartupProbeHttpPtrInput `pulumi:"http"`
+	// Time interval between checks (in duration notation).
+	Interval pulumi.StringInput `pulumi:"interval"`
+	// Perform TCP check on the container
+	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout pulumi.StringInput `pulumi:"timeout"`
+}
+
+func (ContainerStartupProbeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerStartupProbe)(nil)).Elem()
+}
+
+func (i ContainerStartupProbeArgs) ToContainerStartupProbeOutput() ContainerStartupProbeOutput {
+	return i.ToContainerStartupProbeOutputWithContext(context.Background())
+}
+
+func (i ContainerStartupProbeArgs) ToContainerStartupProbeOutputWithContext(ctx context.Context) ContainerStartupProbeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbeOutput)
+}
+
+func (i ContainerStartupProbeArgs) ToContainerStartupProbePtrOutput() ContainerStartupProbePtrOutput {
+	return i.ToContainerStartupProbePtrOutputWithContext(context.Background())
+}
+
+func (i ContainerStartupProbeArgs) ToContainerStartupProbePtrOutputWithContext(ctx context.Context) ContainerStartupProbePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbeOutput).ToContainerStartupProbePtrOutputWithContext(ctx)
+}
+
+// ContainerStartupProbePtrInput is an input type that accepts ContainerStartupProbeArgs, ContainerStartupProbePtr and ContainerStartupProbePtrOutput values.
+// You can construct a concrete instance of `ContainerStartupProbePtrInput` via:
+//
+//	        ContainerStartupProbeArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerStartupProbePtrInput interface {
+	pulumi.Input
+
+	ToContainerStartupProbePtrOutput() ContainerStartupProbePtrOutput
+	ToContainerStartupProbePtrOutputWithContext(context.Context) ContainerStartupProbePtrOutput
+}
+
+type containerStartupProbePtrType ContainerStartupProbeArgs
+
+func ContainerStartupProbePtr(v *ContainerStartupProbeArgs) ContainerStartupProbePtrInput {
+	return (*containerStartupProbePtrType)(v)
+}
+
+func (*containerStartupProbePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerStartupProbe)(nil)).Elem()
+}
+
+func (i *containerStartupProbePtrType) ToContainerStartupProbePtrOutput() ContainerStartupProbePtrOutput {
+	return i.ToContainerStartupProbePtrOutputWithContext(context.Background())
+}
+
+func (i *containerStartupProbePtrType) ToContainerStartupProbePtrOutputWithContext(ctx context.Context) ContainerStartupProbePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbePtrOutput)
+}
+
+type ContainerStartupProbeOutput struct{ *pulumi.OutputState }
+
+func (ContainerStartupProbeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerStartupProbe)(nil)).Elem()
+}
+
+func (o ContainerStartupProbeOutput) ToContainerStartupProbeOutput() ContainerStartupProbeOutput {
+	return o
+}
+
+func (o ContainerStartupProbeOutput) ToContainerStartupProbeOutputWithContext(ctx context.Context) ContainerStartupProbeOutput {
+	return o
+}
+
+func (o ContainerStartupProbeOutput) ToContainerStartupProbePtrOutput() ContainerStartupProbePtrOutput {
+	return o.ToContainerStartupProbePtrOutputWithContext(context.Background())
+}
+
+func (o ContainerStartupProbeOutput) ToContainerStartupProbePtrOutputWithContext(ctx context.Context) ContainerStartupProbePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerStartupProbe) *ContainerStartupProbe {
+		return &v
+	}).(ContainerStartupProbePtrOutput)
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o ContainerStartupProbeOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v ContainerStartupProbe) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o ContainerStartupProbeOutput) Http() ContainerStartupProbeHttpPtrOutput {
+	return o.ApplyT(func(v ContainerStartupProbe) *ContainerStartupProbeHttp { return v.Http }).(ContainerStartupProbeHttpPtrOutput)
+}
+
+// Time interval between checks (in duration notation).
+func (o ContainerStartupProbeOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// Perform TCP check on the container
+func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o ContainerStartupProbeOutput) Timeout() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Timeout }).(pulumi.StringOutput)
+}
+
+type ContainerStartupProbePtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerStartupProbePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerStartupProbe)(nil)).Elem()
+}
+
+func (o ContainerStartupProbePtrOutput) ToContainerStartupProbePtrOutput() ContainerStartupProbePtrOutput {
+	return o
+}
+
+func (o ContainerStartupProbePtrOutput) ToContainerStartupProbePtrOutputWithContext(ctx context.Context) ContainerStartupProbePtrOutput {
+	return o
+}
+
+func (o ContainerStartupProbePtrOutput) Elem() ContainerStartupProbeOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) ContainerStartupProbe {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerStartupProbe
+		return ret
+	}).(ContainerStartupProbeOutput)
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o ContainerStartupProbePtrOutput) FailureThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FailureThreshold
+	}).(pulumi.IntPtrOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o ContainerStartupProbePtrOutput) Http() ContainerStartupProbeHttpPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) *ContainerStartupProbeHttp {
+		if v == nil {
+			return nil
+		}
+		return v.Http
+	}).(ContainerStartupProbeHttpPtrOutput)
+}
+
+// Time interval between checks (in duration notation).
+func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Perform TCP check on the container
+func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Tcp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o ContainerStartupProbePtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbe) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContainerStartupProbeHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// ContainerStartupProbeHttpInput is an input type that accepts ContainerStartupProbeHttpArgs and ContainerStartupProbeHttpOutput values.
+// You can construct a concrete instance of `ContainerStartupProbeHttpInput` via:
+//
+//	ContainerStartupProbeHttpArgs{...}
+type ContainerStartupProbeHttpInput interface {
+	pulumi.Input
+
+	ToContainerStartupProbeHttpOutput() ContainerStartupProbeHttpOutput
+	ToContainerStartupProbeHttpOutputWithContext(context.Context) ContainerStartupProbeHttpOutput
+}
+
+type ContainerStartupProbeHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (ContainerStartupProbeHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (i ContainerStartupProbeHttpArgs) ToContainerStartupProbeHttpOutput() ContainerStartupProbeHttpOutput {
+	return i.ToContainerStartupProbeHttpOutputWithContext(context.Background())
+}
+
+func (i ContainerStartupProbeHttpArgs) ToContainerStartupProbeHttpOutputWithContext(ctx context.Context) ContainerStartupProbeHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbeHttpOutput)
+}
+
+func (i ContainerStartupProbeHttpArgs) ToContainerStartupProbeHttpPtrOutput() ContainerStartupProbeHttpPtrOutput {
+	return i.ToContainerStartupProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerStartupProbeHttpArgs) ToContainerStartupProbeHttpPtrOutputWithContext(ctx context.Context) ContainerStartupProbeHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbeHttpOutput).ToContainerStartupProbeHttpPtrOutputWithContext(ctx)
+}
+
+// ContainerStartupProbeHttpPtrInput is an input type that accepts ContainerStartupProbeHttpArgs, ContainerStartupProbeHttpPtr and ContainerStartupProbeHttpPtrOutput values.
+// You can construct a concrete instance of `ContainerStartupProbeHttpPtrInput` via:
+//
+//	        ContainerStartupProbeHttpArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerStartupProbeHttpPtrInput interface {
+	pulumi.Input
+
+	ToContainerStartupProbeHttpPtrOutput() ContainerStartupProbeHttpPtrOutput
+	ToContainerStartupProbeHttpPtrOutputWithContext(context.Context) ContainerStartupProbeHttpPtrOutput
+}
+
+type containerStartupProbeHttpPtrType ContainerStartupProbeHttpArgs
+
+func ContainerStartupProbeHttpPtr(v *ContainerStartupProbeHttpArgs) ContainerStartupProbeHttpPtrInput {
+	return (*containerStartupProbeHttpPtrType)(v)
+}
+
+func (*containerStartupProbeHttpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (i *containerStartupProbeHttpPtrType) ToContainerStartupProbeHttpPtrOutput() ContainerStartupProbeHttpPtrOutput {
+	return i.ToContainerStartupProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (i *containerStartupProbeHttpPtrType) ToContainerStartupProbeHttpPtrOutputWithContext(ctx context.Context) ContainerStartupProbeHttpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerStartupProbeHttpPtrOutput)
+}
+
+type ContainerStartupProbeHttpOutput struct{ *pulumi.OutputState }
+
+func (ContainerStartupProbeHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (o ContainerStartupProbeHttpOutput) ToContainerStartupProbeHttpOutput() ContainerStartupProbeHttpOutput {
+	return o
+}
+
+func (o ContainerStartupProbeHttpOutput) ToContainerStartupProbeHttpOutputWithContext(ctx context.Context) ContainerStartupProbeHttpOutput {
+	return o
+}
+
+func (o ContainerStartupProbeHttpOutput) ToContainerStartupProbeHttpPtrOutput() ContainerStartupProbeHttpPtrOutput {
+	return o.ToContainerStartupProbeHttpPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerStartupProbeHttpOutput) ToContainerStartupProbeHttpPtrOutputWithContext(ctx context.Context) ContainerStartupProbeHttpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerStartupProbeHttp) *ContainerStartupProbeHttp {
+		return &v
+	}).(ContainerStartupProbeHttpPtrOutput)
+}
+
+// Path to use for the HTTP health check.
+func (o ContainerStartupProbeHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerStartupProbeHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type ContainerStartupProbeHttpPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerStartupProbeHttpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (o ContainerStartupProbeHttpPtrOutput) ToContainerStartupProbeHttpPtrOutput() ContainerStartupProbeHttpPtrOutput {
+	return o
+}
+
+func (o ContainerStartupProbeHttpPtrOutput) ToContainerStartupProbeHttpPtrOutputWithContext(ctx context.Context) ContainerStartupProbeHttpPtrOutput {
+	return o
+}
+
+func (o ContainerStartupProbeHttpPtrOutput) Elem() ContainerStartupProbeHttpOutput {
+	return o.ApplyT(func(v *ContainerStartupProbeHttp) ContainerStartupProbeHttp {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerStartupProbeHttp
+		return ret
+	}).(ContainerStartupProbeHttpOutput)
+}
+
+// Path to use for the HTTP health check.
+func (o ContainerStartupProbeHttpPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerStartupProbeHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContainerTriggerCron struct {
+	// Body to send to the container when the trigger is invoked.
+	Body *string `pulumi:"body"`
+	// Additional headers to send to the container when the trigger is invoked.
+	Headers map[string]string `pulumi:"headers"`
+	// UNIX cron schedule to run job (e.g., "* * * * *").
+	Schedule string `pulumi:"schedule"`
+	// Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+	Timezone string `pulumi:"timezone"`
+}
+
+// ContainerTriggerCronInput is an input type that accepts ContainerTriggerCronArgs and ContainerTriggerCronOutput values.
+// You can construct a concrete instance of `ContainerTriggerCronInput` via:
+//
+//	ContainerTriggerCronArgs{...}
+type ContainerTriggerCronInput interface {
+	pulumi.Input
+
+	ToContainerTriggerCronOutput() ContainerTriggerCronOutput
+	ToContainerTriggerCronOutputWithContext(context.Context) ContainerTriggerCronOutput
+}
+
+type ContainerTriggerCronArgs struct {
+	// Body to send to the container when the trigger is invoked.
+	Body pulumi.StringPtrInput `pulumi:"body"`
+	// Additional headers to send to the container when the trigger is invoked.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// UNIX cron schedule to run job (e.g., "* * * * *").
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+}
+
+func (ContainerTriggerCronArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerCron)(nil)).Elem()
+}
+
+func (i ContainerTriggerCronArgs) ToContainerTriggerCronOutput() ContainerTriggerCronOutput {
+	return i.ToContainerTriggerCronOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerCronArgs) ToContainerTriggerCronOutputWithContext(ctx context.Context) ContainerTriggerCronOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerCronOutput)
+}
+
+func (i ContainerTriggerCronArgs) ToContainerTriggerCronPtrOutput() ContainerTriggerCronPtrOutput {
+	return i.ToContainerTriggerCronPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerCronArgs) ToContainerTriggerCronPtrOutputWithContext(ctx context.Context) ContainerTriggerCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerCronOutput).ToContainerTriggerCronPtrOutputWithContext(ctx)
+}
+
+// ContainerTriggerCronPtrInput is an input type that accepts ContainerTriggerCronArgs, ContainerTriggerCronPtr and ContainerTriggerCronPtrOutput values.
+// You can construct a concrete instance of `ContainerTriggerCronPtrInput` via:
+//
+//	        ContainerTriggerCronArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerTriggerCronPtrInput interface {
+	pulumi.Input
+
+	ToContainerTriggerCronPtrOutput() ContainerTriggerCronPtrOutput
+	ToContainerTriggerCronPtrOutputWithContext(context.Context) ContainerTriggerCronPtrOutput
+}
+
+type containerTriggerCronPtrType ContainerTriggerCronArgs
+
+func ContainerTriggerCronPtr(v *ContainerTriggerCronArgs) ContainerTriggerCronPtrInput {
+	return (*containerTriggerCronPtrType)(v)
+}
+
+func (*containerTriggerCronPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerCron)(nil)).Elem()
+}
+
+func (i *containerTriggerCronPtrType) ToContainerTriggerCronPtrOutput() ContainerTriggerCronPtrOutput {
+	return i.ToContainerTriggerCronPtrOutputWithContext(context.Background())
+}
+
+func (i *containerTriggerCronPtrType) ToContainerTriggerCronPtrOutputWithContext(ctx context.Context) ContainerTriggerCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerCronPtrOutput)
+}
+
+type ContainerTriggerCronOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerCronOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerCron)(nil)).Elem()
+}
+
+func (o ContainerTriggerCronOutput) ToContainerTriggerCronOutput() ContainerTriggerCronOutput {
+	return o
+}
+
+func (o ContainerTriggerCronOutput) ToContainerTriggerCronOutputWithContext(ctx context.Context) ContainerTriggerCronOutput {
+	return o
+}
+
+func (o ContainerTriggerCronOutput) ToContainerTriggerCronPtrOutput() ContainerTriggerCronPtrOutput {
+	return o.ToContainerTriggerCronPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerTriggerCronOutput) ToContainerTriggerCronPtrOutputWithContext(ctx context.Context) ContainerTriggerCronPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerTriggerCron) *ContainerTriggerCron {
+		return &v
+	}).(ContainerTriggerCronPtrOutput)
+}
+
+// Body to send to the container when the trigger is invoked.
+func (o ContainerTriggerCronOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerCron) *string { return v.Body }).(pulumi.StringPtrOutput)
+}
+
+// Additional headers to send to the container when the trigger is invoked.
+func (o ContainerTriggerCronOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ContainerTriggerCron) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// UNIX cron schedule to run job (e.g., "* * * * *").
+func (o ContainerTriggerCronOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerCron) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+func (o ContainerTriggerCronOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerCron) string { return v.Timezone }).(pulumi.StringOutput)
+}
+
+type ContainerTriggerCronPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerCronPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerCron)(nil)).Elem()
+}
+
+func (o ContainerTriggerCronPtrOutput) ToContainerTriggerCronPtrOutput() ContainerTriggerCronPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerCronPtrOutput) ToContainerTriggerCronPtrOutputWithContext(ctx context.Context) ContainerTriggerCronPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerCronPtrOutput) Elem() ContainerTriggerCronOutput {
+	return o.ApplyT(func(v *ContainerTriggerCron) ContainerTriggerCron {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerTriggerCron
+		return ret
+	}).(ContainerTriggerCronOutput)
+}
+
+// Body to send to the container when the trigger is invoked.
+func (o ContainerTriggerCronPtrOutput) Body() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerCron) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Body
+	}).(pulumi.StringPtrOutput)
+}
+
+// Additional headers to send to the container when the trigger is invoked.
+func (o ContainerTriggerCronPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ContainerTriggerCron) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+// UNIX cron schedule to run job (e.g., "* * * * *").
+func (o ContainerTriggerCronPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timezone for the cron schedule, in tz database format (e.g., "Europe/Paris").
+func (o ContainerTriggerCronPtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContainerTriggerDestinationConfig struct {
+	// The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+	HttpMethod string `pulumi:"httpMethod"`
+	// The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+	HttpPath string `pulumi:"httpPath"`
+}
+
+// ContainerTriggerDestinationConfigInput is an input type that accepts ContainerTriggerDestinationConfigArgs and ContainerTriggerDestinationConfigOutput values.
+// You can construct a concrete instance of `ContainerTriggerDestinationConfigInput` via:
+//
+//	ContainerTriggerDestinationConfigArgs{...}
+type ContainerTriggerDestinationConfigInput interface {
+	pulumi.Input
+
+	ToContainerTriggerDestinationConfigOutput() ContainerTriggerDestinationConfigOutput
+	ToContainerTriggerDestinationConfigOutputWithContext(context.Context) ContainerTriggerDestinationConfigOutput
+}
+
+type ContainerTriggerDestinationConfigArgs struct {
+	// The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+	HttpMethod pulumi.StringInput `pulumi:"httpMethod"`
+	// The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+	HttpPath pulumi.StringInput `pulumi:"httpPath"`
+}
+
+func (ContainerTriggerDestinationConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerDestinationConfig)(nil)).Elem()
+}
+
+func (i ContainerTriggerDestinationConfigArgs) ToContainerTriggerDestinationConfigOutput() ContainerTriggerDestinationConfigOutput {
+	return i.ToContainerTriggerDestinationConfigOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerDestinationConfigArgs) ToContainerTriggerDestinationConfigOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerDestinationConfigOutput)
+}
+
+func (i ContainerTriggerDestinationConfigArgs) ToContainerTriggerDestinationConfigPtrOutput() ContainerTriggerDestinationConfigPtrOutput {
+	return i.ToContainerTriggerDestinationConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerDestinationConfigArgs) ToContainerTriggerDestinationConfigPtrOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerDestinationConfigOutput).ToContainerTriggerDestinationConfigPtrOutputWithContext(ctx)
+}
+
+// ContainerTriggerDestinationConfigPtrInput is an input type that accepts ContainerTriggerDestinationConfigArgs, ContainerTriggerDestinationConfigPtr and ContainerTriggerDestinationConfigPtrOutput values.
+// You can construct a concrete instance of `ContainerTriggerDestinationConfigPtrInput` via:
+//
+//	        ContainerTriggerDestinationConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerTriggerDestinationConfigPtrInput interface {
+	pulumi.Input
+
+	ToContainerTriggerDestinationConfigPtrOutput() ContainerTriggerDestinationConfigPtrOutput
+	ToContainerTriggerDestinationConfigPtrOutputWithContext(context.Context) ContainerTriggerDestinationConfigPtrOutput
+}
+
+type containerTriggerDestinationConfigPtrType ContainerTriggerDestinationConfigArgs
+
+func ContainerTriggerDestinationConfigPtr(v *ContainerTriggerDestinationConfigArgs) ContainerTriggerDestinationConfigPtrInput {
+	return (*containerTriggerDestinationConfigPtrType)(v)
+}
+
+func (*containerTriggerDestinationConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerDestinationConfig)(nil)).Elem()
+}
+
+func (i *containerTriggerDestinationConfigPtrType) ToContainerTriggerDestinationConfigPtrOutput() ContainerTriggerDestinationConfigPtrOutput {
+	return i.ToContainerTriggerDestinationConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *containerTriggerDestinationConfigPtrType) ToContainerTriggerDestinationConfigPtrOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerDestinationConfigPtrOutput)
+}
+
+type ContainerTriggerDestinationConfigOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerDestinationConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerDestinationConfig)(nil)).Elem()
+}
+
+func (o ContainerTriggerDestinationConfigOutput) ToContainerTriggerDestinationConfigOutput() ContainerTriggerDestinationConfigOutput {
+	return o
+}
+
+func (o ContainerTriggerDestinationConfigOutput) ToContainerTriggerDestinationConfigOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigOutput {
+	return o
+}
+
+func (o ContainerTriggerDestinationConfigOutput) ToContainerTriggerDestinationConfigPtrOutput() ContainerTriggerDestinationConfigPtrOutput {
+	return o.ToContainerTriggerDestinationConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerTriggerDestinationConfigOutput) ToContainerTriggerDestinationConfigPtrOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerTriggerDestinationConfig) *ContainerTriggerDestinationConfig {
+		return &v
+	}).(ContainerTriggerDestinationConfigPtrOutput)
+}
+
+// The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+func (o ContainerTriggerDestinationConfigOutput) HttpMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerDestinationConfig) string { return v.HttpMethod }).(pulumi.StringOutput)
+}
+
+// The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+func (o ContainerTriggerDestinationConfigOutput) HttpPath() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerDestinationConfig) string { return v.HttpPath }).(pulumi.StringOutput)
+}
+
+type ContainerTriggerDestinationConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerDestinationConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerDestinationConfig)(nil)).Elem()
+}
+
+func (o ContainerTriggerDestinationConfigPtrOutput) ToContainerTriggerDestinationConfigPtrOutput() ContainerTriggerDestinationConfigPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerDestinationConfigPtrOutput) ToContainerTriggerDestinationConfigPtrOutputWithContext(ctx context.Context) ContainerTriggerDestinationConfigPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerDestinationConfigPtrOutput) Elem() ContainerTriggerDestinationConfigOutput {
+	return o.ApplyT(func(v *ContainerTriggerDestinationConfig) ContainerTriggerDestinationConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerTriggerDestinationConfig
+		return ret
+	}).(ContainerTriggerDestinationConfigOutput)
+}
+
+// The HTTP method to use when sending the request (e.g., get, post, put, patch, delete).
+func (o ContainerTriggerDestinationConfigPtrOutput) HttpMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerDestinationConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.HttpMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// The HTTP path to send the request to (e.g., "/my-webhook-endpoint").
+func (o ContainerTriggerDestinationConfigPtrOutput) HttpPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerDestinationConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.HttpPath
+	}).(pulumi.StringPtrOutput)
+}
+
 type ContainerTriggerNats struct {
-	// unique identifier of the Messaging and Queuing NATS account.
+	// unique identifier of the Messaging and Queuing NATS account  .
 	AccountId *string `pulumi:"accountId"`
-	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+	CredentialsFileContent string `pulumi:"credentialsFileContent"`
+	// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
 	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
-	// The subject to listen to.
+	// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+	ServerUrls []string `pulumi:"serverUrls"`
+	// NATS subject to subscribe to (e.g., \"my-subject\")."
 	Subject string `pulumi:"subject"`
 }
 
@@ -2292,13 +3355,17 @@ type ContainerTriggerNatsInput interface {
 }
 
 type ContainerTriggerNatsArgs struct {
-	// unique identifier of the Messaging and Queuing NATS account.
+	// unique identifier of the Messaging and Queuing NATS account  .
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
-	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+	CredentialsFileContent pulumi.StringInput `pulumi:"credentialsFileContent"`
+	// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The subject to listen to.
+	// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+	ServerUrls pulumi.StringArrayInput `pulumi:"serverUrls"`
+	// NATS subject to subscribe to (e.g., \"my-subject\")."
 	Subject pulumi.StringInput `pulumi:"subject"`
 }
 
@@ -2379,12 +3446,17 @@ func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(c
 	}).(ContainerTriggerNatsPtrOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account.
+// unique identifier of the Messaging and Queuing NATS account  .
 func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
-// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+func (o ContainerTriggerNatsOutput) CredentialsFileContent() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) string { return v.CredentialsFileContent }).(pulumi.StringOutput)
+}
+
+// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -2394,7 +3466,12 @@ func (o ContainerTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to.
+// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+func (o ContainerTriggerNatsOutput) ServerUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) []string { return v.ServerUrls }).(pulumi.StringArrayOutput)
+}
+
+// NATS subject to subscribe to (e.g., \"my-subject\")."
 func (o ContainerTriggerNatsOutput) Subject() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
 }
@@ -2423,7 +3500,7 @@ func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
 	}).(ContainerTriggerNatsOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account.
+// unique identifier of the Messaging and Queuing NATS account  .
 func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -2433,7 +3510,17 @@ func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
+// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
+func (o ContainerTriggerNatsPtrOutput) CredentialsFileContent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CredentialsFileContent
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -2453,7 +3540,17 @@ func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to.
+// The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
+func (o ContainerTriggerNatsPtrOutput) ServerUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ServerUrls
+	}).(pulumi.StringArrayOutput)
+}
+
+// NATS subject to subscribe to (e.g., \"my-subject\")."
 func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -2464,16 +3561,22 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 }
 
 type ContainerTriggerSqs struct {
-	// ID of the Messaging and Queuing namespace. This argument is deprecated.
-	//
-	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
-	NamespaceId *string `pulumi:"namespaceId"`
+	// The access key for accessing the SQS queue.
+	AccessKey string `pulumi:"accessKey"`
+	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	Endpoint string `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// The name of the SQS queue.
-	Queue string `pulumi:"queue"`
+	// The name of the SQS queue.  This argument is no longer supported.
+	//
+	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
+	Queue *string `pulumi:"queue"`
+	// The URL of the SQS queue to monitor for messages.
+	QueueUrl string `pulumi:"queueUrl"`
 	// Region where SQS is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
+	// The secret key for accessing the SQS queue.
+	SecretKey string `pulumi:"secretKey"`
 }
 
 // ContainerTriggerSqsInput is an input type that accepts ContainerTriggerSqsArgs and ContainerTriggerSqsOutput values.
@@ -2488,16 +3591,22 @@ type ContainerTriggerSqsInput interface {
 }
 
 type ContainerTriggerSqsArgs struct {
-	// ID of the Messaging and Queuing namespace. This argument is deprecated.
-	//
-	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
-	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
+	// The access key for accessing the SQS queue.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The name of the SQS queue.
-	Queue pulumi.StringInput `pulumi:"queue"`
+	// The name of the SQS queue.  This argument is no longer supported.
+	//
+	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
+	Queue pulumi.StringPtrInput `pulumi:"queue"`
+	// The URL of the SQS queue to monitor for messages.
+	QueueUrl pulumi.StringInput `pulumi:"queueUrl"`
 	// Region where SQS is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The secret key for accessing the SQS queue.
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 }
 
 func (ContainerTriggerSqsArgs) ElementType() reflect.Type {
@@ -2577,11 +3686,14 @@ func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx
 	}).(ContainerTriggerSqsPtrOutput)
 }
 
-// ID of the Messaging and Queuing namespace. This argument is deprecated.
-//
-// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
-func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
+// The access key for accessing the SQS queue.
+func (o ContainerTriggerSqsOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+func (o ContainerTriggerSqsOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Endpoint }).(pulumi.StringOutput)
 }
 
 // The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
@@ -2589,14 +3701,26 @@ func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.
-func (o ContainerTriggerSqsOutput) Queue() pulumi.StringOutput {
-	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
+// The name of the SQS queue.  This argument is no longer supported.
+//
+// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
+func (o ContainerTriggerSqsOutput) Queue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Queue }).(pulumi.StringPtrOutput)
+}
+
+// The URL of the SQS queue to monitor for messages.
+func (o ContainerTriggerSqsOutput) QueueUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.QueueUrl }).(pulumi.StringOutput)
 }
 
 // Region where SQS is enabled (defaults to provider `region`)
 func (o ContainerTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The secret key for accessing the SQS queue.
+func (o ContainerTriggerSqsOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
 type ContainerTriggerSqsPtrOutput struct{ *pulumi.OutputState }
@@ -2623,15 +3747,23 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 	}).(ContainerTriggerSqsOutput)
 }
 
-// ID of the Messaging and Queuing namespace. This argument is deprecated.
-//
-// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
-func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
+// The access key for accessing the SQS queue.
+func (o ContainerTriggerSqsPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
 			return nil
 		}
-		return v.NamespaceId
+		return &v.AccessKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+func (o ContainerTriggerSqsPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Endpoint
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2645,13 +3777,25 @@ func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.
+// The name of the SQS queue.  This argument is no longer supported.
+//
+// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Queue
+		return v.Queue
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL of the SQS queue to monitor for messages.
+func (o ContainerTriggerSqsPtrOutput) QueueUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.QueueUrl
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2662,6 +3806,16 @@ func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// The secret key for accessing the SQS queue.
+func (o ContainerTriggerSqsPtrOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SecretKey
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -21542,12 +22696,14 @@ func (o GetCockpitPushUrlArrayOutput) Index(i pulumi.IntInput) GetCockpitPushUrl
 }
 
 type GetContainerHealthCheck struct {
-	// Number of consecutive health check failures before considering the container unhealthy.
+	// Number of consecutive failures before considering the container has to be restarted.
 	FailureThreshold int `pulumi:"failureThreshold"`
-	// HTTP health check configuration.
+	// Perform HTTP check on the container with the specified path.
 	Https []GetContainerHealthCheckHttp `pulumi:"https"`
-	// Period between health checks (in seconds).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval string `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp bool `pulumi:"tcp"`
 }
 
 // GetContainerHealthCheckInput is an input type that accepts GetContainerHealthCheckArgs and GetContainerHealthCheckOutput values.
@@ -21562,12 +22718,14 @@ type GetContainerHealthCheckInput interface {
 }
 
 type GetContainerHealthCheckArgs struct {
-	// Number of consecutive health check failures before considering the container unhealthy.
+	// Number of consecutive failures before considering the container has to be restarted.
 	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
-	// HTTP health check configuration.
+	// Perform HTTP check on the container with the specified path.
 	Https GetContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Period between health checks (in seconds).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval pulumi.StringInput `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp pulumi.BoolInput `pulumi:"tcp"`
 }
 
 func (GetContainerHealthCheckArgs) ElementType() reflect.Type {
@@ -21621,19 +22779,24 @@ func (o GetContainerHealthCheckOutput) ToGetContainerHealthCheckOutputWithContex
 	return o
 }
 
-// Number of consecutive health check failures before considering the container unhealthy.
+// Number of consecutive failures before considering the container has to be restarted.
 func (o GetContainerHealthCheckOutput) FailureThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetContainerHealthCheck) int { return v.FailureThreshold }).(pulumi.IntOutput)
 }
 
-// HTTP health check configuration.
+// Perform HTTP check on the container with the specified path.
 func (o GetContainerHealthCheckOutput) Https() GetContainerHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v GetContainerHealthCheck) []GetContainerHealthCheckHttp { return v.Https }).(GetContainerHealthCheckHttpArrayOutput)
 }
 
-// Period between health checks (in seconds).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o GetContainerHealthCheckOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContainerHealthCheck) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o GetContainerHealthCheckOutput) Tcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetContainerHealthCheck) bool { return v.Tcp }).(pulumi.BoolOutput)
 }
 
 type GetContainerHealthCheckArrayOutput struct{ *pulumi.OutputState }
@@ -21753,6 +22916,236 @@ func (o GetContainerHealthCheckHttpArrayOutput) Index(i pulumi.IntInput) GetCont
 	}).(GetContainerHealthCheckHttpOutput)
 }
 
+type GetContainerLivenessProbe struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Https []GetContainerLivenessProbeHttp `pulumi:"https"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval string `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp bool `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout string `pulumi:"timeout"`
+}
+
+// GetContainerLivenessProbeInput is an input type that accepts GetContainerLivenessProbeArgs and GetContainerLivenessProbeOutput values.
+// You can construct a concrete instance of `GetContainerLivenessProbeInput` via:
+//
+//	GetContainerLivenessProbeArgs{...}
+type GetContainerLivenessProbeInput interface {
+	pulumi.Input
+
+	ToGetContainerLivenessProbeOutput() GetContainerLivenessProbeOutput
+	ToGetContainerLivenessProbeOutputWithContext(context.Context) GetContainerLivenessProbeOutput
+}
+
+type GetContainerLivenessProbeArgs struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Https GetContainerLivenessProbeHttpArrayInput `pulumi:"https"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval pulumi.StringInput `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp pulumi.BoolInput `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout pulumi.StringInput `pulumi:"timeout"`
+}
+
+func (GetContainerLivenessProbeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerLivenessProbe)(nil)).Elem()
+}
+
+func (i GetContainerLivenessProbeArgs) ToGetContainerLivenessProbeOutput() GetContainerLivenessProbeOutput {
+	return i.ToGetContainerLivenessProbeOutputWithContext(context.Background())
+}
+
+func (i GetContainerLivenessProbeArgs) ToGetContainerLivenessProbeOutputWithContext(ctx context.Context) GetContainerLivenessProbeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerLivenessProbeOutput)
+}
+
+// GetContainerLivenessProbeArrayInput is an input type that accepts GetContainerLivenessProbeArray and GetContainerLivenessProbeArrayOutput values.
+// You can construct a concrete instance of `GetContainerLivenessProbeArrayInput` via:
+//
+//	GetContainerLivenessProbeArray{ GetContainerLivenessProbeArgs{...} }
+type GetContainerLivenessProbeArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerLivenessProbeArrayOutput() GetContainerLivenessProbeArrayOutput
+	ToGetContainerLivenessProbeArrayOutputWithContext(context.Context) GetContainerLivenessProbeArrayOutput
+}
+
+type GetContainerLivenessProbeArray []GetContainerLivenessProbeInput
+
+func (GetContainerLivenessProbeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerLivenessProbe)(nil)).Elem()
+}
+
+func (i GetContainerLivenessProbeArray) ToGetContainerLivenessProbeArrayOutput() GetContainerLivenessProbeArrayOutput {
+	return i.ToGetContainerLivenessProbeArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerLivenessProbeArray) ToGetContainerLivenessProbeArrayOutputWithContext(ctx context.Context) GetContainerLivenessProbeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerLivenessProbeArrayOutput)
+}
+
+type GetContainerLivenessProbeOutput struct{ *pulumi.OutputState }
+
+func (GetContainerLivenessProbeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerLivenessProbe)(nil)).Elem()
+}
+
+func (o GetContainerLivenessProbeOutput) ToGetContainerLivenessProbeOutput() GetContainerLivenessProbeOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeOutput) ToGetContainerLivenessProbeOutputWithContext(ctx context.Context) GetContainerLivenessProbeOutput {
+	return o
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o GetContainerLivenessProbeOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbe) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o GetContainerLivenessProbeOutput) Https() GetContainerLivenessProbeHttpArrayOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbe) []GetContainerLivenessProbeHttp { return v.Https }).(GetContainerLivenessProbeHttpArrayOutput)
+}
+
+// Time interval between checks (in duration notation, e.g. "30s").
+func (o GetContainerLivenessProbeOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbe) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o GetContainerLivenessProbeOutput) Tcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbe) bool { return v.Tcp }).(pulumi.BoolOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o GetContainerLivenessProbeOutput) Timeout() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbe) string { return v.Timeout }).(pulumi.StringOutput)
+}
+
+type GetContainerLivenessProbeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerLivenessProbeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerLivenessProbe)(nil)).Elem()
+}
+
+func (o GetContainerLivenessProbeArrayOutput) ToGetContainerLivenessProbeArrayOutput() GetContainerLivenessProbeArrayOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeArrayOutput) ToGetContainerLivenessProbeArrayOutputWithContext(ctx context.Context) GetContainerLivenessProbeArrayOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeArrayOutput) Index(i pulumi.IntInput) GetContainerLivenessProbeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerLivenessProbe {
+		return vs[0].([]GetContainerLivenessProbe)[vs[1].(int)]
+	}).(GetContainerLivenessProbeOutput)
+}
+
+type GetContainerLivenessProbeHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// GetContainerLivenessProbeHttpInput is an input type that accepts GetContainerLivenessProbeHttpArgs and GetContainerLivenessProbeHttpOutput values.
+// You can construct a concrete instance of `GetContainerLivenessProbeHttpInput` via:
+//
+//	GetContainerLivenessProbeHttpArgs{...}
+type GetContainerLivenessProbeHttpInput interface {
+	pulumi.Input
+
+	ToGetContainerLivenessProbeHttpOutput() GetContainerLivenessProbeHttpOutput
+	ToGetContainerLivenessProbeHttpOutputWithContext(context.Context) GetContainerLivenessProbeHttpOutput
+}
+
+type GetContainerLivenessProbeHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (GetContainerLivenessProbeHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (i GetContainerLivenessProbeHttpArgs) ToGetContainerLivenessProbeHttpOutput() GetContainerLivenessProbeHttpOutput {
+	return i.ToGetContainerLivenessProbeHttpOutputWithContext(context.Background())
+}
+
+func (i GetContainerLivenessProbeHttpArgs) ToGetContainerLivenessProbeHttpOutputWithContext(ctx context.Context) GetContainerLivenessProbeHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerLivenessProbeHttpOutput)
+}
+
+// GetContainerLivenessProbeHttpArrayInput is an input type that accepts GetContainerLivenessProbeHttpArray and GetContainerLivenessProbeHttpArrayOutput values.
+// You can construct a concrete instance of `GetContainerLivenessProbeHttpArrayInput` via:
+//
+//	GetContainerLivenessProbeHttpArray{ GetContainerLivenessProbeHttpArgs{...} }
+type GetContainerLivenessProbeHttpArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerLivenessProbeHttpArrayOutput() GetContainerLivenessProbeHttpArrayOutput
+	ToGetContainerLivenessProbeHttpArrayOutputWithContext(context.Context) GetContainerLivenessProbeHttpArrayOutput
+}
+
+type GetContainerLivenessProbeHttpArray []GetContainerLivenessProbeHttpInput
+
+func (GetContainerLivenessProbeHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (i GetContainerLivenessProbeHttpArray) ToGetContainerLivenessProbeHttpArrayOutput() GetContainerLivenessProbeHttpArrayOutput {
+	return i.ToGetContainerLivenessProbeHttpArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerLivenessProbeHttpArray) ToGetContainerLivenessProbeHttpArrayOutputWithContext(ctx context.Context) GetContainerLivenessProbeHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerLivenessProbeHttpArrayOutput)
+}
+
+type GetContainerLivenessProbeHttpOutput struct{ *pulumi.OutputState }
+
+func (GetContainerLivenessProbeHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (o GetContainerLivenessProbeHttpOutput) ToGetContainerLivenessProbeHttpOutput() GetContainerLivenessProbeHttpOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeHttpOutput) ToGetContainerLivenessProbeHttpOutputWithContext(ctx context.Context) GetContainerLivenessProbeHttpOutput {
+	return o
+}
+
+// Path to use for the HTTP health check.
+func (o GetContainerLivenessProbeHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerLivenessProbeHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type GetContainerLivenessProbeHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerLivenessProbeHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerLivenessProbeHttp)(nil)).Elem()
+}
+
+func (o GetContainerLivenessProbeHttpArrayOutput) ToGetContainerLivenessProbeHttpArrayOutput() GetContainerLivenessProbeHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeHttpArrayOutput) ToGetContainerLivenessProbeHttpArrayOutputWithContext(ctx context.Context) GetContainerLivenessProbeHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerLivenessProbeHttpArrayOutput) Index(i pulumi.IntInput) GetContainerLivenessProbeHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerLivenessProbeHttp {
+		return vs[0].([]GetContainerLivenessProbeHttp)[vs[1].(int)]
+	}).(GetContainerLivenessProbeHttpOutput)
+}
+
 type GetContainerScalingOption struct {
 	// Scale depending on the number of concurrent requests being processed per container instance.
 	ConcurrentRequestsThreshold int `pulumi:"concurrentRequestsThreshold"`
@@ -21866,6 +23259,236 @@ func (o GetContainerScalingOptionArrayOutput) Index(i pulumi.IntInput) GetContai
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerScalingOption {
 		return vs[0].([]GetContainerScalingOption)[vs[1].(int)]
 	}).(GetContainerScalingOptionOutput)
+}
+
+type GetContainerStartupProbe struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold int `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Https []GetContainerStartupProbeHttp `pulumi:"https"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval string `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp bool `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout string `pulumi:"timeout"`
+}
+
+// GetContainerStartupProbeInput is an input type that accepts GetContainerStartupProbeArgs and GetContainerStartupProbeOutput values.
+// You can construct a concrete instance of `GetContainerStartupProbeInput` via:
+//
+//	GetContainerStartupProbeArgs{...}
+type GetContainerStartupProbeInput interface {
+	pulumi.Input
+
+	ToGetContainerStartupProbeOutput() GetContainerStartupProbeOutput
+	ToGetContainerStartupProbeOutputWithContext(context.Context) GetContainerStartupProbeOutput
+}
+
+type GetContainerStartupProbeArgs struct {
+	// Number of consecutive failures before considering the container has to be restarted.
+	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
+	// Perform HTTP check on the container with the specified path.
+	Https GetContainerStartupProbeHttpArrayInput `pulumi:"https"`
+	// Time interval between checks (in duration notation, e.g. "30s").
+	Interval pulumi.StringInput `pulumi:"interval"`
+	// When set to `true`, performs TCP checks on the container.
+	Tcp pulumi.BoolInput `pulumi:"tcp"`
+	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	Timeout pulumi.StringInput `pulumi:"timeout"`
+}
+
+func (GetContainerStartupProbeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerStartupProbe)(nil)).Elem()
+}
+
+func (i GetContainerStartupProbeArgs) ToGetContainerStartupProbeOutput() GetContainerStartupProbeOutput {
+	return i.ToGetContainerStartupProbeOutputWithContext(context.Background())
+}
+
+func (i GetContainerStartupProbeArgs) ToGetContainerStartupProbeOutputWithContext(ctx context.Context) GetContainerStartupProbeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerStartupProbeOutput)
+}
+
+// GetContainerStartupProbeArrayInput is an input type that accepts GetContainerStartupProbeArray and GetContainerStartupProbeArrayOutput values.
+// You can construct a concrete instance of `GetContainerStartupProbeArrayInput` via:
+//
+//	GetContainerStartupProbeArray{ GetContainerStartupProbeArgs{...} }
+type GetContainerStartupProbeArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerStartupProbeArrayOutput() GetContainerStartupProbeArrayOutput
+	ToGetContainerStartupProbeArrayOutputWithContext(context.Context) GetContainerStartupProbeArrayOutput
+}
+
+type GetContainerStartupProbeArray []GetContainerStartupProbeInput
+
+func (GetContainerStartupProbeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerStartupProbe)(nil)).Elem()
+}
+
+func (i GetContainerStartupProbeArray) ToGetContainerStartupProbeArrayOutput() GetContainerStartupProbeArrayOutput {
+	return i.ToGetContainerStartupProbeArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerStartupProbeArray) ToGetContainerStartupProbeArrayOutputWithContext(ctx context.Context) GetContainerStartupProbeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerStartupProbeArrayOutput)
+}
+
+type GetContainerStartupProbeOutput struct{ *pulumi.OutputState }
+
+func (GetContainerStartupProbeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerStartupProbe)(nil)).Elem()
+}
+
+func (o GetContainerStartupProbeOutput) ToGetContainerStartupProbeOutput() GetContainerStartupProbeOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeOutput) ToGetContainerStartupProbeOutputWithContext(ctx context.Context) GetContainerStartupProbeOutput {
+	return o
+}
+
+// Number of consecutive failures before considering the container has to be restarted.
+func (o GetContainerStartupProbeOutput) FailureThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetContainerStartupProbe) int { return v.FailureThreshold }).(pulumi.IntOutput)
+}
+
+// Perform HTTP check on the container with the specified path.
+func (o GetContainerStartupProbeOutput) Https() GetContainerStartupProbeHttpArrayOutput {
+	return o.ApplyT(func(v GetContainerStartupProbe) []GetContainerStartupProbeHttp { return v.Https }).(GetContainerStartupProbeHttpArrayOutput)
+}
+
+// Time interval between checks (in duration notation, e.g. "30s").
+func (o GetContainerStartupProbeOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerStartupProbe) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// When set to `true`, performs TCP checks on the container.
+func (o GetContainerStartupProbeOutput) Tcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetContainerStartupProbe) bool { return v.Tcp }).(pulumi.BoolOutput)
+}
+
+// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+func (o GetContainerStartupProbeOutput) Timeout() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerStartupProbe) string { return v.Timeout }).(pulumi.StringOutput)
+}
+
+type GetContainerStartupProbeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerStartupProbeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerStartupProbe)(nil)).Elem()
+}
+
+func (o GetContainerStartupProbeArrayOutput) ToGetContainerStartupProbeArrayOutput() GetContainerStartupProbeArrayOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeArrayOutput) ToGetContainerStartupProbeArrayOutputWithContext(ctx context.Context) GetContainerStartupProbeArrayOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeArrayOutput) Index(i pulumi.IntInput) GetContainerStartupProbeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerStartupProbe {
+		return vs[0].([]GetContainerStartupProbe)[vs[1].(int)]
+	}).(GetContainerStartupProbeOutput)
+}
+
+type GetContainerStartupProbeHttp struct {
+	// Path to use for the HTTP health check.
+	Path string `pulumi:"path"`
+}
+
+// GetContainerStartupProbeHttpInput is an input type that accepts GetContainerStartupProbeHttpArgs and GetContainerStartupProbeHttpOutput values.
+// You can construct a concrete instance of `GetContainerStartupProbeHttpInput` via:
+//
+//	GetContainerStartupProbeHttpArgs{...}
+type GetContainerStartupProbeHttpInput interface {
+	pulumi.Input
+
+	ToGetContainerStartupProbeHttpOutput() GetContainerStartupProbeHttpOutput
+	ToGetContainerStartupProbeHttpOutputWithContext(context.Context) GetContainerStartupProbeHttpOutput
+}
+
+type GetContainerStartupProbeHttpArgs struct {
+	// Path to use for the HTTP health check.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (GetContainerStartupProbeHttpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (i GetContainerStartupProbeHttpArgs) ToGetContainerStartupProbeHttpOutput() GetContainerStartupProbeHttpOutput {
+	return i.ToGetContainerStartupProbeHttpOutputWithContext(context.Background())
+}
+
+func (i GetContainerStartupProbeHttpArgs) ToGetContainerStartupProbeHttpOutputWithContext(ctx context.Context) GetContainerStartupProbeHttpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerStartupProbeHttpOutput)
+}
+
+// GetContainerStartupProbeHttpArrayInput is an input type that accepts GetContainerStartupProbeHttpArray and GetContainerStartupProbeHttpArrayOutput values.
+// You can construct a concrete instance of `GetContainerStartupProbeHttpArrayInput` via:
+//
+//	GetContainerStartupProbeHttpArray{ GetContainerStartupProbeHttpArgs{...} }
+type GetContainerStartupProbeHttpArrayInput interface {
+	pulumi.Input
+
+	ToGetContainerStartupProbeHttpArrayOutput() GetContainerStartupProbeHttpArrayOutput
+	ToGetContainerStartupProbeHttpArrayOutputWithContext(context.Context) GetContainerStartupProbeHttpArrayOutput
+}
+
+type GetContainerStartupProbeHttpArray []GetContainerStartupProbeHttpInput
+
+func (GetContainerStartupProbeHttpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (i GetContainerStartupProbeHttpArray) ToGetContainerStartupProbeHttpArrayOutput() GetContainerStartupProbeHttpArrayOutput {
+	return i.ToGetContainerStartupProbeHttpArrayOutputWithContext(context.Background())
+}
+
+func (i GetContainerStartupProbeHttpArray) ToGetContainerStartupProbeHttpArrayOutputWithContext(ctx context.Context) GetContainerStartupProbeHttpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetContainerStartupProbeHttpArrayOutput)
+}
+
+type GetContainerStartupProbeHttpOutput struct{ *pulumi.OutputState }
+
+func (GetContainerStartupProbeHttpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (o GetContainerStartupProbeHttpOutput) ToGetContainerStartupProbeHttpOutput() GetContainerStartupProbeHttpOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeHttpOutput) ToGetContainerStartupProbeHttpOutputWithContext(ctx context.Context) GetContainerStartupProbeHttpOutput {
+	return o
+}
+
+// Path to use for the HTTP health check.
+func (o GetContainerStartupProbeHttpOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerStartupProbeHttp) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type GetContainerStartupProbeHttpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetContainerStartupProbeHttpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetContainerStartupProbeHttp)(nil)).Elem()
+}
+
+func (o GetContainerStartupProbeHttpArrayOutput) ToGetContainerStartupProbeHttpArrayOutput() GetContainerStartupProbeHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeHttpArrayOutput) ToGetContainerStartupProbeHttpArrayOutputWithContext(ctx context.Context) GetContainerStartupProbeHttpArrayOutput {
+	return o
+}
+
+func (o GetContainerStartupProbeHttpArrayOutput) Index(i pulumi.IntInput) GetContainerStartupProbeHttpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerStartupProbeHttp {
+		return vs[0].([]GetContainerStartupProbeHttp)[vs[1].(int)]
+	}).(GetContainerStartupProbeHttpOutput)
 }
 
 type GetDatabaseAclAclRule struct {
@@ -34423,8 +36046,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckArrayInput)(nil)).Elem(), ContainerHealthCheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckHttpInput)(nil)).Elem(), ContainerHealthCheckHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckHttpArrayInput)(nil)).Elem(), ContainerHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerLivenessProbeInput)(nil)).Elem(), ContainerLivenessProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerLivenessProbePtrInput)(nil)).Elem(), ContainerLivenessProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerLivenessProbeHttpInput)(nil)).Elem(), ContainerLivenessProbeHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerLivenessProbeHttpPtrInput)(nil)).Elem(), ContainerLivenessProbeHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerScalingOptionInput)(nil)).Elem(), ContainerScalingOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerScalingOptionArrayInput)(nil)).Elem(), ContainerScalingOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerStartupProbeInput)(nil)).Elem(), ContainerStartupProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerStartupProbePtrInput)(nil)).Elem(), ContainerStartupProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerStartupProbeHttpInput)(nil)).Elem(), ContainerStartupProbeHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerStartupProbeHttpPtrInput)(nil)).Elem(), ContainerStartupProbeHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerCronInput)(nil)).Elem(), ContainerTriggerCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerCronPtrInput)(nil)).Elem(), ContainerTriggerCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerDestinationConfigInput)(nil)).Elem(), ContainerTriggerDestinationConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerDestinationConfigPtrInput)(nil)).Elem(), ContainerTriggerDestinationConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsPtrInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
@@ -34682,8 +36317,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckArrayInput)(nil)).Elem(), GetContainerHealthCheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckHttpInput)(nil)).Elem(), GetContainerHealthCheckHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckHttpArrayInput)(nil)).Elem(), GetContainerHealthCheckHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerLivenessProbeInput)(nil)).Elem(), GetContainerLivenessProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerLivenessProbeArrayInput)(nil)).Elem(), GetContainerLivenessProbeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerLivenessProbeHttpInput)(nil)).Elem(), GetContainerLivenessProbeHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerLivenessProbeHttpArrayInput)(nil)).Elem(), GetContainerLivenessProbeHttpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerScalingOptionInput)(nil)).Elem(), GetContainerScalingOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerScalingOptionArrayInput)(nil)).Elem(), GetContainerScalingOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerStartupProbeInput)(nil)).Elem(), GetContainerStartupProbeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerStartupProbeArrayInput)(nil)).Elem(), GetContainerStartupProbeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerStartupProbeHttpInput)(nil)).Elem(), GetContainerStartupProbeHttpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerStartupProbeHttpArrayInput)(nil)).Elem(), GetContainerStartupProbeHttpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleInput)(nil)).Elem(), GetDatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseAclAclRuleArrayInput)(nil)).Elem(), GetDatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArgs{})
@@ -34902,8 +36545,20 @@ func init() {
 	pulumi.RegisterOutputType(ContainerHealthCheckArrayOutput{})
 	pulumi.RegisterOutputType(ContainerHealthCheckHttpOutput{})
 	pulumi.RegisterOutputType(ContainerHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(ContainerLivenessProbeOutput{})
+	pulumi.RegisterOutputType(ContainerLivenessProbePtrOutput{})
+	pulumi.RegisterOutputType(ContainerLivenessProbeHttpOutput{})
+	pulumi.RegisterOutputType(ContainerLivenessProbeHttpPtrOutput{})
 	pulumi.RegisterOutputType(ContainerScalingOptionOutput{})
 	pulumi.RegisterOutputType(ContainerScalingOptionArrayOutput{})
+	pulumi.RegisterOutputType(ContainerStartupProbeOutput{})
+	pulumi.RegisterOutputType(ContainerStartupProbePtrOutput{})
+	pulumi.RegisterOutputType(ContainerStartupProbeHttpOutput{})
+	pulumi.RegisterOutputType(ContainerStartupProbeHttpPtrOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerCronOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerCronPtrOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerDestinationConfigOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerDestinationConfigPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerNatsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
@@ -35161,8 +36816,16 @@ func init() {
 	pulumi.RegisterOutputType(GetContainerHealthCheckArrayOutput{})
 	pulumi.RegisterOutputType(GetContainerHealthCheckHttpOutput{})
 	pulumi.RegisterOutputType(GetContainerHealthCheckHttpArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerLivenessProbeOutput{})
+	pulumi.RegisterOutputType(GetContainerLivenessProbeArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerLivenessProbeHttpOutput{})
+	pulumi.RegisterOutputType(GetContainerLivenessProbeHttpArrayOutput{})
 	pulumi.RegisterOutputType(GetContainerScalingOptionOutput{})
 	pulumi.RegisterOutputType(GetContainerScalingOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerStartupProbeOutput{})
+	pulumi.RegisterOutputType(GetContainerStartupProbeArrayOutput{})
+	pulumi.RegisterOutputType(GetContainerStartupProbeHttpOutput{})
+	pulumi.RegisterOutputType(GetContainerStartupProbeHttpArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerOutput{})

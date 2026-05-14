@@ -204,8 +204,6 @@ export class Function extends pulumi.CustomResource {
     declare public readonly privacy: pulumi.Output<string>;
     /**
      * The ID of the Private Network the function is connected to.
-     *
-     * > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
      */
     declare public readonly privateNetworkId: pulumi.Output<string | undefined>;
     /**
@@ -395,8 +393,6 @@ export interface FunctionState {
     privacy?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the function is connected to.
-     *
-     * > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
      */
     privateNetworkId?: pulumi.Input<string | undefined>;
     /**
@@ -489,8 +485,6 @@ export interface FunctionArgs {
     privacy: pulumi.Input<string>;
     /**
      * The ID of the Private Network the function is connected to.
-     *
-     * > **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activateVpcIntegration` attribute to `true`.
      */
     privateNetworkId?: pulumi.Input<string | undefined>;
     /**
