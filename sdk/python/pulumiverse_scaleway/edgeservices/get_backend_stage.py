@@ -27,7 +27,7 @@ class GetBackendStageResult:
     """
     A collection of values returned by getBackendStage.
     """
-    def __init__(__self__, backend_stage_id=None, bucket_name=None, bucket_region=None, created_at=None, id=None, lb_backend_configs=None, lb_id=None, pipeline_id=None, project_id=None, s3_backend_configs=None, updated_at=None):
+    def __init__(__self__, backend_stage_id=None, bucket_name=None, bucket_region=None, container_backend_configs=None, created_at=None, function_backend_configs=None, id=None, lb_backend_configs=None, lb_id=None, pipeline_id=None, project_id=None, s3_backend_configs=None, updated_at=None):
         if backend_stage_id and not isinstance(backend_stage_id, str):
             raise TypeError("Expected argument 'backend_stage_id' to be a str")
         pulumi.set(__self__, "backend_stage_id", backend_stage_id)
@@ -37,9 +37,15 @@ class GetBackendStageResult:
         if bucket_region and not isinstance(bucket_region, str):
             raise TypeError("Expected argument 'bucket_region' to be a str")
         pulumi.set(__self__, "bucket_region", bucket_region)
+        if container_backend_configs and not isinstance(container_backend_configs, list):
+            raise TypeError("Expected argument 'container_backend_configs' to be a list")
+        pulumi.set(__self__, "container_backend_configs", container_backend_configs)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if function_backend_configs and not isinstance(function_backend_configs, list):
+            raise TypeError("Expected argument 'function_backend_configs' to be a list")
+        pulumi.set(__self__, "function_backend_configs", function_backend_configs)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -78,9 +84,19 @@ class GetBackendStageResult:
         return pulumi.get(self, "bucket_region")
 
     @_builtins.property
+    @pulumi.getter(name="containerBackendConfigs")
+    def container_backend_configs(self) -> Sequence['outputs.GetBackendStageContainerBackendConfigResult']:
+        return pulumi.get(self, "container_backend_configs")
+
+    @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="functionBackendConfigs")
+    def function_backend_configs(self) -> Sequence['outputs.GetBackendStageFunctionBackendConfigResult']:
+        return pulumi.get(self, "function_backend_configs")
 
     @_builtins.property
     @pulumi.getter
@@ -130,7 +146,9 @@ class AwaitableGetBackendStageResult(GetBackendStageResult):
             backend_stage_id=self.backend_stage_id,
             bucket_name=self.bucket_name,
             bucket_region=self.bucket_region,
+            container_backend_configs=self.container_backend_configs,
             created_at=self.created_at,
+            function_backend_configs=self.function_backend_configs,
             id=self.id,
             lb_backend_configs=self.lb_backend_configs,
             lb_id=self.lb_id,
@@ -149,7 +167,7 @@ def get_backend_stage(backend_stage_id: Optional[_builtins.str] = None,
     """
     Gets information about an Edge Services backend stage.
 
-    A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+    A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
 
     ## Example Usage
 
@@ -191,7 +209,9 @@ def get_backend_stage(backend_stage_id: Optional[_builtins.str] = None,
         backend_stage_id=pulumi.get(__ret__, 'backend_stage_id'),
         bucket_name=pulumi.get(__ret__, 'bucket_name'),
         bucket_region=pulumi.get(__ret__, 'bucket_region'),
+        container_backend_configs=pulumi.get(__ret__, 'container_backend_configs'),
         created_at=pulumi.get(__ret__, 'created_at'),
+        function_backend_configs=pulumi.get(__ret__, 'function_backend_configs'),
         id=pulumi.get(__ret__, 'id'),
         lb_backend_configs=pulumi.get(__ret__, 'lb_backend_configs'),
         lb_id=pulumi.get(__ret__, 'lb_id'),
@@ -208,7 +228,7 @@ def get_backend_stage_output(backend_stage_id: pulumi.Input[Optional[Optional[_b
     """
     Gets information about an Edge Services backend stage.
 
-    A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+    A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
 
     ## Example Usage
 
@@ -249,7 +269,9 @@ def get_backend_stage_output(backend_stage_id: pulumi.Input[Optional[Optional[_b
         backend_stage_id=pulumi.get(__response__, 'backend_stage_id'),
         bucket_name=pulumi.get(__response__, 'bucket_name'),
         bucket_region=pulumi.get(__response__, 'bucket_region'),
+        container_backend_configs=pulumi.get(__response__, 'container_backend_configs'),
         created_at=pulumi.get(__response__, 'created_at'),
+        function_backend_configs=pulumi.get(__response__, 'function_backend_configs'),
         id=pulumi.get(__response__, 'id'),
         lb_backend_configs=pulumi.get(__response__, 'lb_backend_configs'),
         lb_id=pulumi.get(__response__, 'lb_id'),

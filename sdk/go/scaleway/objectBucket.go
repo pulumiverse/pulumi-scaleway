@@ -44,6 +44,129 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := object.NewBucket(ctx, "main", &object.BucketArgs{
+//				Name:   pulumi.String("mybuckectid"),
+//				Region: pulumi.String("fr-par"),
+//				LifecycleRules: object.BucketLifecycleRuleArray{
+//					&object.BucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id1"),
+//						Prefix:  pulumi.String("path1/"),
+//						Enabled: pulumi.Bool(true),
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
+//							Days: pulumi.Int(365),
+//						},
+//						Transitions: object.BucketLifecycleRuleTransitionArray{
+//							&object.BucketLifecycleRuleTransitionArgs{
+//								Days:         pulumi.Int(120),
+//								StorageClass: pulumi.String("GLACIER"),
+//							},
+//						},
+//					},
+//					&object.BucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id2"),
+//						Prefix:  pulumi.String("path2/"),
+//						Enabled: pulumi.Bool(true),
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
+//							Days: pulumi.Int(50),
+//						},
+//					},
+//					&object.BucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id3"),
+//						Prefix:  pulumi.String("path3/"),
+//						Enabled: pulumi.Bool(false),
+//						Tags: pulumi.StringMap{
+//							"tagKey":    pulumi.String("tagValue"),
+//							"terraform": pulumi.String("hashicorp"),
+//						},
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
+//							Days: pulumi.Int(1),
+//						},
+//					},
+//					&object.BucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id4"),
+//						Enabled: pulumi.Bool(true),
+//						Tags: pulumi.StringMap{
+//							"tag1": pulumi.String("value1"),
+//						},
+//						Transitions: object.BucketLifecycleRuleTransitionArray{
+//							&object.BucketLifecycleRuleTransitionArgs{
+//								Days:         pulumi.Int(1),
+//								StorageClass: pulumi.String("GLACIER"),
+//							},
+//						},
+//					},
+//					&object.BucketLifecycleRuleArgs{
+//						Enabled:                            pulumi.Bool(true),
+//						AbortIncompleteMultipartUploadDays: pulumi.Int(30),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := object.NewBucket(ctx, "main", &object.BucketArgs{
+//				Name:   pulumi.String("mybuckectid"),
+//				Region: pulumi.String("fr-par"),
+//				LifecycleRules: object.BucketLifecycleRuleArray{
+//					&object.BucketLifecycleRuleArgs{
+//						Id:      pulumi.String("id1"),
+//						Prefix:  pulumi.String("path1/"),
+//						Enabled: pulumi.Bool(true),
+//						NoncurrentVersionExpiration: &object.BucketLifecycleRuleNoncurrentVersionExpirationArgs{
+//							NoncurrentDays: pulumi.Int(90),
+//						},
+//						NoncurrentVersionTransitions: object.BucketLifecycleRuleNoncurrentVersionTransitionArray{
+//							&object.BucketLifecycleRuleNoncurrentVersionTransitionArgs{
+//								NoncurrentDays: pulumi.Int(30),
+//								StorageClass:   pulumi.String("ONEZONE_IA"),
+//							},
+//							&object.BucketLifecycleRuleNoncurrentVersionTransitionArgs{
+//								NoncurrentDays: pulumi.Int(60),
+//								StorageClass:   pulumi.String("GLACIER"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Creating the bucket in a specific project
 //
 // ```go

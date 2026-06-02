@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
         /// <summary>
         /// Gets information about an Edge Services backend stage.
         /// 
-        /// A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+        /// A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
         /// 
         /// ## Example Usage
         /// 
@@ -59,7 +59,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
         /// <summary>
         /// Gets information about an Edge Services backend stage.
         /// 
-        /// A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+        /// A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
         /// 
         /// ## Example Usage
         /// 
@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
         /// <summary>
         /// Gets information about an Edge Services backend stage.
         /// 
-        /// A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+        /// A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
         /// 
         /// ## Example Usage
         /// 
@@ -233,7 +233,9 @@ namespace Pulumiverse.Scaleway.Edgeservices
         public readonly string? BackendStageId;
         public readonly string? BucketName;
         public readonly string? BucketRegion;
+        public readonly ImmutableArray<Outputs.GetBackendStageContainerBackendConfigResult> ContainerBackendConfigs;
         public readonly string CreatedAt;
+        public readonly ImmutableArray<Outputs.GetBackendStageFunctionBackendConfigResult> FunctionBackendConfigs;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -253,7 +255,11 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
             string? bucketRegion,
 
+            ImmutableArray<Outputs.GetBackendStageContainerBackendConfigResult> containerBackendConfigs,
+
             string createdAt,
+
+            ImmutableArray<Outputs.GetBackendStageFunctionBackendConfigResult> functionBackendConfigs,
 
             string id,
 
@@ -272,7 +278,9 @@ namespace Pulumiverse.Scaleway.Edgeservices
             BackendStageId = backendStageId;
             BucketName = bucketName;
             BucketRegion = bucketRegion;
+            ContainerBackendConfigs = containerBackendConfigs;
             CreatedAt = createdAt;
+            FunctionBackendConfigs = functionBackendConfigs;
             Id = id;
             LbBackendConfigs = lbBackendConfigs;
             LbId = lbId;

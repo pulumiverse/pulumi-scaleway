@@ -6115,6 +6115,318 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	}).(DomainRecordWeightedOutput)
 }
 
+type EdgeServicesBackendStageContainerBackendConfig struct {
+	// The ID of the Serverless Container.
+	ContainerId string `pulumi:"containerId"`
+	// `region`) The region of the Serverless Container.
+	Region *string `pulumi:"region"`
+}
+
+// EdgeServicesBackendStageContainerBackendConfigInput is an input type that accepts EdgeServicesBackendStageContainerBackendConfigArgs and EdgeServicesBackendStageContainerBackendConfigOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageContainerBackendConfigInput` via:
+//
+//	EdgeServicesBackendStageContainerBackendConfigArgs{...}
+type EdgeServicesBackendStageContainerBackendConfigInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageContainerBackendConfigOutput() EdgeServicesBackendStageContainerBackendConfigOutput
+	ToEdgeServicesBackendStageContainerBackendConfigOutputWithContext(context.Context) EdgeServicesBackendStageContainerBackendConfigOutput
+}
+
+type EdgeServicesBackendStageContainerBackendConfigArgs struct {
+	// The ID of the Serverless Container.
+	ContainerId pulumi.StringInput `pulumi:"containerId"`
+	// `region`) The region of the Serverless Container.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (EdgeServicesBackendStageContainerBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageContainerBackendConfigArgs) ToEdgeServicesBackendStageContainerBackendConfigOutput() EdgeServicesBackendStageContainerBackendConfigOutput {
+	return i.ToEdgeServicesBackendStageContainerBackendConfigOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageContainerBackendConfigArgs) ToEdgeServicesBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageContainerBackendConfigOutput)
+}
+
+func (i EdgeServicesBackendStageContainerBackendConfigArgs) ToEdgeServicesBackendStageContainerBackendConfigPtrOutput() EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageContainerBackendConfigArgs) ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageContainerBackendConfigOutput).ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesBackendStageContainerBackendConfigPtrInput is an input type that accepts EdgeServicesBackendStageContainerBackendConfigArgs, EdgeServicesBackendStageContainerBackendConfigPtr and EdgeServicesBackendStageContainerBackendConfigPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageContainerBackendConfigPtrInput` via:
+//
+//	        EdgeServicesBackendStageContainerBackendConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesBackendStageContainerBackendConfigPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageContainerBackendConfigPtrOutput() EdgeServicesBackendStageContainerBackendConfigPtrOutput
+	ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(context.Context) EdgeServicesBackendStageContainerBackendConfigPtrOutput
+}
+
+type edgeServicesBackendStageContainerBackendConfigPtrType EdgeServicesBackendStageContainerBackendConfigArgs
+
+func EdgeServicesBackendStageContainerBackendConfigPtr(v *EdgeServicesBackendStageContainerBackendConfigArgs) EdgeServicesBackendStageContainerBackendConfigPtrInput {
+	return (*edgeServicesBackendStageContainerBackendConfigPtrType)(v)
+}
+
+func (*edgeServicesBackendStageContainerBackendConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i *edgeServicesBackendStageContainerBackendConfigPtrType) ToEdgeServicesBackendStageContainerBackendConfigPtrOutput() EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesBackendStageContainerBackendConfigPtrType) ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageContainerBackendConfigPtrOutput)
+}
+
+type EdgeServicesBackendStageContainerBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageContainerBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) ToEdgeServicesBackendStageContainerBackendConfigOutput() EdgeServicesBackendStageContainerBackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) ToEdgeServicesBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) ToEdgeServicesBackendStageContainerBackendConfigPtrOutput() EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return o.ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesBackendStageContainerBackendConfig) *EdgeServicesBackendStageContainerBackendConfig {
+		return &v
+	}).(EdgeServicesBackendStageContainerBackendConfigPtrOutput)
+}
+
+// The ID of the Serverless Container.
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageContainerBackendConfig) string { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// `region`) The region of the Serverless Container.
+func (o EdgeServicesBackendStageContainerBackendConfigOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageContainerBackendConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesBackendStageContainerBackendConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageContainerBackendConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigPtrOutput) ToEdgeServicesBackendStageContainerBackendConfigPtrOutput() EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigPtrOutput) ToEdgeServicesBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageContainerBackendConfigPtrOutput) Elem() EdgeServicesBackendStageContainerBackendConfigOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageContainerBackendConfig) EdgeServicesBackendStageContainerBackendConfig {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesBackendStageContainerBackendConfig
+		return ret
+	}).(EdgeServicesBackendStageContainerBackendConfigOutput)
+}
+
+// The ID of the Serverless Container.
+func (o EdgeServicesBackendStageContainerBackendConfigPtrOutput) ContainerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageContainerBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContainerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`) The region of the Serverless Container.
+func (o EdgeServicesBackendStageContainerBackendConfigPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageContainerBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesBackendStageFunctionBackendConfig struct {
+	// The ID of the Serverless Function.
+	FunctionId string `pulumi:"functionId"`
+	// `region`) The region of the Serverless Function.
+	Region *string `pulumi:"region"`
+}
+
+// EdgeServicesBackendStageFunctionBackendConfigInput is an input type that accepts EdgeServicesBackendStageFunctionBackendConfigArgs and EdgeServicesBackendStageFunctionBackendConfigOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageFunctionBackendConfigInput` via:
+//
+//	EdgeServicesBackendStageFunctionBackendConfigArgs{...}
+type EdgeServicesBackendStageFunctionBackendConfigInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageFunctionBackendConfigOutput() EdgeServicesBackendStageFunctionBackendConfigOutput
+	ToEdgeServicesBackendStageFunctionBackendConfigOutputWithContext(context.Context) EdgeServicesBackendStageFunctionBackendConfigOutput
+}
+
+type EdgeServicesBackendStageFunctionBackendConfigArgs struct {
+	// The ID of the Serverless Function.
+	FunctionId pulumi.StringInput `pulumi:"functionId"`
+	// `region`) The region of the Serverless Function.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (EdgeServicesBackendStageFunctionBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageFunctionBackendConfigArgs) ToEdgeServicesBackendStageFunctionBackendConfigOutput() EdgeServicesBackendStageFunctionBackendConfigOutput {
+	return i.ToEdgeServicesBackendStageFunctionBackendConfigOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageFunctionBackendConfigArgs) ToEdgeServicesBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageFunctionBackendConfigOutput)
+}
+
+func (i EdgeServicesBackendStageFunctionBackendConfigArgs) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutput() EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageFunctionBackendConfigArgs) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageFunctionBackendConfigOutput).ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesBackendStageFunctionBackendConfigPtrInput is an input type that accepts EdgeServicesBackendStageFunctionBackendConfigArgs, EdgeServicesBackendStageFunctionBackendConfigPtr and EdgeServicesBackendStageFunctionBackendConfigPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageFunctionBackendConfigPtrInput` via:
+//
+//	        EdgeServicesBackendStageFunctionBackendConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesBackendStageFunctionBackendConfigPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageFunctionBackendConfigPtrOutput() EdgeServicesBackendStageFunctionBackendConfigPtrOutput
+	ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(context.Context) EdgeServicesBackendStageFunctionBackendConfigPtrOutput
+}
+
+type edgeServicesBackendStageFunctionBackendConfigPtrType EdgeServicesBackendStageFunctionBackendConfigArgs
+
+func EdgeServicesBackendStageFunctionBackendConfigPtr(v *EdgeServicesBackendStageFunctionBackendConfigArgs) EdgeServicesBackendStageFunctionBackendConfigPtrInput {
+	return (*edgeServicesBackendStageFunctionBackendConfigPtrType)(v)
+}
+
+func (*edgeServicesBackendStageFunctionBackendConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i *edgeServicesBackendStageFunctionBackendConfigPtrType) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutput() EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesBackendStageFunctionBackendConfigPtrType) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageFunctionBackendConfigPtrOutput)
+}
+
+type EdgeServicesBackendStageFunctionBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageFunctionBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) ToEdgeServicesBackendStageFunctionBackendConfigOutput() EdgeServicesBackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) ToEdgeServicesBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutput() EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return o.ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesBackendStageFunctionBackendConfig) *EdgeServicesBackendStageFunctionBackendConfig {
+		return &v
+	}).(EdgeServicesBackendStageFunctionBackendConfigPtrOutput)
+}
+
+// The ID of the Serverless Function.
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageFunctionBackendConfig) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+// `region`) The region of the Serverless Function.
+func (o EdgeServicesBackendStageFunctionBackendConfigOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageFunctionBackendConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesBackendStageFunctionBackendConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageFunctionBackendConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigPtrOutput) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutput() EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigPtrOutput) ToEdgeServicesBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageFunctionBackendConfigPtrOutput) Elem() EdgeServicesBackendStageFunctionBackendConfigOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageFunctionBackendConfig) EdgeServicesBackendStageFunctionBackendConfig {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesBackendStageFunctionBackendConfig
+		return ret
+	}).(EdgeServicesBackendStageFunctionBackendConfigOutput)
+}
+
+// The ID of the Serverless Function.
+func (o EdgeServicesBackendStageFunctionBackendConfigPtrOutput) FunctionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageFunctionBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FunctionId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`) The region of the Serverless Function.
+func (o EdgeServicesBackendStageFunctionBackendConfigPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageFunctionBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
 type EdgeServicesBackendStageLbBackendConfig struct {
 	// The Load Balancer config.
 	LbConfig *EdgeServicesBackendStageLbBackendConfigLbConfig `pulumi:"lbConfig"`
@@ -12712,6 +13024,11 @@ type KubernetesClusterAutoscalerConfig struct {
 	ExpendablePodsPriorityCutoff *int `pulumi:"expendablePodsPriorityCutoff"`
 	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 	IgnoreDaemonsetsUtilization *bool `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+	//
+	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+	LogLevel *int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec *int `pulumi:"maxGracefulTerminationSec"`
 	// How long after scale up that scale down evaluation resumes.
@@ -12720,6 +13037,10 @@ type KubernetesClusterAutoscalerConfig struct {
 	ScaleDownUnneededTime *string `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold *float64 `pulumi:"scaleDownUtilizationThreshold"`
+	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+	//
+	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+	SkipNodesWithLocalStorage *bool `pulumi:"skipNodesWithLocalStorage"`
 }
 
 // KubernetesClusterAutoscalerConfigInput is an input type that accepts KubernetesClusterAutoscalerConfigArgs and KubernetesClusterAutoscalerConfigOutput values.
@@ -12746,6 +13067,11 @@ type KubernetesClusterAutoscalerConfigArgs struct {
 	ExpendablePodsPriorityCutoff pulumi.IntPtrInput `pulumi:"expendablePodsPriorityCutoff"`
 	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 	IgnoreDaemonsetsUtilization pulumi.BoolPtrInput `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+	//
+	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+	LogLevel pulumi.IntPtrInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec pulumi.IntPtrInput `pulumi:"maxGracefulTerminationSec"`
 	// How long after scale up that scale down evaluation resumes.
@@ -12754,6 +13080,10 @@ type KubernetesClusterAutoscalerConfigArgs struct {
 	ScaleDownUnneededTime pulumi.StringPtrInput `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64PtrInput `pulumi:"scaleDownUtilizationThreshold"`
+	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+	//
+	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+	SkipNodesWithLocalStorage pulumi.BoolPtrInput `pulumi:"skipNodesWithLocalStorage"`
 }
 
 func (KubernetesClusterAutoscalerConfigArgs) ElementType() reflect.Type {
@@ -12863,6 +13193,14 @@ func (o KubernetesClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() p
 	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolPtrOutput)
 }
 
+// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+//
+// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+func (o KubernetesClusterAutoscalerConfigOutput) LogLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *int { return v.LogLevel }).(pulumi.IntPtrOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o KubernetesClusterAutoscalerConfigOutput) MaxGracefulTerminationSec() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *int { return v.MaxGracefulTerminationSec }).(pulumi.IntPtrOutput)
@@ -12881,6 +13219,13 @@ func (o KubernetesClusterAutoscalerConfigOutput) ScaleDownUnneededTime() pulumi.
 // Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 func (o KubernetesClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *float64 { return v.ScaleDownUtilizationThreshold }).(pulumi.Float64PtrOutput)
+}
+
+// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+//
+// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+func (o KubernetesClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolPtrOutput)
 }
 
 type KubernetesClusterAutoscalerConfigPtrOutput struct{ *pulumi.OutputState }
@@ -12967,6 +13312,19 @@ func (o KubernetesClusterAutoscalerConfigPtrOutput) IgnoreDaemonsetsUtilization(
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+//
+// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+func (o KubernetesClusterAutoscalerConfigPtrOutput) LogLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterAutoscalerConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LogLevel
+	}).(pulumi.IntPtrOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o KubernetesClusterAutoscalerConfigPtrOutput) MaxGracefulTerminationSec() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesClusterAutoscalerConfig) *int {
@@ -13005,6 +13363,18 @@ func (o KubernetesClusterAutoscalerConfigPtrOutput) ScaleDownUtilizationThreshol
 		}
 		return v.ScaleDownUtilizationThreshold
 	}).(pulumi.Float64PtrOutput)
+}
+
+// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+//
+// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+func (o KubernetesClusterAutoscalerConfigPtrOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterAutoscalerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipNodesWithLocalStorage
+	}).(pulumi.BoolPtrOutput)
 }
 
 type KubernetesClusterKubeconfig struct {
@@ -13646,6 +14016,236 @@ func (o KubernetesNodePoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) Kub
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolNodePrivateIp {
 		return vs[0].([]KubernetesNodePoolNodePrivateIp)[vs[1].(int)]
 	}).(KubernetesNodePoolNodePrivateIpOutput)
+}
+
+type KubernetesNodePoolStartupTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// KubernetesNodePoolStartupTaintInput is an input type that accepts KubernetesNodePoolStartupTaintArgs and KubernetesNodePoolStartupTaintOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolStartupTaintInput` via:
+//
+//	KubernetesNodePoolStartupTaintArgs{...}
+type KubernetesNodePoolStartupTaintInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolStartupTaintOutput() KubernetesNodePoolStartupTaintOutput
+	ToKubernetesNodePoolStartupTaintOutputWithContext(context.Context) KubernetesNodePoolStartupTaintOutput
+}
+
+type KubernetesNodePoolStartupTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (KubernetesNodePoolStartupTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolStartupTaintArgs) ToKubernetesNodePoolStartupTaintOutput() KubernetesNodePoolStartupTaintOutput {
+	return i.ToKubernetesNodePoolStartupTaintOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolStartupTaintArgs) ToKubernetesNodePoolStartupTaintOutputWithContext(ctx context.Context) KubernetesNodePoolStartupTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolStartupTaintOutput)
+}
+
+// KubernetesNodePoolStartupTaintArrayInput is an input type that accepts KubernetesNodePoolStartupTaintArray and KubernetesNodePoolStartupTaintArrayOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolStartupTaintArrayInput` via:
+//
+//	KubernetesNodePoolStartupTaintArray{ KubernetesNodePoolStartupTaintArgs{...} }
+type KubernetesNodePoolStartupTaintArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolStartupTaintArrayOutput() KubernetesNodePoolStartupTaintArrayOutput
+	ToKubernetesNodePoolStartupTaintArrayOutputWithContext(context.Context) KubernetesNodePoolStartupTaintArrayOutput
+}
+
+type KubernetesNodePoolStartupTaintArray []KubernetesNodePoolStartupTaintInput
+
+func (KubernetesNodePoolStartupTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolStartupTaintArray) ToKubernetesNodePoolStartupTaintArrayOutput() KubernetesNodePoolStartupTaintArrayOutput {
+	return i.ToKubernetesNodePoolStartupTaintArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolStartupTaintArray) ToKubernetesNodePoolStartupTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolStartupTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolStartupTaintArrayOutput)
+}
+
+type KubernetesNodePoolStartupTaintOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolStartupTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolStartupTaintOutput) ToKubernetesNodePoolStartupTaintOutput() KubernetesNodePoolStartupTaintOutput {
+	return o
+}
+
+func (o KubernetesNodePoolStartupTaintOutput) ToKubernetesNodePoolStartupTaintOutputWithContext(ctx context.Context) KubernetesNodePoolStartupTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o KubernetesNodePoolStartupTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolStartupTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o KubernetesNodePoolStartupTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolStartupTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o KubernetesNodePoolStartupTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolStartupTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KubernetesNodePoolStartupTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolStartupTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolStartupTaintArrayOutput) ToKubernetesNodePoolStartupTaintArrayOutput() KubernetesNodePoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolStartupTaintArrayOutput) ToKubernetesNodePoolStartupTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolStartupTaintArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolStartupTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolStartupTaint {
+		return vs[0].([]KubernetesNodePoolStartupTaint)[vs[1].(int)]
+	}).(KubernetesNodePoolStartupTaintOutput)
+}
+
+type KubernetesNodePoolTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// KubernetesNodePoolTaintInput is an input type that accepts KubernetesNodePoolTaintArgs and KubernetesNodePoolTaintOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolTaintInput` via:
+//
+//	KubernetesNodePoolTaintArgs{...}
+type KubernetesNodePoolTaintInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput
+	ToKubernetesNodePoolTaintOutputWithContext(context.Context) KubernetesNodePoolTaintOutput
+}
+
+type KubernetesNodePoolTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (KubernetesNodePoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolTaintArgs) ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput {
+	return i.ToKubernetesNodePoolTaintOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolTaintArgs) ToKubernetesNodePoolTaintOutputWithContext(ctx context.Context) KubernetesNodePoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintOutput)
+}
+
+// KubernetesNodePoolTaintArrayInput is an input type that accepts KubernetesNodePoolTaintArray and KubernetesNodePoolTaintArrayOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolTaintArrayInput` via:
+//
+//	KubernetesNodePoolTaintArray{ KubernetesNodePoolTaintArgs{...} }
+type KubernetesNodePoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput
+	ToKubernetesNodePoolTaintArrayOutputWithContext(context.Context) KubernetesNodePoolTaintArrayOutput
+}
+
+type KubernetesNodePoolTaintArray []KubernetesNodePoolTaintInput
+
+func (KubernetesNodePoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolTaintArray) ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput {
+	return i.ToKubernetesNodePoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolTaintArray) ToKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintArrayOutput)
+}
+
+type KubernetesNodePoolTaintOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutputWithContext(ctx context.Context) KubernetesNodePoolTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o KubernetesNodePoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o KubernetesNodePoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o KubernetesNodePoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KubernetesNodePoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolTaint {
+		return vs[0].([]KubernetesNodePoolTaint)[vs[1].(int)]
+	}).(KubernetesNodePoolTaintOutput)
 }
 
 type KubernetesNodePoolUpgradePolicy struct {
@@ -17582,6 +18182,14 @@ type ObjectBucketLifecycleRule struct {
 	Expiration *ObjectBucketLifecycleRuleExpiration `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id *string `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpiration *ObjectBucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpiration"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions []ObjectBucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan *int `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan *int `pulumi:"objectSizeLessThan"`
 	// Object key prefix identifying one or more objects to which the rule applies.
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
@@ -17612,6 +18220,14 @@ type ObjectBucketLifecycleRuleArgs struct {
 	Expiration ObjectBucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpiration ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput `pulumi:"noncurrentVersionExpiration"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan pulumi.IntPtrInput `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan pulumi.IntPtrInput `pulumi:"objectSizeLessThan"`
 	// Object key prefix identifying one or more objects to which the rule applies.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
@@ -17693,6 +18309,30 @@ func (o ObjectBucketLifecycleRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Configuration block that specifies when noncurrent object versions expire
+func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionExpiration() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+		return v.NoncurrentVersionExpiration
+	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionTransitions() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleNoncurrentVersionTransition {
+		return v.NoncurrentVersionTransitions
+	}).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+// Minimum object size (in bytes) to which the rule applies
+func (o ObjectBucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeGreaterThan }).(pulumi.IntPtrOutput)
+}
+
+// Maximum object size (in bytes) to which the rule applies
+func (o ObjectBucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeLessThan }).(pulumi.IntPtrOutput)
+}
+
 // Object key prefix identifying one or more objects to which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
@@ -17729,8 +18369,12 @@ func (o ObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) ObjectBuc
 }
 
 type ObjectBucketLifecycleRuleExpiration struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date *string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days int `pulumi:"days"`
+	Days *int `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker *bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
 // ObjectBucketLifecycleRuleExpirationInput is an input type that accepts ObjectBucketLifecycleRuleExpirationArgs and ObjectBucketLifecycleRuleExpirationOutput values.
@@ -17745,8 +18389,12 @@ type ObjectBucketLifecycleRuleExpirationInput interface {
 }
 
 type ObjectBucketLifecycleRuleExpirationArgs struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringPtrInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days pulumi.IntInput `pulumi:"days"`
+	Days pulumi.IntPtrInput `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker pulumi.BoolPtrInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
 func (ObjectBucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
@@ -17826,9 +18474,19 @@ func (o ObjectBucketLifecycleRuleExpirationOutput) ToObjectBucketLifecycleRuleEx
 	}).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o ObjectBucketLifecycleRuleExpirationOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *string { return v.Date }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect.
-func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
-	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
+func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o ObjectBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolPtrOutput)
 }
 
 type ObjectBucketLifecycleRuleExpirationPtrOutput struct{ *pulumi.OutputState }
@@ -17855,17 +18513,310 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Elem() ObjectBucketLifecyc
 	}).(ObjectBucketLifecycleRuleExpirationOutput)
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Date
+	}).(pulumi.StringPtrOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *int {
 		if v == nil {
 			return nil
 		}
-		return &v.Days
+		return v.Days
 	}).(pulumi.IntPtrOutput)
 }
 
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o ObjectBucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ExpiredObjectDeleteMarker
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionExpiration struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays *int `pulumi:"noncurrentDays"`
+}
+
+// ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput is an input type that accepts ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs and ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput values.
+// You can construct a concrete instance of `ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput` via:
+//
+//	ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+type ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput interface {
+	pulumi.Input
+
+	ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput
+	ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays pulumi.IntPtrInput `pulumi:"noncurrentDays"`
+}
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return i.ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return i.ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput).ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx)
+}
+
+// ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput is an input type that accepts ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs, ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtr and ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput values.
+// You can construct a concrete instance of `ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput` via:
+//
+//	        ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput interface {
+	pulumi.Input
+
+	ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput
+	ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput
+}
+
+type objectBucketLifecycleRuleNoncurrentVersionExpirationPtrType ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs
+
+func ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtr(v *ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput {
+	return (*objectBucketLifecycleRuleNoncurrentVersionExpirationPtrType)(v)
+}
+
+func (*objectBucketLifecycleRuleNoncurrentVersionExpirationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i *objectBucketLifecycleRuleNoncurrentVersionExpirationPtrType) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return i.ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i *objectBucketLifecycleRuleNoncurrentVersionExpirationPtrType) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+		return &v
+	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NoncurrentDays }).(pulumi.IntPtrOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ToObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Elem() ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+		if v != nil {
+			return *v
+		}
+		var ret ObjectBucketLifecycleRuleNoncurrentVersionExpiration
+		return ret
+	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NewerNoncurrentVersions
+	}).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NoncurrentDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NoncurrentDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionTransition struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput is an input type that accepts ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs and ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput values.
+// You can construct a concrete instance of `ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput` via:
+//
+//	ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{...}
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput interface {
+	pulumi.Input
+
+	ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput
+	ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return i.ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
+// ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput is an input type that accepts ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray and ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput values.
+// You can construct a concrete instance of `ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput` via:
+//
+//	ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray{ ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{...} }
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput interface {
+	pulumi.Input
+
+	ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+	ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray []ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return i.ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+// Specifies the Scaleway Object Storage class to which you want the object to transition
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i pulumi.IntInput) ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ObjectBucketLifecycleRuleNoncurrentVersionTransition {
+		return vs[0].([]ObjectBucketLifecycleRuleNoncurrentVersionTransition)[vs[1].(int)]
+	}).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
 type ObjectBucketLifecycleRuleTransition struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date *string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -17890,6 +18841,8 @@ type ObjectBucketLifecycleRuleTransitionInput interface {
 }
 
 type ObjectBucketLifecycleRuleTransitionArgs struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringPtrInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -17951,6 +18904,11 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) ToObjectBucketLifecycleRuleTr
 
 func (o ObjectBucketLifecycleRuleTransitionOutput) ToObjectBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) ObjectBucketLifecycleRuleTransitionOutput {
 	return o
+}
+
+// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o ObjectBucketLifecycleRuleTransitionOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
@@ -28214,6 +29172,8 @@ type GetKubernetesClusterAutoscalerConfig struct {
 	ExpendablePodsPriorityCutoff int `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization bool `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	LogLevel int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec int `pulumi:"maxGracefulTerminationSec"`
 	// The duration after scale up that scale down evaluation resumes.
@@ -28222,6 +29182,8 @@ type GetKubernetesClusterAutoscalerConfig struct {
 	ScaleDownUnneededTime string `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold float64 `pulumi:"scaleDownUtilizationThreshold"`
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	SkipNodesWithLocalStorage bool `pulumi:"skipNodesWithLocalStorage"`
 }
 
 // GetKubernetesClusterAutoscalerConfigInput is an input type that accepts GetKubernetesClusterAutoscalerConfigArgs and GetKubernetesClusterAutoscalerConfigOutput values.
@@ -28248,6 +29210,8 @@ type GetKubernetesClusterAutoscalerConfigArgs struct {
 	ExpendablePodsPriorityCutoff pulumi.IntInput `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization pulumi.BoolInput `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	LogLevel pulumi.IntInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec pulumi.IntInput `pulumi:"maxGracefulTerminationSec"`
 	// The duration after scale up that scale down evaluation resumes.
@@ -28256,6 +29220,8 @@ type GetKubernetesClusterAutoscalerConfigArgs struct {
 	ScaleDownUnneededTime pulumi.StringInput `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64Input `pulumi:"scaleDownUtilizationThreshold"`
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	SkipNodesWithLocalStorage pulumi.BoolInput `pulumi:"skipNodesWithLocalStorage"`
 }
 
 func (GetKubernetesClusterAutoscalerConfigArgs) ElementType() reflect.Type {
@@ -28339,6 +29305,11 @@ func (o GetKubernetesClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization(
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolOutput)
 }
 
+// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+func (o GetKubernetesClusterAutoscalerConfigOutput) LogLevel() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) int { return v.LogLevel }).(pulumi.IntOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o GetKubernetesClusterAutoscalerConfigOutput) MaxGracefulTerminationSec() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) int { return v.MaxGracefulTerminationSec }).(pulumi.IntOutput)
@@ -28357,6 +29328,11 @@ func (o GetKubernetesClusterAutoscalerConfigOutput) ScaleDownUnneededTime() pulu
 // Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 func (o GetKubernetesClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold() pulumi.Float64Output {
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) float64 { return v.ScaleDownUtilizationThreshold }).(pulumi.Float64Output)
+}
+
+// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+func (o GetKubernetesClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolOutput)
 }
 
 type GetKubernetesClusterAutoscalerConfigArrayOutput struct{ *pulumi.OutputState }
@@ -28900,6 +29876,236 @@ func (o GetKubernetesNodePoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesNodePoolNodePrivateIp {
 		return vs[0].([]GetKubernetesNodePoolNodePrivateIp)[vs[1].(int)]
 	}).(GetKubernetesNodePoolNodePrivateIpOutput)
+}
+
+type GetKubernetesNodePoolStartupTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// GetKubernetesNodePoolStartupTaintInput is an input type that accepts GetKubernetesNodePoolStartupTaintArgs and GetKubernetesNodePoolStartupTaintOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolStartupTaintInput` via:
+//
+//	GetKubernetesNodePoolStartupTaintArgs{...}
+type GetKubernetesNodePoolStartupTaintInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolStartupTaintOutput() GetKubernetesNodePoolStartupTaintOutput
+	ToGetKubernetesNodePoolStartupTaintOutputWithContext(context.Context) GetKubernetesNodePoolStartupTaintOutput
+}
+
+type GetKubernetesNodePoolStartupTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetKubernetesNodePoolStartupTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolStartupTaintArgs) ToGetKubernetesNodePoolStartupTaintOutput() GetKubernetesNodePoolStartupTaintOutput {
+	return i.ToGetKubernetesNodePoolStartupTaintOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolStartupTaintArgs) ToGetKubernetesNodePoolStartupTaintOutputWithContext(ctx context.Context) GetKubernetesNodePoolStartupTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolStartupTaintOutput)
+}
+
+// GetKubernetesNodePoolStartupTaintArrayInput is an input type that accepts GetKubernetesNodePoolStartupTaintArray and GetKubernetesNodePoolStartupTaintArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolStartupTaintArrayInput` via:
+//
+//	GetKubernetesNodePoolStartupTaintArray{ GetKubernetesNodePoolStartupTaintArgs{...} }
+type GetKubernetesNodePoolStartupTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolStartupTaintArrayOutput() GetKubernetesNodePoolStartupTaintArrayOutput
+	ToGetKubernetesNodePoolStartupTaintArrayOutputWithContext(context.Context) GetKubernetesNodePoolStartupTaintArrayOutput
+}
+
+type GetKubernetesNodePoolStartupTaintArray []GetKubernetesNodePoolStartupTaintInput
+
+func (GetKubernetesNodePoolStartupTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolStartupTaintArray) ToGetKubernetesNodePoolStartupTaintArrayOutput() GetKubernetesNodePoolStartupTaintArrayOutput {
+	return i.ToGetKubernetesNodePoolStartupTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolStartupTaintArray) ToGetKubernetesNodePoolStartupTaintArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolStartupTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolStartupTaintArrayOutput)
+}
+
+type GetKubernetesNodePoolStartupTaintOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolStartupTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolStartupTaintOutput) ToGetKubernetesNodePoolStartupTaintOutput() GetKubernetesNodePoolStartupTaintOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolStartupTaintOutput) ToGetKubernetesNodePoolStartupTaintOutputWithContext(ctx context.Context) GetKubernetesNodePoolStartupTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o GetKubernetesNodePoolStartupTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolStartupTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o GetKubernetesNodePoolStartupTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolStartupTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o GetKubernetesNodePoolStartupTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolStartupTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetKubernetesNodePoolStartupTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolStartupTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolStartupTaint)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolStartupTaintArrayOutput) ToGetKubernetesNodePoolStartupTaintArrayOutput() GetKubernetesNodePoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolStartupTaintArrayOutput) ToGetKubernetesNodePoolStartupTaintArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolStartupTaintArrayOutput) Index(i pulumi.IntInput) GetKubernetesNodePoolStartupTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesNodePoolStartupTaint {
+		return vs[0].([]GetKubernetesNodePoolStartupTaint)[vs[1].(int)]
+	}).(GetKubernetesNodePoolStartupTaintOutput)
+}
+
+type GetKubernetesNodePoolTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// GetKubernetesNodePoolTaintInput is an input type that accepts GetKubernetesNodePoolTaintArgs and GetKubernetesNodePoolTaintOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolTaintInput` via:
+//
+//	GetKubernetesNodePoolTaintArgs{...}
+type GetKubernetesNodePoolTaintInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolTaintOutput() GetKubernetesNodePoolTaintOutput
+	ToGetKubernetesNodePoolTaintOutputWithContext(context.Context) GetKubernetesNodePoolTaintOutput
+}
+
+type GetKubernetesNodePoolTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetKubernetesNodePoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolTaintArgs) ToGetKubernetesNodePoolTaintOutput() GetKubernetesNodePoolTaintOutput {
+	return i.ToGetKubernetesNodePoolTaintOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolTaintArgs) ToGetKubernetesNodePoolTaintOutputWithContext(ctx context.Context) GetKubernetesNodePoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolTaintOutput)
+}
+
+// GetKubernetesNodePoolTaintArrayInput is an input type that accepts GetKubernetesNodePoolTaintArray and GetKubernetesNodePoolTaintArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolTaintArrayInput` via:
+//
+//	GetKubernetesNodePoolTaintArray{ GetKubernetesNodePoolTaintArgs{...} }
+type GetKubernetesNodePoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolTaintArrayOutput() GetKubernetesNodePoolTaintArrayOutput
+	ToGetKubernetesNodePoolTaintArrayOutputWithContext(context.Context) GetKubernetesNodePoolTaintArrayOutput
+}
+
+type GetKubernetesNodePoolTaintArray []GetKubernetesNodePoolTaintInput
+
+func (GetKubernetesNodePoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolTaintArray) ToGetKubernetesNodePoolTaintArrayOutput() GetKubernetesNodePoolTaintArrayOutput {
+	return i.ToGetKubernetesNodePoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolTaintArray) ToGetKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolTaintArrayOutput)
+}
+
+type GetKubernetesNodePoolTaintOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolTaintOutput) ToGetKubernetesNodePoolTaintOutput() GetKubernetesNodePoolTaintOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolTaintOutput) ToGetKubernetesNodePoolTaintOutputWithContext(ctx context.Context) GetKubernetesNodePoolTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o GetKubernetesNodePoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o GetKubernetesNodePoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o GetKubernetesNodePoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetKubernetesNodePoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolTaintArrayOutput) ToGetKubernetesNodePoolTaintArrayOutput() GetKubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolTaintArrayOutput) ToGetKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolTaintArrayOutput) Index(i pulumi.IntInput) GetKubernetesNodePoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesNodePoolTaint {
+		return vs[0].([]GetKubernetesNodePoolTaint)[vs[1].(int)]
+	}).(GetKubernetesNodePoolTaintOutput)
 }
 
 type GetKubernetesNodePoolUpgradePolicy struct {
@@ -32839,6 +34045,14 @@ type GetObjectBucketLifecycleRule struct {
 	Expirations []GetObjectBucketLifecycleRuleExpiration `pulumi:"expirations"`
 	// The unique identifier of the bucket.
 	Id string `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpirations []GetObjectBucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpirations"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions []GetObjectBucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan int `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan int `pulumi:"objectSizeLessThan"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix string `pulumi:"prefix"`
 	// The tags associated with the bucket lifecycle
@@ -32867,6 +34081,14 @@ type GetObjectBucketLifecycleRuleArgs struct {
 	Expirations GetObjectBucketLifecycleRuleExpirationArrayInput `pulumi:"expirations"`
 	// The unique identifier of the bucket.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpirations GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayInput `pulumi:"noncurrentVersionExpirations"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan pulumi.IntInput `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan pulumi.IntInput `pulumi:"objectSizeLessThan"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix pulumi.StringInput `pulumi:"prefix"`
 	// The tags associated with the bucket lifecycle
@@ -32946,6 +34168,30 @@ func (o GetObjectBucketLifecycleRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Configuration block that specifies when noncurrent object versions expire
+func (o GetObjectBucketLifecycleRuleOutput) NoncurrentVersionExpirations() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRule) []GetObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+		return v.NoncurrentVersionExpirations
+	}).(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput)
+}
+
+// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+func (o GetObjectBucketLifecycleRuleOutput) NoncurrentVersionTransitions() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRule) []GetObjectBucketLifecycleRuleNoncurrentVersionTransition {
+		return v.NoncurrentVersionTransitions
+	}).(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+// Minimum object size (in bytes) to which the rule applies
+func (o GetObjectBucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRule) int { return v.ObjectSizeGreaterThan }).(pulumi.IntOutput)
+}
+
+// Maximum object size (in bytes) to which the rule applies
+func (o GetObjectBucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRule) int { return v.ObjectSizeLessThan }).(pulumi.IntOutput)
+}
+
 // The prefix identifying one or more objects to which the rule applies
 func (o GetObjectBucketLifecycleRuleOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) string { return v.Prefix }).(pulumi.StringOutput)
@@ -32982,8 +34228,12 @@ func (o GetObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) GetObj
 }
 
 type GetObjectBucketLifecycleRuleExpiration struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
 // GetObjectBucketLifecycleRuleExpirationInput is an input type that accepts GetObjectBucketLifecycleRuleExpirationArgs and GetObjectBucketLifecycleRuleExpirationOutput values.
@@ -32998,8 +34248,12 @@ type GetObjectBucketLifecycleRuleExpirationInput interface {
 }
 
 type GetObjectBucketLifecycleRuleExpirationArgs struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker pulumi.BoolInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
 func (GetObjectBucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
@@ -33053,9 +34307,19 @@ func (o GetObjectBucketLifecycleRuleExpirationOutput) ToGetObjectBucketLifecycle
 	return o
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o GetObjectBucketLifecycleRuleExpirationOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleExpiration) string { return v.Date }).(pulumi.StringOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect
 func (o GetObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
+}
+
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o GetObjectBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleExpiration) bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolOutput)
 }
 
 type GetObjectBucketLifecycleRuleExpirationArrayOutput struct{ *pulumi.OutputState }
@@ -33078,7 +34342,230 @@ func (o GetObjectBucketLifecycleRuleExpirationArrayOutput) Index(i pulumi.IntInp
 	}).(GetObjectBucketLifecycleRuleExpirationOutput)
 }
 
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpiration struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+}
+
+// GetObjectBucketLifecycleRuleNoncurrentVersionExpirationInput is an input type that accepts GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs and GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleNoncurrentVersionExpirationInput` via:
+//
+//	GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+}
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return i.ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+// GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayInput is an input type that accepts GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray and GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayInput` via:
+//
+//	GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray{ GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{...} }
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray []GetObjectBucketLifecycleRuleNoncurrentVersionExpirationInput
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return i.ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput)
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput struct{ *pulumi.OutputState }
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleNoncurrentVersionExpiration) int { return v.NewerNoncurrentVersions }).(pulumi.IntOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleNoncurrentVersionExpiration) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) Index(i pulumi.IntInput) GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+		return vs[0].([]GetObjectBucketLifecycleRuleNoncurrentVersionExpiration)[vs[1].(int)]
+	}).(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransition struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// GetObjectBucketLifecycleRuleNoncurrentVersionTransitionInput is an input type that accepts GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs and GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleNoncurrentVersionTransitionInput` via:
+//
+//	GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{...}
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return i.ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
+// GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput is an input type that accepts GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray and GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput values.
+// You can construct a concrete instance of `GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput` via:
+//
+//	GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray{ GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{...} }
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput interface {
+	pulumi.Input
+
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+	ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray []GetObjectBucketLifecycleRuleNoncurrentVersionTransitionInput
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return i.ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput struct{ *pulumi.OutputState }
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NewerNoncurrentVersions }).(pulumi.IntOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+// Specifies the Scaleway Object Storage class to which you want the object to transition
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetObjectBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToGetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i pulumi.IntInput) GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetObjectBucketLifecycleRuleNoncurrentVersionTransition {
+		return vs[0].([]GetObjectBucketLifecycleRuleNoncurrentVersionTransition)[vs[1].(int)]
+	}).(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
 type GetObjectBucketLifecycleRuleTransition struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
 	// Specifies the Scaleway Object Storage class to which you want the object to transition
@@ -33097,6 +34584,8 @@ type GetObjectBucketLifecycleRuleTransitionInput interface {
 }
 
 type GetObjectBucketLifecycleRuleTransitionArgs struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
 	// Specifies the Scaleway Object Storage class to which you want the object to transition
@@ -33152,6 +34641,11 @@ func (o GetObjectBucketLifecycleRuleTransitionOutput) ToGetObjectBucketLifecycle
 
 func (o GetObjectBucketLifecycleRuleTransitionOutput) ToGetObjectBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) GetObjectBucketLifecycleRuleTransitionOutput {
 	return o
+}
+
+// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o GetObjectBucketLifecycleRuleTransitionOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v GetObjectBucketLifecycleRuleTransition) string { return v.Date }).(pulumi.StringOutput)
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect
@@ -36092,6 +37586,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageContainerBackendConfigInput)(nil)).Elem(), EdgeServicesBackendStageContainerBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageContainerBackendConfigPtrInput)(nil)).Elem(), EdgeServicesBackendStageContainerBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageFunctionBackendConfigInput)(nil)).Elem(), EdgeServicesBackendStageFunctionBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageFunctionBackendConfigPtrInput)(nil)).Elem(), EdgeServicesBackendStageFunctionBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigArrayInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigLbConfigInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigLbConfigArgs{})
@@ -36188,6 +37686,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodeArrayInput)(nil)).Elem(), KubernetesNodePoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodePrivateIpInput)(nil)).Elem(), KubernetesNodePoolNodePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodePrivateIpArrayInput)(nil)).Elem(), KubernetesNodePoolNodePrivateIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolStartupTaintInput)(nil)).Elem(), KubernetesNodePoolStartupTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolStartupTaintArrayInput)(nil)).Elem(), KubernetesNodePoolStartupTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolTaintInput)(nil)).Elem(), KubernetesNodePoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolTaintArrayInput)(nil)).Elem(), KubernetesNodePoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), KubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolUpgradePolicyPtrInput)(nil)).Elem(), KubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerAclActionInput)(nil)).Elem(), LoadbalancerAclActionArgs{})
@@ -36242,6 +37744,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleArrayInput)(nil)).Elem(), ObjectBucketLifecycleRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleExpirationInput)(nil)).Elem(), ObjectBucketLifecycleRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleExpirationPtrInput)(nil)).Elem(), ObjectBucketLifecycleRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput)(nil)).Elem(), ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput)(nil)).Elem(), ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput)(nil)).Elem(), ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput)(nil)).Elem(), ObjectBucketLifecycleRuleNoncurrentVersionTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleTransitionInput)(nil)).Elem(), ObjectBucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), ObjectBucketLifecycleRuleTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketLockConfigurationRuleInput)(nil)).Elem(), ObjectBucketLockConfigurationRuleArgs{})
@@ -36409,6 +37915,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIpInput)(nil)).Elem(), GetKubernetesNodePoolNodePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIpArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodePrivateIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolStartupTaintInput)(nil)).Elem(), GetKubernetesNodePoolStartupTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolStartupTaintArrayInput)(nil)).Elem(), GetKubernetesNodePoolStartupTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolTaintInput)(nil)).Elem(), GetKubernetesNodePoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolTaintArrayInput)(nil)).Elem(), GetKubernetesNodePoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyArrayInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclInput)(nil)).Elem(), GetLbAclsAclArgs{})
@@ -36469,6 +37979,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleExpirationInput)(nil)).Elem(), GetObjectBucketLifecycleRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleExpirationArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleExpirationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionExpirationInput)(nil)).Elem(), GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionTransitionInput)(nil)).Elem(), GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleTransitionInput)(nil)).Elem(), GetObjectBucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), GetObjectBucketLifecycleRuleTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketVersioningInput)(nil)).Elem(), GetObjectBucketVersioningArgs{})
@@ -36591,6 +38105,10 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageContainerBackendConfigOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageContainerBackendConfigPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageFunctionBackendConfigOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageFunctionBackendConfigPtrOutput{})
 	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigOutput{})
 	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigLbConfigOutput{})
@@ -36687,6 +38205,10 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesNodePoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolNodePrivateIpOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolNodePrivateIpArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolStartupTaintOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolStartupTaintArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolTaintOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolUpgradePolicyPtrOutput{})
 	pulumi.RegisterOutputType(LoadbalancerAclActionOutput{})
@@ -36741,6 +38263,10 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleArrayOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleExpirationOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleExpirationPtrOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput{})
+	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLifecycleRuleTransitionArrayOutput{})
 	pulumi.RegisterOutputType(ObjectBucketLockConfigurationRuleOutput{})
@@ -36908,6 +38434,10 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodePrivateIpArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolStartupTaintOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolStartupTaintArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolTaintOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclOutput{})
@@ -36968,6 +38498,10 @@ func init() {
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleExpirationOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleExpirationArrayOutput{})
+	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput{})
+	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput{})
+	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput{})
+	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleTransitionArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketVersioningOutput{})

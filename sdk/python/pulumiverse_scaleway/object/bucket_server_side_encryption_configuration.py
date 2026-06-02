@@ -22,15 +22,19 @@ __all__ = ['BucketServerSideEncryptionConfigurationArgs', 'BucketServerSideEncry
 class BucketServerSideEncryptionConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 rules: pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]):
+                 rules: pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]],
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketServerSideEncryptionConfiguration resource.
 
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
+        :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "rules", rules)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @_builtins.property
     @pulumi.getter
@@ -56,20 +60,36 @@ class BucketServerSideEncryptionConfigurationArgs:
     def rules(self, value: pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]):
         pulumi.set(self, "rules", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _BucketServerSideEncryptionConfigurationState:
     def __init__(__self__, *,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering BucketServerSideEncryptionConfiguration resources.
 
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
 
@@ -84,6 +104,18 @@ class _BucketServerSideEncryptionConfigurationState:
     @bucket.setter
     def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
@@ -105,6 +137,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
                  __props__=None):
         """
@@ -113,6 +146,50 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/enable-sse-one/) for more information on server-side encryption.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.object.Bucket("test",
+            name="my-bucket",
+            region="fr-par")
+        mykey = scaleway.keymanager.Key("mykey",
+            name="my-kms-key",
+            description="This key is used to encrypt bucket objects",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            unprotected=True)
+        test_bucket_server_side_encryption_configuration = scaleway.object.BucketServerSideEncryptionConfiguration("test",
+            bucket=test.name,
+            region="fr-par",
+            rules=[{
+                "apply_server_side_encryption_by_default": {
+                    "kms_master_key_id": mykey.name,
+                    "sse_algorithm": "aws:kms",
+                },
+                "bucket_key_enabled": True,
+            }])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.object.Bucket("test",
+            name="my-bucket",
+            region="fr-par")
+        test_bucket_server_side_encryption_configuration = scaleway.object.BucketServerSideEncryptionConfiguration("test",
+            bucket=test.name,
+            region="fr-par",
+            rules=[{
+                "apply_server_side_encryption_by_default": {
+                    "kms_master_key_id": "my-key-id",
+                    "sse_algorithm": "aws:kms",
+                },
+                "bucket_key_enabled": True,
+            }])
+        ```
 
         ```python
         import pulumi
@@ -164,6 +241,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
         """
         ...
@@ -178,6 +256,50 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/enable-sse-one/) for more information on server-side encryption.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.object.Bucket("test",
+            name="my-bucket",
+            region="fr-par")
+        mykey = scaleway.keymanager.Key("mykey",
+            name="my-kms-key",
+            description="This key is used to encrypt bucket objects",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            unprotected=True)
+        test_bucket_server_side_encryption_configuration = scaleway.object.BucketServerSideEncryptionConfiguration("test",
+            bucket=test.name,
+            region="fr-par",
+            rules=[{
+                "apply_server_side_encryption_by_default": {
+                    "kms_master_key_id": mykey.name,
+                    "sse_algorithm": "aws:kms",
+                },
+                "bucket_key_enabled": True,
+            }])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        test = scaleway.object.Bucket("test",
+            name="my-bucket",
+            region="fr-par")
+        test_bucket_server_side_encryption_configuration = scaleway.object.BucketServerSideEncryptionConfiguration("test",
+            bucket=test.name,
+            region="fr-par",
+            rules=[{
+                "apply_server_side_encryption_by_default": {
+                    "kms_master_key_id": "my-key-id",
+                    "sse_algorithm": "aws:kms",
+                },
+                "bucket_key_enabled": True,
+            }])
+        ```
 
         ```python
         import pulumi
@@ -242,6 +364,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -255,6 +378,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             if bucket is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
+            __props__.__dict__["region"] = region
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
             __props__.__dict__["rules"] = rules
@@ -269,6 +393,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
             rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
         """
         Get an existing BucketServerSideEncryptionConfiguration resource's state with the given name, id, and optional extra
@@ -278,6 +403,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -285,6 +411,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         __props__ = _BucketServerSideEncryptionConfigurationState.__new__(_BucketServerSideEncryptionConfigurationState)
 
         __props__.__dict__["bucket"] = bucket
+        __props__.__dict__["region"] = region
         __props__.__dict__["rules"] = rules
         return BucketServerSideEncryptionConfiguration(resource_name, opts=opts, __props__=__props__)
 
@@ -295,6 +422,14 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        """
+        return pulumi.get(self, "region")
 
     @_builtins.property
     @pulumi.getter

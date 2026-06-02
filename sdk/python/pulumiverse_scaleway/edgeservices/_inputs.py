@@ -15,6 +15,10 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'BackendStageContainerBackendConfigArgs',
+    'BackendStageContainerBackendConfigArgsDict',
+    'BackendStageFunctionBackendConfigArgs',
+    'BackendStageFunctionBackendConfigArgsDict',
     'BackendStageLbBackendConfigArgs',
     'BackendStageLbBackendConfigArgsDict',
     'BackendStageLbBackendConfigLbConfigArgs',
@@ -34,6 +38,102 @@ __all__ = [
     'TlsStageSecretArgs',
     'TlsStageSecretArgsDict',
 ]
+
+class BackendStageContainerBackendConfigArgsDict(TypedDict):
+    container_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Serverless Container.
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    `region`) The region of the Serverless Container.
+    """
+
+@pulumi.input_type
+class BackendStageContainerBackendConfigArgs:
+    def __init__(__self__, *,
+                 container_id: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] container_id: The ID of the Serverless Container.
+        :param pulumi.Input[_builtins.str] region: `region`) The region of the Serverless Container.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the Serverless Container.
+        """
+        return pulumi.get(self, "container_id")
+
+    @container_id.setter
+    def container_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "container_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        `region`) The region of the Serverless Container.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+
+class BackendStageFunctionBackendConfigArgsDict(TypedDict):
+    function_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Serverless Function.
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    `region`) The region of the Serverless Function.
+    """
+
+@pulumi.input_type
+class BackendStageFunctionBackendConfigArgs:
+    def __init__(__self__, *,
+                 function_id: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] function_id: The ID of the Serverless Function.
+        :param pulumi.Input[_builtins.str] region: `region`) The region of the Serverless Function.
+        """
+        pulumi.set(__self__, "function_id", function_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the Serverless Function.
+        """
+        return pulumi.get(self, "function_id")
+
+    @function_id.setter
+    def function_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "function_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        `region`) The region of the Serverless Function.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
 
 class BackendStageLbBackendConfigArgsDict(TypedDict):
     lb_config: NotRequired[pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']]]

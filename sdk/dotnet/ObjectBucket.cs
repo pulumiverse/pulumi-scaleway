@@ -37,6 +37,134 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Object.Bucket("main", new()
+    ///     {
+    ///         Name = "mybuckectid",
+    ///         Region = "fr-par",
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "id1",
+    ///                 Prefix = "path1/",
+    ///                 Enabled = true,
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 365,
+    ///                 },
+    ///                 Transitions = new[]
+    ///                 {
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleTransitionArgs
+    ///                     {
+    ///                         Days = 120,
+    ///                         StorageClass = "GLACIER",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "id2",
+    ///                 Prefix = "path2/",
+    ///                 Enabled = true,
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 50,
+    ///                 },
+    ///             },
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "id3",
+    ///                 Prefix = "path3/",
+    ///                 Enabled = false,
+    ///                 Tags = 
+    ///                 {
+    ///                     { "tagKey", "tagValue" },
+    ///                     { "terraform", "hashicorp" },
+    ///                 },
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 1,
+    ///                 },
+    ///             },
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "id4",
+    ///                 Enabled = true,
+    ///                 Tags = 
+    ///                 {
+    ///                     { "tag1", "value1" },
+    ///                 },
+    ///                 Transitions = new[]
+    ///                 {
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleTransitionArgs
+    ///                     {
+    ///                         Days = 1,
+    ///                         StorageClass = "GLACIER",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Enabled = true,
+    ///                 AbortIncompleteMultipartUploadDays = 30,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Object.Bucket("main", new()
+    ///     {
+    ///         Name = "mybuckectid",
+    ///         Region = "fr-par",
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "id1",
+    ///                 Prefix = "path1/",
+    ///                 Enabled = true,
+    ///                 NoncurrentVersionExpiration = new Scaleway.Object.Inputs.BucketLifecycleRuleNoncurrentVersionExpirationArgs
+    ///                 {
+    ///                     NoncurrentDays = 90,
+    ///                 },
+    ///                 NoncurrentVersionTransitions = new[]
+    ///                 {
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleNoncurrentVersionTransitionArgs
+    ///                     {
+    ///                         NoncurrentDays = 30,
+    ///                         StorageClass = "ONEZONE_IA",
+    ///                     },
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleNoncurrentVersionTransitionArgs
+    ///                     {
+    ///                         NoncurrentDays = 60,
+    ///                         StorageClass = "GLACIER",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Creating the bucket in a specific project
     /// 
     /// ```csharp

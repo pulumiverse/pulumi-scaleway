@@ -262,6 +262,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly ImmutableDictionary<string, string> KubeletArgs;
+        public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>
         /// The maximum size of the pool, used by the autoscaling feature.
         /// </summary>
@@ -296,6 +297,7 @@ namespace Pulumiverse.Scaleway
         /// The size of the pool.
         /// </summary>
         public readonly int? Size;
+        public readonly ImmutableArray<Outputs.GetKubernetesNodePoolStartupTaintResult> StartupTaints;
         /// <summary>
         /// The status of the node.
         /// </summary>
@@ -304,6 +306,7 @@ namespace Pulumiverse.Scaleway
         /// The tags associated with the pool.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
+        public readonly ImmutableArray<Outputs.GetKubernetesNodePoolTaintResult> Taints;
         /// <summary>
         /// The last update date of the pool.
         /// </summary>
@@ -334,6 +337,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> kubeletArgs,
 
+            ImmutableDictionary<string, string> labels,
+
             int maxSize,
 
             int minSize,
@@ -360,9 +365,13 @@ namespace Pulumiverse.Scaleway
 
             int? size,
 
+            ImmutableArray<Outputs.GetKubernetesNodePoolStartupTaintResult> startupTaints,
+
             string status,
 
             ImmutableArray<string> tags,
+
+            ImmutableArray<Outputs.GetKubernetesNodePoolTaintResult> taints,
 
             string updatedAt,
 
@@ -382,6 +391,7 @@ namespace Pulumiverse.Scaleway
             CurrentSize = currentSize;
             Id = id;
             KubeletArgs = kubeletArgs;
+            Labels = labels;
             MaxSize = maxSize;
             MinSize = minSize;
             Name = name;
@@ -395,8 +405,10 @@ namespace Pulumiverse.Scaleway
             RootVolumeType = rootVolumeType;
             SecurityGroupId = securityGroupId;
             Size = size;
+            StartupTaints = startupTaints;
             Status = status;
             Tags = tags;
+            Taints = taints;
             UpdatedAt = updatedAt;
             UpgradePolicies = upgradePolicies;
             Version = version;

@@ -93,6 +93,10 @@ __all__ = [
     'DomainRecordViewArgsDict',
     'DomainRecordWeightedArgs',
     'DomainRecordWeightedArgsDict',
+    'EdgeServicesBackendStageContainerBackendConfigArgs',
+    'EdgeServicesBackendStageContainerBackendConfigArgsDict',
+    'EdgeServicesBackendStageFunctionBackendConfigArgs',
+    'EdgeServicesBackendStageFunctionBackendConfigArgsDict',
     'EdgeServicesBackendStageLbBackendConfigArgs',
     'EdgeServicesBackendStageLbBackendConfigArgsDict',
     'EdgeServicesBackendStageLbBackendConfigLbConfigArgs',
@@ -189,6 +193,10 @@ __all__ = [
     'KubernetesNodePoolNodeArgsDict',
     'KubernetesNodePoolNodePrivateIpArgs',
     'KubernetesNodePoolNodePrivateIpArgsDict',
+    'KubernetesNodePoolStartupTaintArgs',
+    'KubernetesNodePoolStartupTaintArgsDict',
+    'KubernetesNodePoolTaintArgs',
+    'KubernetesNodePoolTaintArgsDict',
     'KubernetesNodePoolUpgradePolicyArgs',
     'KubernetesNodePoolUpgradePolicyArgsDict',
     'LoadbalancerAclActionArgs',
@@ -245,6 +253,10 @@ __all__ = [
     'ObjectBucketLifecycleRuleArgsDict',
     'ObjectBucketLifecycleRuleExpirationArgs',
     'ObjectBucketLifecycleRuleExpirationArgsDict',
+    'ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs',
+    'ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgsDict',
+    'ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs',
+    'ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgsDict',
     'ObjectBucketLifecycleRuleTransitionArgs',
     'ObjectBucketLifecycleRuleTransitionArgsDict',
     'ObjectBucketLockConfigurationRuleArgs',
@@ -3533,6 +3545,102 @@ class DomainRecordWeightedArgs:
     @weight.setter
     def weight(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "weight", value)
+
+
+class EdgeServicesBackendStageContainerBackendConfigArgsDict(TypedDict):
+    container_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Serverless Container.
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    `region`) The region of the Serverless Container.
+    """
+
+@pulumi.input_type
+class EdgeServicesBackendStageContainerBackendConfigArgs:
+    def __init__(__self__, *,
+                 container_id: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] container_id: The ID of the Serverless Container.
+        :param pulumi.Input[_builtins.str] region: `region`) The region of the Serverless Container.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the Serverless Container.
+        """
+        return pulumi.get(self, "container_id")
+
+    @container_id.setter
+    def container_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "container_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        `region`) The region of the Serverless Container.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+
+class EdgeServicesBackendStageFunctionBackendConfigArgsDict(TypedDict):
+    function_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the Serverless Function.
+    """
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    `region`) The region of the Serverless Function.
+    """
+
+@pulumi.input_type
+class EdgeServicesBackendStageFunctionBackendConfigArgs:
+    def __init__(__self__, *,
+                 function_id: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] function_id: The ID of the Serverless Function.
+        :param pulumi.Input[_builtins.str] region: `region`) The region of the Serverless Function.
+        """
+        pulumi.set(__self__, "function_id", function_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the Serverless Function.
+        """
+        return pulumi.get(self, "function_id")
+
+    @function_id.setter
+    def function_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "function_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        `region`) The region of the Serverless Function.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "region", value)
 
 
 class EdgeServicesBackendStageLbBackendConfigArgsDict(TypedDict):
@@ -7048,6 +7156,13 @@ class KubernetesClusterAutoscalerConfigArgsDict(TypedDict):
     """
     Ignore DaemonSet pods when calculating resource utilization for scaling down.
     """
+    log_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+    Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+
+    > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
+    """
     max_graceful_termination_sec: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
@@ -7064,6 +7179,12 @@ class KubernetesClusterAutoscalerConfigArgsDict(TypedDict):
     """
     Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
     """
+    skip_nodes_with_local_storage: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+
+    > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
+    """
 
 @pulumi.input_type
 class KubernetesClusterAutoscalerConfigArgs:
@@ -7074,10 +7195,12 @@ class KubernetesClusterAutoscalerConfigArgs:
                  expander: pulumi.Input[Optional[_builtins.str]] = None,
                  expendable_pods_priority_cutoff: pulumi.Input[Optional[_builtins.int]] = None,
                  ignore_daemonsets_utilization: pulumi.Input[Optional[_builtins.bool]] = None,
+                 log_level: pulumi.Input[Optional[_builtins.int]] = None,
                  max_graceful_termination_sec: pulumi.Input[Optional[_builtins.int]] = None,
                  scale_down_delay_after_add: pulumi.Input[Optional[_builtins.str]] = None,
                  scale_down_unneeded_time: pulumi.Input[Optional[_builtins.str]] = None,
-                 scale_down_utilization_threshold: pulumi.Input[Optional[_builtins.float]] = None):
+                 scale_down_utilization_threshold: pulumi.Input[Optional[_builtins.float]] = None,
+                 skip_nodes_with_local_storage: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] balance_similar_node_groups: Detect similar node groups and balance the number of nodes between them.
         :param pulumi.Input[_builtins.bool] disable_scale_down: Disables the scale down feature of the autoscaler.
@@ -7085,10 +7208,17 @@ class KubernetesClusterAutoscalerConfigArgs:
         :param pulumi.Input[_builtins.str] expander: Type of node group expander to be used in scale up.
         :param pulumi.Input[_builtins.int] expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         :param pulumi.Input[_builtins.bool] ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
+        :param pulumi.Input[_builtins.int] log_level: Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+               Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+               
+               > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         :param pulumi.Input[_builtins.int] max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param pulumi.Input[_builtins.str] scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param pulumi.Input[_builtins.str] scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
         :param pulumi.Input[_builtins.float] scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+        :param pulumi.Input[_builtins.bool] skip_nodes_with_local_storage: If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+               
+               > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         if balance_similar_node_groups is not None:
             pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
@@ -7102,6 +7232,8 @@ class KubernetesClusterAutoscalerConfigArgs:
             pulumi.set(__self__, "expendable_pods_priority_cutoff", expendable_pods_priority_cutoff)
         if ignore_daemonsets_utilization is not None:
             pulumi.set(__self__, "ignore_daemonsets_utilization", ignore_daemonsets_utilization)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if max_graceful_termination_sec is not None:
             pulumi.set(__self__, "max_graceful_termination_sec", max_graceful_termination_sec)
         if scale_down_delay_after_add is not None:
@@ -7110,6 +7242,8 @@ class KubernetesClusterAutoscalerConfigArgs:
             pulumi.set(__self__, "scale_down_unneeded_time", scale_down_unneeded_time)
         if scale_down_utilization_threshold is not None:
             pulumi.set(__self__, "scale_down_utilization_threshold", scale_down_utilization_threshold)
+        if skip_nodes_with_local_storage is not None:
+            pulumi.set(__self__, "skip_nodes_with_local_storage", skip_nodes_with_local_storage)
 
     @_builtins.property
     @pulumi.getter(name="balanceSimilarNodeGroups")
@@ -7184,6 +7318,21 @@ class KubernetesClusterAutoscalerConfigArgs:
         pulumi.set(self, "ignore_daemonsets_utilization", value)
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+        Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+
+        > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
+        """
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "log_level", value)
+
+    @_builtins.property
     @pulumi.getter(name="maxGracefulTerminationSec")
     def max_graceful_termination_sec(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -7230,6 +7379,20 @@ class KubernetesClusterAutoscalerConfigArgs:
     @scale_down_utilization_threshold.setter
     def scale_down_utilization_threshold(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "scale_down_utilization_threshold", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipNodesWithLocalStorage")
+    def skip_nodes_with_local_storage(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+
+        > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
+        """
+        return pulumi.get(self, "skip_nodes_with_local_storage")
+
+    @skip_nodes_with_local_storage.setter
+    def skip_nodes_with_local_storage(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "skip_nodes_with_local_storage", value)
 
 
 class KubernetesClusterKubeconfigArgsDict(TypedDict):
@@ -7658,6 +7821,138 @@ class KubernetesNodePoolNodePrivateIpArgs:
     @id.setter
     def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
+
+
+class KubernetesNodePoolStartupTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Effect of the taint
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Key of the taint
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Value of the taint
+    """
+
+@pulumi.input_type
+class KubernetesNodePoolStartupTaintArgs:
+    def __init__(__self__, *,
+                 effect: pulumi.Input[_builtins.str],
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] effect: Effect of the taint
+        :param pulumi.Input[_builtins.str] key: Key of the taint
+        :param pulumi.Input[_builtins.str] value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> pulumi.Input[_builtins.str]:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "effect", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class KubernetesNodePoolTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    Effect of the taint
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    Key of the taint
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Value of the taint
+    """
+
+@pulumi.input_type
+class KubernetesNodePoolTaintArgs:
+    def __init__(__self__, *,
+                 effect: pulumi.Input[_builtins.str],
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] effect: Effect of the taint
+        :param pulumi.Input[_builtins.str] key: Key of the taint
+        :param pulumi.Input[_builtins.str] value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> pulumi.Input[_builtins.str]:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "effect", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
 
 
 class KubernetesNodePoolUpgradePolicyArgsDict(TypedDict):
@@ -9585,6 +9880,22 @@ class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     """
     Unique identifier for the rule. Must be less than or equal to 255 characters in length.
     """
+    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]]
+    """
+    Configuration block that specifies when noncurrent object versions expire
+    """
+    noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]]
+    """
+    Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+    """
+    object_size_greater_than: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Minimum object size (in bytes) to which the rule applies
+    """
+    object_size_less_than: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Maximum object size (in bytes) to which the rule applies
+    """
     prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Object key prefix identifying one or more objects to which the rule applies.
@@ -9605,6 +9916,10 @@ class ObjectBucketLifecycleRuleArgs:
                  abort_incomplete_multipart_upload_days: pulumi.Input[Optional[_builtins.int]] = None,
                  expiration: pulumi.Input[Optional['ObjectBucketLifecycleRuleExpirationArgs']] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
+                 noncurrent_version_expiration: pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']] = None,
+                 noncurrent_version_transitions: pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]] = None,
+                 object_size_greater_than: pulumi.Input[Optional[_builtins.int]] = None,
+                 object_size_less_than: pulumi.Input[Optional[_builtins.int]] = None,
                  prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  transitions: pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]] = None):
@@ -9615,6 +9930,10 @@ class ObjectBucketLifecycleRuleArgs:
                > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire
         :param pulumi.Input[_builtins.str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        :param pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expiration: Configuration block that specifies when noncurrent object versions expire
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]] noncurrent_version_transitions: Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        :param pulumi.Input[_builtins.int] object_size_greater_than: Minimum object size (in bytes) to which the rule applies
+        :param pulumi.Input[_builtins.int] object_size_less_than: Maximum object size (in bytes) to which the rule applies
         :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies object tags key and value.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Define when objects transition to another storage class
@@ -9626,6 +9945,14 @@ class ObjectBucketLifecycleRuleArgs:
             pulumi.set(__self__, "expiration", expiration)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if noncurrent_version_expiration is not None:
+            pulumi.set(__self__, "noncurrent_version_expiration", noncurrent_version_expiration)
+        if noncurrent_version_transitions is not None:
+            pulumi.set(__self__, "noncurrent_version_transitions", noncurrent_version_transitions)
+        if object_size_greater_than is not None:
+            pulumi.set(__self__, "object_size_greater_than", object_size_greater_than)
+        if object_size_less_than is not None:
+            pulumi.set(__self__, "object_size_less_than", object_size_less_than)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
         if tags is not None:
@@ -9684,6 +10011,54 @@ class ObjectBucketLifecycleRuleArgs:
         pulumi.set(self, "id", value)
 
     @_builtins.property
+    @pulumi.getter(name="noncurrentVersionExpiration")
+    def noncurrent_version_expiration(self) -> pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]:
+        """
+        Configuration block that specifies when noncurrent object versions expire
+        """
+        return pulumi.get(self, "noncurrent_version_expiration")
+
+    @noncurrent_version_expiration.setter
+    def noncurrent_version_expiration(self, value: pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]):
+        pulumi.set(self, "noncurrent_version_expiration", value)
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentVersionTransitions")
+    def noncurrent_version_transitions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]:
+        """
+        Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        """
+        return pulumi.get(self, "noncurrent_version_transitions")
+
+    @noncurrent_version_transitions.setter
+    def noncurrent_version_transitions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]):
+        pulumi.set(self, "noncurrent_version_transitions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeGreaterThan")
+    def object_size_greater_than(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Minimum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_greater_than")
+
+    @object_size_greater_than.setter
+    def object_size_greater_than(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "object_size_greater_than", value)
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeLessThan")
+    def object_size_less_than(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_less_than")
+
+    @object_size_less_than.setter
+    def object_size_less_than(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "object_size_less_than", value)
+
+    @_builtins.property
     @pulumi.getter
     def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -9721,31 +10096,188 @@ class ObjectBucketLifecycleRuleArgs:
 
 
 class ObjectBucketLifecycleRuleExpirationArgsDict(TypedDict):
-    days: pulumi.Input[_builtins.int]
+    date: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+    """
+    days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after object creation when the specific rule action takes effect.
+    """
+    expired_object_delete_marker: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
     """
 
 @pulumi.input_type
 class ObjectBucketLifecycleRuleExpirationArgs:
     def __init__(__self__, *,
-                 days: pulumi.Input[_builtins.int]):
+                 date: pulumi.Input[Optional[_builtins.str]] = None,
+                 days: pulumi.Input[Optional[_builtins.int]] = None,
+                 expired_object_delete_marker: pulumi.Input[Optional[_builtins.bool]] = None):
         """
+        :param pulumi.Input[_builtins.str] date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+        :param pulumi.Input[_builtins.bool] expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
         """
-        pulumi.set(__self__, "days", days)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+        if days is not None:
+            pulumi.set(__self__, "days", days)
+        if expired_object_delete_marker is not None:
+            pulumi.set(__self__, "expired_object_delete_marker", expired_object_delete_marker)
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> pulumi.Input[_builtins.int]:
+    def date(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
+
+    @date.setter
+    def date(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "date", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
         return pulumi.get(self, "days")
 
     @days.setter
-    def days(self, value: pulumi.Input[_builtins.int]):
+    def days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expiredObjectDeleteMarker")
+    def expired_object_delete_marker(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        """
+        return pulumi.get(self, "expired_object_delete_marker")
+
+    @expired_object_delete_marker.setter
+    def expired_object_delete_marker(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "expired_object_delete_marker", value)
+
+
+class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgsDict(TypedDict):
+    newer_noncurrent_versions: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+    """
+    noncurrent_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+    """
+
+@pulumi.input_type
+class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs:
+    def __init__(__self__, *,
+                 newer_noncurrent_versions: pulumi.Input[Optional[_builtins.int]] = None,
+                 noncurrent_days: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        if newer_noncurrent_versions is not None:
+            pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+        if noncurrent_days is not None:
+            pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
+
+    @newer_noncurrent_versions.setter
+    def newer_noncurrent_versions(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "newer_noncurrent_versions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+    @noncurrent_days.setter
+    def noncurrent_days(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "noncurrent_days", value)
+
+
+class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgsDict(TypedDict):
+    noncurrent_days: pulumi.Input[_builtins.int]
+    """
+    Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+    """
+    storage_class: pulumi.Input[_builtins.str]
+    """
+    Specifies the Scaleway Object Storage class to which you want the object to transition
+    """
+    newer_noncurrent_versions: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+    """
+
+@pulumi.input_type
+class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
+    def __init__(__self__, *,
+                 noncurrent_days: pulumi.Input[_builtins.int],
+                 storage_class: pulumi.Input[_builtins.str],
+                 newer_noncurrent_versions: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway Object Storage class to which you want the object to transition
+        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+        pulumi.set(__self__, "storage_class", storage_class)
+        if newer_noncurrent_versions is not None:
+            pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+    @noncurrent_days.setter
+    def noncurrent_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "noncurrent_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageClass")
+    def storage_class(self) -> pulumi.Input[_builtins.str]:
+        """
+        Specifies the Scaleway Object Storage class to which you want the object to transition
+        """
+        return pulumi.get(self, "storage_class")
+
+    @storage_class.setter
+    def storage_class(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "storage_class", value)
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
+
+    @newer_noncurrent_versions.setter
+    def newer_noncurrent_versions(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "newer_noncurrent_versions", value)
 
 
 class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
@@ -9761,6 +10293,10 @@ class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
     > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
     > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
     """
+    date: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+    """
     days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after object creation when the specific rule action takes effect.
@@ -9770,6 +10306,7 @@ class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
 class ObjectBucketLifecycleRuleTransitionArgs:
     def __init__(__self__, *,
                  storage_class: pulumi.Input[_builtins.str],
+                 date: pulumi.Input[Optional[_builtins.str]] = None,
                  days: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -9781,9 +10318,12 @@ class ObjectBucketLifecycleRuleTransitionArgs:
                
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+        :param pulumi.Input[_builtins.str] date: Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
         pulumi.set(__self__, "storage_class", storage_class)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
         if days is not None:
             pulumi.set(__self__, "days", days)
 
@@ -9806,6 +10346,18 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @storage_class.setter
     def storage_class(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "storage_class", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
+
+    @date.setter
+    def date(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "date", value)
 
     @_builtins.property
     @pulumi.getter

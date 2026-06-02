@@ -50,6 +50,15 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<bool>? IgnoreDaemonsetsUtilization { get; set; }
 
         /// <summary>
+        /// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+        /// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+        /// 
+        /// &gt; **Important:** For now, it is not possible to change the value of `LogLevel` after creation. Changes to this field will recreate a new cluster resource.
+        /// </summary>
+        [Input("logLevel")]
+        public Input<int>? LogLevel { get; set; }
+
+        /// <summary>
         /// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         /// </summary>
         [Input("maxGracefulTerminationSec")]
@@ -72,6 +81,14 @@ namespace Pulumiverse.Scaleway.Inputs
         /// </summary>
         [Input("scaleDownUtilizationThreshold")]
         public Input<double>? ScaleDownUtilizationThreshold { get; set; }
+
+        /// <summary>
+        /// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+        /// 
+        /// &gt; **Important:** For now, it is not possible to change the value of `SkipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+        /// </summary>
+        [Input("skipNodesWithLocalStorage")]
+        public Input<bool>? SkipNodesWithLocalStorage { get; set; }
 
         public KubernetesClusterAutoscalerConfigGetArgs()
         {

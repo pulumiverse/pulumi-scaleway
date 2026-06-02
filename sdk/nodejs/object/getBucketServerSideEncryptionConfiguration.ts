@@ -67,6 +67,7 @@ export interface GetBucketServerSideEncryptionConfigurationResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly region: string;
     /**
      * (Set of Object) Set of server-side encryption configuration rules.
      */

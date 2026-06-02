@@ -110,6 +110,89 @@ namespace Pulumiverse.Scaleway.Edgeservices
     /// });
     /// ```
     /// 
+    /// ### With Serverless Container backend
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Containers.Namespace("main", new()
+    ///     {
+    ///         Name = "my-namespace",
+    ///     });
+    /// 
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Name = "my-container",
+    ///         Image = "nginx:1.29.4-alpine",
+    ///         Port = 80,
+    ///     });
+    /// 
+    ///     var mainPipeline = new Scaleway.Edgeservices.Pipeline("main", new()
+    ///     {
+    ///         Name = "my-pipeline",
+    ///     });
+    /// 
+    ///     var mainBackendStage = new Scaleway.Edgeservices.BackendStage("main", new()
+    ///     {
+    ///         PipelineId = mainPipeline.Id,
+    ///         ContainerBackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageContainerBackendConfigArgs
+    ///         {
+    ///             ContainerId = mainContainer.Id,
+    ///             Region = "fr-par",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Serverless Function backend
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
+    ///     {
+    ///         Name = "my-namespace",
+    ///     });
+    /// 
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Name = "my-function",
+    ///         Runtime = "node20",
+    ///         Privacy = "private",
+    ///         Handler = "handler.handle",
+    ///     });
+    /// 
+    ///     var mainPipeline = new Scaleway.Edgeservices.Pipeline("main", new()
+    ///     {
+    ///         Name = "my-pipeline",
+    ///     });
+    /// 
+    ///     var mainBackendStage = new Scaleway.Edgeservices.BackendStage("main", new()
+    ///     {
+    ///         PipelineId = mainPipeline.Id,
+    ///         FunctionBackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageFunctionBackendConfigArgs
+    ///         {
+    ///             FunctionId = mainFunction.Id,
+    ///             Region = "fr-par",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Backend stages can be imported using the `{id}`, e.g.
@@ -122,10 +205,22 @@ namespace Pulumiverse.Scaleway.Edgeservices
     public partial class BackendStage : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The Scaleway Serverless Container backend linked to the backend stage.
+        /// </summary>
+        [Output("containerBackendConfig")]
+        public Output<Outputs.BackendStageContainerBackendConfig?> ContainerBackendConfig { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the creation of the backend stage.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Serverless Function backend linked to the backend stage.
+        /// </summary>
+        [Output("functionBackendConfig")]
+        public Output<Outputs.BackendStageFunctionBackendConfig?> FunctionBackendConfig { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway Load Balancer linked to the backend stage.
@@ -141,6 +236,8 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
+        /// 
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -208,6 +305,18 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
     public sealed class BackendStageArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Scaleway Serverless Container backend linked to the backend stage.
+        /// </summary>
+        [Input("containerBackendConfig")]
+        public Input<Inputs.BackendStageContainerBackendConfigArgs>? ContainerBackendConfig { get; set; }
+
+        /// <summary>
+        /// The Scaleway Serverless Function backend linked to the backend stage.
+        /// </summary>
+        [Input("functionBackendConfig")]
+        public Input<Inputs.BackendStageFunctionBackendConfigArgs>? FunctionBackendConfig { get; set; }
+
         [Input("lbBackendConfigs")]
         private InputList<Inputs.BackendStageLbBackendConfigArgs>? _lbBackendConfigs;
 
@@ -228,6 +337,8 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
+        /// 
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -247,10 +358,22 @@ namespace Pulumiverse.Scaleway.Edgeservices
     public sealed class BackendStageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The Scaleway Serverless Container backend linked to the backend stage.
+        /// </summary>
+        [Input("containerBackendConfig")]
+        public Input<Inputs.BackendStageContainerBackendConfigGetArgs>? ContainerBackendConfig { get; set; }
+
+        /// <summary>
         /// The date and time of the creation of the backend stage.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// The Scaleway Serverless Function backend linked to the backend stage.
+        /// </summary>
+        [Input("functionBackendConfig")]
+        public Input<Inputs.BackendStageFunctionBackendConfigGetArgs>? FunctionBackendConfig { get; set; }
 
         [Input("lbBackendConfigs")]
         private InputList<Inputs.BackendStageLbBackendConfigGetArgs>? _lbBackendConfigs;
@@ -272,6 +395,8 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
+        /// 
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

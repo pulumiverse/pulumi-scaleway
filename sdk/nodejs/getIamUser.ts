@@ -66,17 +66,36 @@ export interface GetIamUserArgs {
  * A collection of values returned by getIamUser.
  */
 export interface GetIamUserResult {
+    readonly accountRootUserId: string;
+    readonly createdAt: string;
+    readonly deletable: boolean;
     readonly email?: string;
+    readonly firstName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly lastLoginAt: string;
+    readonly lastName: string;
+    readonly locale: string;
+    readonly locked: boolean;
+    readonly mfa: boolean;
     readonly organizationId?: string;
+    readonly password: string;
+    readonly passwordWo: string;
+    readonly passwordWoVersion: number;
+    readonly phoneNumber: string;
+    readonly sendPasswordEmail: boolean;
+    readonly sendWelcomeEmail: boolean;
+    readonly status: string;
     /**
      * The tags associated with the user.
      */
     readonly tags?: string[];
+    readonly type: string;
+    readonly updatedAt: string;
     readonly userId?: string;
+    readonly username: string;
 }
 /**
  * Use this data source to get information on an existing IAM user based on its ID or email address.

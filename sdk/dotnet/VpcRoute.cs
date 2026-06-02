@@ -225,7 +225,7 @@ namespace Pulumiverse.Scaleway
         /// The route description.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// The destination of the route.

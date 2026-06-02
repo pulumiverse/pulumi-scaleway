@@ -65,6 +65,53 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With Serverless Container backend
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.containers.Namespace("main", {name: "my-namespace"});
+ * const mainContainer = new scaleway.containers.Container("main", {
+ *     namespaceId: main.id,
+ *     name: "my-container",
+ *     image: "nginx:1.29.4-alpine",
+ *     port: 80,
+ * });
+ * const mainPipeline = new scaleway.edgeservices.Pipeline("main", {name: "my-pipeline"});
+ * const mainBackendStage = new scaleway.edgeservices.BackendStage("main", {
+ *     pipelineId: mainPipeline.id,
+ *     containerBackendConfig: {
+ *         containerId: mainContainer.id,
+ *         region: "fr-par",
+ *     },
+ * });
+ * ```
+ *
+ * ### With Serverless Function backend
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.functions.Namespace("main", {name: "my-namespace"});
+ * const mainFunction = new scaleway.functions.Function("main", {
+ *     namespaceId: main.id,
+ *     name: "my-function",
+ *     runtime: "node20",
+ *     privacy: "private",
+ *     handler: "handler.handle",
+ * });
+ * const mainPipeline = new scaleway.edgeservices.Pipeline("main", {name: "my-pipeline"});
+ * const mainBackendStage = new scaleway.edgeservices.BackendStage("main", {
+ *     pipelineId: mainPipeline.id,
+ *     functionBackendConfig: {
+ *         functionId: mainFunction.id,
+ *         region: "fr-par",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Backend stages can be imported using the `{id}`, e.g.
@@ -102,9 +149,17 @@ export class BackendStage extends pulumi.CustomResource {
     }
 
     /**
+     * The Scaleway Serverless Container backend linked to the backend stage.
+     */
+    declare public readonly containerBackendConfig: pulumi.Output<outputs.edgeservices.BackendStageContainerBackendConfig | undefined>;
+    /**
      * The date and time of the creation of the backend stage.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    /**
+     * The Scaleway Serverless Function backend linked to the backend stage.
+     */
+    declare public readonly functionBackendConfig: pulumi.Output<outputs.edgeservices.BackendStageFunctionBackendConfig | undefined>;
     /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
@@ -115,6 +170,8 @@ export class BackendStage extends pulumi.CustomResource {
     declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
+     *
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -139,7 +196,9 @@ export class BackendStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendStageState | undefined;
+            resourceInputs["containerBackendConfig"] = state?.containerBackendConfig;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["functionBackendConfig"] = state?.functionBackendConfig;
             resourceInputs["lbBackendConfigs"] = state?.lbBackendConfigs;
             resourceInputs["pipelineId"] = state?.pipelineId;
             resourceInputs["projectId"] = state?.projectId;
@@ -150,6 +209,8 @@ export class BackendStage extends pulumi.CustomResource {
             if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
+            resourceInputs["containerBackendConfig"] = args?.containerBackendConfig;
+            resourceInputs["functionBackendConfig"] = args?.functionBackendConfig;
             resourceInputs["lbBackendConfigs"] = args?.lbBackendConfigs;
             resourceInputs["pipelineId"] = args?.pipelineId;
             resourceInputs["projectId"] = args?.projectId;
@@ -169,9 +230,17 @@ export class BackendStage extends pulumi.CustomResource {
  */
 export interface BackendStageState {
     /**
+     * The Scaleway Serverless Container backend linked to the backend stage.
+     */
+    containerBackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageContainerBackendConfig | undefined>;
+    /**
      * The date and time of the creation of the backend stage.
      */
     createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Serverless Function backend linked to the backend stage.
+     */
+    functionBackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageFunctionBackendConfig | undefined>;
     /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
@@ -182,6 +251,8 @@ export interface BackendStageState {
     pipelineId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
+     *
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
@@ -199,6 +270,14 @@ export interface BackendStageState {
  */
 export interface BackendStageArgs {
     /**
+     * The Scaleway Serverless Container backend linked to the backend stage.
+     */
+    containerBackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageContainerBackendConfig | undefined>;
+    /**
+     * The Scaleway Serverless Function backend linked to the backend stage.
+     */
+    functionBackendConfig?: pulumi.Input<inputs.edgeservices.BackendStageFunctionBackendConfig | undefined>;
+    /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
     lbBackendConfigs?: pulumi.Input<pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfig>[] | undefined>;
@@ -208,6 +287,8 @@ export interface BackendStageArgs {
     pipelineId: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
+     *
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**

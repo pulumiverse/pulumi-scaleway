@@ -710,6 +710,28 @@ export interface DomainRecordWeighted {
     weight: pulumi.Input<number>;
 }
 
+export interface EdgeServicesBackendStageContainerBackendConfig {
+    /**
+     * The ID of the Serverless Container.
+     */
+    containerId: pulumi.Input<string>;
+    /**
+     * `region`) The region of the Serverless Container.
+     */
+    region?: pulumi.Input<string | undefined>;
+}
+
+export interface EdgeServicesBackendStageFunctionBackendConfig {
+    /**
+     * The ID of the Serverless Function.
+     */
+    functionId: pulumi.Input<string>;
+    /**
+     * `region`) The region of the Serverless Function.
+     */
+    region?: pulumi.Input<string | undefined>;
+}
+
 export interface EdgeServicesBackendStageLbBackendConfig {
     /**
      * The Load Balancer config.
@@ -1568,6 +1590,13 @@ export interface KubernetesClusterAutoscalerConfig {
      */
     ignoreDaemonsetsUtilization?: pulumi.Input<boolean | undefined>;
     /**
+     * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+     * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+     *
+     * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+     */
+    logLevel?: pulumi.Input<number | undefined>;
+    /**
      * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
      */
     maxGracefulTerminationSec?: pulumi.Input<number | undefined>;
@@ -1583,6 +1612,12 @@ export interface KubernetesClusterAutoscalerConfig {
      * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
      */
     scaleDownUtilizationThreshold?: pulumi.Input<number | undefined>;
+    /**
+     * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+     *
+     * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+     */
+    skipNodesWithLocalStorage?: pulumi.Input<boolean | undefined>;
 }
 
 export interface KubernetesClusterKubeconfig {
@@ -1677,6 +1712,36 @@ export interface KubernetesNodePoolNodePrivateIp {
      * The ID of the IP address resource.
      */
     id?: pulumi.Input<string | undefined>;
+}
+
+export interface KubernetesNodePoolStartupTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: pulumi.Input<string>;
+    /**
+     * Key of the taint
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Value of the taint
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface KubernetesNodePoolTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: pulumi.Input<string>;
+    /**
+     * Key of the taint
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Value of the taint
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface KubernetesNodePoolUpgradePolicy {
@@ -2120,6 +2185,22 @@ export interface ObjectBucketLifecycleRule {
      */
     id?: pulumi.Input<string | undefined>;
     /**
+     * Configuration block that specifies when noncurrent object versions expire
+     */
+    noncurrentVersionExpiration?: pulumi.Input<inputs.ObjectBucketLifecycleRuleNoncurrentVersionExpiration | undefined>;
+    /**
+     * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+     */
+    noncurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRuleNoncurrentVersionTransition>[] | undefined>;
+    /**
+     * Minimum object size (in bytes) to which the rule applies
+     */
+    objectSizeGreaterThan?: pulumi.Input<number | undefined>;
+    /**
+     * Maximum object size (in bytes) to which the rule applies
+     */
+    objectSizeLessThan?: pulumi.Input<number | undefined>;
+    /**
      * Object key prefix identifying one or more objects to which the rule applies.
      */
     prefix?: pulumi.Input<string | undefined>;
@@ -2135,12 +2216,50 @@ export interface ObjectBucketLifecycleRule {
 
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
+     * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date?: pulumi.Input<string | undefined>;
+    /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
      */
-    days: pulumi.Input<number>;
+    days?: pulumi.Input<number | undefined>;
+    /**
+     * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+     */
+    expiredObjectDeleteMarker?: pulumi.Input<boolean | undefined>;
+}
+
+export interface ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions?: pulumi.Input<number | undefined>;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+     */
+    noncurrentDays?: pulumi.Input<number | undefined>;
+}
+
+export interface ObjectBucketLifecycleRuleNoncurrentVersionTransition {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions?: pulumi.Input<number | undefined>;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+     */
+    noncurrentDays: pulumi.Input<number>;
+    /**
+     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     */
+    storageClass: pulumi.Input<string>;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date?: pulumi.Input<string | undefined>;
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
      */
@@ -3763,6 +3882,28 @@ export namespace domain {
 }
 
 export namespace edgeservices {
+    export interface BackendStageContainerBackendConfig {
+        /**
+         * The ID of the Serverless Container.
+         */
+        containerId: pulumi.Input<string>;
+        /**
+         * `region`) The region of the Serverless Container.
+         */
+        region?: pulumi.Input<string | undefined>;
+    }
+
+    export interface BackendStageFunctionBackendConfig {
+        /**
+         * The ID of the Serverless Function.
+         */
+        functionId: pulumi.Input<string>;
+        /**
+         * `region`) The region of the Serverless Function.
+         */
+        region?: pulumi.Input<string | undefined>;
+    }
+
     export interface BackendStageLbBackendConfig {
         /**
          * The Load Balancer config.
@@ -4951,6 +5092,13 @@ export namespace kubernetes {
          */
         ignoreDaemonsetsUtilization?: pulumi.Input<boolean | undefined>;
         /**
+         * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+         * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+         *
+         * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+         */
+        logLevel?: pulumi.Input<number | undefined>;
+        /**
          * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
          */
         maxGracefulTerminationSec?: pulumi.Input<number | undefined>;
@@ -4966,6 +5114,12 @@ export namespace kubernetes {
          * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
          */
         scaleDownUtilizationThreshold?: pulumi.Input<number | undefined>;
+        /**
+         * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+         *
+         * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+         */
+        skipNodesWithLocalStorage?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClusterKubeconfig {
@@ -5060,6 +5214,36 @@ export namespace kubernetes {
          * The ID of the IP address resource.
          */
         id?: pulumi.Input<string | undefined>;
+    }
+
+    export interface PoolStartupTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: pulumi.Input<string>;
+        /**
+         * Key of the taint
+         */
+        key: pulumi.Input<string>;
+        /**
+         * Value of the taint
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PoolTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: pulumi.Input<string>;
+        /**
+         * Key of the taint
+         */
+        key: pulumi.Input<string>;
+        /**
+         * Value of the taint
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface PoolUpgradePolicy {
@@ -5651,6 +5835,22 @@ export namespace object {
          */
         id?: pulumi.Input<string | undefined>;
         /**
+         * Configuration block that specifies when noncurrent object versions expire
+         */
+        noncurrentVersionExpiration?: pulumi.Input<inputs.object.BucketLifecycleRuleNoncurrentVersionExpiration | undefined>;
+        /**
+         * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+         */
+        noncurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.object.BucketLifecycleRuleNoncurrentVersionTransition>[] | undefined>;
+        /**
+         * Minimum object size (in bytes) to which the rule applies
+         */
+        objectSizeGreaterThan?: pulumi.Input<number | undefined>;
+        /**
+         * Maximum object size (in bytes) to which the rule applies
+         */
+        objectSizeLessThan?: pulumi.Input<number | undefined>;
+        /**
          * Object key prefix identifying one or more objects to which the rule applies.
          */
         prefix?: pulumi.Input<string | undefined>;
@@ -5666,12 +5866,50 @@ export namespace object {
 
     export interface BucketLifecycleRuleExpiration {
         /**
+         * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date?: pulumi.Input<string | undefined>;
+        /**
          * Specifies the number of days after object creation when the specific rule action takes effect.
          */
-        days: pulumi.Input<number>;
+        days?: pulumi.Input<number | undefined>;
+        /**
+         * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+         */
+        expiredObjectDeleteMarker?: pulumi.Input<boolean | undefined>;
+    }
+
+    export interface BucketLifecycleRuleNoncurrentVersionExpiration {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions?: pulumi.Input<number | undefined>;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+         */
+        noncurrentDays?: pulumi.Input<number | undefined>;
+    }
+
+    export interface BucketLifecycleRuleNoncurrentVersionTransition {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions?: pulumi.Input<number | undefined>;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+         */
+        noncurrentDays: pulumi.Input<number>;
+        /**
+         * Specifies the Scaleway Object Storage class to which you want the object to transition
+         */
+        storageClass: pulumi.Input<string>;
     }
 
     export interface BucketLifecycleRuleTransition {
+        /**
+         * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date?: pulumi.Input<string | undefined>;
         /**
          * Specifies the number of days after object creation when the specific rule action takes effect.
          */
@@ -5717,9 +5955,17 @@ export namespace object {
          * Single object for setting server-side encryption by default.
          */
         applyServerSideEncryptionByDefault?: pulumi.Input<inputs.object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault | undefined>;
+        /**
+         * Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+         */
+        bucketKeyEnabled?: pulumi.Input<boolean | undefined>;
     }
 
     export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         */
+        kmsMasterKeyId?: pulumi.Input<string | undefined>;
         /**
          * Server-side encryption algorithm to use. Valid values are `AES256`.
          */

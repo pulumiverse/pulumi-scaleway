@@ -170,7 +170,7 @@ export class VpcRoute extends pulumi.CustomResource {
     /**
      * The route description.
      */
-    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * The destination of the route.
      */

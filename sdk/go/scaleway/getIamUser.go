@@ -76,13 +76,32 @@ type LookupIamUserArgs struct {
 
 // A collection of values returned by getIamUser.
 type LookupIamUserResult struct {
-	Email *string `pulumi:"email"`
+	AccountRootUserId string  `pulumi:"accountRootUserId"`
+	CreatedAt         string  `pulumi:"createdAt"`
+	Deletable         bool    `pulumi:"deletable"`
+	Email             *string `pulumi:"email"`
+	FirstName         string  `pulumi:"firstName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	OrganizationId *string `pulumi:"organizationId"`
+	Id                string  `pulumi:"id"`
+	LastLoginAt       string  `pulumi:"lastLoginAt"`
+	LastName          string  `pulumi:"lastName"`
+	Locale            string  `pulumi:"locale"`
+	Locked            bool    `pulumi:"locked"`
+	Mfa               bool    `pulumi:"mfa"`
+	OrganizationId    *string `pulumi:"organizationId"`
+	Password          string  `pulumi:"password"`
+	PasswordWo        string  `pulumi:"passwordWo"`
+	PasswordWoVersion int     `pulumi:"passwordWoVersion"`
+	PhoneNumber       string  `pulumi:"phoneNumber"`
+	SendPasswordEmail bool    `pulumi:"sendPasswordEmail"`
+	SendWelcomeEmail  bool    `pulumi:"sendWelcomeEmail"`
+	Status            string  `pulumi:"status"`
 	// The tags associated with the user.
-	Tags   []string `pulumi:"tags"`
-	UserId *string  `pulumi:"userId"`
+	Tags      []string `pulumi:"tags"`
+	Type      string   `pulumi:"type"`
+	UpdatedAt string   `pulumi:"updatedAt"`
+	UserId    *string  `pulumi:"userId"`
+	Username  string   `pulumi:"username"`
 }
 
 func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts ...pulumi.InvokeOption) LookupIamUserResultOutput {
@@ -128,8 +147,24 @@ func (o LookupIamUserResultOutput) ToLookupIamUserResultOutputWithContext(ctx co
 	return o
 }
 
+func (o LookupIamUserResultOutput) AccountRootUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.AccountRootUserId }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) Deletable() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamUserResult) bool { return v.Deletable }).(pulumi.BoolOutput)
+}
+
 func (o LookupIamUserResultOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamUserResultOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -137,8 +172,56 @@ func (o LookupIamUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupIamUserResultOutput) LastLoginAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.LastLoginAt }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) Locale() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Locale }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) Locked() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamUserResult) bool { return v.Locked }).(pulumi.BoolOutput)
+}
+
+func (o LookupIamUserResultOutput) Mfa() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamUserResult) bool { return v.Mfa }).(pulumi.BoolOutput)
+}
+
 func (o LookupIamUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamUserResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupIamUserResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
+}
+
+func (o LookupIamUserResultOutput) PhoneNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) SendPasswordEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamUserResult) bool { return v.SendPasswordEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupIamUserResultOutput) SendWelcomeEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamUserResult) bool { return v.SendWelcomeEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupIamUserResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 // The tags associated with the user.
@@ -146,8 +229,20 @@ func (o LookupIamUserResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIamUserResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+func (o LookupIamUserResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupIamUserResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 func (o LookupIamUserResultOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamUserResult) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamUserResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {

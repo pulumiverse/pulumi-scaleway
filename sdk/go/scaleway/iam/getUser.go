@@ -74,13 +74,32 @@ type LookupUserArgs struct {
 
 // A collection of values returned by getUser.
 type LookupUserResult struct {
-	Email *string `pulumi:"email"`
+	AccountRootUserId string  `pulumi:"accountRootUserId"`
+	CreatedAt         string  `pulumi:"createdAt"`
+	Deletable         bool    `pulumi:"deletable"`
+	Email             *string `pulumi:"email"`
+	FirstName         string  `pulumi:"firstName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	OrganizationId *string `pulumi:"organizationId"`
+	Id                string  `pulumi:"id"`
+	LastLoginAt       string  `pulumi:"lastLoginAt"`
+	LastName          string  `pulumi:"lastName"`
+	Locale            string  `pulumi:"locale"`
+	Locked            bool    `pulumi:"locked"`
+	Mfa               bool    `pulumi:"mfa"`
+	OrganizationId    *string `pulumi:"organizationId"`
+	Password          string  `pulumi:"password"`
+	PasswordWo        string  `pulumi:"passwordWo"`
+	PasswordWoVersion int     `pulumi:"passwordWoVersion"`
+	PhoneNumber       string  `pulumi:"phoneNumber"`
+	SendPasswordEmail bool    `pulumi:"sendPasswordEmail"`
+	SendWelcomeEmail  bool    `pulumi:"sendWelcomeEmail"`
+	Status            string  `pulumi:"status"`
 	// The tags associated with the user.
-	Tags   []string `pulumi:"tags"`
-	UserId *string  `pulumi:"userId"`
+	Tags      []string `pulumi:"tags"`
+	Type      string   `pulumi:"type"`
+	UpdatedAt string   `pulumi:"updatedAt"`
+	UserId    *string  `pulumi:"userId"`
+	Username  string   `pulumi:"username"`
 }
 
 func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pulumi.InvokeOption) LookupUserResultOutput {
@@ -126,8 +145,24 @@ func (o LookupUserResultOutput) ToLookupUserResultOutputWithContext(ctx context.
 	return o
 }
 
+func (o LookupUserResultOutput) AccountRootUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.AccountRootUserId }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) Deletable() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupUserResult) bool { return v.Deletable }).(pulumi.BoolOutput)
+}
+
 func (o LookupUserResultOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupUserResultOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -135,8 +170,56 @@ func (o LookupUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupUserResultOutput) LastLoginAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.LastLoginAt }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) Locale() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Locale }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) Locked() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupUserResult) bool { return v.Locked }).(pulumi.BoolOutput)
+}
+
+func (o LookupUserResultOutput) Mfa() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupUserResult) bool { return v.Mfa }).(pulumi.BoolOutput)
+}
+
 func (o LookupUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupUserResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupUserResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
+}
+
+func (o LookupUserResultOutput) PhoneNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) SendPasswordEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupUserResult) bool { return v.SendPasswordEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupUserResultOutput) SendWelcomeEmail() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupUserResult) bool { return v.SendWelcomeEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupUserResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 // The tags associated with the user.
@@ -144,8 +227,20 @@ func (o LookupUserResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupUserResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+func (o LookupUserResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 func (o LookupUserResultOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupUserResult) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {

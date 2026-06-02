@@ -710,6 +710,28 @@ export interface DomainRecordWeighted {
     weight: number;
 }
 
+export interface EdgeServicesBackendStageContainerBackendConfig {
+    /**
+     * The ID of the Serverless Container.
+     */
+    containerId: string;
+    /**
+     * `region`) The region of the Serverless Container.
+     */
+    region?: string;
+}
+
+export interface EdgeServicesBackendStageFunctionBackendConfig {
+    /**
+     * The ID of the Serverless Function.
+     */
+    functionId: string;
+    /**
+     * `region`) The region of the Serverless Function.
+     */
+    region?: string;
+}
+
 export interface EdgeServicesBackendStageLbBackendConfig {
     /**
      * The Load Balancer config.
@@ -2059,6 +2081,10 @@ export interface GetKubernetesClusterAutoscalerConfig {
      */
     ignoreDaemonsetsUtilization: boolean;
     /**
+     * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+     */
+    logLevel: number;
+    /**
      * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
      */
     maxGracefulTerminationSec: number;
@@ -2074,6 +2100,10 @@ export interface GetKubernetesClusterAutoscalerConfig {
      * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
      */
     scaleDownUtilizationThreshold: number;
+    /**
+     * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+     */
+    skipNodesWithLocalStorage: boolean;
 }
 
 export interface GetKubernetesClusterKubeconfig {
@@ -2162,6 +2192,36 @@ export interface GetKubernetesNodePoolNodePrivateIp {
      * The ID of the pool.
      */
     id: string;
+}
+
+export interface GetKubernetesNodePoolStartupTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: string;
+    /**
+     * Key of the taint
+     */
+    key: string;
+    /**
+     * Value of the taint
+     */
+    value: string;
+}
+
+export interface GetKubernetesNodePoolTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: string;
+    /**
+     * Key of the taint
+     */
+    key: string;
+    /**
+     * Value of the taint
+     */
+    value: string;
 }
 
 export interface GetKubernetesNodePoolUpgradePolicy {
@@ -2915,6 +2975,22 @@ export interface GetObjectBucketLifecycleRule {
      */
     id: string;
     /**
+     * Configuration block that specifies when noncurrent object versions expire
+     */
+    noncurrentVersionExpirations: outputs.GetObjectBucketLifecycleRuleNoncurrentVersionExpiration[];
+    /**
+     * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+     */
+    noncurrentVersionTransitions: outputs.GetObjectBucketLifecycleRuleNoncurrentVersionTransition[];
+    /**
+     * Minimum object size (in bytes) to which the rule applies
+     */
+    objectSizeGreaterThan: number;
+    /**
+     * Maximum object size (in bytes) to which the rule applies
+     */
+    objectSizeLessThan: number;
+    /**
      * The prefix identifying one or more objects to which the rule applies
      */
     prefix: string;
@@ -2930,12 +3006,50 @@ export interface GetObjectBucketLifecycleRule {
 
 export interface GetObjectBucketLifecycleRuleExpiration {
     /**
+     * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date: string;
+    /**
      * Specifies the number of days after object creation when the specific rule action takes effect
      */
     days: number;
+    /**
+     * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+     */
+    expiredObjectDeleteMarker: boolean;
+}
+
+export interface GetObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions: number;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+     */
+    noncurrentDays: number;
+}
+
+export interface GetObjectBucketLifecycleRuleNoncurrentVersionTransition {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions: number;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+     */
+    noncurrentDays: number;
+    /**
+     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     */
+    storageClass: string;
 }
 
 export interface GetObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date: string;
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect
      */
@@ -4075,6 +4189,13 @@ export interface KubernetesClusterAutoscalerConfig {
      */
     ignoreDaemonsetsUtilization?: boolean;
     /**
+     * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+     * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+     *
+     * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+     */
+    logLevel?: number;
+    /**
      * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
      */
     maxGracefulTerminationSec?: number;
@@ -4090,6 +4211,12 @@ export interface KubernetesClusterAutoscalerConfig {
      * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
      */
     scaleDownUtilizationThreshold?: number;
+    /**
+     * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+     *
+     * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+     */
+    skipNodesWithLocalStorage?: boolean;
 }
 
 export interface KubernetesClusterKubeconfig {
@@ -4184,6 +4311,36 @@ export interface KubernetesNodePoolNodePrivateIp {
      * The ID of the IP address resource.
      */
     id: string;
+}
+
+export interface KubernetesNodePoolStartupTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: string;
+    /**
+     * Key of the taint
+     */
+    key: string;
+    /**
+     * Value of the taint
+     */
+    value: string;
+}
+
+export interface KubernetesNodePoolTaint {
+    /**
+     * Effect of the taint
+     */
+    effect: string;
+    /**
+     * Key of the taint
+     */
+    key: string;
+    /**
+     * Value of the taint
+     */
+    value: string;
 }
 
 export interface KubernetesNodePoolUpgradePolicy {
@@ -4627,6 +4784,22 @@ export interface ObjectBucketLifecycleRule {
      */
     id: string;
     /**
+     * Configuration block that specifies when noncurrent object versions expire
+     */
+    noncurrentVersionExpiration?: outputs.ObjectBucketLifecycleRuleNoncurrentVersionExpiration;
+    /**
+     * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+     */
+    noncurrentVersionTransitions?: outputs.ObjectBucketLifecycleRuleNoncurrentVersionTransition[];
+    /**
+     * Minimum object size (in bytes) to which the rule applies
+     */
+    objectSizeGreaterThan?: number;
+    /**
+     * Maximum object size (in bytes) to which the rule applies
+     */
+    objectSizeLessThan?: number;
+    /**
      * Object key prefix identifying one or more objects to which the rule applies.
      */
     prefix?: string;
@@ -4642,12 +4815,50 @@ export interface ObjectBucketLifecycleRule {
 
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
+     * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date?: string;
+    /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
      */
-    days: number;
+    days?: number;
+    /**
+     * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+     */
+    expiredObjectDeleteMarker?: boolean;
+}
+
+export interface ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions?: number;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+     */
+    noncurrentDays?: number;
+}
+
+export interface ObjectBucketLifecycleRuleNoncurrentVersionTransition {
+    /**
+     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     */
+    newerNoncurrentVersions?: number;
+    /**
+     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+     */
+    noncurrentDays: number;
+    /**
+     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     */
+    storageClass: string;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     */
+    date?: string;
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
      */
@@ -7414,6 +7625,28 @@ export namespace domain {
 }
 
 export namespace edgeservices {
+    export interface BackendStageContainerBackendConfig {
+        /**
+         * The ID of the Serverless Container.
+         */
+        containerId: string;
+        /**
+         * `region`) The region of the Serverless Container.
+         */
+        region?: string;
+    }
+
+    export interface BackendStageFunctionBackendConfig {
+        /**
+         * The ID of the Serverless Function.
+         */
+        functionId: string;
+        /**
+         * `region`) The region of the Serverless Function.
+         */
+        region?: string;
+    }
+
     export interface BackendStageLbBackendConfig {
         /**
          * The Load Balancer config.
@@ -7476,6 +7709,28 @@ export namespace edgeservices {
          * The pipeline ID in which the purge request will be created.
          */
         pipelineId?: string;
+    }
+
+    export interface GetBackendStageContainerBackendConfig {
+        /**
+         * ID of the Serverless Container
+         */
+        containerId: string;
+        /**
+         * The region you want to attach the resource to
+         */
+        region: string;
+    }
+
+    export interface GetBackendStageFunctionBackendConfig {
+        /**
+         * ID of the Serverless Function
+         */
+        functionId: string;
+        /**
+         * The region you want to attach the resource to
+         */
+        region: string;
     }
 
     export interface GetBackendStageLbBackendConfig {
@@ -9796,6 +10051,13 @@ export namespace kubernetes {
          */
         ignoreDaemonsetsUtilization?: boolean;
         /**
+         * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+         * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+         *
+         * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+         */
+        logLevel?: number;
+        /**
          * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
          */
         maxGracefulTerminationSec?: number;
@@ -9811,6 +10073,12 @@ export namespace kubernetes {
          * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
          */
         scaleDownUtilizationThreshold?: number;
+        /**
+         * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+         *
+         * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+         */
+        skipNodesWithLocalStorage?: boolean;
     }
 
     export interface ClusterKubeconfig {
@@ -9904,6 +10172,10 @@ export namespace kubernetes {
          */
         ignoreDaemonsetsUtilization: boolean;
         /**
+         * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+         */
+        logLevel: number;
+        /**
          * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
          */
         maxGracefulTerminationSec: number;
@@ -9919,6 +10191,10 @@ export namespace kubernetes {
          * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
          */
         scaleDownUtilizationThreshold: number;
+        /**
+         * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+         */
+        skipNodesWithLocalStorage: boolean;
     }
 
     export interface GetClusterKubeconfig {
@@ -10009,6 +10285,36 @@ export namespace kubernetes {
         id: string;
     }
 
+    export interface GetPoolStartupTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: string;
+        /**
+         * Key of the taint
+         */
+        key: string;
+        /**
+         * Value of the taint
+         */
+        value: string;
+    }
+
+    export interface GetPoolTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: string;
+        /**
+         * Key of the taint
+         */
+        key: string;
+        /**
+         * Value of the taint
+         */
+        value: string;
+    }
+
     export interface GetPoolUpgradePolicy {
         /**
          * The maximum number of nodes to be created during the upgrade
@@ -10062,6 +10368,36 @@ export namespace kubernetes {
          * The ID of the IP address resource.
          */
         id: string;
+    }
+
+    export interface PoolStartupTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: string;
+        /**
+         * Key of the taint
+         */
+        key: string;
+        /**
+         * Value of the taint
+         */
+        value: string;
+    }
+
+    export interface PoolTaint {
+        /**
+         * Effect of the taint
+         */
+        effect: string;
+        /**
+         * Key of the taint
+         */
+        key: string;
+        /**
+         * Value of the taint
+         */
+        value: string;
     }
 
     export interface PoolUpgradePolicy {
@@ -11020,6 +11356,13 @@ export namespace mnq {
 }
 
 export namespace mongodb {
+    export interface GetDatabasesDatabase {
+        /**
+         * Name of the database.
+         */
+        name: string;
+    }
+
     export interface GetInstancePrivateIp {
         /**
          * The private IPv4 address
@@ -11572,6 +11915,22 @@ export namespace object {
          */
         id: string;
         /**
+         * Configuration block that specifies when noncurrent object versions expire
+         */
+        noncurrentVersionExpiration?: outputs.object.BucketLifecycleRuleNoncurrentVersionExpiration;
+        /**
+         * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+         */
+        noncurrentVersionTransitions?: outputs.object.BucketLifecycleRuleNoncurrentVersionTransition[];
+        /**
+         * Minimum object size (in bytes) to which the rule applies
+         */
+        objectSizeGreaterThan?: number;
+        /**
+         * Maximum object size (in bytes) to which the rule applies
+         */
+        objectSizeLessThan?: number;
+        /**
          * Object key prefix identifying one or more objects to which the rule applies.
          */
         prefix?: string;
@@ -11587,12 +11946,50 @@ export namespace object {
 
     export interface BucketLifecycleRuleExpiration {
         /**
+         * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date?: string;
+        /**
          * Specifies the number of days after object creation when the specific rule action takes effect.
          */
-        days: number;
+        days?: number;
+        /**
+         * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+         */
+        expiredObjectDeleteMarker?: boolean;
+    }
+
+    export interface BucketLifecycleRuleNoncurrentVersionExpiration {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions?: number;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+         */
+        noncurrentDays?: number;
+    }
+
+    export interface BucketLifecycleRuleNoncurrentVersionTransition {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions?: number;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+         */
+        noncurrentDays: number;
+        /**
+         * Specifies the Scaleway Object Storage class to which you want the object to transition
+         */
+        storageClass: string;
     }
 
     export interface BucketLifecycleRuleTransition {
+        /**
+         * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date?: string;
         /**
          * Specifies the number of days after object creation when the specific rule action takes effect.
          */
@@ -11638,9 +12035,17 @@ export namespace object {
          * Single object for setting server-side encryption by default.
          */
         applyServerSideEncryptionByDefault?: outputs.object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault;
+        /**
+         * Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+         */
+        bucketKeyEnabled: boolean;
     }
 
     export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         */
+        kmsMasterKeyId: string;
         /**
          * Server-side encryption algorithm to use. Valid values are `AES256`.
          */
@@ -11711,6 +12116,22 @@ export namespace object {
          */
         id: string;
         /**
+         * Configuration block that specifies when noncurrent object versions expire
+         */
+        noncurrentVersionExpirations: outputs.object.GetBucketLifecycleRuleNoncurrentVersionExpiration[];
+        /**
+         * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+         */
+        noncurrentVersionTransitions: outputs.object.GetBucketLifecycleRuleNoncurrentVersionTransition[];
+        /**
+         * Minimum object size (in bytes) to which the rule applies
+         */
+        objectSizeGreaterThan: number;
+        /**
+         * Maximum object size (in bytes) to which the rule applies
+         */
+        objectSizeLessThan: number;
+        /**
          * The prefix identifying one or more objects to which the rule applies
          */
         prefix: string;
@@ -11726,12 +12147,50 @@ export namespace object {
 
     export interface GetBucketLifecycleRuleExpiration {
         /**
+         * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date: string;
+        /**
          * Specifies the number of days after object creation when the specific rule action takes effect
          */
         days: number;
+        /**
+         * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+         */
+        expiredObjectDeleteMarker: boolean;
+    }
+
+    export interface GetBucketLifecycleRuleNoncurrentVersionExpiration {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions: number;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+         */
+        noncurrentDays: number;
+    }
+
+    export interface GetBucketLifecycleRuleNoncurrentVersionTransition {
+        /**
+         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         */
+        newerNoncurrentVersions: number;
+        /**
+         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+         */
+        noncurrentDays: number;
+        /**
+         * Specifies the Scaleway Object Storage class to which you want the object to transition
+         */
+        storageClass: string;
     }
 
     export interface GetBucketLifecycleRuleTransition {
+        /**
+         * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         */
+        date: string;
         /**
          * Specifies the number of days after object creation when the specific rule action takes effect
          */
@@ -11747,9 +12206,17 @@ export namespace object {
          * (List of Object) Single object for setting server-side encryption by default.
          */
         applyServerSideEncryptionByDefaults: outputs.object.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault[];
+        /**
+         * Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+         */
+        bucketKeyEnabled: boolean;
     }
 
     export interface GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         */
+        kmsMasterKeyId: string;
         /**
          * (String) Server-side encryption algorithm to use. Valid values are AES256.
          */
@@ -11827,6 +12294,81 @@ export namespace observability {
          * Headers to include in requests.
          */
         headers?: {[key: string]: string};
+    }
+
+    export interface GetConfigCustomLogsRetention {
+        /**
+         * Default retention in days.
+         */
+        defaultDays: number;
+        /**
+         * Maximum retention in days.
+         */
+        maxDays: number;
+        /**
+         * Minimum retention in days.
+         */
+        minDays: number;
+    }
+
+    export interface GetConfigCustomMetricsRetention {
+        /**
+         * Default retention in days.
+         */
+        defaultDays: number;
+        /**
+         * Maximum retention in days.
+         */
+        maxDays: number;
+        /**
+         * Minimum retention in days.
+         */
+        minDays: number;
+    }
+
+    export interface GetConfigCustomTracesRetention {
+        /**
+         * Default retention in days.
+         */
+        defaultDays: number;
+        /**
+         * Maximum retention in days.
+         */
+        maxDays: number;
+        /**
+         * Minimum retention in days.
+         */
+        minDays: number;
+    }
+
+    export interface GetConfigProductLogsRetention {
+        /**
+         * Default retention in days.
+         */
+        defaultDays: number;
+        /**
+         * Maximum retention in days.
+         */
+        maxDays: number;
+        /**
+         * Minimum retention in days.
+         */
+        minDays: number;
+    }
+
+    export interface GetConfigProductMetricsRetention {
+        /**
+         * Default retention in days.
+         */
+        defaultDays: number;
+        /**
+         * Maximum retention in days.
+         */
+        maxDays: number;
+        /**
+         * Minimum retention in days.
+         */
+        minDays: number;
     }
 
     export interface GetExporterDatadogDestination {

@@ -344,6 +344,11 @@ type ClusterAutoscalerConfig struct {
 	ExpendablePodsPriorityCutoff *int `pulumi:"expendablePodsPriorityCutoff"`
 	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 	IgnoreDaemonsetsUtilization *bool `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+	//
+	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+	LogLevel *int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec *int `pulumi:"maxGracefulTerminationSec"`
 	// How long after scale up that scale down evaluation resumes.
@@ -352,6 +357,10 @@ type ClusterAutoscalerConfig struct {
 	ScaleDownUnneededTime *string `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold *float64 `pulumi:"scaleDownUtilizationThreshold"`
+	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+	//
+	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+	SkipNodesWithLocalStorage *bool `pulumi:"skipNodesWithLocalStorage"`
 }
 
 // ClusterAutoscalerConfigInput is an input type that accepts ClusterAutoscalerConfigArgs and ClusterAutoscalerConfigOutput values.
@@ -378,6 +387,11 @@ type ClusterAutoscalerConfigArgs struct {
 	ExpendablePodsPriorityCutoff pulumi.IntPtrInput `pulumi:"expendablePodsPriorityCutoff"`
 	// Ignore DaemonSet pods when calculating resource utilization for scaling down.
 	IgnoreDaemonsetsUtilization pulumi.BoolPtrInput `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+	//
+	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+	LogLevel pulumi.IntPtrInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec pulumi.IntPtrInput `pulumi:"maxGracefulTerminationSec"`
 	// How long after scale up that scale down evaluation resumes.
@@ -386,6 +400,10 @@ type ClusterAutoscalerConfigArgs struct {
 	ScaleDownUnneededTime pulumi.StringPtrInput `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64PtrInput `pulumi:"scaleDownUtilizationThreshold"`
+	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+	//
+	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+	SkipNodesWithLocalStorage pulumi.BoolPtrInput `pulumi:"skipNodesWithLocalStorage"`
 }
 
 func (ClusterAutoscalerConfigArgs) ElementType() reflect.Type {
@@ -495,6 +513,14 @@ func (o ClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() pulumi.Bool
 	return o.ApplyT(func(v ClusterAutoscalerConfig) *bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolPtrOutput)
 }
 
+// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+//
+// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+func (o ClusterAutoscalerConfigOutput) LogLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterAutoscalerConfig) *int { return v.LogLevel }).(pulumi.IntPtrOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o ClusterAutoscalerConfigOutput) MaxGracefulTerminationSec() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAutoscalerConfig) *int { return v.MaxGracefulTerminationSec }).(pulumi.IntPtrOutput)
@@ -513,6 +539,13 @@ func (o ClusterAutoscalerConfigOutput) ScaleDownUnneededTime() pulumi.StringPtrO
 // Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 func (o ClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v ClusterAutoscalerConfig) *float64 { return v.ScaleDownUtilizationThreshold }).(pulumi.Float64PtrOutput)
+}
+
+// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+//
+// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+func (o ClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ClusterAutoscalerConfig) *bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolPtrOutput)
 }
 
 type ClusterAutoscalerConfigPtrOutput struct{ *pulumi.OutputState }
@@ -599,6 +632,19 @@ func (o ClusterAutoscalerConfigPtrOutput) IgnoreDaemonsetsUtilization() pulumi.B
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+//
+// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
+func (o ClusterAutoscalerConfigPtrOutput) LogLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClusterAutoscalerConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LogLevel
+	}).(pulumi.IntPtrOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o ClusterAutoscalerConfigPtrOutput) MaxGracefulTerminationSec() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAutoscalerConfig) *int {
@@ -637,6 +683,18 @@ func (o ClusterAutoscalerConfigPtrOutput) ScaleDownUtilizationThreshold() pulumi
 		}
 		return v.ScaleDownUtilizationThreshold
 	}).(pulumi.Float64PtrOutput)
+}
+
+// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+//
+// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+func (o ClusterAutoscalerConfigPtrOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClusterAutoscalerConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipNodesWithLocalStorage
+	}).(pulumi.BoolPtrOutput)
 }
 
 type ClusterKubeconfig struct {
@@ -1280,6 +1338,236 @@ func (o PoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) PoolNodePrivateIp
 	}).(PoolNodePrivateIpOutput)
 }
 
+type PoolStartupTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// PoolStartupTaintInput is an input type that accepts PoolStartupTaintArgs and PoolStartupTaintOutput values.
+// You can construct a concrete instance of `PoolStartupTaintInput` via:
+//
+//	PoolStartupTaintArgs{...}
+type PoolStartupTaintInput interface {
+	pulumi.Input
+
+	ToPoolStartupTaintOutput() PoolStartupTaintOutput
+	ToPoolStartupTaintOutputWithContext(context.Context) PoolStartupTaintOutput
+}
+
+type PoolStartupTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PoolStartupTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolStartupTaint)(nil)).Elem()
+}
+
+func (i PoolStartupTaintArgs) ToPoolStartupTaintOutput() PoolStartupTaintOutput {
+	return i.ToPoolStartupTaintOutputWithContext(context.Background())
+}
+
+func (i PoolStartupTaintArgs) ToPoolStartupTaintOutputWithContext(ctx context.Context) PoolStartupTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolStartupTaintOutput)
+}
+
+// PoolStartupTaintArrayInput is an input type that accepts PoolStartupTaintArray and PoolStartupTaintArrayOutput values.
+// You can construct a concrete instance of `PoolStartupTaintArrayInput` via:
+//
+//	PoolStartupTaintArray{ PoolStartupTaintArgs{...} }
+type PoolStartupTaintArrayInput interface {
+	pulumi.Input
+
+	ToPoolStartupTaintArrayOutput() PoolStartupTaintArrayOutput
+	ToPoolStartupTaintArrayOutputWithContext(context.Context) PoolStartupTaintArrayOutput
+}
+
+type PoolStartupTaintArray []PoolStartupTaintInput
+
+func (PoolStartupTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolStartupTaint)(nil)).Elem()
+}
+
+func (i PoolStartupTaintArray) ToPoolStartupTaintArrayOutput() PoolStartupTaintArrayOutput {
+	return i.ToPoolStartupTaintArrayOutputWithContext(context.Background())
+}
+
+func (i PoolStartupTaintArray) ToPoolStartupTaintArrayOutputWithContext(ctx context.Context) PoolStartupTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolStartupTaintArrayOutput)
+}
+
+type PoolStartupTaintOutput struct{ *pulumi.OutputState }
+
+func (PoolStartupTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolStartupTaint)(nil)).Elem()
+}
+
+func (o PoolStartupTaintOutput) ToPoolStartupTaintOutput() PoolStartupTaintOutput {
+	return o
+}
+
+func (o PoolStartupTaintOutput) ToPoolStartupTaintOutputWithContext(ctx context.Context) PoolStartupTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o PoolStartupTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolStartupTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o PoolStartupTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolStartupTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o PoolStartupTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolStartupTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PoolStartupTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (PoolStartupTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolStartupTaint)(nil)).Elem()
+}
+
+func (o PoolStartupTaintArrayOutput) ToPoolStartupTaintArrayOutput() PoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o PoolStartupTaintArrayOutput) ToPoolStartupTaintArrayOutputWithContext(ctx context.Context) PoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o PoolStartupTaintArrayOutput) Index(i pulumi.IntInput) PoolStartupTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PoolStartupTaint {
+		return vs[0].([]PoolStartupTaint)[vs[1].(int)]
+	}).(PoolStartupTaintOutput)
+}
+
+type PoolTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// PoolTaintInput is an input type that accepts PoolTaintArgs and PoolTaintOutput values.
+// You can construct a concrete instance of `PoolTaintInput` via:
+//
+//	PoolTaintArgs{...}
+type PoolTaintInput interface {
+	pulumi.Input
+
+	ToPoolTaintOutput() PoolTaintOutput
+	ToPoolTaintOutputWithContext(context.Context) PoolTaintOutput
+}
+
+type PoolTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolTaint)(nil)).Elem()
+}
+
+func (i PoolTaintArgs) ToPoolTaintOutput() PoolTaintOutput {
+	return i.ToPoolTaintOutputWithContext(context.Background())
+}
+
+func (i PoolTaintArgs) ToPoolTaintOutputWithContext(ctx context.Context) PoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolTaintOutput)
+}
+
+// PoolTaintArrayInput is an input type that accepts PoolTaintArray and PoolTaintArrayOutput values.
+// You can construct a concrete instance of `PoolTaintArrayInput` via:
+//
+//	PoolTaintArray{ PoolTaintArgs{...} }
+type PoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToPoolTaintArrayOutput() PoolTaintArrayOutput
+	ToPoolTaintArrayOutputWithContext(context.Context) PoolTaintArrayOutput
+}
+
+type PoolTaintArray []PoolTaintInput
+
+func (PoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolTaint)(nil)).Elem()
+}
+
+func (i PoolTaintArray) ToPoolTaintArrayOutput() PoolTaintArrayOutput {
+	return i.ToPoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i PoolTaintArray) ToPoolTaintArrayOutputWithContext(ctx context.Context) PoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolTaintArrayOutput)
+}
+
+type PoolTaintOutput struct{ *pulumi.OutputState }
+
+func (PoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolTaint)(nil)).Elem()
+}
+
+func (o PoolTaintOutput) ToPoolTaintOutput() PoolTaintOutput {
+	return o
+}
+
+func (o PoolTaintOutput) ToPoolTaintOutputWithContext(ctx context.Context) PoolTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o PoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o PoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o PoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (PoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolTaint)(nil)).Elem()
+}
+
+func (o PoolTaintArrayOutput) ToPoolTaintArrayOutput() PoolTaintArrayOutput {
+	return o
+}
+
+func (o PoolTaintArrayOutput) ToPoolTaintArrayOutputWithContext(ctx context.Context) PoolTaintArrayOutput {
+	return o
+}
+
+func (o PoolTaintArrayOutput) Index(i pulumi.IntInput) PoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PoolTaint {
+		return vs[0].([]PoolTaint)[vs[1].(int)]
+	}).(PoolTaintOutput)
+}
+
 type PoolUpgradePolicy struct {
 	// The maximum number of nodes to be created during the upgrade
 	MaxSurge *int `pulumi:"maxSurge"`
@@ -1564,6 +1852,8 @@ type GetClusterAutoscalerConfig struct {
 	ExpendablePodsPriorityCutoff int `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization bool `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	LogLevel int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec int `pulumi:"maxGracefulTerminationSec"`
 	// The duration after scale up that scale down evaluation resumes.
@@ -1572,6 +1862,8 @@ type GetClusterAutoscalerConfig struct {
 	ScaleDownUnneededTime string `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold float64 `pulumi:"scaleDownUtilizationThreshold"`
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	SkipNodesWithLocalStorage bool `pulumi:"skipNodesWithLocalStorage"`
 }
 
 // GetClusterAutoscalerConfigInput is an input type that accepts GetClusterAutoscalerConfigArgs and GetClusterAutoscalerConfigOutput values.
@@ -1598,6 +1890,8 @@ type GetClusterAutoscalerConfigArgs struct {
 	ExpendablePodsPriorityCutoff pulumi.IntInput `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization pulumi.BoolInput `pulumi:"ignoreDaemonsetsUtilization"`
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	LogLevel pulumi.IntInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec pulumi.IntInput `pulumi:"maxGracefulTerminationSec"`
 	// The duration after scale up that scale down evaluation resumes.
@@ -1606,6 +1900,8 @@ type GetClusterAutoscalerConfigArgs struct {
 	ScaleDownUnneededTime pulumi.StringInput `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64Input `pulumi:"scaleDownUtilizationThreshold"`
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	SkipNodesWithLocalStorage pulumi.BoolInput `pulumi:"skipNodesWithLocalStorage"`
 }
 
 func (GetClusterAutoscalerConfigArgs) ElementType() reflect.Type {
@@ -1689,6 +1985,11 @@ func (o GetClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() pulumi.B
 	return o.ApplyT(func(v GetClusterAutoscalerConfig) bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolOutput)
 }
 
+// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+func (o GetClusterAutoscalerConfigOutput) LogLevel() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAutoscalerConfig) int { return v.LogLevel }).(pulumi.IntOutput)
+}
+
 // Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 func (o GetClusterAutoscalerConfigOutput) MaxGracefulTerminationSec() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterAutoscalerConfig) int { return v.MaxGracefulTerminationSec }).(pulumi.IntOutput)
@@ -1707,6 +2008,11 @@ func (o GetClusterAutoscalerConfigOutput) ScaleDownUnneededTime() pulumi.StringO
 // Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 func (o GetClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold() pulumi.Float64Output {
 	return o.ApplyT(func(v GetClusterAutoscalerConfig) float64 { return v.ScaleDownUtilizationThreshold }).(pulumi.Float64Output)
+}
+
+// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+func (o GetClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterAutoscalerConfig) bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolOutput)
 }
 
 type GetClusterAutoscalerConfigArrayOutput struct{ *pulumi.OutputState }
@@ -2252,6 +2558,236 @@ func (o GetPoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) GetPoolNodePri
 	}).(GetPoolNodePrivateIpOutput)
 }
 
+type GetPoolStartupTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// GetPoolStartupTaintInput is an input type that accepts GetPoolStartupTaintArgs and GetPoolStartupTaintOutput values.
+// You can construct a concrete instance of `GetPoolStartupTaintInput` via:
+//
+//	GetPoolStartupTaintArgs{...}
+type GetPoolStartupTaintInput interface {
+	pulumi.Input
+
+	ToGetPoolStartupTaintOutput() GetPoolStartupTaintOutput
+	ToGetPoolStartupTaintOutputWithContext(context.Context) GetPoolStartupTaintOutput
+}
+
+type GetPoolStartupTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetPoolStartupTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolStartupTaint)(nil)).Elem()
+}
+
+func (i GetPoolStartupTaintArgs) ToGetPoolStartupTaintOutput() GetPoolStartupTaintOutput {
+	return i.ToGetPoolStartupTaintOutputWithContext(context.Background())
+}
+
+func (i GetPoolStartupTaintArgs) ToGetPoolStartupTaintOutputWithContext(ctx context.Context) GetPoolStartupTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolStartupTaintOutput)
+}
+
+// GetPoolStartupTaintArrayInput is an input type that accepts GetPoolStartupTaintArray and GetPoolStartupTaintArrayOutput values.
+// You can construct a concrete instance of `GetPoolStartupTaintArrayInput` via:
+//
+//	GetPoolStartupTaintArray{ GetPoolStartupTaintArgs{...} }
+type GetPoolStartupTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetPoolStartupTaintArrayOutput() GetPoolStartupTaintArrayOutput
+	ToGetPoolStartupTaintArrayOutputWithContext(context.Context) GetPoolStartupTaintArrayOutput
+}
+
+type GetPoolStartupTaintArray []GetPoolStartupTaintInput
+
+func (GetPoolStartupTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolStartupTaint)(nil)).Elem()
+}
+
+func (i GetPoolStartupTaintArray) ToGetPoolStartupTaintArrayOutput() GetPoolStartupTaintArrayOutput {
+	return i.ToGetPoolStartupTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetPoolStartupTaintArray) ToGetPoolStartupTaintArrayOutputWithContext(ctx context.Context) GetPoolStartupTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolStartupTaintArrayOutput)
+}
+
+type GetPoolStartupTaintOutput struct{ *pulumi.OutputState }
+
+func (GetPoolStartupTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolStartupTaint)(nil)).Elem()
+}
+
+func (o GetPoolStartupTaintOutput) ToGetPoolStartupTaintOutput() GetPoolStartupTaintOutput {
+	return o
+}
+
+func (o GetPoolStartupTaintOutput) ToGetPoolStartupTaintOutputWithContext(ctx context.Context) GetPoolStartupTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o GetPoolStartupTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolStartupTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o GetPoolStartupTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolStartupTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o GetPoolStartupTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolStartupTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetPoolStartupTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPoolStartupTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolStartupTaint)(nil)).Elem()
+}
+
+func (o GetPoolStartupTaintArrayOutput) ToGetPoolStartupTaintArrayOutput() GetPoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o GetPoolStartupTaintArrayOutput) ToGetPoolStartupTaintArrayOutputWithContext(ctx context.Context) GetPoolStartupTaintArrayOutput {
+	return o
+}
+
+func (o GetPoolStartupTaintArrayOutput) Index(i pulumi.IntInput) GetPoolStartupTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoolStartupTaint {
+		return vs[0].([]GetPoolStartupTaint)[vs[1].(int)]
+	}).(GetPoolStartupTaintOutput)
+}
+
+type GetPoolTaint struct {
+	// Effect of the taint
+	Effect string `pulumi:"effect"`
+	// Key of the taint
+	Key string `pulumi:"key"`
+	// Value of the taint
+	Value string `pulumi:"value"`
+}
+
+// GetPoolTaintInput is an input type that accepts GetPoolTaintArgs and GetPoolTaintOutput values.
+// You can construct a concrete instance of `GetPoolTaintInput` via:
+//
+//	GetPoolTaintArgs{...}
+type GetPoolTaintInput interface {
+	pulumi.Input
+
+	ToGetPoolTaintOutput() GetPoolTaintOutput
+	ToGetPoolTaintOutputWithContext(context.Context) GetPoolTaintOutput
+}
+
+type GetPoolTaintArgs struct {
+	// Effect of the taint
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Key of the taint
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value of the taint
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetPoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolTaint)(nil)).Elem()
+}
+
+func (i GetPoolTaintArgs) ToGetPoolTaintOutput() GetPoolTaintOutput {
+	return i.ToGetPoolTaintOutputWithContext(context.Background())
+}
+
+func (i GetPoolTaintArgs) ToGetPoolTaintOutputWithContext(ctx context.Context) GetPoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolTaintOutput)
+}
+
+// GetPoolTaintArrayInput is an input type that accepts GetPoolTaintArray and GetPoolTaintArrayOutput values.
+// You can construct a concrete instance of `GetPoolTaintArrayInput` via:
+//
+//	GetPoolTaintArray{ GetPoolTaintArgs{...} }
+type GetPoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetPoolTaintArrayOutput() GetPoolTaintArrayOutput
+	ToGetPoolTaintArrayOutputWithContext(context.Context) GetPoolTaintArrayOutput
+}
+
+type GetPoolTaintArray []GetPoolTaintInput
+
+func (GetPoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolTaint)(nil)).Elem()
+}
+
+func (i GetPoolTaintArray) ToGetPoolTaintArrayOutput() GetPoolTaintArrayOutput {
+	return i.ToGetPoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetPoolTaintArray) ToGetPoolTaintArrayOutputWithContext(ctx context.Context) GetPoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolTaintArrayOutput)
+}
+
+type GetPoolTaintOutput struct{ *pulumi.OutputState }
+
+func (GetPoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolTaint)(nil)).Elem()
+}
+
+func (o GetPoolTaintOutput) ToGetPoolTaintOutput() GetPoolTaintOutput {
+	return o
+}
+
+func (o GetPoolTaintOutput) ToGetPoolTaintOutputWithContext(ctx context.Context) GetPoolTaintOutput {
+	return o
+}
+
+// Effect of the taint
+func (o GetPoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Key of the taint
+func (o GetPoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value of the taint
+func (o GetPoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetPoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolTaint)(nil)).Elem()
+}
+
+func (o GetPoolTaintArrayOutput) ToGetPoolTaintArrayOutput() GetPoolTaintArrayOutput {
+	return o
+}
+
+func (o GetPoolTaintArrayOutput) ToGetPoolTaintArrayOutputWithContext(ctx context.Context) GetPoolTaintArrayOutput {
+	return o
+}
+
+func (o GetPoolTaintArrayOutput) Index(i pulumi.IntInput) GetPoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoolTaint {
+		return vs[0].([]GetPoolTaint)[vs[1].(int)]
+	}).(GetPoolTaintOutput)
+}
+
 type GetPoolUpgradePolicy struct {
 	// The maximum number of nodes to be created during the upgrade
 	MaxSurge int `pulumi:"maxSurge"`
@@ -2373,6 +2909,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodeArrayInput)(nil)).Elem(), PoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodePrivateIpInput)(nil)).Elem(), PoolNodePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodePrivateIpArrayInput)(nil)).Elem(), PoolNodePrivateIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolStartupTaintInput)(nil)).Elem(), PoolStartupTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolStartupTaintArrayInput)(nil)).Elem(), PoolStartupTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolTaintInput)(nil)).Elem(), PoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolTaintArrayInput)(nil)).Elem(), PoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolUpgradePolicyInput)(nil)).Elem(), PoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolUpgradePolicyPtrInput)(nil)).Elem(), PoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAutoUpgradeInput)(nil)).Elem(), GetClusterAutoUpgradeArgs{})
@@ -2387,6 +2927,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodeArrayInput)(nil)).Elem(), GetPoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodePrivateIpInput)(nil)).Elem(), GetPoolNodePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodePrivateIpArrayInput)(nil)).Elem(), GetPoolNodePrivateIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolStartupTaintInput)(nil)).Elem(), GetPoolStartupTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolStartupTaintArrayInput)(nil)).Elem(), GetPoolStartupTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolTaintInput)(nil)).Elem(), GetPoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolTaintArrayInput)(nil)).Elem(), GetPoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolUpgradePolicyInput)(nil)).Elem(), GetPoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolUpgradePolicyArrayInput)(nil)).Elem(), GetPoolUpgradePolicyArray{})
 	pulumi.RegisterOutputType(AclAclRuleOutput{})
@@ -2403,6 +2947,10 @@ func init() {
 	pulumi.RegisterOutputType(PoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(PoolNodePrivateIpOutput{})
 	pulumi.RegisterOutputType(PoolNodePrivateIpArrayOutput{})
+	pulumi.RegisterOutputType(PoolStartupTaintOutput{})
+	pulumi.RegisterOutputType(PoolStartupTaintArrayOutput{})
+	pulumi.RegisterOutputType(PoolTaintOutput{})
+	pulumi.RegisterOutputType(PoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(PoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(PoolUpgradePolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetClusterAutoUpgradeOutput{})
@@ -2417,6 +2965,10 @@ func init() {
 	pulumi.RegisterOutputType(GetPoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolNodePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetPoolNodePrivateIpArrayOutput{})
+	pulumi.RegisterOutputType(GetPoolStartupTaintOutput{})
+	pulumi.RegisterOutputType(GetPoolStartupTaintArrayOutput{})
+	pulumi.RegisterOutputType(GetPoolTaintOutput{})
+	pulumi.RegisterOutputType(GetPoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(GetPoolUpgradePolicyArrayOutput{})
 }

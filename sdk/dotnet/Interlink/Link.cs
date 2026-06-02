@@ -159,7 +159,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public Output<string?> PartnerId { get; private set; } = null!;
 
         /// <summary>
-        /// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        /// For self-hosted links, the peer AS Number to establish BGP session. Required when `ConnectionId` is set.
         /// </summary>
         [Output("peerAsn")]
         public Output<int> PeerAsn { get; private set; } = null!;
@@ -318,7 +318,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public Input<string>? PartnerId { get; set; }
 
         /// <summary>
-        /// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        /// For self-hosted links, the peer AS Number to establish BGP session. Required when `ConnectionId` is set.
         /// </summary>
         [Input("peerAsn")]
         public Input<int>? PeerAsn { get; set; }
@@ -456,7 +456,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public Input<string>? PartnerId { get; set; }
 
         /// <summary>
-        /// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        /// For self-hosted links, the peer AS Number to establish BGP session. Required when `ConnectionId` is set.
         /// </summary>
         [Input("peerAsn")]
         public Input<int>? PeerAsn { get; set; }

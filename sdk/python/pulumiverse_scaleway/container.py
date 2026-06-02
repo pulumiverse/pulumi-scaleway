@@ -1340,6 +1340,22 @@ class Container(pulumi.CustomResource):
             })
         ```
 
+        ### VPC integration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc = scaleway.network.Vpc("vpc")
+        pn = scaleway.network.PrivateNetwork("pn", vpc_id=vpc.id)
+        with_pn = scaleway.containers.Namespace("with_pn")
+        with_pn_container = scaleway.containers.Container("with_pn",
+            namespace_id=with_pn.id,
+            name="container-with-private-network",
+            image="my-image:latest",
+            private_network_id=pn.id)
+        ```
+
         ### Redeploy the container everytime an update is made
 
         ```python
@@ -1474,6 +1490,7 @@ class Container(pulumi.CustomResource):
         main = scaleway.containers.Container("main",
             name="my-container",
             namespace_id=main_scaleway_container_namespace["id"],
+            image="nginx:latest",
             liveness_probe={
                 "http": {
                     "path": "/ping",
@@ -1623,6 +1640,22 @@ class Container(pulumi.CustomResource):
             })
         ```
 
+        ### VPC integration
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc = scaleway.network.Vpc("vpc")
+        pn = scaleway.network.PrivateNetwork("pn", vpc_id=vpc.id)
+        with_pn = scaleway.containers.Namespace("with_pn")
+        with_pn_container = scaleway.containers.Container("with_pn",
+            namespace_id=with_pn.id,
+            name="container-with-private-network",
+            image="my-image:latest",
+            private_network_id=pn.id)
+        ```
+
         ### Redeploy the container everytime an update is made
 
         ```python
@@ -1757,6 +1790,7 @@ class Container(pulumi.CustomResource):
         main = scaleway.containers.Container("main",
             name="my-container",
             namespace_id=main_scaleway_container_namespace["id"],
+            image="nginx:latest",
             liveness_probe={
                 "http": {
                     "path": "/ping",

@@ -79,6 +79,50 @@ import (
 //
 // ```
 //
+// ### VPC integration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc, err := network.NewVpc(ctx, "vpc", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
+//				VpcId: vpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			withPn, err := containers.NewNamespace(ctx, "with_pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = containers.NewContainer(ctx, "with_pn", &containers.ContainerArgs{
+//				NamespaceId:      withPn.ID(),
+//				Name:             pulumi.String("container-with-private-network"),
+//				Image:            pulumi.String("my-image:latest"),
+//				PrivateNetworkId: pn.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Redeploy the container everytime an update is made
 //
 // ```go
@@ -337,6 +381,7 @@ import (
 //			_, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("my-container"),
 //				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
+//				Image:       pulumi.String("nginx:latest"),
 //				LivenessProbe: &containers.ContainerLivenessProbeArgs{
 //					Http: &containers.ContainerLivenessProbeHttpArgs{
 //						Path: pulumi.String("/ping"),

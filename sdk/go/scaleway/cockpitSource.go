@@ -80,7 +80,7 @@ type CockpitSource struct {
 	PushUrl pulumi.StringOutput `pulumi:"pushUrl"`
 	// ) The region where the data source is located.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays pulumi.IntOutput `pulumi:"retentionDays"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolOutput `pulumi:"synchronizedWithGrafana"`
@@ -137,7 +137,7 @@ type cockpitSourceState struct {
 	PushUrl *string `pulumi:"pushUrl"`
 	// ) The region where the data source is located.
 	Region *string `pulumi:"region"`
-	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays *int `pulumi:"retentionDays"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana *bool `pulumi:"synchronizedWithGrafana"`
@@ -162,7 +162,7 @@ type CockpitSourceState struct {
 	PushUrl pulumi.StringPtrInput
 	// ) The region where the data source is located.
 	Region pulumi.StringPtrInput
-	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays pulumi.IntPtrInput
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolPtrInput
@@ -185,7 +185,7 @@ type cockpitSourceArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// ) The region where the data source is located.
 	Region *string `pulumi:"region"`
-	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays int `pulumi:"retentionDays"`
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type *string `pulumi:"type"`
@@ -199,7 +199,7 @@ type CockpitSourceArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// ) The region where the data source is located.
 	Region pulumi.StringPtrInput
-	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays pulumi.IntInput
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type pulumi.StringPtrInput
@@ -322,7 +322,7 @@ func (o CockpitSourceOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 func (o CockpitSourceOutput) RetentionDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.IntOutput { return v.RetentionDays }).(pulumi.IntOutput)
 }

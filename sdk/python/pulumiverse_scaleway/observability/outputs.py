@@ -21,6 +21,11 @@ __all__ = [
     'ExporterDatadogDestination',
     'ExporterOtlpDestination',
     'TokenScopes',
+    'GetConfigCustomLogsRetentionResult',
+    'GetConfigCustomMetricsRetentionResult',
+    'GetConfigCustomTracesRetentionResult',
+    'GetConfigProductLogsRetentionResult',
+    'GetConfigProductMetricsRetentionResult',
     'GetExporterDatadogDestinationResult',
     'GetExporterOtlpDestinationResult',
     'GetInstanceEndpointResult',
@@ -414,6 +419,206 @@ class TokenScopes(dict):
         Permission to write traces.
         """
         return pulumi.get(self, "write_traces")
+
+
+@pulumi.output_type
+class GetConfigCustomLogsRetentionResult(dict):
+    def __init__(__self__, *,
+                 default_days: _builtins.int,
+                 max_days: _builtins.int,
+                 min_days: _builtins.int):
+        """
+        :param _builtins.int default_days: Default retention in days.
+        :param _builtins.int max_days: Maximum retention in days.
+        :param _builtins.int min_days: Minimum retention in days.
+        """
+        pulumi.set(__self__, "default_days", default_days)
+        pulumi.set(__self__, "max_days", max_days)
+        pulumi.set(__self__, "min_days", min_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultDays")
+    def default_days(self) -> _builtins.int:
+        """
+        Default retention in days.
+        """
+        return pulumi.get(self, "default_days")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDays")
+    def max_days(self) -> _builtins.int:
+        """
+        Maximum retention in days.
+        """
+        return pulumi.get(self, "max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="minDays")
+    def min_days(self) -> _builtins.int:
+        """
+        Minimum retention in days.
+        """
+        return pulumi.get(self, "min_days")
+
+
+@pulumi.output_type
+class GetConfigCustomMetricsRetentionResult(dict):
+    def __init__(__self__, *,
+                 default_days: _builtins.int,
+                 max_days: _builtins.int,
+                 min_days: _builtins.int):
+        """
+        :param _builtins.int default_days: Default retention in days.
+        :param _builtins.int max_days: Maximum retention in days.
+        :param _builtins.int min_days: Minimum retention in days.
+        """
+        pulumi.set(__self__, "default_days", default_days)
+        pulumi.set(__self__, "max_days", max_days)
+        pulumi.set(__self__, "min_days", min_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultDays")
+    def default_days(self) -> _builtins.int:
+        """
+        Default retention in days.
+        """
+        return pulumi.get(self, "default_days")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDays")
+    def max_days(self) -> _builtins.int:
+        """
+        Maximum retention in days.
+        """
+        return pulumi.get(self, "max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="minDays")
+    def min_days(self) -> _builtins.int:
+        """
+        Minimum retention in days.
+        """
+        return pulumi.get(self, "min_days")
+
+
+@pulumi.output_type
+class GetConfigCustomTracesRetentionResult(dict):
+    def __init__(__self__, *,
+                 default_days: _builtins.int,
+                 max_days: _builtins.int,
+                 min_days: _builtins.int):
+        """
+        :param _builtins.int default_days: Default retention in days.
+        :param _builtins.int max_days: Maximum retention in days.
+        :param _builtins.int min_days: Minimum retention in days.
+        """
+        pulumi.set(__self__, "default_days", default_days)
+        pulumi.set(__self__, "max_days", max_days)
+        pulumi.set(__self__, "min_days", min_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultDays")
+    def default_days(self) -> _builtins.int:
+        """
+        Default retention in days.
+        """
+        return pulumi.get(self, "default_days")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDays")
+    def max_days(self) -> _builtins.int:
+        """
+        Maximum retention in days.
+        """
+        return pulumi.get(self, "max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="minDays")
+    def min_days(self) -> _builtins.int:
+        """
+        Minimum retention in days.
+        """
+        return pulumi.get(self, "min_days")
+
+
+@pulumi.output_type
+class GetConfigProductLogsRetentionResult(dict):
+    def __init__(__self__, *,
+                 default_days: _builtins.int,
+                 max_days: _builtins.int,
+                 min_days: _builtins.int):
+        """
+        :param _builtins.int default_days: Default retention in days.
+        :param _builtins.int max_days: Maximum retention in days.
+        :param _builtins.int min_days: Minimum retention in days.
+        """
+        pulumi.set(__self__, "default_days", default_days)
+        pulumi.set(__self__, "max_days", max_days)
+        pulumi.set(__self__, "min_days", min_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultDays")
+    def default_days(self) -> _builtins.int:
+        """
+        Default retention in days.
+        """
+        return pulumi.get(self, "default_days")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDays")
+    def max_days(self) -> _builtins.int:
+        """
+        Maximum retention in days.
+        """
+        return pulumi.get(self, "max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="minDays")
+    def min_days(self) -> _builtins.int:
+        """
+        Minimum retention in days.
+        """
+        return pulumi.get(self, "min_days")
+
+
+@pulumi.output_type
+class GetConfigProductMetricsRetentionResult(dict):
+    def __init__(__self__, *,
+                 default_days: _builtins.int,
+                 max_days: _builtins.int,
+                 min_days: _builtins.int):
+        """
+        :param _builtins.int default_days: Default retention in days.
+        :param _builtins.int max_days: Maximum retention in days.
+        :param _builtins.int min_days: Minimum retention in days.
+        """
+        pulumi.set(__self__, "default_days", default_days)
+        pulumi.set(__self__, "max_days", max_days)
+        pulumi.set(__self__, "min_days", min_days)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultDays")
+    def default_days(self) -> _builtins.int:
+        """
+        Default retention in days.
+        """
+        return pulumi.get(self, "default_days")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDays")
+    def max_days(self) -> _builtins.int:
+        """
+        Maximum retention in days.
+        """
+        return pulumi.get(self, "max_days")
+
+    @_builtins.property
+    @pulumi.getter(name="minDays")
+    def min_days(self) -> _builtins.int:
+        """
+        Minimum retention in days.
+        """
+        return pulumi.get(self, "min_days")
 
 
 @pulumi.output_type

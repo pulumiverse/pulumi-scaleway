@@ -13,7 +13,7 @@ import (
 
 // Gets information about an Edge Services backend stage.
 //
-// A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+// A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
 //
 // ## Example Usage
 //
@@ -94,10 +94,12 @@ type LookupBackendStageArgs struct {
 
 // A collection of values returned by getBackendStage.
 type LookupBackendStageResult struct {
-	BackendStageId *string `pulumi:"backendStageId"`
-	BucketName     *string `pulumi:"bucketName"`
-	BucketRegion   *string `pulumi:"bucketRegion"`
-	CreatedAt      string  `pulumi:"createdAt"`
+	BackendStageId          *string                                 `pulumi:"backendStageId"`
+	BucketName              *string                                 `pulumi:"bucketName"`
+	BucketRegion            *string                                 `pulumi:"bucketRegion"`
+	ContainerBackendConfigs []GetBackendStageContainerBackendConfig `pulumi:"containerBackendConfigs"`
+	CreatedAt               string                                  `pulumi:"createdAt"`
+	FunctionBackendConfigs  []GetBackendStageFunctionBackendConfig  `pulumi:"functionBackendConfigs"`
 	// The provider-assigned unique ID for this managed resource.
 	Id               string                           `pulumi:"id"`
 	LbBackendConfigs []GetBackendStageLbBackendConfig `pulumi:"lbBackendConfigs"`
@@ -164,8 +166,20 @@ func (o LookupBackendStageResultOutput) BucketRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBackendStageResult) *string { return v.BucketRegion }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupBackendStageResultOutput) ContainerBackendConfigs() GetBackendStageContainerBackendConfigArrayOutput {
+	return o.ApplyT(func(v LookupBackendStageResult) []GetBackendStageContainerBackendConfig {
+		return v.ContainerBackendConfigs
+	}).(GetBackendStageContainerBackendConfigArrayOutput)
+}
+
 func (o LookupBackendStageResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackendStageResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendStageResultOutput) FunctionBackendConfigs() GetBackendStageFunctionBackendConfigArrayOutput {
+	return o.ApplyT(func(v LookupBackendStageResult) []GetBackendStageFunctionBackendConfig {
+		return v.FunctionBackendConfigs
+	}).(GetBackendStageFunctionBackendConfigArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

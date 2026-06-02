@@ -13,6 +13,318 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type BackendStageContainerBackendConfig struct {
+	// The ID of the Serverless Container.
+	ContainerId string `pulumi:"containerId"`
+	// `region`) The region of the Serverless Container.
+	Region *string `pulumi:"region"`
+}
+
+// BackendStageContainerBackendConfigInput is an input type that accepts BackendStageContainerBackendConfigArgs and BackendStageContainerBackendConfigOutput values.
+// You can construct a concrete instance of `BackendStageContainerBackendConfigInput` via:
+//
+//	BackendStageContainerBackendConfigArgs{...}
+type BackendStageContainerBackendConfigInput interface {
+	pulumi.Input
+
+	ToBackendStageContainerBackendConfigOutput() BackendStageContainerBackendConfigOutput
+	ToBackendStageContainerBackendConfigOutputWithContext(context.Context) BackendStageContainerBackendConfigOutput
+}
+
+type BackendStageContainerBackendConfigArgs struct {
+	// The ID of the Serverless Container.
+	ContainerId pulumi.StringInput `pulumi:"containerId"`
+	// `region`) The region of the Serverless Container.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (BackendStageContainerBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i BackendStageContainerBackendConfigArgs) ToBackendStageContainerBackendConfigOutput() BackendStageContainerBackendConfigOutput {
+	return i.ToBackendStageContainerBackendConfigOutputWithContext(context.Background())
+}
+
+func (i BackendStageContainerBackendConfigArgs) ToBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageContainerBackendConfigOutput)
+}
+
+func (i BackendStageContainerBackendConfigArgs) ToBackendStageContainerBackendConfigPtrOutput() BackendStageContainerBackendConfigPtrOutput {
+	return i.ToBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i BackendStageContainerBackendConfigArgs) ToBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageContainerBackendConfigOutput).ToBackendStageContainerBackendConfigPtrOutputWithContext(ctx)
+}
+
+// BackendStageContainerBackendConfigPtrInput is an input type that accepts BackendStageContainerBackendConfigArgs, BackendStageContainerBackendConfigPtr and BackendStageContainerBackendConfigPtrOutput values.
+// You can construct a concrete instance of `BackendStageContainerBackendConfigPtrInput` via:
+//
+//	        BackendStageContainerBackendConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackendStageContainerBackendConfigPtrInput interface {
+	pulumi.Input
+
+	ToBackendStageContainerBackendConfigPtrOutput() BackendStageContainerBackendConfigPtrOutput
+	ToBackendStageContainerBackendConfigPtrOutputWithContext(context.Context) BackendStageContainerBackendConfigPtrOutput
+}
+
+type backendStageContainerBackendConfigPtrType BackendStageContainerBackendConfigArgs
+
+func BackendStageContainerBackendConfigPtr(v *BackendStageContainerBackendConfigArgs) BackendStageContainerBackendConfigPtrInput {
+	return (*backendStageContainerBackendConfigPtrType)(v)
+}
+
+func (*backendStageContainerBackendConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i *backendStageContainerBackendConfigPtrType) ToBackendStageContainerBackendConfigPtrOutput() BackendStageContainerBackendConfigPtrOutput {
+	return i.ToBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *backendStageContainerBackendConfigPtrType) ToBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageContainerBackendConfigPtrOutput)
+}
+
+type BackendStageContainerBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (BackendStageContainerBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o BackendStageContainerBackendConfigOutput) ToBackendStageContainerBackendConfigOutput() BackendStageContainerBackendConfigOutput {
+	return o
+}
+
+func (o BackendStageContainerBackendConfigOutput) ToBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigOutput {
+	return o
+}
+
+func (o BackendStageContainerBackendConfigOutput) ToBackendStageContainerBackendConfigPtrOutput() BackendStageContainerBackendConfigPtrOutput {
+	return o.ToBackendStageContainerBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (o BackendStageContainerBackendConfigOutput) ToBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendStageContainerBackendConfig) *BackendStageContainerBackendConfig {
+		return &v
+	}).(BackendStageContainerBackendConfigPtrOutput)
+}
+
+// The ID of the Serverless Container.
+func (o BackendStageContainerBackendConfigOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v BackendStageContainerBackendConfig) string { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// `region`) The region of the Serverless Container.
+func (o BackendStageContainerBackendConfigOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackendStageContainerBackendConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type BackendStageContainerBackendConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (BackendStageContainerBackendConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o BackendStageContainerBackendConfigPtrOutput) ToBackendStageContainerBackendConfigPtrOutput() BackendStageContainerBackendConfigPtrOutput {
+	return o
+}
+
+func (o BackendStageContainerBackendConfigPtrOutput) ToBackendStageContainerBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageContainerBackendConfigPtrOutput {
+	return o
+}
+
+func (o BackendStageContainerBackendConfigPtrOutput) Elem() BackendStageContainerBackendConfigOutput {
+	return o.ApplyT(func(v *BackendStageContainerBackendConfig) BackendStageContainerBackendConfig {
+		if v != nil {
+			return *v
+		}
+		var ret BackendStageContainerBackendConfig
+		return ret
+	}).(BackendStageContainerBackendConfigOutput)
+}
+
+// The ID of the Serverless Container.
+func (o BackendStageContainerBackendConfigPtrOutput) ContainerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendStageContainerBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContainerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`) The region of the Serverless Container.
+func (o BackendStageContainerBackendConfigPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendStageContainerBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type BackendStageFunctionBackendConfig struct {
+	// The ID of the Serverless Function.
+	FunctionId string `pulumi:"functionId"`
+	// `region`) The region of the Serverless Function.
+	Region *string `pulumi:"region"`
+}
+
+// BackendStageFunctionBackendConfigInput is an input type that accepts BackendStageFunctionBackendConfigArgs and BackendStageFunctionBackendConfigOutput values.
+// You can construct a concrete instance of `BackendStageFunctionBackendConfigInput` via:
+//
+//	BackendStageFunctionBackendConfigArgs{...}
+type BackendStageFunctionBackendConfigInput interface {
+	pulumi.Input
+
+	ToBackendStageFunctionBackendConfigOutput() BackendStageFunctionBackendConfigOutput
+	ToBackendStageFunctionBackendConfigOutputWithContext(context.Context) BackendStageFunctionBackendConfigOutput
+}
+
+type BackendStageFunctionBackendConfigArgs struct {
+	// The ID of the Serverless Function.
+	FunctionId pulumi.StringInput `pulumi:"functionId"`
+	// `region`) The region of the Serverless Function.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (BackendStageFunctionBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i BackendStageFunctionBackendConfigArgs) ToBackendStageFunctionBackendConfigOutput() BackendStageFunctionBackendConfigOutput {
+	return i.ToBackendStageFunctionBackendConfigOutputWithContext(context.Background())
+}
+
+func (i BackendStageFunctionBackendConfigArgs) ToBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageFunctionBackendConfigOutput)
+}
+
+func (i BackendStageFunctionBackendConfigArgs) ToBackendStageFunctionBackendConfigPtrOutput() BackendStageFunctionBackendConfigPtrOutput {
+	return i.ToBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i BackendStageFunctionBackendConfigArgs) ToBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageFunctionBackendConfigOutput).ToBackendStageFunctionBackendConfigPtrOutputWithContext(ctx)
+}
+
+// BackendStageFunctionBackendConfigPtrInput is an input type that accepts BackendStageFunctionBackendConfigArgs, BackendStageFunctionBackendConfigPtr and BackendStageFunctionBackendConfigPtrOutput values.
+// You can construct a concrete instance of `BackendStageFunctionBackendConfigPtrInput` via:
+//
+//	        BackendStageFunctionBackendConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackendStageFunctionBackendConfigPtrInput interface {
+	pulumi.Input
+
+	ToBackendStageFunctionBackendConfigPtrOutput() BackendStageFunctionBackendConfigPtrOutput
+	ToBackendStageFunctionBackendConfigPtrOutputWithContext(context.Context) BackendStageFunctionBackendConfigPtrOutput
+}
+
+type backendStageFunctionBackendConfigPtrType BackendStageFunctionBackendConfigArgs
+
+func BackendStageFunctionBackendConfigPtr(v *BackendStageFunctionBackendConfigArgs) BackendStageFunctionBackendConfigPtrInput {
+	return (*backendStageFunctionBackendConfigPtrType)(v)
+}
+
+func (*backendStageFunctionBackendConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i *backendStageFunctionBackendConfigPtrType) ToBackendStageFunctionBackendConfigPtrOutput() BackendStageFunctionBackendConfigPtrOutput {
+	return i.ToBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *backendStageFunctionBackendConfigPtrType) ToBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendStageFunctionBackendConfigPtrOutput)
+}
+
+type BackendStageFunctionBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (BackendStageFunctionBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o BackendStageFunctionBackendConfigOutput) ToBackendStageFunctionBackendConfigOutput() BackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+func (o BackendStageFunctionBackendConfigOutput) ToBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+func (o BackendStageFunctionBackendConfigOutput) ToBackendStageFunctionBackendConfigPtrOutput() BackendStageFunctionBackendConfigPtrOutput {
+	return o.ToBackendStageFunctionBackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (o BackendStageFunctionBackendConfigOutput) ToBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendStageFunctionBackendConfig) *BackendStageFunctionBackendConfig {
+		return &v
+	}).(BackendStageFunctionBackendConfigPtrOutput)
+}
+
+// The ID of the Serverless Function.
+func (o BackendStageFunctionBackendConfigOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v BackendStageFunctionBackendConfig) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+// `region`) The region of the Serverless Function.
+func (o BackendStageFunctionBackendConfigOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackendStageFunctionBackendConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type BackendStageFunctionBackendConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (BackendStageFunctionBackendConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o BackendStageFunctionBackendConfigPtrOutput) ToBackendStageFunctionBackendConfigPtrOutput() BackendStageFunctionBackendConfigPtrOutput {
+	return o
+}
+
+func (o BackendStageFunctionBackendConfigPtrOutput) ToBackendStageFunctionBackendConfigPtrOutputWithContext(ctx context.Context) BackendStageFunctionBackendConfigPtrOutput {
+	return o
+}
+
+func (o BackendStageFunctionBackendConfigPtrOutput) Elem() BackendStageFunctionBackendConfigOutput {
+	return o.ApplyT(func(v *BackendStageFunctionBackendConfig) BackendStageFunctionBackendConfig {
+		if v != nil {
+			return *v
+		}
+		var ret BackendStageFunctionBackendConfig
+		return ret
+	}).(BackendStageFunctionBackendConfigOutput)
+}
+
+// The ID of the Serverless Function.
+func (o BackendStageFunctionBackendConfigPtrOutput) FunctionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendStageFunctionBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FunctionId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`) The region of the Serverless Function.
+func (o BackendStageFunctionBackendConfigPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendStageFunctionBackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
 type BackendStageLbBackendConfig struct {
 	// The Load Balancer config.
 	LbConfig *BackendStageLbBackendConfigLbConfig `pulumi:"lbConfig"`
@@ -1340,6 +1652,218 @@ func (o TlsStageSecretArrayOutput) Index(i pulumi.IntInput) TlsStageSecretOutput
 	}).(TlsStageSecretOutput)
 }
 
+type GetBackendStageContainerBackendConfig struct {
+	// ID of the Serverless Container
+	ContainerId string `pulumi:"containerId"`
+	// The region you want to attach the resource to
+	Region string `pulumi:"region"`
+}
+
+// GetBackendStageContainerBackendConfigInput is an input type that accepts GetBackendStageContainerBackendConfigArgs and GetBackendStageContainerBackendConfigOutput values.
+// You can construct a concrete instance of `GetBackendStageContainerBackendConfigInput` via:
+//
+//	GetBackendStageContainerBackendConfigArgs{...}
+type GetBackendStageContainerBackendConfigInput interface {
+	pulumi.Input
+
+	ToGetBackendStageContainerBackendConfigOutput() GetBackendStageContainerBackendConfigOutput
+	ToGetBackendStageContainerBackendConfigOutputWithContext(context.Context) GetBackendStageContainerBackendConfigOutput
+}
+
+type GetBackendStageContainerBackendConfigArgs struct {
+	// ID of the Serverless Container
+	ContainerId pulumi.StringInput `pulumi:"containerId"`
+	// The region you want to attach the resource to
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetBackendStageContainerBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageContainerBackendConfigArgs) ToGetBackendStageContainerBackendConfigOutput() GetBackendStageContainerBackendConfigOutput {
+	return i.ToGetBackendStageContainerBackendConfigOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageContainerBackendConfigArgs) ToGetBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) GetBackendStageContainerBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageContainerBackendConfigOutput)
+}
+
+// GetBackendStageContainerBackendConfigArrayInput is an input type that accepts GetBackendStageContainerBackendConfigArray and GetBackendStageContainerBackendConfigArrayOutput values.
+// You can construct a concrete instance of `GetBackendStageContainerBackendConfigArrayInput` via:
+//
+//	GetBackendStageContainerBackendConfigArray{ GetBackendStageContainerBackendConfigArgs{...} }
+type GetBackendStageContainerBackendConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendStageContainerBackendConfigArrayOutput() GetBackendStageContainerBackendConfigArrayOutput
+	ToGetBackendStageContainerBackendConfigArrayOutputWithContext(context.Context) GetBackendStageContainerBackendConfigArrayOutput
+}
+
+type GetBackendStageContainerBackendConfigArray []GetBackendStageContainerBackendConfigInput
+
+func (GetBackendStageContainerBackendConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageContainerBackendConfigArray) ToGetBackendStageContainerBackendConfigArrayOutput() GetBackendStageContainerBackendConfigArrayOutput {
+	return i.ToGetBackendStageContainerBackendConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageContainerBackendConfigArray) ToGetBackendStageContainerBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageContainerBackendConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageContainerBackendConfigArrayOutput)
+}
+
+type GetBackendStageContainerBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageContainerBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageContainerBackendConfigOutput) ToGetBackendStageContainerBackendConfigOutput() GetBackendStageContainerBackendConfigOutput {
+	return o
+}
+
+func (o GetBackendStageContainerBackendConfigOutput) ToGetBackendStageContainerBackendConfigOutputWithContext(ctx context.Context) GetBackendStageContainerBackendConfigOutput {
+	return o
+}
+
+// ID of the Serverless Container
+func (o GetBackendStageContainerBackendConfigOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageContainerBackendConfig) string { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// The region you want to attach the resource to
+func (o GetBackendStageContainerBackendConfigOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageContainerBackendConfig) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetBackendStageContainerBackendConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageContainerBackendConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageContainerBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageContainerBackendConfigArrayOutput) ToGetBackendStageContainerBackendConfigArrayOutput() GetBackendStageContainerBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageContainerBackendConfigArrayOutput) ToGetBackendStageContainerBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageContainerBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageContainerBackendConfigArrayOutput) Index(i pulumi.IntInput) GetBackendStageContainerBackendConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendStageContainerBackendConfig {
+		return vs[0].([]GetBackendStageContainerBackendConfig)[vs[1].(int)]
+	}).(GetBackendStageContainerBackendConfigOutput)
+}
+
+type GetBackendStageFunctionBackendConfig struct {
+	// ID of the Serverless Function
+	FunctionId string `pulumi:"functionId"`
+	// The region you want to attach the resource to
+	Region string `pulumi:"region"`
+}
+
+// GetBackendStageFunctionBackendConfigInput is an input type that accepts GetBackendStageFunctionBackendConfigArgs and GetBackendStageFunctionBackendConfigOutput values.
+// You can construct a concrete instance of `GetBackendStageFunctionBackendConfigInput` via:
+//
+//	GetBackendStageFunctionBackendConfigArgs{...}
+type GetBackendStageFunctionBackendConfigInput interface {
+	pulumi.Input
+
+	ToGetBackendStageFunctionBackendConfigOutput() GetBackendStageFunctionBackendConfigOutput
+	ToGetBackendStageFunctionBackendConfigOutputWithContext(context.Context) GetBackendStageFunctionBackendConfigOutput
+}
+
+type GetBackendStageFunctionBackendConfigArgs struct {
+	// ID of the Serverless Function
+	FunctionId pulumi.StringInput `pulumi:"functionId"`
+	// The region you want to attach the resource to
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetBackendStageFunctionBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageFunctionBackendConfigArgs) ToGetBackendStageFunctionBackendConfigOutput() GetBackendStageFunctionBackendConfigOutput {
+	return i.ToGetBackendStageFunctionBackendConfigOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageFunctionBackendConfigArgs) ToGetBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) GetBackendStageFunctionBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageFunctionBackendConfigOutput)
+}
+
+// GetBackendStageFunctionBackendConfigArrayInput is an input type that accepts GetBackendStageFunctionBackendConfigArray and GetBackendStageFunctionBackendConfigArrayOutput values.
+// You can construct a concrete instance of `GetBackendStageFunctionBackendConfigArrayInput` via:
+//
+//	GetBackendStageFunctionBackendConfigArray{ GetBackendStageFunctionBackendConfigArgs{...} }
+type GetBackendStageFunctionBackendConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendStageFunctionBackendConfigArrayOutput() GetBackendStageFunctionBackendConfigArrayOutput
+	ToGetBackendStageFunctionBackendConfigArrayOutputWithContext(context.Context) GetBackendStageFunctionBackendConfigArrayOutput
+}
+
+type GetBackendStageFunctionBackendConfigArray []GetBackendStageFunctionBackendConfigInput
+
+func (GetBackendStageFunctionBackendConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageFunctionBackendConfigArray) ToGetBackendStageFunctionBackendConfigArrayOutput() GetBackendStageFunctionBackendConfigArrayOutput {
+	return i.ToGetBackendStageFunctionBackendConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageFunctionBackendConfigArray) ToGetBackendStageFunctionBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageFunctionBackendConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageFunctionBackendConfigArrayOutput)
+}
+
+type GetBackendStageFunctionBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageFunctionBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageFunctionBackendConfigOutput) ToGetBackendStageFunctionBackendConfigOutput() GetBackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+func (o GetBackendStageFunctionBackendConfigOutput) ToGetBackendStageFunctionBackendConfigOutputWithContext(ctx context.Context) GetBackendStageFunctionBackendConfigOutput {
+	return o
+}
+
+// ID of the Serverless Function
+func (o GetBackendStageFunctionBackendConfigOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageFunctionBackendConfig) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+// The region you want to attach the resource to
+func (o GetBackendStageFunctionBackendConfigOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageFunctionBackendConfig) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetBackendStageFunctionBackendConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageFunctionBackendConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageFunctionBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageFunctionBackendConfigArrayOutput) ToGetBackendStageFunctionBackendConfigArrayOutput() GetBackendStageFunctionBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageFunctionBackendConfigArrayOutput) ToGetBackendStageFunctionBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageFunctionBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageFunctionBackendConfigArrayOutput) Index(i pulumi.IntInput) GetBackendStageFunctionBackendConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendStageFunctionBackendConfig {
+		return vs[0].([]GetBackendStageFunctionBackendConfig)[vs[1].(int)]
+	}).(GetBackendStageFunctionBackendConfigOutput)
+}
+
 type GetBackendStageLbBackendConfig struct {
 	// The Load Balancer configuration
 	LbConfigs []GetBackendStageLbBackendConfigLbConfig `pulumi:"lbConfigs"`
@@ -2362,6 +2886,10 @@ func (o GetTlsStageSecretArrayOutput) Index(i pulumi.IntInput) GetTlsStageSecret
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageContainerBackendConfigInput)(nil)).Elem(), BackendStageContainerBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageContainerBackendConfigPtrInput)(nil)).Elem(), BackendStageContainerBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageFunctionBackendConfigInput)(nil)).Elem(), BackendStageFunctionBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageFunctionBackendConfigPtrInput)(nil)).Elem(), BackendStageFunctionBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageLbBackendConfigInput)(nil)).Elem(), BackendStageLbBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageLbBackendConfigArrayInput)(nil)).Elem(), BackendStageLbBackendConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageLbBackendConfigLbConfigInput)(nil)).Elem(), BackendStageLbBackendConfigLbConfigArgs{})
@@ -2380,6 +2908,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretInput)(nil)).Elem(), TlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretArrayInput)(nil)).Elem(), TlsStageSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageContainerBackendConfigInput)(nil)).Elem(), GetBackendStageContainerBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageContainerBackendConfigArrayInput)(nil)).Elem(), GetBackendStageContainerBackendConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageFunctionBackendConfigInput)(nil)).Elem(), GetBackendStageFunctionBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageFunctionBackendConfigArrayInput)(nil)).Elem(), GetBackendStageFunctionBackendConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigInput)(nil)).Elem(), GetBackendStageLbBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigArrayInput)(nil)).Elem(), GetBackendStageLbBackendConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigLbConfigInput)(nil)).Elem(), GetBackendStageLbBackendConfigLbConfigArgs{})
@@ -2398,6 +2930,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretInput)(nil)).Elem(), GetTlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretArrayInput)(nil)).Elem(), GetTlsStageSecretArray{})
+	pulumi.RegisterOutputType(BackendStageContainerBackendConfigOutput{})
+	pulumi.RegisterOutputType(BackendStageContainerBackendConfigPtrOutput{})
+	pulumi.RegisterOutputType(BackendStageFunctionBackendConfigOutput{})
+	pulumi.RegisterOutputType(BackendStageFunctionBackendConfigPtrOutput{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigOutput{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigLbConfigOutput{})
@@ -2416,6 +2952,10 @@ func init() {
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendStageContainerBackendConfigOutput{})
+	pulumi.RegisterOutputType(GetBackendStageContainerBackendConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendStageFunctionBackendConfigOutput{})
+	pulumi.RegisterOutputType(GetBackendStageFunctionBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigOutput{})
 	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigLbConfigOutput{})

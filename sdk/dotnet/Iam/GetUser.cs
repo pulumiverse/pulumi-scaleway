@@ -196,35 +196,111 @@ namespace Pulumiverse.Scaleway.Iam
     [OutputType]
     public sealed class GetUserResult
     {
+        public readonly string AccountRootUserId;
+        public readonly string CreatedAt;
+        public readonly bool Deletable;
         public readonly string? Email;
+        public readonly string FirstName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string LastLoginAt;
+        public readonly string LastName;
+        public readonly string Locale;
+        public readonly bool Locked;
+        public readonly bool Mfa;
         public readonly string? OrganizationId;
+        public readonly string Password;
+        public readonly string PasswordWo;
+        public readonly int PasswordWoVersion;
+        public readonly string PhoneNumber;
+        public readonly bool SendPasswordEmail;
+        public readonly bool SendWelcomeEmail;
+        public readonly string Status;
         /// <summary>
         /// The tags associated with the user.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
+        public readonly string Type;
+        public readonly string UpdatedAt;
         public readonly string? UserId;
+        public readonly string Username;
 
         [OutputConstructor]
         private GetUserResult(
+            string accountRootUserId,
+
+            string createdAt,
+
+            bool deletable,
+
             string? email,
+
+            string firstName,
 
             string id,
 
+            string lastLoginAt,
+
+            string lastName,
+
+            string locale,
+
+            bool locked,
+
+            bool mfa,
+
             string? organizationId,
+
+            string password,
+
+            string passwordWo,
+
+            int passwordWoVersion,
+
+            string phoneNumber,
+
+            bool sendPasswordEmail,
+
+            bool sendWelcomeEmail,
+
+            string status,
 
             ImmutableArray<string> tags,
 
-            string? userId)
+            string type,
+
+            string updatedAt,
+
+            string? userId,
+
+            string username)
         {
+            AccountRootUserId = accountRootUserId;
+            CreatedAt = createdAt;
+            Deletable = deletable;
             Email = email;
+            FirstName = firstName;
             Id = id;
+            LastLoginAt = lastLoginAt;
+            LastName = lastName;
+            Locale = locale;
+            Locked = locked;
+            Mfa = mfa;
             OrganizationId = organizationId;
+            Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
+            PhoneNumber = phoneNumber;
+            SendPasswordEmail = sendPasswordEmail;
+            SendWelcomeEmail = sendWelcomeEmail;
+            Status = status;
             Tags = tags;
+            Type = type;
+            UpdatedAt = updatedAt;
             UserId = userId;
+            Username = username;
         }
     }
 }

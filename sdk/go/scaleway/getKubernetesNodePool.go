@@ -109,6 +109,7 @@ type LookupKubernetesNodePoolResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string            `pulumi:"id"`
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
+	Labels      map[string]string `pulumi:"labels"`
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -128,11 +129,13 @@ type LookupKubernetesNodePoolResult struct {
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
 	SecurityGroupId    string  `pulumi:"securityGroupId"`
 	// The size of the pool.
-	Size *int `pulumi:"size"`
+	Size          *int                                `pulumi:"size"`
+	StartupTaints []GetKubernetesNodePoolStartupTaint `pulumi:"startupTaints"`
 	// The status of the node.
 	Status string `pulumi:"status"`
 	// The tags associated with the pool.
-	Tags []string `pulumi:"tags"`
+	Tags   []string                     `pulumi:"tags"`
+	Taints []GetKubernetesNodePoolTaint `pulumi:"taints"`
 	// The last update date of the pool.
 	UpdatedAt       string                               `pulumi:"updatedAt"`
 	UpgradePolicies []GetKubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicies"`
@@ -222,6 +225,10 @@ func (o LookupKubernetesNodePoolResultOutput) KubeletArgs() pulumi.StringMapOutp
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) map[string]string { return v.KubeletArgs }).(pulumi.StringMapOutput)
 }
 
+func (o LookupKubernetesNodePoolResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
 // The maximum size of the pool, used by the autoscaling feature.
 func (o LookupKubernetesNodePoolResultOutput) MaxSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) int { return v.MaxSize }).(pulumi.IntOutput)
@@ -281,6 +288,10 @@ func (o LookupKubernetesNodePoolResultOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+func (o LookupKubernetesNodePoolResultOutput) StartupTaints() GetKubernetesNodePoolStartupTaintArrayOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) []GetKubernetesNodePoolStartupTaint { return v.StartupTaints }).(GetKubernetesNodePoolStartupTaintArrayOutput)
+}
+
 // The status of the node.
 func (o LookupKubernetesNodePoolResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) string { return v.Status }).(pulumi.StringOutput)
@@ -289,6 +300,10 @@ func (o LookupKubernetesNodePoolResultOutput) Status() pulumi.StringOutput {
 // The tags associated with the pool.
 func (o LookupKubernetesNodePoolResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupKubernetesNodePoolResultOutput) Taints() GetKubernetesNodePoolTaintArrayOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) []GetKubernetesNodePoolTaint { return v.Taints }).(GetKubernetesNodePoolTaintArrayOutput)
 }
 
 // The last update date of the pool.

@@ -56,6 +56,23 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### VPC integration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc = new scaleway.network.Vpc("vpc", {});
+ * const pn = new scaleway.network.PrivateNetwork("pn", {vpcId: vpc.id});
+ * const withPn = new scaleway.containers.Namespace("with_pn", {});
+ * const withPnContainer = new scaleway.containers.Container("with_pn", {
+ *     namespaceId: withPn.id,
+ *     name: "container-with-private-network",
+ *     image: "my-image:latest",
+ *     privateNetworkId: pn.id,
+ * });
+ * ```
+ *
  * ### Redeploy the container everytime an update is made
  *
  * ```typescript
@@ -197,6 +214,7 @@ import * as utilities from "../utilities";
  * const main = new scaleway.containers.Container("main", {
  *     name: "my-container",
  *     namespaceId: mainScalewayContainerNamespace.id,
+ *     image: "nginx:latest",
  *     livenessProbe: {
  *         http: {
  *             path: "/ping",

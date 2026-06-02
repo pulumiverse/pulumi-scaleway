@@ -769,6 +769,14 @@ type BucketLifecycleRule struct {
 	Expiration *BucketLifecycleRuleExpiration `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id *string `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpiration *BucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpiration"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions []BucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan *int `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan *int `pulumi:"objectSizeLessThan"`
 	// Object key prefix identifying one or more objects to which the rule applies.
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
@@ -799,6 +807,14 @@ type BucketLifecycleRuleArgs struct {
 	Expiration BucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpiration BucketLifecycleRuleNoncurrentVersionExpirationPtrInput `pulumi:"noncurrentVersionExpiration"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions BucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan pulumi.IntPtrInput `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan pulumi.IntPtrInput `pulumi:"objectSizeLessThan"`
 	// Object key prefix identifying one or more objects to which the rule applies.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
@@ -880,6 +896,30 @@ func (o BucketLifecycleRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketLifecycleRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Configuration block that specifies when noncurrent object versions expire
+func (o BucketLifecycleRuleOutput) NoncurrentVersionExpiration() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *BucketLifecycleRuleNoncurrentVersionExpiration {
+		return v.NoncurrentVersionExpiration
+	}).(BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+func (o BucketLifecycleRuleOutput) NoncurrentVersionTransitions() BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) []BucketLifecycleRuleNoncurrentVersionTransition {
+		return v.NoncurrentVersionTransitions
+	}).(BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+// Minimum object size (in bytes) to which the rule applies
+func (o BucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *int { return v.ObjectSizeGreaterThan }).(pulumi.IntPtrOutput)
+}
+
+// Maximum object size (in bytes) to which the rule applies
+func (o BucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRule) *int { return v.ObjectSizeLessThan }).(pulumi.IntPtrOutput)
+}
+
 // Object key prefix identifying one or more objects to which the rule applies.
 func (o BucketLifecycleRuleOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketLifecycleRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
@@ -916,8 +956,12 @@ func (o BucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) BucketLifecycle
 }
 
 type BucketLifecycleRuleExpiration struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date *string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days int `pulumi:"days"`
+	Days *int `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker *bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
 // BucketLifecycleRuleExpirationInput is an input type that accepts BucketLifecycleRuleExpirationArgs and BucketLifecycleRuleExpirationOutput values.
@@ -932,8 +976,12 @@ type BucketLifecycleRuleExpirationInput interface {
 }
 
 type BucketLifecycleRuleExpirationArgs struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringPtrInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days pulumi.IntInput `pulumi:"days"`
+	Days pulumi.IntPtrInput `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker pulumi.BoolPtrInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
 func (BucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
@@ -1013,9 +1061,19 @@ func (o BucketLifecycleRuleExpirationOutput) ToBucketLifecycleRuleExpirationPtrO
 	}).(BucketLifecycleRuleExpirationPtrOutput)
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o BucketLifecycleRuleExpirationOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleExpiration) *string { return v.Date }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect.
-func (o BucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
-	return o.ApplyT(func(v BucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
+func (o BucketLifecycleRuleExpirationOutput) Days() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleExpiration) *int { return v.Days }).(pulumi.IntPtrOutput)
+}
+
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o BucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleExpiration) *bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolPtrOutput)
 }
 
 type BucketLifecycleRuleExpirationPtrOutput struct{ *pulumi.OutputState }
@@ -1042,17 +1100,310 @@ func (o BucketLifecycleRuleExpirationPtrOutput) Elem() BucketLifecycleRuleExpira
 	}).(BucketLifecycleRuleExpirationOutput)
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o BucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Date
+	}).(pulumi.StringPtrOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect.
 func (o BucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) *int {
 		if v == nil {
 			return nil
 		}
-		return &v.Days
+		return v.Days
 	}).(pulumi.IntPtrOutput)
 }
 
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o BucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleExpiration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ExpiredObjectDeleteMarker
+	}).(pulumi.BoolPtrOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionExpiration struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays *int `pulumi:"noncurrentDays"`
+}
+
+// BucketLifecycleRuleNoncurrentVersionExpirationInput is an input type that accepts BucketLifecycleRuleNoncurrentVersionExpirationArgs and BucketLifecycleRuleNoncurrentVersionExpirationOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNoncurrentVersionExpirationInput` via:
+//
+//	BucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+type BucketLifecycleRuleNoncurrentVersionExpirationInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNoncurrentVersionExpirationOutput() BucketLifecycleRuleNoncurrentVersionExpirationOutput
+	ToBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Context) BucketLifecycleRuleNoncurrentVersionExpirationOutput
+}
+
+type BucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays pulumi.IntPtrInput `pulumi:"noncurrentDays"`
+}
+
+func (BucketLifecycleRuleNoncurrentVersionExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionExpirationArgs) ToBucketLifecycleRuleNoncurrentVersionExpirationOutput() BucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return i.ToBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionExpirationArgs) ToBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionExpirationArgs) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionExpirationArgs) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNoncurrentVersionExpirationOutput).ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleRuleNoncurrentVersionExpirationPtrInput is an input type that accepts BucketLifecycleRuleNoncurrentVersionExpirationArgs, BucketLifecycleRuleNoncurrentVersionExpirationPtr and BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNoncurrentVersionExpirationPtrInput` via:
+//
+//	        BucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleRuleNoncurrentVersionExpirationPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput
+	ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Context) BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput
+}
+
+type bucketLifecycleRuleNoncurrentVersionExpirationPtrType BucketLifecycleRuleNoncurrentVersionExpirationArgs
+
+func BucketLifecycleRuleNoncurrentVersionExpirationPtr(v *BucketLifecycleRuleNoncurrentVersionExpirationArgs) BucketLifecycleRuleNoncurrentVersionExpirationPtrInput {
+	return (*bucketLifecycleRuleNoncurrentVersionExpirationPtrType)(v)
+}
+
+func (*bucketLifecycleRuleNoncurrentVersionExpirationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i *bucketLifecycleRuleNoncurrentVersionExpirationPtrType) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return i.ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleRuleNoncurrentVersionExpirationPtrType) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionExpirationOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNoncurrentVersionExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationOutput() BucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleRuleNoncurrentVersionExpiration) *BucketLifecycleRuleNoncurrentVersionExpiration {
+		return &v
+	}).(BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o BucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NoncurrentDays }).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput() BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) ToBucketLifecycleRuleNoncurrentVersionExpirationPtrOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Elem() BucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleNoncurrentVersionExpiration) BucketLifecycleRuleNoncurrentVersionExpiration {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleRuleNoncurrentVersionExpiration
+		return ret
+	}).(BucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleNoncurrentVersionExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NewerNoncurrentVersions
+	}).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NoncurrentDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleRuleNoncurrentVersionExpiration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NoncurrentDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionTransition struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// BucketLifecycleRuleNoncurrentVersionTransitionInput is an input type that accepts BucketLifecycleRuleNoncurrentVersionTransitionArgs and BucketLifecycleRuleNoncurrentVersionTransitionOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNoncurrentVersionTransitionInput` via:
+//
+//	BucketLifecycleRuleNoncurrentVersionTransitionArgs{...}
+type BucketLifecycleRuleNoncurrentVersionTransitionInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNoncurrentVersionTransitionOutput() BucketLifecycleRuleNoncurrentVersionTransitionOutput
+	ToBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Context) BucketLifecycleRuleNoncurrentVersionTransitionOutput
+}
+
+type BucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (BucketLifecycleRuleNoncurrentVersionTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionTransitionArgs) ToBucketLifecycleRuleNoncurrentVersionTransitionOutput() BucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return i.ToBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionTransitionArgs) ToBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
+// BucketLifecycleRuleNoncurrentVersionTransitionArrayInput is an input type that accepts BucketLifecycleRuleNoncurrentVersionTransitionArray and BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput values.
+// You can construct a concrete instance of `BucketLifecycleRuleNoncurrentVersionTransitionArrayInput` via:
+//
+//	BucketLifecycleRuleNoncurrentVersionTransitionArray{ BucketLifecycleRuleNoncurrentVersionTransitionArgs{...} }
+type BucketLifecycleRuleNoncurrentVersionTransitionArrayInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+	ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Context) BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+}
+
+type BucketLifecycleRuleNoncurrentVersionTransitionArray []BucketLifecycleRuleNoncurrentVersionTransitionInput
+
+func (BucketLifecycleRuleNoncurrentVersionTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionTransitionArray) ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return i.ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleRuleNoncurrentVersionTransitionArray) ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionTransitionOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNoncurrentVersionTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionTransitionOutput) ToBucketLifecycleRuleNoncurrentVersionTransitionOutput() BucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionTransitionOutput) ToBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o BucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNoncurrentVersionTransition) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+func (o BucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+// Specifies the Scaleway Object Storage class to which you want the object to transition
+func (o BucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i pulumi.IntInput) BucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketLifecycleRuleNoncurrentVersionTransition {
+		return vs[0].([]BucketLifecycleRuleNoncurrentVersionTransition)[vs[1].(int)]
+	}).(BucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
 type BucketLifecycleRuleTransition struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date *string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -1077,6 +1428,8 @@ type BucketLifecycleRuleTransitionInput interface {
 }
 
 type BucketLifecycleRuleTransitionArgs struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringPtrInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -1138,6 +1491,11 @@ func (o BucketLifecycleRuleTransitionOutput) ToBucketLifecycleRuleTransitionOutp
 
 func (o BucketLifecycleRuleTransitionOutput) ToBucketLifecycleRuleTransitionOutputWithContext(ctx context.Context) BucketLifecycleRuleTransitionOutput {
 	return o
+}
+
+// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o BucketLifecycleRuleTransitionOutput) Date() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleRuleTransition) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
@@ -1493,6 +1851,8 @@ func (o BucketLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.Int
 type BucketServerSideEncryptionConfigurationRule struct {
 	// Single object for setting server-side encryption by default.
 	ApplyServerSideEncryptionByDefault *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefault"`
+	// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+	BucketKeyEnabled *bool `pulumi:"bucketKeyEnabled"`
 }
 
 // BucketServerSideEncryptionConfigurationRuleInput is an input type that accepts BucketServerSideEncryptionConfigurationRuleArgs and BucketServerSideEncryptionConfigurationRuleOutput values.
@@ -1509,6 +1869,8 @@ type BucketServerSideEncryptionConfigurationRuleInput interface {
 type BucketServerSideEncryptionConfigurationRuleArgs struct {
 	// Single object for setting server-side encryption by default.
 	ApplyServerSideEncryptionByDefault BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput `pulumi:"applyServerSideEncryptionByDefault"`
+	// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+	BucketKeyEnabled pulumi.BoolPtrInput `pulumi:"bucketKeyEnabled"`
 }
 
 func (BucketServerSideEncryptionConfigurationRuleArgs) ElementType() reflect.Type {
@@ -1569,6 +1931,11 @@ func (o BucketServerSideEncryptionConfigurationRuleOutput) ApplyServerSideEncryp
 	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput)
 }
 
+// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+func (o BucketServerSideEncryptionConfigurationRuleOutput) BucketKeyEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BucketServerSideEncryptionConfigurationRule) *bool { return v.BucketKeyEnabled }).(pulumi.BoolPtrOutput)
+}
+
 type BucketServerSideEncryptionConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (BucketServerSideEncryptionConfigurationRuleArrayOutput) ElementType() reflect.Type {
@@ -1590,6 +1957,8 @@ func (o BucketServerSideEncryptionConfigurationRuleArrayOutput) Index(i pulumi.I
 }
 
 type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault struct {
+	// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+	KmsMasterKeyId *string `pulumi:"kmsMasterKeyId"`
 	// Server-side encryption algorithm to use. Valid values are `AES256`.
 	SseAlgorithm string `pulumi:"sseAlgorithm"`
 }
@@ -1606,6 +1975,8 @@ type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefau
 }
 
 type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs struct {
+	// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+	KmsMasterKeyId pulumi.StringPtrInput `pulumi:"kmsMasterKeyId"`
 	// Server-side encryption algorithm to use. Valid values are `AES256`.
 	SseAlgorithm pulumi.StringInput `pulumi:"sseAlgorithm"`
 }
@@ -1687,6 +2058,13 @@ func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDe
 	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput)
 }
 
+// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) KmsMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) *string {
+		return v.KmsMasterKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
 // Server-side encryption algorithm to use. Valid values are `AES256`.
 func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) SseAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) string {
@@ -1716,6 +2094,16 @@ func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDe
 		var ret BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault
 		return ret
 	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) KmsMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KmsMasterKeyId
+	}).(pulumi.StringPtrOutput)
 }
 
 // Server-side encryption algorithm to use. Valid values are `AES256`.
@@ -2289,6 +2677,14 @@ type GetBucketLifecycleRule struct {
 	Expirations []GetBucketLifecycleRuleExpiration `pulumi:"expirations"`
 	// The unique identifier of the bucket.
 	Id string `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpirations []GetBucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpirations"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions []GetBucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan int `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan int `pulumi:"objectSizeLessThan"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix string `pulumi:"prefix"`
 	// The tags associated with the bucket lifecycle
@@ -2317,6 +2713,14 @@ type GetBucketLifecycleRuleArgs struct {
 	Expirations GetBucketLifecycleRuleExpirationArrayInput `pulumi:"expirations"`
 	// The unique identifier of the bucket.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Configuration block that specifies when noncurrent object versions expire
+	NoncurrentVersionExpirations GetBucketLifecycleRuleNoncurrentVersionExpirationArrayInput `pulumi:"noncurrentVersionExpirations"`
+	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	NoncurrentVersionTransitions GetBucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
+	// Minimum object size (in bytes) to which the rule applies
+	ObjectSizeGreaterThan pulumi.IntInput `pulumi:"objectSizeGreaterThan"`
+	// Maximum object size (in bytes) to which the rule applies
+	ObjectSizeLessThan pulumi.IntInput `pulumi:"objectSizeLessThan"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix pulumi.StringInput `pulumi:"prefix"`
 	// The tags associated with the bucket lifecycle
@@ -2396,6 +2800,30 @@ func (o GetBucketLifecycleRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Configuration block that specifies when noncurrent object versions expire
+func (o GetBucketLifecycleRuleOutput) NoncurrentVersionExpirations() GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRule) []GetBucketLifecycleRuleNoncurrentVersionExpiration {
+		return v.NoncurrentVersionExpirations
+	}).(GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput)
+}
+
+// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+func (o GetBucketLifecycleRuleOutput) NoncurrentVersionTransitions() GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRule) []GetBucketLifecycleRuleNoncurrentVersionTransition {
+		return v.NoncurrentVersionTransitions
+	}).(GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+// Minimum object size (in bytes) to which the rule applies
+func (o GetBucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRule) int { return v.ObjectSizeGreaterThan }).(pulumi.IntOutput)
+}
+
+// Maximum object size (in bytes) to which the rule applies
+func (o GetBucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRule) int { return v.ObjectSizeLessThan }).(pulumi.IntOutput)
+}
+
 // The prefix identifying one or more objects to which the rule applies
 func (o GetBucketLifecycleRuleOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRule) string { return v.Prefix }).(pulumi.StringOutput)
@@ -2432,8 +2860,12 @@ func (o GetBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) GetBucketLif
 }
 
 type GetBucketLifecycleRuleExpiration struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
 // GetBucketLifecycleRuleExpirationInput is an input type that accepts GetBucketLifecycleRuleExpirationArgs and GetBucketLifecycleRuleExpirationOutput values.
@@ -2448,8 +2880,12 @@ type GetBucketLifecycleRuleExpirationInput interface {
 }
 
 type GetBucketLifecycleRuleExpirationArgs struct {
+	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	ExpiredObjectDeleteMarker pulumi.BoolInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
 func (GetBucketLifecycleRuleExpirationArgs) ElementType() reflect.Type {
@@ -2503,9 +2939,19 @@ func (o GetBucketLifecycleRuleExpirationOutput) ToGetBucketLifecycleRuleExpirati
 	return o
 }
 
+// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o GetBucketLifecycleRuleExpirationOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleExpiration) string { return v.Date }).(pulumi.StringOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect
 func (o GetBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
+}
+
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+func (o GetBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleExpiration) bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolOutput)
 }
 
 type GetBucketLifecycleRuleExpirationArrayOutput struct{ *pulumi.OutputState }
@@ -2528,7 +2974,230 @@ func (o GetBucketLifecycleRuleExpirationArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetBucketLifecycleRuleExpirationOutput)
 }
 
+type GetBucketLifecycleRuleNoncurrentVersionExpiration struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+}
+
+// GetBucketLifecycleRuleNoncurrentVersionExpirationInput is an input type that accepts GetBucketLifecycleRuleNoncurrentVersionExpirationArgs and GetBucketLifecycleRuleNoncurrentVersionExpirationOutput values.
+// You can construct a concrete instance of `GetBucketLifecycleRuleNoncurrentVersionExpirationInput` via:
+//
+//	GetBucketLifecycleRuleNoncurrentVersionExpirationArgs{...}
+type GetBucketLifecycleRuleNoncurrentVersionExpirationInput interface {
+	pulumi.Input
+
+	ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationOutput
+	ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationOutput
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+}
+
+func (GetBucketLifecycleRuleNoncurrentVersionExpirationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return i.ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(context.Background())
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionExpirationArgs) ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+// GetBucketLifecycleRuleNoncurrentVersionExpirationArrayInput is an input type that accepts GetBucketLifecycleRuleNoncurrentVersionExpirationArray and GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput values.
+// You can construct a concrete instance of `GetBucketLifecycleRuleNoncurrentVersionExpirationArrayInput` via:
+//
+//	GetBucketLifecycleRuleNoncurrentVersionExpirationArray{ GetBucketLifecycleRuleNoncurrentVersionExpirationArgs{...} }
+type GetBucketLifecycleRuleNoncurrentVersionExpirationArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput
+	ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionExpirationArray []GetBucketLifecycleRuleNoncurrentVersionExpirationInput
+
+func (GetBucketLifecycleRuleNoncurrentVersionExpirationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionExpirationArray) ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return i.ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionExpirationArray) ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput)
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionExpirationOutput struct{ *pulumi.OutputState }
+
+func (GetBucketLifecycleRuleNoncurrentVersionExpirationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToGetBucketLifecycleRuleNoncurrentVersionExpirationOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleNoncurrentVersionExpiration) int { return v.NewerNoncurrentVersions }).(pulumi.IntOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleNoncurrentVersionExpiration) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketLifecycleRuleNoncurrentVersionExpiration)(nil)).Elem()
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput() GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) ToGetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput) Index(i pulumi.IntInput) GetBucketLifecycleRuleNoncurrentVersionExpirationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketLifecycleRuleNoncurrentVersionExpiration {
+		return vs[0].([]GetBucketLifecycleRuleNoncurrentVersionExpiration)[vs[1].(int)]
+	}).(GetBucketLifecycleRuleNoncurrentVersionExpirationOutput)
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionTransition struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions int `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays int `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass string `pulumi:"storageClass"`
+}
+
+// GetBucketLifecycleRuleNoncurrentVersionTransitionInput is an input type that accepts GetBucketLifecycleRuleNoncurrentVersionTransitionArgs and GetBucketLifecycleRuleNoncurrentVersionTransitionOutput values.
+// You can construct a concrete instance of `GetBucketLifecycleRuleNoncurrentVersionTransitionInput` via:
+//
+//	GetBucketLifecycleRuleNoncurrentVersionTransitionArgs{...}
+type GetBucketLifecycleRuleNoncurrentVersionTransitionInput interface {
+	pulumi.Input
+
+	ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionOutput
+	ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionOutput
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
+	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	NewerNoncurrentVersions pulumi.IntInput `pulumi:"newerNoncurrentVersions"`
+	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
+	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	StorageClass pulumi.StringInput `pulumi:"storageClass"`
+}
+
+func (GetBucketLifecycleRuleNoncurrentVersionTransitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return i.ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(context.Background())
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionTransitionArgs) ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
+// GetBucketLifecycleRuleNoncurrentVersionTransitionArrayInput is an input type that accepts GetBucketLifecycleRuleNoncurrentVersionTransitionArray and GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput values.
+// You can construct a concrete instance of `GetBucketLifecycleRuleNoncurrentVersionTransitionArrayInput` via:
+//
+//	GetBucketLifecycleRuleNoncurrentVersionTransitionArray{ GetBucketLifecycleRuleNoncurrentVersionTransitionArgs{...} }
+type GetBucketLifecycleRuleNoncurrentVersionTransitionArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+	ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionTransitionArray []GetBucketLifecycleRuleNoncurrentVersionTransitionInput
+
+func (GetBucketLifecycleRuleNoncurrentVersionTransitionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionTransitionArray) ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return i.ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketLifecycleRuleNoncurrentVersionTransitionArray) ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionTransitionOutput struct{ *pulumi.OutputState }
+
+func (GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToGetBucketLifecycleRuleNoncurrentVersionTransitionOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return o
+}
+
+// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NewerNoncurrentVersions }).(pulumi.IntOutput)
+}
+
+// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
+}
+
+// Specifies the Scaleway Object Storage class to which you want the object to transition
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
+}
+
+type GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketLifecycleRuleNoncurrentVersionTransition)(nil)).Elem()
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput() GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) ToGetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutputWithContext(ctx context.Context) GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
+	return o
+}
+
+func (o GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i pulumi.IntInput) GetBucketLifecycleRuleNoncurrentVersionTransitionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketLifecycleRuleNoncurrentVersionTransition {
+		return vs[0].([]GetBucketLifecycleRuleNoncurrentVersionTransition)[vs[1].(int)]
+	}).(GetBucketLifecycleRuleNoncurrentVersionTransitionOutput)
+}
+
 type GetBucketLifecycleRuleTransition struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
 	// Specifies the Scaleway Object Storage class to which you want the object to transition
@@ -2547,6 +3216,8 @@ type GetBucketLifecycleRuleTransitionInput interface {
 }
 
 type GetBucketLifecycleRuleTransitionArgs struct {
+	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
 	// Specifies the Scaleway Object Storage class to which you want the object to transition
@@ -2604,6 +3275,11 @@ func (o GetBucketLifecycleRuleTransitionOutput) ToGetBucketLifecycleRuleTransiti
 	return o
 }
 
+// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+func (o GetBucketLifecycleRuleTransitionOutput) Date() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketLifecycleRuleTransition) string { return v.Date }).(pulumi.StringOutput)
+}
+
 // Specifies the number of days after object creation when the specific rule action takes effect
 func (o GetBucketLifecycleRuleTransitionOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRuleTransition) int { return v.Days }).(pulumi.IntOutput)
@@ -2637,6 +3313,8 @@ func (o GetBucketLifecycleRuleTransitionArrayOutput) Index(i pulumi.IntInput) Ge
 type GetBucketServerSideEncryptionConfigurationRule struct {
 	// (List of Object) Single object for setting server-side encryption by default.
 	ApplyServerSideEncryptionByDefaults []GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefaults"`
+	// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+	BucketKeyEnabled bool `pulumi:"bucketKeyEnabled"`
 }
 
 // GetBucketServerSideEncryptionConfigurationRuleInput is an input type that accepts GetBucketServerSideEncryptionConfigurationRuleArgs and GetBucketServerSideEncryptionConfigurationRuleOutput values.
@@ -2653,6 +3331,8 @@ type GetBucketServerSideEncryptionConfigurationRuleInput interface {
 type GetBucketServerSideEncryptionConfigurationRuleArgs struct {
 	// (List of Object) Single object for setting server-side encryption by default.
 	ApplyServerSideEncryptionByDefaults GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput `pulumi:"applyServerSideEncryptionByDefaults"`
+	// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+	BucketKeyEnabled pulumi.BoolInput `pulumi:"bucketKeyEnabled"`
 }
 
 func (GetBucketServerSideEncryptionConfigurationRuleArgs) ElementType() reflect.Type {
@@ -2713,6 +3393,11 @@ func (o GetBucketServerSideEncryptionConfigurationRuleOutput) ApplyServerSideEnc
 	}).(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput)
 }
 
+// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+func (o GetBucketServerSideEncryptionConfigurationRuleOutput) BucketKeyEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBucketServerSideEncryptionConfigurationRule) bool { return v.BucketKeyEnabled }).(pulumi.BoolOutput)
+}
+
 type GetBucketServerSideEncryptionConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (GetBucketServerSideEncryptionConfigurationRuleArrayOutput) ElementType() reflect.Type {
@@ -2734,6 +3419,8 @@ func (o GetBucketServerSideEncryptionConfigurationRuleArrayOutput) Index(i pulum
 }
 
 type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault struct {
+	// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+	KmsMasterKeyId string `pulumi:"kmsMasterKeyId"`
 	// (String) Server-side encryption algorithm to use. Valid values are AES256.
 	SseAlgorithm string `pulumi:"sseAlgorithm"`
 }
@@ -2750,6 +3437,8 @@ type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDe
 }
 
 type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs struct {
+	// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+	KmsMasterKeyId pulumi.StringInput `pulumi:"kmsMasterKeyId"`
 	// (String) Server-side encryption algorithm to use. Valid values are AES256.
 	SseAlgorithm pulumi.StringInput `pulumi:"sseAlgorithm"`
 }
@@ -2803,6 +3492,13 @@ func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionB
 
 func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
 	return o
+}
+
+// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) KmsMasterKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) string {
+		return v.KmsMasterKeyId
+	}).(pulumi.StringOutput)
 }
 
 // (String) Server-side encryption algorithm to use. Valid values are AES256.
@@ -2944,6 +3640,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleArrayInput)(nil)).Elem(), BucketLifecycleRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleExpirationInput)(nil)).Elem(), BucketLifecycleRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleExpirationPtrInput)(nil)).Elem(), BucketLifecycleRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionExpirationInput)(nil)).Elem(), BucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionExpirationPtrInput)(nil)).Elem(), BucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionTransitionInput)(nil)).Elem(), BucketLifecycleRuleNoncurrentVersionTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleNoncurrentVersionTransitionArrayInput)(nil)).Elem(), BucketLifecycleRuleNoncurrentVersionTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTransitionInput)(nil)).Elem(), BucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), BucketLifecycleRuleTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLockConfigurationRuleInput)(nil)).Elem(), BucketLockConfigurationRuleArgs{})
@@ -2966,6 +3666,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleArrayInput)(nil)).Elem(), GetBucketLifecycleRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleExpirationInput)(nil)).Elem(), GetBucketLifecycleRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleExpirationArrayInput)(nil)).Elem(), GetBucketLifecycleRuleExpirationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionExpirationInput)(nil)).Elem(), GetBucketLifecycleRuleNoncurrentVersionExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionExpirationArrayInput)(nil)).Elem(), GetBucketLifecycleRuleNoncurrentVersionExpirationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionTransitionInput)(nil)).Elem(), GetBucketLifecycleRuleNoncurrentVersionTransitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleNoncurrentVersionTransitionArrayInput)(nil)).Elem(), GetBucketLifecycleRuleNoncurrentVersionTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleTransitionInput)(nil)).Elem(), GetBucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), GetBucketLifecycleRuleTransitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleInput)(nil)).Elem(), GetBucketServerSideEncryptionConfigurationRuleArgs{})
@@ -2988,6 +3692,10 @@ func init() {
 	pulumi.RegisterOutputType(BucketLifecycleRuleArrayOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleRuleExpirationOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleRuleExpirationPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNoncurrentVersionExpirationOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNoncurrentVersionExpirationPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNoncurrentVersionTransitionOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleRuleNoncurrentVersionTransitionArrayOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleRuleTransitionArrayOutput{})
 	pulumi.RegisterOutputType(BucketLockConfigurationRuleOutput{})
@@ -3010,6 +3718,10 @@ func init() {
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleExpirationOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleExpirationArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketLifecycleRuleNoncurrentVersionExpirationOutput{})
+	pulumi.RegisterOutputType(GetBucketLifecycleRuleNoncurrentVersionExpirationArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketLifecycleRuleNoncurrentVersionTransitionOutput{})
+	pulumi.RegisterOutputType(GetBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleTransitionArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketServerSideEncryptionConfigurationRuleOutput{})

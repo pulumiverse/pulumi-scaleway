@@ -107,6 +107,7 @@ type LookupPoolResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id          string            `pulumi:"id"`
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
+	Labels      map[string]string `pulumi:"labels"`
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -126,11 +127,13 @@ type LookupPoolResult struct {
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
 	SecurityGroupId    string  `pulumi:"securityGroupId"`
 	// The size of the pool.
-	Size *int `pulumi:"size"`
+	Size          *int                  `pulumi:"size"`
+	StartupTaints []GetPoolStartupTaint `pulumi:"startupTaints"`
 	// The status of the node.
 	Status string `pulumi:"status"`
 	// The tags associated with the pool.
-	Tags []string `pulumi:"tags"`
+	Tags   []string       `pulumi:"tags"`
+	Taints []GetPoolTaint `pulumi:"taints"`
 	// The last update date of the pool.
 	UpdatedAt       string                 `pulumi:"updatedAt"`
 	UpgradePolicies []GetPoolUpgradePolicy `pulumi:"upgradePolicies"`
@@ -220,6 +223,10 @@ func (o LookupPoolResultOutput) KubeletArgs() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupPoolResult) map[string]string { return v.KubeletArgs }).(pulumi.StringMapOutput)
 }
 
+func (o LookupPoolResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupPoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
 // The maximum size of the pool, used by the autoscaling feature.
 func (o LookupPoolResultOutput) MaxSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPoolResult) int { return v.MaxSize }).(pulumi.IntOutput)
@@ -279,6 +286,10 @@ func (o LookupPoolResultOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPoolResult) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+func (o LookupPoolResultOutput) StartupTaints() GetPoolStartupTaintArrayOutput {
+	return o.ApplyT(func(v LookupPoolResult) []GetPoolStartupTaint { return v.StartupTaints }).(GetPoolStartupTaintArrayOutput)
+}
+
 // The status of the node.
 func (o LookupPoolResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPoolResult) string { return v.Status }).(pulumi.StringOutput)
@@ -287,6 +298,10 @@ func (o LookupPoolResultOutput) Status() pulumi.StringOutput {
 // The tags associated with the pool.
 func (o LookupPoolResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPoolResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupPoolResultOutput) Taints() GetPoolTaintArrayOutput {
+	return o.ApplyT(func(v LookupPoolResult) []GetPoolTaint { return v.Taints }).(GetPoolTaintArrayOutput)
 }
 
 // The last update date of the pool.

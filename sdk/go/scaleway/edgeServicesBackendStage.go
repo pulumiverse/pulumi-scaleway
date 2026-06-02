@@ -127,6 +127,111 @@ import (
 //
 // ```
 //
+// ### With Serverless Container backend
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
+//				Name: pulumi.String("my-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
+//				NamespaceId: main.ID(),
+//				Name:        pulumi.String("my-container"),
+//				Image:       pulumi.String("nginx:1.29.4-alpine"),
+//				Port:        pulumi.Int(80),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainPipeline, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
+//				Name: pulumi.String("my-pipeline"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
+//				PipelineId: mainPipeline.ID(),
+//				ContainerBackendConfig: &edgeservices.BackendStageContainerBackendConfigArgs{
+//					ContainerId: mainContainer.ID(),
+//					Region:      pulumi.String("fr-par"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Serverless Function backend
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
+//				Name: pulumi.String("my-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
+//				NamespaceId: main.ID(),
+//				Name:        pulumi.String("my-function"),
+//				Runtime:     pulumi.String("node20"),
+//				Privacy:     pulumi.String("private"),
+//				Handler:     pulumi.String("handler.handle"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainPipeline, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
+//				Name: pulumi.String("my-pipeline"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
+//				PipelineId: mainPipeline.ID(),
+//				FunctionBackendConfig: &edgeservices.BackendStageFunctionBackendConfigArgs{
+//					FunctionId: mainFunction.ID(),
+//					Region:     pulumi.String("fr-par"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Backend stages can be imported using the `{id}`, e.g.
@@ -139,13 +244,19 @@ import (
 type EdgeServicesBackendStage struct {
 	pulumi.CustomResourceState
 
+	// The Scaleway Serverless Container backend linked to the backend stage.
+	ContainerBackendConfig EdgeServicesBackendStageContainerBackendConfigPtrOutput `pulumi:"containerBackendConfig"`
 	// The date and time of the creation of the backend stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The Scaleway Serverless Function backend linked to the backend stage.
+	FunctionBackendConfig EdgeServicesBackendStageFunctionBackendConfigPtrOutput `pulumi:"functionBackendConfig"`
 	// The Scaleway Load Balancer linked to the backend stage.
 	LbBackendConfigs EdgeServicesBackendStageLbBackendConfigArrayOutput `pulumi:"lbBackendConfigs"`
 	// The ID of the pipeline.
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
+	//
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrOutput `pulumi:"s3BackendConfig"`
@@ -186,13 +297,19 @@ func GetEdgeServicesBackendStage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EdgeServicesBackendStage resources.
 type edgeServicesBackendStageState struct {
+	// The Scaleway Serverless Container backend linked to the backend stage.
+	ContainerBackendConfig *EdgeServicesBackendStageContainerBackendConfig `pulumi:"containerBackendConfig"`
 	// The date and time of the creation of the backend stage.
 	CreatedAt *string `pulumi:"createdAt"`
+	// The Scaleway Serverless Function backend linked to the backend stage.
+	FunctionBackendConfig *EdgeServicesBackendStageFunctionBackendConfig `pulumi:"functionBackendConfig"`
 	// The Scaleway Load Balancer linked to the backend stage.
 	LbBackendConfigs []EdgeServicesBackendStageLbBackendConfig `pulumi:"lbBackendConfigs"`
 	// The ID of the pipeline.
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
+	//
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig *EdgeServicesBackendStageS3BackendConfig `pulumi:"s3BackendConfig"`
@@ -201,13 +318,19 @@ type edgeServicesBackendStageState struct {
 }
 
 type EdgeServicesBackendStageState struct {
+	// The Scaleway Serverless Container backend linked to the backend stage.
+	ContainerBackendConfig EdgeServicesBackendStageContainerBackendConfigPtrInput
 	// The date and time of the creation of the backend stage.
 	CreatedAt pulumi.StringPtrInput
+	// The Scaleway Serverless Function backend linked to the backend stage.
+	FunctionBackendConfig EdgeServicesBackendStageFunctionBackendConfigPtrInput
 	// The Scaleway Load Balancer linked to the backend stage.
 	LbBackendConfigs EdgeServicesBackendStageLbBackendConfigArrayInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the backend stage is associated with.
+	//
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrInput
@@ -220,11 +343,17 @@ func (EdgeServicesBackendStageState) ElementType() reflect.Type {
 }
 
 type edgeServicesBackendStageArgs struct {
+	// The Scaleway Serverless Container backend linked to the backend stage.
+	ContainerBackendConfig *EdgeServicesBackendStageContainerBackendConfig `pulumi:"containerBackendConfig"`
+	// The Scaleway Serverless Function backend linked to the backend stage.
+	FunctionBackendConfig *EdgeServicesBackendStageFunctionBackendConfig `pulumi:"functionBackendConfig"`
 	// The Scaleway Load Balancer linked to the backend stage.
 	LbBackendConfigs []EdgeServicesBackendStageLbBackendConfig `pulumi:"lbBackendConfigs"`
 	// The ID of the pipeline.
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
+	//
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig *EdgeServicesBackendStageS3BackendConfig `pulumi:"s3BackendConfig"`
@@ -232,11 +361,17 @@ type edgeServicesBackendStageArgs struct {
 
 // The set of arguments for constructing a EdgeServicesBackendStage resource.
 type EdgeServicesBackendStageArgs struct {
+	// The Scaleway Serverless Container backend linked to the backend stage.
+	ContainerBackendConfig EdgeServicesBackendStageContainerBackendConfigPtrInput
+	// The Scaleway Serverless Function backend linked to the backend stage.
+	FunctionBackendConfig EdgeServicesBackendStageFunctionBackendConfigPtrInput
 	// The Scaleway Load Balancer linked to the backend stage.
 	LbBackendConfigs EdgeServicesBackendStageLbBackendConfigArrayInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the backend stage is associated with.
+	//
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrInput
@@ -329,9 +464,23 @@ func (o EdgeServicesBackendStageOutput) ToEdgeServicesBackendStageOutputWithCont
 	return o
 }
 
+// The Scaleway Serverless Container backend linked to the backend stage.
+func (o EdgeServicesBackendStageOutput) ContainerBackendConfig() EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStage) EdgeServicesBackendStageContainerBackendConfigPtrOutput {
+		return v.ContainerBackendConfig
+	}).(EdgeServicesBackendStageContainerBackendConfigPtrOutput)
+}
+
 // The date and time of the creation of the backend stage.
 func (o EdgeServicesBackendStageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesBackendStage) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The Scaleway Serverless Function backend linked to the backend stage.
+func (o EdgeServicesBackendStageOutput) FunctionBackendConfig() EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStage) EdgeServicesBackendStageFunctionBackendConfigPtrOutput {
+		return v.FunctionBackendConfig
+	}).(EdgeServicesBackendStageFunctionBackendConfigPtrOutput)
 }
 
 // The Scaleway Load Balancer linked to the backend stage.
@@ -347,6 +496,8 @@ func (o EdgeServicesBackendStageOutput) PipelineId() pulumi.StringOutput {
 }
 
 // `projectId`) The ID of the project the backend stage is associated with.
+//
+// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
 func (o EdgeServicesBackendStageOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesBackendStage) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

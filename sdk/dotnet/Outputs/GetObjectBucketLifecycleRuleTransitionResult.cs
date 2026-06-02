@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetObjectBucketLifecycleRuleTransitionResult
     {
         /// <summary>
+        /// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        /// </summary>
+        public readonly string Date;
+        /// <summary>
         /// Specifies the number of days after object creation when the specific rule action takes effect
         /// </summary>
         public readonly int Days;
@@ -25,10 +29,13 @@ namespace Pulumiverse.Scaleway.Outputs
 
         [OutputConstructor]
         private GetObjectBucketLifecycleRuleTransitionResult(
+            string date,
+
             int days,
 
             string storageClass)
         {
+            Date = date;
             Days = days;
             StorageClass = storageClass;
         }

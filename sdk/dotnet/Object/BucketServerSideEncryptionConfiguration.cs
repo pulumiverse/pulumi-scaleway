@@ -27,6 +27,85 @@ namespace Pulumiverse.Scaleway.Object
     /// {
     ///     var test = new Scaleway.Object.Bucket("test", new()
     ///     {
+    ///         Name = "my-bucket",
+    ///         Region = "fr-par",
+    ///     });
+    /// 
+    ///     var mykey = new Scaleway.Keymanager.Key("mykey", new()
+    ///     {
+    ///         Name = "my-kms-key",
+    ///         Description = "This key is used to encrypt bucket objects",
+    ///         Usage = "asymmetric_encryption",
+    ///         Algorithm = "rsa_oaep_4096_sha256",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    ///     var testBucketServerSideEncryptionConfiguration = new Scaleway.Object.BucketServerSideEncryptionConfiguration("test", new()
+    ///     {
+    ///         Bucket = test.Name,
+    ///         Region = "fr-par",
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Object.Inputs.BucketServerSideEncryptionConfigurationRuleArgs
+    ///             {
+    ///                 ApplyServerSideEncryptionByDefault = new Scaleway.Object.Inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+    ///                 {
+    ///                     KmsMasterKeyId = mykey.Name,
+    ///                     SseAlgorithm = "aws:kms",
+    ///                 },
+    ///                 BucketKeyEnabled = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Scaleway.Object.Bucket("test", new()
+    ///     {
+    ///         Name = "my-bucket",
+    ///         Region = "fr-par",
+    ///     });
+    /// 
+    ///     var testBucketServerSideEncryptionConfiguration = new Scaleway.Object.BucketServerSideEncryptionConfiguration("test", new()
+    ///     {
+    ///         Bucket = test.Name,
+    ///         Region = "fr-par",
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Object.Inputs.BucketServerSideEncryptionConfigurationRuleArgs
+    ///             {
+    ///                 ApplyServerSideEncryptionByDefault = new Scaleway.Object.Inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+    ///                 {
+    ///                     KmsMasterKeyId = "my-key-id",
+    ///                     SseAlgorithm = "aws:kms",
+    ///                 },
+    ///                 BucketKeyEnabled = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Scaleway.Object.Bucket("test", new()
+    ///     {
     ///         Name = "my-unique-bucket-name",
     ///         Region = "fr-par",
     ///     });
@@ -106,6 +185,12 @@ namespace Pulumiverse.Scaleway.Object
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
         /// Set of server-side encryption configuration rules
         /// </summary>
         [Output("rules")]
@@ -164,6 +249,12 @@ namespace Pulumiverse.Scaleway.Object
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
+        /// <summary>
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         [Input("rules", required: true)]
         private InputList<Inputs.BucketServerSideEncryptionConfigurationRuleArgs>? _rules;
 
@@ -189,6 +280,12 @@ namespace Pulumiverse.Scaleway.Object
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
+
+        /// <summary>
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("rules")]
         private InputList<Inputs.BucketServerSideEncryptionConfigurationRuleGetArgs>? _rules;

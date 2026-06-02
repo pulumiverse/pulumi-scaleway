@@ -20,6 +20,11 @@ export type Exporter = import("./exporter").Exporter;
 export const Exporter: typeof import("./exporter").Exporter = null as any;
 utilities.lazyLoad(exports, ["Exporter"], () => require("./exporter"));
 
+export { GetConfigArgs, GetConfigResult, GetConfigOutputArgs } from "./getConfig";
+export const getConfig: typeof import("./getConfig").getConfig = null as any;
+export const getConfigOutput: typeof import("./getConfig").getConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getConfig","getConfigOutput"], () => require("./getConfig"));
+
 export { GetExporterArgs, GetExporterResult, GetExporterOutputArgs } from "./getExporter";
 export const getExporter: typeof import("./getExporter").getExporter = null as any;
 export const getExporterOutput: typeof import("./getExporter").getExporterOutput = null as any;

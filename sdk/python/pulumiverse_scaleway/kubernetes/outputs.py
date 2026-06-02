@@ -23,6 +23,8 @@ __all__ = [
     'ClusterOpenIdConnectConfig',
     'PoolNode',
     'PoolNodePrivateIp',
+    'PoolStartupTaint',
+    'PoolTaint',
     'PoolUpgradePolicy',
     'GetClusterAutoUpgradeResult',
     'GetClusterAutoscalerConfigResult',
@@ -30,6 +32,8 @@ __all__ = [
     'GetClusterOpenIdConnectConfigResult',
     'GetPoolNodeResult',
     'GetPoolNodePrivateIpResult',
+    'GetPoolStartupTaintResult',
+    'GetPoolTaintResult',
     'GetPoolUpgradePolicyResult',
 ]
 
@@ -189,6 +193,8 @@ class ClusterAutoscalerConfig(dict):
             suggest = "expendable_pods_priority_cutoff"
         elif key == "ignoreDaemonsetsUtilization":
             suggest = "ignore_daemonsets_utilization"
+        elif key == "logLevel":
+            suggest = "log_level"
         elif key == "maxGracefulTerminationSec":
             suggest = "max_graceful_termination_sec"
         elif key == "scaleDownDelayAfterAdd":
@@ -197,6 +203,8 @@ class ClusterAutoscalerConfig(dict):
             suggest = "scale_down_unneeded_time"
         elif key == "scaleDownUtilizationThreshold":
             suggest = "scale_down_utilization_threshold"
+        elif key == "skipNodesWithLocalStorage":
+            suggest = "skip_nodes_with_local_storage"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterAutoscalerConfig. Access the value via the '{suggest}' property getter instead.")
@@ -216,10 +224,12 @@ class ClusterAutoscalerConfig(dict):
                  expander: Optional[_builtins.str] = None,
                  expendable_pods_priority_cutoff: Optional[_builtins.int] = None,
                  ignore_daemonsets_utilization: Optional[_builtins.bool] = None,
+                 log_level: Optional[_builtins.int] = None,
                  max_graceful_termination_sec: Optional[_builtins.int] = None,
                  scale_down_delay_after_add: Optional[_builtins.str] = None,
                  scale_down_unneeded_time: Optional[_builtins.str] = None,
-                 scale_down_utilization_threshold: Optional[_builtins.float] = None):
+                 scale_down_utilization_threshold: Optional[_builtins.float] = None,
+                 skip_nodes_with_local_storage: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool balance_similar_node_groups: Detect similar node groups and balance the number of nodes between them.
         :param _builtins.bool disable_scale_down: Disables the scale down feature of the autoscaler.
@@ -227,10 +237,17 @@ class ClusterAutoscalerConfig(dict):
         :param _builtins.str expander: Type of node group expander to be used in scale up.
         :param _builtins.int expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         :param _builtins.bool ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
+        :param _builtins.int log_level: Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+               Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+               
+               > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         :param _builtins.int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param _builtins.str scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param _builtins.str scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
         :param _builtins.float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+        :param _builtins.bool skip_nodes_with_local_storage: If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+               
+               > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         if balance_similar_node_groups is not None:
             pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
@@ -244,6 +261,8 @@ class ClusterAutoscalerConfig(dict):
             pulumi.set(__self__, "expendable_pods_priority_cutoff", expendable_pods_priority_cutoff)
         if ignore_daemonsets_utilization is not None:
             pulumi.set(__self__, "ignore_daemonsets_utilization", ignore_daemonsets_utilization)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if max_graceful_termination_sec is not None:
             pulumi.set(__self__, "max_graceful_termination_sec", max_graceful_termination_sec)
         if scale_down_delay_after_add is not None:
@@ -252,6 +271,8 @@ class ClusterAutoscalerConfig(dict):
             pulumi.set(__self__, "scale_down_unneeded_time", scale_down_unneeded_time)
         if scale_down_utilization_threshold is not None:
             pulumi.set(__self__, "scale_down_utilization_threshold", scale_down_utilization_threshold)
+        if skip_nodes_with_local_storage is not None:
+            pulumi.set(__self__, "skip_nodes_with_local_storage", skip_nodes_with_local_storage)
 
     @_builtins.property
     @pulumi.getter(name="balanceSimilarNodeGroups")
@@ -302,6 +323,17 @@ class ClusterAutoscalerConfig(dict):
         return pulumi.get(self, "ignore_daemonsets_utilization")
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> Optional[_builtins.int]:
+        """
+        Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+        Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+
+        > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
+        """
+        return pulumi.get(self, "log_level")
+
+    @_builtins.property
     @pulumi.getter(name="maxGracefulTerminationSec")
     def max_graceful_termination_sec(self) -> Optional[_builtins.int]:
         """
@@ -332,6 +364,16 @@ class ClusterAutoscalerConfig(dict):
         Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         """
         return pulumi.get(self, "scale_down_utilization_threshold")
+
+    @_builtins.property
+    @pulumi.getter(name="skipNodesWithLocalStorage")
+    def skip_nodes_with_local_storage(self) -> Optional[_builtins.bool]:
+        """
+        If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+
+        > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
+        """
+        return pulumi.get(self, "skip_nodes_with_local_storage")
 
 
 @pulumi.output_type
@@ -664,6 +706,86 @@ class PoolNodePrivateIp(dict):
 
 
 @pulumi.output_type
+class PoolStartupTaint(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str effect: Effect of the taint
+        :param _builtins.str key: Key of the taint
+        :param _builtins.str value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PoolTaint(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str effect: Effect of the taint
+        :param _builtins.str key: Key of the taint
+        :param _builtins.str value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class PoolUpgradePolicy(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -762,10 +884,12 @@ class GetClusterAutoscalerConfigResult(dict):
                  expander: _builtins.str,
                  expendable_pods_priority_cutoff: _builtins.int,
                  ignore_daemonsets_utilization: _builtins.bool,
+                 log_level: _builtins.int,
                  max_graceful_termination_sec: _builtins.int,
                  scale_down_delay_after_add: _builtins.str,
                  scale_down_unneeded_time: _builtins.str,
-                 scale_down_utilization_threshold: _builtins.float):
+                 scale_down_utilization_threshold: _builtins.float,
+                 skip_nodes_with_local_storage: _builtins.bool):
         """
         :param _builtins.bool balance_similar_node_groups: True if detecting similar node groups and balance the number of nodes between them is enabled.
         :param _builtins.bool disable_scale_down: True if the scale down feature of the autoscaler is disabled.
@@ -773,10 +897,12 @@ class GetClusterAutoscalerConfigResult(dict):
         :param _builtins.str expander: The type of node group expander be used in scale up.
         :param _builtins.int expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         :param _builtins.bool ignore_daemonsets_utilization: True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
+        :param _builtins.int log_level: Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
         :param _builtins.int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param _builtins.str scale_down_delay_after_add: The duration after scale up that scale down evaluation resumes.
         :param _builtins.str scale_down_unneeded_time: The duration a node should be unneeded before it is eligible for scale down.
         :param _builtins.float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+        :param _builtins.bool skip_nodes_with_local_storage: If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
         """
         pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
         pulumi.set(__self__, "disable_scale_down", disable_scale_down)
@@ -784,10 +910,12 @@ class GetClusterAutoscalerConfigResult(dict):
         pulumi.set(__self__, "expander", expander)
         pulumi.set(__self__, "expendable_pods_priority_cutoff", expendable_pods_priority_cutoff)
         pulumi.set(__self__, "ignore_daemonsets_utilization", ignore_daemonsets_utilization)
+        pulumi.set(__self__, "log_level", log_level)
         pulumi.set(__self__, "max_graceful_termination_sec", max_graceful_termination_sec)
         pulumi.set(__self__, "scale_down_delay_after_add", scale_down_delay_after_add)
         pulumi.set(__self__, "scale_down_unneeded_time", scale_down_unneeded_time)
         pulumi.set(__self__, "scale_down_utilization_threshold", scale_down_utilization_threshold)
+        pulumi.set(__self__, "skip_nodes_with_local_storage", skip_nodes_with_local_storage)
 
     @_builtins.property
     @pulumi.getter(name="balanceSimilarNodeGroups")
@@ -838,6 +966,14 @@ class GetClusterAutoscalerConfigResult(dict):
         return pulumi.get(self, "ignore_daemonsets_utilization")
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> _builtins.int:
+        """
+        Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+        """
+        return pulumi.get(self, "log_level")
+
+    @_builtins.property
     @pulumi.getter(name="maxGracefulTerminationSec")
     def max_graceful_termination_sec(self) -> _builtins.int:
         """
@@ -868,6 +1004,14 @@ class GetClusterAutoscalerConfigResult(dict):
         Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         """
         return pulumi.get(self, "scale_down_utilization_threshold")
+
+    @_builtins.property
+    @pulumi.getter(name="skipNodesWithLocalStorage")
+    def skip_nodes_with_local_storage(self) -> _builtins.bool:
+        """
+        If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+        """
+        return pulumi.get(self, "skip_nodes_with_local_storage")
 
 
 @pulumi.output_type
@@ -1105,6 +1249,86 @@ class GetPoolNodePrivateIpResult(dict):
         The ID of the pool.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetPoolStartupTaintResult(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str effect: Effect of the taint
+        :param _builtins.str key: Key of the taint
+        :param _builtins.str value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetPoolTaintResult(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str effect: Effect of the taint
+        :param _builtins.str key: Key of the taint
+        :param _builtins.str value: Value of the taint
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        Effect of the taint
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Key of the taint
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Value of the taint
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

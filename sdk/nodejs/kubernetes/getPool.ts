@@ -102,6 +102,7 @@ export interface GetPoolResult {
      */
     readonly id: string;
     readonly kubeletArgs: {[key: string]: string};
+    readonly labels: {[key: string]: string};
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
@@ -136,6 +137,7 @@ export interface GetPoolResult {
      * The size of the pool.
      */
     readonly size?: number;
+    readonly startupTaints: outputs.kubernetes.GetPoolStartupTaint[];
     /**
      * The status of the node.
      */
@@ -144,6 +146,7 @@ export interface GetPoolResult {
      * The tags associated with the pool.
      */
     readonly tags: string[];
+    readonly taints: outputs.kubernetes.GetPoolTaint[];
     /**
      * The last update date of the pool.
      */

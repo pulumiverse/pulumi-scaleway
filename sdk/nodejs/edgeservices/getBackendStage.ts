@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Gets information about an Edge Services backend stage.
  *
- * A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+ * A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
  *
  * ## Example Usage
  *
@@ -80,7 +80,9 @@ export interface GetBackendStageResult {
     readonly backendStageId?: string;
     readonly bucketName?: string;
     readonly bucketRegion?: string;
+    readonly containerBackendConfigs: outputs.edgeservices.GetBackendStageContainerBackendConfig[];
     readonly createdAt: string;
+    readonly functionBackendConfigs: outputs.edgeservices.GetBackendStageFunctionBackendConfig[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -95,7 +97,7 @@ export interface GetBackendStageResult {
 /**
  * Gets information about an Edge Services backend stage.
  *
- * A backend stage defines the origin (Scaleway Object Storage bucket or Load Balancer) that Edge Services forwards requests to.
+ * A backend stage defines the origin (Scaleway Object Storage bucket, Load Balancer, Serverless Container or Serverless Function) that Edge Services forwards requests to.
  *
  * ## Example Usage
  *
