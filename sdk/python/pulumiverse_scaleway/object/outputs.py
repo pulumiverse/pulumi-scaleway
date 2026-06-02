@@ -23,6 +23,8 @@ __all__ = [
     'BucketCorsRule',
     'BucketLifecycleRule',
     'BucketLifecycleRuleExpiration',
+    'BucketLifecycleRuleNoncurrentVersionExpiration',
+    'BucketLifecycleRuleNoncurrentVersionTransition',
     'BucketLifecycleRuleTransition',
     'BucketLockConfigurationRule',
     'BucketLockConfigurationRuleDefaultRetention',
@@ -34,6 +36,8 @@ __all__ = [
     'GetBucketCorsRuleResult',
     'GetBucketLifecycleRuleResult',
     'GetBucketLifecycleRuleExpirationResult',
+    'GetBucketLifecycleRuleNoncurrentVersionExpirationResult',
+    'GetBucketLifecycleRuleNoncurrentVersionTransitionResult',
     'GetBucketLifecycleRuleTransitionResult',
     'GetBucketServerSideEncryptionConfigurationRuleResult',
     'GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult',
@@ -316,6 +320,14 @@ class BucketLifecycleRule(dict):
         suggest = None
         if key == "abortIncompleteMultipartUploadDays":
             suggest = "abort_incomplete_multipart_upload_days"
+        elif key == "noncurrentVersionExpiration":
+            suggest = "noncurrent_version_expiration"
+        elif key == "noncurrentVersionTransitions":
+            suggest = "noncurrent_version_transitions"
+        elif key == "objectSizeGreaterThan":
+            suggest = "object_size_greater_than"
+        elif key == "objectSizeLessThan":
+            suggest = "object_size_less_than"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BucketLifecycleRule. Access the value via the '{suggest}' property getter instead.")
@@ -333,6 +345,10 @@ class BucketLifecycleRule(dict):
                  abort_incomplete_multipart_upload_days: Optional[_builtins.int] = None,
                  expiration: Optional['outputs.BucketLifecycleRuleExpiration'] = None,
                  id: Optional[_builtins.str] = None,
+                 noncurrent_version_expiration: Optional['outputs.BucketLifecycleRuleNoncurrentVersionExpiration'] = None,
+                 noncurrent_version_transitions: Optional[Sequence['outputs.BucketLifecycleRuleNoncurrentVersionTransition']] = None,
+                 object_size_greater_than: Optional[_builtins.int] = None,
+                 object_size_less_than: Optional[_builtins.int] = None,
                  prefix: Optional[_builtins.str] = None,
                  tags: Optional[Mapping[str, _builtins.str]] = None,
                  transitions: Optional[Sequence['outputs.BucketLifecycleRuleTransition']] = None):
@@ -343,6 +359,10 @@ class BucketLifecycleRule(dict):
                > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         :param 'BucketLifecycleRuleExpirationArgs' expiration: Specifies a period in the object's expire
         :param _builtins.str id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        :param 'BucketLifecycleRuleNoncurrentVersionExpirationArgs' noncurrent_version_expiration: Configuration block that specifies when noncurrent object versions expire
+        :param Sequence['BucketLifecycleRuleNoncurrentVersionTransitionArgs'] noncurrent_version_transitions: Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        :param _builtins.int object_size_greater_than: Minimum object size (in bytes) to which the rule applies
+        :param _builtins.int object_size_less_than: Maximum object size (in bytes) to which the rule applies
         :param _builtins.str prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param Mapping[str, _builtins.str] tags: Specifies object tags key and value.
         :param Sequence['BucketLifecycleRuleTransitionArgs'] transitions: Define when objects transition to another storage class
@@ -354,6 +374,14 @@ class BucketLifecycleRule(dict):
             pulumi.set(__self__, "expiration", expiration)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if noncurrent_version_expiration is not None:
+            pulumi.set(__self__, "noncurrent_version_expiration", noncurrent_version_expiration)
+        if noncurrent_version_transitions is not None:
+            pulumi.set(__self__, "noncurrent_version_transitions", noncurrent_version_transitions)
+        if object_size_greater_than is not None:
+            pulumi.set(__self__, "object_size_greater_than", object_size_greater_than)
+        if object_size_less_than is not None:
+            pulumi.set(__self__, "object_size_less_than", object_size_less_than)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
         if tags is not None:
@@ -396,6 +424,38 @@ class BucketLifecycleRule(dict):
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="noncurrentVersionExpiration")
+    def noncurrent_version_expiration(self) -> Optional['outputs.BucketLifecycleRuleNoncurrentVersionExpiration']:
+        """
+        Configuration block that specifies when noncurrent object versions expire
+        """
+        return pulumi.get(self, "noncurrent_version_expiration")
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentVersionTransitions")
+    def noncurrent_version_transitions(self) -> Optional[Sequence['outputs.BucketLifecycleRuleNoncurrentVersionTransition']]:
+        """
+        Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        """
+        return pulumi.get(self, "noncurrent_version_transitions")
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeGreaterThan")
+    def object_size_greater_than(self) -> Optional[_builtins.int]:
+        """
+        Minimum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_greater_than")
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeLessThan")
+    def object_size_less_than(self) -> Optional[_builtins.int]:
+        """
+        Maximum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_less_than")
+
+    @_builtins.property
     @pulumi.getter
     def prefix(self) -> Optional[_builtins.str]:
         """
@@ -422,20 +482,174 @@ class BucketLifecycleRule(dict):
 
 @pulumi.output_type
 class BucketLifecycleRuleExpiration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expiredObjectDeleteMarker":
+            suggest = "expired_object_delete_marker"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketLifecycleRuleExpiration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketLifecycleRuleExpiration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketLifecycleRuleExpiration.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 days: _builtins.int):
+                 date: Optional[_builtins.str] = None,
+                 days: Optional[_builtins.int] = None,
+                 expired_object_delete_marker: Optional[_builtins.bool] = None):
         """
+        :param _builtins.str date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect.
+        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
         """
-        pulumi.set(__self__, "days", days)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+        if days is not None:
+            pulumi.set(__self__, "days", days)
+        if expired_object_delete_marker is not None:
+            pulumi.set(__self__, "expired_object_delete_marker", expired_object_delete_marker)
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> _builtins.int:
+    def date(self) -> Optional[_builtins.str]:
+        """
+        Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
+
+    @_builtins.property
+    @pulumi.getter
+    def days(self) -> Optional[_builtins.int]:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
         return pulumi.get(self, "days")
+
+    @_builtins.property
+    @pulumi.getter(name="expiredObjectDeleteMarker")
+    def expired_object_delete_marker(self) -> Optional[_builtins.bool]:
+        """
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        """
+        return pulumi.get(self, "expired_object_delete_marker")
+
+
+@pulumi.output_type
+class BucketLifecycleRuleNoncurrentVersionExpiration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "newerNoncurrentVersions":
+            suggest = "newer_noncurrent_versions"
+        elif key == "noncurrentDays":
+            suggest = "noncurrent_days"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketLifecycleRuleNoncurrentVersionExpiration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketLifecycleRuleNoncurrentVersionExpiration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketLifecycleRuleNoncurrentVersionExpiration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 newer_noncurrent_versions: Optional[_builtins.int] = None,
+                 noncurrent_days: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        :param _builtins.int noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        if newer_noncurrent_versions is not None:
+            pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+        if noncurrent_days is not None:
+            pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> Optional[_builtins.int]:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> Optional[_builtins.int]:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+
+@pulumi.output_type
+class BucketLifecycleRuleNoncurrentVersionTransition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "noncurrentDays":
+            suggest = "noncurrent_days"
+        elif key == "storageClass":
+            suggest = "storage_class"
+        elif key == "newerNoncurrentVersions":
+            suggest = "newer_noncurrent_versions"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketLifecycleRuleNoncurrentVersionTransition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketLifecycleRuleNoncurrentVersionTransition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketLifecycleRuleNoncurrentVersionTransition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 noncurrent_days: _builtins.int,
+                 storage_class: _builtins.str,
+                 newer_noncurrent_versions: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        :param _builtins.str storage_class: Specifies the Scaleway Object Storage class to which you want the object to transition
+        :param _builtins.int newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+        pulumi.set(__self__, "storage_class", storage_class)
+        if newer_noncurrent_versions is not None:
+            pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> _builtins.int:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+    @_builtins.property
+    @pulumi.getter(name="storageClass")
+    def storage_class(self) -> _builtins.str:
+        """
+        Specifies the Scaleway Object Storage class to which you want the object to transition
+        """
+        return pulumi.get(self, "storage_class")
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> Optional[_builtins.int]:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
 
 
 @pulumi.output_type
@@ -459,6 +673,7 @@ class BucketLifecycleRuleTransition(dict):
 
     def __init__(__self__, *,
                  storage_class: _builtins.str,
+                 date: Optional[_builtins.str] = None,
                  days: Optional[_builtins.int] = None):
         """
         :param _builtins.str storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
@@ -470,9 +685,12 @@ class BucketLifecycleRuleTransition(dict):
                
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
                > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+        :param _builtins.str date: Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
         pulumi.set(__self__, "storage_class", storage_class)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
         if days is not None:
             pulumi.set(__self__, "days", days)
 
@@ -491,6 +709,14 @@ class BucketLifecycleRuleTransition(dict):
         > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
         """
         return pulumi.get(self, "storage_class")
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> Optional[_builtins.str]:
+        """
+        Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
 
     @_builtins.property
     @pulumi.getter
@@ -585,6 +811,8 @@ class BucketServerSideEncryptionConfigurationRule(dict):
         suggest = None
         if key == "applyServerSideEncryptionByDefault":
             suggest = "apply_server_side_encryption_by_default"
+        elif key == "bucketKeyEnabled":
+            suggest = "bucket_key_enabled"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BucketServerSideEncryptionConfigurationRule. Access the value via the '{suggest}' property getter instead.")
@@ -598,12 +826,16 @@ class BucketServerSideEncryptionConfigurationRule(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 apply_server_side_encryption_by_default: Optional['outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault'] = None):
+                 apply_server_side_encryption_by_default: Optional['outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault'] = None,
+                 bucket_key_enabled: Optional[_builtins.bool] = None):
         """
         :param 'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs' apply_server_side_encryption_by_default: Single object for setting server-side encryption by default.
+        :param _builtins.bool bucket_key_enabled: Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
         """
         if apply_server_side_encryption_by_default is not None:
             pulumi.set(__self__, "apply_server_side_encryption_by_default", apply_server_side_encryption_by_default)
+        if bucket_key_enabled is not None:
+            pulumi.set(__self__, "bucket_key_enabled", bucket_key_enabled)
 
     @_builtins.property
     @pulumi.getter(name="applyServerSideEncryptionByDefault")
@@ -613,6 +845,14 @@ class BucketServerSideEncryptionConfigurationRule(dict):
         """
         return pulumi.get(self, "apply_server_side_encryption_by_default")
 
+    @_builtins.property
+    @pulumi.getter(name="bucketKeyEnabled")
+    def bucket_key_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+        """
+        return pulumi.get(self, "bucket_key_enabled")
+
 
 @pulumi.output_type
 class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault(dict):
@@ -621,6 +861,8 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         suggest = None
         if key == "sseAlgorithm":
             suggest = "sse_algorithm"
+        elif key == "kmsMasterKeyId":
+            suggest = "kms_master_key_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault. Access the value via the '{suggest}' property getter instead.")
@@ -634,11 +876,15 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 sse_algorithm: _builtins.str):
+                 sse_algorithm: _builtins.str,
+                 kms_master_key_id: Optional[_builtins.str] = None):
         """
         :param _builtins.str sse_algorithm: Server-side encryption algorithm to use. Valid values are `AES256`.
+        :param _builtins.str kms_master_key_id: Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sse_algorithm as aws:kms. Will return an error if not this element is absent while the sse_algorithm is aws:kms.
         """
         pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+        if kms_master_key_id is not None:
+            pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
 
     @_builtins.property
     @pulumi.getter(name="sseAlgorithm")
@@ -647,6 +893,14 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         Server-side encryption algorithm to use. Valid values are `AES256`.
         """
         return pulumi.get(self, "sse_algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsMasterKeyId")
+    def kms_master_key_id(self) -> Optional[_builtins.str]:
+        """
+        Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sse_algorithm as aws:kms. Will return an error if not this element is absent while the sse_algorithm is aws:kms.
+        """
+        return pulumi.get(self, "kms_master_key_id")
 
 
 @pulumi.output_type
@@ -777,6 +1031,10 @@ class GetBucketLifecycleRuleResult(dict):
                  enabled: _builtins.bool,
                  expirations: Sequence['outputs.GetBucketLifecycleRuleExpirationResult'],
                  id: _builtins.str,
+                 noncurrent_version_expirations: Sequence['outputs.GetBucketLifecycleRuleNoncurrentVersionExpirationResult'],
+                 noncurrent_version_transitions: Sequence['outputs.GetBucketLifecycleRuleNoncurrentVersionTransitionResult'],
+                 object_size_greater_than: _builtins.int,
+                 object_size_less_than: _builtins.int,
                  prefix: _builtins.str,
                  tags: Mapping[str, _builtins.str],
                  transitions: Sequence['outputs.GetBucketLifecycleRuleTransitionResult']):
@@ -785,6 +1043,10 @@ class GetBucketLifecycleRuleResult(dict):
         :param _builtins.bool enabled: Specifies if the configuration rule is Enabled or Disabled
         :param Sequence['GetBucketLifecycleRuleExpirationArgs'] expirations: Specifies a period in the object's expire
         :param _builtins.str id: The unique identifier of the bucket.
+        :param Sequence['GetBucketLifecycleRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expirations: Configuration block that specifies when noncurrent object versions expire
+        :param Sequence['GetBucketLifecycleRuleNoncurrentVersionTransitionArgs'] noncurrent_version_transitions: Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        :param _builtins.int object_size_greater_than: Minimum object size (in bytes) to which the rule applies
+        :param _builtins.int object_size_less_than: Maximum object size (in bytes) to which the rule applies
         :param _builtins.str prefix: The prefix identifying one or more objects to which the rule applies
         :param Mapping[str, _builtins.str] tags: The tags associated with the bucket lifecycle
         :param Sequence['GetBucketLifecycleRuleTransitionArgs'] transitions: Define when objects transition to another storage class
@@ -793,6 +1055,10 @@ class GetBucketLifecycleRuleResult(dict):
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "expirations", expirations)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "noncurrent_version_expirations", noncurrent_version_expirations)
+        pulumi.set(__self__, "noncurrent_version_transitions", noncurrent_version_transitions)
+        pulumi.set(__self__, "object_size_greater_than", object_size_greater_than)
+        pulumi.set(__self__, "object_size_less_than", object_size_less_than)
         pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transitions", transitions)
@@ -830,6 +1096,38 @@ class GetBucketLifecycleRuleResult(dict):
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="noncurrentVersionExpirations")
+    def noncurrent_version_expirations(self) -> Sequence['outputs.GetBucketLifecycleRuleNoncurrentVersionExpirationResult']:
+        """
+        Configuration block that specifies when noncurrent object versions expire
+        """
+        return pulumi.get(self, "noncurrent_version_expirations")
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentVersionTransitions")
+    def noncurrent_version_transitions(self) -> Sequence['outputs.GetBucketLifecycleRuleNoncurrentVersionTransitionResult']:
+        """
+        Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        """
+        return pulumi.get(self, "noncurrent_version_transitions")
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeGreaterThan")
+    def object_size_greater_than(self) -> _builtins.int:
+        """
+        Minimum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_greater_than")
+
+    @_builtins.property
+    @pulumi.getter(name="objectSizeLessThan")
+    def object_size_less_than(self) -> _builtins.int:
+        """
+        Maximum object size (in bytes) to which the rule applies
+        """
+        return pulumi.get(self, "object_size_less_than")
+
+    @_builtins.property
     @pulumi.getter
     def prefix(self) -> _builtins.str:
         """
@@ -857,11 +1155,25 @@ class GetBucketLifecycleRuleResult(dict):
 @pulumi.output_type
 class GetBucketLifecycleRuleExpirationResult(dict):
     def __init__(__self__, *,
-                 days: _builtins.int):
+                 date: _builtins.str,
+                 days: _builtins.int,
+                 expired_object_delete_marker: _builtins.bool):
         """
+        :param _builtins.str date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect
+        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
         """
+        pulumi.set(__self__, "date", date)
         pulumi.set(__self__, "days", days)
+        pulumi.set(__self__, "expired_object_delete_marker", expired_object_delete_marker)
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> _builtins.str:
+        """
+        Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
 
     @_builtins.property
     @pulumi.getter
@@ -871,18 +1183,106 @@ class GetBucketLifecycleRuleExpirationResult(dict):
         """
         return pulumi.get(self, "days")
 
+    @_builtins.property
+    @pulumi.getter(name="expiredObjectDeleteMarker")
+    def expired_object_delete_marker(self) -> _builtins.bool:
+        """
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        """
+        return pulumi.get(self, "expired_object_delete_marker")
+
+
+@pulumi.output_type
+class GetBucketLifecycleRuleNoncurrentVersionExpirationResult(dict):
+    def __init__(__self__, *,
+                 newer_noncurrent_versions: _builtins.int,
+                 noncurrent_days: _builtins.int):
+        """
+        :param _builtins.int newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        :param _builtins.int noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+        pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> _builtins.int:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> _builtins.int:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+
+@pulumi.output_type
+class GetBucketLifecycleRuleNoncurrentVersionTransitionResult(dict):
+    def __init__(__self__, *,
+                 newer_noncurrent_versions: _builtins.int,
+                 noncurrent_days: _builtins.int,
+                 storage_class: _builtins.str):
+        """
+        :param _builtins.int newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        :param _builtins.int noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        :param _builtins.str storage_class: Specifies the Scaleway Object Storage class to which you want the object to transition
+        """
+        pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
+        pulumi.set(__self__, "noncurrent_days", noncurrent_days)
+        pulumi.set(__self__, "storage_class", storage_class)
+
+    @_builtins.property
+    @pulumi.getter(name="newerNoncurrentVersions")
+    def newer_noncurrent_versions(self) -> _builtins.int:
+        """
+        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        """
+        return pulumi.get(self, "newer_noncurrent_versions")
+
+    @_builtins.property
+    @pulumi.getter(name="noncurrentDays")
+    def noncurrent_days(self) -> _builtins.int:
+        """
+        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        """
+        return pulumi.get(self, "noncurrent_days")
+
+    @_builtins.property
+    @pulumi.getter(name="storageClass")
+    def storage_class(self) -> _builtins.str:
+        """
+        Specifies the Scaleway Object Storage class to which you want the object to transition
+        """
+        return pulumi.get(self, "storage_class")
+
 
 @pulumi.output_type
 class GetBucketLifecycleRuleTransitionResult(dict):
     def __init__(__self__, *,
+                 date: _builtins.str,
                  days: _builtins.int,
                  storage_class: _builtins.str):
         """
+        :param _builtins.str date: Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect
         :param _builtins.str storage_class: Specifies the Scaleway Object Storage class to which you want the object to transition
         """
+        pulumi.set(__self__, "date", date)
         pulumi.set(__self__, "days", days)
         pulumi.set(__self__, "storage_class", storage_class)
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> _builtins.str:
+        """
+        Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        """
+        return pulumi.get(self, "date")
 
     @_builtins.property
     @pulumi.getter
@@ -904,11 +1304,14 @@ class GetBucketLifecycleRuleTransitionResult(dict):
 @pulumi.output_type
 class GetBucketServerSideEncryptionConfigurationRuleResult(dict):
     def __init__(__self__, *,
-                 apply_server_side_encryption_by_defaults: Sequence['outputs.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult']):
+                 apply_server_side_encryption_by_defaults: Sequence['outputs.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult'],
+                 bucket_key_enabled: _builtins.bool):
         """
         :param Sequence['GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_defaults: (List of Object) Single object for setting server-side encryption by default.
+        :param _builtins.bool bucket_key_enabled: Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
         """
         pulumi.set(__self__, "apply_server_side_encryption_by_defaults", apply_server_side_encryption_by_defaults)
+        pulumi.set(__self__, "bucket_key_enabled", bucket_key_enabled)
 
     @_builtins.property
     @pulumi.getter(name="applyServerSideEncryptionByDefaults")
@@ -918,15 +1321,34 @@ class GetBucketServerSideEncryptionConfigurationRuleResult(dict):
         """
         return pulumi.get(self, "apply_server_side_encryption_by_defaults")
 
+    @_builtins.property
+    @pulumi.getter(name="bucketKeyEnabled")
+    def bucket_key_enabled(self) -> _builtins.bool:
+        """
+        Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+        """
+        return pulumi.get(self, "bucket_key_enabled")
+
 
 @pulumi.output_type
 class GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult(dict):
     def __init__(__self__, *,
+                 kms_master_key_id: _builtins.str,
                  sse_algorithm: _builtins.str):
         """
+        :param _builtins.str kms_master_key_id: Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sse_algorithm as aws:kms. Will return an error if not this element is absent while the sse_algorithm is aws:kms.
         :param _builtins.str sse_algorithm: (String) Server-side encryption algorithm to use. Valid values are AES256.
         """
+        pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
         pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsMasterKeyId")
+    def kms_master_key_id(self) -> _builtins.str:
+        """
+        Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sse_algorithm as aws:kms. Will return an error if not this element is absent while the sse_algorithm is aws:kms.
+        """
+        return pulumi.get(self, "kms_master_key_id")
 
     @_builtins.property
     @pulumi.getter(name="sseAlgorithm")

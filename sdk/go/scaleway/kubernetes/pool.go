@@ -155,6 +155,8 @@ type Pool struct {
 	CurrentSize pulumi.IntOutput `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapOutput `pulumi:"kubeletArgs"`
+	// The list of Kubernetes labels applied and reconciled on the nodes.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -191,12 +193,16 @@ type Pool struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+	StartupTaints PoolStartupTaintArrayOutput `pulumi:"startupTaints"`
 	// The status of the node.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the pool.
 	//
 	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The list of Kubernetes taints applied and reconciled on the nodes.
+	Taints PoolTaintArrayOutput `pulumi:"taints"`
 	// The last update date of the pool.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The Pool upgrade policy
@@ -274,6 +280,8 @@ type poolState struct {
 	CurrentSize *int `pulumi:"currentSize"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
+	// The list of Kubernetes labels applied and reconciled on the nodes.
+	Labels map[string]string `pulumi:"labels"`
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize *int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -310,12 +318,16 @@ type poolState struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size *int `pulumi:"size"`
+	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+	StartupTaints []PoolStartupTaint `pulumi:"startupTaints"`
 	// The status of the node.
 	Status *string `pulumi:"status"`
 	// The tags associated with the pool.
 	//
 	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags []string `pulumi:"tags"`
+	// The list of Kubernetes taints applied and reconciled on the nodes.
+	Taints []PoolTaint `pulumi:"taints"`
 	// The last update date of the pool.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The Pool upgrade policy
@@ -349,6 +361,8 @@ type PoolState struct {
 	CurrentSize pulumi.IntPtrInput
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapInput
+	// The list of Kubernetes labels applied and reconciled on the nodes.
+	Labels pulumi.StringMapInput
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntPtrInput
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -385,12 +399,16 @@ type PoolState struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntPtrInput
+	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+	StartupTaints PoolStartupTaintArrayInput
 	// The status of the node.
 	Status pulumi.StringPtrInput
 	// The tags associated with the pool.
 	//
 	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayInput
+	// The list of Kubernetes taints applied and reconciled on the nodes.
+	Taints PoolTaintArrayInput
 	// The last update date of the pool.
 	UpdatedAt pulumi.StringPtrInput
 	// The Pool upgrade policy
@@ -424,6 +442,8 @@ type poolArgs struct {
 	ContainerRuntime *string `pulumi:"containerRuntime"`
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs map[string]string `pulumi:"kubeletArgs"`
+	// The list of Kubernetes labels applied and reconciled on the nodes.
+	Labels map[string]string `pulumi:"labels"`
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize *int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -458,10 +478,14 @@ type poolArgs struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size int `pulumi:"size"`
+	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+	StartupTaints []PoolStartupTaint `pulumi:"startupTaints"`
 	// The tags associated with the pool.
 	//
 	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags []string `pulumi:"tags"`
+	// The list of Kubernetes taints applied and reconciled on the nodes.
+	Taints []PoolTaint `pulumi:"taints"`
 	// The Pool upgrade policy
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
 	// Whether to wait for the pool to be ready.
@@ -488,6 +512,8 @@ type PoolArgs struct {
 	ContainerRuntime pulumi.StringPtrInput
 	// The Kubelet arguments to be used by this pool
 	KubeletArgs pulumi.StringMapInput
+	// The list of Kubernetes labels applied and reconciled on the nodes.
+	Labels pulumi.StringMapInput
 	// The maximum size of the pool, used by the autoscaling feature.
 	MaxSize pulumi.IntPtrInput
 	// The minimum size of the pool, used by the autoscaling feature.
@@ -522,10 +548,14 @@ type PoolArgs struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntInput
+	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+	StartupTaints PoolStartupTaintArrayInput
 	// The tags associated with the pool.
 	//
 	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayInput
+	// The list of Kubernetes taints applied and reconciled on the nodes.
+	Taints PoolTaintArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyPtrInput
 	// Whether to wait for the pool to be ready.
@@ -662,6 +692,11 @@ func (o PoolOutput) KubeletArgs() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringMapOutput { return v.KubeletArgs }).(pulumi.StringMapOutput)
 }
 
+// The list of Kubernetes labels applied and reconciled on the nodes.
+func (o PoolOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
+}
+
 // The maximum size of the pool, used by the autoscaling feature.
 func (o PoolOutput) MaxSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.MaxSize }).(pulumi.IntOutput)
@@ -734,6 +769,11 @@ func (o PoolOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
+// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+func (o PoolOutput) StartupTaints() PoolStartupTaintArrayOutput {
+	return o.ApplyT(func(v *Pool) PoolStartupTaintArrayOutput { return v.StartupTaints }).(PoolStartupTaintArrayOutput)
+}
+
 // The status of the node.
 func (o PoolOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
@@ -744,6 +784,11 @@ func (o PoolOutput) Status() pulumi.StringOutput {
 // > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 func (o PoolOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The list of Kubernetes taints applied and reconciled on the nodes.
+func (o PoolOutput) Taints() PoolTaintArrayOutput {
+	return o.ApplyT(func(v *Pool) PoolTaintArrayOutput { return v.Taints }).(PoolTaintArrayOutput)
 }
 
 // The last update date of the pool.

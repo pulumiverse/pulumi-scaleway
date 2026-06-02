@@ -202,6 +202,7 @@ namespace Pulumiverse.Scaleway.Object
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string Region;
         /// <summary>
         /// (Set of Object) Set of server-side encryption configuration rules.
         /// </summary>
@@ -215,11 +216,14 @@ namespace Pulumiverse.Scaleway.Object
 
             string id,
 
+            string region,
+
             ImmutableArray<Outputs.GetBucketServerSideEncryptionConfigurationRuleResult> rules)
         {
             Bucket = bucket;
             BucketServerSideEncryptionConfigurationId = bucketServerSideEncryptionConfigurationId;
             Id = id;
+            Region = region;
             Rules = rules;
         }
     }

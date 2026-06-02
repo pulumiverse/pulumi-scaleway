@@ -9,6 +9,7 @@ import typing
 from .alert_manager import *
 from .cockpit import *
 from .exporter import *
+from .get_config import *
 from .get_exporter import *
 from .get_grafana import *
 from .get_instance import *

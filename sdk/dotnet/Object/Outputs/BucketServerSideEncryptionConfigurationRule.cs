@@ -18,11 +18,19 @@ namespace Pulumiverse.Scaleway.Object.Outputs
         /// Single object for setting server-side encryption by default.
         /// </summary>
         public readonly Outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault? ApplyServerSideEncryptionByDefault;
+        /// <summary>
+        /// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+        /// </summary>
+        public readonly bool? BucketKeyEnabled;
 
         [OutputConstructor]
-        private BucketServerSideEncryptionConfigurationRule(Outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault? applyServerSideEncryptionByDefault)
+        private BucketServerSideEncryptionConfigurationRule(
+            Outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault? applyServerSideEncryptionByDefault,
+
+            bool? bucketKeyEnabled)
         {
             ApplyServerSideEncryptionByDefault = applyServerSideEncryptionByDefault;
+            BucketKeyEnabled = bucketKeyEnabled;
         }
     }
 }

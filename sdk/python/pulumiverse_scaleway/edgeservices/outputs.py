@@ -16,6 +16,8 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'BackendStageContainerBackendConfig',
+    'BackendStageFunctionBackendConfig',
     'BackendStageLbBackendConfig',
     'BackendStageLbBackendConfigLbConfig',
     'BackendStageS3BackendConfig',
@@ -25,6 +27,8 @@ __all__ = [
     'RouteStageRuleRuleHttpMatchHostFilter',
     'RouteStageRuleRuleHttpMatchPathFilter',
     'TlsStageSecret',
+    'GetBackendStageContainerBackendConfigResult',
+    'GetBackendStageFunctionBackendConfigResult',
     'GetBackendStageLbBackendConfigResult',
     'GetBackendStageLbBackendConfigLbConfigResult',
     'GetBackendStageS3BackendConfigResult',
@@ -35,6 +39,100 @@ __all__ = [
     'GetRouteStageRuleRuleHttpMatchPathFilterResult',
     'GetTlsStageSecretResult',
 ]
+
+@pulumi.output_type
+class BackendStageContainerBackendConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "containerId":
+            suggest = "container_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackendStageContainerBackendConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackendStageContainerBackendConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackendStageContainerBackendConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 container_id: _builtins.str,
+                 region: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str container_id: The ID of the Serverless Container.
+        :param _builtins.str region: `region`) The region of the Serverless Container.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        The ID of the Serverless Container.
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        `region`) The region of the Serverless Container.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class BackendStageFunctionBackendConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "functionId":
+            suggest = "function_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackendStageFunctionBackendConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackendStageFunctionBackendConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackendStageFunctionBackendConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 function_id: _builtins.str,
+                 region: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str function_id: The ID of the Serverless Function.
+        :param _builtins.str region: `region`) The region of the Serverless Function.
+        """
+        pulumi.set(__self__, "function_id", function_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> _builtins.str:
+        """
+        The ID of the Serverless Function.
+        """
+        return pulumi.get(self, "function_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        `region`) The region of the Serverless Function.
+        """
+        return pulumi.get(self, "region")
+
 
 @pulumi.output_type
 class BackendStageLbBackendConfig(dict):
@@ -564,6 +662,64 @@ class TlsStageSecret(dict):
         The ID of the Secret
         """
         return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class GetBackendStageContainerBackendConfigResult(dict):
+    def __init__(__self__, *,
+                 container_id: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str container_id: ID of the Serverless Container
+        :param _builtins.str region: The region you want to attach the resource to
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> _builtins.str:
+        """
+        ID of the Serverless Container
+        """
+        return pulumi.get(self, "container_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetBackendStageFunctionBackendConfigResult(dict):
+    def __init__(__self__, *,
+                 function_id: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str function_id: ID of the Serverless Function
+        :param _builtins.str region: The region you want to attach the resource to
+        """
+        pulumi.set(__self__, "function_id", function_id)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> _builtins.str:
+        """
+        ID of the Serverless Function
+        """
+        return pulumi.get(self, "function_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type

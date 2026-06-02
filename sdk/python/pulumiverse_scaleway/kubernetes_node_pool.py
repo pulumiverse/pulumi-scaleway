@@ -28,6 +28,7 @@ class KubernetesNodePoolArgs:
                  autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
                  container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
                  kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_size: pulumi.Input[Optional[_builtins.int]] = None,
                  min_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -37,7 +38,9 @@ class KubernetesNodePoolArgs:
                  root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
                  upgrade_policy: pulumi.Input[Optional['KubernetesNodePoolUpgradePolicyArgs']] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -59,6 +62,7 @@ class KubernetesNodePoolArgs:
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] kubelet_args: The Kubelet arguments to be used by this pool
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.str] name: The name for the pool.
@@ -76,9 +80,11 @@ class KubernetesNodePoolArgs:
                > Note: The minimal volume size of a node is 20GB.
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
@@ -96,6 +102,8 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "container_runtime", container_runtime)
         if kubelet_args is not None:
             pulumi.set(__self__, "kubelet_args", kubelet_args)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if min_size is not None:
@@ -114,8 +122,12 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "root_volume_type", root_volume_type)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
+        if startup_taints is not None:
+            pulumi.set(__self__, "startup_taints", startup_taints)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
         if upgrade_policy is not None:
             pulumi.set(__self__, "upgrade_policy", upgrade_policy)
         if wait_for_pool_ready is not None:
@@ -214,6 +226,18 @@ class KubernetesNodePoolArgs:
     @kubelet_args.setter
     def kubelet_args(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "kubelet_args", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The list of Kubernetes labels applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
@@ -332,6 +356,18 @@ class KubernetesNodePoolArgs:
         pulumi.set(self, "security_group_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="startupTaints")
+    def startup_taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]]:
+        """
+        The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        """
+        return pulumi.get(self, "startup_taints")
+
+    @startup_taints.setter
+    def startup_taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]]):
+        pulumi.set(self, "startup_taints", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -344,6 +380,18 @@ class KubernetesNodePoolArgs:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]]:
+        """
+        The list of Kubernetes taints applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
 
     @_builtins.property
     @pulumi.getter(name="upgradePolicy")
@@ -394,6 +442,7 @@ class _KubernetesNodePoolState:
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  current_size: pulumi.Input[Optional[_builtins.int]] = None,
                  kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_size: pulumi.Input[Optional[_builtins.int]] = None,
                  min_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -406,8 +455,10 @@ class _KubernetesNodePoolState:
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  upgrade_policy: pulumi.Input[Optional['KubernetesNodePoolUpgradePolicyArgs']] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -427,6 +478,7 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[_builtins.str] created_at: The creation date of the pool.
         :param pulumi.Input[_builtins.int] current_size: The size of the pool at the time the terraform state was updated.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] kubelet_args: The Kubelet arguments to be used by this pool
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.str] name: The name for the pool.
@@ -451,10 +503,12 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.str] version: The version of the pool.
@@ -477,6 +531,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "current_size", current_size)
         if kubelet_args is not None:
             pulumi.set(__self__, "kubelet_args", kubelet_args)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
         if min_size is not None:
@@ -501,10 +557,14 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if startup_taints is not None:
+            pulumi.set(__self__, "startup_taints", startup_taints)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if upgrade_policy is not None:
@@ -603,6 +663,18 @@ class _KubernetesNodePoolState:
     @kubelet_args.setter
     def kubelet_args(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "kubelet_args", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The list of Kubernetes labels applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
@@ -761,6 +833,18 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "size", value)
 
     @_builtins.property
+    @pulumi.getter(name="startupTaints")
+    def startup_taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]]:
+        """
+        The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        """
+        return pulumi.get(self, "startup_taints")
+
+    @startup_taints.setter
+    def startup_taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolStartupTaintArgs']]]]):
+        pulumi.set(self, "startup_taints", value)
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -785,6 +869,18 @@ class _KubernetesNodePoolState:
     @tags.setter
     def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]]:
+        """
+        The list of Kubernetes taints applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -865,6 +961,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
                  kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_size: pulumi.Input[Optional[_builtins.int]] = None,
                  min_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -876,7 +973,9 @@ class KubernetesNodePool(pulumi.CustomResource):
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -976,6 +1075,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] kubelet_args: The Kubelet arguments to be used by this pool
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.str] name: The name for the pool.
@@ -999,9 +1099,11 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
@@ -1118,6 +1220,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
                  kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_size: pulumi.Input[Optional[_builtins.int]] = None,
                  min_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1129,7 +1232,9 @@ class KubernetesNodePool(pulumi.CustomResource):
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1150,6 +1255,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["container_runtime"] = container_runtime
             __props__.__dict__["kubelet_args"] = kubelet_args
+            __props__.__dict__["labels"] = labels
             __props__.__dict__["max_size"] = max_size
             __props__.__dict__["min_size"] = min_size
             __props__.__dict__["name"] = name
@@ -1165,7 +1271,9 @@ class KubernetesNodePool(pulumi.CustomResource):
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
+            __props__.__dict__["startup_taints"] = startup_taints
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["taints"] = taints
             __props__.__dict__["upgrade_policy"] = upgrade_policy
             __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
             __props__.__dict__["zone"] = zone
@@ -1192,6 +1300,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             current_size: pulumi.Input[Optional[_builtins.int]] = None,
             kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             max_size: pulumi.Input[Optional[_builtins.int]] = None,
             min_size: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1204,8 +1313,10 @@ class KubernetesNodePool(pulumi.CustomResource):
             root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
             size: pulumi.Input[Optional[_builtins.int]] = None,
+            startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1229,6 +1340,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation date of the pool.
         :param pulumi.Input[_builtins.int] current_size: The size of the pool at the time the terraform state was updated.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] kubelet_args: The Kubelet arguments to be used by this pool
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.str] name: The name for the pool.
@@ -1253,10 +1365,12 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.str] version: The version of the pool.
@@ -1276,6 +1390,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["current_size"] = current_size
         __props__.__dict__["kubelet_args"] = kubelet_args
+        __props__.__dict__["labels"] = labels
         __props__.__dict__["max_size"] = max_size
         __props__.__dict__["min_size"] = min_size
         __props__.__dict__["name"] = name
@@ -1288,8 +1403,10 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["root_volume_type"] = root_volume_type
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["size"] = size
+        __props__.__dict__["startup_taints"] = startup_taints
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["taints"] = taints
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["upgrade_policy"] = upgrade_policy
         __props__.__dict__["version"] = version
@@ -1356,6 +1473,14 @@ class KubernetesNodePool(pulumi.CustomResource):
         The Kubelet arguments to be used by this pool
         """
         return pulumi.get(self, "kubelet_args")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The list of Kubernetes labels applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "labels")
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
@@ -1466,6 +1591,14 @@ class KubernetesNodePool(pulumi.CustomResource):
         return pulumi.get(self, "size")
 
     @_builtins.property
+    @pulumi.getter(name="startupTaints")
+    def startup_taints(self) -> pulumi.Output[Optional[Sequence['outputs.KubernetesNodePoolStartupTaint']]]:
+        """
+        The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        """
+        return pulumi.get(self, "startup_taints")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1482,6 +1615,14 @@ class KubernetesNodePool(pulumi.CustomResource):
         > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Output[Optional[Sequence['outputs.KubernetesNodePoolTaint']]]:
+        """
+        The list of Kubernetes taints applied and reconciled on the nodes.
+        """
+        return pulumi.get(self, "taints")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

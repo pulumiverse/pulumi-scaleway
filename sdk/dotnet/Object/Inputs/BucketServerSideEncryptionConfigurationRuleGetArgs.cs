@@ -19,6 +19,12 @@ namespace Pulumiverse.Scaleway.Object.Inputs
         [Input("applyServerSideEncryptionByDefault")]
         public Input<Inputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultGetArgs>? ApplyServerSideEncryptionByDefault { get; set; }
 
+        /// <summary>
+        /// Whether or not to use Scaleway Object Bucket Keys for SSE-KMS.
+        /// </summary>
+        [Input("bucketKeyEnabled")]
+        public Input<bool>? BucketKeyEnabled { get; set; }
+
         public BucketServerSideEncryptionConfigurationRuleGetArgs()
         {
         }

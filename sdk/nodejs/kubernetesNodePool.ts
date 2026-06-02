@@ -157,6 +157,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     declare public readonly kubeletArgs: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The list of Kubernetes labels applied and reconciled on the nodes.
+     */
+    declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
     declare public readonly maxSize: pulumi.Output<number>;
@@ -217,6 +221,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     declare public readonly size: pulumi.Output<number>;
     /**
+     * The list of Kubernetes taints applied at node creation but not reconciled afterward.
+     */
+    declare public readonly startupTaints: pulumi.Output<outputs.KubernetesNodePoolStartupTaint[] | undefined>;
+    /**
      * The status of the node.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -226,6 +234,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
+    /**
+     * The list of Kubernetes taints applied and reconciled on the nodes.
+     */
+    declare public readonly taints: pulumi.Output<outputs.KubernetesNodePoolTaint[] | undefined>;
     /**
      * The last update date of the pool.
      */
@@ -272,6 +284,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["currentSize"] = state?.currentSize;
             resourceInputs["kubeletArgs"] = state?.kubeletArgs;
+            resourceInputs["labels"] = state?.labels;
             resourceInputs["maxSize"] = state?.maxSize;
             resourceInputs["minSize"] = state?.minSize;
             resourceInputs["name"] = state?.name;
@@ -284,8 +297,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["rootVolumeType"] = state?.rootVolumeType;
             resourceInputs["securityGroupId"] = state?.securityGroupId;
             resourceInputs["size"] = state?.size;
+            resourceInputs["startupTaints"] = state?.startupTaints;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
+            resourceInputs["taints"] = state?.taints;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["upgradePolicy"] = state?.upgradePolicy;
             resourceInputs["version"] = state?.version;
@@ -307,6 +322,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["clusterId"] = args?.clusterId;
             resourceInputs["containerRuntime"] = args?.containerRuntime;
             resourceInputs["kubeletArgs"] = args?.kubeletArgs;
+            resourceInputs["labels"] = args?.labels;
             resourceInputs["maxSize"] = args?.maxSize;
             resourceInputs["minSize"] = args?.minSize;
             resourceInputs["name"] = args?.name;
@@ -318,7 +334,9 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["rootVolumeType"] = args?.rootVolumeType;
             resourceInputs["securityGroupId"] = args?.securityGroupId;
             resourceInputs["size"] = args?.size;
+            resourceInputs["startupTaints"] = args?.startupTaints;
             resourceInputs["tags"] = args?.tags;
+            resourceInputs["taints"] = args?.taints;
             resourceInputs["upgradePolicy"] = args?.upgradePolicy;
             resourceInputs["waitForPoolReady"] = args?.waitForPoolReady;
             resourceInputs["zone"] = args?.zone;
@@ -370,6 +388,10 @@ export interface KubernetesNodePoolState {
      * The Kubelet arguments to be used by this pool
      */
     kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The list of Kubernetes labels applied and reconciled on the nodes.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
@@ -431,6 +453,10 @@ export interface KubernetesNodePoolState {
      */
     size?: pulumi.Input<number | undefined>;
     /**
+     * The list of Kubernetes taints applied at node creation but not reconciled afterward.
+     */
+    startupTaints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolStartupTaint>[] | undefined>;
+    /**
      * The status of the node.
      */
     status?: pulumi.Input<string | undefined>;
@@ -440,6 +466,10 @@ export interface KubernetesNodePoolState {
      * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The list of Kubernetes taints applied and reconciled on the nodes.
+     */
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[] | undefined>;
     /**
      * The last update date of the pool.
      */
@@ -492,6 +522,10 @@ export interface KubernetesNodePoolArgs {
      * The Kubelet arguments to be used by this pool
      */
     kubeletArgs?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The list of Kubernetes labels applied and reconciled on the nodes.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
@@ -549,11 +583,19 @@ export interface KubernetesNodePoolArgs {
      */
     size: pulumi.Input<number>;
     /**
+     * The list of Kubernetes taints applied at node creation but not reconciled afterward.
+     */
+    startupTaints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolStartupTaint>[] | undefined>;
+    /**
      * The tags associated with the pool.
      *
      * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The list of Kubernetes taints applied and reconciled on the nodes.
+     */
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[] | undefined>;
     /**
      * The Pool upgrade policy
      */

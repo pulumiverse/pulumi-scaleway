@@ -140,7 +140,7 @@ type Link struct {
 	PairingKey pulumi.StringOutput `pulumi:"pairingKey"`
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
 	PartnerId pulumi.StringPtrOutput `pulumi:"partnerId"`
-	// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+	// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 	PeerAsn pulumi.IntOutput `pulumi:"peerAsn"`
 	// BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
 	PeerBgpConfigs LinkPeerBgpConfigArrayOutput `pulumi:"peerBgpConfigs"`
@@ -228,7 +228,7 @@ type linkState struct {
 	PairingKey *string `pulumi:"pairingKey"`
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
 	PartnerId *string `pulumi:"partnerId"`
-	// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+	// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 	PeerAsn *int `pulumi:"peerAsn"`
 	// BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
 	PeerBgpConfigs []LinkPeerBgpConfig `pulumi:"peerBgpConfigs"`
@@ -277,7 +277,7 @@ type LinkState struct {
 	PairingKey pulumi.StringPtrInput
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
 	PartnerId pulumi.StringPtrInput
-	// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+	// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 	PeerAsn pulumi.IntPtrInput
 	// BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
 	PeerBgpConfigs LinkPeerBgpConfigArrayInput
@@ -320,7 +320,7 @@ type linkArgs struct {
 	Name *string `pulumi:"name"`
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
 	PartnerId *string `pulumi:"partnerId"`
-	// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+	// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 	PeerAsn *int `pulumi:"peerAsn"`
 	// PoP (location) where the link will be created.
 	PopId string `pulumi:"popId"`
@@ -352,7 +352,7 @@ type LinkArgs struct {
 	Name pulumi.StringPtrInput
 	// If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connectionId`.
 	PartnerId pulumi.StringPtrInput
-	// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+	// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 	PeerAsn pulumi.IntPtrInput
 	// PoP (location) where the link will be created.
 	PopId pulumi.StringInput
@@ -509,7 +509,7 @@ func (o LinkOutput) PartnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Link) pulumi.StringPtrOutput { return v.PartnerId }).(pulumi.StringPtrOutput)
 }
 
-// For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+// For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
 func (o LinkOutput) PeerAsn() pulumi.IntOutput {
 	return o.ApplyT(func(v *Link) pulumi.IntOutput { return v.PeerAsn }).(pulumi.IntOutput)
 }

@@ -252,7 +252,7 @@ type VpcRoute struct {
 	// The date and time of the creation of the route (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The route description.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// The destination of the route.
 	Destination pulumi.StringPtrOutput `pulumi:"destination"`
 	// The ID of the nexthop private network.
@@ -485,8 +485,8 @@ func (o VpcRouteOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // The route description.
-func (o VpcRouteOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *VpcRoute) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o VpcRouteOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcRoute) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // The destination of the route.

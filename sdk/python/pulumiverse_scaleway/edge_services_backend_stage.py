@@ -22,6 +22,8 @@ __all__ = ['EdgeServicesBackendStageArgs', 'EdgeServicesBackendStage']
 class EdgeServicesBackendStageArgs:
     def __init__(__self__, *,
                  pipeline_id: pulumi.Input[_builtins.str],
+                 container_backend_config: pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']] = None,
+                 function_backend_config: pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']] = None,
                  lb_backend_configs: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  s3_backend_config: pulumi.Input[Optional['EdgeServicesBackendStageS3BackendConfigArgs']] = None):
@@ -29,11 +31,19 @@ class EdgeServicesBackendStageArgs:
         The set of arguments for constructing a EdgeServicesBackendStage resource.
 
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
+        :param pulumi.Input['EdgeServicesBackendStageContainerBackendConfigArgs'] container_backend_config: The Scaleway Serverless Container backend linked to the backend stage.
+        :param pulumi.Input['EdgeServicesBackendStageFunctionBackendConfigArgs'] function_backend_config: The Scaleway Serverless Function backend linked to the backend stage.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
+               
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         :param pulumi.Input['EdgeServicesBackendStageS3BackendConfigArgs'] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
+        if container_backend_config is not None:
+            pulumi.set(__self__, "container_backend_config", container_backend_config)
+        if function_backend_config is not None:
+            pulumi.set(__self__, "function_backend_config", function_backend_config)
         if lb_backend_configs is not None:
             pulumi.set(__self__, "lb_backend_configs", lb_backend_configs)
         if project_id is not None:
@@ -54,6 +64,30 @@ class EdgeServicesBackendStageArgs:
         pulumi.set(self, "pipeline_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="containerBackendConfig")
+    def container_backend_config(self) -> pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']]:
+        """
+        The Scaleway Serverless Container backend linked to the backend stage.
+        """
+        return pulumi.get(self, "container_backend_config")
+
+    @container_backend_config.setter
+    def container_backend_config(self, value: pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']]):
+        pulumi.set(self, "container_backend_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="functionBackendConfig")
+    def function_backend_config(self) -> pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']]:
+        """
+        The Scaleway Serverless Function backend linked to the backend stage.
+        """
+        return pulumi.get(self, "function_backend_config")
+
+    @function_backend_config.setter
+    def function_backend_config(self, value: pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']]):
+        pulumi.set(self, "function_backend_config", value)
+
+    @_builtins.property
     @pulumi.getter(name="lbBackendConfigs")
     def lb_backend_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]]]:
         """
@@ -70,6 +104,8 @@ class EdgeServicesBackendStageArgs:
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the backend stage is associated with.
+
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         """
         return pulumi.get(self, "project_id")
 
@@ -93,7 +129,9 @@ class EdgeServicesBackendStageArgs:
 @pulumi.input_type
 class _EdgeServicesBackendStageState:
     def __init__(__self__, *,
+                 container_backend_config: pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 function_backend_config: pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']] = None,
                  lb_backend_configs: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -102,15 +140,23 @@ class _EdgeServicesBackendStageState:
         """
         Input properties used for looking up and filtering EdgeServicesBackendStage resources.
 
+        :param pulumi.Input['EdgeServicesBackendStageContainerBackendConfigArgs'] container_backend_config: The Scaleway Serverless Container backend linked to the backend stage.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the backend stage.
+        :param pulumi.Input['EdgeServicesBackendStageFunctionBackendConfigArgs'] function_backend_config: The Scaleway Serverless Function backend linked to the backend stage.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
+               
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         :param pulumi.Input['EdgeServicesBackendStageS3BackendConfigArgs'] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the backend stage.
         """
+        if container_backend_config is not None:
+            pulumi.set(__self__, "container_backend_config", container_backend_config)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if function_backend_config is not None:
+            pulumi.set(__self__, "function_backend_config", function_backend_config)
         if lb_backend_configs is not None:
             pulumi.set(__self__, "lb_backend_configs", lb_backend_configs)
         if pipeline_id is not None:
@@ -123,6 +169,18 @@ class _EdgeServicesBackendStageState:
             pulumi.set(__self__, "updated_at", updated_at)
 
     @_builtins.property
+    @pulumi.getter(name="containerBackendConfig")
+    def container_backend_config(self) -> pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']]:
+        """
+        The Scaleway Serverless Container backend linked to the backend stage.
+        """
+        return pulumi.get(self, "container_backend_config")
+
+    @container_backend_config.setter
+    def container_backend_config(self, value: pulumi.Input[Optional['EdgeServicesBackendStageContainerBackendConfigArgs']]):
+        pulumi.set(self, "container_backend_config", value)
+
+    @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -133,6 +191,18 @@ class _EdgeServicesBackendStageState:
     @created_at.setter
     def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="functionBackendConfig")
+    def function_backend_config(self) -> pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']]:
+        """
+        The Scaleway Serverless Function backend linked to the backend stage.
+        """
+        return pulumi.get(self, "function_backend_config")
+
+    @function_backend_config.setter
+    def function_backend_config(self, value: pulumi.Input[Optional['EdgeServicesBackendStageFunctionBackendConfigArgs']]):
+        pulumi.set(self, "function_backend_config", value)
 
     @_builtins.property
     @pulumi.getter(name="lbBackendConfigs")
@@ -163,6 +233,8 @@ class _EdgeServicesBackendStageState:
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the backend stage is associated with.
+
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         """
         return pulumi.get(self, "project_id")
 
@@ -206,6 +278,8 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 container_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageContainerBackendConfigArgs', 'EdgeServicesBackendStageContainerBackendConfigArgsDict']]] = None,
+                 function_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageFunctionBackendConfigArgs', 'EdgeServicesBackendStageFunctionBackendConfigArgsDict']]] = None,
                  lb_backend_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesBackendStageLbBackendConfigArgs', 'EdgeServicesBackendStageLbBackendConfigArgsDict']]]]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -265,6 +339,49 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             }])
         ```
 
+        ### With Serverless Container backend
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.containers.Namespace("main", name="my-namespace")
+        main_container = scaleway.containers.Container("main",
+            namespace_id=main.id,
+            name="my-container",
+            image="nginx:1.29.4-alpine",
+            port=80)
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
+            container_backend_config={
+                "container_id": main_container.id,
+                "region": "fr-par",
+            })
+        ```
+
+        ### With Serverless Function backend
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main", name="my-namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            name="my-function",
+            runtime="node20",
+            privacy="private",
+            handler="handler.handle")
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
+            function_backend_config={
+                "function_id": main_function.id,
+                "region": "fr-par",
+            })
+        ```
+
         ## Import
 
         Backend stages can be imported using the `{id}`, e.g.
@@ -276,9 +393,13 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['EdgeServicesBackendStageContainerBackendConfigArgs', 'EdgeServicesBackendStageContainerBackendConfigArgsDict']] container_backend_config: The Scaleway Serverless Container backend linked to the backend stage.
+        :param pulumi.Input[Union['EdgeServicesBackendStageFunctionBackendConfigArgs', 'EdgeServicesBackendStageFunctionBackendConfigArgsDict']] function_backend_config: The Scaleway Serverless Function backend linked to the backend stage.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesBackendStageLbBackendConfigArgs', 'EdgeServicesBackendStageLbBackendConfigArgsDict']]]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
+               
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         :param pulumi.Input[Union['EdgeServicesBackendStageS3BackendConfigArgs', 'EdgeServicesBackendStageS3BackendConfigArgsDict']] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         """
         ...
@@ -341,6 +462,49 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             }])
         ```
 
+        ### With Serverless Container backend
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.containers.Namespace("main", name="my-namespace")
+        main_container = scaleway.containers.Container("main",
+            namespace_id=main.id,
+            name="my-container",
+            image="nginx:1.29.4-alpine",
+            port=80)
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
+            container_backend_config={
+                "container_id": main_container.id,
+                "region": "fr-par",
+            })
+        ```
+
+        ### With Serverless Function backend
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.functions.Namespace("main", name="my-namespace")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main.id,
+            name="my-function",
+            runtime="node20",
+            privacy="private",
+            handler="handler.handle")
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
+            function_backend_config={
+                "function_id": main_function.id,
+                "region": "fr-par",
+            })
+        ```
+
         ## Import
 
         Backend stages can be imported using the `{id}`, e.g.
@@ -365,6 +529,8 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 container_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageContainerBackendConfigArgs', 'EdgeServicesBackendStageContainerBackendConfigArgsDict']]] = None,
+                 function_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageFunctionBackendConfigArgs', 'EdgeServicesBackendStageFunctionBackendConfigArgsDict']]] = None,
                  lb_backend_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesBackendStageLbBackendConfigArgs', 'EdgeServicesBackendStageLbBackendConfigArgsDict']]]]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -379,6 +545,8 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = EdgeServicesBackendStageArgs.__new__(EdgeServicesBackendStageArgs)
 
+            __props__.__dict__["container_backend_config"] = container_backend_config
+            __props__.__dict__["function_backend_config"] = function_backend_config
             __props__.__dict__["lb_backend_configs"] = lb_backend_configs
             if pipeline_id is None and not opts.urn:
                 raise TypeError("Missing required property 'pipeline_id'")
@@ -397,7 +565,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            container_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageContainerBackendConfigArgs', 'EdgeServicesBackendStageContainerBackendConfigArgsDict']]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            function_backend_config: pulumi.Input[Optional[Union['EdgeServicesBackendStageFunctionBackendConfigArgs', 'EdgeServicesBackendStageFunctionBackendConfigArgsDict']]] = None,
             lb_backend_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesBackendStageLbBackendConfigArgs', 'EdgeServicesBackendStageLbBackendConfigArgsDict']]]]] = None,
             pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -410,10 +580,14 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['EdgeServicesBackendStageContainerBackendConfigArgs', 'EdgeServicesBackendStageContainerBackendConfigArgsDict']] container_backend_config: The Scaleway Serverless Container backend linked to the backend stage.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the backend stage.
+        :param pulumi.Input[Union['EdgeServicesBackendStageFunctionBackendConfigArgs', 'EdgeServicesBackendStageFunctionBackendConfigArgsDict']] function_backend_config: The Scaleway Serverless Function backend linked to the backend stage.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesBackendStageLbBackendConfigArgs', 'EdgeServicesBackendStageLbBackendConfigArgsDict']]]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
+               
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         :param pulumi.Input[Union['EdgeServicesBackendStageS3BackendConfigArgs', 'EdgeServicesBackendStageS3BackendConfigArgsDict']] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the backend stage.
         """
@@ -421,7 +595,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
 
         __props__ = _EdgeServicesBackendStageState.__new__(_EdgeServicesBackendStageState)
 
+        __props__.__dict__["container_backend_config"] = container_backend_config
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["function_backend_config"] = function_backend_config
         __props__.__dict__["lb_backend_configs"] = lb_backend_configs
         __props__.__dict__["pipeline_id"] = pipeline_id
         __props__.__dict__["project_id"] = project_id
@@ -430,12 +606,28 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
         return EdgeServicesBackendStage(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
+    @pulumi.getter(name="containerBackendConfig")
+    def container_backend_config(self) -> pulumi.Output[Optional['outputs.EdgeServicesBackendStageContainerBackendConfig']]:
+        """
+        The Scaleway Serverless Container backend linked to the backend stage.
+        """
+        return pulumi.get(self, "container_backend_config")
+
+    @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
         """
         The date and time of the creation of the backend stage.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="functionBackendConfig")
+    def function_backend_config(self) -> pulumi.Output[Optional['outputs.EdgeServicesBackendStageFunctionBackendConfig']]:
+        """
+        The Scaleway Serverless Function backend linked to the backend stage.
+        """
+        return pulumi.get(self, "function_backend_config")
 
     @_builtins.property
     @pulumi.getter(name="lbBackendConfigs")
@@ -458,6 +650,8 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
         `project_id`) The ID of the project the backend stage is associated with.
+
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
         """
         return pulumi.get(self, "project_id")
 

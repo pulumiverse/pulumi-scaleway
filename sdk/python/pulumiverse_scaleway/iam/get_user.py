@@ -26,27 +26,104 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, email=None, id=None, organization_id=None, tags=None, user_id=None):
+    def __init__(__self__, account_root_user_id=None, created_at=None, deletable=None, email=None, first_name=None, id=None, last_login_at=None, last_name=None, locale=None, locked=None, mfa=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, phone_number=None, send_password_email=None, send_welcome_email=None, status=None, tags=None, type=None, updated_at=None, user_id=None, username=None):
+        if account_root_user_id and not isinstance(account_root_user_id, str):
+            raise TypeError("Expected argument 'account_root_user_id' to be a str")
+        pulumi.set(__self__, "account_root_user_id", account_root_user_id)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if deletable and not isinstance(deletable, bool):
+            raise TypeError("Expected argument 'deletable' to be a bool")
+        pulumi.set(__self__, "deletable", deletable)
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         pulumi.set(__self__, "email", email)
+        if first_name and not isinstance(first_name, str):
+            raise TypeError("Expected argument 'first_name' to be a str")
+        pulumi.set(__self__, "first_name", first_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if last_login_at and not isinstance(last_login_at, str):
+            raise TypeError("Expected argument 'last_login_at' to be a str")
+        pulumi.set(__self__, "last_login_at", last_login_at)
+        if last_name and not isinstance(last_name, str):
+            raise TypeError("Expected argument 'last_name' to be a str")
+        pulumi.set(__self__, "last_name", last_name)
+        if locale and not isinstance(locale, str):
+            raise TypeError("Expected argument 'locale' to be a str")
+        pulumi.set(__self__, "locale", locale)
+        if locked and not isinstance(locked, bool):
+            raise TypeError("Expected argument 'locked' to be a bool")
+        pulumi.set(__self__, "locked", locked)
+        if mfa and not isinstance(mfa, bool):
+            raise TypeError("Expected argument 'mfa' to be a bool")
+        pulumi.set(__self__, "mfa", mfa)
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if password and not isinstance(password, str):
+            raise TypeError("Expected argument 'password' to be a str")
+        pulumi.set(__self__, "password", password)
+        if password_wo and not isinstance(password_wo, str):
+            raise TypeError("Expected argument 'password_wo' to be a str")
+        pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version and not isinstance(password_wo_version, int):
+            raise TypeError("Expected argument 'password_wo_version' to be a int")
+        pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if phone_number and not isinstance(phone_number, str):
+            raise TypeError("Expected argument 'phone_number' to be a str")
+        pulumi.set(__self__, "phone_number", phone_number)
+        if send_password_email and not isinstance(send_password_email, bool):
+            raise TypeError("Expected argument 'send_password_email' to be a bool")
+        pulumi.set(__self__, "send_password_email", send_password_email)
+        if send_welcome_email and not isinstance(send_welcome_email, bool):
+            raise TypeError("Expected argument 'send_welcome_email' to be a bool")
+        pulumi.set(__self__, "send_welcome_email", send_welcome_email)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
         if user_id and not isinstance(user_id, str):
             raise TypeError("Expected argument 'user_id' to be a str")
         pulumi.set(__self__, "user_id", user_id)
+        if username and not isinstance(username, str):
+            raise TypeError("Expected argument 'username' to be a str")
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="accountRootUserId")
+    def account_root_user_id(self) -> _builtins.str:
+        return pulumi.get(self, "account_root_user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def deletable(self) -> _builtins.bool:
+        return pulumi.get(self, "deletable")
 
     @_builtins.property
     @pulumi.getter
     def email(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        return pulumi.get(self, "first_name")
 
     @_builtins.property
     @pulumi.getter
@@ -57,9 +134,69 @@ class GetUserResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="lastLoginAt")
+    def last_login_at(self) -> _builtins.str:
+        return pulumi.get(self, "last_login_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def locale(self) -> _builtins.str:
+        return pulumi.get(self, "locale")
+
+    @_builtins.property
+    @pulumi.getter
+    def locked(self) -> _builtins.bool:
+        return pulumi.get(self, "locked")
+
+    @_builtins.property
+    @pulumi.getter
+    def mfa(self) -> _builtins.bool:
+        return pulumi.get(self, "mfa")
+
+    @_builtins.property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> _builtins.str:
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> _builtins.str:
+        return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter(name="sendPasswordEmail")
+    def send_password_email(self) -> _builtins.bool:
+        return pulumi.get(self, "send_password_email")
+
+    @_builtins.property
+    @pulumi.getter(name="sendWelcomeEmail")
+    def send_welcome_email(self) -> _builtins.bool:
+        return pulumi.get(self, "send_welcome_email")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter
@@ -70,9 +207,24 @@ class GetUserResult:
         return pulumi.get(self, "tags")
 
     @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
 
 
 class AwaitableGetUserResult(GetUserResult):
@@ -81,11 +233,30 @@ class AwaitableGetUserResult(GetUserResult):
         if False:
             yield self
         return GetUserResult(
+            account_root_user_id=self.account_root_user_id,
+            created_at=self.created_at,
+            deletable=self.deletable,
             email=self.email,
+            first_name=self.first_name,
             id=self.id,
+            last_login_at=self.last_login_at,
+            last_name=self.last_name,
+            locale=self.locale,
+            locked=self.locked,
+            mfa=self.mfa,
             organization_id=self.organization_id,
+            password=self.password,
+            password_wo=self.password_wo,
+            password_wo_version=self.password_wo_version,
+            phone_number=self.phone_number,
+            send_password_email=self.send_password_email,
+            send_welcome_email=self.send_welcome_email,
+            status=self.status,
             tags=self.tags,
-            user_id=self.user_id)
+            type=self.type,
+            updated_at=self.updated_at,
+            user_id=self.user_id,
+            username=self.username)
 
 
 def get_user(email: Optional[_builtins.str] = None,
@@ -127,11 +298,30 @@ def get_user(email: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:iam/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
+        account_root_user_id=pulumi.get(__ret__, 'account_root_user_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        deletable=pulumi.get(__ret__, 'deletable'),
         email=pulumi.get(__ret__, 'email'),
+        first_name=pulumi.get(__ret__, 'first_name'),
         id=pulumi.get(__ret__, 'id'),
+        last_login_at=pulumi.get(__ret__, 'last_login_at'),
+        last_name=pulumi.get(__ret__, 'last_name'),
+        locale=pulumi.get(__ret__, 'locale'),
+        locked=pulumi.get(__ret__, 'locked'),
+        mfa=pulumi.get(__ret__, 'mfa'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        password=pulumi.get(__ret__, 'password'),
+        password_wo=pulumi.get(__ret__, 'password_wo'),
+        password_wo_version=pulumi.get(__ret__, 'password_wo_version'),
+        phone_number=pulumi.get(__ret__, 'phone_number'),
+        send_password_email=pulumi.get(__ret__, 'send_password_email'),
+        send_welcome_email=pulumi.get(__ret__, 'send_welcome_email'),
+        status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
-        user_id=pulumi.get(__ret__, 'user_id'))
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        user_id=pulumi.get(__ret__, 'user_id'),
+        username=pulumi.get(__ret__, 'username'))
 def get_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
@@ -170,8 +360,27 @@ def get_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] = Non
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:iam/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
     return __ret__.apply(lambda __response__: GetUserResult(
+        account_root_user_id=pulumi.get(__response__, 'account_root_user_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        deletable=pulumi.get(__response__, 'deletable'),
         email=pulumi.get(__response__, 'email'),
+        first_name=pulumi.get(__response__, 'first_name'),
         id=pulumi.get(__response__, 'id'),
+        last_login_at=pulumi.get(__response__, 'last_login_at'),
+        last_name=pulumi.get(__response__, 'last_name'),
+        locale=pulumi.get(__response__, 'locale'),
+        locked=pulumi.get(__response__, 'locked'),
+        mfa=pulumi.get(__response__, 'mfa'),
         organization_id=pulumi.get(__response__, 'organization_id'),
+        password=pulumi.get(__response__, 'password'),
+        password_wo=pulumi.get(__response__, 'password_wo'),
+        password_wo_version=pulumi.get(__response__, 'password_wo_version'),
+        phone_number=pulumi.get(__response__, 'phone_number'),
+        send_password_email=pulumi.get(__response__, 'send_password_email'),
+        send_welcome_email=pulumi.get(__response__, 'send_welcome_email'),
+        status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
-        user_id=pulumi.get(__response__, 'user_id')))
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        user_id=pulumi.get(__response__, 'user_id'),
+        username=pulumi.get(__response__, 'username')))

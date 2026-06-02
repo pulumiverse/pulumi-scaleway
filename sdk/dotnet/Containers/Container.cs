@@ -73,6 +73,36 @@ namespace Pulumiverse.Scaleway.Containers
     /// });
     /// ```
     /// 
+    /// ### VPC integration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc = new Scaleway.Network.Vpc("vpc");
+    /// 
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
+    ///     {
+    ///         VpcId = vpc.Id,
+    ///     });
+    /// 
+    ///     var withPn = new Scaleway.Containers.Namespace("with_pn");
+    /// 
+    ///     var withPnContainer = new Scaleway.Containers.Container("with_pn", new()
+    ///     {
+    ///         NamespaceId = withPn.Id,
+    ///         Name = "container-with-private-network",
+    ///         Image = "my-image:latest",
+    ///         PrivateNetworkId = pn.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Redeploy the container everytime an update is made
     /// 
     /// ```csharp
@@ -297,6 +327,7 @@ namespace Pulumiverse.Scaleway.Containers
     ///     {
     ///         Name = "my-container",
     ///         NamespaceId = mainScalewayContainerNamespace.Id,
+    ///         Image = "nginx:latest",
     ///         LivenessProbe = new Scaleway.Containers.Inputs.ContainerLivenessProbeArgs
     ///         {
     ///             Http = new Scaleway.Containers.Inputs.ContainerLivenessProbeHttpArgs

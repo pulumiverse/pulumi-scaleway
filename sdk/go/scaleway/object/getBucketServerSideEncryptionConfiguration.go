@@ -88,7 +88,8 @@ type LookupBucketServerSideEncryptionConfigurationResult struct {
 	Bucket                                    *string `pulumi:"bucket"`
 	BucketServerSideEncryptionConfigurationId *string `pulumi:"bucketServerSideEncryptionConfigurationId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id     string `pulumi:"id"`
+	Region string `pulumi:"region"`
 	// (Set of Object) Set of server-side encryption configuration rules.
 	Rules []GetBucketServerSideEncryptionConfigurationRule `pulumi:"rules"`
 }
@@ -143,6 +144,10 @@ func (o LookupBucketServerSideEncryptionConfigurationResultOutput) BucketServerS
 // The provider-assigned unique ID for this managed resource.
 func (o LookupBucketServerSideEncryptionConfigurationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketServerSideEncryptionConfigurationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketServerSideEncryptionConfigurationResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketServerSideEncryptionConfigurationResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // (Set of Object) Set of server-side encryption configuration rules.

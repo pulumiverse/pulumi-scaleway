@@ -33,6 +33,22 @@ namespace Pulumiverse.Scaleway.Object.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
+        /// Configuration block that specifies when noncurrent object versions expire
+        /// </summary>
+        public readonly Outputs.BucketLifecycleRuleNoncurrentVersionExpiration? NoncurrentVersionExpiration;
+        /// <summary>
+        /// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        /// </summary>
+        public readonly ImmutableArray<Outputs.BucketLifecycleRuleNoncurrentVersionTransition> NoncurrentVersionTransitions;
+        /// <summary>
+        /// Minimum object size (in bytes) to which the rule applies
+        /// </summary>
+        public readonly int? ObjectSizeGreaterThan;
+        /// <summary>
+        /// Maximum object size (in bytes) to which the rule applies
+        /// </summary>
+        public readonly int? ObjectSizeLessThan;
+        /// <summary>
         /// Object key prefix identifying one or more objects to which the rule applies.
         /// </summary>
         public readonly string? Prefix;
@@ -55,6 +71,14 @@ namespace Pulumiverse.Scaleway.Object.Outputs
 
             string? id,
 
+            Outputs.BucketLifecycleRuleNoncurrentVersionExpiration? noncurrentVersionExpiration,
+
+            ImmutableArray<Outputs.BucketLifecycleRuleNoncurrentVersionTransition> noncurrentVersionTransitions,
+
+            int? objectSizeGreaterThan,
+
+            int? objectSizeLessThan,
+
             string? prefix,
 
             ImmutableDictionary<string, string>? tags,
@@ -65,6 +89,10 @@ namespace Pulumiverse.Scaleway.Object.Outputs
             Enabled = enabled;
             Expiration = expiration;
             Id = id;
+            NoncurrentVersionExpiration = noncurrentVersionExpiration;
+            NoncurrentVersionTransitions = noncurrentVersionTransitions;
+            ObjectSizeGreaterThan = objectSizeGreaterThan;
+            ObjectSizeLessThan = objectSizeLessThan;
             Prefix = prefix;
             Tags = tags;
             Transitions = transitions;

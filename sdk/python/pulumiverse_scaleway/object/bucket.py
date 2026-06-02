@@ -451,6 +451,91 @@ class Bucket(pulumi.CustomResource):
             })
         ```
 
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.object.Bucket("main",
+            name="mybuckectid",
+            region="fr-par",
+            lifecycle_rules=[
+                {
+                    "id": "id1",
+                    "prefix": "path1/",
+                    "enabled": True,
+                    "expiration": {
+                        "days": 365,
+                    },
+                    "transitions": [{
+                        "days": 120,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "id": "id2",
+                    "prefix": "path2/",
+                    "enabled": True,
+                    "expiration": {
+                        "days": 50,
+                    },
+                },
+                {
+                    "id": "id3",
+                    "prefix": "path3/",
+                    "enabled": False,
+                    "tags": {
+                        "tagKey": "tagValue",
+                        "terraform": "hashicorp",
+                    },
+                    "expiration": {
+                        "days": 1,
+                    },
+                },
+                {
+                    "id": "id4",
+                    "enabled": True,
+                    "tags": {
+                        "tag1": "value1",
+                    },
+                    "transitions": [{
+                        "days": 1,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "enabled": True,
+                    "abort_incomplete_multipart_upload_days": 30,
+                },
+            ])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.object.Bucket("main",
+            name="mybuckectid",
+            region="fr-par",
+            lifecycle_rules=[{
+                "id": "id1",
+                "prefix": "path1/",
+                "enabled": True,
+                "noncurrent_version_expiration": {
+                    "noncurrent_days": 90,
+                },
+                "noncurrent_version_transitions": [
+                    {
+                        "noncurrent_days": 30,
+                        "storage_class": "ONEZONE_IA",
+                    },
+                    {
+                        "noncurrent_days": 60,
+                        "storage_class": "GLACIER",
+                    },
+                ],
+            }])
+        ```
+
         ### Creating the bucket in a specific project
 
         ```python
@@ -578,6 +663,91 @@ class Bucket(pulumi.CustomResource):
             tags={
                 "key": "value",
             })
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.object.Bucket("main",
+            name="mybuckectid",
+            region="fr-par",
+            lifecycle_rules=[
+                {
+                    "id": "id1",
+                    "prefix": "path1/",
+                    "enabled": True,
+                    "expiration": {
+                        "days": 365,
+                    },
+                    "transitions": [{
+                        "days": 120,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "id": "id2",
+                    "prefix": "path2/",
+                    "enabled": True,
+                    "expiration": {
+                        "days": 50,
+                    },
+                },
+                {
+                    "id": "id3",
+                    "prefix": "path3/",
+                    "enabled": False,
+                    "tags": {
+                        "tagKey": "tagValue",
+                        "terraform": "hashicorp",
+                    },
+                    "expiration": {
+                        "days": 1,
+                    },
+                },
+                {
+                    "id": "id4",
+                    "enabled": True,
+                    "tags": {
+                        "tag1": "value1",
+                    },
+                    "transitions": [{
+                        "days": 1,
+                        "storage_class": "GLACIER",
+                    }],
+                },
+                {
+                    "enabled": True,
+                    "abort_incomplete_multipart_upload_days": 30,
+                },
+            ])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.object.Bucket("main",
+            name="mybuckectid",
+            region="fr-par",
+            lifecycle_rules=[{
+                "id": "id1",
+                "prefix": "path1/",
+                "enabled": True,
+                "noncurrent_version_expiration": {
+                    "noncurrent_days": 90,
+                },
+                "noncurrent_version_transitions": [
+                    {
+                        "noncurrent_days": 30,
+                        "storage_class": "ONEZONE_IA",
+                    },
+                    {
+                        "noncurrent_days": 60,
+                        "storage_class": "GLACIER",
+                    },
+                ],
+            }])
         ```
 
         ### Creating the bucket in a specific project

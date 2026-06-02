@@ -18,6 +18,55 @@ import * as utilities from "../utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const test = new scaleway.object.Bucket("test", {
+ *     name: "my-bucket",
+ *     region: "fr-par",
+ * });
+ * const mykey = new scaleway.keymanager.Key("mykey", {
+ *     name: "my-kms-key",
+ *     description: "This key is used to encrypt bucket objects",
+ *     usage: "asymmetric_encryption",
+ *     algorithm: "rsa_oaep_4096_sha256",
+ *     unprotected: true,
+ * });
+ * const testBucketServerSideEncryptionConfiguration = new scaleway.object.BucketServerSideEncryptionConfiguration("test", {
+ *     bucket: test.name,
+ *     region: "fr-par",
+ *     rules: [{
+ *         applyServerSideEncryptionByDefault: {
+ *             kmsMasterKeyId: mykey.name,
+ *             sseAlgorithm: "aws:kms",
+ *         },
+ *         bucketKeyEnabled: true,
+ *     }],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const test = new scaleway.object.Bucket("test", {
+ *     name: "my-bucket",
+ *     region: "fr-par",
+ * });
+ * const testBucketServerSideEncryptionConfiguration = new scaleway.object.BucketServerSideEncryptionConfiguration("test", {
+ *     bucket: test.name,
+ *     region: "fr-par",
+ *     rules: [{
+ *         applyServerSideEncryptionByDefault: {
+ *             kmsMasterKeyId: "my-key-id",
+ *             sseAlgorithm: "aws:kms",
+ *         },
+ *         bucketKeyEnabled: true,
+ *     }],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const test = new scaleway.object.Bucket("test", {
  *     name: "my-unique-bucket-name",
  *     region: "fr-par",
  * });
@@ -95,6 +144,10 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
      */
     declare public readonly bucket: pulumi.Output<string>;
     /**
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+     */
+    declare public readonly region: pulumi.Output<string | undefined>;
+    /**
      * Set of server-side encryption configuration rules
      */
     declare public readonly rules: pulumi.Output<outputs.object.BucketServerSideEncryptionConfigurationRule[]>;
@@ -113,6 +166,7 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
         if (opts.id) {
             const state = argsOrState as BucketServerSideEncryptionConfigurationState | undefined;
             resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["region"] = state?.region;
             resourceInputs["rules"] = state?.rules;
         } else {
             const args = argsOrState as BucketServerSideEncryptionConfigurationArgs | undefined;
@@ -123,6 +177,7 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
                 throw new Error("Missing required property 'rules'");
             }
             resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["region"] = args?.region;
             resourceInputs["rules"] = args?.rules;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -139,6 +194,10 @@ export interface BucketServerSideEncryptionConfigurationState {
      */
     bucket?: pulumi.Input<string | undefined>;
     /**
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+     */
+    region?: pulumi.Input<string | undefined>;
+    /**
      * Set of server-side encryption configuration rules
      */
     rules?: pulumi.Input<pulumi.Input<inputs.object.BucketServerSideEncryptionConfigurationRule>[] | undefined>;
@@ -152,6 +211,10 @@ export interface BucketServerSideEncryptionConfigurationArgs {
      * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
+    /**
+     * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+     */
+    region?: pulumi.Input<string | undefined>;
     /**
      * Set of server-side encryption configuration rules
      */

@@ -39,6 +39,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool IgnoreDaemonsetsUtilization;
         /// <summary>
+        /// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+        /// </summary>
+        public readonly int LogLevel;
+        /// <summary>
         /// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         /// </summary>
         public readonly int MaxGracefulTerminationSec;
@@ -54,6 +58,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         /// </summary>
         public readonly double ScaleDownUtilizationThreshold;
+        /// <summary>
+        /// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+        /// </summary>
+        public readonly bool SkipNodesWithLocalStorage;
 
         [OutputConstructor]
         private GetKubernetesClusterAutoscalerConfigResult(
@@ -69,13 +77,17 @@ namespace Pulumiverse.Scaleway.Outputs
 
             bool ignoreDaemonsetsUtilization,
 
+            int logLevel,
+
             int maxGracefulTerminationSec,
 
             string scaleDownDelayAfterAdd,
 
             string scaleDownUnneededTime,
 
-            double scaleDownUtilizationThreshold)
+            double scaleDownUtilizationThreshold,
+
+            bool skipNodesWithLocalStorage)
         {
             BalanceSimilarNodeGroups = balanceSimilarNodeGroups;
             DisableScaleDown = disableScaleDown;
@@ -83,10 +95,12 @@ namespace Pulumiverse.Scaleway.Outputs
             Expander = expander;
             ExpendablePodsPriorityCutoff = expendablePodsPriorityCutoff;
             IgnoreDaemonsetsUtilization = ignoreDaemonsetsUtilization;
+            LogLevel = logLevel;
             MaxGracefulTerminationSec = maxGracefulTerminationSec;
             ScaleDownDelayAfterAdd = scaleDownDelayAfterAdd;
             ScaleDownUnneededTime = scaleDownUnneededTime;
             ScaleDownUtilizationThreshold = scaleDownUtilizationThreshold;
+            SkipNodesWithLocalStorage = skipNodesWithLocalStorage;
         }
     }
 }

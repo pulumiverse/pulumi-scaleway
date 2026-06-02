@@ -622,6 +622,103 @@ func (o UserRoleArrayOutput) Index(i pulumi.IntInput) UserRoleOutput {
 	}).(UserRoleOutput)
 }
 
+type GetDatabasesDatabase struct {
+	// Name of the database.
+	Name string `pulumi:"name"`
+}
+
+// GetDatabasesDatabaseInput is an input type that accepts GetDatabasesDatabaseArgs and GetDatabasesDatabaseOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseInput` via:
+//
+//	GetDatabasesDatabaseArgs{...}
+type GetDatabasesDatabaseInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput
+	ToGetDatabasesDatabaseOutputWithContext(context.Context) GetDatabasesDatabaseOutput
+}
+
+type GetDatabasesDatabaseArgs struct {
+	// Name of the database.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetDatabasesDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseArgs) ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput {
+	return i.ToGetDatabasesDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseArgs) ToGetDatabasesDatabaseOutputWithContext(ctx context.Context) GetDatabasesDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseOutput)
+}
+
+// GetDatabasesDatabaseArrayInput is an input type that accepts GetDatabasesDatabaseArray and GetDatabasesDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetDatabasesDatabaseArrayInput` via:
+//
+//	GetDatabasesDatabaseArray{ GetDatabasesDatabaseArgs{...} }
+type GetDatabasesDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput
+	ToGetDatabasesDatabaseArrayOutputWithContext(context.Context) GetDatabasesDatabaseArrayOutput
+}
+
+type GetDatabasesDatabaseArray []GetDatabasesDatabaseInput
+
+func (GetDatabasesDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetDatabasesDatabaseArray) ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput {
+	return i.ToGetDatabasesDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabasesDatabaseArray) ToGetDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabasesDatabaseArrayOutput)
+}
+
+type GetDatabasesDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseOutput) ToGetDatabasesDatabaseOutput() GetDatabasesDatabaseOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseOutput) ToGetDatabasesDatabaseOutputWithContext(ctx context.Context) GetDatabasesDatabaseOutput {
+	return o
+}
+
+// Name of the database.
+func (o GetDatabasesDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesDatabase) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetDatabasesDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabasesDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetDatabasesDatabaseArrayOutput) ToGetDatabasesDatabaseArrayOutput() GetDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseArrayOutput) ToGetDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDatabasesDatabaseArrayOutput) Index(i pulumi.IntInput) GetDatabasesDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabasesDatabase {
+		return vs[0].([]GetDatabasesDatabase)[vs[1].(int)]
+	}).(GetDatabasesDatabaseOutput)
+}
+
 type GetInstancePrivateIp struct {
 	// The private IPv4 address
 	Address string `pulumi:"address"`
@@ -985,6 +1082,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePublicNetworkPtrInput)(nil)).Elem(), InstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserRoleInput)(nil)).Elem(), UserRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserRoleArrayInput)(nil)).Elem(), UserRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseInput)(nil)).Elem(), GetDatabasesDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabasesDatabaseArrayInput)(nil)).Elem(), GetDatabasesDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpInput)(nil)).Elem(), GetInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpArrayInput)(nil)).Elem(), GetInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNetworkInput)(nil)).Elem(), GetInstancePrivateNetworkArgs{})
@@ -999,6 +1098,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancePublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(UserRoleOutput{})
 	pulumi.RegisterOutputType(UserRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseOutput{})
+	pulumi.RegisterOutputType(GetDatabasesDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateNetworkOutput{})

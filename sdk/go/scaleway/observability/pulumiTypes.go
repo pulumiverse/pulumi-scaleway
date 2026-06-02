@@ -950,6 +950,581 @@ func (o TokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type GetConfigCustomLogsRetention struct {
+	// Default retention in days.
+	DefaultDays int `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays int `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays int `pulumi:"minDays"`
+}
+
+// GetConfigCustomLogsRetentionInput is an input type that accepts GetConfigCustomLogsRetentionArgs and GetConfigCustomLogsRetentionOutput values.
+// You can construct a concrete instance of `GetConfigCustomLogsRetentionInput` via:
+//
+//	GetConfigCustomLogsRetentionArgs{...}
+type GetConfigCustomLogsRetentionInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomLogsRetentionOutput() GetConfigCustomLogsRetentionOutput
+	ToGetConfigCustomLogsRetentionOutputWithContext(context.Context) GetConfigCustomLogsRetentionOutput
+}
+
+type GetConfigCustomLogsRetentionArgs struct {
+	// Default retention in days.
+	DefaultDays pulumi.IntInput `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays pulumi.IntInput `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays pulumi.IntInput `pulumi:"minDays"`
+}
+
+func (GetConfigCustomLogsRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomLogsRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomLogsRetentionArgs) ToGetConfigCustomLogsRetentionOutput() GetConfigCustomLogsRetentionOutput {
+	return i.ToGetConfigCustomLogsRetentionOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomLogsRetentionArgs) ToGetConfigCustomLogsRetentionOutputWithContext(ctx context.Context) GetConfigCustomLogsRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomLogsRetentionOutput)
+}
+
+// GetConfigCustomLogsRetentionArrayInput is an input type that accepts GetConfigCustomLogsRetentionArray and GetConfigCustomLogsRetentionArrayOutput values.
+// You can construct a concrete instance of `GetConfigCustomLogsRetentionArrayInput` via:
+//
+//	GetConfigCustomLogsRetentionArray{ GetConfigCustomLogsRetentionArgs{...} }
+type GetConfigCustomLogsRetentionArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomLogsRetentionArrayOutput() GetConfigCustomLogsRetentionArrayOutput
+	ToGetConfigCustomLogsRetentionArrayOutputWithContext(context.Context) GetConfigCustomLogsRetentionArrayOutput
+}
+
+type GetConfigCustomLogsRetentionArray []GetConfigCustomLogsRetentionInput
+
+func (GetConfigCustomLogsRetentionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomLogsRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomLogsRetentionArray) ToGetConfigCustomLogsRetentionArrayOutput() GetConfigCustomLogsRetentionArrayOutput {
+	return i.ToGetConfigCustomLogsRetentionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomLogsRetentionArray) ToGetConfigCustomLogsRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomLogsRetentionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomLogsRetentionArrayOutput)
+}
+
+type GetConfigCustomLogsRetentionOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomLogsRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomLogsRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomLogsRetentionOutput) ToGetConfigCustomLogsRetentionOutput() GetConfigCustomLogsRetentionOutput {
+	return o
+}
+
+func (o GetConfigCustomLogsRetentionOutput) ToGetConfigCustomLogsRetentionOutputWithContext(ctx context.Context) GetConfigCustomLogsRetentionOutput {
+	return o
+}
+
+// Default retention in days.
+func (o GetConfigCustomLogsRetentionOutput) DefaultDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomLogsRetention) int { return v.DefaultDays }).(pulumi.IntOutput)
+}
+
+// Maximum retention in days.
+func (o GetConfigCustomLogsRetentionOutput) MaxDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomLogsRetention) int { return v.MaxDays }).(pulumi.IntOutput)
+}
+
+// Minimum retention in days.
+func (o GetConfigCustomLogsRetentionOutput) MinDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomLogsRetention) int { return v.MinDays }).(pulumi.IntOutput)
+}
+
+type GetConfigCustomLogsRetentionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomLogsRetentionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomLogsRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomLogsRetentionArrayOutput) ToGetConfigCustomLogsRetentionArrayOutput() GetConfigCustomLogsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomLogsRetentionArrayOutput) ToGetConfigCustomLogsRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomLogsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomLogsRetentionArrayOutput) Index(i pulumi.IntInput) GetConfigCustomLogsRetentionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigCustomLogsRetention {
+		return vs[0].([]GetConfigCustomLogsRetention)[vs[1].(int)]
+	}).(GetConfigCustomLogsRetentionOutput)
+}
+
+type GetConfigCustomMetricsRetention struct {
+	// Default retention in days.
+	DefaultDays int `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays int `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays int `pulumi:"minDays"`
+}
+
+// GetConfigCustomMetricsRetentionInput is an input type that accepts GetConfigCustomMetricsRetentionArgs and GetConfigCustomMetricsRetentionOutput values.
+// You can construct a concrete instance of `GetConfigCustomMetricsRetentionInput` via:
+//
+//	GetConfigCustomMetricsRetentionArgs{...}
+type GetConfigCustomMetricsRetentionInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomMetricsRetentionOutput() GetConfigCustomMetricsRetentionOutput
+	ToGetConfigCustomMetricsRetentionOutputWithContext(context.Context) GetConfigCustomMetricsRetentionOutput
+}
+
+type GetConfigCustomMetricsRetentionArgs struct {
+	// Default retention in days.
+	DefaultDays pulumi.IntInput `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays pulumi.IntInput `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays pulumi.IntInput `pulumi:"minDays"`
+}
+
+func (GetConfigCustomMetricsRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomMetricsRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomMetricsRetentionArgs) ToGetConfigCustomMetricsRetentionOutput() GetConfigCustomMetricsRetentionOutput {
+	return i.ToGetConfigCustomMetricsRetentionOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomMetricsRetentionArgs) ToGetConfigCustomMetricsRetentionOutputWithContext(ctx context.Context) GetConfigCustomMetricsRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomMetricsRetentionOutput)
+}
+
+// GetConfigCustomMetricsRetentionArrayInput is an input type that accepts GetConfigCustomMetricsRetentionArray and GetConfigCustomMetricsRetentionArrayOutput values.
+// You can construct a concrete instance of `GetConfigCustomMetricsRetentionArrayInput` via:
+//
+//	GetConfigCustomMetricsRetentionArray{ GetConfigCustomMetricsRetentionArgs{...} }
+type GetConfigCustomMetricsRetentionArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomMetricsRetentionArrayOutput() GetConfigCustomMetricsRetentionArrayOutput
+	ToGetConfigCustomMetricsRetentionArrayOutputWithContext(context.Context) GetConfigCustomMetricsRetentionArrayOutput
+}
+
+type GetConfigCustomMetricsRetentionArray []GetConfigCustomMetricsRetentionInput
+
+func (GetConfigCustomMetricsRetentionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomMetricsRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomMetricsRetentionArray) ToGetConfigCustomMetricsRetentionArrayOutput() GetConfigCustomMetricsRetentionArrayOutput {
+	return i.ToGetConfigCustomMetricsRetentionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomMetricsRetentionArray) ToGetConfigCustomMetricsRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomMetricsRetentionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomMetricsRetentionArrayOutput)
+}
+
+type GetConfigCustomMetricsRetentionOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomMetricsRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomMetricsRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomMetricsRetentionOutput) ToGetConfigCustomMetricsRetentionOutput() GetConfigCustomMetricsRetentionOutput {
+	return o
+}
+
+func (o GetConfigCustomMetricsRetentionOutput) ToGetConfigCustomMetricsRetentionOutputWithContext(ctx context.Context) GetConfigCustomMetricsRetentionOutput {
+	return o
+}
+
+// Default retention in days.
+func (o GetConfigCustomMetricsRetentionOutput) DefaultDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomMetricsRetention) int { return v.DefaultDays }).(pulumi.IntOutput)
+}
+
+// Maximum retention in days.
+func (o GetConfigCustomMetricsRetentionOutput) MaxDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomMetricsRetention) int { return v.MaxDays }).(pulumi.IntOutput)
+}
+
+// Minimum retention in days.
+func (o GetConfigCustomMetricsRetentionOutput) MinDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomMetricsRetention) int { return v.MinDays }).(pulumi.IntOutput)
+}
+
+type GetConfigCustomMetricsRetentionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomMetricsRetentionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomMetricsRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomMetricsRetentionArrayOutput) ToGetConfigCustomMetricsRetentionArrayOutput() GetConfigCustomMetricsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomMetricsRetentionArrayOutput) ToGetConfigCustomMetricsRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomMetricsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomMetricsRetentionArrayOutput) Index(i pulumi.IntInput) GetConfigCustomMetricsRetentionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigCustomMetricsRetention {
+		return vs[0].([]GetConfigCustomMetricsRetention)[vs[1].(int)]
+	}).(GetConfigCustomMetricsRetentionOutput)
+}
+
+type GetConfigCustomTracesRetention struct {
+	// Default retention in days.
+	DefaultDays int `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays int `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays int `pulumi:"minDays"`
+}
+
+// GetConfigCustomTracesRetentionInput is an input type that accepts GetConfigCustomTracesRetentionArgs and GetConfigCustomTracesRetentionOutput values.
+// You can construct a concrete instance of `GetConfigCustomTracesRetentionInput` via:
+//
+//	GetConfigCustomTracesRetentionArgs{...}
+type GetConfigCustomTracesRetentionInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomTracesRetentionOutput() GetConfigCustomTracesRetentionOutput
+	ToGetConfigCustomTracesRetentionOutputWithContext(context.Context) GetConfigCustomTracesRetentionOutput
+}
+
+type GetConfigCustomTracesRetentionArgs struct {
+	// Default retention in days.
+	DefaultDays pulumi.IntInput `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays pulumi.IntInput `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays pulumi.IntInput `pulumi:"minDays"`
+}
+
+func (GetConfigCustomTracesRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomTracesRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomTracesRetentionArgs) ToGetConfigCustomTracesRetentionOutput() GetConfigCustomTracesRetentionOutput {
+	return i.ToGetConfigCustomTracesRetentionOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomTracesRetentionArgs) ToGetConfigCustomTracesRetentionOutputWithContext(ctx context.Context) GetConfigCustomTracesRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomTracesRetentionOutput)
+}
+
+// GetConfigCustomTracesRetentionArrayInput is an input type that accepts GetConfigCustomTracesRetentionArray and GetConfigCustomTracesRetentionArrayOutput values.
+// You can construct a concrete instance of `GetConfigCustomTracesRetentionArrayInput` via:
+//
+//	GetConfigCustomTracesRetentionArray{ GetConfigCustomTracesRetentionArgs{...} }
+type GetConfigCustomTracesRetentionArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigCustomTracesRetentionArrayOutput() GetConfigCustomTracesRetentionArrayOutput
+	ToGetConfigCustomTracesRetentionArrayOutputWithContext(context.Context) GetConfigCustomTracesRetentionArrayOutput
+}
+
+type GetConfigCustomTracesRetentionArray []GetConfigCustomTracesRetentionInput
+
+func (GetConfigCustomTracesRetentionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomTracesRetention)(nil)).Elem()
+}
+
+func (i GetConfigCustomTracesRetentionArray) ToGetConfigCustomTracesRetentionArrayOutput() GetConfigCustomTracesRetentionArrayOutput {
+	return i.ToGetConfigCustomTracesRetentionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigCustomTracesRetentionArray) ToGetConfigCustomTracesRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomTracesRetentionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigCustomTracesRetentionArrayOutput)
+}
+
+type GetConfigCustomTracesRetentionOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomTracesRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigCustomTracesRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomTracesRetentionOutput) ToGetConfigCustomTracesRetentionOutput() GetConfigCustomTracesRetentionOutput {
+	return o
+}
+
+func (o GetConfigCustomTracesRetentionOutput) ToGetConfigCustomTracesRetentionOutputWithContext(ctx context.Context) GetConfigCustomTracesRetentionOutput {
+	return o
+}
+
+// Default retention in days.
+func (o GetConfigCustomTracesRetentionOutput) DefaultDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomTracesRetention) int { return v.DefaultDays }).(pulumi.IntOutput)
+}
+
+// Maximum retention in days.
+func (o GetConfigCustomTracesRetentionOutput) MaxDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomTracesRetention) int { return v.MaxDays }).(pulumi.IntOutput)
+}
+
+// Minimum retention in days.
+func (o GetConfigCustomTracesRetentionOutput) MinDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigCustomTracesRetention) int { return v.MinDays }).(pulumi.IntOutput)
+}
+
+type GetConfigCustomTracesRetentionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigCustomTracesRetentionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigCustomTracesRetention)(nil)).Elem()
+}
+
+func (o GetConfigCustomTracesRetentionArrayOutput) ToGetConfigCustomTracesRetentionArrayOutput() GetConfigCustomTracesRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomTracesRetentionArrayOutput) ToGetConfigCustomTracesRetentionArrayOutputWithContext(ctx context.Context) GetConfigCustomTracesRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigCustomTracesRetentionArrayOutput) Index(i pulumi.IntInput) GetConfigCustomTracesRetentionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigCustomTracesRetention {
+		return vs[0].([]GetConfigCustomTracesRetention)[vs[1].(int)]
+	}).(GetConfigCustomTracesRetentionOutput)
+}
+
+type GetConfigProductLogsRetention struct {
+	// Default retention in days.
+	DefaultDays int `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays int `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays int `pulumi:"minDays"`
+}
+
+// GetConfigProductLogsRetentionInput is an input type that accepts GetConfigProductLogsRetentionArgs and GetConfigProductLogsRetentionOutput values.
+// You can construct a concrete instance of `GetConfigProductLogsRetentionInput` via:
+//
+//	GetConfigProductLogsRetentionArgs{...}
+type GetConfigProductLogsRetentionInput interface {
+	pulumi.Input
+
+	ToGetConfigProductLogsRetentionOutput() GetConfigProductLogsRetentionOutput
+	ToGetConfigProductLogsRetentionOutputWithContext(context.Context) GetConfigProductLogsRetentionOutput
+}
+
+type GetConfigProductLogsRetentionArgs struct {
+	// Default retention in days.
+	DefaultDays pulumi.IntInput `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays pulumi.IntInput `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays pulumi.IntInput `pulumi:"minDays"`
+}
+
+func (GetConfigProductLogsRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigProductLogsRetention)(nil)).Elem()
+}
+
+func (i GetConfigProductLogsRetentionArgs) ToGetConfigProductLogsRetentionOutput() GetConfigProductLogsRetentionOutput {
+	return i.ToGetConfigProductLogsRetentionOutputWithContext(context.Background())
+}
+
+func (i GetConfigProductLogsRetentionArgs) ToGetConfigProductLogsRetentionOutputWithContext(ctx context.Context) GetConfigProductLogsRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigProductLogsRetentionOutput)
+}
+
+// GetConfigProductLogsRetentionArrayInput is an input type that accepts GetConfigProductLogsRetentionArray and GetConfigProductLogsRetentionArrayOutput values.
+// You can construct a concrete instance of `GetConfigProductLogsRetentionArrayInput` via:
+//
+//	GetConfigProductLogsRetentionArray{ GetConfigProductLogsRetentionArgs{...} }
+type GetConfigProductLogsRetentionArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigProductLogsRetentionArrayOutput() GetConfigProductLogsRetentionArrayOutput
+	ToGetConfigProductLogsRetentionArrayOutputWithContext(context.Context) GetConfigProductLogsRetentionArrayOutput
+}
+
+type GetConfigProductLogsRetentionArray []GetConfigProductLogsRetentionInput
+
+func (GetConfigProductLogsRetentionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigProductLogsRetention)(nil)).Elem()
+}
+
+func (i GetConfigProductLogsRetentionArray) ToGetConfigProductLogsRetentionArrayOutput() GetConfigProductLogsRetentionArrayOutput {
+	return i.ToGetConfigProductLogsRetentionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigProductLogsRetentionArray) ToGetConfigProductLogsRetentionArrayOutputWithContext(ctx context.Context) GetConfigProductLogsRetentionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigProductLogsRetentionArrayOutput)
+}
+
+type GetConfigProductLogsRetentionOutput struct{ *pulumi.OutputState }
+
+func (GetConfigProductLogsRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigProductLogsRetention)(nil)).Elem()
+}
+
+func (o GetConfigProductLogsRetentionOutput) ToGetConfigProductLogsRetentionOutput() GetConfigProductLogsRetentionOutput {
+	return o
+}
+
+func (o GetConfigProductLogsRetentionOutput) ToGetConfigProductLogsRetentionOutputWithContext(ctx context.Context) GetConfigProductLogsRetentionOutput {
+	return o
+}
+
+// Default retention in days.
+func (o GetConfigProductLogsRetentionOutput) DefaultDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductLogsRetention) int { return v.DefaultDays }).(pulumi.IntOutput)
+}
+
+// Maximum retention in days.
+func (o GetConfigProductLogsRetentionOutput) MaxDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductLogsRetention) int { return v.MaxDays }).(pulumi.IntOutput)
+}
+
+// Minimum retention in days.
+func (o GetConfigProductLogsRetentionOutput) MinDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductLogsRetention) int { return v.MinDays }).(pulumi.IntOutput)
+}
+
+type GetConfigProductLogsRetentionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigProductLogsRetentionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigProductLogsRetention)(nil)).Elem()
+}
+
+func (o GetConfigProductLogsRetentionArrayOutput) ToGetConfigProductLogsRetentionArrayOutput() GetConfigProductLogsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigProductLogsRetentionArrayOutput) ToGetConfigProductLogsRetentionArrayOutputWithContext(ctx context.Context) GetConfigProductLogsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigProductLogsRetentionArrayOutput) Index(i pulumi.IntInput) GetConfigProductLogsRetentionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigProductLogsRetention {
+		return vs[0].([]GetConfigProductLogsRetention)[vs[1].(int)]
+	}).(GetConfigProductLogsRetentionOutput)
+}
+
+type GetConfigProductMetricsRetention struct {
+	// Default retention in days.
+	DefaultDays int `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays int `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays int `pulumi:"minDays"`
+}
+
+// GetConfigProductMetricsRetentionInput is an input type that accepts GetConfigProductMetricsRetentionArgs and GetConfigProductMetricsRetentionOutput values.
+// You can construct a concrete instance of `GetConfigProductMetricsRetentionInput` via:
+//
+//	GetConfigProductMetricsRetentionArgs{...}
+type GetConfigProductMetricsRetentionInput interface {
+	pulumi.Input
+
+	ToGetConfigProductMetricsRetentionOutput() GetConfigProductMetricsRetentionOutput
+	ToGetConfigProductMetricsRetentionOutputWithContext(context.Context) GetConfigProductMetricsRetentionOutput
+}
+
+type GetConfigProductMetricsRetentionArgs struct {
+	// Default retention in days.
+	DefaultDays pulumi.IntInput `pulumi:"defaultDays"`
+	// Maximum retention in days.
+	MaxDays pulumi.IntInput `pulumi:"maxDays"`
+	// Minimum retention in days.
+	MinDays pulumi.IntInput `pulumi:"minDays"`
+}
+
+func (GetConfigProductMetricsRetentionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigProductMetricsRetention)(nil)).Elem()
+}
+
+func (i GetConfigProductMetricsRetentionArgs) ToGetConfigProductMetricsRetentionOutput() GetConfigProductMetricsRetentionOutput {
+	return i.ToGetConfigProductMetricsRetentionOutputWithContext(context.Background())
+}
+
+func (i GetConfigProductMetricsRetentionArgs) ToGetConfigProductMetricsRetentionOutputWithContext(ctx context.Context) GetConfigProductMetricsRetentionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigProductMetricsRetentionOutput)
+}
+
+// GetConfigProductMetricsRetentionArrayInput is an input type that accepts GetConfigProductMetricsRetentionArray and GetConfigProductMetricsRetentionArrayOutput values.
+// You can construct a concrete instance of `GetConfigProductMetricsRetentionArrayInput` via:
+//
+//	GetConfigProductMetricsRetentionArray{ GetConfigProductMetricsRetentionArgs{...} }
+type GetConfigProductMetricsRetentionArrayInput interface {
+	pulumi.Input
+
+	ToGetConfigProductMetricsRetentionArrayOutput() GetConfigProductMetricsRetentionArrayOutput
+	ToGetConfigProductMetricsRetentionArrayOutputWithContext(context.Context) GetConfigProductMetricsRetentionArrayOutput
+}
+
+type GetConfigProductMetricsRetentionArray []GetConfigProductMetricsRetentionInput
+
+func (GetConfigProductMetricsRetentionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigProductMetricsRetention)(nil)).Elem()
+}
+
+func (i GetConfigProductMetricsRetentionArray) ToGetConfigProductMetricsRetentionArrayOutput() GetConfigProductMetricsRetentionArrayOutput {
+	return i.ToGetConfigProductMetricsRetentionArrayOutputWithContext(context.Background())
+}
+
+func (i GetConfigProductMetricsRetentionArray) ToGetConfigProductMetricsRetentionArrayOutputWithContext(ctx context.Context) GetConfigProductMetricsRetentionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConfigProductMetricsRetentionArrayOutput)
+}
+
+type GetConfigProductMetricsRetentionOutput struct{ *pulumi.OutputState }
+
+func (GetConfigProductMetricsRetentionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConfigProductMetricsRetention)(nil)).Elem()
+}
+
+func (o GetConfigProductMetricsRetentionOutput) ToGetConfigProductMetricsRetentionOutput() GetConfigProductMetricsRetentionOutput {
+	return o
+}
+
+func (o GetConfigProductMetricsRetentionOutput) ToGetConfigProductMetricsRetentionOutputWithContext(ctx context.Context) GetConfigProductMetricsRetentionOutput {
+	return o
+}
+
+// Default retention in days.
+func (o GetConfigProductMetricsRetentionOutput) DefaultDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductMetricsRetention) int { return v.DefaultDays }).(pulumi.IntOutput)
+}
+
+// Maximum retention in days.
+func (o GetConfigProductMetricsRetentionOutput) MaxDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductMetricsRetention) int { return v.MaxDays }).(pulumi.IntOutput)
+}
+
+// Minimum retention in days.
+func (o GetConfigProductMetricsRetentionOutput) MinDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetConfigProductMetricsRetention) int { return v.MinDays }).(pulumi.IntOutput)
+}
+
+type GetConfigProductMetricsRetentionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConfigProductMetricsRetentionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConfigProductMetricsRetention)(nil)).Elem()
+}
+
+func (o GetConfigProductMetricsRetentionArrayOutput) ToGetConfigProductMetricsRetentionArrayOutput() GetConfigProductMetricsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigProductMetricsRetentionArrayOutput) ToGetConfigProductMetricsRetentionArrayOutputWithContext(ctx context.Context) GetConfigProductMetricsRetentionArrayOutput {
+	return o
+}
+
+func (o GetConfigProductMetricsRetentionArrayOutput) Index(i pulumi.IntInput) GetConfigProductMetricsRetentionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConfigProductMetricsRetention {
+		return vs[0].([]GetConfigProductMetricsRetention)[vs[1].(int)]
+	}).(GetConfigProductMetricsRetentionOutput)
+}
+
 type GetExporterDatadogDestination struct {
 	// Datadog API key
 	ApiKey string `pulumi:"apiKey"`
@@ -1921,6 +2496,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExporterOtlpDestinationPtrInput)(nil)).Elem(), ExporterOtlpDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TokenScopesInput)(nil)).Elem(), TokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TokenScopesPtrInput)(nil)).Elem(), TokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomLogsRetentionInput)(nil)).Elem(), GetConfigCustomLogsRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomLogsRetentionArrayInput)(nil)).Elem(), GetConfigCustomLogsRetentionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomMetricsRetentionInput)(nil)).Elem(), GetConfigCustomMetricsRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomMetricsRetentionArrayInput)(nil)).Elem(), GetConfigCustomMetricsRetentionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomTracesRetentionInput)(nil)).Elem(), GetConfigCustomTracesRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigCustomTracesRetentionArrayInput)(nil)).Elem(), GetConfigCustomTracesRetentionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigProductLogsRetentionInput)(nil)).Elem(), GetConfigProductLogsRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigProductLogsRetentionArrayInput)(nil)).Elem(), GetConfigProductLogsRetentionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigProductMetricsRetentionInput)(nil)).Elem(), GetConfigProductMetricsRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigProductMetricsRetentionArrayInput)(nil)).Elem(), GetConfigProductMetricsRetentionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterDatadogDestinationInput)(nil)).Elem(), GetExporterDatadogDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterDatadogDestinationArrayInput)(nil)).Elem(), GetExporterDatadogDestinationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterOtlpDestinationInput)(nil)).Elem(), GetExporterOtlpDestinationArgs{})
@@ -1947,6 +2532,16 @@ func init() {
 	pulumi.RegisterOutputType(ExporterOtlpDestinationPtrOutput{})
 	pulumi.RegisterOutputType(TokenScopesOutput{})
 	pulumi.RegisterOutputType(TokenScopesPtrOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomLogsRetentionOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomLogsRetentionArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomMetricsRetentionOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomMetricsRetentionArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomTracesRetentionOutput{})
+	pulumi.RegisterOutputType(GetConfigCustomTracesRetentionArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigProductLogsRetentionOutput{})
+	pulumi.RegisterOutputType(GetConfigProductLogsRetentionArrayOutput{})
+	pulumi.RegisterOutputType(GetConfigProductMetricsRetentionOutput{})
+	pulumi.RegisterOutputType(GetConfigProductMetricsRetentionArrayOutput{})
 	pulumi.RegisterOutputType(GetExporterDatadogDestinationOutput{})
 	pulumi.RegisterOutputType(GetExporterDatadogDestinationArrayOutput{})
 	pulumi.RegisterOutputType(GetExporterOtlpDestinationOutput{})

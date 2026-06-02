@@ -44,7 +44,7 @@ class LinkArgs:
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
-        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the link is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the link should be created.
         :param pulumi.Input[_builtins.str] routing_policy_v4_id: If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
@@ -156,7 +156,7 @@ class LinkArgs:
     @pulumi.getter(name="peerAsn")
     def peer_asn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         """
         return pulumi.get(self, "peer_asn")
 
@@ -288,7 +288,7 @@ class _LinkState:
         :param pulumi.Input[_builtins.str] organization_id: Organization ID.
         :param pulumi.Input[_builtins.str] pairing_key: Used to identify a link from a user or partner's point of view.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
-        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         :param pulumi.Input[Sequence[pulumi.Input['LinkPeerBgpConfigArgs']]] peer_bgp_configs: BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
         :param pulumi.Input[_builtins.str] pop_id: PoP (location) where the link will be created.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the link is associated with.
@@ -473,7 +473,7 @@ class _LinkState:
     @pulumi.getter(name="peerAsn")
     def peer_asn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         """
         return pulumi.get(self, "peer_asn")
 
@@ -706,7 +706,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the link. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
-        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         :param pulumi.Input[_builtins.str] pop_id: PoP (location) where the link will be created.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the link is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the link should be created.
@@ -891,7 +891,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: Organization ID.
         :param pulumi.Input[_builtins.str] pairing_key: Used to identify a link from a user or partner's point of view.
         :param pulumi.Input[_builtins.str] partner_id: If set, creates a hosted link on a partner's connection. Specify the ID of the chosen partner, who already has a shared connection with available bandwidth. Conflicts with `connection_id`.
-        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        :param pulumi.Input[_builtins.int] peer_asn: For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LinkPeerBgpConfigArgs', 'LinkPeerBgpConfigArgsDict']]]] peer_bgp_configs: BGP configuration on peer's side (on-premises or other hosting provider). Contains `asn`, `ipv4`, `ipv6`.
         :param pulumi.Input[_builtins.str] pop_id: PoP (location) where the link will be created.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the link is associated with.
@@ -1018,7 +1018,7 @@ class Link(pulumi.CustomResource):
     @pulumi.getter(name="peerAsn")
     def peer_asn(self) -> pulumi.Output[_builtins.int]:
         """
-        For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+        For self-hosted links, the peer AS Number to establish BGP session. Required when `connection_id` is set.
         """
         return pulumi.get(self, "peer_asn")
 

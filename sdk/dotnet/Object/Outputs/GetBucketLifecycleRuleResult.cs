@@ -31,6 +31,22 @@ namespace Pulumiverse.Scaleway.Object.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Configuration block that specifies when noncurrent object versions expire
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetBucketLifecycleRuleNoncurrentVersionExpirationResult> NoncurrentVersionExpirations;
+        /// <summary>
+        /// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetBucketLifecycleRuleNoncurrentVersionTransitionResult> NoncurrentVersionTransitions;
+        /// <summary>
+        /// Minimum object size (in bytes) to which the rule applies
+        /// </summary>
+        public readonly int ObjectSizeGreaterThan;
+        /// <summary>
+        /// Maximum object size (in bytes) to which the rule applies
+        /// </summary>
+        public readonly int ObjectSizeLessThan;
+        /// <summary>
         /// The prefix identifying one or more objects to which the rule applies
         /// </summary>
         public readonly string Prefix;
@@ -53,6 +69,14 @@ namespace Pulumiverse.Scaleway.Object.Outputs
 
             string id,
 
+            ImmutableArray<Outputs.GetBucketLifecycleRuleNoncurrentVersionExpirationResult> noncurrentVersionExpirations,
+
+            ImmutableArray<Outputs.GetBucketLifecycleRuleNoncurrentVersionTransitionResult> noncurrentVersionTransitions,
+
+            int objectSizeGreaterThan,
+
+            int objectSizeLessThan,
+
             string prefix,
 
             ImmutableDictionary<string, string> tags,
@@ -63,6 +87,10 @@ namespace Pulumiverse.Scaleway.Object.Outputs
             Enabled = enabled;
             Expirations = expirations;
             Id = id;
+            NoncurrentVersionExpirations = noncurrentVersionExpirations;
+            NoncurrentVersionTransitions = noncurrentVersionTransitions;
+            ObjectSizeGreaterThan = objectSizeGreaterThan;
+            ObjectSizeLessThan = objectSizeLessThan;
             Prefix = prefix;
             Tags = tags;
             Transitions = transitions;

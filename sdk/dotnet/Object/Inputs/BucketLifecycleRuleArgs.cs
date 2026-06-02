@@ -40,6 +40,36 @@ namespace Pulumiverse.Scaleway.Object.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
+        /// Configuration block that specifies when noncurrent object versions expire
+        /// </summary>
+        [Input("noncurrentVersionExpiration")]
+        public Input<Inputs.BucketLifecycleRuleNoncurrentVersionExpirationArgs>? NoncurrentVersionExpiration { get; set; }
+
+        [Input("noncurrentVersionTransitions")]
+        private InputList<Inputs.BucketLifecycleRuleNoncurrentVersionTransitionArgs>? _noncurrentVersionTransitions;
+
+        /// <summary>
+        /// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        /// </summary>
+        public InputList<Inputs.BucketLifecycleRuleNoncurrentVersionTransitionArgs> NoncurrentVersionTransitions
+        {
+            get => _noncurrentVersionTransitions ?? (_noncurrentVersionTransitions = new InputList<Inputs.BucketLifecycleRuleNoncurrentVersionTransitionArgs>());
+            set => _noncurrentVersionTransitions = value;
+        }
+
+        /// <summary>
+        /// Minimum object size (in bytes) to which the rule applies
+        /// </summary>
+        [Input("objectSizeGreaterThan")]
+        public Input<int>? ObjectSizeGreaterThan { get; set; }
+
+        /// <summary>
+        /// Maximum object size (in bytes) to which the rule applies
+        /// </summary>
+        [Input("objectSizeLessThan")]
+        public Input<int>? ObjectSizeLessThan { get; set; }
+
+        /// <summary>
         /// Object key prefix identifying one or more objects to which the rule applies.
         /// </summary>
         [Input("prefix")]

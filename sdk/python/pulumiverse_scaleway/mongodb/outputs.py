@@ -19,6 +19,7 @@ __all__ = [
     'InstancePrivateNetwork',
     'InstancePublicNetwork',
     'UserRole',
+    'GetDatabasesDatabaseResult',
     'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstancePublicNetworkResult',
@@ -259,6 +260,24 @@ class UserRole(dict):
         The database name for the role. Cannot be used with `any_database`.
         """
         return pulumi.get(self, "database_name")
+
+
+@pulumi.output_type
+class GetDatabasesDatabaseResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: Name of the database.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of the database.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

@@ -27,7 +27,7 @@ class GetPoolResult:
     """
     A collection of values returned by getPool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -52,6 +52,9 @@ class GetPoolResult:
         if kubelet_args and not isinstance(kubelet_args, dict):
             raise TypeError("Expected argument 'kubelet_args' to be a dict")
         pulumi.set(__self__, "kubelet_args", kubelet_args)
+        if labels and not isinstance(labels, dict):
+            raise TypeError("Expected argument 'labels' to be a dict")
+        pulumi.set(__self__, "labels", labels)
         if max_size and not isinstance(max_size, int):
             raise TypeError("Expected argument 'max_size' to be a int")
         pulumi.set(__self__, "max_size", max_size)
@@ -91,12 +94,18 @@ class GetPoolResult:
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
+        if startup_taints and not isinstance(startup_taints, list):
+            raise TypeError("Expected argument 'startup_taints' to be a list")
+        pulumi.set(__self__, "startup_taints", startup_taints)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if taints and not isinstance(taints, list):
+            raise TypeError("Expected argument 'taints' to be a list")
+        pulumi.set(__self__, "taints", taints)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -170,6 +179,11 @@ class GetPoolResult:
     @pulumi.getter(name="kubeletArgs")
     def kubelet_args(self) -> Mapping[str, _builtins.str]:
         return pulumi.get(self, "kubelet_args")
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, _builtins.str]:
+        return pulumi.get(self, "labels")
 
     @_builtins.property
     @pulumi.getter(name="maxSize")
@@ -258,6 +272,11 @@ class GetPoolResult:
         return pulumi.get(self, "size")
 
     @_builtins.property
+    @pulumi.getter(name="startupTaints")
+    def startup_taints(self) -> Sequence['outputs.GetPoolStartupTaintResult']:
+        return pulumi.get(self, "startup_taints")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> _builtins.str:
         """
@@ -272,6 +291,11 @@ class GetPoolResult:
         The tags associated with the pool.
         """
         return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> Sequence['outputs.GetPoolTaintResult']:
+        return pulumi.get(self, "taints")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -319,6 +343,7 @@ class AwaitableGetPoolResult(GetPoolResult):
             current_size=self.current_size,
             id=self.id,
             kubelet_args=self.kubelet_args,
+            labels=self.labels,
             max_size=self.max_size,
             min_size=self.min_size,
             name=self.name,
@@ -332,8 +357,10 @@ class AwaitableGetPoolResult(GetPoolResult):
             root_volume_type=self.root_volume_type,
             security_group_id=self.security_group_id,
             size=self.size,
+            startup_taints=self.startup_taints,
             status=self.status,
             tags=self.tags,
+            taints=self.taints,
             updated_at=self.updated_at,
             upgrade_policies=self.upgrade_policies,
             version=self.version,
@@ -396,6 +423,7 @@ def get_pool(cluster_id: Optional[_builtins.str] = None,
         current_size=pulumi.get(__ret__, 'current_size'),
         id=pulumi.get(__ret__, 'id'),
         kubelet_args=pulumi.get(__ret__, 'kubelet_args'),
+        labels=pulumi.get(__ret__, 'labels'),
         max_size=pulumi.get(__ret__, 'max_size'),
         min_size=pulumi.get(__ret__, 'min_size'),
         name=pulumi.get(__ret__, 'name'),
@@ -409,8 +437,10 @@ def get_pool(cluster_id: Optional[_builtins.str] = None,
         root_volume_type=pulumi.get(__ret__, 'root_volume_type'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         size=pulumi.get(__ret__, 'size'),
+        startup_taints=pulumi.get(__ret__, 'startup_taints'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
+        taints=pulumi.get(__ret__, 'taints'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         upgrade_policies=pulumi.get(__ret__, 'upgrade_policies'),
         version=pulumi.get(__ret__, 'version'),
@@ -470,6 +500,7 @@ def get_pool_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] 
         current_size=pulumi.get(__response__, 'current_size'),
         id=pulumi.get(__response__, 'id'),
         kubelet_args=pulumi.get(__response__, 'kubelet_args'),
+        labels=pulumi.get(__response__, 'labels'),
         max_size=pulumi.get(__response__, 'max_size'),
         min_size=pulumi.get(__response__, 'min_size'),
         name=pulumi.get(__response__, 'name'),
@@ -483,8 +514,10 @@ def get_pool_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] 
         root_volume_type=pulumi.get(__response__, 'root_volume_type'),
         security_group_id=pulumi.get(__response__, 'security_group_id'),
         size=pulumi.get(__response__, 'size'),
+        startup_taints=pulumi.get(__response__, 'startup_taints'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
+        taints=pulumi.get(__response__, 'taints'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         upgrade_policies=pulumi.get(__response__, 'upgrade_policies'),
         version=pulumi.get(__response__, 'version'),

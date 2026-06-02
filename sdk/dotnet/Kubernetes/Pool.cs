@@ -166,6 +166,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Output<ImmutableDictionary<string, string>?> KubeletArgs { get; private set; } = null!;
 
         /// <summary>
+        /// The list of Kubernetes labels applied and reconciled on the nodes.
+        /// </summary>
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum size of the pool, used by the autoscaling feature.
         /// </summary>
         [Output("maxSize")]
@@ -250,6 +256,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
+        /// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        /// </summary>
+        [Output("startupTaints")]
+        public Output<ImmutableArray<Outputs.PoolStartupTaint>> StartupTaints { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the node.
         /// </summary>
         [Output("status")]
@@ -262,6 +274,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of Kubernetes taints applied and reconciled on the nodes.
+        /// </summary>
+        [Output("taints")]
+        public Output<ImmutableArray<Outputs.PoolTaint>> Taints { get; private set; } = null!;
 
         /// <summary>
         /// The last update date of the pool.
@@ -386,6 +404,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
             set => _kubeletArgs = value;
         }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The list of Kubernetes labels applied and reconciled on the nodes.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// The maximum size of the pool, used by the autoscaling feature.
         /// </summary>
@@ -464,6 +494,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
+        [Input("startupTaints")]
+        private InputList<Inputs.PoolStartupTaintArgs>? _startupTaints;
+
+        /// <summary>
+        /// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        /// </summary>
+        public InputList<Inputs.PoolStartupTaintArgs> StartupTaints
+        {
+            get => _startupTaints ?? (_startupTaints = new InputList<Inputs.PoolStartupTaintArgs>());
+            set => _startupTaints = value;
+        }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -476,6 +518,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
+        }
+
+        [Input("taints")]
+        private InputList<Inputs.PoolTaintArgs>? _taints;
+
+        /// <summary>
+        /// The list of Kubernetes taints applied and reconciled on the nodes.
+        /// </summary>
+        public InputList<Inputs.PoolTaintArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.PoolTaintArgs>());
+            set => _taints = value;
         }
 
         /// <summary>
@@ -556,6 +610,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
         {
             get => _kubeletArgs ?? (_kubeletArgs = new InputMap<string>());
             set => _kubeletArgs = value;
+        }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The list of Kubernetes labels applied and reconciled on the nodes.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
         }
 
         /// <summary>
@@ -648,6 +714,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
         [Input("size")]
         public Input<int>? Size { get; set; }
 
+        [Input("startupTaints")]
+        private InputList<Inputs.PoolStartupTaintGetArgs>? _startupTaints;
+
+        /// <summary>
+        /// The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        /// </summary>
+        public InputList<Inputs.PoolStartupTaintGetArgs> StartupTaints
+        {
+            get => _startupTaints ?? (_startupTaints = new InputList<Inputs.PoolStartupTaintGetArgs>());
+            set => _startupTaints = value;
+        }
+
         /// <summary>
         /// The status of the node.
         /// </summary>
@@ -666,6 +744,18 @@ namespace Pulumiverse.Scaleway.Kubernetes
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
+        }
+
+        [Input("taints")]
+        private InputList<Inputs.PoolTaintGetArgs>? _taints;
+
+        /// <summary>
+        /// The list of Kubernetes taints applied and reconciled on the nodes.
+        /// </summary>
+        public InputList<Inputs.PoolTaintGetArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.PoolTaintGetArgs>());
+            set => _taints = value;
         }
 
         /// <summary>

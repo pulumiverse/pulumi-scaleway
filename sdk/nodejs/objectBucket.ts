@@ -25,6 +25,93 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.object.Bucket("main", {
+ *     name: "mybuckectid",
+ *     region: "fr-par",
+ *     lifecycleRules: [
+ *         {
+ *             id: "id1",
+ *             prefix: "path1/",
+ *             enabled: true,
+ *             expiration: {
+ *                 days: 365,
+ *             },
+ *             transitions: [{
+ *                 days: 120,
+ *                 storageClass: "GLACIER",
+ *             }],
+ *         },
+ *         {
+ *             id: "id2",
+ *             prefix: "path2/",
+ *             enabled: true,
+ *             expiration: {
+ *                 days: 50,
+ *             },
+ *         },
+ *         {
+ *             id: "id3",
+ *             prefix: "path3/",
+ *             enabled: false,
+ *             tags: {
+ *                 tagKey: "tagValue",
+ *                 terraform: "hashicorp",
+ *             },
+ *             expiration: {
+ *                 days: 1,
+ *             },
+ *         },
+ *         {
+ *             id: "id4",
+ *             enabled: true,
+ *             tags: {
+ *                 tag1: "value1",
+ *             },
+ *             transitions: [{
+ *                 days: 1,
+ *                 storageClass: "GLACIER",
+ *             }],
+ *         },
+ *         {
+ *             enabled: true,
+ *             abortIncompleteMultipartUploadDays: 30,
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.object.Bucket("main", {
+ *     name: "mybuckectid",
+ *     region: "fr-par",
+ *     lifecycleRules: [{
+ *         id: "id1",
+ *         prefix: "path1/",
+ *         enabled: true,
+ *         noncurrentVersionExpiration: {
+ *             noncurrentDays: 90,
+ *         },
+ *         noncurrentVersionTransitions: [
+ *             {
+ *                 noncurrentDays: 30,
+ *                 storageClass: "ONEZONE_IA",
+ *             },
+ *             {
+ *                 noncurrentDays: 60,
+ *                 storageClass: "GLACIER",
+ *             },
+ *         ],
+ *     }],
+ * });
+ * ```
+ *
  * ### Creating the bucket in a specific project
  *
  * ```typescript

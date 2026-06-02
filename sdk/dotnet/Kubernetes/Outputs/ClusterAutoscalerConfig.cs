@@ -39,6 +39,13 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly bool? IgnoreDaemonsetsUtilization;
         /// <summary>
+        /// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
+        /// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
+        /// 
+        /// &gt; **Important:** For now, it is not possible to change the value of `LogLevel` after creation. Changes to this field will recreate a new cluster resource.
+        /// </summary>
+        public readonly int? LogLevel;
+        /// <summary>
         /// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         /// </summary>
         public readonly int? MaxGracefulTerminationSec;
@@ -54,6 +61,12 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         /// </summary>
         public readonly double? ScaleDownUtilizationThreshold;
+        /// <summary>
+        /// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+        /// 
+        /// &gt; **Important:** For now, it is not possible to change the value of `SkipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
+        /// </summary>
+        public readonly bool? SkipNodesWithLocalStorage;
 
         [OutputConstructor]
         private ClusterAutoscalerConfig(
@@ -69,13 +82,17 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
             bool? ignoreDaemonsetsUtilization,
 
+            int? logLevel,
+
             int? maxGracefulTerminationSec,
 
             string? scaleDownDelayAfterAdd,
 
             string? scaleDownUnneededTime,
 
-            double? scaleDownUtilizationThreshold)
+            double? scaleDownUtilizationThreshold,
+
+            bool? skipNodesWithLocalStorage)
         {
             BalanceSimilarNodeGroups = balanceSimilarNodeGroups;
             DisableScaleDown = disableScaleDown;
@@ -83,10 +100,12 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
             Expander = expander;
             ExpendablePodsPriorityCutoff = expendablePodsPriorityCutoff;
             IgnoreDaemonsetsUtilization = ignoreDaemonsetsUtilization;
+            LogLevel = logLevel;
             MaxGracefulTerminationSec = maxGracefulTerminationSec;
             ScaleDownDelayAfterAdd = scaleDownDelayAfterAdd;
             ScaleDownUnneededTime = scaleDownUnneededTime;
             ScaleDownUtilizationThreshold = scaleDownUtilizationThreshold;
+            SkipNodesWithLocalStorage = skipNodesWithLocalStorage;
         }
     }
 }

@@ -24,6 +24,99 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := object.NewBucket(ctx, "test", &object.BucketArgs{
+//				Name:   pulumi.String("my-bucket"),
+//				Region: pulumi.String("fr-par"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mykey, err := keymanager.NewKey(ctx, "mykey", &keymanager.KeyArgs{
+//				Name:        pulumi.String("my-kms-key"),
+//				Description: pulumi.String("This key is used to encrypt bucket objects"),
+//				Usage:       pulumi.String("asymmetric_encryption"),
+//				Algorithm:   pulumi.String("rsa_oaep_4096_sha256"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = object.NewBucketServerSideEncryptionConfiguration(ctx, "test", &object.BucketServerSideEncryptionConfigurationArgs{
+//				Bucket: test.Name,
+//				Region: pulumi.String("fr-par"),
+//				Rules: object.BucketServerSideEncryptionConfigurationRuleArray{
+//					&object.BucketServerSideEncryptionConfigurationRuleArgs{
+//						ApplyServerSideEncryptionByDefault: &object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{
+//							KmsMasterKeyId: mykey.Name,
+//							SseAlgorithm:   pulumi.String("aws:kms"),
+//						},
+//						BucketKeyEnabled: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := object.NewBucket(ctx, "test", &object.BucketArgs{
+//				Name:   pulumi.String("my-bucket"),
+//				Region: pulumi.String("fr-par"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = object.NewBucketServerSideEncryptionConfiguration(ctx, "test", &object.BucketServerSideEncryptionConfigurationArgs{
+//				Bucket: test.Name,
+//				Region: pulumi.String("fr-par"),
+//				Rules: object.BucketServerSideEncryptionConfigurationRuleArray{
+//					&object.BucketServerSideEncryptionConfigurationRuleArgs{
+//						ApplyServerSideEncryptionByDefault: &object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{
+//							KmsMasterKeyId: pulumi.String("my-key-id"),
+//							SseAlgorithm:   pulumi.String("aws:kms"),
+//						},
+//						BucketKeyEnabled: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
@@ -39,7 +132,7 @@ import (
 //			}
 //			_, err = object.NewBucketServerSideEncryptionConfiguration(ctx, "test", &object.BucketServerSideEncryptionConfigurationArgs{
 //				Bucket: test.Name,
-//				Region: "fr-par",
+//				Region: pulumi.String("fr-par"),
 //				Rules: object.BucketServerSideEncryptionConfigurationRuleArray{
 //					&object.BucketServerSideEncryptionConfigurationRuleArgs{
 //						ApplyServerSideEncryptionByDefault: &object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{
@@ -113,6 +206,8 @@ type BucketServerSideEncryptionConfiguration struct {
 
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Set of server-side encryption configuration rules
 	Rules BucketServerSideEncryptionConfigurationRuleArrayOutput `pulumi:"rules"`
 }
@@ -155,6 +250,8 @@ func GetBucketServerSideEncryptionConfiguration(ctx *pulumi.Context,
 type bucketServerSideEncryptionConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+	Region *string `pulumi:"region"`
 	// Set of server-side encryption configuration rules
 	Rules []BucketServerSideEncryptionConfigurationRule `pulumi:"rules"`
 }
@@ -162,6 +259,8 @@ type bucketServerSideEncryptionConfigurationState struct {
 type BucketServerSideEncryptionConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+	Region pulumi.StringPtrInput
 	// Set of server-side encryption configuration rules
 	Rules BucketServerSideEncryptionConfigurationRuleArrayInput
 }
@@ -173,6 +272,8 @@ func (BucketServerSideEncryptionConfigurationState) ElementType() reflect.Type {
 type bucketServerSideEncryptionConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+	Region *string `pulumi:"region"`
 	// Set of server-side encryption configuration rules
 	Rules []BucketServerSideEncryptionConfigurationRule `pulumi:"rules"`
 }
@@ -181,6 +282,8 @@ type bucketServerSideEncryptionConfigurationArgs struct {
 type BucketServerSideEncryptionConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
+	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+	Region pulumi.StringPtrInput
 	// Set of server-side encryption configuration rules
 	Rules BucketServerSideEncryptionConfigurationRuleArrayInput
 }
@@ -275,6 +378,11 @@ func (o BucketServerSideEncryptionConfigurationOutput) ToBucketServerSideEncrypt
 // The bucket's name or regional ID.
 func (o BucketServerSideEncryptionConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
+func (o BucketServerSideEncryptionConfigurationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Set of server-side encryption configuration rules

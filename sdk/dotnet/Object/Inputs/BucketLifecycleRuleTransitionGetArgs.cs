@@ -14,6 +14,12 @@ namespace Pulumiverse.Scaleway.Object.Inputs
     public sealed class BucketLifecycleRuleTransitionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        /// </summary>
+        [Input("date")]
+        public Input<string>? Date { get; set; }
+
+        /// <summary>
         /// Specifies the number of days after object creation when the specific rule action takes effect.
         /// </summary>
         [Input("days")]

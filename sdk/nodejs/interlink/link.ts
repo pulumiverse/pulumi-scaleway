@@ -134,7 +134,7 @@ export class Link extends pulumi.CustomResource {
      */
     declare public readonly partnerId: pulumi.Output<string | undefined>;
     /**
-     * For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+     * For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
      */
     declare public readonly peerAsn: pulumi.Output<number>;
     /**
@@ -306,7 +306,7 @@ export interface LinkState {
      */
     partnerId?: pulumi.Input<string | undefined>;
     /**
-     * For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+     * For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
      */
     peerAsn?: pulumi.Input<number | undefined>;
     /**
@@ -384,7 +384,7 @@ export interface LinkArgs {
      */
     partnerId?: pulumi.Input<string | undefined>;
     /**
-     * For self-hosted links, the peer AS Number to establish BGP session. If not given, a default one will be assigned.
+     * For self-hosted links, the peer AS Number to establish BGP session. Required when `connectionId` is set.
      */
     peerAsn?: pulumi.Input<number | undefined>;
     /**

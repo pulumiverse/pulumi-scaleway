@@ -92,7 +92,7 @@ export class CockpitSource extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
      */
     declare public readonly retentionDays: pulumi.Output<number>;
     /**
@@ -190,7 +190,7 @@ export interface CockpitSourceState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
      */
     retentionDays?: pulumi.Input<number | undefined>;
     /**
@@ -228,7 +228,7 @@ export interface CockpitSourceArgs {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
      */
     retentionDays: pulumi.Input<number>;
     /**
