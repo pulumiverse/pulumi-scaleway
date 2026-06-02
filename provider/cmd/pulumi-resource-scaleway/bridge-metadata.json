@@ -685,6 +685,12 @@
                 ],
                 "majorVersion": 1,
                 "fields": {
+                    "container_backend_config": {
+                        "maxItemsOne": true
+                    },
+                    "function_backend_config": {
+                        "maxItemsOne": true
+                    },
                     "lb_backend_config": {
                         "maxItemsOne": false,
                         "elem": {
@@ -1614,7 +1620,13 @@
                             }
                         }
                     },
+                    "startup_taints": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
+                        "maxItemsOne": false
+                    },
+                    "taints": {
                         "maxItemsOne": false
                     },
                     "upgrade_policy": {
@@ -2093,6 +2105,12 @@
                             "fields": {
                                 "expiration": {
                                     "maxItemsOne": true
+                                },
+                                "noncurrent_version_expiration": {
+                                    "maxItemsOne": true
+                                },
+                                "noncurrent_version_transition": {
+                                    "maxItemsOne": false
                                 },
                                 "transition": {
                                     "maxItemsOne": false
@@ -3059,6 +3077,27 @@
                     }
                 }
             },
+            "scaleway_cockpit_config": {
+                "current": "scaleway:observability/getConfig:getConfig",
+                "majorVersion": 1,
+                "fields": {
+                    "custom_logs_retention": {
+                        "maxItemsOne": false
+                    },
+                    "custom_metrics_retention": {
+                        "maxItemsOne": false
+                    },
+                    "custom_traces_retention": {
+                        "maxItemsOne": false
+                    },
+                    "product_logs_retention": {
+                        "maxItemsOne": false
+                    },
+                    "product_metrics_retention": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_cockpit_exporter": {
                 "current": "scaleway:observability/getExporter:getExporter",
                 "majorVersion": 1,
@@ -3403,6 +3442,12 @@
                 "current": "scaleway:edgeservices/getBackendStage:getBackendStage",
                 "majorVersion": 1,
                 "fields": {
+                    "container_backend_config": {
+                        "maxItemsOne": false
+                    },
+                    "function_backend_config": {
+                        "maxItemsOne": false
+                    },
                     "lb_backend_config": {
                         "maxItemsOne": false,
                         "elem": {
@@ -4178,7 +4223,13 @@
                             }
                         }
                     },
+                    "startup_taints": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
+                        "maxItemsOne": false
+                    },
+                    "taints": {
                         "maxItemsOne": false
                     },
                     "upgrade_policy": {
@@ -4620,6 +4671,15 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_mongodb_databases": {
+                "current": "scaleway:mongodb/getDatabases:getDatabases",
+                "majorVersion": 1,
+                "fields": {
+                    "databases": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_mongodb_instance": {
                 "current": "scaleway:mongodb/getInstance:getInstance",
                 "past": [
@@ -4694,6 +4754,12 @@
                         "elem": {
                             "fields": {
                                 "expiration": {
+                                    "maxItemsOne": false
+                                },
+                                "noncurrent_version_expiration": {
+                                    "maxItemsOne": false
+                                },
+                                "noncurrent_version_transition": {
                                     "maxItemsOne": false
                                 },
                                 "transition": {
@@ -6767,6 +6833,7 @@
             "scaleway:loadbalancers/getRoutes:getRoutes": 0,
             "scaleway:mnq/getSns:getSns": 0,
             "scaleway:mnq/getSqs:getSqs": 0,
+            "scaleway:mongodb/getDatabases:getDatabases": 0,
             "scaleway:mongodb/getInstance:getInstance": 0,
             "scaleway:network/getAcl:getAcl": 0,
             "scaleway:network/getConnector:getConnector": 0,
@@ -6785,6 +6852,7 @@
             "scaleway:object/getBucket:getBucket": 0,
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
             "scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration": 0,
+            "scaleway:observability/getConfig:getConfig": 0,
             "scaleway:observability/getExporter:getExporter": 0,
             "scaleway:observability/getGrafana:getGrafana": 0,
             "scaleway:observability/getInstance:getInstance": 0,
