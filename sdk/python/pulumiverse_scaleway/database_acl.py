@@ -230,9 +230,9 @@ class DatabaseAcl(pulumi.CustomResource):
             }
         main = scaleway.databases.Acl("main",
             acl_rules=[{
-                "ip": key,
-                "description": entry,
-            } for key, entry in sorted(allowed_ips.items())],
+                "ip": entry["key"],
+                "description": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(allowed_ips.items())]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 
@@ -330,9 +330,9 @@ class DatabaseAcl(pulumi.CustomResource):
             }
         main = scaleway.databases.Acl("main",
             acl_rules=[{
-                "ip": key,
-                "description": entry,
-            } for key, entry in sorted(allowed_ips.items())],
+                "ip": entry["key"],
+                "description": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(allowed_ips.items())]],
             instance_id=main_scaleway_rdb_instance["id"])
         ```
 

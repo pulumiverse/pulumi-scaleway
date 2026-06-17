@@ -75,9 +75,9 @@ import * as utilities from "./utilities";
  *     "5.6.7.8/32": "Home IP",
  * };
  * const main = new scaleway.databases.Acl("main", {
- *     aclRules: Object.entries(allowedIps).sort().map(([key, entry]) => ({
- *         ip: key,
- *         description: entry,
+ *     aclRules: Object.entries(allowedIps).sort().map(([k, v]) => ({key: k, value: v})).map(entry => ({
+ *         ip: entry.key,
+ *         description: entry.value,
  *     })),
  *     instanceId: mainScalewayRdbInstance.id,
  * });
