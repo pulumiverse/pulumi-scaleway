@@ -122,13 +122,13 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     ///     var dummy = new Scaleway.Instance.SecurityGroup("dummy", new()
     ///     {
-    ///         InboundRules = trusted.Select(entry =&gt; 
+    ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
     ///             return new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Port = 22,
-    ///                 IpRange = entry,
+    ///                 IpRange = entry.Value,
     ///             };
     ///         }).ToList(),
     ///         InboundDefaultPolicy = "drop",

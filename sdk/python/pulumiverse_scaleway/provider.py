@@ -245,7 +245,7 @@ class Provider(pulumi.ProviderResource):
 
             if access_key is None:
                 access_key = _utilities.get_env('SCW_ACCESS_KEY')
-            __props__.__dict__["access_key"] = access_key
+            __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["api_url"] = api_url
             if organization_id is None:
                 organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
@@ -259,10 +259,12 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["region"] = region
             if secret_key is None:
                 secret_key = _utilities.get_env('SCW_SECRET_KEY')
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             if zone is None:
                 zone = _utilities.get_env('SCW_DEFAULT_ZONE')
             __props__.__dict__["zone"] = zone
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'scaleway',
             resource_name,

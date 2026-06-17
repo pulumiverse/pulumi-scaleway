@@ -148,11 +148,13 @@ func Provider() tfbridge.ProviderInfo {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"SCW_ACCESS_KEY"},
 				},
+				Secret: tfbridge.True(),
 			},
 			"secret_key": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"SCW_SECRET_KEY"},
 				},
+				Secret: tfbridge.True(),
 			},
 			"organization_id": {
 				Default: &tfbridge.DefaultInfo{

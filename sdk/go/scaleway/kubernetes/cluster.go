@@ -124,7 +124,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-kubernetes/sdk/go/kubernetes/helm.sh/v3"
+//	"github.com/pulumi/pulumi-helm/sdk/go/helm"
 //	"github.com/pulumi/pulumi-null/sdk/go/null"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
@@ -184,19 +184,32 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = helm.sh / v3.NewRelease(ctx, "nginx_ingress", &helm.sh/v3.ReleaseArgs{
-//				Name:      "nginx-ingress",
-//				Namespace: "kube-system",
-//				RepositoryOpts: map[string]interface{}{
-//					"repo": "https://kubernetes.github.io/ingress-nginx",
-//				},
-//				Chart: "ingress-nginx",
-//				Values: map[string]interface{}{
-//					"controller.service.loadBalancerIP":    nginxIp.IpAddress,
-//					"controller.config.use-proxy-protocol": "true",
-//					"controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
-//					"controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone":              nginxIp.Zone,
-//					"controller.service.externalTrafficPolicy":                                                           "Local",
+//			_, err = helm.NewRelease(ctx, "nginx_ingress", &helm.ReleaseArgs{
+//				Name:       "nginx-ingress",
+//				Namespace:  "kube-system",
+//				Repository: "https://kubernetes.github.io/ingress-nginx",
+//				Chart:      "ingress-nginx",
+//				Set: []interface{}{
+//					map[string]interface{}{
+//						"name":  "controller.service.loadBalancerIP",
+//						"value": nginxIp.IpAddress,
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.config.use-proxy-protocol",
+//						"value": "true",
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2",
+//						"value": "true",
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone",
+//						"value": nginxIp.Zone,
+//					},
+//					map[string]interface{}{
+//						"name":  "controller.service.externalTrafficPolicy",
+//						"value": "Local",
+//					},
 //				},
 //			})
 //			if err != nil {
