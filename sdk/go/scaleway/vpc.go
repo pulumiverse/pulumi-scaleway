@@ -96,6 +96,8 @@ type Vpc struct {
 	EnableCustomRoutesPropagation pulumi.BoolOutput `pulumi:"enableCustomRoutesPropagation"`
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting pulumi.BoolOutput `pulumi:"enableRouting"`
+	// Enable packets from peered VPCs to transit through this VPC.
+	EnableTransitivity pulumi.BoolOutput `pulumi:"enableTransitivity"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault pulumi.BoolOutput `pulumi:"isDefault"`
 	// The name for the VPC. If not provided it will be randomly generated.
@@ -148,6 +150,8 @@ type vpcState struct {
 	EnableCustomRoutesPropagation *bool `pulumi:"enableCustomRoutesPropagation"`
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting *bool `pulumi:"enableRouting"`
+	// Enable packets from peered VPCs to transit through this VPC.
+	EnableTransitivity *bool `pulumi:"enableTransitivity"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault *bool `pulumi:"isDefault"`
 	// The name for the VPC. If not provided it will be randomly generated.
@@ -171,6 +175,8 @@ type VpcState struct {
 	EnableCustomRoutesPropagation pulumi.BoolPtrInput
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting pulumi.BoolPtrInput
+	// Enable packets from peered VPCs to transit through this VPC.
+	EnableTransitivity pulumi.BoolPtrInput
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault pulumi.BoolPtrInput
 	// The name for the VPC. If not provided it will be randomly generated.
@@ -196,6 +202,8 @@ type vpcArgs struct {
 	EnableCustomRoutesPropagation *bool `pulumi:"enableCustomRoutesPropagation"`
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting *bool `pulumi:"enableRouting"`
+	// Enable packets from peered VPCs to transit through this VPC.
+	EnableTransitivity *bool `pulumi:"enableTransitivity"`
 	// The name for the VPC. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the Project the VPC is associated with.
@@ -212,6 +220,8 @@ type VpcArgs struct {
 	EnableCustomRoutesPropagation pulumi.BoolPtrInput
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting pulumi.BoolPtrInput
+	// Enable packets from peered VPCs to transit through this VPC.
+	EnableTransitivity pulumi.BoolPtrInput
 	// The name for the VPC. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the Project the VPC is associated with.
@@ -322,6 +332,11 @@ func (o VpcOutput) EnableCustomRoutesPropagation() pulumi.BoolOutput {
 // Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 func (o VpcOutput) EnableRouting() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableRouting }).(pulumi.BoolOutput)
+}
+
+// Enable packets from peered VPCs to transit through this VPC.
+func (o VpcOutput) EnableTransitivity() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableTransitivity }).(pulumi.BoolOutput)
 }
 
 // Defines whether the VPC is the default one for its Project.

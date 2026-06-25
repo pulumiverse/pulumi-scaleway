@@ -23,16 +23,21 @@ class BucketServerSideEncryptionConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
                  rules: pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]],
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BucketServerSideEncryptionConfiguration resource.
 
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
+        :param pulumi.Input[_builtins.str] project_id: The ID of the
+               project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "rules", rules)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -61,6 +66,19 @@ class BucketServerSideEncryptionConfigurationArgs:
         pulumi.set(self, "rules", value)
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the
+        project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -77,17 +95,22 @@ class BucketServerSideEncryptionConfigurationArgs:
 class _BucketServerSideEncryptionConfigurationState:
     def __init__(__self__, *,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering BucketServerSideEncryptionConfiguration resources.
 
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the
+               project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']]] rules: Set of server-side encryption configuration rules
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if rules is not None:
@@ -104,6 +127,19 @@ class _BucketServerSideEncryptionConfigurationState:
     @bucket.setter
     def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the
+        project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -137,6 +173,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
                  __props__=None):
@@ -237,10 +274,16 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
         ```
 
+        <!--- Links, invisible in the final document --->
+
+        [1]: ../index.md#project_id
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the
+               project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
         """
@@ -347,6 +390,10 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
         ```
 
+        <!--- Links, invisible in the final document --->
+
+        [1]: ../index.md#project_id
+
 
         :param str resource_name: The name of the resource.
         :param BucketServerSideEncryptionConfigurationArgs args: The arguments to use to populate this resource's properties.
@@ -364,6 +411,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
                  __props__=None):
@@ -378,6 +426,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             if bucket is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             if rules is None and not opts.urn:
                 raise TypeError("Missing required property 'rules'")
@@ -393,6 +442,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
         """
@@ -403,6 +453,8 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The bucket's name or regional ID.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the
+               project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
         """
@@ -411,6 +463,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         __props__ = _BucketServerSideEncryptionConfigurationState.__new__(_BucketServerSideEncryptionConfigurationState)
 
         __props__.__dict__["bucket"] = bucket
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["rules"] = rules
         return BucketServerSideEncryptionConfiguration(resource_name, opts=opts, __props__=__props__)
@@ -422,6 +475,15 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         The bucket's name or regional ID.
         """
         return pulumi.get(self, "bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the
+        project the bucket is associated with.
+        """
+        return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter

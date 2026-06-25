@@ -1943,11 +1943,13 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 }
 
 type ContainerHealthCheck struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold *int `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https []ContainerHealthCheckHttp `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval *string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
@@ -1965,11 +1967,13 @@ type ContainerHealthCheckInput interface {
 }
 
 type ContainerHealthCheckArgs struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold pulumi.IntPtrInput `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval pulumi.StringPtrInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
@@ -2026,17 +2030,19 @@ func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutputWithContext(ctx 
 	return o
 }
 
-// Number of consecutive failures before considering the container has to be restarted.
+// Number of consecutive health check failures before considering the container unhealthy.
 func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *int { return v.FailureThreshold }).(pulumi.IntPtrOutput)
 }
 
-// Perform HTTP check on the container with the specified path.
+// HTTP health check configuration.
 func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
 }
 
-// Time interval between checks (in duration notation, e.g. "30s").
+// Period between health checks (in seconds).
+//
+// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 func (o ContainerHealthCheckOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *string { return v.Interval }).(pulumi.StringPtrOutput)
 }
@@ -2633,9 +2639,9 @@ type ContainerStartupProbe struct {
 	FailureThreshold int `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http *ContainerStartupProbeHttp `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval string `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout string `pulumi:"timeout"`
@@ -2657,9 +2663,9 @@ type ContainerStartupProbeArgs struct {
 	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http ContainerStartupProbeHttpPtrInput `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval pulumi.StringInput `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.StringInput `pulumi:"timeout"`
@@ -2752,12 +2758,12 @@ func (o ContainerStartupProbeOutput) Http() ContainerStartupProbeHttpPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *ContainerStartupProbeHttp { return v.Http }).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbeOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Interval }).(pulumi.StringOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
@@ -2811,7 +2817,7 @@ func (o ContainerStartupProbePtrOutput) Http() ContainerStartupProbeHttpPtrOutpu
 	}).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *string {
 		if v == nil {
@@ -2821,7 +2827,7 @@ func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *bool {
 		if v == nil {
@@ -3329,7 +3335,7 @@ func (o ContainerTriggerDestinationConfigPtrOutput) HttpPath() pulumi.StringPtrO
 }
 
 type ContainerTriggerNats struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent string `pulumi:"credentialsFileContent"`
@@ -3355,7 +3361,7 @@ type ContainerTriggerNatsInput interface {
 }
 
 type ContainerTriggerNatsArgs struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent pulumi.StringInput `pulumi:"credentialsFileContent"`
@@ -3446,7 +3452,7 @@ func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(c
 	}).(ContainerTriggerNatsPtrOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
@@ -3500,7 +3506,7 @@ func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
 	}).(ContainerTriggerNatsOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -3563,11 +3569,11 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 type ContainerTriggerSqs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey string `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint string `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue *string `pulumi:"queue"`
@@ -3593,11 +3599,11 @@ type ContainerTriggerSqsInput interface {
 type ContainerTriggerSqsArgs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue pulumi.StringPtrInput `pulumi:"queue"`
@@ -3691,7 +3697,7 @@ func (o ContainerTriggerSqsOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o ContainerTriggerSqsOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -3701,7 +3707,7 @@ func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o ContainerTriggerSqsOutput) Queue() pulumi.StringPtrOutput {
@@ -3757,7 +3763,7 @@ func (o ContainerTriggerSqsPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o ContainerTriggerSqsPtrOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -3777,7 +3783,7 @@ func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
@@ -18172,29 +18178,42 @@ func (o ObjectBucketCorsRuleArrayOutput) Index(i pulumi.IntInput) ObjectBucketCo
 }
 
 type ObjectBucketLifecycleRule struct {
-	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number
+	// of days after initiating a multipart upload when the multipart upload must
+	// be completed.
 	//
-	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+	// as any incomplete multipart upload will be billed.
 	AbortIncompleteMultipartUploadDays *int `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+	// The element value can be either Enabled or
+	// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+	// any of the actions defined in the rule.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies a period in the object's expire
+	// Specifies a period of expiration for the object.
 	Expiration *ObjectBucketLifecycleRuleExpiration `pulumi:"expiration"`
-	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+	// Unique identifier for the rule. Must be less than or
+	// equal to 255 characters in length.
 	Id *string `pulumi:"id"`
-	// Configuration block that specifies when noncurrent object versions expire
+	// Configuration block that
+	// specifies when noncurrent object versions expire. Supports the following:
 	NoncurrentVersionExpiration *ObjectBucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpiration"`
-	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	// Set of configuration blocks
+	// that specify the transition rule for the lifecycle rule that describes when
+	// noncurrent objects transition to a specific storage class. Supports the
+	// following:
 	NoncurrentVersionTransitions []ObjectBucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
-	// Minimum object size (in bytes) to which the rule applies
+	// Minimum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeGreaterThan *int `pulumi:"objectSizeGreaterThan"`
-	// Maximum object size (in bytes) to which the rule applies
+	// Maximum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeLessThan *int `pulumi:"objectSizeLessThan"`
-	// Object key prefix identifying one or more objects to which the rule applies.
+	// Object key prefix identifying one or more objects
+	// to which the rule applies.
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags map[string]string `pulumi:"tags"`
-	// Define when objects transition to another storage class
+	// Specifies a period in the object's transitions.
 	Transitions []ObjectBucketLifecycleRuleTransition `pulumi:"transitions"`
 }
 
@@ -18210,29 +18229,42 @@ type ObjectBucketLifecycleRuleInput interface {
 }
 
 type ObjectBucketLifecycleRuleArgs struct {
-	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number
+	// of days after initiating a multipart upload when the multipart upload must
+	// be completed.
 	//
-	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+	// as any incomplete multipart upload will be billed.
 	AbortIncompleteMultipartUploadDays pulumi.IntPtrInput `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+	// The element value can be either Enabled or
+	// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+	// any of the actions defined in the rule.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies a period in the object's expire
+	// Specifies a period of expiration for the object.
 	Expiration ObjectBucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
-	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+	// Unique identifier for the rule. Must be less than or
+	// equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Configuration block that specifies when noncurrent object versions expire
+	// Configuration block that
+	// specifies when noncurrent object versions expire. Supports the following:
 	NoncurrentVersionExpiration ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput `pulumi:"noncurrentVersionExpiration"`
-	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	// Set of configuration blocks
+	// that specify the transition rule for the lifecycle rule that describes when
+	// noncurrent objects transition to a specific storage class. Supports the
+	// following:
 	NoncurrentVersionTransitions ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
-	// Minimum object size (in bytes) to which the rule applies
+	// Minimum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeGreaterThan pulumi.IntPtrInput `pulumi:"objectSizeGreaterThan"`
-	// Maximum object size (in bytes) to which the rule applies
+	// Maximum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeLessThan pulumi.IntPtrInput `pulumi:"objectSizeLessThan"`
-	// Object key prefix identifying one or more objects to which the rule applies.
+	// Object key prefix identifying one or more objects
+	// to which the rule applies.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
-	// Define when objects transition to another storage class
+	// Specifies a period in the object's transitions.
 	Transitions ObjectBucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
 }
 
@@ -18287,53 +18319,66 @@ func (o ObjectBucketLifecycleRuleOutput) ToObjectBucketLifecycleRuleOutputWithCo
 	return o
 }
 
-// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+// Specifies the number
+// of days after initiating a multipart upload when the multipart upload must
+// be completed.
 //
-// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+// as any incomplete multipart upload will be billed.
 func (o ObjectBucketLifecycleRuleOutput) AbortIncompleteMultipartUploadDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.AbortIncompleteMultipartUploadDays }).(pulumi.IntPtrOutput)
 }
 
-// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+// The element value can be either Enabled or
+// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+// any of the actions defined in the rule.
 func (o ObjectBucketLifecycleRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies a period in the object's expire
+// Specifies a period of expiration for the object.
 func (o ObjectBucketLifecycleRuleOutput) Expiration() ObjectBucketLifecycleRuleExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleExpiration { return v.Expiration }).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
 
-// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+// Unique identifier for the rule. Must be less than or
+// equal to 255 characters in length.
 func (o ObjectBucketLifecycleRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Configuration block that specifies when noncurrent object versions expire
+// Configuration block that
+// specifies when noncurrent object versions expire. Supports the following:
 func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionExpiration() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
 		return v.NoncurrentVersionExpiration
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
 }
 
-// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+// Set of configuration blocks
+// that specify the transition rule for the lifecycle rule that describes when
+// noncurrent objects transition to a specific storage class. Supports the
+// following:
 func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionTransitions() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleNoncurrentVersionTransition {
 		return v.NoncurrentVersionTransitions
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
 }
 
-// Minimum object size (in bytes) to which the rule applies
+// Minimum object size (in bytes) to
+// which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeGreaterThan }).(pulumi.IntPtrOutput)
 }
 
-// Maximum object size (in bytes) to which the rule applies
+// Maximum object size (in bytes) to
+// which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeLessThan }).(pulumi.IntPtrOutput)
 }
 
-// Object key prefix identifying one or more objects to which the rule applies.
+// Object key prefix identifying one or more objects
+// to which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
@@ -18343,7 +18388,7 @@ func (o ObjectBucketLifecycleRuleOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Define when objects transition to another storage class
+// Specifies a period in the object's transitions.
 func (o ObjectBucketLifecycleRuleOutput) Transitions() ObjectBucketLifecycleRuleTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleTransition { return v.Transitions }).(ObjectBucketLifecycleRuleTransitionArrayOutput)
 }
@@ -18369,11 +18414,17 @@ func (o ObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) ObjectBuc
 }
 
 type ObjectBucketLifecycleRuleExpiration struct {
-	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date the object is to be moved or
+	// deleted. The date value must be in RFC3339 full-date format e.g.
+	// `2023-08-22`.
 	Date *string `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway
+	// Object will remove a delete marker with no noncurrent versions. If set
+	// to `true`, the delete marker will be expired; if set to `false` the
+	// policy takes no action.
 	ExpiredObjectDeleteMarker *bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -18389,11 +18440,17 @@ type ObjectBucketLifecycleRuleExpirationInput interface {
 }
 
 type ObjectBucketLifecycleRuleExpirationArgs struct {
-	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date the object is to be moved or
+	// deleted. The date value must be in RFC3339 full-date format e.g.
+	// `2023-08-22`.
 	Date pulumi.StringPtrInput `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway
+	// Object will remove a delete marker with no noncurrent versions. If set
+	// to `true`, the delete marker will be expired; if set to `false` the
+	// policy takes no action.
 	ExpiredObjectDeleteMarker pulumi.BoolPtrInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -18474,17 +18531,23 @@ func (o ObjectBucketLifecycleRuleExpirationOutput) ToObjectBucketLifecycleRuleEx
 	}).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
 
-// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date the object is to be moved or
+// deleted. The date value must be in RFC3339 full-date format e.g.
+// `2023-08-22`.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway
+// Object will remove a delete marker with no noncurrent versions. If set
+// to `true`, the delete marker will be expired; if set to `false` the
+// policy takes no action.
 func (o ObjectBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolPtrOutput)
 }
@@ -18513,7 +18576,9 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Elem() ObjectBucketLifecyc
 	}).(ObjectBucketLifecycleRuleExpirationOutput)
 }
 
-// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date the object is to be moved or
+// deleted. The date value must be in RFC3339 full-date format e.g.
+// `2023-08-22`.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *string {
 		if v == nil {
@@ -18523,7 +18588,8 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *int {
 		if v == nil {
@@ -18533,7 +18599,10 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway
+// Object will remove a delete marker with no noncurrent versions. If set
+// to `true`, the delete marker will be expired; if set to `false` the
+// policy takes no action.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *bool {
 		if v == nil {
@@ -18544,9 +18613,12 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker(
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionExpiration struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action. Must
+	// be a positive integer.
 	NoncurrentDays *int `pulumi:"noncurrentDays"`
 }
 
@@ -18562,9 +18634,12 @@ type ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput interface {
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action. Must
+	// be a positive integer.
 	NoncurrentDays pulumi.IntPtrInput `pulumi:"noncurrentDays"`
 }
 
@@ -18645,12 +18720,15 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBuck
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action. Must
+// be a positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NoncurrentDays }).(pulumi.IntPtrOutput)
 }
@@ -18679,7 +18757,8 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Elem() Ob
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
 		if v == nil {
@@ -18689,7 +18768,9 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNonc
 	}).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action. Must
+// be a positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NoncurrentDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
 		if v == nil {
@@ -18700,11 +18781,18 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Noncurren
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionTransition struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action.
 	NoncurrentDays int `pulumi:"noncurrentDays"`
-	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
+	//
+	// > **Important:** If versioning is enabled, this rule only deletes the current
+	// version of an object.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -18720,11 +18808,18 @@ type ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput interface {
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action.
 	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
-	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
+	//
+	// > **Important:** If versioning is enabled, this rule only deletes the current
+	// version of an object.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -18779,17 +18874,24 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToObjectBuck
 	return o
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
 }
 
-// Specifies the Scaleway Object Storage class to which you want the object to transition
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+// transition.
+//
+// > **Important:** If versioning is enabled, this rule only deletes the current
+// version of an object.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }
@@ -18815,17 +18917,22 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i
 }
 
 type ObjectBucketLifecycleRuleTransition struct {
-	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date objects are transitioned to the
+	// specified storage class. The date value must be in RFC3339 full-date
+	// format e.g. `2023-08-22`.
 	Date *string `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
 	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+	// storage class `GLACIER` is not available in `pl-waw` region.
 	//
-	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+	// `expiration`, `transition` must be specified.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -18841,17 +18948,22 @@ type ObjectBucketLifecycleRuleTransitionInput interface {
 }
 
 type ObjectBucketLifecycleRuleTransitionArgs struct {
-	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date objects are transitioned to the
+	// specified storage class. The date value must be in RFC3339 full-date
+	// format e.g. `2023-08-22`.
 	Date pulumi.StringPtrInput `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
 	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+	// storage class `GLACIER` is not available in `pl-waw` region.
 	//
-	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+	// `expiration`, `transition` must be specified.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -18906,23 +19018,28 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) ToObjectBucketLifecycleRuleTr
 	return o
 }
 
-// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date objects are transitioned to the
+// specified storage class. The date value must be in RFC3339 full-date
+// format e.g. `2023-08-22`.
 func (o ObjectBucketLifecycleRuleTransitionOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+// transition.
 //
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+// storage class `GLACIER` is not available in `pl-waw` region.
 //
-// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+// `expiration`, `transition` must be specified.
 func (o ObjectBucketLifecycleRuleTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }

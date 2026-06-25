@@ -15,15 +15,21 @@ namespace Pulumiverse.Scaleway.Object.Outputs
     public sealed class BucketLifecycleRuleExpiration
     {
         /// <summary>
-        /// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        /// Specifies the date the object is to be moved or
+        /// deleted. The date value must be in RFC3339 full-date format e.g.
+        /// `2023-08-22`.
         /// </summary>
         public readonly string? Date;
         /// <summary>
-        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// Specifies the number of days after object creation
+        /// when the specific rule action takes effect.
         /// </summary>
         public readonly int? Days;
         /// <summary>
-        /// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `True`, the delete marker will be expired; if set to `False` the policy takes no action
+        /// Specifies whether Scaleway
+        /// Object will remove a delete marker with no noncurrent versions. If set
+        /// to `True`, the delete marker will be expired; if set to `False` the
+        /// policy takes no action.
         /// </summary>
         public readonly bool? ExpiredObjectDeleteMarker;
 

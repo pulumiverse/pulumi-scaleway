@@ -17,6 +17,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,7 +32,7 @@ namespace Pulumiverse.Scaleway
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
-    ///         Version = "1.32.3",
+    ///         Version = "1.35.3",
     ///         Cni = "cilium",
     ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
@@ -39,6 +41,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 1,
@@ -46,6 +49,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Using AutoscalerConfig
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -61,7 +66,7 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "tf-cluster",
     ///         Description = "cluster made in terraform",
-    ///         Version = "1.32.3",
+    ///         Version = "1.35.3",
     ///         Cni = "calico",
     ///         Tags = new[]
     ///         {
@@ -84,6 +89,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 3,
@@ -96,6 +102,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With the Helm provider
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -106,13 +114,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Example with an Helm provider
     ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
-    ///         Version = "1.29.1",
+    ///         Version = "1.35.3",
     ///         Cni = "cilium",
     ///         DeleteAdditionalResources = false,
     ///         PrivateNetworkId = pn.Id,
@@ -121,6 +128,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 1,
@@ -187,6 +195,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With the Kubernetes provider
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -196,13 +206,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Example with the kubernetes provider 
     ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
-    ///         Version = "1.29.1",
+    ///         Version = "1.35.3",
     ///         Cni = "cilium",
     ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
@@ -211,6 +220,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         Name = "tf-pool",
     ///         NodeType = "DEV1-M",
     ///         Size = 1,
@@ -237,6 +247,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Multicloud
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -245,13 +257,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Multicloud Kubernetes Cluster Example
     ///     // For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Type = "multicloud",
-    ///         Version = "1.32.3",
+    ///         Version = "1.35.3",
     ///         Cni = "kilo",
     ///         DeleteAdditionalResources = false,
     ///     });
@@ -259,6 +270,7 @@ namespace Pulumiverse.Scaleway
     ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         Name = "tf-pool",
     ///         NodeType = "external",
     ///         Size = 0,
@@ -518,6 +530,15 @@ namespace Pulumiverse.Scaleway
         public Output<bool> UpgradeAvailable { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        /// If `False` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `Version` field in the pool resource.
+        /// If `True`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        /// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        /// </summary>
+        [Output("upgradePools")]
+        public Output<bool?> UpgradePools { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the Kubernetes cluster.
         /// </summary>
         [Output("version")]
@@ -734,6 +755,15 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        /// If `False` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `Version` field in the pool resource.
+        /// If `True`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        /// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        /// </summary>
+        [Input("upgradePools")]
+        public Input<bool>? UpgradePools { get; set; }
 
         /// <summary>
         /// The version of the Kubernetes cluster.
@@ -955,6 +985,15 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("upgradeAvailable")]
         public Input<bool>? UpgradeAvailable { get; set; }
+
+        /// <summary>
+        /// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        /// If `False` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `Version` field in the pool resource.
+        /// If `True`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        /// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        /// </summary>
+        [Input("upgradePools")]
+        public Input<bool>? UpgradePools { get; set; }
 
         /// <summary>
         /// The version of the Kubernetes cluster.

@@ -917,8 +917,8 @@ class GetProductsProductResult(dict):
                  name: _builtins.str):
         """
         :param _builtins.str display_name: Human-readable display name of the product.
-        :param _builtins.str family_name: Product family name.
-        :param _builtins.str name: Product name to use in exported_products (e.g. cockpit, LB, object-storage).
+        :param _builtins.str family_name: Product family category (e.g. `Compute`, `Network`, `Storage`).
+        :param _builtins.str name: The machine-readable product name to use in `exported_products` (e.g. `cockpit`, `lb`, `object-storage`).
         """
         pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "family_name", family_name)
@@ -936,7 +936,7 @@ class GetProductsProductResult(dict):
     @pulumi.getter(name="familyName")
     def family_name(self) -> _builtins.str:
         """
-        Product family name.
+        Product family category (e.g. `Compute`, `Network`, `Storage`).
         """
         return pulumi.get(self, "family_name")
 
@@ -944,7 +944,7 @@ class GetProductsProductResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Product name to use in exported_products (e.g. cockpit, LB, object-storage).
+        The machine-readable product name to use in `exported_products` (e.g. `cockpit`, `lb`, `object-storage`).
         """
         return pulumi.get(self, "name")
 

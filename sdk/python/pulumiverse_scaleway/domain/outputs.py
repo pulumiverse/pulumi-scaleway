@@ -291,16 +291,14 @@ class RegistrationAdministrativeContact(dict):
         suggest = None
         if key == "addressLine1":
             suggest = "address_line1"
-        elif key == "companyIdentificationCode":
-            suggest = "company_identification_code"
         elif key == "legalForm":
             suggest = "legal_form"
         elif key == "phoneNumber":
             suggest = "phone_number"
-        elif key == "vatIdentificationCode":
-            suggest = "vat_identification_code"
         elif key == "addressLine2":
             suggest = "address_line2"
+        elif key == "companyIdentificationCode":
+            suggest = "company_identification_code"
         elif key == "companyName":
             suggest = "company_name"
         elif key == "emailAlt":
@@ -313,6 +311,8 @@ class RegistrationAdministrativeContact(dict):
             suggest = "extension_nls"
         elif key == "faxNumber":
             suggest = "fax_number"
+        elif key == "vatIdentificationCode":
+            suggest = "vat_identification_code"
         elif key == "whoisOptIn":
             suggest = "whois_opt_in"
 
@@ -330,16 +330,15 @@ class RegistrationAdministrativeContact(dict):
     def __init__(__self__, *,
                  address_line1: _builtins.str,
                  city: _builtins.str,
-                 company_identification_code: _builtins.str,
                  country: _builtins.str,
                  email: _builtins.str,
                  firstname: _builtins.str,
                  lastname: _builtins.str,
                  legal_form: _builtins.str,
                  phone_number: _builtins.str,
-                 vat_identification_code: _builtins.str,
                  zip: _builtins.str,
                  address_line2: Optional[_builtins.str] = None,
+                 company_identification_code: Optional[_builtins.str] = None,
                  company_name: Optional[_builtins.str] = None,
                  email_alt: Optional[_builtins.str] = None,
                  extension_eu: Optional['outputs.RegistrationAdministrativeContactExtensionEu'] = None,
@@ -349,20 +348,20 @@ class RegistrationAdministrativeContact(dict):
                  lang: Optional[_builtins.str] = None,
                  resale: Optional[_builtins.bool] = None,
                  state: Optional[_builtins.str] = None,
+                 vat_identification_code: Optional[_builtins.str] = None,
                  whois_opt_in: Optional[_builtins.bool] = None):
         """
         :param _builtins.str address_line1: Primary address line for the contact.
         :param _builtins.str city: City of the contact's address.
-        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str country: Country code of the contact's address (ISO format).
         :param _builtins.str email: Primary email address of the contact.
         :param _builtins.str firstname: First name of the contact.
         :param _builtins.str lastname: Last name of the contact.
         :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param _builtins.str phone_number: Primary phone number of the contact.
-        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.str zip: Postal code of the contact's address.
         :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
         :param _builtins.str email_alt: Alternative email address for the contact.
         :param 'RegistrationAdministrativeContactExtensionEuArgs' extension_eu: Details specific to European domain extensions.
@@ -372,21 +371,22 @@ class RegistrationAdministrativeContact(dict):
         :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
         :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -405,6 +405,8 @@ class RegistrationAdministrativeContact(dict):
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -423,14 +425,6 @@ class RegistrationAdministrativeContact(dict):
         City of the contact's address.
         """
         return pulumi.get(self, "city")
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> _builtins.str:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter
@@ -481,14 +475,6 @@ class RegistrationAdministrativeContact(dict):
         return pulumi.get(self, "phone_number")
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> _builtins.str:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> _builtins.str:
         """
@@ -503,6 +489,14 @@ class RegistrationAdministrativeContact(dict):
         Secondary address line for the contact (optional).
         """
         return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> Optional[_builtins.str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -575,6 +569,14 @@ class RegistrationAdministrativeContact(dict):
         State or region of the contact.
         """
         return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> Optional[_builtins.str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")
@@ -1110,16 +1112,14 @@ class RegistrationOwnerContact(dict):
         suggest = None
         if key == "addressLine1":
             suggest = "address_line1"
-        elif key == "companyIdentificationCode":
-            suggest = "company_identification_code"
         elif key == "legalForm":
             suggest = "legal_form"
         elif key == "phoneNumber":
             suggest = "phone_number"
-        elif key == "vatIdentificationCode":
-            suggest = "vat_identification_code"
         elif key == "addressLine2":
             suggest = "address_line2"
+        elif key == "companyIdentificationCode":
+            suggest = "company_identification_code"
         elif key == "companyName":
             suggest = "company_name"
         elif key == "emailAlt":
@@ -1132,6 +1132,8 @@ class RegistrationOwnerContact(dict):
             suggest = "extension_nls"
         elif key == "faxNumber":
             suggest = "fax_number"
+        elif key == "vatIdentificationCode":
+            suggest = "vat_identification_code"
         elif key == "whoisOptIn":
             suggest = "whois_opt_in"
 
@@ -1149,16 +1151,15 @@ class RegistrationOwnerContact(dict):
     def __init__(__self__, *,
                  address_line1: _builtins.str,
                  city: _builtins.str,
-                 company_identification_code: _builtins.str,
                  country: _builtins.str,
                  email: _builtins.str,
                  firstname: _builtins.str,
                  lastname: _builtins.str,
                  legal_form: _builtins.str,
                  phone_number: _builtins.str,
-                 vat_identification_code: _builtins.str,
                  zip: _builtins.str,
                  address_line2: Optional[_builtins.str] = None,
+                 company_identification_code: Optional[_builtins.str] = None,
                  company_name: Optional[_builtins.str] = None,
                  email_alt: Optional[_builtins.str] = None,
                  extension_eu: Optional['outputs.RegistrationOwnerContactExtensionEu'] = None,
@@ -1168,20 +1169,20 @@ class RegistrationOwnerContact(dict):
                  lang: Optional[_builtins.str] = None,
                  resale: Optional[_builtins.bool] = None,
                  state: Optional[_builtins.str] = None,
+                 vat_identification_code: Optional[_builtins.str] = None,
                  whois_opt_in: Optional[_builtins.bool] = None):
         """
         :param _builtins.str address_line1: Primary address line for the contact.
         :param _builtins.str city: City of the contact's address.
-        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str country: Country code of the contact's address (ISO format).
         :param _builtins.str email: Primary email address of the contact.
         :param _builtins.str firstname: First name of the contact.
         :param _builtins.str lastname: Last name of the contact.
         :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param _builtins.str phone_number: Primary phone number of the contact.
-        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.str zip: Postal code of the contact's address.
         :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
         :param _builtins.str email_alt: Alternative email address for the contact.
         :param 'RegistrationOwnerContactExtensionEuArgs' extension_eu: Details specific to European domain extensions.
@@ -1191,21 +1192,22 @@ class RegistrationOwnerContact(dict):
         :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
         :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -1224,6 +1226,8 @@ class RegistrationOwnerContact(dict):
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -1242,14 +1246,6 @@ class RegistrationOwnerContact(dict):
         City of the contact's address.
         """
         return pulumi.get(self, "city")
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> _builtins.str:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter
@@ -1300,14 +1296,6 @@ class RegistrationOwnerContact(dict):
         return pulumi.get(self, "phone_number")
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> _builtins.str:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> _builtins.str:
         """
@@ -1322,6 +1310,14 @@ class RegistrationOwnerContact(dict):
         Secondary address line for the contact (optional).
         """
         return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> Optional[_builtins.str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -1394,6 +1390,14 @@ class RegistrationOwnerContact(dict):
         State or region of the contact.
         """
         return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> Optional[_builtins.str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")
@@ -1759,16 +1763,14 @@ class RegistrationTechnicalContact(dict):
         suggest = None
         if key == "addressLine1":
             suggest = "address_line1"
-        elif key == "companyIdentificationCode":
-            suggest = "company_identification_code"
         elif key == "legalForm":
             suggest = "legal_form"
         elif key == "phoneNumber":
             suggest = "phone_number"
-        elif key == "vatIdentificationCode":
-            suggest = "vat_identification_code"
         elif key == "addressLine2":
             suggest = "address_line2"
+        elif key == "companyIdentificationCode":
+            suggest = "company_identification_code"
         elif key == "companyName":
             suggest = "company_name"
         elif key == "emailAlt":
@@ -1781,6 +1783,8 @@ class RegistrationTechnicalContact(dict):
             suggest = "extension_nls"
         elif key == "faxNumber":
             suggest = "fax_number"
+        elif key == "vatIdentificationCode":
+            suggest = "vat_identification_code"
         elif key == "whoisOptIn":
             suggest = "whois_opt_in"
 
@@ -1798,16 +1802,15 @@ class RegistrationTechnicalContact(dict):
     def __init__(__self__, *,
                  address_line1: _builtins.str,
                  city: _builtins.str,
-                 company_identification_code: _builtins.str,
                  country: _builtins.str,
                  email: _builtins.str,
                  firstname: _builtins.str,
                  lastname: _builtins.str,
                  legal_form: _builtins.str,
                  phone_number: _builtins.str,
-                 vat_identification_code: _builtins.str,
                  zip: _builtins.str,
                  address_line2: Optional[_builtins.str] = None,
+                 company_identification_code: Optional[_builtins.str] = None,
                  company_name: Optional[_builtins.str] = None,
                  email_alt: Optional[_builtins.str] = None,
                  extension_eu: Optional['outputs.RegistrationTechnicalContactExtensionEu'] = None,
@@ -1817,20 +1820,20 @@ class RegistrationTechnicalContact(dict):
                  lang: Optional[_builtins.str] = None,
                  resale: Optional[_builtins.bool] = None,
                  state: Optional[_builtins.str] = None,
+                 vat_identification_code: Optional[_builtins.str] = None,
                  whois_opt_in: Optional[_builtins.bool] = None):
         """
         :param _builtins.str address_line1: Primary address line for the contact.
         :param _builtins.str city: City of the contact's address.
-        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str country: Country code of the contact's address (ISO format).
         :param _builtins.str email: Primary email address of the contact.
         :param _builtins.str firstname: First name of the contact.
         :param _builtins.str lastname: Last name of the contact.
         :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param _builtins.str phone_number: Primary phone number of the contact.
-        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.str zip: Postal code of the contact's address.
         :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
         :param _builtins.str email_alt: Alternative email address for the contact.
         :param 'RegistrationTechnicalContactExtensionEuArgs' extension_eu: Details specific to European domain extensions.
@@ -1840,21 +1843,22 @@ class RegistrationTechnicalContact(dict):
         :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
         :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
         :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -1873,6 +1877,8 @@ class RegistrationTechnicalContact(dict):
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -1891,14 +1897,6 @@ class RegistrationTechnicalContact(dict):
         City of the contact's address.
         """
         return pulumi.get(self, "city")
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> _builtins.str:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter
@@ -1949,14 +1947,6 @@ class RegistrationTechnicalContact(dict):
         return pulumi.get(self, "phone_number")
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> _builtins.str:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> _builtins.str:
         """
@@ -1971,6 +1961,14 @@ class RegistrationTechnicalContact(dict):
         Secondary address line for the contact (optional).
         """
         return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> Optional[_builtins.str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -2043,6 +2041,14 @@ class RegistrationTechnicalContact(dict):
         State or region of the contact.
         """
         return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> Optional[_builtins.str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")

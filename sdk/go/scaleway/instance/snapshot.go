@@ -160,7 +160,7 @@ type Snapshot struct {
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
@@ -221,7 +221,7 @@ type snapshotState struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
@@ -247,7 +247,7 @@ type SnapshotState struct {
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
@@ -271,7 +271,7 @@ type snapshotArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
@@ -292,7 +292,7 @@ type SnapshotArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
@@ -425,7 +425,7 @@ func (o SnapshotOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
 // Updates to this field will recreate a new resource.
 func (o SnapshotOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)

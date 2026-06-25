@@ -131,7 +131,7 @@ export class Snapshot extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
-     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+     * The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
      */
     declare public readonly type: pulumi.Output<string>;
@@ -222,7 +222,7 @@ export interface SnapshotState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+     * The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
      */
     type?: pulumi.Input<string | undefined>;
@@ -259,7 +259,7 @@ export interface SnapshotArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
+     * The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
      */
     type?: pulumi.Input<string | undefined>;

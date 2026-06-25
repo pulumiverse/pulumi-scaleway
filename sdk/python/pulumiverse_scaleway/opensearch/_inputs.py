@@ -125,7 +125,7 @@ class DeploymentEndpointServiceArgsDict(TypedDict):
     """
     url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+    Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
     """
 
 @pulumi.input_type
@@ -137,7 +137,7 @@ class DeploymentEndpointServiceArgs:
         """
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
         :param pulumi.Input[_builtins.int] port: Service port number.
-        :param pulumi.Input[_builtins.str] url: Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        :param pulumi.Input[_builtins.str] url: Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -174,7 +174,7 @@ class DeploymentEndpointServiceArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
         """
         return pulumi.get(self, "url")
 
@@ -186,7 +186,7 @@ class DeploymentEndpointServiceArgs:
 class DeploymentPrivateNetworkArgsDict(TypedDict):
     private_network_id: pulumi.Input[_builtins.str]
     """
-    Private network ID if the endpoint is private.
+    The ID of the private network. Format: `{region}/{id}` or just `{id}`.
     """
 
 @pulumi.input_type
@@ -194,7 +194,7 @@ class DeploymentPrivateNetworkArgs:
     def __init__(__self__, *,
                  private_network_id: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] private_network_id: Private network ID if the endpoint is private.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
 
@@ -202,7 +202,7 @@ class DeploymentPrivateNetworkArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Private network ID if the endpoint is private.
+        The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         """
         return pulumi.get(self, "private_network_id")
 

@@ -34,8 +34,8 @@ namespace Pulumiverse.Scaleway.Domain.Inputs
         /// <summary>
         /// Company identification code (e.g., SIREN/SIRET in France) for the contact.
         /// </summary>
-        [Input("companyIdentificationCode", required: true)]
-        public Input<string> CompanyIdentificationCode { get; set; } = null!;
+        [Input("companyIdentificationCode")]
+        public Input<string>? CompanyIdentificationCode { get; set; }
 
         /// <summary>
         /// Name of the company associated with the contact (if applicable).
@@ -136,8 +136,8 @@ namespace Pulumiverse.Scaleway.Domain.Inputs
         /// <summary>
         /// VAT identification code of the contact, if applicable.
         /// </summary>
-        [Input("vatIdentificationCode", required: true)]
-        public Input<string> VatIdentificationCode { get; set; } = null!;
+        [Input("vatIdentificationCode")]
+        public Input<string>? VatIdentificationCode { get; set; }
 
         /// <summary>
         /// Indicates whether the contact has opted into WHOIS publishing.

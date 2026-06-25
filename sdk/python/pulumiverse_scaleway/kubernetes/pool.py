@@ -42,6 +42,7 @@ class PoolArgs:
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input['PoolTaintArgs']]]] = None,
                  upgrade_policy: pulumi.Input[Optional['PoolUpgradePolicyArgs']] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -86,6 +87,10 @@ class PoolArgs:
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Sequence[pulumi.Input['PoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+               For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+               
+               > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
                
@@ -130,6 +135,8 @@ class PoolArgs:
             pulumi.set(__self__, "taints", taints)
         if upgrade_policy is not None:
             pulumi.set(__self__, "upgrade_policy", upgrade_policy)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
         if wait_for_pool_ready is not None:
             pulumi.set(__self__, "wait_for_pool_ready", wait_for_pool_ready)
         if zone is not None:
@@ -406,6 +413,21 @@ class PoolArgs:
         pulumi.set(self, "upgrade_policy", value)
 
     @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+
+        > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+    @_builtins.property
     @pulumi.getter(name="waitForPoolReady")
     def wait_for_pool_ready(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -511,7 +533,10 @@ class _PoolState:
         :param pulumi.Input[Sequence[pulumi.Input['PoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[_builtins.str] version: The version of the pool.
+        :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+               For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+               
+               > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
                
@@ -910,7 +935,10 @@ class _PoolState:
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The version of the pool.
+        The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+
+        > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         """
         return pulumi.get(self, "version")
 
@@ -972,6 +1000,7 @@ class Pool(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PoolTaintArgs', 'PoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -996,7 +1025,7 @@ class Pool(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="placement_group",
             cni="kilo",
-            version="1.32.3",
+            version="1.35.3",
             tags=[
                 "terraform-test",
                 "scaleway_k8s_cluster",
@@ -1007,6 +1036,7 @@ class Pool(pulumi.CustomResource):
         pool = scaleway.kubernetes.Pool("pool",
             name="placement_group",
             cluster_id=cluster.id,
+            version=cluster.version,
             node_type="gp1_xs",
             placement_group_id=placement_group.id,
             size=1,
@@ -1100,6 +1130,10 @@ class Pool(pulumi.CustomResource):
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Sequence[pulumi.Input[Union['PoolTaintArgs', 'PoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+               For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+               
+               > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
                
@@ -1132,7 +1166,7 @@ class Pool(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="placement_group",
             cni="kilo",
-            version="1.32.3",
+            version="1.35.3",
             tags=[
                 "terraform-test",
                 "scaleway_k8s_cluster",
@@ -1143,6 +1177,7 @@ class Pool(pulumi.CustomResource):
         pool = scaleway.kubernetes.Pool("pool",
             name="placement_group",
             cluster_id=cluster.id,
+            version=cluster.version,
             node_type="gp1_xs",
             placement_group_id=placement_group.id,
             size=1,
@@ -1231,6 +1266,7 @@ class Pool(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PoolTaintArgs', 'PoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -1269,6 +1305,7 @@ class Pool(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["taints"] = taints
             __props__.__dict__["upgrade_policy"] = upgrade_policy
+            __props__.__dict__["version"] = version
             __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
@@ -1276,7 +1313,6 @@ class Pool(pulumi.CustomResource):
             __props__.__dict__["nodes"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-            __props__.__dict__["version"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/kubernetesNodePool:KubernetesNodePool")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Pool, __self__).__init__(
@@ -1369,7 +1405,10 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['PoolTaintArgs', 'PoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
-        :param pulumi.Input[_builtins.str] version: The version of the pool.
+        :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+               For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+               
+               > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
                
@@ -1640,7 +1679,10 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.str]:
         """
-        The version of the pool.
+        The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+
+        > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         """
         return pulumi.get(self, "version")
 

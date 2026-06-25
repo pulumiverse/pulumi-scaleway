@@ -53,7 +53,7 @@ class ServerArgs:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+               > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
@@ -143,7 +143,7 @@ class ServerArgs:
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
-        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 
@@ -498,7 +498,7 @@ class _ServerState:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+               > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the offer.
         :param pulumi.Input[_builtins.str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input['ServerOptionArgs']]] options: The options to enable on the server.
@@ -712,7 +712,7 @@ class _ServerState:
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
-        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 
@@ -1079,7 +1079,7 @@ class Server(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+               > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[_builtins.str] os: The UUID of the os to install on the server.
@@ -1296,7 +1296,7 @@ class Server(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+               > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the offer.
         :param pulumi.Input[_builtins.str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]] options: The options to enable on the server.
@@ -1446,7 +1446,7 @@ class Server(pulumi.CustomResource):
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
-        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 

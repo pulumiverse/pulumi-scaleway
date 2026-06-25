@@ -147,6 +147,7 @@ export interface GetClusterResult {
      * True if a newer Kubernetes version is available.
      */
     readonly upgradeAvailable: boolean;
+    readonly upgradePools: boolean;
     /**
      * The version of the Kubernetes cluster.
      */

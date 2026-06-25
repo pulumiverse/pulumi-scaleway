@@ -600,7 +600,7 @@ class PublicGatewayDhcp(pulumi.CustomResource):
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        > **Important:**  The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        > **Important:** The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
         In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
         For more information, please refer to the dedicated guide.
 
@@ -652,7 +652,7 @@ class PublicGatewayDhcp(pulumi.CustomResource):
                  args: PublicGatewayDhcpArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        > **Important:**  The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        > **Important:** The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
         In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
         For more information, please refer to the dedicated guide.
 

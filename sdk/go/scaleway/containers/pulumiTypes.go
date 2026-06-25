@@ -14,11 +14,13 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ContainerHealthCheck struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold *int `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https []ContainerHealthCheckHttp `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval *string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
@@ -36,11 +38,13 @@ type ContainerHealthCheckInput interface {
 }
 
 type ContainerHealthCheckArgs struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold pulumi.IntPtrInput `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval pulumi.StringPtrInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
@@ -97,17 +101,19 @@ func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutputWithContext(ctx 
 	return o
 }
 
-// Number of consecutive failures before considering the container has to be restarted.
+// Number of consecutive health check failures before considering the container unhealthy.
 func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *int { return v.FailureThreshold }).(pulumi.IntPtrOutput)
 }
 
-// Perform HTTP check on the container with the specified path.
+// HTTP health check configuration.
 func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
 }
 
-// Time interval between checks (in duration notation, e.g. "30s").
+// Period between health checks (in seconds).
+//
+// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 func (o ContainerHealthCheckOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *string { return v.Interval }).(pulumi.StringPtrOutput)
 }
@@ -704,9 +710,9 @@ type ContainerStartupProbe struct {
 	FailureThreshold int `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http *ContainerStartupProbeHttp `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval string `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout string `pulumi:"timeout"`
@@ -728,9 +734,9 @@ type ContainerStartupProbeArgs struct {
 	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http ContainerStartupProbeHttpPtrInput `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval pulumi.StringInput `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.StringInput `pulumi:"timeout"`
@@ -823,12 +829,12 @@ func (o ContainerStartupProbeOutput) Http() ContainerStartupProbeHttpPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *ContainerStartupProbeHttp { return v.Http }).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbeOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Interval }).(pulumi.StringOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
@@ -882,7 +888,7 @@ func (o ContainerStartupProbePtrOutput) Http() ContainerStartupProbeHttpPtrOutpu
 	}).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *string {
 		if v == nil {
@@ -892,7 +898,7 @@ func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *bool {
 		if v == nil {
@@ -1400,7 +1406,7 @@ func (o TriggerDestinationConfigPtrOutput) HttpPath() pulumi.StringPtrOutput {
 }
 
 type TriggerNats struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent string `pulumi:"credentialsFileContent"`
@@ -1426,7 +1432,7 @@ type TriggerNatsInput interface {
 }
 
 type TriggerNatsArgs struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent pulumi.StringInput `pulumi:"credentialsFileContent"`
@@ -1517,7 +1523,7 @@ func (o TriggerNatsOutput) ToTriggerNatsPtrOutputWithContext(ctx context.Context
 	}).(TriggerNatsPtrOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o TriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
@@ -1571,7 +1577,7 @@ func (o TriggerNatsPtrOutput) Elem() TriggerNatsOutput {
 	}).(TriggerNatsOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o TriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TriggerNats) *string {
 		if v == nil {
@@ -1634,11 +1640,11 @@ func (o TriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 type TriggerSqs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey string `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint string `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue *string `pulumi:"queue"`
@@ -1664,11 +1670,11 @@ type TriggerSqsInput interface {
 type TriggerSqsArgs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue pulumi.StringPtrInput `pulumi:"queue"`
@@ -1762,7 +1768,7 @@ func (o TriggerSqsOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v TriggerSqs) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o TriggerSqsOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v TriggerSqs) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -1772,7 +1778,7 @@ func (o TriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o TriggerSqsOutput) Queue() pulumi.StringPtrOutput {
@@ -1828,7 +1834,7 @@ func (o TriggerSqsPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o TriggerSqsPtrOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TriggerSqs) *string {
 		if v == nil {
@@ -1848,7 +1854,7 @@ func (o TriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o TriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {

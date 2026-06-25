@@ -61,9 +61,11 @@ class ContainerHealthCheck(dict):
                  interval: Optional[_builtins.str] = None,
                  tcp: Optional[_builtins.bool] = None):
         """
-        :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
-        :param Sequence['ContainerHealthCheckHttpArgs'] https: Perform HTTP check on the container with the specified path.
-        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param _builtins.int failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
+        :param Sequence['ContainerHealthCheckHttpArgs'] https: HTTP health check configuration.
+        :param _builtins.str interval: Period between health checks (in seconds).
+               
+               > **Important:** Only one of `liveness_probe` or `health_check` can be set at a time.
         :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
         if failure_threshold is not None:
@@ -79,7 +81,7 @@ class ContainerHealthCheck(dict):
     @pulumi.getter(name="failureThreshold")
     def failure_threshold(self) -> Optional[_builtins.int]:
         """
-        Number of consecutive failures before considering the container has to be restarted.
+        Number of consecutive health check failures before considering the container unhealthy.
         """
         return pulumi.get(self, "failure_threshold")
 
@@ -87,7 +89,7 @@ class ContainerHealthCheck(dict):
     @pulumi.getter
     def https(self) -> Optional[Sequence['outputs.ContainerHealthCheckHttp']]:
         """
-        Perform HTTP check on the container with the specified path.
+        HTTP health check configuration.
         """
         return pulumi.get(self, "https")
 
@@ -95,7 +97,9 @@ class ContainerHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> Optional[_builtins.str]:
         """
-        Time interval between checks (in duration notation, e.g. "30s").
+        Period between health checks (in seconds).
+
+        > **Important:** Only one of `liveness_probe` or `health_check` can be set at a time.
         """
         return pulumi.get(self, "interval")
 
@@ -317,10 +321,10 @@ class ContainerStartupProbe(dict):
                  tcp: Optional[_builtins.bool] = None):
         """
         :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
-        :param _builtins.str interval: Time interval between checks (in duration notation).
+        :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
         :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         :param 'ContainerStartupProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
-        :param _builtins.bool tcp: Perform TCP check on the container
+        :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
         pulumi.set(__self__, "failure_threshold", failure_threshold)
         pulumi.set(__self__, "interval", interval)
@@ -342,7 +346,7 @@ class ContainerStartupProbe(dict):
     @pulumi.getter
     def interval(self) -> _builtins.str:
         """
-        Time interval between checks (in duration notation).
+        Time interval between checks (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "interval")
 
@@ -366,7 +370,7 @@ class ContainerStartupProbe(dict):
     @pulumi.getter
     def tcp(self) -> Optional[_builtins.bool]:
         """
-        Perform TCP check on the container
+        When set to `true`, performs TCP checks on the container.
         """
         return pulumi.get(self, "tcp")
 
@@ -526,7 +530,7 @@ class TriggerNats(dict):
         :param _builtins.str credentials_file_content: The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
         :param Sequence[_builtins.str] server_urls: The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
         :param _builtins.str subject: NATS subject to subscribe to (e.g., \\"my-subject\\")."
-        :param _builtins.str account_id: unique identifier of the Messaging and Queuing NATS account  .
+        :param _builtins.str account_id: unique identifier of the Messaging and Queuing NATS account.
         :param _builtins.str project_id: The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         :param _builtins.str region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
@@ -568,7 +572,7 @@ class TriggerNats(dict):
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[_builtins.str]:
         """
-        unique identifier of the Messaging and Queuing NATS account  .
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -624,11 +628,11 @@ class TriggerSqs(dict):
                  region: Optional[_builtins.str] = None):
         """
         :param _builtins.str access_key: The access key for accessing the SQS queue.
-        :param _builtins.str endpoint: Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        :param _builtins.str endpoint: Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
         :param _builtins.str queue_url: The URL of the SQS queue to monitor for messages.
         :param _builtins.str secret_key: The secret key for accessing the SQS queue.
         :param _builtins.str project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
-        :param _builtins.str queue: The name of the SQS queue.  This argument is no longer supported.
+        :param _builtins.str queue: The name of the SQS queue. This argument is no longer supported.
         :param _builtins.str region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -654,7 +658,7 @@ class TriggerSqs(dict):
     @pulumi.getter
     def endpoint(self) -> _builtins.str:
         """
-        Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
         """
         return pulumi.get(self, "endpoint")
 
@@ -687,7 +691,7 @@ class TriggerSqs(dict):
     @_utilities.deprecated("""This field is no longer supported, please use queue_url instead to identify the queue.""")
     def queue(self) -> Optional[_builtins.str]:
         """
-        The name of the SQS queue.  This argument is no longer supported.
+        The name of the SQS queue. This argument is no longer supported.
         """
         return pulumi.get(self, "queue")
 

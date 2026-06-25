@@ -15,6 +15,7 @@ from .get_policy import *
 from .get_saml import *
 from .get_saml_certificate import *
 from .get_scim import *
+from .get_scim_token import *
 from .get_ssh_key import *
 from .get_user import *
 from .group import *
@@ -23,6 +24,7 @@ from .policy import *
 from .saml import *
 from .saml_certificate import *
 from .scim import *
+from .scim_token import *
 from .ssh_key import *
 from .user import *
 from ._inputs import *

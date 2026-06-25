@@ -12,12 +12,264 @@ namespace Pulumiverse.Scaleway.Observability
 {
     public static class GetProducts
     {
+        /// <summary>
+        /// Gets the list of Cockpit products available for a specific region.
+        /// 
+        /// Use this data source to retrieve the list of products that can be exported via `scaleway.observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Get all available products
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["availableProducts"] = main.Apply(getProductsResult =&gt; getProductsResult.Products),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Use with CockpitExporter
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     var mainExporter = new Scaleway.Observability.Exporter("main", new()
+        ///     {
+        ///         Name = "my-exporter",
+        ///         Region = "fr-par",
+        ///         ExportedProducts = main.Apply(getProductsResult =&gt; getProductsResult.Names),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Filter products by family
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     // Filter to only compute products
+        ///     var computeProducts = .Where(p =&gt; p.FamilyName == "Compute").Select(p =&gt; 
+        ///     {
+        ///         return p.Name;
+        ///     }).ToList();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["computeProductNames"] = computeProducts,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetProductsResult> InvokeAsync(GetProductsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProductsResult>("scaleway:observability/getProducts:getProducts", args ?? new GetProductsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets the list of Cockpit products available for a specific region.
+        /// 
+        /// Use this data source to retrieve the list of products that can be exported via `scaleway.observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Get all available products
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["availableProducts"] = main.Apply(getProductsResult =&gt; getProductsResult.Products),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Use with CockpitExporter
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     var mainExporter = new Scaleway.Observability.Exporter("main", new()
+        ///     {
+        ///         Name = "my-exporter",
+        ///         Region = "fr-par",
+        ///         ExportedProducts = main.Apply(getProductsResult =&gt; getProductsResult.Names),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Filter products by family
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     // Filter to only compute products
+        ///     var computeProducts = .Where(p =&gt; p.FamilyName == "Compute").Select(p =&gt; 
+        ///     {
+        ///         return p.Name;
+        ///     }).ToList();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["computeProductNames"] = computeProducts,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetProductsResult> Invoke(GetProductsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProductsResult>("scaleway:observability/getProducts:getProducts", args ?? new GetProductsInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets the list of Cockpit products available for a specific region.
+        /// 
+        /// Use this data source to retrieve the list of products that can be exported via `scaleway.observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+        /// 
+        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### Get all available products
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["availableProducts"] = main.Apply(getProductsResult =&gt; getProductsResult.Products),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Use with CockpitExporter
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     var mainExporter = new Scaleway.Observability.Exporter("main", new()
+        ///     {
+        ///         Name = "my-exporter",
+        ///         Region = "fr-par",
+        ///         ExportedProducts = main.Apply(getProductsResult =&gt; getProductsResult.Names),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Filter products by family
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.Observability.GetProducts.Invoke(new()
+        ///     {
+        ///         Region = "fr-par",
+        ///     });
+        /// 
+        ///     // Filter to only compute products
+        ///     var computeProducts = .Where(p =&gt; p.FamilyName == "Compute").Select(p =&gt; 
+        ///     {
+        ///         return p.Name;
+        ///     }).ToList();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["computeProductNames"] = computeProducts,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetProductsResult> Invoke(GetProductsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetProductsResult>("scaleway:observability/getProducts:getProducts", args ?? new GetProductsInvokeArgs(), options.WithDefaults());
     }
@@ -26,7 +278,7 @@ namespace Pulumiverse.Scaleway.Observability
     public sealed class GetProductsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The region to query. Defaults to the region configured in the provider.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -40,7 +292,7 @@ namespace Pulumiverse.Scaleway.Observability
     public sealed class GetProductsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The region to query. Defaults to the region configured in the provider.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -60,16 +312,13 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// List of product names for use in scaleway*cockpit*exporter.exported_products.
+        /// List of product names that can be directly used in `scaleway_cockpit_exporter.exported_products`.
         /// </summary>
         public readonly ImmutableArray<string> Names;
         /// <summary>
-        /// List of Cockpit products available for exported*products in scaleway*cockpit_exporter.
+        /// List of available Cockpit products. (see below)
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProductsProductResult> Products;
-        /// <summary>
-        /// The region you want to attach the resource to
-        /// </summary>
         public readonly string? Region;
 
         [OutputConstructor]

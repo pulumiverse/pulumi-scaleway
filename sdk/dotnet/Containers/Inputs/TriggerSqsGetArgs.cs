@@ -30,7 +30,7 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
         }
 
         /// <summary>
-        /// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        /// Endpoint URL to use to access SQS (e.g., &lt;https://sqs.mnq.fr-par.scaleway.com&gt;).
         /// </summary>
         [Input("endpoint", required: true)]
         public Input<string> Endpoint { get; set; } = null!;
@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The name of the SQS queue.  This argument is no longer supported.
+        /// The name of the SQS queue. This argument is no longer supported.
         /// </summary>
         [Input("queue")]
         public Input<string>? Queue { get; set; }

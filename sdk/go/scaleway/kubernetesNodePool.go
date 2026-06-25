@@ -45,7 +45,7 @@ import (
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:    pulumi.String("placement_group"),
 //				Cni:     pulumi.String("kilo"),
-//				Version: pulumi.String("1.32.3"),
+//				Version: pulumi.String("1.35.3"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform-test"),
 //					pulumi.String("scaleway_k8s_cluster"),
@@ -60,6 +60,7 @@ import (
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				Name:             pulumi.String("placement_group"),
 //				ClusterId:        cluster.ID(),
+//				Version:          cluster.Version,
 //				NodeType:         pulumi.String("gp1_xs"),
 //				PlacementGroupId: placementGroup.ID(),
 //				Size:             pulumi.Int(1),
@@ -209,7 +210,10 @@ type KubernetesNodePool struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
-	// The version of the pool.
+	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+	//
+	// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrOutput `pulumi:"waitForPoolReady"`
@@ -328,7 +332,10 @@ type kubernetesNodePoolState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
-	// The version of the pool.
+	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+	//
+	// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
 	Version *string `pulumi:"version"`
 	// Whether to wait for the pool to be ready.
 	WaitForPoolReady *bool `pulumi:"waitForPoolReady"`
@@ -409,7 +416,10 @@ type KubernetesNodePoolState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
-	// The version of the pool.
+	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+	//
+	// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
 	Version pulumi.StringPtrInput
 	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrInput
@@ -484,6 +494,11 @@ type kubernetesNodePoolArgs struct {
 	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
+	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+	//
+	// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
+	Version *string `pulumi:"version"`
 	// Whether to wait for the pool to be ready.
 	WaitForPoolReady *bool `pulumi:"waitForPoolReady"`
 	// `zone`) The zone in which the pool should be created.
@@ -554,6 +569,11 @@ type KubernetesNodePoolArgs struct {
 	Taints KubernetesNodePoolTaintArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
+	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+	//
+	// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
+	Version pulumi.StringPtrInput
 	// Whether to wait for the pool to be ready.
 	WaitForPoolReady pulumi.BoolPtrInput
 	// `zone`) The zone in which the pool should be created.
@@ -797,7 +817,10 @@ func (o KubernetesNodePoolOutput) UpgradePolicy() KubernetesNodePoolUpgradePolic
 	return o.ApplyT(func(v *KubernetesNodePool) KubernetesNodePoolUpgradePolicyOutput { return v.UpgradePolicy }).(KubernetesNodePoolUpgradePolicyOutput)
 }
 
-// The version of the pool.
+// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+//
+// > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
 func (o KubernetesNodePoolOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

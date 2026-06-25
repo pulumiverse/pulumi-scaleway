@@ -106,7 +106,7 @@ type Server struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
-	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+	// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
@@ -242,7 +242,7 @@ type serverState struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
-	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+	// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
@@ -321,7 +321,7 @@ type ServerState struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
-	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+	// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
@@ -396,7 +396,7 @@ type serverArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
-	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+	// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer string `pulumi:"offer"`
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -460,7 +460,7 @@ type ServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
-	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+	// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringInput
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -644,7 +644,7 @@ func (o ServerOutput) Name() pulumi.StringOutput {
 // Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 //
 // > **Important:** Updates to `offer` will recreate the server.
-// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 func (o ServerOutput) Offer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Offer }).(pulumi.StringOutput)
 }

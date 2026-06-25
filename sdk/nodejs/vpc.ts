@@ -94,6 +94,10 @@ export class Vpc extends pulumi.CustomResource {
      */
     declare public readonly enableRouting: pulumi.Output<boolean>;
     /**
+     * Enable packets from peered VPCs to transit through this VPC.
+     */
+    declare public readonly enableTransitivity: pulumi.Output<boolean>;
+    /**
      * Defines whether the VPC is the default one for its Project.
      */
     declare public /*out*/ readonly isDefault: pulumi.Output<boolean>;
@@ -141,6 +145,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["enableCustomRoutesPropagation"] = state?.enableCustomRoutesPropagation;
             resourceInputs["enableRouting"] = state?.enableRouting;
+            resourceInputs["enableTransitivity"] = state?.enableTransitivity;
             resourceInputs["isDefault"] = state?.isDefault;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
@@ -152,6 +157,7 @@ export class Vpc extends pulumi.CustomResource {
             const args = argsOrState as VpcArgs | undefined;
             resourceInputs["enableCustomRoutesPropagation"] = args?.enableCustomRoutesPropagation;
             resourceInputs["enableRouting"] = args?.enableRouting;
+            resourceInputs["enableTransitivity"] = args?.enableTransitivity;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
@@ -182,6 +188,10 @@ export interface VpcState {
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
     enableRouting?: pulumi.Input<boolean | undefined>;
+    /**
+     * Enable packets from peered VPCs to transit through this VPC.
+     */
+    enableTransitivity?: pulumi.Input<boolean | undefined>;
     /**
      * Defines whether the VPC is the default one for its Project.
      */
@@ -224,6 +234,10 @@ export interface VpcArgs {
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
     enableRouting?: pulumi.Input<boolean | undefined>;
+    /**
+     * Enable packets from peered VPCs to transit through this VPC.
+     */
+    enableTransitivity?: pulumi.Input<boolean | undefined>;
     /**
      * The name for the VPC. If not provided it will be randomly generated.
      */

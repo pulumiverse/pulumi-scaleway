@@ -41,12 +41,14 @@ class BucketArgs:
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
-        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enable object lock
+        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
+               object.BucketLockConfiguration
+               for this bucket.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A list of tags (key/value) for the bucket.
                
-               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['BucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
         """
@@ -141,7 +143,9 @@ class BucketArgs:
     @pulumi.getter(name="objectLockEnabled")
     def object_lock_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enable object lock
+        Enables the usage of a
+        object.BucketLockConfiguration
+        for this bucket.
         """
         return pulumi.get(self, "object_lock_enabled")
 
@@ -179,7 +183,7 @@ class BucketArgs:
         """
         A list of tags (key/value) for the bucket.
 
-        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
@@ -228,12 +232,14 @@ class _BucketState:
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input['BucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
-        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enable object lock
+        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
+               object.BucketLockConfiguration
+               for this bucket.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A list of tags (key/value) for the bucket.
                
-               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['BucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
         """
@@ -356,7 +362,9 @@ class _BucketState:
     @pulumi.getter(name="objectLockEnabled")
     def object_lock_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enable object lock
+        Enables the usage of a
+        object.BucketLockConfiguration
+        for this bucket.
         """
         return pulumi.get(self, "object_lock_enabled")
 
@@ -394,7 +402,7 @@ class _BucketState:
         """
         A list of tags (key/value) for the bucket.
 
-        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
@@ -622,6 +630,10 @@ class Bucket(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
+        <!--- Links, invisible in the final document --->
+
+        [1]: https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -632,12 +644,14 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleRuleArgs', 'BucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
-        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enable object lock
+        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
+               object.BucketLockConfiguration
+               for this bucket.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A list of tags (key/value) for the bucket.
                
-               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[Union['BucketVersioningArgs', 'BucketVersioningArgsDict']] versioning: Allow multiple versions of an object in the same bucket
         """
@@ -836,6 +850,10 @@ class Bucket(pulumi.CustomResource):
         $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
+        <!--- Links, invisible in the final document --->
+
+        [1]: https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class
+
 
         :param str resource_name: The name of the resource.
         :param BucketArgs args: The arguments to use to populate this resource's properties.
@@ -923,12 +941,14 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleRuleArgs', 'BucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
-        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enable object lock
+        :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
+               object.BucketLockConfiguration
+               for this bucket.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A list of tags (key/value) for the bucket.
                
-               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[Union['BucketVersioningArgs', 'BucketVersioningArgsDict']] versioning: Allow multiple versions of an object in the same bucket
         """
@@ -1013,7 +1033,9 @@ class Bucket(pulumi.CustomResource):
     @pulumi.getter(name="objectLockEnabled")
     def object_lock_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Enable object lock
+        Enables the usage of a
+        object.BucketLockConfiguration
+        for this bucket.
         """
         return pulumi.get(self, "object_lock_enabled")
 
@@ -1039,7 +1061,7 @@ class Bucket(pulumi.CustomResource):
         """
         A list of tags (key/value) for the bucket.
 
-        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")

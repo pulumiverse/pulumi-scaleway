@@ -102,7 +102,7 @@ type UserData struct {
 	Value pulumi.StringOutput `pulumi:"value"`
 	// `zone`) The zone in which the server should be created.
 	//
-	// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
@@ -162,7 +162,7 @@ type userDataState struct {
 	Value *string `pulumi:"value"`
 	// `zone`) The zone in which the server should be created.
 	//
-	// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
@@ -178,7 +178,7 @@ type UserDataState struct {
 	Value pulumi.StringPtrInput
 	// `zone`) The zone in which the server should be created.
 	//
-	// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
@@ -198,7 +198,7 @@ type userDataArgs struct {
 	Value string `pulumi:"value"`
 	// `zone`) The zone in which the server should be created.
 	//
-	// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
@@ -215,7 +215,7 @@ type UserDataArgs struct {
 	Value pulumi.StringInput
 	// `zone`) The zone in which the server should be created.
 	//
-	// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+	// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
@@ -326,7 +326,7 @@ func (o UserDataOutput) Value() pulumi.StringOutput {
 
 // `zone`) The zone in which the server should be created.
 //
-// > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+// > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
 // You can define values using:
 // - string
 // - UTF-8 encoded file content using file

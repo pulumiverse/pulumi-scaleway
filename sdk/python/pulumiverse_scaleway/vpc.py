@@ -21,6 +21,7 @@ class VpcArgs:
     def __init__(__self__, *,
                  enable_custom_routes_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_routing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_transitivity: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -30,6 +31,7 @@ class VpcArgs:
 
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC.
@@ -39,6 +41,8 @@ class VpcArgs:
             pulumi.set(__self__, "enable_custom_routes_propagation", enable_custom_routes_propagation)
         if enable_routing is not None:
             pulumi.set(__self__, "enable_routing", enable_routing)
+        if enable_transitivity is not None:
+            pulumi.set(__self__, "enable_transitivity", enable_transitivity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -71,6 +75,18 @@ class VpcArgs:
     @enable_routing.setter
     def enable_routing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_routing", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableTransitivity")
+    def enable_transitivity(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enable packets from peered VPCs to transit through this VPC.
+        """
+        return pulumi.get(self, "enable_transitivity")
+
+    @enable_transitivity.setter
+    def enable_transitivity(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_transitivity", value)
 
     @_builtins.property
     @pulumi.getter
@@ -127,6 +143,7 @@ class _VpcState:
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  enable_custom_routes_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_routing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_transitivity: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -140,6 +157,7 @@ class _VpcState:
         :param pulumi.Input[_builtins.str] created_at: Date and time of VPC's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC is associated with.
@@ -154,6 +172,8 @@ class _VpcState:
             pulumi.set(__self__, "enable_custom_routes_propagation", enable_custom_routes_propagation)
         if enable_routing is not None:
             pulumi.set(__self__, "enable_routing", enable_routing)
+        if enable_transitivity is not None:
+            pulumi.set(__self__, "enable_transitivity", enable_transitivity)
         if is_default is not None:
             pulumi.set(__self__, "is_default", is_default)
         if name is not None:
@@ -204,6 +224,18 @@ class _VpcState:
     @enable_routing.setter
     def enable_routing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_routing", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableTransitivity")
+    def enable_transitivity(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enable packets from peered VPCs to transit through this VPC.
+        """
+        return pulumi.get(self, "enable_transitivity")
+
+    @enable_transitivity.setter
+    def enable_transitivity(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_transitivity", value)
 
     @_builtins.property
     @pulumi.getter(name="isDefault")
@@ -303,6 +335,7 @@ class Vpc(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enable_custom_routes_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_routing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_transitivity: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -357,6 +390,7 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC.
@@ -430,6 +464,7 @@ class Vpc(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enable_custom_routes_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_routing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_transitivity: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -446,6 +481,7 @@ class Vpc(pulumi.CustomResource):
 
             __props__.__dict__["enable_custom_routes_propagation"] = enable_custom_routes_propagation
             __props__.__dict__["enable_routing"] = enable_routing
+            __props__.__dict__["enable_transitivity"] = enable_transitivity
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -467,6 +503,7 @@ class Vpc(pulumi.CustomResource):
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             enable_custom_routes_propagation: pulumi.Input[Optional[_builtins.bool]] = None,
             enable_routing: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_transitivity: pulumi.Input[Optional[_builtins.bool]] = None,
             is_default: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -484,6 +521,7 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: Date and time of VPC's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC is associated with.
@@ -499,6 +537,7 @@ class Vpc(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enable_custom_routes_propagation"] = enable_custom_routes_propagation
         __props__.__dict__["enable_routing"] = enable_routing
+        __props__.__dict__["enable_transitivity"] = enable_transitivity
         __props__.__dict__["is_default"] = is_default
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
@@ -531,6 +570,14 @@ class Vpc(pulumi.CustomResource):
         Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         """
         return pulumi.get(self, "enable_routing")
+
+    @_builtins.property
+    @pulumi.getter(name="enableTransitivity")
+    def enable_transitivity(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enable packets from peered VPCs to transit through this VPC.
+        """
+        return pulumi.get(self, "enable_transitivity")
 
     @_builtins.property
     @pulumi.getter(name="isDefault")

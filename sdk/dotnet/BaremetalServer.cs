@@ -130,7 +130,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
@@ -368,7 +368,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
@@ -648,7 +648,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }

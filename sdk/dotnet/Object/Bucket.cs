@@ -285,6 +285,10 @@ namespace Pulumiverse.Scaleway.Object
     /// ```sh
     /// $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
     /// ```
+    /// 
+    /// &lt;!--- Links, invisible in the final document ---&gt;
+    /// 
+    /// [1]: https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class
     /// </summary>
     [ScalewayResourceType("scaleway:object/bucket:Bucket")]
     public partial class Bucket : global::Pulumi.CustomResource
@@ -334,7 +338,9 @@ namespace Pulumiverse.Scaleway.Object
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Enable object lock
+        /// Enables the usage of a
+        /// scaleway.object.BucketLockConfiguration
+        /// for this bucket.
         /// </summary>
         [Output("objectLockEnabled")]
         public Output<bool?> ObjectLockEnabled { get; private set; } = null!;
@@ -354,7 +360,7 @@ namespace Pulumiverse.Scaleway.Object
         /// <summary>
         /// A list of tags (key/value) for the bucket.
         /// 
-        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         [Output("tags")]
@@ -462,7 +468,9 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Enable object lock
+        /// Enables the usage of a
+        /// scaleway.object.BucketLockConfiguration
+        /// for this bucket.
         /// </summary>
         [Input("objectLockEnabled")]
         public Input<bool>? ObjectLockEnabled { get; set; }
@@ -485,7 +493,7 @@ namespace Pulumiverse.Scaleway.Object
         /// <summary>
         /// A list of tags (key/value) for the bucket.
         /// 
-        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
@@ -565,7 +573,9 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Enable object lock
+        /// Enables the usage of a
+        /// scaleway.object.BucketLockConfiguration
+        /// for this bucket.
         /// </summary>
         [Input("objectLockEnabled")]
         public Input<bool>? ObjectLockEnabled { get; set; }
@@ -588,7 +598,7 @@ namespace Pulumiverse.Scaleway.Object
         /// <summary>
         /// A list of tags (key/value) for the bucket.
         /// 
-        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
         /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags

@@ -270,8 +270,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// The following protocols are supported:
     /// 
-    /// * `H2c`: HTTP/2 over TCP.
-    /// * `Http1`: Hypertext Transfer Protocol.
+    /// - `H2c`: HTTP/2 over TCP.
+    /// - `Http1`: Hypertext Transfer Protocol.
     /// 
     /// &gt; **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
     /// 
@@ -394,7 +394,7 @@ namespace Pulumiverse.Scaleway
     public partial class Container : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        /// Arguments passed to the command specified in the `Command` field. These override the default arguments from the container image, and behave like command-line parameters.
         /// </summary>
         [Output("args")]
         public Output<ImmutableArray<string>> Args { get; private set; } = null!;
@@ -412,7 +412,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> CpuLimit { get; private set; } = null!;
 
         /// <summary>
-        /// The cron status of the container.
+        /// The cron status
         /// </summary>
         [Output("cronStatus")]
         public Output<string> CronStatus { get; private set; } = null!;
@@ -612,7 +612,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.ContainerStartupProbe?> StartupProbe { get; private set; } = null!;
 
         /// <summary>
-        /// The container status.
+        /// The container status. In case the status is different from `Ready`, a warning will be displayed when Terraform reads the resource.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -684,7 +684,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _args;
 
         /// <summary>
-        /// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        /// Arguments passed to the command specified in the `Command` field. These override the default arguments from the container image, and behave like command-line parameters.
         /// </summary>
         public InputList<string> Args
         {
@@ -945,7 +945,7 @@ namespace Pulumiverse.Scaleway
         private InputList<string>? _args;
 
         /// <summary>
-        /// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        /// Arguments passed to the command specified in the `Command` field. These override the default arguments from the container image, and behave like command-line parameters.
         /// </summary>
         public InputList<string> Args
         {
@@ -972,7 +972,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? CpuLimit { get; set; }
 
         /// <summary>
-        /// The cron status of the container.
+        /// The cron status
         /// </summary>
         [Input("cronStatus")]
         public Input<string>? CronStatus { get; set; }
@@ -1201,7 +1201,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.ContainerStartupProbeGetArgs>? StartupProbe { get; set; }
 
         /// <summary>
-        /// The container status.
+        /// The container status. In case the status is different from `Ready`, a warning will be displayed when Terraform reads the resource.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

@@ -35,6 +35,11 @@ export const getGatewayNetwork: typeof import("./getGatewayNetwork").getGatewayN
 export const getGatewayNetworkOutput: typeof import("./getGatewayNetwork").getGatewayNetworkOutput = null as any;
 utilities.lazyLoad(exports, ["getGatewayNetwork","getGatewayNetworkOutput"], () => require("./getGatewayNetwork"));
 
+export { GetIngressRuleArgs, GetIngressRuleResult, GetIngressRuleOutputArgs } from "./getIngressRule";
+export const getIngressRule: typeof import("./getIngressRule").getIngressRule = null as any;
+export const getIngressRuleOutput: typeof import("./getIngressRule").getIngressRuleOutput = null as any;
+utilities.lazyLoad(exports, ["getIngressRule","getIngressRuleOutput"], () => require("./getIngressRule"));
+
 export { GetPrivateNetworkArgs, GetPrivateNetworkResult, GetPrivateNetworkOutputArgs } from "./getPrivateNetwork";
 export const getPrivateNetwork: typeof import("./getPrivateNetwork").getPrivateNetwork = null as any;
 export const getPrivateNetworkOutput: typeof import("./getPrivateNetwork").getPrivateNetworkOutput = null as any;
@@ -84,6 +89,11 @@ export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
 export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
 export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
+
+export { IngressRuleArgs, IngressRuleState } from "./ingressRule";
+export type IngressRule = import("./ingressRule").IngressRule;
+export const IngressRule: typeof import("./ingressRule").IngressRule = null as any;
+utilities.lazyLoad(exports, ["IngressRule"], () => require("./ingressRule"));
 
 export { PrivateNetworkArgs, PrivateNetworkState } from "./privateNetwork";
 export type PrivateNetwork = import("./privateNetwork").PrivateNetwork;
@@ -141,6 +151,8 @@ const _module = {
                 return new Connector(name, <any>undefined, { urn })
             case "scaleway:network/gatewayNetwork:GatewayNetwork":
                 return new GatewayNetwork(name, <any>undefined, { urn })
+            case "scaleway:network/ingressRule:IngressRule":
+                return new IngressRule(name, <any>undefined, { urn })
             case "scaleway:network/privateNetwork:PrivateNetwork":
                 return new PrivateNetwork(name, <any>undefined, { urn })
             case "scaleway:network/publicGateway:PublicGateway":
@@ -167,6 +179,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("scaleway", "network/acl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/connector", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/gatewayNetwork", _module)
+pulumi.runtime.registerResourceModule("scaleway", "network/ingressRule", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/privateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/publicGateway", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/publicGatewayDhcp", _module)

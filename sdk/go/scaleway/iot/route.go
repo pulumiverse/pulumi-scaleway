@@ -193,7 +193,7 @@ type Route struct {
 
 	// The date and time the Route was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+	// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database RouteDatabasePtrOutput `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringOutput `pulumi:"hubId"`
@@ -253,7 +253,7 @@ func GetRoute(ctx *pulumi.Context,
 type routeState struct {
 	// The date and time the Route was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+	// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database *RouteDatabase `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId *string `pulumi:"hubId"`
@@ -272,7 +272,7 @@ type routeState struct {
 type RouteState struct {
 	// The date and time the Route was created.
 	CreatedAt pulumi.StringPtrInput
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+	// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database RouteDatabasePtrInput
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringPtrInput
@@ -293,7 +293,7 @@ func (RouteState) ElementType() reflect.Type {
 }
 
 type routeArgs struct {
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+	// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database *RouteDatabase `pulumi:"database"`
 	// The hub ID to which the Route will be attached to.
 	HubId string `pulumi:"hubId"`
@@ -311,7 +311,7 @@ type routeArgs struct {
 
 // The set of arguments for constructing a Route resource.
 type RouteArgs struct {
-	// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+	// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Database RouteDatabasePtrInput
 	// The hub ID to which the Route will be attached to.
 	HubId pulumi.StringInput
@@ -419,7 +419,7 @@ func (o RouteOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Route) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 func (o RouteOutput) Database() RouteDatabasePtrOutput {
 	return o.ApplyT(func(v *Route) RouteDatabasePtrOutput { return v.Database }).(RouteDatabasePtrOutput)
 }

@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+ * > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 /** @deprecated scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion */
 export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
@@ -191,7 +191,7 @@ export interface GetSecretVersionResult {
  * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+ * > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 /** @deprecated scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion */
 export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretVersionResult> {

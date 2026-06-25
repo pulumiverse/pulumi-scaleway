@@ -39,7 +39,8 @@ class ClusterArgs:
                  service_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: pulumi.Input[Optional[_builtins.str]] = None):
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_pools: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -85,6 +86,10 @@ class ClusterArgs:
                - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
                
                - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
+        :param pulumi.Input[_builtins.bool] upgrade_pools: Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+               If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+               If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+               In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
         """
         pulumi.set(__self__, "cni", cni)
         pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
@@ -121,6 +126,8 @@ class ClusterArgs:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if upgrade_pools is not None:
+            pulumi.set(__self__, "upgrade_pools", upgrade_pools)
 
     @_builtins.property
     @pulumi.getter
@@ -373,6 +380,21 @@ class ClusterArgs:
     def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
+    @_builtins.property
+    @pulumi.getter(name="upgradePools")
+    def upgrade_pools(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+        If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        """
+        return pulumi.get(self, "upgrade_pools")
+
+    @upgrade_pools.setter
+    def upgrade_pools(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "upgrade_pools", value)
+
 
 @pulumi.input_type
 class _ClusterState:
@@ -402,6 +424,7 @@ class _ClusterState:
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  upgrade_available: pulumi.Input[Optional[_builtins.bool]] = None,
+                 upgrade_pools: pulumi.Input[Optional[_builtins.bool]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wildcard_dns: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -455,6 +478,10 @@ class _ClusterState:
                - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the cluster.
         :param pulumi.Input[_builtins.bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
+        :param pulumi.Input[_builtins.bool] upgrade_pools: Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+               If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+               If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+               In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
         :param pulumi.Input[_builtins.str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] wildcard_dns: The DNS wildcard that points to all ready nodes.
         """
@@ -508,6 +535,8 @@ class _ClusterState:
             pulumi.set(__self__, "updated_at", updated_at)
         if upgrade_available is not None:
             pulumi.set(__self__, "upgrade_available", upgrade_available)
+        if upgrade_pools is not None:
+            pulumi.set(__self__, "upgrade_pools", upgrade_pools)
         if version is not None:
             pulumi.set(__self__, "version", version)
         if wildcard_dns is not None:
@@ -837,6 +866,21 @@ class _ClusterState:
         pulumi.set(self, "upgrade_available", value)
 
     @_builtins.property
+    @pulumi.getter(name="upgradePools")
+    def upgrade_pools(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+        If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        """
+        return pulumi.get(self, "upgrade_pools")
+
+    @upgrade_pools.setter
+    def upgrade_pools(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "upgrade_pools", value)
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -885,6 +929,7 @@ class Cluster(pulumi.CustomResource):
                  service_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_pools: pulumi.Input[Optional[_builtins.bool]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -894,6 +939,8 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -901,16 +948,19 @@ class Cluster(pulumi.CustomResource):
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.32.3",
+            version="1.35.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
         ```
+
+        ### Using autoscaler_config
 
         ```python
         import pulumi
@@ -920,7 +970,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
-            version="1.32.3",
+            version="1.35.3",
             cni="calico",
             tags=["terraform"],
             private_network_id=pn.id,
@@ -936,6 +986,7 @@ class Cluster(pulumi.CustomResource):
             })
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=3,
@@ -945,22 +996,24 @@ class Cluster(pulumi.CustomResource):
             max_size=5)
         ```
 
+        ### With the Helm provider
+
         ```python
         import pulumi
         import pulumi_helm as helm
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        # Example with an Helm provider
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=False,
             private_network_id=pn.id)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
@@ -1002,21 +1055,23 @@ class Cluster(pulumi.CustomResource):
             ])
         ```
 
+        ### With the Kubernetes provider
+
         ```python
         import pulumi
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        # Example with the kubernetes provider 
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.35.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
@@ -1030,20 +1085,22 @@ class Cluster(pulumi.CustomResource):
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
 
+        ### Multicloud
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # Multicloud Kubernetes Cluster Example
         # For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
-            version="1.32.3",
+            version="1.35.3",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="external",
             size=0,
@@ -1143,6 +1200,10 @@ class Cluster(pulumi.CustomResource):
                - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
                
                - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
+        :param pulumi.Input[_builtins.bool] upgrade_pools: Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+               If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+               If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+               In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
         :param pulumi.Input[_builtins.str] version: The version of the Kubernetes cluster.
         """
         ...
@@ -1158,6 +1219,8 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
@@ -1165,16 +1228,19 @@ class Cluster(pulumi.CustomResource):
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.32.3",
+            version="1.35.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
         ```
+
+        ### Using autoscaler_config
 
         ```python
         import pulumi
@@ -1184,7 +1250,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
-            version="1.32.3",
+            version="1.35.3",
             cni="calico",
             tags=["terraform"],
             private_network_id=pn.id,
@@ -1200,6 +1266,7 @@ class Cluster(pulumi.CustomResource):
             })
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=3,
@@ -1209,22 +1276,24 @@ class Cluster(pulumi.CustomResource):
             max_size=5)
         ```
 
+        ### With the Helm provider
+
         ```python
         import pulumi
         import pulumi_helm as helm
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        # Example with an Helm provider
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=False,
             private_network_id=pn.id)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
@@ -1266,21 +1335,23 @@ class Cluster(pulumi.CustomResource):
             ])
         ```
 
+        ### With the Kubernetes provider
+
         ```python
         import pulumi
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        # Example with the kubernetes provider 
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.35.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="DEV1-M",
             size=1)
@@ -1294,20 +1365,22 @@ class Cluster(pulumi.CustomResource):
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
 
+        ### Multicloud
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        # Multicloud Kubernetes Cluster Example
         # For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
-            version="1.32.3",
+            version="1.35.3",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
+            version=cluster.version,
             name="tf-pool",
             node_type="external",
             size=0,
@@ -1397,6 +1470,7 @@ class Cluster(pulumi.CustomResource):
                  service_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
+                 upgrade_pools: pulumi.Input[Optional[_builtins.bool]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1429,6 +1503,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["service_dns_ip"] = service_dns_ip
             __props__.__dict__["tags"] = tags
             __props__.__dict__["type"] = type
+            __props__.__dict__["upgrade_pools"] = upgrade_pools
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
@@ -1479,6 +1554,7 @@ class Cluster(pulumi.CustomResource):
             type: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             upgrade_available: pulumi.Input[Optional[_builtins.bool]] = None,
+            upgrade_pools: pulumi.Input[Optional[_builtins.bool]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
             wildcard_dns: pulumi.Input[Optional[_builtins.str]] = None) -> 'Cluster':
         """
@@ -1536,6 +1612,10 @@ class Cluster(pulumi.CustomResource):
                - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the cluster.
         :param pulumi.Input[_builtins.bool] upgrade_available: Set to `true` if a newer Kubernetes version is available.
+        :param pulumi.Input[_builtins.bool] upgrade_pools: Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+               If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+               If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+               In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
         :param pulumi.Input[_builtins.str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] wildcard_dns: The DNS wildcard that points to all ready nodes.
         """
@@ -1568,6 +1648,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["upgrade_available"] = upgrade_available
+        __props__.__dict__["upgrade_pools"] = upgrade_pools
         __props__.__dict__["version"] = version
         __props__.__dict__["wildcard_dns"] = wildcard_dns
         return Cluster(resource_name, opts=opts, __props__=__props__)
@@ -1794,6 +1875,17 @@ class Cluster(pulumi.CustomResource):
         Set to `true` if a newer Kubernetes version is available.
         """
         return pulumi.get(self, "upgrade_available")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradePools")
+    def upgrade_pools(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+        If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+        If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+        In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+        """
+        return pulumi.get(self, "upgrade_pools")
 
     @_builtins.property
     @pulumi.getter

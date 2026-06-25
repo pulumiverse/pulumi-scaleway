@@ -261,15 +261,17 @@ export interface CockpitTokenScopes {
 
 export interface ContainerHealthCheck {
     /**
-     * Number of consecutive failures before considering the container has to be restarted.
+     * Number of consecutive health check failures before considering the container unhealthy.
      */
     failureThreshold?: pulumi.Input<number | undefined>;
     /**
-     * Perform HTTP check on the container with the specified path.
+     * HTTP health check configuration.
      */
     https?: pulumi.Input<pulumi.Input<inputs.ContainerHealthCheckHttp>[] | undefined>;
     /**
-     * Time interval between checks (in duration notation, e.g. "30s").
+     * Period between health checks (in seconds).
+     *
+     * > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
      */
     interval?: pulumi.Input<string | undefined>;
     /**
@@ -340,11 +342,11 @@ export interface ContainerStartupProbe {
      */
     http?: pulumi.Input<inputs.ContainerStartupProbeHttp | undefined>;
     /**
-     * Time interval between checks (in duration notation).
+     * Time interval between checks (in duration notation, e.g. "30s").
      */
     interval: pulumi.Input<string>;
     /**
-     * Perform TCP check on the container
+     * When set to `true`, performs TCP checks on the container.
      */
     tcp?: pulumi.Input<boolean | undefined>;
     /**
@@ -392,7 +394,7 @@ export interface ContainerTriggerDestinationConfig {
 
 export interface ContainerTriggerNats {
     /**
-     * unique identifier of the Messaging and Queuing NATS account  .
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: pulumi.Input<string | undefined>;
     /**
@@ -423,7 +425,7 @@ export interface ContainerTriggerSqs {
      */
     accessKey: pulumi.Input<string>;
     /**
-     * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+     * Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
      */
     endpoint: pulumi.Input<string>;
     /**
@@ -431,7 +433,7 @@ export interface ContainerTriggerSqs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The name of the SQS queue.  This argument is no longer supported.
+     * The name of the SQS queue. This argument is no longer supported.
      *
      * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
      */
@@ -2167,41 +2169,54 @@ export interface ObjectBucketCorsRule {
 
 export interface ObjectBucketLifecycleRule {
     /**
-     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * Specifies the number
+     * of days after initiating a multipart upload when the multipart upload must
+     * be completed.
      *
-     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+     * as any incomplete multipart upload will be billed.
      */
     abortIncompleteMultipartUploadDays?: pulumi.Input<number | undefined>;
     /**
-     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+     * The element value can be either Enabled or
+     * Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+     * any of the actions defined in the rule.
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Specifies a period in the object's expire
+     * Specifies a period of expiration for the object.
      */
     expiration?: pulumi.Input<inputs.ObjectBucketLifecycleRuleExpiration | undefined>;
     /**
-     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     * Unique identifier for the rule. Must be less than or
+     * equal to 255 characters in length.
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * Configuration block that specifies when noncurrent object versions expire
+     * Configuration block that
+     * specifies when noncurrent object versions expire. Supports the following:
      */
     noncurrentVersionExpiration?: pulumi.Input<inputs.ObjectBucketLifecycleRuleNoncurrentVersionExpiration | undefined>;
     /**
-     * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+     * Set of configuration blocks
+     * that specify the transition rule for the lifecycle rule that describes when
+     * noncurrent objects transition to a specific storage class. Supports the
+     * following:
      */
     noncurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRuleNoncurrentVersionTransition>[] | undefined>;
     /**
-     * Minimum object size (in bytes) to which the rule applies
+     * Minimum object size (in bytes) to
+     * which the rule applies.
      */
     objectSizeGreaterThan?: pulumi.Input<number | undefined>;
     /**
-     * Maximum object size (in bytes) to which the rule applies
+     * Maximum object size (in bytes) to
+     * which the rule applies.
      */
     objectSizeLessThan?: pulumi.Input<number | undefined>;
     /**
-     * Object key prefix identifying one or more objects to which the rule applies.
+     * Object key prefix identifying one or more objects
+     * to which the rule applies.
      */
     prefix?: pulumi.Input<string | undefined>;
     /**
@@ -2209,71 +2224,90 @@ export interface ObjectBucketLifecycleRule {
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * Define when objects transition to another storage class
+     * Specifies a period in the object's transitions.
      */
     transitions?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRuleTransition>[] | undefined>;
 }
 
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
-     * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     * Specifies the date the object is to be moved or
+     * deleted. The date value must be in RFC3339 full-date format e.g.
+     * `2023-08-22`.
      */
     date?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the number of days after object creation when the specific rule action takes effect.
+     * Specifies the number of days after object creation
+     * when the specific rule action takes effect.
      */
     days?: pulumi.Input<number | undefined>;
     /**
-     * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+     * Specifies whether Scaleway
+     * Object will remove a delete marker with no noncurrent versions. If set
+     * to `true`, the delete marker will be expired; if set to `false` the
+     * policy takes no action.
      */
     expiredObjectDeleteMarker?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
     /**
-     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     * Number of noncurrent versions
+     * Scaleway Object Storage will retain. Must be a non-zero positive integer.
      */
     newerNoncurrentVersions?: pulumi.Input<number | undefined>;
     /**
-     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+     * Number of days an object is noncurrent
+     * before Scaleway Object Storage can perform the associated action. Must
+     * be a positive integer.
      */
     noncurrentDays?: pulumi.Input<number | undefined>;
 }
 
 export interface ObjectBucketLifecycleRuleNoncurrentVersionTransition {
     /**
-     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     * Number of noncurrent versions
+     * Scaleway Object Storage will retain. Must be a non-zero positive integer.
      */
     newerNoncurrentVersions?: pulumi.Input<number | undefined>;
     /**
-     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+     * Number of days an object is noncurrent
+     * before Scaleway Object Storage can perform the associated action.
      */
     noncurrentDays: pulumi.Input<number>;
     /**
-     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+     * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+     * transition.
+     *
+     * > **Important:** If versioning is enabled, this rule only deletes the current
+     * version of an object.
      */
     storageClass: pulumi.Input<string>;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
     /**
-     * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     * Specifies the date objects are transitioned to the
+     * specified storage class. The date value must be in RFC3339 full-date
+     * format e.g. `2023-08-22`.
      */
     date?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the number of days after object creation when the specific rule action takes effect.
+     * Specifies the number of days after object creation
+     * when the specific rule action takes effect.
      */
     days?: pulumi.Input<number | undefined>;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+     * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+     * transition.
      *
+     * > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+     * storage class `GLACIER` is not available in `pl-waw` region.
      *
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-     *
-     *
-     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+     * > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+     * `expiration`, `transition` must be specified.
      */
     storageClass: pulumi.Input<string>;
 }
@@ -2817,15 +2851,17 @@ export namespace block {
 export namespace containers {
     export interface ContainerHealthCheck {
         /**
-         * Number of consecutive failures before considering the container has to be restarted.
+         * Number of consecutive health check failures before considering the container unhealthy.
          */
         failureThreshold?: pulumi.Input<number | undefined>;
         /**
-         * Perform HTTP check on the container with the specified path.
+         * HTTP health check configuration.
          */
         https?: pulumi.Input<pulumi.Input<inputs.containers.ContainerHealthCheckHttp>[] | undefined>;
         /**
-         * Time interval between checks (in duration notation, e.g. "30s").
+         * Period between health checks (in seconds).
+         *
+         * > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
          */
         interval?: pulumi.Input<string | undefined>;
         /**
@@ -2896,11 +2932,11 @@ export namespace containers {
          */
         http?: pulumi.Input<inputs.containers.ContainerStartupProbeHttp | undefined>;
         /**
-         * Time interval between checks (in duration notation).
+         * Time interval between checks (in duration notation, e.g. "30s").
          */
         interval: pulumi.Input<string>;
         /**
-         * Perform TCP check on the container
+         * When set to `true`, performs TCP checks on the container.
          */
         tcp?: pulumi.Input<boolean | undefined>;
         /**
@@ -2948,7 +2984,7 @@ export namespace containers {
 
     export interface TriggerNats {
         /**
-         * unique identifier of the Messaging and Queuing NATS account  .
+         * unique identifier of the Messaging and Queuing NATS account.
          */
         accountId?: pulumi.Input<string | undefined>;
         /**
@@ -2979,7 +3015,7 @@ export namespace containers {
          */
         accessKey: pulumi.Input<string>;
         /**
-         * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+         * Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
          */
         endpoint: pulumi.Input<string>;
         /**
@@ -2987,7 +3023,7 @@ export namespace containers {
          */
         projectId?: pulumi.Input<string | undefined>;
         /**
-         * The name of the SQS queue.  This argument is no longer supported.
+         * The name of the SQS queue. This argument is no longer supported.
          *
          * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
          */
@@ -3202,6 +3238,76 @@ export namespace databases {
     }
 }
 
+export namespace datalab {
+    export interface DatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume?: pulumi.Input<inputs.datalab.DatalabMainRootVolume | undefined>;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl?: pulumi.Input<string | undefined>;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabMainRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabTotalStorage {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type. Defaults to `sbs5k`.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: pulumi.Input<number>;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume?: pulumi.Input<inputs.datalab.DatalabWorkerRootVolume | undefined>;
+    }
+
+    export interface DatalabWorkerRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
+}
+
 export namespace datawarehouse {
     export interface DeploymentPrivateNetwork {
         /**
@@ -3344,7 +3450,7 @@ export namespace domain {
         /**
          * Company identification code (e.g., SIREN/SIRET in France) for the contact.
          */
-        companyIdentificationCode: pulumi.Input<string>;
+        companyIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Name of the company associated with the contact (if applicable).
          */
@@ -3408,7 +3514,7 @@ export namespace domain {
         /**
          * VAT identification code of the contact, if applicable.
          */
-        vatIdentificationCode: pulumi.Input<string>;
+        vatIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Indicates whether the contact has opted into WHOIS publishing.
          */
@@ -3560,7 +3666,7 @@ export namespace domain {
         /**
          * Company identification code (e.g., SIREN/SIRET in France) for the contact.
          */
-        companyIdentificationCode: pulumi.Input<string>;
+        companyIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Name of the company associated with the contact (if applicable).
          */
@@ -3624,7 +3730,7 @@ export namespace domain {
         /**
          * VAT identification code of the contact, if applicable.
          */
-        vatIdentificationCode: pulumi.Input<string>;
+        vatIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Indicates whether the contact has opted into WHOIS publishing.
          */
@@ -3728,7 +3834,7 @@ export namespace domain {
         /**
          * Company identification code (e.g., SIREN/SIRET in France) for the contact.
          */
-        companyIdentificationCode: pulumi.Input<string>;
+        companyIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Name of the company associated with the contact (if applicable).
          */
@@ -3792,7 +3898,7 @@ export namespace domain {
         /**
          * VAT identification code of the contact, if applicable.
          */
-        vatIdentificationCode: pulumi.Input<string>;
+        vatIdentificationCode?: pulumi.Input<string | undefined>;
         /**
          * Indicates whether the contact has opted into WHOIS publishing.
          */
@@ -5817,41 +5923,54 @@ export namespace object {
 
     export interface BucketLifecycleRule {
         /**
-         * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+         * Specifies the number
+         * of days after initiating a multipart upload when the multipart upload must
+         * be completed.
          *
-         * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+         * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+         * as any incomplete multipart upload will be billed.
          */
         abortIncompleteMultipartUploadDays?: pulumi.Input<number | undefined>;
         /**
-         * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+         * The element value can be either Enabled or
+         * Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+         * any of the actions defined in the rule.
          */
         enabled: pulumi.Input<boolean>;
         /**
-         * Specifies a period in the object's expire
+         * Specifies a period of expiration for the object.
          */
         expiration?: pulumi.Input<inputs.object.BucketLifecycleRuleExpiration | undefined>;
         /**
-         * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+         * Unique identifier for the rule. Must be less than or
+         * equal to 255 characters in length.
          */
         id?: pulumi.Input<string | undefined>;
         /**
-         * Configuration block that specifies when noncurrent object versions expire
+         * Configuration block that
+         * specifies when noncurrent object versions expire. Supports the following:
          */
         noncurrentVersionExpiration?: pulumi.Input<inputs.object.BucketLifecycleRuleNoncurrentVersionExpiration | undefined>;
         /**
-         * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+         * Set of configuration blocks
+         * that specify the transition rule for the lifecycle rule that describes when
+         * noncurrent objects transition to a specific storage class. Supports the
+         * following:
          */
         noncurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.object.BucketLifecycleRuleNoncurrentVersionTransition>[] | undefined>;
         /**
-         * Minimum object size (in bytes) to which the rule applies
+         * Minimum object size (in bytes) to
+         * which the rule applies.
          */
         objectSizeGreaterThan?: pulumi.Input<number | undefined>;
         /**
-         * Maximum object size (in bytes) to which the rule applies
+         * Maximum object size (in bytes) to
+         * which the rule applies.
          */
         objectSizeLessThan?: pulumi.Input<number | undefined>;
         /**
-         * Object key prefix identifying one or more objects to which the rule applies.
+         * Object key prefix identifying one or more objects
+         * to which the rule applies.
          */
         prefix?: pulumi.Input<string | undefined>;
         /**
@@ -5859,71 +5978,90 @@ export namespace object {
          */
         tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
-         * Define when objects transition to another storage class
+         * Specifies a period in the object's transitions.
          */
         transitions?: pulumi.Input<pulumi.Input<inputs.object.BucketLifecycleRuleTransition>[] | undefined>;
     }
 
     export interface BucketLifecycleRuleExpiration {
         /**
-         * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         * Specifies the date the object is to be moved or
+         * deleted. The date value must be in RFC3339 full-date format e.g.
+         * `2023-08-22`.
          */
         date?: pulumi.Input<string | undefined>;
         /**
-         * Specifies the number of days after object creation when the specific rule action takes effect.
+         * Specifies the number of days after object creation
+         * when the specific rule action takes effect.
          */
         days?: pulumi.Input<number | undefined>;
         /**
-         * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+         * Specifies whether Scaleway
+         * Object will remove a delete marker with no noncurrent versions. If set
+         * to `true`, the delete marker will be expired; if set to `false` the
+         * policy takes no action.
          */
         expiredObjectDeleteMarker?: pulumi.Input<boolean | undefined>;
     }
 
     export interface BucketLifecycleRuleNoncurrentVersionExpiration {
         /**
-         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         * Number of noncurrent versions
+         * Scaleway Object Storage will retain. Must be a non-zero positive integer.
          */
         newerNoncurrentVersions?: pulumi.Input<number | undefined>;
         /**
-         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+         * Number of days an object is noncurrent
+         * before Scaleway Object Storage can perform the associated action. Must
+         * be a positive integer.
          */
         noncurrentDays?: pulumi.Input<number | undefined>;
     }
 
     export interface BucketLifecycleRuleNoncurrentVersionTransition {
         /**
-         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         * Number of noncurrent versions
+         * Scaleway Object Storage will retain. Must be a non-zero positive integer.
          */
         newerNoncurrentVersions?: pulumi.Input<number | undefined>;
         /**
-         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+         * Number of days an object is noncurrent
+         * before Scaleway Object Storage can perform the associated action.
          */
         noncurrentDays: pulumi.Input<number>;
         /**
-         * Specifies the Scaleway Object Storage class to which you want the object to transition
+         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+         * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+         * transition.
+         *
+         * > **Important:** If versioning is enabled, this rule only deletes the current
+         * version of an object.
          */
         storageClass: pulumi.Input<string>;
     }
 
     export interface BucketLifecycleRuleTransition {
         /**
-         * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         * Specifies the date objects are transitioned to the
+         * specified storage class. The date value must be in RFC3339 full-date
+         * format e.g. `2023-08-22`.
          */
         date?: pulumi.Input<string | undefined>;
         /**
-         * Specifies the number of days after object creation when the specific rule action takes effect.
+         * Specifies the number of days after object creation
+         * when the specific rule action takes effect.
          */
         days?: pulumi.Input<number | undefined>;
         /**
-         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+         * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+         * transition.
          *
+         * > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+         * storage class `GLACIER` is not available in `pl-waw` region.
          *
-         * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-         * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-         *
-         *
-         * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-         * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+         * > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+         * `expiration`, `transition` must be specified.
          */
         storageClass: pulumi.Input<string>;
     }
@@ -5963,11 +6101,13 @@ export namespace object {
 
     export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
         /**
-         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         * Scaleway KMS master key ID used for the SSE-KMS encryption.
+         * This can only be used when you set the value of sseAlgorithm as `aws:kms`. Will return an error
+         * if this element is absent while the sseAlgorithm is `aws:kms`.
          */
         kmsMasterKeyId?: pulumi.Input<string | undefined>;
         /**
-         * Server-side encryption algorithm to use. Valid values are `AES256`.
+         * Server-side encryption algorithm to use. Valid values are `AES256`, `aws:kms`.
          */
         sseAlgorithm: pulumi.Input<string>;
     }
@@ -6131,14 +6271,14 @@ export namespace opensearch {
          */
         port?: pulumi.Input<number | undefined>;
         /**
-         * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+         * Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
          */
         url?: pulumi.Input<string | undefined>;
     }
 
     export interface DeploymentPrivateNetwork {
         /**
-         * Private network ID if the endpoint is private.
+         * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
          */
         privateNetworkId: pulumi.Input<string>;
     }

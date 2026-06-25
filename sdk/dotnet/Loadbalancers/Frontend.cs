@@ -184,7 +184,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     public partial class Frontend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         /// </summary>
         [Output("acls")]
         public Output<ImmutableArray<Outputs.FrontendAcl>> Acls { get; private set; } = null!;
@@ -327,7 +327,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         private InputList<Inputs.FrontendAclArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         /// </summary>
         public InputList<Inputs.FrontendAclArgs> Acls
         {
@@ -418,7 +418,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         private InputList<Inputs.FrontendAclGetArgs>? _acls;
 
         /// <summary>
-        /// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        /// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         /// </summary>
         public InputList<Inputs.FrontendAclGetArgs> Acls
         {

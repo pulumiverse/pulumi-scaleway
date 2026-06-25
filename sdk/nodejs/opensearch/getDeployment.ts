@@ -73,6 +73,7 @@ export interface GetDeploymentResult {
     readonly id: string;
     readonly name?: string;
     readonly nodeAmount: number;
+    readonly nodeCount: number;
     readonly nodeType: string;
     readonly password: string;
     readonly privateNetworks: outputs.opensearch.GetDeploymentPrivateNetwork[];

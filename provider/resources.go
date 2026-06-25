@@ -51,6 +51,7 @@ const (
 	cockpitMod       = "observability"
 	containersMod    = "containers"
 	databasesMod     = "databases"
+	datalabMod       = "datalab"
 	datawarehouseMod = "datawarehouse"
 	domainMod        = "domain"
 	edgeservicesMod  = "edgeservices"
@@ -191,6 +192,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"scaleway_datalab": {
+				Tok: scalewayResource(datalabMod, "Datalab"),
+			},
 			"scaleway_function": {
 				Tok: scalewayResource(functionsMod, "Function"),
 			},
@@ -258,6 +262,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"scaleway_container": {
 				Tok: scalewayDataSource(containersMod, "getContainer"),
+			},
+			"scaleway_datalab": {
+				Tok: scalewayDataSource(datalabMod, "getDatalab"),
+			},
+			"scaleway_datalabs": {
+				Tok: scalewayDataSource(datalabMod, "getDatalabs"),
 			},
 			"scaleway_function": {
 				Tok: scalewayDataSource(functionsMod, "getFunction"),

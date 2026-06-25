@@ -53,7 +53,7 @@ class GetProductsResult:
     @pulumi.getter
     def names(self) -> Sequence[_builtins.str]:
         """
-        List of product names for use in scaleway*cockpit*exporter.exported_products.
+        List of product names that can be directly used in `scaleway_cockpit_exporter.exported_products`.
         """
         return pulumi.get(self, "names")
 
@@ -61,16 +61,13 @@ class GetProductsResult:
     @pulumi.getter
     def products(self) -> Sequence['outputs.GetProductsProductResult']:
         """
-        List of Cockpit products available for exported*products in scaleway*cockpit_exporter.
+        List of available Cockpit products. (see below)
         """
         return pulumi.get(self, "products")
 
     @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
-        """
-        The region you want to attach the resource to
-        """
         return pulumi.get(self, "region")
 
 
@@ -89,9 +86,52 @@ class AwaitableGetProductsResult(GetProductsResult):
 def get_products(region: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProductsResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets the list of Cockpit products available for a specific region.
 
-    :param _builtins.str region: The region you want to attach the resource to
+    Use this data source to retrieve the list of products that can be exported via `observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Example Usage
+
+    ### Get all available products
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    pulumi.export("availableProducts", main.products)
+    ```
+
+    ### Use with cockpit_exporter
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    main_exporter = scaleway.observability.Exporter("main",
+        name="my-exporter",
+        region="fr-par",
+        exported_products=main.names)
+    ```
+
+    ### Filter products by family
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    # Filter to only compute products
+    compute_products = [p.name for p in main.products if p.family_name == "Compute"]
+    pulumi.export("computeProductNames", compute_products)
+    ```
+
+
+    :param _builtins.str region: The region to query. Defaults to the region configured in the provider.
     """
     __args__ = dict()
     __args__['region'] = region
@@ -106,9 +146,52 @@ def get_products(region: Optional[_builtins.str] = None,
 def get_products_output(region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProductsResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets the list of Cockpit products available for a specific region.
 
-    :param _builtins.str region: The region you want to attach the resource to
+    Use this data source to retrieve the list of products that can be exported via `observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Example Usage
+
+    ### Get all available products
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    pulumi.export("availableProducts", main.products)
+    ```
+
+    ### Use with cockpit_exporter
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    main_exporter = scaleway.observability.Exporter("main",
+        name="my-exporter",
+        region="fr-par",
+        exported_products=main.names)
+    ```
+
+    ### Filter products by family
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.observability.get_products(region="fr-par")
+    # Filter to only compute products
+    compute_products = [p.name for p in main.products if p.family_name == "Compute"]
+    pulumi.export("computeProductNames", compute_products)
+    ```
+
+
+    :param _builtins.str region: The region to query. Defaults to the region configured in the provider.
     """
     __args__ = dict()
     __args__['region'] = region

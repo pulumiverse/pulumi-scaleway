@@ -1034,6 +1034,7 @@ import * as block from "./block";
 import * as config from "./config";
 import * as containers from "./containers";
 import * as databases from "./databases";
+import * as datalab from "./datalab";
 import * as datawarehouse from "./datawarehouse";
 import * as domain from "./domain";
 import * as edgeservices from "./edgeservices";
@@ -1074,6 +1075,7 @@ export {
     config,
     containers,
     databases,
+    datalab,
     datawarehouse,
     domain,
     edgeservices,

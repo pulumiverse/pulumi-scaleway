@@ -40,7 +40,7 @@ class LoadbalancerFrontendArgs:
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         :param pulumi.Input[_builtins.int] inbound_port: TCP port to listen to on the front side.
         :param pulumi.Input[_builtins.str] lb_id: The ID of the Load Balancer this frontend is attached to.
-        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
@@ -114,7 +114,7 @@ class LoadbalancerFrontendArgs:
     @pulumi.getter
     def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]]:
         """
-        A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         """
         return pulumi.get(self, "acls")
 
@@ -230,7 +230,7 @@ class _LoadbalancerFrontendState:
         """
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -286,7 +286,7 @@ class _LoadbalancerFrontendState:
     @pulumi.getter
     def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]]:
         """
-        A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         """
         return pulumi.get(self, "acls")
 
@@ -599,7 +599,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -826,7 +826,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -870,7 +870,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     @pulumi.getter
     def acls(self) -> pulumi.Output[Optional[Sequence['outputs.LoadbalancerFrontendAcl']]]:
         """
-        A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         """
         return pulumi.get(self, "acls")
 

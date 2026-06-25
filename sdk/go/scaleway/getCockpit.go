@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
+// > **Important:** The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 //
 // > **Note:**
 // As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.

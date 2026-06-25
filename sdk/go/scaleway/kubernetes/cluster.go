@@ -18,6 +18,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ```go
 // package main
 //
@@ -37,7 +39,7 @@ import (
 //			}
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
-//				Version:                   pulumi.String("1.32.3"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
@@ -47,6 +49,7 @@ import (
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
+//				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
 //				Size:      pulumi.Int(1),
@@ -59,6 +62,8 @@ import (
 //	}
 //
 // ```
+//
+// ### Using autoscalerConfig
 //
 // ```go
 // package main
@@ -80,7 +85,7 @@ import (
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:        pulumi.String("tf-cluster"),
 //				Description: pulumi.String("cluster made in terraform"),
-//				Version:     pulumi.String("1.32.3"),
+//				Version:     pulumi.String("1.35.3"),
 //				Cni:         pulumi.String("calico"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
@@ -102,6 +107,7 @@ import (
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId:   cluster.ID(),
+//				Version:     cluster.Version,
 //				Name:        pulumi.String("tf-pool"),
 //				NodeType:    pulumi.String("DEV1-M"),
 //				Size:        pulumi.Int(3),
@@ -119,6 +125,8 @@ import (
 //
 // ```
 //
+// ### With the Helm provider
+//
 // ```go
 // package main
 //
@@ -135,14 +143,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Example with an Helm provider
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
-//				Version:                   pulumi.String("1.29.1"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				PrivateNetworkId:          pn.ID(),
@@ -152,6 +159,7 @@ import (
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
+//				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
 //				Size:      pulumi.Int(1),
@@ -221,6 +229,8 @@ import (
 //
 // ```
 //
+// ### With the Kubernetes provider
+//
 // ```go
 // package main
 //
@@ -235,14 +245,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Example with the kubernetes provider
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
-//				Version:                   pulumi.String("1.29.1"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
@@ -252,6 +261,7 @@ import (
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
+//				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
 //				Size:      pulumi.Int(1),
@@ -285,6 +295,8 @@ import (
 //
 // ```
 //
+// ### Multicloud
+//
 // ```go
 // package main
 //
@@ -297,12 +309,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Multicloud Kubernetes Cluster Example
 //			// For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Type:                      pulumi.String("multicloud"),
-//				Version:                   pulumi.String("1.32.3"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("kilo"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
@@ -311,6 +322,7 @@ import (
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
+//				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("external"),
 //				Size:      pulumi.Int(0),
@@ -487,6 +499,11 @@ type Cluster struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable pulumi.BoolOutput `pulumi:"upgradeAvailable"`
+	// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+	// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+	// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+	// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+	UpgradePools pulumi.BoolPtrOutput `pulumi:"upgradePools"`
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// The DNS wildcard that points to all ready nodes.
@@ -615,6 +632,11 @@ type clusterState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable *bool `pulumi:"upgradeAvailable"`
+	// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+	// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+	// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+	// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+	UpgradePools *bool `pulumi:"upgradePools"`
 	// The version of the Kubernetes cluster.
 	Version *string `pulumi:"version"`
 	// The DNS wildcard that points to all ready nodes.
@@ -695,6 +717,11 @@ type ClusterState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// Set to `true` if a newer Kubernetes version is available.
 	UpgradeAvailable pulumi.BoolPtrInput
+	// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+	// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+	// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+	// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+	UpgradePools pulumi.BoolPtrInput
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringPtrInput
 	// The DNS wildcard that points to all ready nodes.
@@ -765,6 +792,11 @@ type clusterArgs struct {
 	//
 	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type *string `pulumi:"type"`
+	// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+	// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+	// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+	// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+	UpgradePools *bool `pulumi:"upgradePools"`
 	// The version of the Kubernetes cluster.
 	Version string `pulumi:"version"`
 }
@@ -830,6 +862,11 @@ type ClusterArgs struct {
 	//
 	// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
 	Type pulumi.StringPtrInput
+	// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+	// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+	// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+	// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+	UpgradePools pulumi.BoolPtrInput
 	// The version of the Kubernetes cluster.
 	Version pulumi.StringInput
 }
@@ -1067,6 +1104,14 @@ func (o ClusterOutput) UpdatedAt() pulumi.StringOutput {
 // Set to `true` if a newer Kubernetes version is available.
 func (o ClusterOutput) UpgradeAvailable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.UpgradeAvailable }).(pulumi.BoolOutput)
+}
+
+// Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+// If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+// If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+// In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+func (o ClusterOutput) UpgradePools() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolPtrOutput { return v.UpgradePools }).(pulumi.BoolPtrOutput)
 }
 
 // The version of the Kubernetes cluster.

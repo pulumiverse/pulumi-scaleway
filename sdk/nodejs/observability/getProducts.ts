@@ -6,6 +6,57 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Gets the list of Cockpit products available for a specific region.
+ *
+ * Use this data source to retrieve the list of products that can be exported via `scaleway.observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+ *
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Get all available products
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * export const availableProducts = main.then(main => main.products);
+ * ```
+ *
+ * ### Use with cockpitExporter
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * const mainExporter = new scaleway.observability.Exporter("main", {
+ *     name: "my-exporter",
+ *     region: "fr-par",
+ *     exportedProducts: main.then(main => main.names),
+ * });
+ * ```
+ *
+ * ### Filter products by family
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * // Filter to only compute products
+ * const computeProducts = main.then(main => .filter(p => p.familyName == "Compute").map(p => (p.name)));
+ * export const computeProductNames = computeProducts;
+ * ```
+ */
 export function getProducts(args?: GetProductsArgs, opts?: pulumi.InvokeOptions): Promise<GetProductsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +70,7 @@ export function getProducts(args?: GetProductsArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetProductsArgs {
     /**
-     * The region you want to attach the resource to
+     * The region to query. Defaults to the region configured in the provider.
      */
     region?: string;
 }
@@ -33,18 +84,66 @@ export interface GetProductsResult {
      */
     readonly id: string;
     /**
-     * List of product names for use in scaleway*cockpit*exporter.exported_products.
+     * List of product names that can be directly used in `scaleway_cockpit_exporter.exported_products`.
      */
     readonly names: string[];
     /**
-     * List of Cockpit products available for exported*products in scaleway*cockpit_exporter.
+     * List of available Cockpit products. (see below)
      */
     readonly products: outputs.observability.GetProductsProduct[];
-    /**
-     * The region you want to attach the resource to
-     */
     readonly region?: string;
 }
+/**
+ * Gets the list of Cockpit products available for a specific region.
+ *
+ * Use this data source to retrieve the list of products that can be exported via `scaleway.observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+ *
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+ *
+ * ## Example Usage
+ *
+ * ### Get all available products
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * export const availableProducts = main.then(main => main.products);
+ * ```
+ *
+ * ### Use with cockpitExporter
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * const mainExporter = new scaleway.observability.Exporter("main", {
+ *     name: "my-exporter",
+ *     region: "fr-par",
+ *     exportedProducts: main.then(main => main.names),
+ * });
+ * ```
+ *
+ * ### Filter products by family
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = scaleway.observability.getProducts({
+ *     region: "fr-par",
+ * });
+ * // Filter to only compute products
+ * const computeProducts = main.then(main => .filter(p => p.familyName == "Compute").map(p => (p.name)));
+ * export const computeProductNames = computeProducts;
+ * ```
+ */
 export function getProductsOutput(args?: GetProductsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProductsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -58,7 +157,7 @@ export function getProductsOutput(args?: GetProductsOutputArgs, opts?: pulumi.In
  */
 export interface GetProductsOutputArgs {
     /**
-     * The region you want to attach the resource to
+     * The region to query. Defaults to the region configured in the provider.
      */
     region?: pulumi.Input<string | undefined>;
 }

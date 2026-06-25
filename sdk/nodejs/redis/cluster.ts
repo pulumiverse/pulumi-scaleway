@@ -149,8 +149,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     declare public readonly publicNetwork: pulumi.Output<outputs.redis.ClusterPublicNetwork>;
     /**
@@ -343,8 +342,7 @@ export interface ClusterState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork | undefined>;
     /**
@@ -450,8 +448,7 @@ export interface ClusterArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.redis.ClusterPublicNetwork | undefined>;
     /**

@@ -190,6 +190,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public readonly string Id;
         public readonly string? Name;
         public readonly int NodeAmount;
+        public readonly int NodeCount;
         public readonly string NodeType;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetDeploymentPrivateNetworkResult> PrivateNetworks;
@@ -216,6 +217,8 @@ namespace Pulumiverse.Scaleway.Opensearch
             string? name,
 
             int nodeAmount,
+
+            int nodeCount,
 
             string nodeType,
 
@@ -247,6 +250,7 @@ namespace Pulumiverse.Scaleway.Opensearch
             Id = id;
             Name = name;
             NodeAmount = nodeAmount;
+            NodeCount = nodeCount;
             NodeType = nodeType;
             Password = password;
             PrivateNetworks = privateNetworks;

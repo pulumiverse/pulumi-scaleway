@@ -2175,9 +2175,9 @@ func (o GetPreconfiguredAlertAlertArrayOutput) Index(i pulumi.IntInput) GetPreco
 type GetProductsProduct struct {
 	// Human-readable display name of the product.
 	DisplayName string `pulumi:"displayName"`
-	// Product family name.
+	// Product family category (e.g. `Compute`, `Network`, `Storage`).
 	FamilyName string `pulumi:"familyName"`
-	// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+	// The machine-readable product name to use in `exportedProducts` (e.g. `cockpit`, `lb`, `object-storage`).
 	Name string `pulumi:"name"`
 }
 
@@ -2195,9 +2195,9 @@ type GetProductsProductInput interface {
 type GetProductsProductArgs struct {
 	// Human-readable display name of the product.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
-	// Product family name.
+	// Product family category (e.g. `Compute`, `Network`, `Storage`).
 	FamilyName pulumi.StringInput `pulumi:"familyName"`
-	// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+	// The machine-readable product name to use in `exportedProducts` (e.g. `cockpit`, `lb`, `object-storage`).
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2257,12 +2257,12 @@ func (o GetProductsProductOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProductsProduct) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// Product family name.
+// Product family category (e.g. `Compute`, `Network`, `Storage`).
 func (o GetProductsProductOutput) FamilyName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProductsProduct) string { return v.FamilyName }).(pulumi.StringOutput)
 }
 
-// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+// The machine-readable product name to use in `exportedProducts` (e.g. `cockpit`, `lb`, `object-storage`).
 func (o GetProductsProductOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProductsProduct) string { return v.Name }).(pulumi.StringOutput)
 }

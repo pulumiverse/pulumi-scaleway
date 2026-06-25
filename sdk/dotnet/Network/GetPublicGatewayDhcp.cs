@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway.Network
     public static class GetPublicGatewayDhcp
     {
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        /// &gt; **Important:** The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
         /// For more information, please refer to the dedicated guide.
         /// 
@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway.Network
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPublicGatewayDhcpResult>("scaleway:network/getPublicGatewayDhcp:getPublicGatewayDhcp", args ?? new GetPublicGatewayDhcpArgs(), options.WithDefaults());
 
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        /// &gt; **Important:** The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
         /// For more information, please refer to the dedicated guide.
         /// 
@@ -79,7 +79,7 @@ namespace Pulumiverse.Scaleway.Network
             => global::Pulumi.Deployment.Instance.Invoke<GetPublicGatewayDhcpResult>("scaleway:network/getPublicGatewayDhcp:getPublicGatewayDhcp", args ?? new GetPublicGatewayDhcpInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        /// &gt; **Important:** The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
         /// For more information, please refer to the dedicated guide.
         /// 

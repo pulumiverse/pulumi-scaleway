@@ -233,6 +233,8 @@ if typing.TYPE_CHECKING:
     containers = __containers
     import pulumiverse_scaleway.databases as __databases
     databases = __databases
+    import pulumiverse_scaleway.datalab as __datalab
+    datalab = __datalab
     import pulumiverse_scaleway.datawarehouse as __datawarehouse
     datawarehouse = __datawarehouse
     import pulumiverse_scaleway.domain as __domain
@@ -299,6 +301,7 @@ else:
     config = _utilities.lazy_import('pulumiverse_scaleway.config')
     containers = _utilities.lazy_import('pulumiverse_scaleway.containers')
     databases = _utilities.lazy_import('pulumiverse_scaleway.databases')
+    datalab = _utilities.lazy_import('pulumiverse_scaleway.datalab')
     datawarehouse = _utilities.lazy_import('pulumiverse_scaleway.datawarehouse')
     domain = _utilities.lazy_import('pulumiverse_scaleway.domain')
     edgeservices = _utilities.lazy_import('pulumiverse_scaleway.edgeservices')
@@ -385,6 +388,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.autoscaling",
   "classes": {
    "scaleway:autoscaling/instanceTemplate:InstanceTemplate": "InstanceTemplate"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "billing/budget",
+  "fqn": "pulumiverse_scaleway.billing",
+  "classes": {
+   "scaleway:billing/budget:Budget": "Budget"
   }
  },
  {
@@ -521,6 +532,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.databases",
   "classes": {
    "scaleway:databases/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "datalab/datalab",
+  "fqn": "pulumiverse_scaleway.datalab",
+  "classes": {
+   "scaleway:datalab/datalab:Datalab": "Datalab"
   }
  },
  {
@@ -785,6 +804,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.iam",
   "classes": {
    "scaleway:iam/scim:Scim": "Scim"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/scimToken",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/scimToken:ScimToken": "ScimToken"
   }
  },
  {
@@ -2137,6 +2164,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.network",
   "classes": {
    "scaleway:network/gatewayNetwork:GatewayNetwork": "GatewayNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/ingressRule",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/ingressRule:IngressRule": "IngressRule"
   }
  },
  {

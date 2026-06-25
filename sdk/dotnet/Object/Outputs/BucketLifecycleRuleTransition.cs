@@ -15,23 +15,26 @@ namespace Pulumiverse.Scaleway.Object.Outputs
     public sealed class BucketLifecycleRuleTransition
     {
         /// <summary>
-        /// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        /// Specifies the date objects are transitioned to the
+        /// specified storage class. The date value must be in RFC3339 full-date
+        /// format e.g. `2023-08-22`.
         /// </summary>
         public readonly string? Date;
         /// <summary>
-        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// Specifies the number of days after object creation
+        /// when the specific rule action takes effect.
         /// </summary>
         public readonly int? Days;
         /// <summary>
-        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+        /// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+        /// transition.
         /// 
+        /// &gt; **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+        /// storage class `GLACIER` is not available in `pl-waw` region.
         /// 
-        /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-        /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-        /// 
-        /// 
-        /// &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        /// &gt; **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+        /// &gt; **Important:** At least one of `AbortIncompleteMultipartUploadDays`,
+        /// `Expiration`, `Transition` must be specified.
         /// </summary>
         public readonly string StorageClass;
 

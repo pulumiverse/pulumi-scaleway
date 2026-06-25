@@ -77,8 +77,7 @@ class ClusterArgs:
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input['ClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-               > The `public_network` block exports:
+        :param pulumi.Input['ClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
@@ -292,8 +291,7 @@ class ClusterArgs:
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> pulumi.Input[Optional['ClusterPublicNetworkArgs']]:
         """
-        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        > The `public_network` block exports:
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 
@@ -415,8 +413,7 @@ class _ClusterState:
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input['ClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-               > The `public_network` block exports:
+        :param pulumi.Input['ClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
@@ -656,8 +653,7 @@ class _ClusterState:
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> pulumi.Input[Optional['ClusterPublicNetworkArgs']]:
         """
-        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        > The `public_network` block exports:
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 
@@ -855,8 +851,7 @@ class Cluster(pulumi.CustomResource):
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-               > The `public_network` block exports:
+        :param pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
@@ -1062,8 +1057,7 @@ class Cluster(pulumi.CustomResource):
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-               > The `public_network` block exports:
+        :param pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
@@ -1235,8 +1229,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="publicNetwork")
     def public_network(self) -> pulumi.Output['outputs.ClusterPublicNetwork']:
         """
-        (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        > The `public_network` block exports:
+        (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         """
         return pulumi.get(self, "public_network")
 

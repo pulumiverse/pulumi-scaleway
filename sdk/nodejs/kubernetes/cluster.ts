@@ -13,6 +13,8 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -20,18 +22,21 @@ import * as utilities from "../utilities";
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
- *     version: "1.32.3",
+ *     version: "1.35.3",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  * });
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 1,
  * });
  * ```
+ *
+ * ### Using autoscalerConfig
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,7 +46,7 @@ import * as utilities from "../utilities";
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     description: "cluster made in terraform",
- *     version: "1.32.3",
+ *     version: "1.35.3",
  *     cni: "calico",
  *     tags: ["terraform"],
  *     privateNetworkId: pn.id,
@@ -58,6 +63,7 @@ import * as utilities from "../utilities";
  * });
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 3,
@@ -68,23 +74,25 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With the Helm provider
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
  * import * as helm from "@pulumi/helm";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Example with an Helm provider
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
- *     version: "1.29.1",
+ *     version: "1.35.3",
  *     cni: "cilium",
  *     deleteAdditionalResources: false,
  *     privateNetworkId: pn.id,
  * });
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 1,
@@ -130,22 +138,24 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With the Kubernetes provider
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Example with the kubernetes provider 
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
- *     version: "1.29.1",
+ *     version: "1.35.3",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  * });
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
  *     size: 1,
@@ -161,21 +171,23 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Multicloud
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Multicloud Kubernetes Cluster Example
  * // For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     type: "multicloud",
- *     version: "1.32.3",
+ *     version: "1.35.3",
  *     cni: "kilo",
  *     deleteAdditionalResources: false,
  * });
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     name: "tf-pool",
  *     nodeType: "external",
  *     size: 0,
@@ -387,6 +399,13 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly upgradeAvailable: pulumi.Output<boolean>;
     /**
+     * Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+     * If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+     * If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+     * In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+     */
+    declare public readonly upgradePools: pulumi.Output<boolean | undefined>;
+    /**
      * The version of the Kubernetes cluster.
      */
     declare public readonly version: pulumi.Output<string>;
@@ -433,6 +452,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["upgradeAvailable"] = state?.upgradeAvailable;
+            resourceInputs["upgradePools"] = state?.upgradePools;
             resourceInputs["version"] = state?.version;
             resourceInputs["wildcardDns"] = state?.wildcardDns;
         } else {
@@ -464,6 +484,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["serviceDnsIp"] = args?.serviceDnsIp;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["type"] = args?.type;
+            resourceInputs["upgradePools"] = args?.upgradePools;
             resourceInputs["version"] = args?.version;
             resourceInputs["apiserverUrl"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -611,6 +632,13 @@ export interface ClusterState {
      */
     upgradeAvailable?: pulumi.Input<boolean | undefined>;
     /**
+     * Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+     * If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+     * If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+     * In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+     */
+    upgradePools?: pulumi.Input<boolean | undefined>;
+    /**
      * The version of the Kubernetes cluster.
      */
     version?: pulumi.Input<string | undefined>;
@@ -719,6 +747,13 @@ export interface ClusterArgs {
      * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     type?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the pools should be automatically upgraded alongside the cluster, or have to be upgraded separately.
+     * If `false` (cluster and pool version are independent of each other), pool upgrades can be conducted by setting the `version` field in the pool resource.
+     * If `true`, upgrading a cluster also performs an upgrade on the pools, but this change is made outside of Terraform, as the config of the pool resource may stay the same.
+     * In that case, refreshing the state will be required for the pool to be read again and the version changes to be shown in the state.
+     */
+    upgradePools?: pulumi.Input<boolean | undefined>;
     /**
      * The version of the Kubernetes cluster.
      */

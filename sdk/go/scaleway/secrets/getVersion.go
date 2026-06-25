@@ -86,7 +86,7 @@ import (
 // Keep in mind that this is a sensitive attribute. For more information,
 // see Sensitive Data in State.
 //
-// > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+// > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
 func LookupVersion(ctx *pulumi.Context, args *LookupVersionArgs, opts ...pulumi.InvokeOption) (*LookupVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVersionResult

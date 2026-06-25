@@ -83,7 +83,7 @@ namespace Pulumiverse.Scaleway
         /// Keep in mind that this is a sensitive attribute. For more information,
         /// see Sensitive Data in State.
         /// 
-        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+        /// &gt; **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
         /// </summary>
         public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithDefaults());
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway
         /// Keep in mind that this is a sensitive attribute. For more information,
         /// see Sensitive Data in State.
         /// 
-        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+        /// &gt; **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
         /// </summary>
         public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
@@ -233,7 +233,7 @@ namespace Pulumiverse.Scaleway
         /// Keep in mind that this is a sensitive attribute. For more information,
         /// see Sensitive Data in State.
         /// 
-        /// &gt; **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+        /// &gt; **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
         /// </summary>
         public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());

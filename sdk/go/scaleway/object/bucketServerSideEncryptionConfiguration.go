@@ -201,11 +201,18 @@ import (
 // ```sh
 // $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
 // ```
+//
+// <!--- Links, invisible in the final document --->
+//
+// [1]: ../index.md#project_id
 type BucketServerSideEncryptionConfiguration struct {
 	pulumi.CustomResourceState
 
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Set of server-side encryption configuration rules
@@ -250,6 +257,9 @@ func GetBucketServerSideEncryptionConfiguration(ctx *pulumi.Context,
 type bucketServerSideEncryptionConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
 	Region *string `pulumi:"region"`
 	// Set of server-side encryption configuration rules
@@ -259,6 +269,9 @@ type bucketServerSideEncryptionConfigurationState struct {
 type BucketServerSideEncryptionConfigurationState struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
 	Region pulumi.StringPtrInput
 	// Set of server-side encryption configuration rules
@@ -272,6 +285,9 @@ func (BucketServerSideEncryptionConfigurationState) ElementType() reflect.Type {
 type bucketServerSideEncryptionConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
 	Region *string `pulumi:"region"`
 	// Set of server-side encryption configuration rules
@@ -282,6 +298,9 @@ type bucketServerSideEncryptionConfigurationArgs struct {
 type BucketServerSideEncryptionConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
 	Region pulumi.StringPtrInput
 	// Set of server-side encryption configuration rules
@@ -378,6 +397,12 @@ func (o BucketServerSideEncryptionConfigurationOutput) ToBucketServerSideEncrypt
 // The bucket's name or regional ID.
 func (o BucketServerSideEncryptionConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The ID of the
+// project the bucket is associated with.
+func (o BucketServerSideEncryptionConfigurationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.

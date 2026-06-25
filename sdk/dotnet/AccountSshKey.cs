@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
     /// 
-    /// !&gt; **Important:**  The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
+    /// !&gt; **Important:** The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
     /// 
     /// ## Example Usage
     /// 

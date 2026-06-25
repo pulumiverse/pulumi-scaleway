@@ -26,13 +26,13 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<Inputs.ContainerStartupProbeHttpGetArgs>? Http { get; set; }
 
         /// <summary>
-        /// Time interval between checks (in duration notation).
+        /// Time interval between checks (in duration notation, e.g. "30s").
         /// </summary>
         [Input("interval", required: true)]
         public Input<string> Interval { get; set; } = null!;
 
         /// <summary>
-        /// Perform TCP check on the container
+        /// When set to `True`, performs TCP checks on the container.
         /// </summary>
         [Input("tcp")]
         public Input<bool>? Tcp { get; set; }

@@ -153,7 +153,7 @@ export class Route extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     declare public readonly database: pulumi.Output<outputs.iot.RouteDatabase | undefined>;
     /**
@@ -235,7 +235,7 @@ export interface RouteState {
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.iot.RouteDatabase | undefined>;
     /**
@@ -269,7 +269,7 @@ export interface RouteState {
  */
 export interface RouteArgs {
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.iot.RouteDatabase | undefined>;
     /**

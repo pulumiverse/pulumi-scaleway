@@ -208,6 +208,9 @@ export interface GetContainerResult {
      * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
      */
     readonly secretEnvironmentVariables: {[key: string]: string};
+    /**
+     * Defines how to check if the container has started successfully.
+     */
     readonly startupProbes: outputs.containers.GetContainerStartupProbe[];
     /**
      * The container status.

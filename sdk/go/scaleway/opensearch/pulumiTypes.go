@@ -142,7 +142,7 @@ type DeploymentEndpointService struct {
 	Name *string `pulumi:"name"`
 	// Service port number.
 	Port *int `pulumi:"port"`
-	// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+	// Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
 	Url *string `pulumi:"url"`
 }
 
@@ -162,7 +162,7 @@ type DeploymentEndpointServiceArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Service port number.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+	// Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
 	Url pulumi.StringPtrInput `pulumi:"url"`
 }
 
@@ -227,7 +227,7 @@ func (o DeploymentEndpointServiceOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentEndpointService) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+// Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
 func (o DeploymentEndpointServiceOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentEndpointService) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
@@ -253,7 +253,7 @@ func (o DeploymentEndpointServiceArrayOutput) Index(i pulumi.IntInput) Deploymen
 }
 
 type DeploymentPrivateNetwork struct {
-	// Private network ID if the endpoint is private.
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 }
 
@@ -269,7 +269,7 @@ type DeploymentPrivateNetworkInput interface {
 }
 
 type DeploymentPrivateNetworkArgs struct {
-	// Private network ID if the endpoint is private.
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
 }
 
@@ -350,7 +350,7 @@ func (o DeploymentPrivateNetworkOutput) ToDeploymentPrivateNetworkPtrOutputWithC
 	}).(DeploymentPrivateNetworkPtrOutput)
 }
 
-// Private network ID if the endpoint is private.
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
 func (o DeploymentPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
@@ -379,7 +379,7 @@ func (o DeploymentPrivateNetworkPtrOutput) Elem() DeploymentPrivateNetworkOutput
 	}).(DeploymentPrivateNetworkOutput)
 }
 
-// Private network ID if the endpoint is private.
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
 func (o DeploymentPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DeploymentPrivateNetwork) *string {
 		if v == nil {

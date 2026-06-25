@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "placement_group",
  *     cni: "kilo",
- *     version: "1.32.3",
+ *     version: "1.35.3",
  *     tags: [
  *         "terraform-test",
  *         "scaleway_k8s_cluster",
@@ -40,6 +40,7 @@ import * as utilities from "./utilities";
  * const pool = new scaleway.kubernetes.Pool("pool", {
  *     name: "placement_group",
  *     clusterId: cluster.id,
+ *     version: cluster.version,
  *     nodeType: "gp1_xs",
  *     placementGroupId: placementGroup.id,
  *     size: 1,
@@ -247,9 +248,12 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     declare public readonly upgradePolicy: pulumi.Output<outputs.KubernetesNodePoolUpgradePolicy>;
     /**
-     * The version of the pool.
+     * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+     * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+     *
+     * > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
      */
-    declare public /*out*/ readonly version: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
     /**
      * Whether to wait for the pool to be ready.
      */
@@ -338,6 +342,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["taints"] = args?.taints;
             resourceInputs["upgradePolicy"] = args?.upgradePolicy;
+            resourceInputs["version"] = args?.version;
             resourceInputs["waitForPoolReady"] = args?.waitForPoolReady;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -345,7 +350,6 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["nodes"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
-            resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(KubernetesNodePool.__pulumiType, name, resourceInputs, opts);
@@ -479,7 +483,10 @@ export interface KubernetesNodePoolState {
      */
     upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy | undefined>;
     /**
-     * The version of the pool.
+     * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+     * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+     *
+     * > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
      */
     version?: pulumi.Input<string | undefined>;
     /**
@@ -600,6 +607,13 @@ export interface KubernetesNodePoolArgs {
      * The Pool upgrade policy
      */
     upgradePolicy?: pulumi.Input<inputs.KubernetesNodePoolUpgradePolicy | undefined>;
+    /**
+     * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+     * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
+     *
+     * > **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
+     */
+    version?: pulumi.Input<string | undefined>;
     /**
      * Whether to wait for the pool to be ready.
      */

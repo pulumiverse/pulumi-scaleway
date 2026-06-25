@@ -223,7 +223,7 @@ class AwaitableGetPublicGatewayDhcpResult(GetPublicGatewayDhcpResult):
 def get_public_gateway_dhcp(dhcp_id: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPublicGatewayDhcpResult:
     """
-    > **Important:**  The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+    > **Important:** The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
     In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
     For more information, please refer to the dedicated guide.
 
@@ -269,7 +269,7 @@ def get_public_gateway_dhcp(dhcp_id: Optional[_builtins.str] = None,
 def get_public_gateway_dhcp_output(dhcp_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPublicGatewayDhcpResult]:
     """
-    > **Important:**  The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+    > **Important:** The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
     In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
     For more information, please refer to the dedicated guide.
 

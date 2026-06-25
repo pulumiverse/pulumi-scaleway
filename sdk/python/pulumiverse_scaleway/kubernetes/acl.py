@@ -216,7 +216,7 @@ class Acl(pulumi.CustomResource):
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
-            version="1.32.2",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=True,
             private_network_id=acl_basic.id)
@@ -242,7 +242,7 @@ class Acl(pulumi.CustomResource):
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
-            version="1.32.2",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=True,
             private_network_id=acl_basic.id)
@@ -297,7 +297,7 @@ class Acl(pulumi.CustomResource):
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
-            version="1.32.2",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=True,
             private_network_id=acl_basic.id)
@@ -323,7 +323,7 @@ class Acl(pulumi.CustomResource):
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
-            version="1.32.2",
+            version="1.35.3",
             cni="cilium",
             delete_additional_resources=True,
             private_network_id=acl_basic.id)

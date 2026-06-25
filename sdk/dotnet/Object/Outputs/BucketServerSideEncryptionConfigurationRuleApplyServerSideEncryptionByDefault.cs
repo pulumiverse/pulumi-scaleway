@@ -15,11 +15,13 @@ namespace Pulumiverse.Scaleway.Object.Outputs
     public sealed class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault
     {
         /// <summary>
-        /// Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of SseAlgorithm as aws:kms. Will return an error if not this element is absent while the SseAlgorithm is aws:kms.
+        /// Scaleway KMS master key ID used for the SSE-KMS encryption.
+        /// This can only be used when you set the value of SseAlgorithm as `aws:kms`. Will return an error
+        /// if this element is absent while the SseAlgorithm is `aws:kms`.
         /// </summary>
         public readonly string? KmsMasterKeyId;
         /// <summary>
-        /// Server-side encryption algorithm to use. Valid values are `AES256`.
+        /// Server-side encryption algorithm to use. Valid values are `AES256`, `aws:kms`.
         /// </summary>
         public readonly string SseAlgorithm;
 

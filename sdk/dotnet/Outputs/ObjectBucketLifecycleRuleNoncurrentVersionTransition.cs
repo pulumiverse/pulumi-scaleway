@@ -15,15 +15,22 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class ObjectBucketLifecycleRuleNoncurrentVersionTransition
     {
         /// <summary>
-        /// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        /// Number of noncurrent versions
+        /// Scaleway Object Storage will retain. Must be a non-zero positive integer.
         /// </summary>
         public readonly int? NewerNoncurrentVersions;
         /// <summary>
-        /// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        /// Number of days an object is noncurrent
+        /// before Scaleway Object Storage can perform the associated action.
         /// </summary>
         public readonly int NoncurrentDays;
         /// <summary>
-        /// Specifies the Scaleway Object Storage class to which you want the object to transition
+        /// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+        /// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+        /// transition.
+        /// 
+        /// &gt; **Important:** If versioning is enabled, this rule only deletes the current
+        /// version of an object.
         /// </summary>
         public readonly string StorageClass;
 

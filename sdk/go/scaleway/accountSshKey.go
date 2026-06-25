@@ -16,7 +16,7 @@ import (
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 //
-// !> **Important:**  The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
+// !> **Important:** The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
 //
 // ## Example Usage
 //

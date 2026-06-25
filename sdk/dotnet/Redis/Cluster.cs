@@ -166,8 +166,7 @@ namespace Pulumiverse.Scaleway.Redis
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
-        /// &gt; The `PublicNetwork` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set. The `PublicNetwork` block exports:
         /// </summary>
         [Output("publicNetwork")]
         public Output<Outputs.ClusterPublicNetwork> PublicNetwork { get; private set; } = null!;
@@ -398,8 +397,7 @@ namespace Pulumiverse.Scaleway.Redis
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
-        /// &gt; The `PublicNetwork` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set. The `PublicNetwork` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.ClusterPublicNetworkArgs>? PublicNetwork { get; set; }
@@ -615,8 +613,7 @@ namespace Pulumiverse.Scaleway.Redis
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
-        /// &gt; The `PublicNetwork` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set. The `PublicNetwork` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.ClusterPublicNetworkGetArgs>? PublicNetwork { get; set; }

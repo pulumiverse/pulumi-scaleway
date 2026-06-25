@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
     public sealed class TriggerNats
     {
         /// <summary>
-        /// unique identifier of the Messaging and Queuing NATS account  .
+        /// unique identifier of the Messaging and Queuing NATS account.
         /// </summary>
         public readonly string? AccountId;
         /// <summary>

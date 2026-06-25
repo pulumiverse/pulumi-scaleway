@@ -199,6 +199,10 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import scaleway:object/bucket:Bucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * <!--- Links, invisible in the final document --->
+ *
+ * [1]: https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class
  */
 export class Bucket extends pulumi.CustomResource {
     /**
@@ -261,7 +265,9 @@ export class Bucket extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Enable object lock
+     * Enables the usage of a
+     * scaleway.object.BucketLockConfiguration
+     * for this bucket.
      */
     declare public readonly objectLockEnabled: pulumi.Output<boolean | undefined>;
     /**
@@ -275,7 +281,7 @@ export class Bucket extends pulumi.CustomResource {
     /**
      * A list of tags (key/value) for the bucket.
      *
-     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
@@ -368,7 +374,9 @@ export interface BucketState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Enable object lock
+     * Enables the usage of a
+     * scaleway.object.BucketLockConfiguration
+     * for this bucket.
      */
     objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -382,7 +390,7 @@ export interface BucketState {
     /**
      * A list of tags (key/value) for the bucket.
      *
-     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
@@ -421,7 +429,9 @@ export interface BucketArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Enable object lock
+     * Enables the usage of a
+     * scaleway.object.BucketLockConfiguration
+     * for this bucket.
      */
     objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -435,7 +445,7 @@ export interface BucketArgs {
     /**
      * A list of tags (key/value) for the bucket.
      *
-     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;

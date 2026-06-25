@@ -14,13 +14,16 @@ namespace Pulumiverse.Scaleway.Object.Inputs
     public sealed class BucketLifecycleRuleNoncurrentVersionExpirationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        /// Number of noncurrent versions
+        /// Scaleway Object Storage will retain. Must be a non-zero positive integer.
         /// </summary>
         [Input("newerNoncurrentVersions")]
         public Input<int>? NewerNoncurrentVersions { get; set; }
 
         /// <summary>
-        /// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        /// Number of days an object is noncurrent
+        /// before Scaleway Object Storage can perform the associated action. Must
+        /// be a positive integer.
         /// </summary>
         [Input("noncurrentDays")]
         public Input<int>? NoncurrentDays { get; set; }

@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Opensearch.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        /// Full URL to access the service (e.g., &lt;https://abc-123.searchdb.fr-par.scw.cloud:9200&gt;).
         /// </summary>
         public readonly string? Url;
 

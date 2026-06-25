@@ -156,7 +156,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
     }
 
     /**
-     * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+     * A list of ACL rules to apply to the Load Balancer frontend. Defined below.
      */
     declare public readonly acls: pulumi.Output<outputs.LoadbalancerFrontendAcl[] | undefined>;
     /**
@@ -285,7 +285,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
  */
 export interface LoadbalancerFrontendState {
     /**
-     * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+     * A list of ACL rules to apply to the Load Balancer frontend. Defined below.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[] | undefined>;
     /**
@@ -354,7 +354,7 @@ export interface LoadbalancerFrontendState {
  */
 export interface LoadbalancerFrontendArgs {
     /**
-     * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+     * A list of ACL rules to apply to the Load Balancer frontend. Defined below.
      */
     acls?: pulumi.Input<pulumi.Input<inputs.LoadbalancerFrontendAcl>[] | undefined>;
     /**

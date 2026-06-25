@@ -94,6 +94,12 @@ namespace Pulumiverse.Scaleway.Network
         public Output<bool> EnableRouting { get; private set; } = null!;
 
         /// <summary>
+        /// Enable packets from peered VPCs to transit through this VPC.
+        /// </summary>
+        [Output("enableTransitivity")]
+        public Output<bool> EnableTransitivity { get; private set; } = null!;
+
+        /// <summary>
         /// Defines whether the VPC is the default one for its Project.
         /// </summary>
         [Output("isDefault")]
@@ -199,6 +205,12 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? EnableRouting { get; set; }
 
         /// <summary>
+        /// Enable packets from peered VPCs to transit through this VPC.
+        /// </summary>
+        [Input("enableTransitivity")]
+        public Input<bool>? EnableTransitivity { get; set; }
+
+        /// <summary>
         /// The name for the VPC. If not provided it will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -253,6 +265,12 @@ namespace Pulumiverse.Scaleway.Network
         /// </summary>
         [Input("enableRouting")]
         public Input<bool>? EnableRouting { get; set; }
+
+        /// <summary>
+        /// Enable packets from peered VPCs to transit through this VPC.
+        /// </summary>
+        [Input("enableTransitivity")]
+        public Input<bool>? EnableTransitivity { get; set; }
 
         /// <summary>
         /// Defines whether the VPC is the default one for its Project.

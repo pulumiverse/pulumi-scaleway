@@ -110,6 +110,10 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * <!--- Links, invisible in the final document --->
+ *
+ * [1]: ../index.md#project_id
  */
 export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResource {
     /**
@@ -144,6 +148,11 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
      */
     declare public readonly bucket: pulumi.Output<string>;
     /**
+     * The ID of the
+     * project the bucket is associated with.
+     */
+    declare public readonly projectId: pulumi.Output<string>;
+    /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
      */
     declare public readonly region: pulumi.Output<string | undefined>;
@@ -166,6 +175,7 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
         if (opts.id) {
             const state = argsOrState as BucketServerSideEncryptionConfigurationState | undefined;
             resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
             resourceInputs["rules"] = state?.rules;
         } else {
@@ -177,6 +187,7 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
                 throw new Error("Missing required property 'rules'");
             }
             resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["rules"] = args?.rules;
         }
@@ -193,6 +204,11 @@ export interface BucketServerSideEncryptionConfigurationState {
      * The bucket's name or regional ID.
      */
     bucket?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the
+     * project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
      */
@@ -211,6 +227,11 @@ export interface BucketServerSideEncryptionConfigurationArgs {
      * The bucket's name or regional ID.
      */
     bucket: pulumi.Input<string>;
+    /**
+     * The ID of the
+     * project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
      */

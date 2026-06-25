@@ -41,7 +41,7 @@ import (
 //			}
 //			aclBasicCluster, err := kubernetes.NewCluster(ctx, "acl_basic", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("acl-basic"),
-//				Version:                   pulumi.String("1.32.2"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
 //				PrivateNetworkId:          aclBasic.ID(),
@@ -91,7 +91,7 @@ import (
 //			}
 //			aclBasicCluster, err := kubernetes.NewCluster(ctx, "acl_basic", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("acl-basic"),
-//				Version:                   pulumi.String("1.32.2"),
+//				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
 //				PrivateNetworkId:          aclBasic.ID(),

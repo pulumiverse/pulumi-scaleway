@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string AccessKey;
         /// <summary>
-        /// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        /// Endpoint URL to use to access SQS (e.g., &lt;https://sqs.mnq.fr-par.scaleway.com&gt;).
         /// </summary>
         public readonly string Endpoint;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// The name of the SQS queue.  This argument is no longer supported.
+        /// The name of the SQS queue. This argument is no longer supported.
         /// </summary>
         public readonly string? Queue;
         /// <summary>

@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
         /// </summary>
         public readonly string DisplayName;
         /// <summary>
-        /// Product family name.
+        /// Product family category (e.g. `Compute`, `Network`, `Storage`).
         /// </summary>
         public readonly string FamilyName;
         /// <summary>
-        /// Product name to use in ExportedProducts (e.g. cockpit, LB, object-storage).
+        /// The machine-readable product name to use in `ExportedProducts` (e.g. `Cockpit`, `Lb`, `object-storage`).
         /// </summary>
         public readonly string Name;
 

@@ -387,10 +387,6 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     City of the contact's address.
     """
-    company_identification_code: pulumi.Input[_builtins.str]
-    """
-    Company identification code (e.g., SIREN/SIRET in France) for the contact.
-    """
     country: pulumi.Input[_builtins.str]
     """
     Country code of the contact's address (ISO format).
@@ -415,10 +411,6 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     Primary phone number of the contact.
     """
-    vat_identification_code: pulumi.Input[_builtins.str]
-    """
-    VAT identification code of the contact, if applicable.
-    """
     zip: pulumi.Input[_builtins.str]
     """
     Postal code of the contact's address.
@@ -426,6 +418,10 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     address_line2: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Secondary address line for the contact (optional).
+    """
+    company_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Company identification code (e.g., SIREN/SIRET in France) for the contact.
     """
     company_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -463,6 +459,10 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     State or region of the contact.
     """
+    vat_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    VAT identification code of the contact, if applicable.
+    """
     whois_opt_in: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Indicates whether the contact has opted into WHOIS publishing.
@@ -473,16 +473,15 @@ class RegistrationAdministrativeContactArgs:
     def __init__(__self__, *,
                  address_line1: pulumi.Input[_builtins.str],
                  city: pulumi.Input[_builtins.str],
-                 company_identification_code: pulumi.Input[_builtins.str],
                  country: pulumi.Input[_builtins.str],
                  email: pulumi.Input[_builtins.str],
                  firstname: pulumi.Input[_builtins.str],
                  lastname: pulumi.Input[_builtins.str],
                  legal_form: pulumi.Input[_builtins.str],
                  phone_number: pulumi.Input[_builtins.str],
-                 vat_identification_code: pulumi.Input[_builtins.str],
                  zip: pulumi.Input[_builtins.str],
                  address_line2: pulumi.Input[Optional[_builtins.str]] = None,
+                 company_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  company_name: pulumi.Input[Optional[_builtins.str]] = None,
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationAdministrativeContactExtensionEuArgs']] = None,
@@ -492,20 +491,20 @@ class RegistrationAdministrativeContactArgs:
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
+                 vat_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  whois_opt_in: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address_line1: Primary address line for the contact.
         :param pulumi.Input[_builtins.str] city: City of the contact's address.
-        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] country: Country code of the contact's address (ISO format).
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
         :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
-        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] company_name: Name of the company associated with the contact (if applicable).
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
@@ -515,21 +514,22 @@ class RegistrationAdministrativeContactArgs:
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
         :param pulumi.Input[_builtins.str] state: State or region of the contact.
+        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -548,6 +548,8 @@ class RegistrationAdministrativeContactArgs:
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -574,18 +576,6 @@ class RegistrationAdministrativeContactArgs:
     @city.setter
     def city(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "city", value)
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
-
-    @company_identification_code.setter
-    def company_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter
@@ -660,18 +650,6 @@ class RegistrationAdministrativeContactArgs:
         pulumi.set(self, "phone_number", value)
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @vat_identification_code.setter
-    def vat_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "vat_identification_code", value)
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> pulumi.Input[_builtins.str]:
         """
@@ -694,6 +672,18 @@ class RegistrationAdministrativeContactArgs:
     @address_line2.setter
     def address_line2(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address_line2", value)
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -802,6 +792,18 @@ class RegistrationAdministrativeContactArgs:
     @state.setter
     def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vat_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")
@@ -1382,10 +1384,6 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     City of the contact's address.
     """
-    company_identification_code: pulumi.Input[_builtins.str]
-    """
-    Company identification code (e.g., SIREN/SIRET in France) for the contact.
-    """
     country: pulumi.Input[_builtins.str]
     """
     Country code of the contact's address (ISO format).
@@ -1410,10 +1408,6 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     Primary phone number of the contact.
     """
-    vat_identification_code: pulumi.Input[_builtins.str]
-    """
-    VAT identification code of the contact, if applicable.
-    """
     zip: pulumi.Input[_builtins.str]
     """
     Postal code of the contact's address.
@@ -1421,6 +1415,10 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     address_line2: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Secondary address line for the contact (optional).
+    """
+    company_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Company identification code (e.g., SIREN/SIRET in France) for the contact.
     """
     company_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1458,6 +1456,10 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     State or region of the contact.
     """
+    vat_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    VAT identification code of the contact, if applicable.
+    """
     whois_opt_in: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Indicates whether the contact has opted into WHOIS publishing.
@@ -1468,16 +1470,15 @@ class RegistrationOwnerContactArgs:
     def __init__(__self__, *,
                  address_line1: pulumi.Input[_builtins.str],
                  city: pulumi.Input[_builtins.str],
-                 company_identification_code: pulumi.Input[_builtins.str],
                  country: pulumi.Input[_builtins.str],
                  email: pulumi.Input[_builtins.str],
                  firstname: pulumi.Input[_builtins.str],
                  lastname: pulumi.Input[_builtins.str],
                  legal_form: pulumi.Input[_builtins.str],
                  phone_number: pulumi.Input[_builtins.str],
-                 vat_identification_code: pulumi.Input[_builtins.str],
                  zip: pulumi.Input[_builtins.str],
                  address_line2: pulumi.Input[Optional[_builtins.str]] = None,
+                 company_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  company_name: pulumi.Input[Optional[_builtins.str]] = None,
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationOwnerContactExtensionEuArgs']] = None,
@@ -1487,20 +1488,20 @@ class RegistrationOwnerContactArgs:
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
+                 vat_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  whois_opt_in: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address_line1: Primary address line for the contact.
         :param pulumi.Input[_builtins.str] city: City of the contact's address.
-        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] country: Country code of the contact's address (ISO format).
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
         :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
-        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] company_name: Name of the company associated with the contact (if applicable).
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationOwnerContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
@@ -1510,21 +1511,22 @@ class RegistrationOwnerContactArgs:
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
         :param pulumi.Input[_builtins.str] state: State or region of the contact.
+        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -1543,6 +1545,8 @@ class RegistrationOwnerContactArgs:
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -1569,18 +1573,6 @@ class RegistrationOwnerContactArgs:
     @city.setter
     def city(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "city", value)
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
-
-    @company_identification_code.setter
-    def company_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1655,18 +1647,6 @@ class RegistrationOwnerContactArgs:
         pulumi.set(self, "phone_number", value)
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @vat_identification_code.setter
-    def vat_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "vat_identification_code", value)
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> pulumi.Input[_builtins.str]:
         """
@@ -1689,6 +1669,18 @@ class RegistrationOwnerContactArgs:
     @address_line2.setter
     def address_line2(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address_line2", value)
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -1797,6 +1789,18 @@ class RegistrationOwnerContactArgs:
     @state.setter
     def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vat_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")
@@ -2163,10 +2167,6 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     City of the contact's address.
     """
-    company_identification_code: pulumi.Input[_builtins.str]
-    """
-    Company identification code (e.g., SIREN/SIRET in France) for the contact.
-    """
     country: pulumi.Input[_builtins.str]
     """
     Country code of the contact's address (ISO format).
@@ -2191,10 +2191,6 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     Primary phone number of the contact.
     """
-    vat_identification_code: pulumi.Input[_builtins.str]
-    """
-    VAT identification code of the contact, if applicable.
-    """
     zip: pulumi.Input[_builtins.str]
     """
     Postal code of the contact's address.
@@ -2202,6 +2198,10 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     address_line2: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Secondary address line for the contact (optional).
+    """
+    company_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Company identification code (e.g., SIREN/SIRET in France) for the contact.
     """
     company_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2239,6 +2239,10 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     State or region of the contact.
     """
+    vat_identification_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    VAT identification code of the contact, if applicable.
+    """
     whois_opt_in: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Indicates whether the contact has opted into WHOIS publishing.
@@ -2249,16 +2253,15 @@ class RegistrationTechnicalContactArgs:
     def __init__(__self__, *,
                  address_line1: pulumi.Input[_builtins.str],
                  city: pulumi.Input[_builtins.str],
-                 company_identification_code: pulumi.Input[_builtins.str],
                  country: pulumi.Input[_builtins.str],
                  email: pulumi.Input[_builtins.str],
                  firstname: pulumi.Input[_builtins.str],
                  lastname: pulumi.Input[_builtins.str],
                  legal_form: pulumi.Input[_builtins.str],
                  phone_number: pulumi.Input[_builtins.str],
-                 vat_identification_code: pulumi.Input[_builtins.str],
                  zip: pulumi.Input[_builtins.str],
                  address_line2: pulumi.Input[Optional[_builtins.str]] = None,
+                 company_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  company_name: pulumi.Input[Optional[_builtins.str]] = None,
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationTechnicalContactExtensionEuArgs']] = None,
@@ -2268,20 +2271,20 @@ class RegistrationTechnicalContactArgs:
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
+                 vat_identification_code: pulumi.Input[Optional[_builtins.str]] = None,
                  whois_opt_in: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address_line1: Primary address line for the contact.
         :param pulumi.Input[_builtins.str] city: City of the contact's address.
-        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] country: Country code of the contact's address (ISO format).
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
         :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
-        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[_builtins.str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
         :param pulumi.Input[_builtins.str] company_name: Name of the company associated with the contact (if applicable).
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationTechnicalContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
@@ -2291,21 +2294,22 @@ class RegistrationTechnicalContactArgs:
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
         :param pulumi.Input[_builtins.str] state: State or region of the contact.
+        :param pulumi.Input[_builtins.str] vat_identification_code: VAT identification code of the contact, if applicable.
         :param pulumi.Input[_builtins.bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
         """
         pulumi.set(__self__, "address_line1", address_line1)
         pulumi.set(__self__, "city", city)
-        pulumi.set(__self__, "company_identification_code", company_identification_code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "firstname", firstname)
         pulumi.set(__self__, "lastname", lastname)
         pulumi.set(__self__, "legal_form", legal_form)
         pulumi.set(__self__, "phone_number", phone_number)
-        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         pulumi.set(__self__, "zip", zip)
         if address_line2 is not None:
             pulumi.set(__self__, "address_line2", address_line2)
+        if company_identification_code is not None:
+            pulumi.set(__self__, "company_identification_code", company_identification_code)
         if company_name is not None:
             pulumi.set(__self__, "company_name", company_name)
         if email_alt is not None:
@@ -2324,6 +2328,8 @@ class RegistrationTechnicalContactArgs:
             pulumi.set(__self__, "resale", resale)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if vat_identification_code is not None:
+            pulumi.set(__self__, "vat_identification_code", vat_identification_code)
         if whois_opt_in is not None:
             pulumi.set(__self__, "whois_opt_in", whois_opt_in)
 
@@ -2350,18 +2356,6 @@ class RegistrationTechnicalContactArgs:
     @city.setter
     def city(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "city", value)
-
-    @_builtins.property
-    @pulumi.getter(name="companyIdentificationCode")
-    def company_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        Company identification code (e.g., SIREN/SIRET in France) for the contact.
-        """
-        return pulumi.get(self, "company_identification_code")
-
-    @company_identification_code.setter
-    def company_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2436,18 +2430,6 @@ class RegistrationTechnicalContactArgs:
         pulumi.set(self, "phone_number", value)
 
     @_builtins.property
-    @pulumi.getter(name="vatIdentificationCode")
-    def vat_identification_code(self) -> pulumi.Input[_builtins.str]:
-        """
-        VAT identification code of the contact, if applicable.
-        """
-        return pulumi.get(self, "vat_identification_code")
-
-    @vat_identification_code.setter
-    def vat_identification_code(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "vat_identification_code", value)
-
-    @_builtins.property
     @pulumi.getter
     def zip(self) -> pulumi.Input[_builtins.str]:
         """
@@ -2470,6 +2452,18 @@ class RegistrationTechnicalContactArgs:
     @address_line2.setter
     def address_line2(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address_line2", value)
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "company_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="companyName")
@@ -2578,6 +2572,18 @@ class RegistrationTechnicalContactArgs:
     @state.setter
     def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vat_identification_code", value)
 
     @_builtins.property
     @pulumi.getter(name="whoisOptIn")

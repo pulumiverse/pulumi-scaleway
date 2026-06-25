@@ -163,8 +163,9 @@ type LookupContainerResult struct {
 	// Configuration block used to decide when to scale up or down. Possible values:
 	ScalingOptions []GetContainerScalingOption `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
-	SecretEnvironmentVariables map[string]string          `pulumi:"secretEnvironmentVariables"`
-	StartupProbes              []GetContainerStartupProbe `pulumi:"startupProbes"`
+	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// Defines how to check if the container has started successfully.
+	StartupProbes []GetContainerStartupProbe `pulumi:"startupProbes"`
 	// The container status.
 	Status string `pulumi:"status"`
 	// The list of tags associated with the container.
@@ -385,6 +386,7 @@ func (o LookupContainerResultOutput) SecretEnvironmentVariables() pulumi.StringM
 	return o.ApplyT(func(v LookupContainerResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
 }
 
+// Defines how to check if the container has started successfully.
 func (o LookupContainerResultOutput) StartupProbes() GetContainerStartupProbeArrayOutput {
 	return o.ApplyT(func(v LookupContainerResult) []GetContainerStartupProbe { return v.StartupProbes }).(GetContainerStartupProbeArrayOutput)
 }

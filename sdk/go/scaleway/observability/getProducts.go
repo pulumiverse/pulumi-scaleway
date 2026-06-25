@@ -11,6 +11,84 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets the list of Cockpit products available for a specific region.
+//
+// Use this data source to retrieve the list of products that can be exported via `observability.Exporter`. The products are returned with their machine-readable name, display name, and family name.
+//
+// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+//
+// ## Example Usage
+//
+// ### Get all available products
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := observability.GetProducts(ctx, &observability.GetProductsArgs{
+//				Region: pulumi.StringRef("fr-par"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("availableProducts", main.Products)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Use with cockpitExporter
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := observability.GetProducts(ctx, &observability.GetProductsArgs{
+//				Region: pulumi.StringRef("fr-par"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = observability.NewExporter(ctx, "main", &observability.ExporterArgs{
+//				Name:             pulumi.String("my-exporter"),
+//				Region:           pulumi.String("fr-par"),
+//				ExportedProducts: toPulumiStringArray(main.Names),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+//	func toPulumiStringArray(arr []string) pulumi.StringArray {
+//		var pulumiArr pulumi.StringArray
+//		for _, v := range arr {
+//			pulumiArr = append(pulumiArr, pulumi.String(v))
+//		}
+//		return pulumiArr
+//	}
+//
+// ```
+//
+// ### Filter products by family
 func GetProducts(ctx *pulumi.Context, args *GetProductsArgs, opts ...pulumi.InvokeOption) (*GetProductsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetProductsResult
@@ -23,7 +101,7 @@ func GetProducts(ctx *pulumi.Context, args *GetProductsArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getProducts.
 type GetProductsArgs struct {
-	// The region you want to attach the resource to
+	// The region to query. Defaults to the region configured in the provider.
 	Region *string `pulumi:"region"`
 }
 
@@ -31,12 +109,11 @@ type GetProductsArgs struct {
 type GetProductsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// List of product names for use in scaleway*cockpit*exporter.exported_products.
+	// List of product names that can be directly used in `scaleway_cockpit_exporter.exported_products`.
 	Names []string `pulumi:"names"`
-	// List of Cockpit products available for exported*products in scaleway*cockpit_exporter.
+	// List of available Cockpit products. (see below)
 	Products []GetProductsProduct `pulumi:"products"`
-	// The region you want to attach the resource to
-	Region *string `pulumi:"region"`
+	Region   *string              `pulumi:"region"`
 }
 
 func GetProductsOutput(ctx *pulumi.Context, args GetProductsOutputArgs, opts ...pulumi.InvokeOption) GetProductsResultOutput {
@@ -50,7 +127,7 @@ func GetProductsOutput(ctx *pulumi.Context, args GetProductsOutputArgs, opts ...
 
 // A collection of arguments for invoking getProducts.
 type GetProductsOutputArgs struct {
-	// The region you want to attach the resource to
+	// The region to query. Defaults to the region configured in the provider.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -78,17 +155,16 @@ func (o GetProductsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProductsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of product names for use in scaleway*cockpit*exporter.exported_products.
+// List of product names that can be directly used in `scaleway_cockpit_exporter.exported_products`.
 func (o GetProductsResultOutput) Names() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetProductsResult) []string { return v.Names }).(pulumi.StringArrayOutput)
 }
 
-// List of Cockpit products available for exported*products in scaleway*cockpit_exporter.
+// List of available Cockpit products. (see below)
 func (o GetProductsResultOutput) Products() GetProductsProductArrayOutput {
 	return o.ApplyT(func(v GetProductsResult) []GetProductsProduct { return v.Products }).(GetProductsProductArrayOutput)
 }
 
-// The region you want to attach the resource to
 func (o GetProductsResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetProductsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }

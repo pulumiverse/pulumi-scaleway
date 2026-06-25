@@ -261,15 +261,17 @@ export interface CockpitTokenScopes {
 
 export interface ContainerHealthCheck {
     /**
-     * Number of consecutive failures before considering the container has to be restarted.
+     * Number of consecutive health check failures before considering the container unhealthy.
      */
     failureThreshold: number;
     /**
-     * Perform HTTP check on the container with the specified path.
+     * HTTP health check configuration.
      */
     https: outputs.ContainerHealthCheckHttp[];
     /**
-     * Time interval between checks (in duration notation, e.g. "30s").
+     * Period between health checks (in seconds).
+     *
+     * > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
      */
     interval: string;
     /**
@@ -340,11 +342,11 @@ export interface ContainerStartupProbe {
      */
     http?: outputs.ContainerStartupProbeHttp;
     /**
-     * Time interval between checks (in duration notation).
+     * Time interval between checks (in duration notation, e.g. "30s").
      */
     interval: string;
     /**
-     * Perform TCP check on the container
+     * When set to `true`, performs TCP checks on the container.
      */
     tcp?: boolean;
     /**
@@ -392,7 +394,7 @@ export interface ContainerTriggerDestinationConfig {
 
 export interface ContainerTriggerNats {
     /**
-     * unique identifier of the Messaging and Queuing NATS account  .
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: string;
     /**
@@ -423,7 +425,7 @@ export interface ContainerTriggerSqs {
      */
     accessKey: string;
     /**
-     * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+     * Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
      */
     endpoint: string;
     /**
@@ -431,7 +433,7 @@ export interface ContainerTriggerSqs {
      */
     projectId: string;
     /**
-     * The name of the SQS queue.  This argument is no longer supported.
+     * The name of the SQS queue. This argument is no longer supported.
      *
      * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
      */
@@ -4766,41 +4768,54 @@ export interface ObjectBucketCorsRule {
 
 export interface ObjectBucketLifecycleRule {
     /**
-     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     * Specifies the number
+     * of days after initiating a multipart upload when the multipart upload must
+     * be completed.
      *
-     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+     * as any incomplete multipart upload will be billed.
      */
     abortIncompleteMultipartUploadDays?: number;
     /**
-     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+     * The element value can be either Enabled or
+     * Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+     * any of the actions defined in the rule.
      */
     enabled: boolean;
     /**
-     * Specifies a period in the object's expire
+     * Specifies a period of expiration for the object.
      */
     expiration?: outputs.ObjectBucketLifecycleRuleExpiration;
     /**
-     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     * Unique identifier for the rule. Must be less than or
+     * equal to 255 characters in length.
      */
     id: string;
     /**
-     * Configuration block that specifies when noncurrent object versions expire
+     * Configuration block that
+     * specifies when noncurrent object versions expire. Supports the following:
      */
     noncurrentVersionExpiration?: outputs.ObjectBucketLifecycleRuleNoncurrentVersionExpiration;
     /**
-     * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+     * Set of configuration blocks
+     * that specify the transition rule for the lifecycle rule that describes when
+     * noncurrent objects transition to a specific storage class. Supports the
+     * following:
      */
     noncurrentVersionTransitions?: outputs.ObjectBucketLifecycleRuleNoncurrentVersionTransition[];
     /**
-     * Minimum object size (in bytes) to which the rule applies
+     * Minimum object size (in bytes) to
+     * which the rule applies.
      */
     objectSizeGreaterThan?: number;
     /**
-     * Maximum object size (in bytes) to which the rule applies
+     * Maximum object size (in bytes) to
+     * which the rule applies.
      */
     objectSizeLessThan?: number;
     /**
-     * Object key prefix identifying one or more objects to which the rule applies.
+     * Object key prefix identifying one or more objects
+     * to which the rule applies.
      */
     prefix?: string;
     /**
@@ -4808,71 +4823,90 @@ export interface ObjectBucketLifecycleRule {
      */
     tags?: {[key: string]: string};
     /**
-     * Define when objects transition to another storage class
+     * Specifies a period in the object's transitions.
      */
     transitions?: outputs.ObjectBucketLifecycleRuleTransition[];
 }
 
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
-     * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     * Specifies the date the object is to be moved or
+     * deleted. The date value must be in RFC3339 full-date format e.g.
+     * `2023-08-22`.
      */
     date?: string;
     /**
-     * Specifies the number of days after object creation when the specific rule action takes effect.
+     * Specifies the number of days after object creation
+     * when the specific rule action takes effect.
      */
     days?: number;
     /**
-     * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+     * Specifies whether Scaleway
+     * Object will remove a delete marker with no noncurrent versions. If set
+     * to `true`, the delete marker will be expired; if set to `false` the
+     * policy takes no action.
      */
     expiredObjectDeleteMarker?: boolean;
 }
 
 export interface ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
     /**
-     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     * Number of noncurrent versions
+     * Scaleway Object Storage will retain. Must be a non-zero positive integer.
      */
     newerNoncurrentVersions?: number;
     /**
-     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+     * Number of days an object is noncurrent
+     * before Scaleway Object Storage can perform the associated action. Must
+     * be a positive integer.
      */
     noncurrentDays?: number;
 }
 
 export interface ObjectBucketLifecycleRuleNoncurrentVersionTransition {
     /**
-     * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+     * Number of noncurrent versions
+     * Scaleway Object Storage will retain. Must be a non-zero positive integer.
      */
     newerNoncurrentVersions?: number;
     /**
-     * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+     * Number of days an object is noncurrent
+     * before Scaleway Object Storage can perform the associated action.
      */
     noncurrentDays: number;
     /**
-     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+     * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+     * transition.
+     *
+     * > **Important:** If versioning is enabled, this rule only deletes the current
+     * version of an object.
      */
     storageClass: string;
 }
 
 export interface ObjectBucketLifecycleRuleTransition {
     /**
-     * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+     * Specifies the date objects are transitioned to the
+     * specified storage class. The date value must be in RFC3339 full-date
+     * format e.g. `2023-08-22`.
      */
     date?: string;
     /**
-     * Specifies the number of days after object creation when the specific rule action takes effect.
+     * Specifies the number of days after object creation
+     * when the specific rule action takes effect.
      */
     days?: number;
     /**
-     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+     * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+     * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+     * transition.
      *
+     * > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+     * storage class `GLACIER` is not available in `pl-waw` region.
      *
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-     *
-     *
-     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+     * > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+     * `expiration`, `transition` must be specified.
      */
     storageClass: string;
 }
@@ -5707,15 +5741,17 @@ export namespace block {
 export namespace containers {
     export interface ContainerHealthCheck {
         /**
-         * Number of consecutive failures before considering the container has to be restarted.
+         * Number of consecutive health check failures before considering the container unhealthy.
          */
         failureThreshold: number;
         /**
-         * Perform HTTP check on the container with the specified path.
+         * HTTP health check configuration.
          */
         https: outputs.containers.ContainerHealthCheckHttp[];
         /**
-         * Time interval between checks (in duration notation, e.g. "30s").
+         * Period between health checks (in seconds).
+         *
+         * > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
          */
         interval: string;
         /**
@@ -5786,11 +5822,11 @@ export namespace containers {
          */
         http?: outputs.containers.ContainerStartupProbeHttp;
         /**
-         * Time interval between checks (in duration notation).
+         * Time interval between checks (in duration notation, e.g. "30s").
          */
         interval: string;
         /**
-         * Perform TCP check on the container
+         * When set to `true`, performs TCP checks on the container.
          */
         tcp?: boolean;
         /**
@@ -5939,7 +5975,7 @@ export namespace containers {
 
     export interface TriggerNats {
         /**
-         * unique identifier of the Messaging and Queuing NATS account  .
+         * unique identifier of the Messaging and Queuing NATS account.
          */
         accountId?: string;
         /**
@@ -5970,7 +6006,7 @@ export namespace containers {
          */
         accessKey: string;
         /**
-         * Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+         * Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
          */
         endpoint: string;
         /**
@@ -5978,7 +6014,7 @@ export namespace containers {
          */
         projectId: string;
         /**
-         * The name of the SQS queue.  This argument is no longer supported.
+         * The name of the SQS queue. This argument is no longer supported.
          *
          * @deprecated This field is no longer supported, please use queueUrl instead to identify the queue.
          */
@@ -6320,6 +6356,172 @@ export namespace databases {
          * Private network zone
          */
         zone: string;
+    }
+
+}
+
+export namespace datalab {
+    export interface DatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.DatalabMainRootVolume;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl: string;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl: string;
+    }
+
+    export interface DatalabMainRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type.
+         */
+        type: string;
+    }
+
+    export interface DatalabTotalStorage {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type. Defaults to `sbs5k`.
+         */
+        type: string;
+    }
+
+    export interface DatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: number;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.DatalabWorkerRootVolume;
+    }
+
+    export interface DatalabWorkerRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type.
+         */
+        type: string;
+    }
+
+    export interface GetDatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: string;
+        /**
+         * Volume details for the main node.
+         */
+        rootVolume: outputs.datalab.GetDatalabMainRootVolume;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl: string;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl: string;
+    }
+
+    export interface GetDatalabMainRootVolume {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabTotalStorage {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: number;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.GetDatalabWorkerRootVolume;
+    }
+
+    export interface GetDatalabWorkerRootVolume {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabsDatalab {
+        /**
+         * The creation timestamp of the Datalab instance.
+         */
+        createdAt: string;
+        /**
+         * The description of the Datalab instance.
+         */
+        description: string;
+        /**
+         * Whether a JupyterLab notebook is associated with the Datalab.
+         */
+        hasNotebook: boolean;
+        /**
+         * The unique identifier of the Datalab instance.
+         */
+        id: string;
+        /**
+         * The name to filter Datalabs by.
+         */
+        name: string;
+        /**
+         * The project ID to filter Datalabs by.
+         */
+        projectId: string;
+        /**
+         * The region to list Datalabs from.
+         */
+        region: string;
+        /**
+         * The Spark version of the Datalab instance.
+         */
+        sparkVersion: string;
+        /**
+         * The current status of the Datalab instance.
+         */
+        status: string;
+        /**
+         * The tags to filter Datalabs by.
+         */
+        tags: string[];
+        /**
+         * The last update timestamp of the Datalab instance.
+         */
+        updatedAt: string;
     }
 
 }
@@ -11897,41 +12099,54 @@ export namespace object {
 
     export interface BucketLifecycleRule {
         /**
-         * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+         * Specifies the number
+         * of days after initiating a multipart upload when the multipart upload must
+         * be completed.
          *
-         * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+         * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+         * as any incomplete multipart upload will be billed.
          */
         abortIncompleteMultipartUploadDays?: number;
         /**
-         * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+         * The element value can be either Enabled or
+         * Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+         * any of the actions defined in the rule.
          */
         enabled: boolean;
         /**
-         * Specifies a period in the object's expire
+         * Specifies a period of expiration for the object.
          */
         expiration?: outputs.object.BucketLifecycleRuleExpiration;
         /**
-         * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+         * Unique identifier for the rule. Must be less than or
+         * equal to 255 characters in length.
          */
         id: string;
         /**
-         * Configuration block that specifies when noncurrent object versions expire
+         * Configuration block that
+         * specifies when noncurrent object versions expire. Supports the following:
          */
         noncurrentVersionExpiration?: outputs.object.BucketLifecycleRuleNoncurrentVersionExpiration;
         /**
-         * Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+         * Set of configuration blocks
+         * that specify the transition rule for the lifecycle rule that describes when
+         * noncurrent objects transition to a specific storage class. Supports the
+         * following:
          */
         noncurrentVersionTransitions?: outputs.object.BucketLifecycleRuleNoncurrentVersionTransition[];
         /**
-         * Minimum object size (in bytes) to which the rule applies
+         * Minimum object size (in bytes) to
+         * which the rule applies.
          */
         objectSizeGreaterThan?: number;
         /**
-         * Maximum object size (in bytes) to which the rule applies
+         * Maximum object size (in bytes) to
+         * which the rule applies.
          */
         objectSizeLessThan?: number;
         /**
-         * Object key prefix identifying one or more objects to which the rule applies.
+         * Object key prefix identifying one or more objects
+         * to which the rule applies.
          */
         prefix?: string;
         /**
@@ -11939,71 +12154,90 @@ export namespace object {
          */
         tags?: {[key: string]: string};
         /**
-         * Define when objects transition to another storage class
+         * Specifies a period in the object's transitions.
          */
         transitions?: outputs.object.BucketLifecycleRuleTransition[];
     }
 
     export interface BucketLifecycleRuleExpiration {
         /**
-         * Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         * Specifies the date the object is to be moved or
+         * deleted. The date value must be in RFC3339 full-date format e.g.
+         * `2023-08-22`.
          */
         date?: string;
         /**
-         * Specifies the number of days after object creation when the specific rule action takes effect.
+         * Specifies the number of days after object creation
+         * when the specific rule action takes effect.
          */
         days?: number;
         /**
-         * Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+         * Specifies whether Scaleway
+         * Object will remove a delete marker with no noncurrent versions. If set
+         * to `true`, the delete marker will be expired; if set to `false` the
+         * policy takes no action.
          */
         expiredObjectDeleteMarker?: boolean;
     }
 
     export interface BucketLifecycleRuleNoncurrentVersionExpiration {
         /**
-         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         * Number of noncurrent versions
+         * Scaleway Object Storage will retain. Must be a non-zero positive integer.
          */
         newerNoncurrentVersions?: number;
         /**
-         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+         * Number of days an object is noncurrent
+         * before Scaleway Object Storage can perform the associated action. Must
+         * be a positive integer.
          */
         noncurrentDays?: number;
     }
 
     export interface BucketLifecycleRuleNoncurrentVersionTransition {
         /**
-         * Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+         * Number of noncurrent versions
+         * Scaleway Object Storage will retain. Must be a non-zero positive integer.
          */
         newerNoncurrentVersions?: number;
         /**
-         * Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+         * Number of days an object is noncurrent
+         * before Scaleway Object Storage can perform the associated action.
          */
         noncurrentDays: number;
         /**
-         * Specifies the Scaleway Object Storage class to which you want the object to transition
+         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+         * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+         * transition.
+         *
+         * > **Important:** If versioning is enabled, this rule only deletes the current
+         * version of an object.
          */
         storageClass: string;
     }
 
     export interface BucketLifecycleRuleTransition {
         /**
-         * Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+         * Specifies the date objects are transitioned to the
+         * specified storage class. The date value must be in RFC3339 full-date
+         * format e.g. `2023-08-22`.
          */
         date?: string;
         /**
-         * Specifies the number of days after object creation when the specific rule action takes effect.
+         * Specifies the number of days after object creation
+         * when the specific rule action takes effect.
          */
         days?: number;
         /**
-         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+         * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+         * `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+         * transition.
          *
+         * > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+         * storage class `GLACIER` is not available in `pl-waw` region.
          *
-         * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-         * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-         *
-         *
-         * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-         * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+         * > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+         * `expiration`, `transition` must be specified.
          */
         storageClass: string;
     }
@@ -12043,11 +12277,13 @@ export namespace object {
 
     export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
         /**
-         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         * Scaleway KMS master key ID used for the SSE-KMS encryption.
+         * This can only be used when you set the value of sseAlgorithm as `aws:kms`. Will return an error
+         * if this element is absent while the sseAlgorithm is `aws:kms`.
          */
         kmsMasterKeyId: string;
         /**
-         * Server-side encryption algorithm to use. Valid values are `AES256`.
+         * Server-side encryption algorithm to use. Valid values are `AES256`, `aws:kms`.
          */
         sseAlgorithm: string;
     }
@@ -12214,7 +12450,7 @@ export namespace object {
 
     export interface GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
         /**
-         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as aws:kms. Will return an error if not this element is absent while the sseAlgorithm is aws:kms.
+         * Scaleway KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of sseAlgorithm as 'aws:kms'. Will return an error if this element is absent while the sseAlgorithm is 'aws:kms'.
          */
         kmsMasterKeyId: string;
         /**
@@ -12484,11 +12720,11 @@ export namespace observability {
          */
         displayName: string;
         /**
-         * Product family name.
+         * Product family category (e.g. `Compute`, `Network`, `Storage`).
          */
         familyName: string;
         /**
-         * Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+         * The machine-readable product name to use in `exportedProducts` (e.g. `cockpit`, `lb`, `object-storage`).
          */
         name: string;
     }
@@ -12615,14 +12851,14 @@ export namespace opensearch {
          */
         port: number;
         /**
-         * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+         * Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
          */
         url: string;
     }
 
     export interface DeploymentPrivateNetwork {
         /**
-         * Private network ID if the endpoint is private.
+         * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
          */
         privateNetworkId: string;
     }
