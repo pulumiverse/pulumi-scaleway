@@ -168,7 +168,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
+        /// The snapshot's volume type. The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Output("type")]
@@ -270,7 +270,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
+        /// The snapshot's volume type. The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Input("type")]
@@ -347,7 +347,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
+        /// The snapshot's volume type. The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Input("type")]

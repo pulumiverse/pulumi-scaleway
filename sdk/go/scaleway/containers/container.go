@@ -321,8 +321,8 @@ import (
 //
 // The following protocols are supported:
 //
-// * `h2c`: HTTP/2 over TCP.
-// * `http1`: Hypertext Transfer Protocol.
+// - `h2c`: HTTP/2 over TCP.
+// - `http1`: Hypertext Transfer Protocol.
 //
 // > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
 //
@@ -454,13 +454,15 @@ import (
 type Container struct {
 	pulumi.CustomResourceState
 
-	// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+	// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 	Args pulumi.StringArrayOutput `pulumi:"args"`
 	// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
 	Commands pulumi.StringArrayOutput `pulumi:"commands"`
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
-	// The cron status of the container.
+	// The cron status
+	//
+	// Deprecated: Please refer to the containers.Trigger resource instead.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
 	//
@@ -550,7 +552,7 @@ type Container struct {
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
 	// Defines how to check if the container has started successfully.
 	StartupProbe ContainerStartupProbePtrOutput `pulumi:"startupProbe"`
-	// The container status.
+	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The list of tags associated with the container.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -604,13 +606,15 @@ func GetContainer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Container resources.
 type containerState struct {
-	// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+	// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 	Args []string `pulumi:"args"`
 	// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
 	Commands []string `pulumi:"commands"`
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit *int `pulumi:"cpuLimit"`
-	// The cron status of the container.
+	// The cron status
+	//
+	// Deprecated: Please refer to the containers.Trigger resource instead.
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean indicating whether the container is in a production environment.
 	//
@@ -700,7 +704,7 @@ type containerState struct {
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 	// Defines how to check if the container has started successfully.
 	StartupProbe *ContainerStartupProbe `pulumi:"startupProbe"`
-	// The container status.
+	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
 	Status *string `pulumi:"status"`
 	// The list of tags associated with the container.
 	Tags []string `pulumi:"tags"`
@@ -709,13 +713,15 @@ type containerState struct {
 }
 
 type ContainerState struct {
-	// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+	// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 	Args pulumi.StringArrayInput
 	// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
 	Commands pulumi.StringArrayInput
 	// The amount of vCPU computing resources to allocate to each container.
 	CpuLimit pulumi.IntPtrInput
-	// The cron status of the container.
+	// The cron status
+	//
+	// Deprecated: Please refer to the containers.Trigger resource instead.
 	CronStatus pulumi.StringPtrInput
 	// Boolean indicating whether the container is in a production environment.
 	//
@@ -805,7 +811,7 @@ type ContainerState struct {
 	SecretEnvironmentVariables pulumi.StringMapInput
 	// Defines how to check if the container has started successfully.
 	StartupProbe ContainerStartupProbePtrInput
-	// The container status.
+	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
 	Status pulumi.StringPtrInput
 	// The list of tags associated with the container.
 	Tags pulumi.StringArrayInput
@@ -818,7 +824,7 @@ func (ContainerState) ElementType() reflect.Type {
 }
 
 type containerArgs struct {
-	// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+	// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 	Args []string `pulumi:"args"`
 	// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
 	Commands []string `pulumi:"commands"`
@@ -912,7 +918,7 @@ type containerArgs struct {
 
 // The set of arguments for constructing a Container resource.
 type ContainerArgs struct {
-	// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+	// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 	Args pulumi.StringArrayInput
 	// Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
 	Commands pulumi.StringArrayInput
@@ -1091,7 +1097,7 @@ func (o ContainerOutput) ToContainerOutputWithContext(ctx context.Context) Conta
 	return o
 }
 
-// Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+// Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
 func (o ContainerOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringArrayOutput { return v.Args }).(pulumi.StringArrayOutput)
 }
@@ -1106,7 +1112,9 @@ func (o ContainerOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
 
-// The cron status of the container.
+// The cron status
+//
+// Deprecated: Please refer to the containers.Trigger resource instead.
 func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.CronStatus }).(pulumi.StringOutput)
 }
@@ -1289,7 +1297,7 @@ func (o ContainerOutput) StartupProbe() ContainerStartupProbePtrOutput {
 	return o.ApplyT(func(v *Container) ContainerStartupProbePtrOutput { return v.StartupProbe }).(ContainerStartupProbePtrOutput)
 }
 
-// The container status.
+// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
 func (o ContainerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

@@ -50,6 +50,11 @@ export const getScim: typeof import("./getScim").getScim = null as any;
 export const getScimOutput: typeof import("./getScim").getScimOutput = null as any;
 utilities.lazyLoad(exports, ["getScim","getScimOutput"], () => require("./getScim"));
 
+export { GetScimTokenArgs, GetScimTokenResult, GetScimTokenOutputArgs } from "./getScimToken";
+export const getScimToken: typeof import("./getScimToken").getScimToken = null as any;
+export const getScimTokenOutput: typeof import("./getScimToken").getScimTokenOutput = null as any;
+utilities.lazyLoad(exports, ["getScimToken","getScimTokenOutput"], () => require("./getScimToken"));
+
 export { GetSshKeyArgs, GetSshKeyResult, GetSshKeyOutputArgs } from "./getSshKey";
 export const getSshKey: typeof import("./getSshKey").getSshKey = null as any;
 export const getSshKeyOutput: typeof import("./getSshKey").getSshKeyOutput = null as any;
@@ -90,6 +95,11 @@ export type Scim = import("./scim").Scim;
 export const Scim: typeof import("./scim").Scim = null as any;
 utilities.lazyLoad(exports, ["Scim"], () => require("./scim"));
 
+export { ScimTokenArgs, ScimTokenState } from "./scimToken";
+export type ScimToken = import("./scimToken").ScimToken;
+export const ScimToken: typeof import("./scimToken").ScimToken = null as any;
+utilities.lazyLoad(exports, ["ScimToken"], () => require("./scimToken"));
+
 export { SshKeyArgs, SshKeyState } from "./sshKey";
 export type SshKey = import("./sshKey").SshKey;
 export const SshKey: typeof import("./sshKey").SshKey = null as any;
@@ -121,6 +131,8 @@ const _module = {
                 return new SamlCertificate(name, <any>undefined, { urn })
             case "scaleway:iam/scim:Scim":
                 return new Scim(name, <any>undefined, { urn })
+            case "scaleway:iam/scimToken:ScimToken":
+                return new ScimToken(name, <any>undefined, { urn })
             case "scaleway:iam/sshKey:SshKey":
                 return new SshKey(name, <any>undefined, { urn })
             case "scaleway:iam/user:User":
@@ -138,5 +150,6 @@ pulumi.runtime.registerResourceModule("scaleway", "iam/policy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/saml", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/samlCertificate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/scim", _module)
+pulumi.runtime.registerResourceModule("scaleway", "iam/scimToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/sshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/user", _module)

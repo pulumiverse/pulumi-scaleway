@@ -297,6 +297,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// True if a newer Kubernetes version is available.
         /// </summary>
         public readonly bool UpgradeAvailable;
+        public readonly bool UpgradePools;
         /// <summary>
         /// The version of the Kubernetes cluster.
         /// </summary>
@@ -360,6 +361,8 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             bool upgradeAvailable,
 
+            bool upgradePools,
+
             string version,
 
             string wildcardDns)
@@ -390,6 +393,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
             Type = type;
             UpdatedAt = updatedAt;
             UpgradeAvailable = upgradeAvailable;
+            UpgradePools = upgradePools;
             Version = version;
             WildcardDns = wildcardDns;
         }

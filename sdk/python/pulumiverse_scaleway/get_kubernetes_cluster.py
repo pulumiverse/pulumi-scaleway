@@ -29,7 +29,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, pod_cidr=None, private_network_id=None, project_id=None, region=None, service_cidr=None, service_dns_ip=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
+    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, pod_cidr=None, private_network_id=None, project_id=None, region=None, service_cidr=None, service_dns_ip=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, upgrade_pools=None, version=None, wildcard_dns=None):
         if admission_plugins and not isinstance(admission_plugins, list):
             raise TypeError("Expected argument 'admission_plugins' to be a list")
         pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -108,6 +108,9 @@ class GetKubernetesClusterResult:
         if upgrade_available and not isinstance(upgrade_available, bool):
             raise TypeError("Expected argument 'upgrade_available' to be a bool")
         pulumi.set(__self__, "upgrade_available", upgrade_available)
+        if upgrade_pools and not isinstance(upgrade_pools, bool):
+            raise TypeError("Expected argument 'upgrade_pools' to be a bool")
+        pulumi.set(__self__, "upgrade_pools", upgrade_pools)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -297,6 +300,11 @@ class GetKubernetesClusterResult:
         return pulumi.get(self, "upgrade_available")
 
     @_builtins.property
+    @pulumi.getter(name="upgradePools")
+    def upgrade_pools(self) -> _builtins.bool:
+        return pulumi.get(self, "upgrade_pools")
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> _builtins.str:
         """
@@ -345,6 +353,7 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             type=self.type,
             updated_at=self.updated_at,
             upgrade_available=self.upgrade_available,
+            upgrade_pools=self.upgrade_pools,
             version=self.version,
             wildcard_dns=self.wildcard_dns)
 
@@ -419,6 +428,7 @@ def get_kubernetes_cluster(cluster_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         upgrade_available=pulumi.get(__ret__, 'upgrade_available'),
+        upgrade_pools=pulumi.get(__ret__, 'upgrade_pools'),
         version=pulumi.get(__ret__, 'version'),
         wildcard_dns=pulumi.get(__ret__, 'wildcard_dns'))
 def get_kubernetes_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -490,5 +500,6 @@ def get_kubernetes_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_bu
         type=pulumi.get(__response__, 'type'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         upgrade_available=pulumi.get(__response__, 'upgrade_available'),
+        upgrade_pools=pulumi.get(__response__, 'upgrade_pools'),
         version=pulumi.get(__response__, 'version'),
         wildcard_dns=pulumi.get(__response__, 'wildcard_dns')))

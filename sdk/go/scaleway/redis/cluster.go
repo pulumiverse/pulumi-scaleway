@@ -118,8 +118,7 @@ type Cluster struct {
 	// `projectId`) The ID of the project the Redis™ cluster is
 	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-	// > The `publicNetwork` block exports:
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 	PublicNetwork ClusterPublicNetworkOutput `pulumi:"publicNetwork"`
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
@@ -248,8 +247,7 @@ type clusterState struct {
 	// `projectId`) The ID of the project the Redis™ cluster is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-	// > The `publicNetwork` block exports:
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 	PublicNetwork *ClusterPublicNetwork `pulumi:"publicNetwork"`
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
@@ -322,8 +320,7 @@ type ClusterState struct {
 	// `projectId`) The ID of the project the Redis™ cluster is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-	// > The `publicNetwork` block exports:
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 	PublicNetwork ClusterPublicNetworkPtrInput
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
@@ -394,8 +391,7 @@ type clusterArgs struct {
 	// `projectId`) The ID of the project the Redis™ cluster is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-	// > The `publicNetwork` block exports:
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 	PublicNetwork *ClusterPublicNetwork `pulumi:"publicNetwork"`
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
@@ -461,8 +457,7 @@ type ClusterArgs struct {
 	// `projectId`) The ID of the project the Redis™ cluster is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
-	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-	// > The `publicNetwork` block exports:
+	// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 	PublicNetwork ClusterPublicNetworkPtrInput
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
@@ -658,8 +653,7 @@ func (o ClusterOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-// > The `publicNetwork` block exports:
+// (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
 func (o ClusterOutput) PublicNetwork() ClusterPublicNetworkOutput {
 	return o.ApplyT(func(v *Cluster) ClusterPublicNetworkOutput { return v.PublicNetwork }).(ClusterPublicNetworkOutput)
 }

@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `Zone`) The zone in which the server should be created.
         /// 
-        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// &gt; **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:
         /// - string
         /// - UTF-8 encoded file content using file
@@ -179,7 +179,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `Zone`) The zone in which the server should be created.
         /// 
-        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// &gt; **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:
         /// - string
         /// - UTF-8 encoded file content using file
@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `Zone`) The zone in which the server should be created.
         /// 
-        /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        /// &gt; **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:
         /// - string
         /// - UTF-8 encoded file content using file

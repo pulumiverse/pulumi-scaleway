@@ -215,6 +215,7 @@ namespace Pulumiverse.Scaleway
         public readonly string CreatedAt;
         public readonly bool EnableCustomRoutesPropagation;
         public readonly bool EnableRouting;
+        public readonly bool EnableTransitivity;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -235,6 +236,8 @@ namespace Pulumiverse.Scaleway
             bool enableCustomRoutesPropagation,
 
             bool enableRouting,
+
+            bool enableTransitivity,
 
             string id,
 
@@ -257,6 +260,7 @@ namespace Pulumiverse.Scaleway
             CreatedAt = createdAt;
             EnableCustomRoutesPropagation = enableCustomRoutesPropagation;
             EnableRouting = enableRouting;
+            EnableTransitivity = enableTransitivity;
             Id = id;
             IsDefault = isDefault;
             Name = name;

@@ -27,7 +27,7 @@ class GetDeploymentResult:
     """
     A collection of values returned by getDeployment.
     """
-    def __init__(__self__, created_at=None, deployment_id=None, endpoints=None, id=None, name=None, node_amount=None, node_type=None, password=None, private_networks=None, project_id=None, public_dashboard_url=None, region=None, status=None, tags=None, updated_at=None, user_name=None, version=None, volumes=None):
+    def __init__(__self__, created_at=None, deployment_id=None, endpoints=None, id=None, name=None, node_amount=None, node_count=None, node_type=None, password=None, private_networks=None, project_id=None, public_dashboard_url=None, region=None, status=None, tags=None, updated_at=None, user_name=None, version=None, volumes=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -46,6 +46,9 @@ class GetDeploymentResult:
         if node_amount and not isinstance(node_amount, int):
             raise TypeError("Expected argument 'node_amount' to be a int")
         pulumi.set(__self__, "node_amount", node_amount)
+        if node_count and not isinstance(node_count, int):
+            raise TypeError("Expected argument 'node_count' to be a int")
+        pulumi.set(__self__, "node_count", node_count)
         if node_type and not isinstance(node_type, str):
             raise TypeError("Expected argument 'node_type' to be a str")
         pulumi.set(__self__, "node_type", node_type)
@@ -115,6 +118,11 @@ class GetDeploymentResult:
     @pulumi.getter(name="nodeAmount")
     def node_amount(self) -> _builtins.int:
         return pulumi.get(self, "node_amount")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
+        return pulumi.get(self, "node_count")
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
@@ -189,6 +197,7 @@ class AwaitableGetDeploymentResult(GetDeploymentResult):
             id=self.id,
             name=self.name,
             node_amount=self.node_amount,
+            node_count=self.node_count,
             node_type=self.node_type,
             password=self.password,
             private_networks=self.private_networks,
@@ -246,6 +255,7 @@ def get_deployment(deployment_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         node_amount=pulumi.get(__ret__, 'node_amount'),
+        node_count=pulumi.get(__ret__, 'node_count'),
         node_type=pulumi.get(__ret__, 'node_type'),
         password=pulumi.get(__ret__, 'password'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
@@ -300,6 +310,7 @@ def get_deployment_output(deployment_id: pulumi.Input[Optional[Optional[_builtin
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         node_amount=pulumi.get(__response__, 'node_amount'),
+        node_count=pulumi.get(__response__, 'node_count'),
         node_type=pulumi.get(__response__, 'node_type'),
         password=pulumi.get(__response__, 'password'),
         private_networks=pulumi.get(__response__, 'private_networks'),

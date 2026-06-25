@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway.Opensearch.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        /// Full URL to access the service (e.g., &lt;https://abc-123.searchdb.fr-par.scw.cloud:9200&gt;).
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

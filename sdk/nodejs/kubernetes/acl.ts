@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * const aclBasic = new scaleway.network.PrivateNetwork("acl_basic", {});
  * const aclBasicCluster = new scaleway.kubernetes.Cluster("acl_basic", {
  *     name: "acl-basic",
- *     version: "1.32.2",
+ *     version: "1.35.3",
  *     cni: "cilium",
  *     deleteAdditionalResources: true,
  *     privateNetworkId: aclBasic.id,
@@ -52,7 +52,7 @@ import * as utilities from "../utilities";
  * const aclBasic = new scaleway.network.PrivateNetwork("acl_basic", {});
  * const aclBasicCluster = new scaleway.kubernetes.Cluster("acl_basic", {
  *     name: "acl-basic",
- *     version: "1.32.2",
+ *     version: "1.35.3",
  *     cni: "cilium",
  *     deleteAdditionalResources: true,
  *     privateNetworkId: aclBasic.id,

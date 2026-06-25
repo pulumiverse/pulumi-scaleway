@@ -173,7 +173,7 @@ import (
 type LoadbalancerFrontend struct {
 	pulumi.CustomResourceState
 
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls LoadbalancerFrontendAclArrayOutput `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -249,7 +249,7 @@ func GetLoadbalancerFrontend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoadbalancerFrontend resources.
 type loadbalancerFrontendState struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls []LoadbalancerFrontendAcl `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -287,7 +287,7 @@ type loadbalancerFrontendState struct {
 }
 
 type LoadbalancerFrontendState struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls LoadbalancerFrontendAclArrayInput
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -329,7 +329,7 @@ func (LoadbalancerFrontendState) ElementType() reflect.Type {
 }
 
 type loadbalancerFrontendArgs struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls []LoadbalancerFrontendAcl `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -360,7 +360,7 @@ type loadbalancerFrontendArgs struct {
 
 // The set of arguments for constructing a LoadbalancerFrontend resource.
 type LoadbalancerFrontendArgs struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls LoadbalancerFrontendAclArrayInput
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -476,7 +476,7 @@ func (o LoadbalancerFrontendOutput) ToLoadbalancerFrontendOutputWithContext(ctx 
 	return o
 }
 
-// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 func (o LoadbalancerFrontendOutput) Acls() LoadbalancerFrontendAclArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) LoadbalancerFrontendAclArrayOutput { return v.Acls }).(LoadbalancerFrontendAclArrayOutput)
 }

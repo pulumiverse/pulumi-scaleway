@@ -21,10 +21,11 @@ __all__ = ['DeploymentArgs', 'Deployment']
 @pulumi.input_type
 class DeploymentArgs:
     def __init__(__self__, *,
-                 node_amount: pulumi.Input[_builtins.int],
                  node_type: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -35,15 +36,16 @@ class DeploymentArgs:
         """
         The set of arguments for constructing a Deployment resource.
 
-        :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] version: OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
+        :param pulumi.Input[_builtins.int] node_amount: Use `node_count` instead. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration
+        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+               > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
@@ -51,11 +53,17 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.str] user_name: Username for the deployment. If not specified, the default username will be used. Changing this forces recreation of the deployment.
         :param pulumi.Input['DeploymentVolumeArgs'] volume: Volume configuration for the cluster.
         """
-        pulumi.set(__self__, "node_amount", node_amount)
         pulumi.set(__self__, "node_type", node_type)
         pulumi.set(__self__, "version", version)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if node_amount is not None:
+            warnings.warn("""Please use node_count instead""", DeprecationWarning)
+            pulumi.log.warn("""node_amount is deprecated: Please use node_count instead""")
+        if node_amount is not None:
+            pulumi.set(__self__, "node_amount", node_amount)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_network is not None:
@@ -70,18 +78,6 @@ class DeploymentArgs:
             pulumi.set(__self__, "user_name", user_name)
         if volume is not None:
             pulumi.set(__self__, "volume", volume)
-
-    @_builtins.property
-    @pulumi.getter(name="nodeAmount")
-    def node_amount(self) -> pulumi.Input[_builtins.int]:
-        """
-        Number of nodes in the cluster. Changing this forces recreation of the deployment.
-        """
-        return pulumi.get(self, "node_amount")
-
-    @node_amount.setter
-    def node_amount(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "node_amount", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
@@ -120,6 +116,31 @@ class DeploymentArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="nodeAmount")
+    @_utilities.deprecated("""Please use node_count instead""")
+    def node_amount(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Use `node_count` instead. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "node_amount")
+
+    @node_amount.setter
+    def node_amount(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "node_amount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "node_count")
+
+    @node_count.setter
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "node_count", value)
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -135,7 +156,7 @@ class DeploymentArgs:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]:
         """
-        Private network configuration
+        Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         """
         return pulumi.get(self, "private_network")
 
@@ -149,7 +170,7 @@ class DeploymentArgs:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
 
         > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         """
@@ -215,6 +236,7 @@ class _DeploymentState:
                  endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointArgs']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
@@ -233,13 +255,14 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentEndpointArgs']]] endpoints: List of endpoints for accessing the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
-        :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_amount: Use `node_count` instead. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration
+        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+               > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         :param pulumi.Input[_builtins.str] public_dashboard_url: URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
@@ -258,7 +281,12 @@ class _DeploymentState:
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_amount is not None:
+            warnings.warn("""Please use node_count instead""", DeprecationWarning)
+            pulumi.log.warn("""node_amount is deprecated: Please use node_count instead""")
+        if node_amount is not None:
             pulumi.set(__self__, "node_amount", node_amount)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
         if node_type is not None:
             pulumi.set(__self__, "node_type", node_type)
         if password is not None:
@@ -322,15 +350,28 @@ class _DeploymentState:
 
     @_builtins.property
     @pulumi.getter(name="nodeAmount")
+    @_utilities.deprecated("""Please use node_count instead""")
     def node_amount(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        Use `node_count` instead. Changing this forces recreation of the deployment.
         """
         return pulumi.get(self, "node_amount")
 
     @node_amount.setter
     def node_amount(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_amount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "node_count")
+
+    @node_count.setter
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "node_count", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
@@ -360,7 +401,7 @@ class _DeploymentState:
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Input[Optional['DeploymentPrivateNetworkArgs']]:
         """
-        Private network configuration
+        Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         """
         return pulumi.get(self, "private_network")
 
@@ -374,7 +415,7 @@ class _DeploymentState:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
 
         > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         """
@@ -489,6 +530,7 @@ class Deployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
@@ -514,7 +556,7 @@ class Deployment(pulumi.CustomResource):
         main = scaleway.opensearch.Deployment("main",
             name="my-opensearch-cluster",
             version="2.0",
-            node_amount=1,
+            node_count=1,
             node_type="SEARCHDB-SHARED-2C-8G",
             password="ThisIsASecurePassword123!",
             volume={
@@ -532,7 +574,7 @@ class Deployment(pulumi.CustomResource):
         prod = scaleway.opensearch.Deployment("prod",
             name="logs-prod-cluster",
             version="2.0",
-            node_amount=3,
+            node_count=3,
             node_type="SEARCHDB-DEDICATED-2C-8G",
             password=opensearch_password,
             tags=[
@@ -555,7 +597,7 @@ class Deployment(pulumi.CustomResource):
         analytics = scaleway.opensearch.Deployment("analytics",
             name="analytics-cluster",
             version="2.0",
-            node_amount=1,
+            node_count=1,
             node_type="SEARCHDB-SHARED-4C-16G",
             password=opensearch_password,
             tags=[
@@ -566,6 +608,31 @@ class Deployment(pulumi.CustomResource):
             volume={
                 "type": "sbs_5k",
                 "size_in_gb": 10,
+            })
+        ```
+
+        ### With Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main", name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            vpc_id=main.id)
+        main_deployment = scaleway.opensearch.Deployment("main",
+            name="my-opensearch-cluster",
+            version="2.0",
+            node_count=1,
+            node_type="SEARCHDB-DEDICATED-2C-8G",
+            password="ThisIsASecurePassword123!",
+            private_network={
+                "private_network_id": pn.id,
+            },
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 5,
             })
         ```
 
@@ -592,13 +659,14 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
-        :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_amount: Use `node_count` instead. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+               > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
@@ -628,7 +696,7 @@ class Deployment(pulumi.CustomResource):
         main = scaleway.opensearch.Deployment("main",
             name="my-opensearch-cluster",
             version="2.0",
-            node_amount=1,
+            node_count=1,
             node_type="SEARCHDB-SHARED-2C-8G",
             password="ThisIsASecurePassword123!",
             volume={
@@ -646,7 +714,7 @@ class Deployment(pulumi.CustomResource):
         prod = scaleway.opensearch.Deployment("prod",
             name="logs-prod-cluster",
             version="2.0",
-            node_amount=3,
+            node_count=3,
             node_type="SEARCHDB-DEDICATED-2C-8G",
             password=opensearch_password,
             tags=[
@@ -669,7 +737,7 @@ class Deployment(pulumi.CustomResource):
         analytics = scaleway.opensearch.Deployment("analytics",
             name="analytics-cluster",
             version="2.0",
-            node_amount=1,
+            node_count=1,
             node_type="SEARCHDB-SHARED-4C-16G",
             password=opensearch_password,
             tags=[
@@ -680,6 +748,31 @@ class Deployment(pulumi.CustomResource):
             volume={
                 "type": "sbs_5k",
                 "size_in_gb": 10,
+            })
+        ```
+
+        ### With Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main", name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            vpc_id=main.id)
+        main_deployment = scaleway.opensearch.Deployment("main",
+            name="my-opensearch-cluster",
+            version="2.0",
+            node_count=1,
+            node_type="SEARCHDB-DEDICATED-2C-8G",
+            password="ThisIsASecurePassword123!",
+            private_network={
+                "private_network_id": pn.id,
+            },
+            volume={
+                "type": "sbs_5k",
+                "size_in_gb": 5,
             })
         ```
 
@@ -720,6 +813,7 @@ class Deployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
@@ -739,9 +833,8 @@ class Deployment(pulumi.CustomResource):
             __props__ = DeploymentArgs.__new__(DeploymentArgs)
 
             __props__.__dict__["name"] = name
-            if node_amount is None and not opts.urn:
-                raise TypeError("Missing required property 'node_amount'")
             __props__.__dict__["node_amount"] = node_amount
+            __props__.__dict__["node_count"] = node_count
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
@@ -776,6 +869,7 @@ class Deployment(pulumi.CustomResource):
             endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
             private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
@@ -798,13 +892,14 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]] endpoints: List of endpoints for accessing the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
-        :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_amount: Use `node_count` instead. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+               > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         :param pulumi.Input[_builtins.str] public_dashboard_url: URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
@@ -824,6 +919,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["name"] = name
         __props__.__dict__["node_amount"] = node_amount
+        __props__.__dict__["node_count"] = node_count
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["password"] = password
         __props__.__dict__["private_network"] = private_network
@@ -864,11 +960,20 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="nodeAmount")
-    def node_amount(self) -> pulumi.Output[_builtins.int]:
+    @_utilities.deprecated("""Please use node_count instead""")
+    def node_amount(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Use `node_count` instead. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "node_amount")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Number of nodes in the cluster. Changing this forces recreation of the deployment.
         """
-        return pulumi.get(self, "node_amount")
+        return pulumi.get(self, "node_count")
 
     @_builtins.property
     @pulumi.getter(name="nodeType")
@@ -890,7 +995,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Output[Optional['outputs.DeploymentPrivateNetwork']]:
         """
-        Private network configuration
+        Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         """
         return pulumi.get(self, "private_network")
 
@@ -900,7 +1005,7 @@ class Deployment(pulumi.CustomResource):
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. With `private_network`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`).
 
         > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         """

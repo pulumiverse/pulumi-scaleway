@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// &gt; **Important:**  The resource `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+    /// &gt; **Important:** The resource `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
     /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
     /// For more information, please refer to the dedicated guide.
     /// 

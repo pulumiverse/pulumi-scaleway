@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ContainerTriggerNatsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// unique identifier of the Messaging and Queuing NATS account  .
+        /// unique identifier of the Messaging and Queuing NATS account.
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }

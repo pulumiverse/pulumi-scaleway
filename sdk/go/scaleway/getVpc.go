@@ -85,6 +85,7 @@ type LookupVpcResult struct {
 	CreatedAt                     string `pulumi:"createdAt"`
 	EnableCustomRoutesPropagation bool   `pulumi:"enableCustomRoutesPropagation"`
 	EnableRouting                 bool   `pulumi:"enableRouting"`
+	EnableTransitivity            bool   `pulumi:"enableTransitivity"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string   `pulumi:"id"`
 	IsDefault      *bool    `pulumi:"isDefault"`
@@ -150,6 +151,10 @@ func (o LookupVpcResultOutput) EnableCustomRoutesPropagation() pulumi.BoolOutput
 
 func (o LookupVpcResultOutput) EnableRouting() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVpcResult) bool { return v.EnableRouting }).(pulumi.BoolOutput)
+}
+
+func (o LookupVpcResultOutput) EnableTransitivity() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcResult) bool { return v.EnableTransitivity }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

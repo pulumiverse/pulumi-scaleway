@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway.Observability
     public static class GetInstance
     {
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
+        /// &gt; **Important:** The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
         /// 
         /// &gt; **Note:**
         /// As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Observability
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("scaleway:observability/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
+        /// &gt; **Important:** The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
         /// 
         /// &gt; **Note:**
         /// As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
@@ -117,7 +117,7 @@ namespace Pulumiverse.Scaleway.Observability
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("scaleway:observability/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// &gt; **Important:**  The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
+        /// &gt; **Important:** The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
         /// 
         /// &gt; **Note:**
         /// As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.

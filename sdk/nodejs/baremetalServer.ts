@@ -118,7 +118,7 @@ export class BaremetalServer extends pulumi.CustomResource {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
-     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+     * > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     declare public readonly offer: pulumi.Output<string>;
     /**
@@ -360,7 +360,7 @@ export interface BaremetalServerState {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
-     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+     * > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     offer?: pulumi.Input<string | undefined>;
     /**
@@ -492,7 +492,7 @@ export interface BaremetalServerArgs {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
-     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+     * > **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     offer: pulumi.Input<string>;
     /**

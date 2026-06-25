@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+ * > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 export function getVersion(args?: GetVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetVersionResult> {
     args = args || {};
@@ -189,7 +189,7 @@ export interface GetVersionResult {
  * Keep in mind that this is a sensitive attribute. For more information,
  * see Sensitive Data in State.
  *
- * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+ * > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
 export function getVersionOutput(args?: GetVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVersionResult> {
     args = args || {};

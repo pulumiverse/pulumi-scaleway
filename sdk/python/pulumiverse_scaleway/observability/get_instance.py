@@ -105,7 +105,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
 def get_instance(project_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
-    > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
+    > **Important:** The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 
     > **Note:**
     As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
@@ -156,7 +156,7 @@ def get_instance(project_id: Optional[_builtins.str] = None,
 def get_instance_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
-    > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
+    > **Important:** The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 
     > **Note:**
     As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.

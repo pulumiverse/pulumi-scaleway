@@ -32,11 +32,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := opensearch.NewDeployment(ctx, "main", &opensearch.DeploymentArgs{
-//				Name:       pulumi.String("my-opensearch-cluster"),
-//				Version:    pulumi.String("2.0"),
-//				NodeAmount: pulumi.Int(1),
-//				NodeType:   pulumi.String("SEARCHDB-SHARED-2C-8G"),
-//				Password:   pulumi.String("ThisIsASecurePassword123!"),
+//				Name:      pulumi.String("my-opensearch-cluster"),
+//				Version:   pulumi.String("2.0"),
+//				NodeCount: pulumi.Int(1),
+//				NodeType:  pulumi.String("SEARCHDB-SHARED-2C-8G"),
+//				Password:  pulumi.String("ThisIsASecurePassword123!"),
 //				Volume: &opensearch.DeploymentVolumeArgs{
 //					Type:     pulumi.String("sbs_5k"),
 //					SizeInGb: pulumi.Int(5),
@@ -66,11 +66,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			prod, err := opensearch.NewDeployment(ctx, "prod", &opensearch.DeploymentArgs{
-//				Name:       pulumi.String("logs-prod-cluster"),
-//				Version:    pulumi.String("2.0"),
-//				NodeAmount: pulumi.Int(3),
-//				NodeType:   pulumi.String("SEARCHDB-DEDICATED-2C-8G"),
-//				Password:   pulumi.Any(opensearchPassword),
+//				Name:      pulumi.String("logs-prod-cluster"),
+//				Version:   pulumi.String("2.0"),
+//				NodeCount: pulumi.Int(3),
+//				NodeType:  pulumi.String("SEARCHDB-DEDICATED-2C-8G"),
+//				Password:  pulumi.Any(opensearchPassword),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("production"),
 //					pulumi.String("logs"),
@@ -107,11 +107,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := opensearch.NewDeployment(ctx, "analytics", &opensearch.DeploymentArgs{
-//				Name:       pulumi.String("analytics-cluster"),
-//				Version:    pulumi.String("2.0"),
-//				NodeAmount: pulumi.Int(1),
-//				NodeType:   pulumi.String("SEARCHDB-SHARED-4C-16G"),
-//				Password:   pulumi.Any(opensearchPassword),
+//				Name:      pulumi.String("analytics-cluster"),
+//				Version:   pulumi.String("2.0"),
+//				NodeCount: pulumi.Int(1),
+//				NodeType:  pulumi.String("SEARCHDB-SHARED-4C-16G"),
+//				Password:  pulumi.Any(opensearchPassword),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("analytics"),
 //					pulumi.String("dev"),
@@ -120,6 +120,57 @@ import (
 //				Volume: &opensearch.DeploymentVolumeArgs{
 //					Type:     pulumi.String("sbs_5k"),
 //					SizeInGb: pulumi.Int(10),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Private Network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/opensearch"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := network.NewVpc(ctx, "main", &network.VpcArgs{
+//				Name: pulumi.String("my-vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
+//				Name:  pulumi.String("my-private-network"),
+//				VpcId: main.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = opensearch.NewDeployment(ctx, "main", &opensearch.DeploymentArgs{
+//				Name:      pulumi.String("my-opensearch-cluster"),
+//				Version:   pulumi.String("2.0"),
+//				NodeCount: pulumi.Int(1),
+//				NodeType:  pulumi.String("SEARCHDB-DEDICATED-2C-8G"),
+//				Password:  pulumi.String("ThisIsASecurePassword123!"),
+//				PrivateNetwork: &opensearch.DeploymentPrivateNetworkArgs{
+//					PrivateNetworkId: pn.ID(),
+//				},
+//				Volume: &opensearch.DeploymentVolumeArgs{
+//					Type:     pulumi.String("sbs_5k"),
+//					SizeInGb: pulumi.Int(5),
 //				},
 //			})
 //			if err != nil {
@@ -158,17 +209,21 @@ type Deployment struct {
 	Endpoints DeploymentEndpointArrayOutput `pulumi:"endpoints"`
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+	//
+	// Deprecated: Please use nodeCount instead
+	NodeAmount pulumi.IntPtrOutput `pulumi:"nodeAmount"`
 	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
-	NodeAmount pulumi.IntOutput `pulumi:"nodeAmount"`
+	NodeCount pulumi.IntPtrOutput `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Private network configuration
+	// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -197,9 +252,6 @@ func NewDeployment(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.NodeAmount == nil {
-		return nil, errors.New("invalid value for required argument 'NodeAmount'")
-	}
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
@@ -242,17 +294,21 @@ type deploymentState struct {
 	Endpoints []DeploymentEndpoint `pulumi:"endpoints"`
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name *string `pulumi:"name"`
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+	//
+	// Deprecated: Please use nodeCount instead
 	NodeAmount *int `pulumi:"nodeAmount"`
+	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	NodeCount *int `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType *string `pulumi:"nodeType"`
 	// Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
 	Password *string `pulumi:"password"`
-	// Private network configuration
+	// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId *string `pulumi:"projectId"`
@@ -281,17 +337,21 @@ type DeploymentState struct {
 	Endpoints DeploymentEndpointArrayInput
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name pulumi.StringPtrInput
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+	//
+	// Deprecated: Please use nodeCount instead
 	NodeAmount pulumi.IntPtrInput
+	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	NodeCount pulumi.IntPtrInput
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringPtrInput
 	// Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
 	Password pulumi.StringPtrInput
-	// Private network configuration
+	// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringPtrInput
@@ -320,17 +380,21 @@ func (DeploymentState) ElementType() reflect.Type {
 type deploymentArgs struct {
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name *string `pulumi:"name"`
+	// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+	//
+	// Deprecated: Please use nodeCount instead
+	NodeAmount *int `pulumi:"nodeAmount"`
 	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
-	NodeAmount int `pulumi:"nodeAmount"`
+	NodeCount *int `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
 	Password *string `pulumi:"password"`
-	// Private network configuration
+	// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId *string `pulumi:"projectId"`
@@ -350,17 +414,21 @@ type deploymentArgs struct {
 type DeploymentArgs struct {
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name pulumi.StringPtrInput
+	// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+	//
+	// Deprecated: Please use nodeCount instead
+	NodeAmount pulumi.IntPtrInput
 	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
-	NodeAmount pulumi.IntInput
+	NodeCount pulumi.IntPtrInput
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringInput
 	// Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
 	Password pulumi.StringPtrInput
-	// Private network configuration
+	// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringPtrInput
@@ -478,9 +546,16 @@ func (o DeploymentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Use `nodeCount` instead. Changing this forces recreation of the deployment.
+//
+// Deprecated: Please use nodeCount instead
+func (o DeploymentOutput) NodeAmount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.NodeAmount }).(pulumi.IntPtrOutput)
+}
+
 // Number of nodes in the cluster. Changing this forces recreation of the deployment.
-func (o DeploymentOutput) NodeAmount() pulumi.IntOutput {
-	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.NodeAmount }).(pulumi.IntOutput)
+func (o DeploymentOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.NodeCount }).(pulumi.IntPtrOutput)
 }
 
 // Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
@@ -493,14 +568,14 @@ func (o DeploymentOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Private network configuration
+// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
 func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DeploymentPrivateNetworkPtrOutput)
 }
 
 // `projectId`) The ID of the project the deployment is associated with.
 //
-// > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
 //
 // > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {

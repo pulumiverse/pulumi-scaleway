@@ -76,6 +76,7 @@ export interface GetVpcResult {
     readonly createdAt: string;
     readonly enableCustomRoutesPropagation: boolean;
     readonly enableRouting: boolean;
+    readonly enableTransitivity: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

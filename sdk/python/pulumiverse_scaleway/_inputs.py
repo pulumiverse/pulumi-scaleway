@@ -83,6 +83,16 @@ __all__ = [
     'DatabaseReadReplicaDirectAccessArgsDict',
     'DatabaseReadReplicaPrivateNetworkArgs',
     'DatabaseReadReplicaPrivateNetworkArgsDict',
+    'DatalabMainArgs',
+    'DatalabMainArgsDict',
+    'DatalabMainRootVolumeArgs',
+    'DatalabMainRootVolumeArgsDict',
+    'DatalabTotalStorageArgs',
+    'DatalabTotalStorageArgsDict',
+    'DatalabWorkerArgs',
+    'DatalabWorkerArgsDict',
+    'DatalabWorkerRootVolumeArgs',
+    'DatalabWorkerRootVolumeArgsDict',
     'DomainRecordGeoIpArgs',
     'DomainRecordGeoIpArgsDict',
     'DomainRecordGeoIpMatchArgs',
@@ -1487,15 +1497,17 @@ class CockpitTokenScopesArgs:
 class ContainerHealthCheckArgsDict(TypedDict):
     failure_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Number of consecutive failures before considering the container has to be restarted.
+    Number of consecutive health check failures before considering the container unhealthy.
     """
     https: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]]]
     """
-    Perform HTTP check on the container with the specified path.
+    HTTP health check configuration.
     """
     interval: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Time interval between checks (in duration notation, e.g. "30s").
+    Period between health checks (in seconds).
+
+    > **Important:** Only one of `liveness_probe` or `health_check` can be set at a time.
     """
     tcp: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
@@ -1510,9 +1522,11 @@ class ContainerHealthCheckArgs:
                  interval: pulumi.Input[Optional[_builtins.str]] = None,
                  tcp: pulumi.Input[Optional[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.int] failure_threshold: Number of consecutive failures before considering the container has to be restarted.
-        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]] https: Perform HTTP check on the container with the specified path.
-        :param pulumi.Input[_builtins.str] interval: Time interval between checks (in duration notation, e.g. "30s").
+        :param pulumi.Input[_builtins.int] failure_threshold: Number of consecutive health check failures before considering the container unhealthy.
+        :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]] https: HTTP health check configuration.
+        :param pulumi.Input[_builtins.str] interval: Period between health checks (in seconds).
+               
+               > **Important:** Only one of `liveness_probe` or `health_check` can be set at a time.
         :param pulumi.Input[_builtins.bool] tcp: When set to `true`, performs TCP checks on the container.
         """
         if failure_threshold is not None:
@@ -1528,7 +1542,7 @@ class ContainerHealthCheckArgs:
     @pulumi.getter(name="failureThreshold")
     def failure_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of consecutive failures before considering the container has to be restarted.
+        Number of consecutive health check failures before considering the container unhealthy.
         """
         return pulumi.get(self, "failure_threshold")
 
@@ -1540,7 +1554,7 @@ class ContainerHealthCheckArgs:
     @pulumi.getter
     def https(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]]:
         """
-        Perform HTTP check on the container with the specified path.
+        HTTP health check configuration.
         """
         return pulumi.get(self, "https")
 
@@ -1552,7 +1566,9 @@ class ContainerHealthCheckArgs:
     @pulumi.getter
     def interval(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Time interval between checks (in duration notation, e.g. "30s").
+        Period between health checks (in seconds).
+
+        > **Important:** Only one of `liveness_probe` or `health_check` can be set at a time.
         """
         return pulumi.get(self, "interval")
 
@@ -1812,7 +1828,7 @@ class ContainerStartupProbeArgsDict(TypedDict):
     """
     interval: pulumi.Input[_builtins.str]
     """
-    Time interval between checks (in duration notation).
+    Time interval between checks (in duration notation, e.g. "30s").
     """
     timeout: pulumi.Input[_builtins.str]
     """
@@ -1824,7 +1840,7 @@ class ContainerStartupProbeArgsDict(TypedDict):
     """
     tcp: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
-    Perform TCP check on the container
+    When set to `true`, performs TCP checks on the container.
     """
 
 @pulumi.input_type
@@ -1837,10 +1853,10 @@ class ContainerStartupProbeArgs:
                  tcp: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.int] failure_threshold: Number of consecutive failures before considering the container has to be restarted.
-        :param pulumi.Input[_builtins.str] interval: Time interval between checks (in duration notation).
+        :param pulumi.Input[_builtins.str] interval: Time interval between checks (in duration notation, e.g. "30s").
         :param pulumi.Input[_builtins.str] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         :param pulumi.Input['ContainerStartupProbeHttpArgs'] http: Perform HTTP check on the container with the specified path.
-        :param pulumi.Input[_builtins.bool] tcp: Perform TCP check on the container
+        :param pulumi.Input[_builtins.bool] tcp: When set to `true`, performs TCP checks on the container.
         """
         pulumi.set(__self__, "failure_threshold", failure_threshold)
         pulumi.set(__self__, "interval", interval)
@@ -1866,7 +1882,7 @@ class ContainerStartupProbeArgs:
     @pulumi.getter
     def interval(self) -> pulumi.Input[_builtins.str]:
         """
-        Time interval between checks (in duration notation).
+        Time interval between checks (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "interval")
 
@@ -1902,7 +1918,7 @@ class ContainerStartupProbeArgs:
     @pulumi.getter
     def tcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Perform TCP check on the container
+        When set to `true`, performs TCP checks on the container.
         """
         return pulumi.get(self, "tcp")
 
@@ -2088,7 +2104,7 @@ class ContainerTriggerNatsArgsDict(TypedDict):
     """
     account_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    unique identifier of the Messaging and Queuing NATS account  .
+    unique identifier of the Messaging and Queuing NATS account.
     """
     project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2112,7 +2128,7 @@ class ContainerTriggerNatsArgs:
         :param pulumi.Input[_builtins.str] credentials_file_content: The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_urls: The list of URLs of the NATS server (e.g., "nats://nats.mnq.fr-par.scaleway.com:4222").
         :param pulumi.Input[_builtins.str] subject: NATS subject to subscribe to (e.g., \\"my-subject\\")."
-        :param pulumi.Input[_builtins.str] account_id: unique identifier of the Messaging and Queuing NATS account  .
+        :param pulumi.Input[_builtins.str] account_id: unique identifier of the Messaging and Queuing NATS account.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
         :param pulumi.Input[_builtins.str] region: Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
         """
@@ -2166,7 +2182,7 @@ class ContainerTriggerNatsArgs:
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        unique identifier of the Messaging and Queuing NATS account  .
+        unique identifier of the Messaging and Queuing NATS account.
         """
         return pulumi.get(self, "account_id")
 
@@ -2206,7 +2222,7 @@ class ContainerTriggerSqsArgsDict(TypedDict):
     """
     endpoint: pulumi.Input[_builtins.str]
     """
-    Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+    Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
     """
     queue_url: pulumi.Input[_builtins.str]
     """
@@ -2222,7 +2238,7 @@ class ContainerTriggerSqsArgsDict(TypedDict):
     """
     queue: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    The name of the SQS queue.  This argument is no longer supported.
+    The name of the SQS queue. This argument is no longer supported.
     """
     region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2241,11 +2257,11 @@ class ContainerTriggerSqsArgs:
                  region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: The access key for accessing the SQS queue.
-        :param pulumi.Input[_builtins.str] endpoint: Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        :param pulumi.Input[_builtins.str] endpoint: Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
         :param pulumi.Input[_builtins.str] queue_url: The URL of the SQS queue to monitor for messages.
         :param pulumi.Input[_builtins.str] secret_key: The secret key for accessing the SQS queue.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
-        :param pulumi.Input[_builtins.str] queue: The name of the SQS queue.  This argument is no longer supported.
+        :param pulumi.Input[_builtins.str] queue: The name of the SQS queue. This argument is no longer supported.
         :param pulumi.Input[_builtins.str] region: Region where SQS is enabled (defaults to provider `region`)
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -2278,7 +2294,7 @@ class ContainerTriggerSqsArgs:
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[_builtins.str]:
         """
-        Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+        Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
         """
         return pulumi.get(self, "endpoint")
 
@@ -2327,7 +2343,7 @@ class ContainerTriggerSqsArgs:
     @_utilities.deprecated("""This field is no longer supported, please use queue_url instead to identify the queue.""")
     def queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of the SQS queue.  This argument is no longer supported.
+        The name of the SQS queue. This argument is no longer supported.
         """
         return pulumi.get(self, "queue")
 
@@ -3250,6 +3266,308 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
+
+
+class DatalabMainArgsDict(TypedDict):
+    node_type: pulumi.Input[_builtins.str]
+    """
+    The node type for the main node.
+    """
+    root_volume: NotRequired[pulumi.Input[Optional['DatalabMainRootVolumeArgs']]]
+    """
+    Volume details for worker nodes.
+    """
+    spark_master_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Spark master URL within the VPC.
+    """
+    spark_ui_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Spark UI URL.
+    """
+
+@pulumi.input_type
+class DatalabMainArgs:
+    def __init__(__self__, *,
+                 node_type: pulumi.Input[_builtins.str],
+                 root_volume: pulumi.Input[Optional['DatalabMainRootVolumeArgs']] = None,
+                 spark_master_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 spark_ui_url: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] node_type: The node type for the main node.
+        :param pulumi.Input['DatalabMainRootVolumeArgs'] root_volume: Volume details for worker nodes.
+        :param pulumi.Input[_builtins.str] spark_master_url: The Spark master URL within the VPC.
+        :param pulumi.Input[_builtins.str] spark_ui_url: The Spark UI URL.
+        """
+        pulumi.set(__self__, "node_type", node_type)
+        if root_volume is not None:
+            pulumi.set(__self__, "root_volume", root_volume)
+        if spark_master_url is not None:
+            pulumi.set(__self__, "spark_master_url", spark_master_url)
+        if spark_ui_url is not None:
+            pulumi.set(__self__, "spark_ui_url", spark_ui_url)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The node type for the main node.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "node_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rootVolume")
+    def root_volume(self) -> pulumi.Input[Optional['DatalabMainRootVolumeArgs']]:
+        """
+        Volume details for worker nodes.
+        """
+        return pulumi.get(self, "root_volume")
+
+    @root_volume.setter
+    def root_volume(self, value: pulumi.Input[Optional['DatalabMainRootVolumeArgs']]):
+        pulumi.set(self, "root_volume", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sparkMasterUrl")
+    def spark_master_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Spark master URL within the VPC.
+        """
+        return pulumi.get(self, "spark_master_url")
+
+    @spark_master_url.setter
+    def spark_master_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "spark_master_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sparkUiUrl")
+    def spark_ui_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Spark UI URL.
+        """
+        return pulumi.get(self, "spark_ui_url")
+
+    @spark_ui_url.setter
+    def spark_ui_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "spark_ui_url", value)
+
+
+class DatalabMainRootVolumeArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The volume size in bytes.
+    """
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The volume type.
+    """
+
+@pulumi.input_type
+class DatalabMainRootVolumeArgs:
+    def __init__(__self__, *,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] size: The volume size in bytes.
+        :param pulumi.Input[_builtins.str] type: The volume type.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The volume size in bytes.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The volume type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class DatalabTotalStorageArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The volume size in bytes.
+    """
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The volume type. Defaults to `sbs_5k`.
+    """
+
+@pulumi.input_type
+class DatalabTotalStorageArgs:
+    def __init__(__self__, *,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] size: The volume size in bytes.
+        :param pulumi.Input[_builtins.str] type: The volume type. Defaults to `sbs_5k`.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The volume size in bytes.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The volume type. Defaults to `sbs_5k`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class DatalabWorkerArgsDict(TypedDict):
+    node_count: pulumi.Input[_builtins.int]
+    """
+    The number of worker nodes.
+    """
+    node_type: pulumi.Input[_builtins.str]
+    """
+    The node type for worker nodes.
+    """
+    root_volume: NotRequired[pulumi.Input[Optional['DatalabWorkerRootVolumeArgs']]]
+    """
+    Volume details for worker nodes.
+    """
+
+@pulumi.input_type
+class DatalabWorkerArgs:
+    def __init__(__self__, *,
+                 node_count: pulumi.Input[_builtins.int],
+                 node_type: pulumi.Input[_builtins.str],
+                 root_volume: pulumi.Input[Optional['DatalabWorkerRootVolumeArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.int] node_count: The number of worker nodes.
+        :param pulumi.Input[_builtins.str] node_type: The node type for worker nodes.
+        :param pulumi.Input['DatalabWorkerRootVolumeArgs'] root_volume: Volume details for worker nodes.
+        """
+        pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_type", node_type)
+        if root_volume is not None:
+            pulumi.set(__self__, "root_volume", root_volume)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> pulumi.Input[_builtins.int]:
+        """
+        The number of worker nodes.
+        """
+        return pulumi.get(self, "node_count")
+
+    @node_count.setter
+    def node_count(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "node_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The node type for worker nodes.
+        """
+        return pulumi.get(self, "node_type")
+
+    @node_type.setter
+    def node_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "node_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rootVolume")
+    def root_volume(self) -> pulumi.Input[Optional['DatalabWorkerRootVolumeArgs']]:
+        """
+        Volume details for worker nodes.
+        """
+        return pulumi.get(self, "root_volume")
+
+    @root_volume.setter
+    def root_volume(self, value: pulumi.Input[Optional['DatalabWorkerRootVolumeArgs']]):
+        pulumi.set(self, "root_volume", value)
+
+
+class DatalabWorkerRootVolumeArgsDict(TypedDict):
+    size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The volume size in bytes.
+    """
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The volume type.
+    """
+
+@pulumi.input_type
+class DatalabWorkerRootVolumeArgs:
+    def __init__(__self__, *,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] size: The volume size in bytes.
+        :param pulumi.Input[_builtins.str] type: The volume type.
+        """
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The volume size in bytes.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The volume type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
 
 
 class DomainRecordGeoIpArgsDict(TypedDict):
@@ -9864,41 +10182,54 @@ class ObjectBucketCorsRuleArgs:
 class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     enabled: pulumi.Input[_builtins.bool]
     """
-    The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+    The element value can be either Enabled or
+    Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+    any of the actions defined in the rule.
     """
     abort_incomplete_multipart_upload_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+    Specifies the number
+    of days after initiating a multipart upload when the multipart upload must
+    be completed.
 
-    > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+    > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+    as any incomplete multipart upload will be billed.
     """
     expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleExpirationArgs']]]
     """
-    Specifies a period in the object's expire
+    Specifies a period of expiration for the object.
     """
     id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+    Unique identifier for the rule. Must be less than or
+    equal to 255 characters in length.
     """
     noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]]
     """
-    Configuration block that specifies when noncurrent object versions expire
+    Configuration block that
+    specifies when noncurrent object versions expire. Supports the following:
     """
     noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]]
     """
-    Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+    Set of configuration blocks
+    that specify the transition rule for the lifecycle rule that describes when
+    noncurrent objects transition to a specific storage class. Supports the
+    following:
     """
     object_size_greater_than: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Minimum object size (in bytes) to which the rule applies
+    Minimum object size (in bytes) to
+    which the rule applies.
     """
     object_size_less_than: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Maximum object size (in bytes) to which the rule applies
+    Maximum object size (in bytes) to
+    which the rule applies.
     """
     prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Object key prefix identifying one or more objects to which the rule applies.
+    Object key prefix identifying one or more objects
+    to which the rule applies.
     """
     tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
@@ -9906,7 +10237,7 @@ class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     """
     transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]]]
     """
-    Define when objects transition to another storage class
+    Specifies a period in the object's transitions.
     """
 
 @pulumi.input_type
@@ -9924,19 +10255,32 @@ class ObjectBucketLifecycleRuleArgs:
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  transitions: pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]] = None):
         """
-        :param pulumi.Input[_builtins.bool] enabled: The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
-        :param pulumi.Input[_builtins.int] abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        :param pulumi.Input[_builtins.bool] enabled: The element value can be either Enabled or
+               Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+               any of the actions defined in the rule.
+        :param pulumi.Input[_builtins.int] abort_incomplete_multipart_upload_days: Specifies the number
+               of days after initiating a multipart upload when the multipart upload must
+               be completed.
                
-               > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
-        :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire
-        :param pulumi.Input[_builtins.str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
-        :param pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expiration: Configuration block that specifies when noncurrent object versions expire
-        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]] noncurrent_version_transitions: Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
-        :param pulumi.Input[_builtins.int] object_size_greater_than: Minimum object size (in bytes) to which the rule applies
-        :param pulumi.Input[_builtins.int] object_size_less_than: Maximum object size (in bytes) to which the rule applies
-        :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
+               > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+               as any incomplete multipart upload will be billed.
+        :param pulumi.Input['ObjectBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period of expiration for the object.
+        :param pulumi.Input[_builtins.str] id: Unique identifier for the rule. Must be less than or
+               equal to 255 characters in length.
+        :param pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expiration: Configuration block that
+               specifies when noncurrent object versions expire. Supports the following:
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]] noncurrent_version_transitions: Set of configuration blocks
+               that specify the transition rule for the lifecycle rule that describes when
+               noncurrent objects transition to a specific storage class. Supports the
+               following:
+        :param pulumi.Input[_builtins.int] object_size_greater_than: Minimum object size (in bytes) to
+               which the rule applies.
+        :param pulumi.Input[_builtins.int] object_size_less_than: Maximum object size (in bytes) to
+               which the rule applies.
+        :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects
+               to which the rule applies.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Specifies object tags key and value.
-        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Define when objects transition to another storage class
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]] transitions: Specifies a period in the object's transitions.
         """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
@@ -9964,7 +10308,9 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def enabled(self) -> pulumi.Input[_builtins.bool]:
         """
-        The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+        The element value can be either Enabled or
+        Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+        any of the actions defined in the rule.
         """
         return pulumi.get(self, "enabled")
 
@@ -9976,9 +10322,12 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
     def abort_incomplete_multipart_upload_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        Specifies the number
+        of days after initiating a multipart upload when the multipart upload must
+        be completed.
 
-        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+        as any incomplete multipart upload will be billed.
         """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
@@ -9990,7 +10339,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def expiration(self) -> pulumi.Input[Optional['ObjectBucketLifecycleRuleExpirationArgs']]:
         """
-        Specifies a period in the object's expire
+        Specifies a period of expiration for the object.
         """
         return pulumi.get(self, "expiration")
 
@@ -10002,7 +10351,8 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        Unique identifier for the rule. Must be less than or
+        equal to 255 characters in length.
         """
         return pulumi.get(self, "id")
 
@@ -10014,7 +10364,8 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter(name="noncurrentVersionExpiration")
     def noncurrent_version_expiration(self) -> pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]:
         """
-        Configuration block that specifies when noncurrent object versions expire
+        Configuration block that
+        specifies when noncurrent object versions expire. Supports the following:
         """
         return pulumi.get(self, "noncurrent_version_expiration")
 
@@ -10026,7 +10377,10 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter(name="noncurrentVersionTransitions")
     def noncurrent_version_transitions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]:
         """
-        Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        Set of configuration blocks
+        that specify the transition rule for the lifecycle rule that describes when
+        noncurrent objects transition to a specific storage class. Supports the
+        following:
         """
         return pulumi.get(self, "noncurrent_version_transitions")
 
@@ -10038,7 +10392,8 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter(name="objectSizeGreaterThan")
     def object_size_greater_than(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Minimum object size (in bytes) to which the rule applies
+        Minimum object size (in bytes) to
+        which the rule applies.
         """
         return pulumi.get(self, "object_size_greater_than")
 
@@ -10050,7 +10405,8 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter(name="objectSizeLessThan")
     def object_size_less_than(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Maximum object size (in bytes) to which the rule applies
+        Maximum object size (in bytes) to
+        which the rule applies.
         """
         return pulumi.get(self, "object_size_less_than")
 
@@ -10062,7 +10418,8 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Object key prefix identifying one or more objects to which the rule applies.
+        Object key prefix identifying one or more objects
+        to which the rule applies.
         """
         return pulumi.get(self, "prefix")
 
@@ -10086,7 +10443,7 @@ class ObjectBucketLifecycleRuleArgs:
     @pulumi.getter
     def transitions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]]:
         """
-        Define when objects transition to another storage class
+        Specifies a period in the object's transitions.
         """
         return pulumi.get(self, "transitions")
 
@@ -10098,15 +10455,21 @@ class ObjectBucketLifecycleRuleArgs:
 class ObjectBucketLifecycleRuleExpirationArgsDict(TypedDict):
     date: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+    Specifies the date the object is to be moved or
+    deleted. The date value must be in RFC3339 full-date format e.g.
+    `2023-08-22`.
     """
     days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Specifies the number of days after object creation when the specific rule action takes effect.
+    Specifies the number of days after object creation
+    when the specific rule action takes effect.
     """
     expired_object_delete_marker: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
-    Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+    Specifies whether Scaleway
+    Object will remove a delete marker with no noncurrent versions. If set
+    to `true`, the delete marker will be expired; if set to `false` the
+    policy takes no action.
     """
 
 @pulumi.input_type
@@ -10116,9 +10479,15 @@ class ObjectBucketLifecycleRuleExpirationArgs:
                  days: pulumi.Input[Optional[_builtins.int]] = None,
                  expired_object_delete_marker: pulumi.Input[Optional[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.str] date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
-        :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation when the specific rule action takes effect.
-        :param pulumi.Input[_builtins.bool] expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        :param pulumi.Input[_builtins.str] date: Specifies the date the object is to be moved or
+               deleted. The date value must be in RFC3339 full-date format e.g.
+               `2023-08-22`.
+        :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation
+               when the specific rule action takes effect.
+        :param pulumi.Input[_builtins.bool] expired_object_delete_marker: Specifies whether Scaleway
+               Object will remove a delete marker with no noncurrent versions. If set
+               to `true`, the delete marker will be expired; if set to `false` the
+               policy takes no action.
         """
         if date is not None:
             pulumi.set(__self__, "date", date)
@@ -10131,7 +10500,9 @@ class ObjectBucketLifecycleRuleExpirationArgs:
     @pulumi.getter
     def date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        Specifies the date the object is to be moved or
+        deleted. The date value must be in RFC3339 full-date format e.g.
+        `2023-08-22`.
         """
         return pulumi.get(self, "date")
 
@@ -10143,7 +10514,8 @@ class ObjectBucketLifecycleRuleExpirationArgs:
     @pulumi.getter
     def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Specifies the number of days after object creation when the specific rule action takes effect.
+        Specifies the number of days after object creation
+        when the specific rule action takes effect.
         """
         return pulumi.get(self, "days")
 
@@ -10155,7 +10527,10 @@ class ObjectBucketLifecycleRuleExpirationArgs:
     @pulumi.getter(name="expiredObjectDeleteMarker")
     def expired_object_delete_marker(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        Specifies whether Scaleway
+        Object will remove a delete marker with no noncurrent versions. If set
+        to `true`, the delete marker will be expired; if set to `false` the
+        policy takes no action.
         """
         return pulumi.get(self, "expired_object_delete_marker")
 
@@ -10167,11 +10542,14 @@ class ObjectBucketLifecycleRuleExpirationArgs:
 class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgsDict(TypedDict):
     newer_noncurrent_versions: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+    Number of noncurrent versions
+    Scaleway Object Storage will retain. Must be a non-zero positive integer.
     """
     noncurrent_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+    Number of days an object is noncurrent
+    before Scaleway Object Storage can perform the associated action. Must
+    be a positive integer.
     """
 
 @pulumi.input_type
@@ -10180,8 +10558,11 @@ class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs:
                  newer_noncurrent_versions: pulumi.Input[Optional[_builtins.int]] = None,
                  noncurrent_days: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
-        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions
+               Scaleway Object Storage will retain. Must be a non-zero positive integer.
+        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent
+               before Scaleway Object Storage can perform the associated action. Must
+               be a positive integer.
         """
         if newer_noncurrent_versions is not None:
             pulumi.set(__self__, "newer_noncurrent_versions", newer_noncurrent_versions)
@@ -10192,7 +10573,8 @@ class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs:
     @pulumi.getter(name="newerNoncurrentVersions")
     def newer_noncurrent_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        Number of noncurrent versions
+        Scaleway Object Storage will retain. Must be a non-zero positive integer.
         """
         return pulumi.get(self, "newer_noncurrent_versions")
 
@@ -10204,7 +10586,9 @@ class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs:
     @pulumi.getter(name="noncurrentDays")
     def noncurrent_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+        Number of days an object is noncurrent
+        before Scaleway Object Storage can perform the associated action. Must
+        be a positive integer.
         """
         return pulumi.get(self, "noncurrent_days")
 
@@ -10216,15 +10600,22 @@ class ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs:
 class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgsDict(TypedDict):
     noncurrent_days: pulumi.Input[_builtins.int]
     """
-    Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+    Number of days an object is noncurrent
+    before Scaleway Object Storage can perform the associated action.
     """
     storage_class: pulumi.Input[_builtins.str]
     """
-    Specifies the Scaleway Object Storage class to which you want the object to transition
+    Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+    `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+    transition.
+
+    > **Important:** If versioning is enabled, this rule only deletes the current
+    version of an object.
     """
     newer_noncurrent_versions: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+    Number of noncurrent versions
+    Scaleway Object Storage will retain. Must be a non-zero positive integer.
     """
 
 @pulumi.input_type
@@ -10234,9 +10625,16 @@ class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
                  storage_class: pulumi.Input[_builtins.str],
                  newer_noncurrent_versions: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
-        :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway Object Storage class to which you want the object to transition
-        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        :param pulumi.Input[_builtins.int] noncurrent_days: Number of days an object is noncurrent
+               before Scaleway Object Storage can perform the associated action.
+        :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+               `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+               transition.
+               
+               > **Important:** If versioning is enabled, this rule only deletes the current
+               version of an object.
+        :param pulumi.Input[_builtins.int] newer_noncurrent_versions: Number of noncurrent versions
+               Scaleway Object Storage will retain. Must be a non-zero positive integer.
         """
         pulumi.set(__self__, "noncurrent_days", noncurrent_days)
         pulumi.set(__self__, "storage_class", storage_class)
@@ -10247,7 +10645,8 @@ class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @pulumi.getter(name="noncurrentDays")
     def noncurrent_days(self) -> pulumi.Input[_builtins.int]:
         """
-        Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+        Number of days an object is noncurrent
+        before Scaleway Object Storage can perform the associated action.
         """
         return pulumi.get(self, "noncurrent_days")
 
@@ -10259,7 +10658,12 @@ class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the Scaleway Object Storage class to which you want the object to transition
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+        `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+        transition.
+
+        > **Important:** If versioning is enabled, this rule only deletes the current
+        version of an object.
         """
         return pulumi.get(self, "storage_class")
 
@@ -10271,7 +10675,8 @@ class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @pulumi.getter(name="newerNoncurrentVersions")
     def newer_noncurrent_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+        Number of noncurrent versions
+        Scaleway Object Storage will retain. Must be a non-zero positive integer.
         """
         return pulumi.get(self, "newer_noncurrent_versions")
 
@@ -10283,23 +10688,26 @@ class ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs:
 class ObjectBucketLifecycleRuleTransitionArgsDict(TypedDict):
     storage_class: pulumi.Input[_builtins.str]
     """
-    Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+    Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+    `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+    transition.
 
+    > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+    storage class `GLACIER` is not available in `pl-waw` region.
 
-    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-    > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-
-
-    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-    > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+    > **Important:** At least one of `abort_incomplete_multipart_upload_days`,
+    `expiration`, `transition` must be specified.
     """
     date: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+    Specifies the date objects are transitioned to the
+    specified storage class. The date value must be in RFC3339 full-date
+    format e.g. `2023-08-22`.
     """
     days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Specifies the number of days after object creation when the specific rule action takes effect.
+    Specifies the number of days after object creation
+    when the specific rule action takes effect.
     """
 
 @pulumi.input_type
@@ -10309,17 +10717,20 @@ class ObjectBucketLifecycleRuleTransitionArgs:
                  date: pulumi.Input[Optional[_builtins.str]] = None,
                  days: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        :param pulumi.Input[_builtins.str] storage_class: Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+               `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+               transition.
                
+               > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+               storage class `GLACIER` is not available in `pl-waw` region.
                
-               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-               > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-               
-               
-               > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-               > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        :param pulumi.Input[_builtins.str] date: Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
-        :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+               > **Important:** At least one of `abort_incomplete_multipart_upload_days`,
+               `expiration`, `transition` must be specified.
+        :param pulumi.Input[_builtins.str] date: Specifies the date objects are transitioned to the
+               specified storage class. The date value must be in RFC3339 full-date
+               format e.g. `2023-08-22`.
+        :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation
+               when the specific rule action takes effect.
         """
         pulumi.set(__self__, "storage_class", storage_class)
         if date is not None:
@@ -10331,15 +10742,15 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+        Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+        `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+        transition.
 
+        > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+        storage class `GLACIER` is not available in `pl-waw` region.
 
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-        > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-
-
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-        > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+        > **Important:** At least one of `abort_incomplete_multipart_upload_days`,
+        `expiration`, `transition` must be specified.
         """
         return pulumi.get(self, "storage_class")
 
@@ -10351,7 +10762,9 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @pulumi.getter
     def date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+        Specifies the date objects are transitioned to the
+        specified storage class. The date value must be in RFC3339 full-date
+        format e.g. `2023-08-22`.
         """
         return pulumi.get(self, "date")
 
@@ -10363,7 +10776,8 @@ class ObjectBucketLifecycleRuleTransitionArgs:
     @pulumi.getter
     def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Specifies the number of days after object creation when the specific rule action takes effect.
+        Specifies the number of days after object creation
+        when the specific rule action takes effect.
         """
         return pulumi.get(self, "days")
 

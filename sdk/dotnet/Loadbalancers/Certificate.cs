@@ -43,12 +43,12 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     /// 
     /// ## Additional notes
     /// 
-    /// * Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
-    ///   You can achieve this by creating a DNS record through Terraform pointing to  the `IpAddress` property of the `LbBeta` entity.
-    /// * If there are any issues with the certificate, you will receive a `400` error from the `Apply` operation.
+    /// - Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
+    ///   You can achieve this by creating a DNS record through Terraform pointing to the `IpAddress` property of the `LbBeta` entity.
+    /// - If there are any issues with the certificate, you will receive a `400` error from the `Apply` operation.
     ///   Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
-    /// * Wildcards are not yet supported with Let's Encrypt.
-    /// * Use `Lifecycle` instruction with `CreateBeforeDestroy = true` to permit correct certificate replacement and prevent a `400` error from the `Apply` operation.
+    /// - Wildcards are not yet supported with Let's Encrypt.
+    /// - Use `Lifecycle` instruction with `CreateBeforeDestroy = true` to permit correct certificate replacement and prevent a `400` error from the `Apply` operation.
     /// 
     /// ## Import
     /// 

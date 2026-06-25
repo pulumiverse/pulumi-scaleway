@@ -135,6 +135,7 @@ type LookupKubernetesClusterResult struct {
 	UpdatedAt string `pulumi:"updatedAt"`
 	// True if a newer Kubernetes version is available.
 	UpgradeAvailable bool `pulumi:"upgradeAvailable"`
+	UpgradePools     bool `pulumi:"upgradePools"`
 	// The version of the Kubernetes cluster.
 	Version string `pulumi:"version"`
 	// The DNS wildcard that points to all ready nodes.
@@ -304,6 +305,10 @@ func (o LookupKubernetesClusterResultOutput) UpdatedAt() pulumi.StringOutput {
 // True if a newer Kubernetes version is available.
 func (o LookupKubernetesClusterResultOutput) UpgradeAvailable() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) bool { return v.UpgradeAvailable }).(pulumi.BoolOutput)
+}
+
+func (o LookupKubernetesClusterResultOutput) UpgradePools() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) bool { return v.UpgradePools }).(pulumi.BoolOutput)
 }
 
 // The version of the Kubernetes cluster.

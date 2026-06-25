@@ -14,33 +14,40 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ObjectBucketLifecycleRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// Specifies the number
+        /// of days after initiating a multipart upload when the multipart upload must
+        /// be completed.
         /// 
-        /// &gt; **Important:** Avoid using `Prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        /// &gt; **Important:** Avoid using `Prefix` for `AbortIncompleteMultipartUpload`,
+        /// as any incomplete multipart upload will be billed.
         /// </summary>
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }
 
         /// <summary>
-        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+        /// The element value can be either Enabled or
+        /// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+        /// any of the actions defined in the rule.
         /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Specifies a period in the object's expire
+        /// Specifies a period of expiration for the object.
         /// </summary>
         [Input("expiration")]
         public Input<Inputs.ObjectBucketLifecycleRuleExpirationArgs>? Expiration { get; set; }
 
         /// <summary>
-        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        /// Unique identifier for the rule. Must be less than or
+        /// equal to 255 characters in length.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Configuration block that specifies when noncurrent object versions expire
+        /// Configuration block that
+        /// specifies when noncurrent object versions expire. Supports the following:
         /// </summary>
         [Input("noncurrentVersionExpiration")]
         public Input<Inputs.ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs>? NoncurrentVersionExpiration { get; set; }
@@ -49,7 +56,10 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<Inputs.ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs>? _noncurrentVersionTransitions;
 
         /// <summary>
-        /// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        /// Set of configuration blocks
+        /// that specify the transition rule for the lifecycle rule that describes when
+        /// noncurrent objects transition to a specific storage class. Supports the
+        /// following:
         /// </summary>
         public InputList<Inputs.ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs> NoncurrentVersionTransitions
         {
@@ -58,19 +68,22 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Minimum object size (in bytes) to which the rule applies
+        /// Minimum object size (in bytes) to
+        /// which the rule applies.
         /// </summary>
         [Input("objectSizeGreaterThan")]
         public Input<int>? ObjectSizeGreaterThan { get; set; }
 
         /// <summary>
-        /// Maximum object size (in bytes) to which the rule applies
+        /// Maximum object size (in bytes) to
+        /// which the rule applies.
         /// </summary>
         [Input("objectSizeLessThan")]
         public Input<int>? ObjectSizeLessThan { get; set; }
 
         /// <summary>
-        /// Object key prefix identifying one or more objects to which the rule applies.
+        /// Object key prefix identifying one or more objects
+        /// to which the rule applies.
         /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
@@ -91,7 +104,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<Inputs.ObjectBucketLifecycleRuleTransitionArgs>? _transitions;
 
         /// <summary>
-        /// Define when objects transition to another storage class
+        /// Specifies a period in the object's transitions.
         /// </summary>
         public InputList<Inputs.ObjectBucketLifecycleRuleTransitionArgs> Transitions
         {

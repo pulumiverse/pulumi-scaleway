@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// <summary>
         /// Company identification code (e.g., SIREN/SIRET in France) for the contact.
         /// </summary>
-        public readonly string CompanyIdentificationCode;
+        public readonly string? CompanyIdentificationCode;
         /// <summary>
         /// Name of the company associated with the contact (if applicable).
         /// </summary>
@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// <summary>
         /// VAT identification code of the contact, if applicable.
         /// </summary>
-        public readonly string VatIdentificationCode;
+        public readonly string? VatIdentificationCode;
         /// <summary>
         /// Indicates whether the contact has opted into WHOIS publishing.
         /// </summary>
@@ -111,7 +111,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
 
             string city,
 
-            string companyIdentificationCode,
+            string? companyIdentificationCode,
 
             string? companyName,
 
@@ -143,7 +143,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
 
             string? state,
 
-            string vatIdentificationCode,
+            string? vatIdentificationCode,
 
             bool? whoisOptIn,
 

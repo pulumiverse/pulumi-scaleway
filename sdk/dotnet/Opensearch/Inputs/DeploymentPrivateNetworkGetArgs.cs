@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Opensearch.Inputs
     public sealed class DeploymentPrivateNetworkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Private network ID if the endpoint is private.
+        /// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;

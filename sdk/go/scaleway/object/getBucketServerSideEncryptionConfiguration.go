@@ -80,6 +80,9 @@ type LookupBucketServerSideEncryptionConfigurationArgs struct {
 	Bucket *string `pulumi:"bucket"`
 	// The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
 	BucketServerSideEncryptionConfigurationId *string `pulumi:"bucketServerSideEncryptionConfigurationId"`
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId *string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getBucketServerSideEncryptionConfiguration.
@@ -88,8 +91,9 @@ type LookupBucketServerSideEncryptionConfigurationResult struct {
 	Bucket                                    *string `pulumi:"bucket"`
 	BucketServerSideEncryptionConfigurationId *string `pulumi:"bucketServerSideEncryptionConfigurationId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
-	Region string `pulumi:"region"`
+	Id        string  `pulumi:"id"`
+	ProjectId *string `pulumi:"projectId"`
+	Region    string  `pulumi:"region"`
 	// (Set of Object) Set of server-side encryption configuration rules.
 	Rules []GetBucketServerSideEncryptionConfigurationRule `pulumi:"rules"`
 }
@@ -109,6 +113,9 @@ type LookupBucketServerSideEncryptionConfigurationOutputArgs struct {
 	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
 	// The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
 	BucketServerSideEncryptionConfigurationId pulumi.StringPtrInput `pulumi:"bucketServerSideEncryptionConfigurationId"`
+	// The ID of the
+	// project the bucket is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 
 func (LookupBucketServerSideEncryptionConfigurationOutputArgs) ElementType() reflect.Type {
@@ -144,6 +151,10 @@ func (o LookupBucketServerSideEncryptionConfigurationResultOutput) BucketServerS
 // The provider-assigned unique ID for this managed resource.
 func (o LookupBucketServerSideEncryptionConfigurationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketServerSideEncryptionConfigurationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBucketServerSideEncryptionConfigurationResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBucketServerSideEncryptionConfigurationResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBucketServerSideEncryptionConfigurationResultOutput) Region() pulumi.StringOutput {

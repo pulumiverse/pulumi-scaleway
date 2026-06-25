@@ -30,7 +30,7 @@ namespace Pulumiverse.Scaleway.Opensearch
     ///     {
     ///         Name = "my-opensearch-cluster",
     ///         Version = "2.0",
-    ///         NodeAmount = 1,
+    ///         NodeCount = 1,
     ///         NodeType = "SEARCHDB-SHARED-2C-8G",
     ///         Password = "ThisIsASecurePassword123!",
     ///         Volume = new Scaleway.Opensearch.Inputs.DeploymentVolumeArgs
@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway.Opensearch
     ///     {
     ///         Name = "logs-prod-cluster",
     ///         Version = "2.0",
-    ///         NodeAmount = 3,
+    ///         NodeCount = 3,
     ///         NodeType = "SEARCHDB-DEDICATED-2C-8G",
     ///         Password = opensearchPassword,
     ///         Tags = new[]
@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway.Opensearch
     ///     {
     ///         Name = "analytics-cluster",
     ///         Version = "2.0",
-    ///         NodeAmount = 1,
+    ///         NodeCount = 1,
     ///         NodeType = "SEARCHDB-SHARED-4C-16G",
     ///         Password = opensearchPassword,
     ///         Tags = new[]
@@ -106,6 +106,48 @@ namespace Pulumiverse.Scaleway.Opensearch
     ///         {
     ///             Type = "sbs_5k",
     ///             SizeInGb = 10,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Private Network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Network.Vpc("main", new()
+    ///     {
+    ///         Name = "my-vpc",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
+    ///     {
+    ///         Name = "my-private-network",
+    ///         VpcId = main.Id,
+    ///     });
+    /// 
+    ///     var mainDeployment = new Scaleway.Opensearch.Deployment("main", new()
+    ///     {
+    ///         Name = "my-opensearch-cluster",
+    ///         Version = "2.0",
+    ///         NodeCount = 1,
+    ///         NodeType = "SEARCHDB-DEDICATED-2C-8G",
+    ///         Password = "ThisIsASecurePassword123!",
+    ///         PrivateNetwork = new Scaleway.Opensearch.Inputs.DeploymentPrivateNetworkArgs
+    ///         {
+    ///             PrivateNetworkId = pn.Id,
+    ///         },
+    ///         Volume = new Scaleway.Opensearch.Inputs.DeploymentVolumeArgs
+    ///         {
+    ///             Type = "sbs_5k",
+    ///             SizeInGb = 5,
     ///         },
     ///     });
     /// 
@@ -153,10 +195,16 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// Use `NodeCount` instead. Changing this forces recreation of the deployment.
         /// </summary>
         [Output("nodeAmount")]
-        public Output<int> NodeAmount { get; private set; } = null!;
+        public Output<int?> NodeAmount { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Output("nodeCount")]
+        public Output<int?> NodeCount { get; private set; } = null!;
 
         /// <summary>
         /// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
@@ -171,7 +219,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Private network configuration
+        /// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         /// </summary>
         [Output("privateNetwork")]
         public Output<Outputs.DeploymentPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
@@ -179,7 +227,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>
@@ -292,10 +340,16 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Use `NodeCount` instead. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Input("nodeAmount")]
+        public Input<int>? NodeAmount { get; set; }
+
+        /// <summary>
         /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
         /// </summary>
-        [Input("nodeAmount", required: true)]
-        public Input<int> NodeAmount { get; set; } = null!;
+        [Input("nodeCount")]
+        public Input<int>? NodeCount { get; set; }
 
         /// <summary>
         /// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
@@ -320,7 +374,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         }
 
         /// <summary>
-        /// Private network configuration
+        /// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DeploymentPrivateNetworkArgs>? PrivateNetwork { get; set; }
@@ -328,7 +382,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>
@@ -404,10 +458,16 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// Use `NodeCount` instead. Changing this forces recreation of the deployment.
         /// </summary>
         [Input("nodeAmount")]
         public Input<int>? NodeAmount { get; set; }
+
+        /// <summary>
+        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Input("nodeCount")]
+        public Input<int>? NodeCount { get; set; }
 
         /// <summary>
         /// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
@@ -432,7 +492,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         }
 
         /// <summary>
-        /// Private network configuration
+        /// Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DeploymentPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
@@ -440,7 +500,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>

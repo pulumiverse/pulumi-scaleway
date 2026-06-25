@@ -23,11 +23,11 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
         /// </summary>
         public readonly Outputs.ContainerStartupProbeHttp? Http;
         /// <summary>
-        /// Time interval between checks (in duration notation).
+        /// Time interval between checks (in duration notation, e.g. "30s").
         /// </summary>
         public readonly string Interval;
         /// <summary>
-        /// Perform TCP check on the container
+        /// When set to `True`, performs TCP checks on the container.
         /// </summary>
         public readonly bool? Tcp;
         /// <summary>

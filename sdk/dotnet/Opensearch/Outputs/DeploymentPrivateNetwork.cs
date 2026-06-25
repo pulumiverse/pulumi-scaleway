@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Opensearch.Outputs
     public sealed class DeploymentPrivateNetwork
     {
         /// <summary>
-        /// Private network ID if the endpoint is private.
+        /// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         /// </summary>
         public readonly string PrivateNetworkId;
 

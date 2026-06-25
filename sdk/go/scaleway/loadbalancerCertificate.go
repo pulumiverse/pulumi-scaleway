@@ -51,7 +51,7 @@ import (
 // ## Additional notes
 //
 //   - Ensure that all domain names used in the configuration are pointing to the Load Balancer IP.
-//     You can achieve this by creating a DNS record through Terraform pointing to  the `ipAddress` property of the `lbBeta` entity.
+//     You can achieve this by creating a DNS record through Terraform pointing to the `ipAddress` property of the `lbBeta` entity.
 //   - If there are any issues with the certificate, you will receive a `400` error from the `apply` operation.
 //     Use `export TF_LOG=DEBUG` to view the exact problem returned by the API.
 //   - Wildcards are not yet supported with Let's Encrypt.

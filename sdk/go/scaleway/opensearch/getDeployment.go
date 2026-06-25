@@ -79,6 +79,7 @@ type LookupDeploymentResult struct {
 	Id                 string                        `pulumi:"id"`
 	Name               *string                       `pulumi:"name"`
 	NodeAmount         int                           `pulumi:"nodeAmount"`
+	NodeCount          int                           `pulumi:"nodeCount"`
 	NodeType           string                        `pulumi:"nodeType"`
 	Password           string                        `pulumi:"password"`
 	PrivateNetworks    []GetDeploymentPrivateNetwork `pulumi:"privateNetworks"`
@@ -156,6 +157,10 @@ func (o LookupDeploymentResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupDeploymentResultOutput) NodeAmount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDeploymentResult) int { return v.NodeAmount }).(pulumi.IntOutput)
+}
+
+func (o LookupDeploymentResultOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDeploymentResult) int { return v.NodeCount }).(pulumi.IntOutput)
 }
 
 func (o LookupDeploymentResultOutput) NodeType() pulumi.StringOutput {

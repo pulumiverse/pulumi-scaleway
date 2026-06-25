@@ -196,9 +196,15 @@ class BucketPolicy(pulumi.CustomResource):
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        The `object.BucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketPolicy` resource allows you to create and manage
+        bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
-        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage
+        bucket policies.
+
+        > **Warning:** The `aws_iam_policy_document` resource is only compatible with
+        the deprecated `2012-10-17` version. Use the Scaleway-specific `2023-04-17`
+        recommended version, with a `jsonencode` bloc instead. See examples below.
 
         ## Example Usage
 
@@ -350,6 +356,11 @@ class BucketPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
+        <!--- Links, invisible in the final document --->
+
+        [1]: https://www.scaleway.com/en/docs/object-storage/
+        [2]: https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/
 
 
         :param str resource_name: The name of the resource.
@@ -372,9 +383,15 @@ class BucketPolicy(pulumi.CustomResource):
                  args: BucketPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `object.BucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketPolicy` resource allows you to create and manage
+        bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
-        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage
+        bucket policies.
+
+        > **Warning:** The `aws_iam_policy_document` resource is only compatible with
+        the deprecated `2012-10-17` version. Use the Scaleway-specific `2023-04-17`
+        recommended version, with a `jsonencode` bloc instead. See examples below.
 
         ## Example Usage
 
@@ -526,6 +543,11 @@ class BucketPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:object/bucketPolicy:BucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
         ```
+
+        <!--- Links, invisible in the final document --->
+
+        [1]: https://www.scaleway.com/en/docs/object-storage/
+        [2]: https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/
 
 
         :param str resource_name: The name of the resource.

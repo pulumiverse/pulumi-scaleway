@@ -31,7 +31,7 @@ class UserDataArgs:
         :param pulumi.Input[_builtins.str] value: Value associated with your key
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
                
-               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
                - string
                - UTF-8 encoded file content using file
@@ -84,7 +84,7 @@ class UserDataArgs:
         """
         `zone`) The zone in which the server should be created.
 
-        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         You can define values using:
         - string
         - UTF-8 encoded file content using file
@@ -111,7 +111,7 @@ class _UserDataState:
         :param pulumi.Input[_builtins.str] value: Value associated with your key
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
                
-               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
                - string
                - UTF-8 encoded file content using file
@@ -167,7 +167,7 @@ class _UserDataState:
         """
         `zone`) The zone in which the server should be created.
 
-        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         You can define values using:
         - string
         - UTF-8 encoded file content using file
@@ -253,7 +253,7 @@ class UserData(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] value: Value associated with your key
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
                
-               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
                - string
                - UTF-8 encoded file content using file
@@ -386,7 +386,7 @@ class UserData(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] value: Value associated with your key
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
                
-               > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+               > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
                - string
                - UTF-8 encoded file content using file
@@ -431,7 +431,7 @@ class UserData(pulumi.CustomResource):
         """
         `zone`) The zone in which the server should be created.
 
-        > **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
+        > **Important:** Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         You can define values using:
         - string
         - UTF-8 encoded file content using file

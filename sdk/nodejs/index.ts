@@ -125,6 +125,11 @@ export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
 utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
+export { DatalabArgs, DatalabState } from "./datalab";
+export type Datalab = import("./datalab").Datalab;
+export const Datalab: typeof import("./datalab").Datalab = null as any;
+utilities.lazyLoad(exports, ["Datalab"], () => require("./datalab"));
+
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -329,6 +334,16 @@ export { GetDatabasePrivilegeArgs, GetDatabasePrivilegeResult, GetDatabasePrivil
 export const getDatabasePrivilege: typeof import("./getDatabasePrivilege").getDatabasePrivilege = null as any;
 export const getDatabasePrivilegeOutput: typeof import("./getDatabasePrivilege").getDatabasePrivilegeOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
+
+export { GetDatalabArgs, GetDatalabResult, GetDatalabOutputArgs } from "./getDatalab";
+export const getDatalab: typeof import("./getDatalab").getDatalab = null as any;
+export const getDatalabOutput: typeof import("./getDatalab").getDatalabOutput = null as any;
+utilities.lazyLoad(exports, ["getDatalab","getDatalabOutput"], () => require("./getDatalab"));
+
+export { GetDatalabsArgs, GetDatalabsResult, GetDatalabsOutputArgs } from "./getDatalabs";
+export const getDatalabs: typeof import("./getDatalabs").getDatalabs = null as any;
+export const getDatalabsOutput: typeof import("./getDatalabs").getDatalabsOutput = null as any;
+utilities.lazyLoad(exports, ["getDatalabs","getDatalabsOutput"], () => require("./getDatalabs"));
 
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
@@ -1157,6 +1172,8 @@ const _module = {
                 return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
+            case "scaleway:index/datalab:Datalab":
+                return new Datalab(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -1372,6 +1389,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/datalab", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesBackendStage", _module)

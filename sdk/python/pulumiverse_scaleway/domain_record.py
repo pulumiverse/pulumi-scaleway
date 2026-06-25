@@ -623,7 +623,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record`  resource with the same `name`, and the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record` resource with the same `name`, and the records will be added.
 
         Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 
@@ -839,7 +839,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record`  resource with the same `name`, and the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record` resource with the same `name`, and the records will be added.
 
         Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 

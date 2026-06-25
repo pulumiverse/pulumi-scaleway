@@ -698,7 +698,7 @@ type RegistrationAdministrativeContact struct {
 	// City of the contact's address.
 	City string `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode *string `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName *string `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -730,7 +730,7 @@ type RegistrationAdministrativeContact struct {
 	// State or region of the contact.
 	State *string `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode *string `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn *bool `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -756,7 +756,7 @@ type RegistrationAdministrativeContactArgs struct {
 	// City of the contact's address.
 	City pulumi.StringInput `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode pulumi.StringPtrInput `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName pulumi.StringPtrInput `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -788,7 +788,7 @@ type RegistrationAdministrativeContactArgs struct {
 	// State or region of the contact.
 	State pulumi.StringPtrInput `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode pulumi.StringPtrInput `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn pulumi.BoolPtrInput `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -862,8 +862,8 @@ func (o RegistrationAdministrativeContactOutput) City() pulumi.StringOutput {
 }
 
 // Company identification code (e.g., SIREN/SIRET in France) for the contact.
-func (o RegistrationAdministrativeContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationAdministrativeContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationAdministrativeContactOutput) CompanyIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationAdministrativeContact) *string { return v.CompanyIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Name of the company associated with the contact (if applicable).
@@ -946,8 +946,8 @@ func (o RegistrationAdministrativeContactOutput) State() pulumi.StringPtrOutput 
 }
 
 // VAT identification code of the contact, if applicable.
-func (o RegistrationAdministrativeContactOutput) VatIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationAdministrativeContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationAdministrativeContactOutput) VatIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationAdministrativeContact) *string { return v.VatIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Indicates whether the contact has opted into WHOIS publishing.
@@ -2523,7 +2523,7 @@ type RegistrationOwnerContact struct {
 	// City of the contact's address.
 	City string `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode *string `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName *string `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -2555,7 +2555,7 @@ type RegistrationOwnerContact struct {
 	// State or region of the contact.
 	State *string `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode *string `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn *bool `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -2581,7 +2581,7 @@ type RegistrationOwnerContactArgs struct {
 	// City of the contact's address.
 	City pulumi.StringInput `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode pulumi.StringPtrInput `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName pulumi.StringPtrInput `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -2613,7 +2613,7 @@ type RegistrationOwnerContactArgs struct {
 	// State or region of the contact.
 	State pulumi.StringPtrInput `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode pulumi.StringPtrInput `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn pulumi.BoolPtrInput `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -2713,8 +2713,8 @@ func (o RegistrationOwnerContactOutput) City() pulumi.StringOutput {
 }
 
 // Company identification code (e.g., SIREN/SIRET in France) for the contact.
-func (o RegistrationOwnerContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationOwnerContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationOwnerContactOutput) CompanyIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationOwnerContact) *string { return v.CompanyIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Name of the company associated with the contact (if applicable).
@@ -2793,8 +2793,8 @@ func (o RegistrationOwnerContactOutput) State() pulumi.StringPtrOutput {
 }
 
 // VAT identification code of the contact, if applicable.
-func (o RegistrationOwnerContactOutput) VatIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationOwnerContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationOwnerContactOutput) VatIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationOwnerContact) *string { return v.VatIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Indicates whether the contact has opted into WHOIS publishing.
@@ -2867,7 +2867,7 @@ func (o RegistrationOwnerContactPtrOutput) CompanyIdentificationCode() pulumi.St
 		if v == nil {
 			return nil
 		}
-		return &v.CompanyIdentificationCode
+		return v.CompanyIdentificationCode
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3027,7 +3027,7 @@ func (o RegistrationOwnerContactPtrOutput) VatIdentificationCode() pulumi.String
 		if v == nil {
 			return nil
 		}
-		return &v.VatIdentificationCode
+		return v.VatIdentificationCode
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4161,7 +4161,7 @@ type RegistrationTechnicalContact struct {
 	// City of the contact's address.
 	City string `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode *string `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName *string `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -4193,7 +4193,7 @@ type RegistrationTechnicalContact struct {
 	// State or region of the contact.
 	State *string `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode *string `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn *bool `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -4219,7 +4219,7 @@ type RegistrationTechnicalContactArgs struct {
 	// City of the contact's address.
 	City pulumi.StringInput `pulumi:"city"`
 	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
-	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	CompanyIdentificationCode pulumi.StringPtrInput `pulumi:"companyIdentificationCode"`
 	// Name of the company associated with the contact (if applicable).
 	CompanyName pulumi.StringPtrInput `pulumi:"companyName"`
 	// Country code of the contact's address (ISO format).
@@ -4251,7 +4251,7 @@ type RegistrationTechnicalContactArgs struct {
 	// State or region of the contact.
 	State pulumi.StringPtrInput `pulumi:"state"`
 	// VAT identification code of the contact, if applicable.
-	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	VatIdentificationCode pulumi.StringPtrInput `pulumi:"vatIdentificationCode"`
 	// Indicates whether the contact has opted into WHOIS publishing.
 	WhoisOptIn pulumi.BoolPtrInput `pulumi:"whoisOptIn"`
 	// Postal code of the contact's address.
@@ -4325,8 +4325,8 @@ func (o RegistrationTechnicalContactOutput) City() pulumi.StringOutput {
 }
 
 // Company identification code (e.g., SIREN/SIRET in France) for the contact.
-func (o RegistrationTechnicalContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationTechnicalContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationTechnicalContactOutput) CompanyIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationTechnicalContact) *string { return v.CompanyIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Name of the company associated with the contact (if applicable).
@@ -4405,8 +4405,8 @@ func (o RegistrationTechnicalContactOutput) State() pulumi.StringPtrOutput {
 }
 
 // VAT identification code of the contact, if applicable.
-func (o RegistrationTechnicalContactOutput) VatIdentificationCode() pulumi.StringOutput {
-	return o.ApplyT(func(v RegistrationTechnicalContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+func (o RegistrationTechnicalContactOutput) VatIdentificationCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationTechnicalContact) *string { return v.VatIdentificationCode }).(pulumi.StringPtrOutput)
 }
 
 // Indicates whether the contact has opted into WHOIS publishing.

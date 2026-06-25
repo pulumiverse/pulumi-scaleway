@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class ContainerHealthCheckGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Number of consecutive failures before considering the container has to be restarted.
+        /// Number of consecutive health check failures before considering the container unhealthy.
         /// </summary>
         [Input("failureThreshold")]
         public Input<int>? FailureThreshold { get; set; }
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<Inputs.ContainerHealthCheckHttpGetArgs>? _https;
 
         /// <summary>
-        /// Perform HTTP check on the container with the specified path.
+        /// HTTP health check configuration.
         /// </summary>
         public InputList<Inputs.ContainerHealthCheckHttpGetArgs> Https
         {
@@ -32,7 +32,9 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Time interval between checks (in duration notation, e.g. "30s").
+        /// Period between health checks (in seconds).
+        /// 
+        /// &gt; **Important:** Only one of `LivenessProbe` or `HealthCheck` can be set at a time.
         /// </summary>
         [Input("interval")]
         public Input<string>? Interval { get; set; }

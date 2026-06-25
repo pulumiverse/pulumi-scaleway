@@ -171,7 +171,7 @@ import (
 type Frontend struct {
 	pulumi.CustomResourceState
 
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls FrontendAclArrayOutput `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -253,7 +253,7 @@ func GetFrontend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Frontend resources.
 type frontendState struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls []FrontendAcl `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -291,7 +291,7 @@ type frontendState struct {
 }
 
 type FrontendState struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls FrontendAclArrayInput
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -333,7 +333,7 @@ func (FrontendState) ElementType() reflect.Type {
 }
 
 type frontendArgs struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls []FrontendAcl `pulumi:"acls"`
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -364,7 +364,7 @@ type frontendArgs struct {
 
 // The set of arguments for constructing a Frontend resource.
 type FrontendArgs struct {
-	// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls FrontendAclArrayInput
 	// The ID of the Load Balancer backend this frontend is attached to.
 	//
@@ -480,7 +480,7 @@ func (o FrontendOutput) ToFrontendOutputWithContext(ctx context.Context) Fronten
 	return o
 }
 
-// A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 func (o FrontendOutput) Acls() FrontendAclArrayOutput {
 	return o.ApplyT(func(v *Frontend) FrontendAclArrayOutput { return v.Acls }).(FrontendAclArrayOutput)
 }

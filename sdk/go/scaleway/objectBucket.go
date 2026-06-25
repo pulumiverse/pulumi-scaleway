@@ -289,7 +289,11 @@ import (
 // $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
 // ```
 //
+// <!--- Links, invisible in the final document --->
+//
 // Deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket
+//
+// [1]: https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class
 type ObjectBucket struct {
 	pulumi.CustomResourceState
 
@@ -311,7 +315,9 @@ type ObjectBucket struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayOutput `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Enable object lock
+	// Enables the usage of a
+	// object.BucketLockConfiguration
+	// for this bucket.
 	ObjectLockEnabled pulumi.BoolPtrOutput `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -319,7 +325,7 @@ type ObjectBucket struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A list of tags (key/value) for the bucket.
 	//
-	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 	// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// Allow multiple versions of an object in the same bucket
@@ -374,7 +380,9 @@ type objectBucketState struct {
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
-	// Enable object lock
+	// Enables the usage of a
+	// object.BucketLockConfiguration
+	// for this bucket.
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -382,7 +390,7 @@ type objectBucketState struct {
 	Region *string `pulumi:"region"`
 	// A list of tags (key/value) for the bucket.
 	//
-	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 	// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// Allow multiple versions of an object in the same bucket
@@ -408,7 +416,9 @@ type ObjectBucketState struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
-	// Enable object lock
+	// Enables the usage of a
+	// object.BucketLockConfiguration
+	// for this bucket.
 	ObjectLockEnabled pulumi.BoolPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -416,7 +426,7 @@ type ObjectBucketState struct {
 	Region pulumi.StringPtrInput
 	// A list of tags (key/value) for the bucket.
 	//
-	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 	// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// Allow multiple versions of an object in the same bucket
@@ -442,7 +452,9 @@ type objectBucketArgs struct {
 	LifecycleRules []ObjectBucketLifecycleRule `pulumi:"lifecycleRules"`
 	// The name of the bucket.
 	Name *string `pulumi:"name"`
-	// Enable object lock
+	// Enables the usage of a
+	// object.BucketLockConfiguration
+	// for this bucket.
 	ObjectLockEnabled *bool `pulumi:"objectLockEnabled"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -450,7 +462,7 @@ type objectBucketArgs struct {
 	Region *string `pulumi:"region"`
 	// A list of tags (key/value) for the bucket.
 	//
-	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 	// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// Allow multiple versions of an object in the same bucket
@@ -473,7 +485,9 @@ type ObjectBucketArgs struct {
 	LifecycleRules ObjectBucketLifecycleRuleArrayInput
 	// The name of the bucket.
 	Name pulumi.StringPtrInput
-	// Enable object lock
+	// Enables the usage of a
+	// object.BucketLockConfiguration
+	// for this bucket.
 	ObjectLockEnabled pulumi.BoolPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -481,7 +495,7 @@ type ObjectBucketArgs struct {
 	Region pulumi.StringPtrInput
 	// A list of tags (key/value) for the bucket.
 	//
-	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 	// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// Allow multiple versions of an object in the same bucket
@@ -614,7 +628,9 @@ func (o ObjectBucketOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Enable object lock
+// Enables the usage of a
+// object.BucketLockConfiguration
+// for this bucket.
 func (o ObjectBucketOutput) ObjectLockEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.BoolPtrOutput { return v.ObjectLockEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -631,7 +647,7 @@ func (o ObjectBucketOutput) Region() pulumi.StringPtrOutput {
 
 // A list of tags (key/value) for the bucket.
 //
-// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+// > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
 // If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 func (o ObjectBucketOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)

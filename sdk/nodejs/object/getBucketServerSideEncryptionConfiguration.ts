@@ -37,6 +37,7 @@ export function getBucketServerSideEncryptionConfiguration(args?: GetBucketServe
     return pulumi.runtime.invoke("scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration", {
         "bucket": args.bucket,
         "bucketServerSideEncryptionConfigurationId": args.bucketServerSideEncryptionConfigurationId,
+        "projectId": args.projectId,
     }, opts);
 }
 
@@ -52,6 +53,11 @@ export interface GetBucketServerSideEncryptionConfigurationArgs {
      * The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
      */
     bucketServerSideEncryptionConfigurationId?: string;
+    /**
+     * The ID of the
+     * project the bucket is associated with.
+     */
+    projectId?: string;
 }
 
 /**
@@ -67,6 +73,7 @@ export interface GetBucketServerSideEncryptionConfigurationResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly projectId?: string;
     readonly region: string;
     /**
      * (Set of Object) Set of server-side encryption configuration rules.
@@ -104,6 +111,7 @@ export function getBucketServerSideEncryptionConfigurationOutput(args?: GetBucke
     return pulumi.runtime.invokeOutput("scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration", {
         "bucket": args.bucket,
         "bucketServerSideEncryptionConfigurationId": args.bucketServerSideEncryptionConfigurationId,
+        "projectId": args.projectId,
     }, opts);
 }
 
@@ -119,4 +127,9 @@ export interface GetBucketServerSideEncryptionConfigurationOutputArgs {
      * The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
      */
     bucketServerSideEncryptionConfigurationId?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the
+     * project the bucket is associated with.
+     */
+    projectId?: pulumi.Input<string | undefined>;
 }

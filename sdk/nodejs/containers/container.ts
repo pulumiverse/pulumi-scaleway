@@ -162,8 +162,8 @@ import * as utilities from "../utilities";
  *
  * The following protocols are supported:
  *
- * * `h2c`: HTTP/2 over TCP.
- * * `http1`: Hypertext Transfer Protocol.
+ * - `h2c`: HTTP/2 over TCP.
+ * - `http1`: Hypertext Transfer Protocol.
  *
  * > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
  *
@@ -290,7 +290,7 @@ export class Container extends pulumi.CustomResource {
     }
 
     /**
-     * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+     * Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
      */
     declare public readonly args: pulumi.Output<string[] | undefined>;
     /**
@@ -302,7 +302,9 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly cpuLimit: pulumi.Output<number>;
     /**
-     * The cron status of the container.
+     * The cron status
+     *
+     * @deprecated Please refer to the scaleway.containers.Trigger resource instead.
      */
     declare public /*out*/ readonly cronStatus: pulumi.Output<string>;
     /**
@@ -454,7 +456,7 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly startupProbe: pulumi.Output<outputs.containers.ContainerStartupProbe | undefined>;
     /**
-     * The container status.
+     * The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
@@ -573,7 +575,7 @@ export class Container extends pulumi.CustomResource {
  */
 export interface ContainerState {
     /**
-     * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+     * Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
      */
     args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -585,7 +587,9 @@ export interface ContainerState {
      */
     cpuLimit?: pulumi.Input<number | undefined>;
     /**
-     * The cron status of the container.
+     * The cron status
+     *
+     * @deprecated Please refer to the scaleway.containers.Trigger resource instead.
      */
     cronStatus?: pulumi.Input<string | undefined>;
     /**
@@ -737,7 +741,7 @@ export interface ContainerState {
      */
     startupProbe?: pulumi.Input<inputs.containers.ContainerStartupProbe | undefined>;
     /**
-     * The container status.
+     * The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
      */
     status?: pulumi.Input<string | undefined>;
     /**
@@ -755,7 +759,7 @@ export interface ContainerState {
  */
 export interface ContainerArgs {
     /**
-     * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+     * Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
      */
     args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**

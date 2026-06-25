@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "placement_group",
     ///         Cni = "kilo",
-    ///         Version = "1.32.3",
+    ///         Version = "1.35.3",
     ///         Tags = new[]
     ///         {
     ///             "terraform-test",
@@ -54,6 +54,7 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "placement_group",
     ///         ClusterId = cluster.Id,
+    ///         Version = cluster.Version,
     ///         NodeType = "gp1_xs",
     ///         PlacementGroupId = placementGroup.Id,
     ///         Size = 1,
@@ -295,7 +296,10 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.KubernetesNodePoolUpgradePolicy> UpgradePolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the pool.
+        /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        /// For the field to be properly taken into account, the `UpgradePools` field of the cluster must be set to `False` in order to decouple the version of the pool from the cluster.
+        /// 
+        /// &gt; **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -536,6 +540,15 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.KubernetesNodePoolUpgradePolicyArgs>? UpgradePolicy { get; set; }
 
         /// <summary>
+        /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        /// For the field to be properly taken into account, the `UpgradePools` field of the cluster must be set to `False` in order to decouple the version of the pool from the cluster.
+        /// 
+        /// &gt; **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        /// <summary>
         /// Whether to wait for the pool to be ready.
         /// </summary>
         [Input("waitForPoolReady")]
@@ -768,7 +781,10 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.KubernetesNodePoolUpgradePolicyGetArgs>? UpgradePolicy { get; set; }
 
         /// <summary>
-        /// The version of the pool.
+        /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
+        /// For the field to be properly taken into account, the `UpgradePools` field of the cluster must be set to `False` in order to decouple the version of the pool from the cluster.
+        /// 
+        /// &gt; **Important:** This field is only taken into account when updating/upgrading the resource. At creation, the pool's version is always the cluster's version.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

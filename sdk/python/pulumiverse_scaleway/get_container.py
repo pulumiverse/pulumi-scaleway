@@ -424,6 +424,9 @@ class GetContainerResult:
     @_builtins.property
     @pulumi.getter(name="startupProbes")
     def startup_probes(self) -> Sequence['outputs.GetContainerStartupProbeResult']:
+        """
+        Defines how to check if the container has started successfully.
+        """
         return pulumi.get(self, "startup_probes")
 
     @_builtins.property

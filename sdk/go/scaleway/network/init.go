@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Connector{}
 	case "scaleway:network/gatewayNetwork:GatewayNetwork":
 		r = &GatewayNetwork{}
+	case "scaleway:network/ingressRule:IngressRule":
+		r = &IngressRule{}
 	case "scaleway:network/privateNetwork:PrivateNetwork":
 		r = &PrivateNetwork{}
 	case "scaleway:network/publicGateway:PublicGateway":
@@ -71,6 +73,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"network/gatewayNetwork",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"network/ingressRule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

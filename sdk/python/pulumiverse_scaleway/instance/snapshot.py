@@ -36,7 +36,7 @@ class SnapshotArgs:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[_builtins.str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which
@@ -110,7 +110,7 @@ class SnapshotArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
         Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
@@ -169,7 +169,7 @@ class _SnapshotState:
                associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: (Optional) The size of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[_builtins.str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which
@@ -285,7 +285,7 @@ class _SnapshotState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
         Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")
@@ -404,7 +404,7 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[_builtins.str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which
@@ -557,7 +557,7 @@ class Snapshot(pulumi.CustomResource):
                associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: (Optional) The size of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[_builtins.str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which
@@ -640,7 +640,7 @@ class Snapshot(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
         Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "type")

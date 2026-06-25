@@ -86,7 +86,7 @@ import (
 // Keep in mind that this is a sensitive attribute. For more information,
 // see Sensitive Data in State.
 //
-// > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+// > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
 //
 // Deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {

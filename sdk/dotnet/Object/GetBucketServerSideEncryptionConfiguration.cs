@@ -163,6 +163,13 @@ namespace Pulumiverse.Scaleway.Object
         [Input("bucketServerSideEncryptionConfigurationId")]
         public string? BucketServerSideEncryptionConfigurationId { get; set; }
 
+        /// <summary>
+        /// The ID of the
+        /// project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         public GetBucketServerSideEncryptionConfigurationArgs()
         {
         }
@@ -183,6 +190,13 @@ namespace Pulumiverse.Scaleway.Object
         [Input("bucketServerSideEncryptionConfigurationId")]
         public Input<string>? BucketServerSideEncryptionConfigurationId { get; set; }
 
+        /// <summary>
+        /// The ID of the
+        /// project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
         public GetBucketServerSideEncryptionConfigurationInvokeArgs()
         {
         }
@@ -202,6 +216,7 @@ namespace Pulumiverse.Scaleway.Object
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? ProjectId;
         public readonly string Region;
         /// <summary>
         /// (Set of Object) Set of server-side encryption configuration rules.
@@ -216,6 +231,8 @@ namespace Pulumiverse.Scaleway.Object
 
             string id,
 
+            string? projectId,
+
             string region,
 
             ImmutableArray<Outputs.GetBucketServerSideEncryptionConfigurationRuleResult> rules)
@@ -223,6 +240,7 @@ namespace Pulumiverse.Scaleway.Object
             Bucket = bucket;
             BucketServerSideEncryptionConfigurationId = bucketServerSideEncryptionConfigurationId;
             Id = id;
+            ProjectId = projectId;
             Region = region;
             Rules = rules;
         }

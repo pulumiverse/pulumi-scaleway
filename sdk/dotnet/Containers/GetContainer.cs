@@ -382,6 +382,9 @@ namespace Pulumiverse.Scaleway.Containers
         /// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         /// </summary>
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        /// <summary>
+        /// Defines how to check if the container has started successfully.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerStartupProbeResult> StartupProbes;
         /// <summary>
         /// The container status.

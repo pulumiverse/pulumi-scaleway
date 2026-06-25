@@ -543,8 +543,8 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             inbound_rules=[{
                 "action": "accept",
                 "port": 22,
-                "ip_range": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+                "ip_range": entry,
+            } for entry in trusted],
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         ```
@@ -659,8 +659,8 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             inbound_rules=[{
                 "action": "accept",
                 "port": 22,
-                "ip_range": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+                "ip_range": entry,
+            } for entry in trusted],
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         ```

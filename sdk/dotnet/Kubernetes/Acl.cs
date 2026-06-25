@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///     var aclBasicCluster = new Scaleway.Kubernetes.Cluster("acl_basic", new()
     ///     {
     ///         Name = "acl-basic",
-    ///         Version = "1.32.2",
+    ///         Version = "1.35.3",
     ///         Cni = "cilium",
     ///         DeleteAdditionalResources = true,
     ///         PrivateNetworkId = aclBasic.Id,
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///     var aclBasicCluster = new Scaleway.Kubernetes.Cluster("acl_basic", new()
     ///     {
     ///         Name = "acl-basic",
-    ///         Version = "1.32.2",
+    ///         Version = "1.35.3",
     ///         Cni = "cilium",
     ///         DeleteAdditionalResources = true,
     ///         PrivateNetworkId = aclBasic.Id,

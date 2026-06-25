@@ -174,6 +174,10 @@ namespace Pulumiverse.Scaleway.Object
     /// ```sh
     /// $ pulumi import scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration test fr-par/my-bucket-name@11111111-1111-1111-1111-111111111111
     /// ```
+    /// 
+    /// &lt;!--- Links, invisible in the final document ---&gt;
+    /// 
+    /// [1]: ../index.md#project_id
     /// </summary>
     [ScalewayResourceType("scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration")]
     public partial class BucketServerSideEncryptionConfiguration : global::Pulumi.CustomResource
@@ -183,6 +187,13 @@ namespace Pulumiverse.Scaleway.Object
         /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the
+        /// project the bucket is associated with.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
@@ -250,6 +261,13 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
+        /// The ID of the
+        /// project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
         /// </summary>
         [Input("region")]
@@ -280,6 +298,13 @@ namespace Pulumiverse.Scaleway.Object
         /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
+
+        /// <summary>
+        /// The ID of the
+        /// project the bucket is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.

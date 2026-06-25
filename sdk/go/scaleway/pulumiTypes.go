@@ -1943,11 +1943,13 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 }
 
 type ContainerHealthCheck struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold *int `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https []ContainerHealthCheckHttp `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval *string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
@@ -1965,11 +1967,13 @@ type ContainerHealthCheckInput interface {
 }
 
 type ContainerHealthCheckArgs struct {
-	// Number of consecutive failures before considering the container has to be restarted.
+	// Number of consecutive health check failures before considering the container unhealthy.
 	FailureThreshold pulumi.IntPtrInput `pulumi:"failureThreshold"`
-	// Perform HTTP check on the container with the specified path.
+	// HTTP health check configuration.
 	Https ContainerHealthCheckHttpArrayInput `pulumi:"https"`
-	// Time interval between checks (in duration notation, e.g. "30s").
+	// Period between health checks (in seconds).
+	//
+	// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 	Interval pulumi.StringPtrInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
@@ -2026,17 +2030,19 @@ func (o ContainerHealthCheckOutput) ToContainerHealthCheckOutputWithContext(ctx 
 	return o
 }
 
-// Number of consecutive failures before considering the container has to be restarted.
+// Number of consecutive health check failures before considering the container unhealthy.
 func (o ContainerHealthCheckOutput) FailureThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *int { return v.FailureThreshold }).(pulumi.IntPtrOutput)
 }
 
-// Perform HTTP check on the container with the specified path.
+// HTTP health check configuration.
 func (o ContainerHealthCheckOutput) Https() ContainerHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) []ContainerHealthCheckHttp { return v.Https }).(ContainerHealthCheckHttpArrayOutput)
 }
 
-// Time interval between checks (in duration notation, e.g. "30s").
+// Period between health checks (in seconds).
+//
+// > **Important:** Only one of `livenessProbe` or `healthCheck` can be set at a time.
 func (o ContainerHealthCheckOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerHealthCheck) *string { return v.Interval }).(pulumi.StringPtrOutput)
 }
@@ -2633,9 +2639,9 @@ type ContainerStartupProbe struct {
 	FailureThreshold int `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http *ContainerStartupProbeHttp `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval string `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout string `pulumi:"timeout"`
@@ -2657,9 +2663,9 @@ type ContainerStartupProbeArgs struct {
 	FailureThreshold pulumi.IntInput `pulumi:"failureThreshold"`
 	// Perform HTTP check on the container with the specified path.
 	Http ContainerStartupProbeHttpPtrInput `pulumi:"http"`
-	// Time interval between checks (in duration notation).
+	// Time interval between checks (in duration notation, e.g. "30s").
 	Interval pulumi.StringInput `pulumi:"interval"`
-	// Perform TCP check on the container
+	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
 	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
 	Timeout pulumi.StringInput `pulumi:"timeout"`
@@ -2752,12 +2758,12 @@ func (o ContainerStartupProbeOutput) Http() ContainerStartupProbeHttpPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *ContainerStartupProbeHttp { return v.Http }).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbeOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Interval }).(pulumi.StringOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
@@ -2811,7 +2817,7 @@ func (o ContainerStartupProbePtrOutput) Http() ContainerStartupProbeHttpPtrOutpu
 	}).(ContainerStartupProbeHttpPtrOutput)
 }
 
-// Time interval between checks (in duration notation).
+// Time interval between checks (in duration notation, e.g. "30s").
 func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *string {
 		if v == nil {
@@ -2821,7 +2827,7 @@ func (o ContainerStartupProbePtrOutput) Interval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Perform TCP check on the container
+// When set to `true`, performs TCP checks on the container.
 func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *bool {
 		if v == nil {
@@ -3329,7 +3335,7 @@ func (o ContainerTriggerDestinationConfigPtrOutput) HttpPath() pulumi.StringPtrO
 }
 
 type ContainerTriggerNats struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent string `pulumi:"credentialsFileContent"`
@@ -3355,7 +3361,7 @@ type ContainerTriggerNatsInput interface {
 }
 
 type ContainerTriggerNatsArgs struct {
-	// unique identifier of the Messaging and Queuing NATS account  .
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
 	// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
 	CredentialsFileContent pulumi.StringInput `pulumi:"credentialsFileContent"`
@@ -3446,7 +3452,7 @@ func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(c
 	}).(ContainerTriggerNatsPtrOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
@@ -3500,7 +3506,7 @@ func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
 	}).(ContainerTriggerNatsOutput)
 }
 
-// unique identifier of the Messaging and Queuing NATS account  .
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -3563,11 +3569,11 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 type ContainerTriggerSqs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey string `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint string `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue *string `pulumi:"queue"`
@@ -3593,11 +3599,11 @@ type ContainerTriggerSqsInput interface {
 type ContainerTriggerSqsArgs struct {
 	// The access key for accessing the SQS queue.
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+	// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 	Endpoint pulumi.StringInput `pulumi:"endpoint"`
 	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The name of the SQS queue.  This argument is no longer supported.
+	// The name of the SQS queue. This argument is no longer supported.
 	//
 	// Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 	Queue pulumi.StringPtrInput `pulumi:"queue"`
@@ -3691,7 +3697,7 @@ func (o ContainerTriggerSqsOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o ContainerTriggerSqsOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -3701,7 +3707,7 @@ func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o ContainerTriggerSqsOutput) Queue() pulumi.StringPtrOutput {
@@ -3757,7 +3763,7 @@ func (o ContainerTriggerSqsPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint URL to use to access SQS (e.g., "https://sqs.mnq.fr-par.scaleway.com").
+// Endpoint URL to use to access SQS (e.g., <https://sqs.mnq.fr-par.scaleway.com>).
 func (o ContainerTriggerSqsPtrOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -3777,7 +3783,7 @@ func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the SQS queue.  This argument is no longer supported.
+// The name of the SQS queue. This argument is no longer supported.
 //
 // Deprecated: This field is no longer supported, please use queueUrl instead to identify the queue.
 func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
@@ -5435,6 +5441,843 @@ func (o DatabaseReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutpu
 			return nil
 		}
 		return v.Zone
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatalabMain struct {
+	// The node type for the main node.
+	NodeType string `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume *DatalabMainRootVolume `pulumi:"rootVolume"`
+	// The Spark master URL within the VPC.
+	SparkMasterUrl *string `pulumi:"sparkMasterUrl"`
+	// The Spark UI URL.
+	SparkUiUrl *string `pulumi:"sparkUiUrl"`
+}
+
+// DatalabMainInput is an input type that accepts DatalabMainArgs and DatalabMainOutput values.
+// You can construct a concrete instance of `DatalabMainInput` via:
+//
+//	DatalabMainArgs{...}
+type DatalabMainInput interface {
+	pulumi.Input
+
+	ToDatalabMainOutput() DatalabMainOutput
+	ToDatalabMainOutputWithContext(context.Context) DatalabMainOutput
+}
+
+type DatalabMainArgs struct {
+	// The node type for the main node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume DatalabMainRootVolumePtrInput `pulumi:"rootVolume"`
+	// The Spark master URL within the VPC.
+	SparkMasterUrl pulumi.StringPtrInput `pulumi:"sparkMasterUrl"`
+	// The Spark UI URL.
+	SparkUiUrl pulumi.StringPtrInput `pulumi:"sparkUiUrl"`
+}
+
+func (DatalabMainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabMain)(nil)).Elem()
+}
+
+func (i DatalabMainArgs) ToDatalabMainOutput() DatalabMainOutput {
+	return i.ToDatalabMainOutputWithContext(context.Background())
+}
+
+func (i DatalabMainArgs) ToDatalabMainOutputWithContext(ctx context.Context) DatalabMainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainOutput)
+}
+
+func (i DatalabMainArgs) ToDatalabMainPtrOutput() DatalabMainPtrOutput {
+	return i.ToDatalabMainPtrOutputWithContext(context.Background())
+}
+
+func (i DatalabMainArgs) ToDatalabMainPtrOutputWithContext(ctx context.Context) DatalabMainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainOutput).ToDatalabMainPtrOutputWithContext(ctx)
+}
+
+// DatalabMainPtrInput is an input type that accepts DatalabMainArgs, DatalabMainPtr and DatalabMainPtrOutput values.
+// You can construct a concrete instance of `DatalabMainPtrInput` via:
+//
+//	        DatalabMainArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatalabMainPtrInput interface {
+	pulumi.Input
+
+	ToDatalabMainPtrOutput() DatalabMainPtrOutput
+	ToDatalabMainPtrOutputWithContext(context.Context) DatalabMainPtrOutput
+}
+
+type datalabMainPtrType DatalabMainArgs
+
+func DatalabMainPtr(v *DatalabMainArgs) DatalabMainPtrInput {
+	return (*datalabMainPtrType)(v)
+}
+
+func (*datalabMainPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabMain)(nil)).Elem()
+}
+
+func (i *datalabMainPtrType) ToDatalabMainPtrOutput() DatalabMainPtrOutput {
+	return i.ToDatalabMainPtrOutputWithContext(context.Background())
+}
+
+func (i *datalabMainPtrType) ToDatalabMainPtrOutputWithContext(ctx context.Context) DatalabMainPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainPtrOutput)
+}
+
+type DatalabMainOutput struct{ *pulumi.OutputState }
+
+func (DatalabMainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabMain)(nil)).Elem()
+}
+
+func (o DatalabMainOutput) ToDatalabMainOutput() DatalabMainOutput {
+	return o
+}
+
+func (o DatalabMainOutput) ToDatalabMainOutputWithContext(ctx context.Context) DatalabMainOutput {
+	return o
+}
+
+func (o DatalabMainOutput) ToDatalabMainPtrOutput() DatalabMainPtrOutput {
+	return o.ToDatalabMainPtrOutputWithContext(context.Background())
+}
+
+func (o DatalabMainOutput) ToDatalabMainPtrOutputWithContext(ctx context.Context) DatalabMainPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatalabMain) *DatalabMain {
+		return &v
+	}).(DatalabMainPtrOutput)
+}
+
+// The node type for the main node.
+func (o DatalabMainOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v DatalabMain) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// Volume details for worker nodes.
+func (o DatalabMainOutput) RootVolume() DatalabMainRootVolumePtrOutput {
+	return o.ApplyT(func(v DatalabMain) *DatalabMainRootVolume { return v.RootVolume }).(DatalabMainRootVolumePtrOutput)
+}
+
+// The Spark master URL within the VPC.
+func (o DatalabMainOutput) SparkMasterUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatalabMain) *string { return v.SparkMasterUrl }).(pulumi.StringPtrOutput)
+}
+
+// The Spark UI URL.
+func (o DatalabMainOutput) SparkUiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatalabMain) *string { return v.SparkUiUrl }).(pulumi.StringPtrOutput)
+}
+
+type DatalabMainPtrOutput struct{ *pulumi.OutputState }
+
+func (DatalabMainPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabMain)(nil)).Elem()
+}
+
+func (o DatalabMainPtrOutput) ToDatalabMainPtrOutput() DatalabMainPtrOutput {
+	return o
+}
+
+func (o DatalabMainPtrOutput) ToDatalabMainPtrOutputWithContext(ctx context.Context) DatalabMainPtrOutput {
+	return o
+}
+
+func (o DatalabMainPtrOutput) Elem() DatalabMainOutput {
+	return o.ApplyT(func(v *DatalabMain) DatalabMain {
+		if v != nil {
+			return *v
+		}
+		var ret DatalabMain
+		return ret
+	}).(DatalabMainOutput)
+}
+
+// The node type for the main node.
+func (o DatalabMainPtrOutput) NodeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabMain) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NodeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Volume details for worker nodes.
+func (o DatalabMainPtrOutput) RootVolume() DatalabMainRootVolumePtrOutput {
+	return o.ApplyT(func(v *DatalabMain) *DatalabMainRootVolume {
+		if v == nil {
+			return nil
+		}
+		return v.RootVolume
+	}).(DatalabMainRootVolumePtrOutput)
+}
+
+// The Spark master URL within the VPC.
+func (o DatalabMainPtrOutput) SparkMasterUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabMain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SparkMasterUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Spark UI URL.
+func (o DatalabMainPtrOutput) SparkUiUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabMain) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SparkUiUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatalabMainRootVolume struct {
+	// The volume size in bytes.
+	Size *int `pulumi:"size"`
+	// The volume type.
+	Type *string `pulumi:"type"`
+}
+
+// DatalabMainRootVolumeInput is an input type that accepts DatalabMainRootVolumeArgs and DatalabMainRootVolumeOutput values.
+// You can construct a concrete instance of `DatalabMainRootVolumeInput` via:
+//
+//	DatalabMainRootVolumeArgs{...}
+type DatalabMainRootVolumeInput interface {
+	pulumi.Input
+
+	ToDatalabMainRootVolumeOutput() DatalabMainRootVolumeOutput
+	ToDatalabMainRootVolumeOutputWithContext(context.Context) DatalabMainRootVolumeOutput
+}
+
+type DatalabMainRootVolumeArgs struct {
+	// The volume size in bytes.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The volume type.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (DatalabMainRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabMainRootVolume)(nil)).Elem()
+}
+
+func (i DatalabMainRootVolumeArgs) ToDatalabMainRootVolumeOutput() DatalabMainRootVolumeOutput {
+	return i.ToDatalabMainRootVolumeOutputWithContext(context.Background())
+}
+
+func (i DatalabMainRootVolumeArgs) ToDatalabMainRootVolumeOutputWithContext(ctx context.Context) DatalabMainRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainRootVolumeOutput)
+}
+
+func (i DatalabMainRootVolumeArgs) ToDatalabMainRootVolumePtrOutput() DatalabMainRootVolumePtrOutput {
+	return i.ToDatalabMainRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (i DatalabMainRootVolumeArgs) ToDatalabMainRootVolumePtrOutputWithContext(ctx context.Context) DatalabMainRootVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainRootVolumeOutput).ToDatalabMainRootVolumePtrOutputWithContext(ctx)
+}
+
+// DatalabMainRootVolumePtrInput is an input type that accepts DatalabMainRootVolumeArgs, DatalabMainRootVolumePtr and DatalabMainRootVolumePtrOutput values.
+// You can construct a concrete instance of `DatalabMainRootVolumePtrInput` via:
+//
+//	        DatalabMainRootVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatalabMainRootVolumePtrInput interface {
+	pulumi.Input
+
+	ToDatalabMainRootVolumePtrOutput() DatalabMainRootVolumePtrOutput
+	ToDatalabMainRootVolumePtrOutputWithContext(context.Context) DatalabMainRootVolumePtrOutput
+}
+
+type datalabMainRootVolumePtrType DatalabMainRootVolumeArgs
+
+func DatalabMainRootVolumePtr(v *DatalabMainRootVolumeArgs) DatalabMainRootVolumePtrInput {
+	return (*datalabMainRootVolumePtrType)(v)
+}
+
+func (*datalabMainRootVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabMainRootVolume)(nil)).Elem()
+}
+
+func (i *datalabMainRootVolumePtrType) ToDatalabMainRootVolumePtrOutput() DatalabMainRootVolumePtrOutput {
+	return i.ToDatalabMainRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *datalabMainRootVolumePtrType) ToDatalabMainRootVolumePtrOutputWithContext(ctx context.Context) DatalabMainRootVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabMainRootVolumePtrOutput)
+}
+
+type DatalabMainRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (DatalabMainRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabMainRootVolume)(nil)).Elem()
+}
+
+func (o DatalabMainRootVolumeOutput) ToDatalabMainRootVolumeOutput() DatalabMainRootVolumeOutput {
+	return o
+}
+
+func (o DatalabMainRootVolumeOutput) ToDatalabMainRootVolumeOutputWithContext(ctx context.Context) DatalabMainRootVolumeOutput {
+	return o
+}
+
+func (o DatalabMainRootVolumeOutput) ToDatalabMainRootVolumePtrOutput() DatalabMainRootVolumePtrOutput {
+	return o.ToDatalabMainRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (o DatalabMainRootVolumeOutput) ToDatalabMainRootVolumePtrOutputWithContext(ctx context.Context) DatalabMainRootVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatalabMainRootVolume) *DatalabMainRootVolume {
+		return &v
+	}).(DatalabMainRootVolumePtrOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabMainRootVolumeOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatalabMainRootVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The volume type.
+func (o DatalabMainRootVolumeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatalabMainRootVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type DatalabMainRootVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (DatalabMainRootVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabMainRootVolume)(nil)).Elem()
+}
+
+func (o DatalabMainRootVolumePtrOutput) ToDatalabMainRootVolumePtrOutput() DatalabMainRootVolumePtrOutput {
+	return o
+}
+
+func (o DatalabMainRootVolumePtrOutput) ToDatalabMainRootVolumePtrOutputWithContext(ctx context.Context) DatalabMainRootVolumePtrOutput {
+	return o
+}
+
+func (o DatalabMainRootVolumePtrOutput) Elem() DatalabMainRootVolumeOutput {
+	return o.ApplyT(func(v *DatalabMainRootVolume) DatalabMainRootVolume {
+		if v != nil {
+			return *v
+		}
+		var ret DatalabMainRootVolume
+		return ret
+	}).(DatalabMainRootVolumeOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabMainRootVolumePtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatalabMainRootVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+// The volume type.
+func (o DatalabMainRootVolumePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabMainRootVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatalabTotalStorage struct {
+	// The volume size in bytes.
+	Size *int `pulumi:"size"`
+	// The volume type. Defaults to `sbs5k`.
+	Type *string `pulumi:"type"`
+}
+
+// DatalabTotalStorageInput is an input type that accepts DatalabTotalStorageArgs and DatalabTotalStorageOutput values.
+// You can construct a concrete instance of `DatalabTotalStorageInput` via:
+//
+//	DatalabTotalStorageArgs{...}
+type DatalabTotalStorageInput interface {
+	pulumi.Input
+
+	ToDatalabTotalStorageOutput() DatalabTotalStorageOutput
+	ToDatalabTotalStorageOutputWithContext(context.Context) DatalabTotalStorageOutput
+}
+
+type DatalabTotalStorageArgs struct {
+	// The volume size in bytes.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The volume type. Defaults to `sbs5k`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (DatalabTotalStorageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabTotalStorage)(nil)).Elem()
+}
+
+func (i DatalabTotalStorageArgs) ToDatalabTotalStorageOutput() DatalabTotalStorageOutput {
+	return i.ToDatalabTotalStorageOutputWithContext(context.Background())
+}
+
+func (i DatalabTotalStorageArgs) ToDatalabTotalStorageOutputWithContext(ctx context.Context) DatalabTotalStorageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabTotalStorageOutput)
+}
+
+func (i DatalabTotalStorageArgs) ToDatalabTotalStoragePtrOutput() DatalabTotalStoragePtrOutput {
+	return i.ToDatalabTotalStoragePtrOutputWithContext(context.Background())
+}
+
+func (i DatalabTotalStorageArgs) ToDatalabTotalStoragePtrOutputWithContext(ctx context.Context) DatalabTotalStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabTotalStorageOutput).ToDatalabTotalStoragePtrOutputWithContext(ctx)
+}
+
+// DatalabTotalStoragePtrInput is an input type that accepts DatalabTotalStorageArgs, DatalabTotalStoragePtr and DatalabTotalStoragePtrOutput values.
+// You can construct a concrete instance of `DatalabTotalStoragePtrInput` via:
+//
+//	        DatalabTotalStorageArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatalabTotalStoragePtrInput interface {
+	pulumi.Input
+
+	ToDatalabTotalStoragePtrOutput() DatalabTotalStoragePtrOutput
+	ToDatalabTotalStoragePtrOutputWithContext(context.Context) DatalabTotalStoragePtrOutput
+}
+
+type datalabTotalStoragePtrType DatalabTotalStorageArgs
+
+func DatalabTotalStoragePtr(v *DatalabTotalStorageArgs) DatalabTotalStoragePtrInput {
+	return (*datalabTotalStoragePtrType)(v)
+}
+
+func (*datalabTotalStoragePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabTotalStorage)(nil)).Elem()
+}
+
+func (i *datalabTotalStoragePtrType) ToDatalabTotalStoragePtrOutput() DatalabTotalStoragePtrOutput {
+	return i.ToDatalabTotalStoragePtrOutputWithContext(context.Background())
+}
+
+func (i *datalabTotalStoragePtrType) ToDatalabTotalStoragePtrOutputWithContext(ctx context.Context) DatalabTotalStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabTotalStoragePtrOutput)
+}
+
+type DatalabTotalStorageOutput struct{ *pulumi.OutputState }
+
+func (DatalabTotalStorageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabTotalStorage)(nil)).Elem()
+}
+
+func (o DatalabTotalStorageOutput) ToDatalabTotalStorageOutput() DatalabTotalStorageOutput {
+	return o
+}
+
+func (o DatalabTotalStorageOutput) ToDatalabTotalStorageOutputWithContext(ctx context.Context) DatalabTotalStorageOutput {
+	return o
+}
+
+func (o DatalabTotalStorageOutput) ToDatalabTotalStoragePtrOutput() DatalabTotalStoragePtrOutput {
+	return o.ToDatalabTotalStoragePtrOutputWithContext(context.Background())
+}
+
+func (o DatalabTotalStorageOutput) ToDatalabTotalStoragePtrOutputWithContext(ctx context.Context) DatalabTotalStoragePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatalabTotalStorage) *DatalabTotalStorage {
+		return &v
+	}).(DatalabTotalStoragePtrOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabTotalStorageOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatalabTotalStorage) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The volume type. Defaults to `sbs5k`.
+func (o DatalabTotalStorageOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatalabTotalStorage) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type DatalabTotalStoragePtrOutput struct{ *pulumi.OutputState }
+
+func (DatalabTotalStoragePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabTotalStorage)(nil)).Elem()
+}
+
+func (o DatalabTotalStoragePtrOutput) ToDatalabTotalStoragePtrOutput() DatalabTotalStoragePtrOutput {
+	return o
+}
+
+func (o DatalabTotalStoragePtrOutput) ToDatalabTotalStoragePtrOutputWithContext(ctx context.Context) DatalabTotalStoragePtrOutput {
+	return o
+}
+
+func (o DatalabTotalStoragePtrOutput) Elem() DatalabTotalStorageOutput {
+	return o.ApplyT(func(v *DatalabTotalStorage) DatalabTotalStorage {
+		if v != nil {
+			return *v
+		}
+		var ret DatalabTotalStorage
+		return ret
+	}).(DatalabTotalStorageOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabTotalStoragePtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatalabTotalStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+// The volume type. Defaults to `sbs5k`.
+func (o DatalabTotalStoragePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabTotalStorage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type DatalabWorker struct {
+	// The number of worker nodes.
+	NodeCount int `pulumi:"nodeCount"`
+	// The node type for worker nodes.
+	NodeType string `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume *DatalabWorkerRootVolume `pulumi:"rootVolume"`
+}
+
+// DatalabWorkerInput is an input type that accepts DatalabWorkerArgs and DatalabWorkerOutput values.
+// You can construct a concrete instance of `DatalabWorkerInput` via:
+//
+//	DatalabWorkerArgs{...}
+type DatalabWorkerInput interface {
+	pulumi.Input
+
+	ToDatalabWorkerOutput() DatalabWorkerOutput
+	ToDatalabWorkerOutputWithContext(context.Context) DatalabWorkerOutput
+}
+
+type DatalabWorkerArgs struct {
+	// The number of worker nodes.
+	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+	// The node type for worker nodes.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume DatalabWorkerRootVolumePtrInput `pulumi:"rootVolume"`
+}
+
+func (DatalabWorkerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabWorker)(nil)).Elem()
+}
+
+func (i DatalabWorkerArgs) ToDatalabWorkerOutput() DatalabWorkerOutput {
+	return i.ToDatalabWorkerOutputWithContext(context.Background())
+}
+
+func (i DatalabWorkerArgs) ToDatalabWorkerOutputWithContext(ctx context.Context) DatalabWorkerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerOutput)
+}
+
+func (i DatalabWorkerArgs) ToDatalabWorkerPtrOutput() DatalabWorkerPtrOutput {
+	return i.ToDatalabWorkerPtrOutputWithContext(context.Background())
+}
+
+func (i DatalabWorkerArgs) ToDatalabWorkerPtrOutputWithContext(ctx context.Context) DatalabWorkerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerOutput).ToDatalabWorkerPtrOutputWithContext(ctx)
+}
+
+// DatalabWorkerPtrInput is an input type that accepts DatalabWorkerArgs, DatalabWorkerPtr and DatalabWorkerPtrOutput values.
+// You can construct a concrete instance of `DatalabWorkerPtrInput` via:
+//
+//	        DatalabWorkerArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatalabWorkerPtrInput interface {
+	pulumi.Input
+
+	ToDatalabWorkerPtrOutput() DatalabWorkerPtrOutput
+	ToDatalabWorkerPtrOutputWithContext(context.Context) DatalabWorkerPtrOutput
+}
+
+type datalabWorkerPtrType DatalabWorkerArgs
+
+func DatalabWorkerPtr(v *DatalabWorkerArgs) DatalabWorkerPtrInput {
+	return (*datalabWorkerPtrType)(v)
+}
+
+func (*datalabWorkerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabWorker)(nil)).Elem()
+}
+
+func (i *datalabWorkerPtrType) ToDatalabWorkerPtrOutput() DatalabWorkerPtrOutput {
+	return i.ToDatalabWorkerPtrOutputWithContext(context.Background())
+}
+
+func (i *datalabWorkerPtrType) ToDatalabWorkerPtrOutputWithContext(ctx context.Context) DatalabWorkerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerPtrOutput)
+}
+
+type DatalabWorkerOutput struct{ *pulumi.OutputState }
+
+func (DatalabWorkerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabWorker)(nil)).Elem()
+}
+
+func (o DatalabWorkerOutput) ToDatalabWorkerOutput() DatalabWorkerOutput {
+	return o
+}
+
+func (o DatalabWorkerOutput) ToDatalabWorkerOutputWithContext(ctx context.Context) DatalabWorkerOutput {
+	return o
+}
+
+func (o DatalabWorkerOutput) ToDatalabWorkerPtrOutput() DatalabWorkerPtrOutput {
+	return o.ToDatalabWorkerPtrOutputWithContext(context.Background())
+}
+
+func (o DatalabWorkerOutput) ToDatalabWorkerPtrOutputWithContext(ctx context.Context) DatalabWorkerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatalabWorker) *DatalabWorker {
+		return &v
+	}).(DatalabWorkerPtrOutput)
+}
+
+// The number of worker nodes.
+func (o DatalabWorkerOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v DatalabWorker) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+// The node type for worker nodes.
+func (o DatalabWorkerOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v DatalabWorker) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// Volume details for worker nodes.
+func (o DatalabWorkerOutput) RootVolume() DatalabWorkerRootVolumePtrOutput {
+	return o.ApplyT(func(v DatalabWorker) *DatalabWorkerRootVolume { return v.RootVolume }).(DatalabWorkerRootVolumePtrOutput)
+}
+
+type DatalabWorkerPtrOutput struct{ *pulumi.OutputState }
+
+func (DatalabWorkerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabWorker)(nil)).Elem()
+}
+
+func (o DatalabWorkerPtrOutput) ToDatalabWorkerPtrOutput() DatalabWorkerPtrOutput {
+	return o
+}
+
+func (o DatalabWorkerPtrOutput) ToDatalabWorkerPtrOutputWithContext(ctx context.Context) DatalabWorkerPtrOutput {
+	return o
+}
+
+func (o DatalabWorkerPtrOutput) Elem() DatalabWorkerOutput {
+	return o.ApplyT(func(v *DatalabWorker) DatalabWorker {
+		if v != nil {
+			return *v
+		}
+		var ret DatalabWorker
+		return ret
+	}).(DatalabWorkerOutput)
+}
+
+// The number of worker nodes.
+func (o DatalabWorkerPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatalabWorker) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// The node type for worker nodes.
+func (o DatalabWorkerPtrOutput) NodeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NodeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Volume details for worker nodes.
+func (o DatalabWorkerPtrOutput) RootVolume() DatalabWorkerRootVolumePtrOutput {
+	return o.ApplyT(func(v *DatalabWorker) *DatalabWorkerRootVolume {
+		if v == nil {
+			return nil
+		}
+		return v.RootVolume
+	}).(DatalabWorkerRootVolumePtrOutput)
+}
+
+type DatalabWorkerRootVolume struct {
+	// The volume size in bytes.
+	Size *int `pulumi:"size"`
+	// The volume type.
+	Type *string `pulumi:"type"`
+}
+
+// DatalabWorkerRootVolumeInput is an input type that accepts DatalabWorkerRootVolumeArgs and DatalabWorkerRootVolumeOutput values.
+// You can construct a concrete instance of `DatalabWorkerRootVolumeInput` via:
+//
+//	DatalabWorkerRootVolumeArgs{...}
+type DatalabWorkerRootVolumeInput interface {
+	pulumi.Input
+
+	ToDatalabWorkerRootVolumeOutput() DatalabWorkerRootVolumeOutput
+	ToDatalabWorkerRootVolumeOutputWithContext(context.Context) DatalabWorkerRootVolumeOutput
+}
+
+type DatalabWorkerRootVolumeArgs struct {
+	// The volume size in bytes.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The volume type.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (DatalabWorkerRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (i DatalabWorkerRootVolumeArgs) ToDatalabWorkerRootVolumeOutput() DatalabWorkerRootVolumeOutput {
+	return i.ToDatalabWorkerRootVolumeOutputWithContext(context.Background())
+}
+
+func (i DatalabWorkerRootVolumeArgs) ToDatalabWorkerRootVolumeOutputWithContext(ctx context.Context) DatalabWorkerRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerRootVolumeOutput)
+}
+
+func (i DatalabWorkerRootVolumeArgs) ToDatalabWorkerRootVolumePtrOutput() DatalabWorkerRootVolumePtrOutput {
+	return i.ToDatalabWorkerRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (i DatalabWorkerRootVolumeArgs) ToDatalabWorkerRootVolumePtrOutputWithContext(ctx context.Context) DatalabWorkerRootVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerRootVolumeOutput).ToDatalabWorkerRootVolumePtrOutputWithContext(ctx)
+}
+
+// DatalabWorkerRootVolumePtrInput is an input type that accepts DatalabWorkerRootVolumeArgs, DatalabWorkerRootVolumePtr and DatalabWorkerRootVolumePtrOutput values.
+// You can construct a concrete instance of `DatalabWorkerRootVolumePtrInput` via:
+//
+//	        DatalabWorkerRootVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatalabWorkerRootVolumePtrInput interface {
+	pulumi.Input
+
+	ToDatalabWorkerRootVolumePtrOutput() DatalabWorkerRootVolumePtrOutput
+	ToDatalabWorkerRootVolumePtrOutputWithContext(context.Context) DatalabWorkerRootVolumePtrOutput
+}
+
+type datalabWorkerRootVolumePtrType DatalabWorkerRootVolumeArgs
+
+func DatalabWorkerRootVolumePtr(v *DatalabWorkerRootVolumeArgs) DatalabWorkerRootVolumePtrInput {
+	return (*datalabWorkerRootVolumePtrType)(v)
+}
+
+func (*datalabWorkerRootVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (i *datalabWorkerRootVolumePtrType) ToDatalabWorkerRootVolumePtrOutput() DatalabWorkerRootVolumePtrOutput {
+	return i.ToDatalabWorkerRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *datalabWorkerRootVolumePtrType) ToDatalabWorkerRootVolumePtrOutputWithContext(ctx context.Context) DatalabWorkerRootVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatalabWorkerRootVolumePtrOutput)
+}
+
+type DatalabWorkerRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (DatalabWorkerRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (o DatalabWorkerRootVolumeOutput) ToDatalabWorkerRootVolumeOutput() DatalabWorkerRootVolumeOutput {
+	return o
+}
+
+func (o DatalabWorkerRootVolumeOutput) ToDatalabWorkerRootVolumeOutputWithContext(ctx context.Context) DatalabWorkerRootVolumeOutput {
+	return o
+}
+
+func (o DatalabWorkerRootVolumeOutput) ToDatalabWorkerRootVolumePtrOutput() DatalabWorkerRootVolumePtrOutput {
+	return o.ToDatalabWorkerRootVolumePtrOutputWithContext(context.Background())
+}
+
+func (o DatalabWorkerRootVolumeOutput) ToDatalabWorkerRootVolumePtrOutputWithContext(ctx context.Context) DatalabWorkerRootVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatalabWorkerRootVolume) *DatalabWorkerRootVolume {
+		return &v
+	}).(DatalabWorkerRootVolumePtrOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabWorkerRootVolumeOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatalabWorkerRootVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The volume type.
+func (o DatalabWorkerRootVolumeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatalabWorkerRootVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type DatalabWorkerRootVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (DatalabWorkerRootVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (o DatalabWorkerRootVolumePtrOutput) ToDatalabWorkerRootVolumePtrOutput() DatalabWorkerRootVolumePtrOutput {
+	return o
+}
+
+func (o DatalabWorkerRootVolumePtrOutput) ToDatalabWorkerRootVolumePtrOutputWithContext(ctx context.Context) DatalabWorkerRootVolumePtrOutput {
+	return o
+}
+
+func (o DatalabWorkerRootVolumePtrOutput) Elem() DatalabWorkerRootVolumeOutput {
+	return o.ApplyT(func(v *DatalabWorkerRootVolume) DatalabWorkerRootVolume {
+		if v != nil {
+			return *v
+		}
+		var ret DatalabWorkerRootVolume
+		return ret
+	}).(DatalabWorkerRootVolumeOutput)
+}
+
+// The volume size in bytes.
+func (o DatalabWorkerRootVolumePtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatalabWorkerRootVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+// The volume type.
+func (o DatalabWorkerRootVolumePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatalabWorkerRootVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -18172,29 +19015,42 @@ func (o ObjectBucketCorsRuleArrayOutput) Index(i pulumi.IntInput) ObjectBucketCo
 }
 
 type ObjectBucketLifecycleRule struct {
-	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number
+	// of days after initiating a multipart upload when the multipart upload must
+	// be completed.
 	//
-	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+	// as any incomplete multipart upload will be billed.
 	AbortIncompleteMultipartUploadDays *int `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+	// The element value can be either Enabled or
+	// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+	// any of the actions defined in the rule.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies a period in the object's expire
+	// Specifies a period of expiration for the object.
 	Expiration *ObjectBucketLifecycleRuleExpiration `pulumi:"expiration"`
-	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+	// Unique identifier for the rule. Must be less than or
+	// equal to 255 characters in length.
 	Id *string `pulumi:"id"`
-	// Configuration block that specifies when noncurrent object versions expire
+	// Configuration block that
+	// specifies when noncurrent object versions expire. Supports the following:
 	NoncurrentVersionExpiration *ObjectBucketLifecycleRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpiration"`
-	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	// Set of configuration blocks
+	// that specify the transition rule for the lifecycle rule that describes when
+	// noncurrent objects transition to a specific storage class. Supports the
+	// following:
 	NoncurrentVersionTransitions []ObjectBucketLifecycleRuleNoncurrentVersionTransition `pulumi:"noncurrentVersionTransitions"`
-	// Minimum object size (in bytes) to which the rule applies
+	// Minimum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeGreaterThan *int `pulumi:"objectSizeGreaterThan"`
-	// Maximum object size (in bytes) to which the rule applies
+	// Maximum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeLessThan *int `pulumi:"objectSizeLessThan"`
-	// Object key prefix identifying one or more objects to which the rule applies.
+	// Object key prefix identifying one or more objects
+	// to which the rule applies.
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags map[string]string `pulumi:"tags"`
-	// Define when objects transition to another storage class
+	// Specifies a period in the object's transitions.
 	Transitions []ObjectBucketLifecycleRuleTransition `pulumi:"transitions"`
 }
 
@@ -18210,29 +19066,42 @@ type ObjectBucketLifecycleRuleInput interface {
 }
 
 type ObjectBucketLifecycleRuleArgs struct {
-	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number
+	// of days after initiating a multipart upload when the multipart upload must
+	// be completed.
 	//
-	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+	// as any incomplete multipart upload will be billed.
 	AbortIncompleteMultipartUploadDays pulumi.IntPtrInput `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+	// The element value can be either Enabled or
+	// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+	// any of the actions defined in the rule.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies a period in the object's expire
+	// Specifies a period of expiration for the object.
 	Expiration ObjectBucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
-	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+	// Unique identifier for the rule. Must be less than or
+	// equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Configuration block that specifies when noncurrent object versions expire
+	// Configuration block that
+	// specifies when noncurrent object versions expire. Supports the following:
 	NoncurrentVersionExpiration ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrInput `pulumi:"noncurrentVersionExpiration"`
-	// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+	// Set of configuration blocks
+	// that specify the transition rule for the lifecycle rule that describes when
+	// noncurrent objects transition to a specific storage class. Supports the
+	// following:
 	NoncurrentVersionTransitions ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayInput `pulumi:"noncurrentVersionTransitions"`
-	// Minimum object size (in bytes) to which the rule applies
+	// Minimum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeGreaterThan pulumi.IntPtrInput `pulumi:"objectSizeGreaterThan"`
-	// Maximum object size (in bytes) to which the rule applies
+	// Maximum object size (in bytes) to
+	// which the rule applies.
 	ObjectSizeLessThan pulumi.IntPtrInput `pulumi:"objectSizeLessThan"`
-	// Object key prefix identifying one or more objects to which the rule applies.
+	// Object key prefix identifying one or more objects
+	// to which the rule applies.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
-	// Define when objects transition to another storage class
+	// Specifies a period in the object's transitions.
 	Transitions ObjectBucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
 }
 
@@ -18287,53 +19156,66 @@ func (o ObjectBucketLifecycleRuleOutput) ToObjectBucketLifecycleRuleOutputWithCo
 	return o
 }
 
-// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+// Specifies the number
+// of days after initiating a multipart upload when the multipart upload must
+// be completed.
 //
-// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
+// as any incomplete multipart upload will be billed.
 func (o ObjectBucketLifecycleRuleOutput) AbortIncompleteMultipartUploadDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.AbortIncompleteMultipartUploadDays }).(pulumi.IntPtrOutput)
 }
 
-// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+// The element value can be either Enabled or
+// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+// any of the actions defined in the rule.
 func (o ObjectBucketLifecycleRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies a period in the object's expire
+// Specifies a period of expiration for the object.
 func (o ObjectBucketLifecycleRuleOutput) Expiration() ObjectBucketLifecycleRuleExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleExpiration { return v.Expiration }).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
 
-// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+// Unique identifier for the rule. Must be less than or
+// equal to 255 characters in length.
 func (o ObjectBucketLifecycleRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Configuration block that specifies when noncurrent object versions expire
+// Configuration block that
+// specifies when noncurrent object versions expire. Supports the following:
 func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionExpiration() ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleNoncurrentVersionExpiration {
 		return v.NoncurrentVersionExpiration
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
 }
 
-// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+// Set of configuration blocks
+// that specify the transition rule for the lifecycle rule that describes when
+// noncurrent objects transition to a specific storage class. Supports the
+// following:
 func (o ObjectBucketLifecycleRuleOutput) NoncurrentVersionTransitions() ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleNoncurrentVersionTransition {
 		return v.NoncurrentVersionTransitions
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput)
 }
 
-// Minimum object size (in bytes) to which the rule applies
+// Minimum object size (in bytes) to
+// which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) ObjectSizeGreaterThan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeGreaterThan }).(pulumi.IntPtrOutput)
 }
 
-// Maximum object size (in bytes) to which the rule applies
+// Maximum object size (in bytes) to
+// which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) ObjectSizeLessThan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.ObjectSizeLessThan }).(pulumi.IntPtrOutput)
 }
 
-// Object key prefix identifying one or more objects to which the rule applies.
+// Object key prefix identifying one or more objects
+// to which the rule applies.
 func (o ObjectBucketLifecycleRuleOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
@@ -18343,7 +19225,7 @@ func (o ObjectBucketLifecycleRuleOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Define when objects transition to another storage class
+// Specifies a period in the object's transitions.
 func (o ObjectBucketLifecycleRuleOutput) Transitions() ObjectBucketLifecycleRuleTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleTransition { return v.Transitions }).(ObjectBucketLifecycleRuleTransitionArrayOutput)
 }
@@ -18369,11 +19251,17 @@ func (o ObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) ObjectBuc
 }
 
 type ObjectBucketLifecycleRuleExpiration struct {
-	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date the object is to be moved or
+	// deleted. The date value must be in RFC3339 full-date format e.g.
+	// `2023-08-22`.
 	Date *string `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway
+	// Object will remove a delete marker with no noncurrent versions. If set
+	// to `true`, the delete marker will be expired; if set to `false` the
+	// policy takes no action.
 	ExpiredObjectDeleteMarker *bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -18389,11 +19277,17 @@ type ObjectBucketLifecycleRuleExpirationInput interface {
 }
 
 type ObjectBucketLifecycleRuleExpirationArgs struct {
-	// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date the object is to be moved or
+	// deleted. The date value must be in RFC3339 full-date format e.g.
+	// `2023-08-22`.
 	Date pulumi.StringPtrInput `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway
+	// Object will remove a delete marker with no noncurrent versions. If set
+	// to `true`, the delete marker will be expired; if set to `false` the
+	// policy takes no action.
 	ExpiredObjectDeleteMarker pulumi.BoolPtrInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -18474,17 +19368,23 @@ func (o ObjectBucketLifecycleRuleExpirationOutput) ToObjectBucketLifecycleRuleEx
 	}).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
 
-// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date the object is to be moved or
+// deleted. The date value must be in RFC3339 full-date format e.g.
+// `2023-08-22`.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway
+// Object will remove a delete marker with no noncurrent versions. If set
+// to `true`, the delete marker will be expired; if set to `false` the
+// policy takes no action.
 func (o ObjectBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) *bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolPtrOutput)
 }
@@ -18513,7 +19413,9 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Elem() ObjectBucketLifecyc
 	}).(ObjectBucketLifecycleRuleExpirationOutput)
 }
 
-// Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date the object is to be moved or
+// deleted. The date value must be in RFC3339 full-date format e.g.
+// `2023-08-22`.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *string {
 		if v == nil {
@@ -18523,7 +19425,8 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Date() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *int {
 		if v == nil {
@@ -18533,7 +19436,10 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway
+// Object will remove a delete marker with no noncurrent versions. If set
+// to `true`, the delete marker will be expired; if set to `false` the
+// policy takes no action.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *bool {
 		if v == nil {
@@ -18544,9 +19450,12 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) ExpiredObjectDeleteMarker(
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionExpiration struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action. Must
+	// be a positive integer.
 	NoncurrentDays *int `pulumi:"noncurrentDays"`
 }
 
@@ -18562,9 +19471,12 @@ type ObjectBucketLifecycleRuleNoncurrentVersionExpirationInput interface {
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action. Must
+	// be a positive integer.
 	NoncurrentDays pulumi.IntPtrInput `pulumi:"noncurrentDays"`
 }
 
@@ -18645,12 +19557,15 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) ToObjectBuck
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput)
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action. Must
+// be a positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput) NoncurrentDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int { return v.NoncurrentDays }).(pulumi.IntPtrOutput)
 }
@@ -18679,7 +19594,8 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Elem() Ob
 	}).(ObjectBucketLifecycleRuleNoncurrentVersionExpirationOutput)
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
 		if v == nil {
@@ -18689,7 +19605,9 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NewerNonc
 	}).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action. Must be a positive integer
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action. Must
+// be a positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) NoncurrentDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleNoncurrentVersionExpiration) *int {
 		if v == nil {
@@ -18700,11 +19618,18 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionExpirationPtrOutput) Noncurren
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionTransition struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions *int `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action.
 	NoncurrentDays int `pulumi:"noncurrentDays"`
-	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
+	//
+	// > **Important:** If versioning is enabled, this rule only deletes the current
+	// version of an object.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -18720,11 +19645,18 @@ type ObjectBucketLifecycleRuleNoncurrentVersionTransitionInput interface {
 }
 
 type ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs struct {
-	// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+	// Number of noncurrent versions
+	// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 	NewerNoncurrentVersions pulumi.IntPtrInput `pulumi:"newerNoncurrentVersions"`
-	// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+	// Number of days an object is noncurrent
+	// before Scaleway Object Storage can perform the associated action.
 	NoncurrentDays pulumi.IntInput `pulumi:"noncurrentDays"`
-	// Specifies the Scaleway Object Storage class to which you want the object to transition
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
+	//
+	// > **Important:** If versioning is enabled, this rule only deletes the current
+	// version of an object.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -18779,17 +19711,24 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) ToObjectBuck
 	return o
 }
 
-// Number of noncurrent versions Scaleway Object Storage will retain. Must be a non-zero positive integer
+// Number of noncurrent versions
+// Scaleway Object Storage will retain. Must be a non-zero positive integer.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NewerNoncurrentVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) *int { return v.NewerNoncurrentVersions }).(pulumi.IntPtrOutput)
 }
 
-// Number of days an object is noncurrent before Scaleway Object Storage can perform the associated action
+// Number of days an object is noncurrent
+// before Scaleway Object Storage can perform the associated action.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) NoncurrentDays() pulumi.IntOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) int { return v.NoncurrentDays }).(pulumi.IntOutput)
 }
 
-// Specifies the Scaleway Object Storage class to which you want the object to transition
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+// transition.
+//
+// > **Important:** If versioning is enabled, this rule only deletes the current
+// version of an object.
 func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleNoncurrentVersionTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }
@@ -18815,17 +19754,22 @@ func (o ObjectBucketLifecycleRuleNoncurrentVersionTransitionArrayOutput) Index(i
 }
 
 type ObjectBucketLifecycleRuleTransition struct {
-	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date objects are transitioned to the
+	// specified storage class. The date value must be in RFC3339 full-date
+	// format e.g. `2023-08-22`.
 	Date *string `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days *int `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
 	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+	// storage class `GLACIER` is not available in `pl-waw` region.
 	//
-	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+	// `expiration`, `transition` must be specified.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -18841,17 +19785,22 @@ type ObjectBucketLifecycleRuleTransitionInput interface {
 }
 
 type ObjectBucketLifecycleRuleTransitionArgs struct {
-	// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+	// Specifies the date objects are transitioned to the
+	// specified storage class. The date value must be in RFC3339 full-date
+	// format e.g. `2023-08-22`.
 	Date pulumi.StringPtrInput `pulumi:"date"`
-	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation
+	// when the specific rule action takes effect.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+	// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+	// transition.
 	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+	// storage class `GLACIER` is not available in `pl-waw` region.
 	//
-	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+	// `expiration`, `transition` must be specified.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -18906,23 +19855,28 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) ToObjectBucketLifecycleRuleTr
 	return o
 }
 
-// Specifies the date objects are transitioned to the specified storage class. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
+// Specifies the date objects are transitioned to the
+// specified storage class. The date value must be in RFC3339 full-date
+// format e.g. `2023-08-22`.
 func (o ObjectBucketLifecycleRuleTransitionOutput) Date() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *string { return v.Date }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the number of days after object creation when the specific rule action takes effect.
+// Specifies the number of days after object creation
+// when the specific rule action takes effect.
 func (o ObjectBucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
+// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class)
+// `STANDARD`, `GLACIER`, `ONEZONE_IA` to which you want the object to
+// transition.
 //
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
-// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+// > **Important:** `ONEZONE_IA` is only available in `fr-par` region. The
+// storage class `GLACIER` is not available in `pl-waw` region.
 //
-// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
-// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+// > **Important:** At least one of `abortIncompleteMultipartUploadDays`,
+// `expiration`, `transition` must be specified.
 func (o ObjectBucketLifecycleRuleTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }
@@ -25306,6 +26260,507 @@ func (o GetDatabaseInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstanceUpgradableVersion {
 		return vs[0].([]GetDatabaseInstanceUpgradableVersion)[vs[1].(int)]
 	}).(GetDatabaseInstanceUpgradableVersionOutput)
+}
+
+type GetDatalabMain struct {
+	// The node type for the main node.
+	NodeType string `pulumi:"nodeType"`
+	// Volume details for the main node.
+	RootVolume GetDatalabMainRootVolume `pulumi:"rootVolume"`
+	// The Spark master URL within the VPC.
+	SparkMasterUrl string `pulumi:"sparkMasterUrl"`
+	// The Spark UI URL.
+	SparkUiUrl string `pulumi:"sparkUiUrl"`
+}
+
+// GetDatalabMainInput is an input type that accepts GetDatalabMainArgs and GetDatalabMainOutput values.
+// You can construct a concrete instance of `GetDatalabMainInput` via:
+//
+//	GetDatalabMainArgs{...}
+type GetDatalabMainInput interface {
+	pulumi.Input
+
+	ToGetDatalabMainOutput() GetDatalabMainOutput
+	ToGetDatalabMainOutputWithContext(context.Context) GetDatalabMainOutput
+}
+
+type GetDatalabMainArgs struct {
+	// The node type for the main node.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// Volume details for the main node.
+	RootVolume GetDatalabMainRootVolumeInput `pulumi:"rootVolume"`
+	// The Spark master URL within the VPC.
+	SparkMasterUrl pulumi.StringInput `pulumi:"sparkMasterUrl"`
+	// The Spark UI URL.
+	SparkUiUrl pulumi.StringInput `pulumi:"sparkUiUrl"`
+}
+
+func (GetDatalabMainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabMain)(nil)).Elem()
+}
+
+func (i GetDatalabMainArgs) ToGetDatalabMainOutput() GetDatalabMainOutput {
+	return i.ToGetDatalabMainOutputWithContext(context.Background())
+}
+
+func (i GetDatalabMainArgs) ToGetDatalabMainOutputWithContext(ctx context.Context) GetDatalabMainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabMainOutput)
+}
+
+type GetDatalabMainOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabMainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabMain)(nil)).Elem()
+}
+
+func (o GetDatalabMainOutput) ToGetDatalabMainOutput() GetDatalabMainOutput {
+	return o
+}
+
+func (o GetDatalabMainOutput) ToGetDatalabMainOutputWithContext(ctx context.Context) GetDatalabMainOutput {
+	return o
+}
+
+// The node type for the main node.
+func (o GetDatalabMainOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabMain) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// Volume details for the main node.
+func (o GetDatalabMainOutput) RootVolume() GetDatalabMainRootVolumeOutput {
+	return o.ApplyT(func(v GetDatalabMain) GetDatalabMainRootVolume { return v.RootVolume }).(GetDatalabMainRootVolumeOutput)
+}
+
+// The Spark master URL within the VPC.
+func (o GetDatalabMainOutput) SparkMasterUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabMain) string { return v.SparkMasterUrl }).(pulumi.StringOutput)
+}
+
+// The Spark UI URL.
+func (o GetDatalabMainOutput) SparkUiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabMain) string { return v.SparkUiUrl }).(pulumi.StringOutput)
+}
+
+type GetDatalabMainRootVolume struct {
+	Size int    `pulumi:"size"`
+	Type string `pulumi:"type"`
+}
+
+// GetDatalabMainRootVolumeInput is an input type that accepts GetDatalabMainRootVolumeArgs and GetDatalabMainRootVolumeOutput values.
+// You can construct a concrete instance of `GetDatalabMainRootVolumeInput` via:
+//
+//	GetDatalabMainRootVolumeArgs{...}
+type GetDatalabMainRootVolumeInput interface {
+	pulumi.Input
+
+	ToGetDatalabMainRootVolumeOutput() GetDatalabMainRootVolumeOutput
+	ToGetDatalabMainRootVolumeOutputWithContext(context.Context) GetDatalabMainRootVolumeOutput
+}
+
+type GetDatalabMainRootVolumeArgs struct {
+	Size pulumi.IntInput    `pulumi:"size"`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDatalabMainRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabMainRootVolume)(nil)).Elem()
+}
+
+func (i GetDatalabMainRootVolumeArgs) ToGetDatalabMainRootVolumeOutput() GetDatalabMainRootVolumeOutput {
+	return i.ToGetDatalabMainRootVolumeOutputWithContext(context.Background())
+}
+
+func (i GetDatalabMainRootVolumeArgs) ToGetDatalabMainRootVolumeOutputWithContext(ctx context.Context) GetDatalabMainRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabMainRootVolumeOutput)
+}
+
+type GetDatalabMainRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabMainRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabMainRootVolume)(nil)).Elem()
+}
+
+func (o GetDatalabMainRootVolumeOutput) ToGetDatalabMainRootVolumeOutput() GetDatalabMainRootVolumeOutput {
+	return o
+}
+
+func (o GetDatalabMainRootVolumeOutput) ToGetDatalabMainRootVolumeOutputWithContext(ctx context.Context) GetDatalabMainRootVolumeOutput {
+	return o
+}
+
+func (o GetDatalabMainRootVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatalabMainRootVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetDatalabMainRootVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabMainRootVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDatalabTotalStorage struct {
+	Size int    `pulumi:"size"`
+	Type string `pulumi:"type"`
+}
+
+// GetDatalabTotalStorageInput is an input type that accepts GetDatalabTotalStorageArgs and GetDatalabTotalStorageOutput values.
+// You can construct a concrete instance of `GetDatalabTotalStorageInput` via:
+//
+//	GetDatalabTotalStorageArgs{...}
+type GetDatalabTotalStorageInput interface {
+	pulumi.Input
+
+	ToGetDatalabTotalStorageOutput() GetDatalabTotalStorageOutput
+	ToGetDatalabTotalStorageOutputWithContext(context.Context) GetDatalabTotalStorageOutput
+}
+
+type GetDatalabTotalStorageArgs struct {
+	Size pulumi.IntInput    `pulumi:"size"`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDatalabTotalStorageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabTotalStorage)(nil)).Elem()
+}
+
+func (i GetDatalabTotalStorageArgs) ToGetDatalabTotalStorageOutput() GetDatalabTotalStorageOutput {
+	return i.ToGetDatalabTotalStorageOutputWithContext(context.Background())
+}
+
+func (i GetDatalabTotalStorageArgs) ToGetDatalabTotalStorageOutputWithContext(ctx context.Context) GetDatalabTotalStorageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabTotalStorageOutput)
+}
+
+type GetDatalabTotalStorageOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabTotalStorageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabTotalStorage)(nil)).Elem()
+}
+
+func (o GetDatalabTotalStorageOutput) ToGetDatalabTotalStorageOutput() GetDatalabTotalStorageOutput {
+	return o
+}
+
+func (o GetDatalabTotalStorageOutput) ToGetDatalabTotalStorageOutputWithContext(ctx context.Context) GetDatalabTotalStorageOutput {
+	return o
+}
+
+func (o GetDatalabTotalStorageOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatalabTotalStorage) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetDatalabTotalStorageOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabTotalStorage) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDatalabWorker struct {
+	// The number of worker nodes.
+	NodeCount int `pulumi:"nodeCount"`
+	// The node type for worker nodes.
+	NodeType string `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume GetDatalabWorkerRootVolume `pulumi:"rootVolume"`
+}
+
+// GetDatalabWorkerInput is an input type that accepts GetDatalabWorkerArgs and GetDatalabWorkerOutput values.
+// You can construct a concrete instance of `GetDatalabWorkerInput` via:
+//
+//	GetDatalabWorkerArgs{...}
+type GetDatalabWorkerInput interface {
+	pulumi.Input
+
+	ToGetDatalabWorkerOutput() GetDatalabWorkerOutput
+	ToGetDatalabWorkerOutputWithContext(context.Context) GetDatalabWorkerOutput
+}
+
+type GetDatalabWorkerArgs struct {
+	// The number of worker nodes.
+	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+	// The node type for worker nodes.
+	NodeType pulumi.StringInput `pulumi:"nodeType"`
+	// Volume details for worker nodes.
+	RootVolume GetDatalabWorkerRootVolumeInput `pulumi:"rootVolume"`
+}
+
+func (GetDatalabWorkerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabWorker)(nil)).Elem()
+}
+
+func (i GetDatalabWorkerArgs) ToGetDatalabWorkerOutput() GetDatalabWorkerOutput {
+	return i.ToGetDatalabWorkerOutputWithContext(context.Background())
+}
+
+func (i GetDatalabWorkerArgs) ToGetDatalabWorkerOutputWithContext(ctx context.Context) GetDatalabWorkerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabWorkerOutput)
+}
+
+type GetDatalabWorkerOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabWorkerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabWorker)(nil)).Elem()
+}
+
+func (o GetDatalabWorkerOutput) ToGetDatalabWorkerOutput() GetDatalabWorkerOutput {
+	return o
+}
+
+func (o GetDatalabWorkerOutput) ToGetDatalabWorkerOutputWithContext(ctx context.Context) GetDatalabWorkerOutput {
+	return o
+}
+
+// The number of worker nodes.
+func (o GetDatalabWorkerOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatalabWorker) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+// The node type for worker nodes.
+func (o GetDatalabWorkerOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabWorker) string { return v.NodeType }).(pulumi.StringOutput)
+}
+
+// Volume details for worker nodes.
+func (o GetDatalabWorkerOutput) RootVolume() GetDatalabWorkerRootVolumeOutput {
+	return o.ApplyT(func(v GetDatalabWorker) GetDatalabWorkerRootVolume { return v.RootVolume }).(GetDatalabWorkerRootVolumeOutput)
+}
+
+type GetDatalabWorkerRootVolume struct {
+	Size int    `pulumi:"size"`
+	Type string `pulumi:"type"`
+}
+
+// GetDatalabWorkerRootVolumeInput is an input type that accepts GetDatalabWorkerRootVolumeArgs and GetDatalabWorkerRootVolumeOutput values.
+// You can construct a concrete instance of `GetDatalabWorkerRootVolumeInput` via:
+//
+//	GetDatalabWorkerRootVolumeArgs{...}
+type GetDatalabWorkerRootVolumeInput interface {
+	pulumi.Input
+
+	ToGetDatalabWorkerRootVolumeOutput() GetDatalabWorkerRootVolumeOutput
+	ToGetDatalabWorkerRootVolumeOutputWithContext(context.Context) GetDatalabWorkerRootVolumeOutput
+}
+
+type GetDatalabWorkerRootVolumeArgs struct {
+	Size pulumi.IntInput    `pulumi:"size"`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDatalabWorkerRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (i GetDatalabWorkerRootVolumeArgs) ToGetDatalabWorkerRootVolumeOutput() GetDatalabWorkerRootVolumeOutput {
+	return i.ToGetDatalabWorkerRootVolumeOutputWithContext(context.Background())
+}
+
+func (i GetDatalabWorkerRootVolumeArgs) ToGetDatalabWorkerRootVolumeOutputWithContext(ctx context.Context) GetDatalabWorkerRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabWorkerRootVolumeOutput)
+}
+
+type GetDatalabWorkerRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabWorkerRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabWorkerRootVolume)(nil)).Elem()
+}
+
+func (o GetDatalabWorkerRootVolumeOutput) ToGetDatalabWorkerRootVolumeOutput() GetDatalabWorkerRootVolumeOutput {
+	return o
+}
+
+func (o GetDatalabWorkerRootVolumeOutput) ToGetDatalabWorkerRootVolumeOutputWithContext(ctx context.Context) GetDatalabWorkerRootVolumeOutput {
+	return o
+}
+
+func (o GetDatalabWorkerRootVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatalabWorkerRootVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetDatalabWorkerRootVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabWorkerRootVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDatalabsDatalab struct {
+	// The creation timestamp of the Datalab instance.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the Datalab instance.
+	Description string `pulumi:"description"`
+	// Whether a JupyterLab notebook is associated with the Datalab.
+	HasNotebook bool `pulumi:"hasNotebook"`
+	// The unique identifier of the Datalab instance.
+	Id string `pulumi:"id"`
+	// The name to filter Datalabs by.
+	Name string `pulumi:"name"`
+	// The project ID to filter Datalabs by.
+	ProjectId string `pulumi:"projectId"`
+	// The region to list Datalabs from.
+	Region string `pulumi:"region"`
+	// The Spark version of the Datalab instance.
+	SparkVersion string `pulumi:"sparkVersion"`
+	// The current status of the Datalab instance.
+	Status string `pulumi:"status"`
+	// The tags to filter Datalabs by.
+	Tags []string `pulumi:"tags"`
+	// The last update timestamp of the Datalab instance.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetDatalabsDatalabInput is an input type that accepts GetDatalabsDatalabArgs and GetDatalabsDatalabOutput values.
+// You can construct a concrete instance of `GetDatalabsDatalabInput` via:
+//
+//	GetDatalabsDatalabArgs{...}
+type GetDatalabsDatalabInput interface {
+	pulumi.Input
+
+	ToGetDatalabsDatalabOutput() GetDatalabsDatalabOutput
+	ToGetDatalabsDatalabOutputWithContext(context.Context) GetDatalabsDatalabOutput
+}
+
+type GetDatalabsDatalabArgs struct {
+	// The creation timestamp of the Datalab instance.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the Datalab instance.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether a JupyterLab notebook is associated with the Datalab.
+	HasNotebook pulumi.BoolInput `pulumi:"hasNotebook"`
+	// The unique identifier of the Datalab instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name to filter Datalabs by.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project ID to filter Datalabs by.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The region to list Datalabs from.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The Spark version of the Datalab instance.
+	SparkVersion pulumi.StringInput `pulumi:"sparkVersion"`
+	// The current status of the Datalab instance.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tags to filter Datalabs by.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The last update timestamp of the Datalab instance.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetDatalabsDatalabArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabsDatalab)(nil)).Elem()
+}
+
+func (i GetDatalabsDatalabArgs) ToGetDatalabsDatalabOutput() GetDatalabsDatalabOutput {
+	return i.ToGetDatalabsDatalabOutputWithContext(context.Background())
+}
+
+func (i GetDatalabsDatalabArgs) ToGetDatalabsDatalabOutputWithContext(ctx context.Context) GetDatalabsDatalabOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabsDatalabOutput)
+}
+
+// GetDatalabsDatalabArrayInput is an input type that accepts GetDatalabsDatalabArray and GetDatalabsDatalabArrayOutput values.
+// You can construct a concrete instance of `GetDatalabsDatalabArrayInput` via:
+//
+//	GetDatalabsDatalabArray{ GetDatalabsDatalabArgs{...} }
+type GetDatalabsDatalabArrayInput interface {
+	pulumi.Input
+
+	ToGetDatalabsDatalabArrayOutput() GetDatalabsDatalabArrayOutput
+	ToGetDatalabsDatalabArrayOutputWithContext(context.Context) GetDatalabsDatalabArrayOutput
+}
+
+type GetDatalabsDatalabArray []GetDatalabsDatalabInput
+
+func (GetDatalabsDatalabArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatalabsDatalab)(nil)).Elem()
+}
+
+func (i GetDatalabsDatalabArray) ToGetDatalabsDatalabArrayOutput() GetDatalabsDatalabArrayOutput {
+	return i.ToGetDatalabsDatalabArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatalabsDatalabArray) ToGetDatalabsDatalabArrayOutputWithContext(ctx context.Context) GetDatalabsDatalabArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatalabsDatalabArrayOutput)
+}
+
+type GetDatalabsDatalabOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabsDatalabOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatalabsDatalab)(nil)).Elem()
+}
+
+func (o GetDatalabsDatalabOutput) ToGetDatalabsDatalabOutput() GetDatalabsDatalabOutput {
+	return o
+}
+
+func (o GetDatalabsDatalabOutput) ToGetDatalabsDatalabOutputWithContext(ctx context.Context) GetDatalabsDatalabOutput {
+	return o
+}
+
+// The creation timestamp of the Datalab instance.
+func (o GetDatalabsDatalabOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the Datalab instance.
+func (o GetDatalabsDatalabOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether a JupyterLab notebook is associated with the Datalab.
+func (o GetDatalabsDatalabOutput) HasNotebook() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) bool { return v.HasNotebook }).(pulumi.BoolOutput)
+}
+
+// The unique identifier of the Datalab instance.
+func (o GetDatalabsDatalabOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name to filter Datalabs by.
+func (o GetDatalabsDatalabOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project ID to filter Datalabs by.
+func (o GetDatalabsDatalabOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The region to list Datalabs from.
+func (o GetDatalabsDatalabOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Spark version of the Datalab instance.
+func (o GetDatalabsDatalabOutput) SparkVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.SparkVersion }).(pulumi.StringOutput)
+}
+
+// The current status of the Datalab instance.
+func (o GetDatalabsDatalabOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tags to filter Datalabs by.
+func (o GetDatalabsDatalabOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The last update timestamp of the Datalab instance.
+func (o GetDatalabsDatalabOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatalabsDatalab) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetDatalabsDatalabArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatalabsDatalabArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatalabsDatalab)(nil)).Elem()
+}
+
+func (o GetDatalabsDatalabArrayOutput) ToGetDatalabsDatalabArrayOutput() GetDatalabsDatalabArrayOutput {
+	return o
+}
+
+func (o GetDatalabsDatalabArrayOutput) ToGetDatalabsDatalabArrayOutputWithContext(ctx context.Context) GetDatalabsDatalabArrayOutput {
+	return o
+}
+
+func (o GetDatalabsDatalabArrayOutput) Index(i pulumi.IntInput) GetDatalabsDatalabOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatalabsDatalab {
+		return vs[0].([]GetDatalabsDatalab)[vs[1].(int)]
+	}).(GetDatalabsDatalabOutput)
 }
 
 type GetDomainRecordGeoIp struct {
@@ -37576,6 +39031,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaDirectAccessPtrInput)(nil)).Elem(), DatabaseReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabMainInput)(nil)).Elem(), DatalabMainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabMainPtrInput)(nil)).Elem(), DatalabMainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabMainRootVolumeInput)(nil)).Elem(), DatalabMainRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabMainRootVolumePtrInput)(nil)).Elem(), DatalabMainRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabTotalStorageInput)(nil)).Elem(), DatalabTotalStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabTotalStoragePtrInput)(nil)).Elem(), DatalabTotalStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabWorkerInput)(nil)).Elem(), DatalabWorkerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabWorkerPtrInput)(nil)).Elem(), DatalabWorkerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabWorkerRootVolumeInput)(nil)).Elem(), DatalabWorkerRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatalabWorkerRootVolumePtrInput)(nil)).Elem(), DatalabWorkerRootVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -37847,6 +39312,13 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaArrayInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionArrayInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabMainInput)(nil)).Elem(), GetDatalabMainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabMainRootVolumeInput)(nil)).Elem(), GetDatalabMainRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabTotalStorageInput)(nil)).Elem(), GetDatalabTotalStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabWorkerInput)(nil)).Elem(), GetDatalabWorkerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabWorkerRootVolumeInput)(nil)).Elem(), GetDatalabWorkerRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabsDatalabInput)(nil)).Elem(), GetDatalabsDatalabArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatalabsDatalabArrayInput)(nil)).Elem(), GetDatalabsDatalabArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpArrayInput)(nil)).Elem(), GetDomainRecordGeoIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArgs{})
@@ -38095,6 +39567,16 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(DatalabMainOutput{})
+	pulumi.RegisterOutputType(DatalabMainPtrOutput{})
+	pulumi.RegisterOutputType(DatalabMainRootVolumeOutput{})
+	pulumi.RegisterOutputType(DatalabMainRootVolumePtrOutput{})
+	pulumi.RegisterOutputType(DatalabTotalStorageOutput{})
+	pulumi.RegisterOutputType(DatalabTotalStoragePtrOutput{})
+	pulumi.RegisterOutputType(DatalabWorkerOutput{})
+	pulumi.RegisterOutputType(DatalabWorkerPtrOutput{})
+	pulumi.RegisterOutputType(DatalabWorkerRootVolumeOutput{})
+	pulumi.RegisterOutputType(DatalabWorkerRootVolumePtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})
@@ -38366,6 +39848,13 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetDatalabMainOutput{})
+	pulumi.RegisterOutputType(GetDatalabMainRootVolumeOutput{})
+	pulumi.RegisterOutputType(GetDatalabTotalStorageOutput{})
+	pulumi.RegisterOutputType(GetDatalabWorkerOutput{})
+	pulumi.RegisterOutputType(GetDatalabWorkerRootVolumeOutput{})
+	pulumi.RegisterOutputType(GetDatalabsDatalabOutput{})
+	pulumi.RegisterOutputType(GetDatalabsDatalabArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpMatchOutput{})

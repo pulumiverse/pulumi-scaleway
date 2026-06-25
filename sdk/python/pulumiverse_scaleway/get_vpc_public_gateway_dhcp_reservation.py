@@ -148,7 +148,7 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[_builti
                                             zone: Optional[_builtins.str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpReservationResult:
     """
-    > **Important:**  The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+    > **Important:** The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
     In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
     You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
 
@@ -274,7 +274,7 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: pulumi.In
                                                    zone: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
-    > **Important:**  The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+    > **Important:** The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
     In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
     You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
 

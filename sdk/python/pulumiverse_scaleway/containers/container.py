@@ -57,7 +57,7 @@ class ContainerArgs:
         The set of arguments for constructing a Container resource.
 
         :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
@@ -201,7 +201,7 @@ class ContainerArgs:
     @pulumi.getter
     def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         """
         return pulumi.get(self, "args")
 
@@ -633,10 +633,10 @@ class _ContainerState:
         """
         Input properties used for looking up and filtering Container resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
-        :param pulumi.Input[_builtins.str] cron_status: The cron status of the container.
+        :param pulumi.Input[_builtins.str] cron_status: The cron status
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
@@ -681,7 +681,7 @@ class _ContainerState:
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input['ContainerStartupProbeArgs'] startup_probe: Defines how to check if the container has started successfully.
-        :param pulumi.Input[_builtins.str] status: The container status.
+        :param pulumi.Input[_builtins.str] status: The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
@@ -691,6 +691,9 @@ class _ContainerState:
             pulumi.set(__self__, "commands", commands)
         if cpu_limit is not None:
             pulumi.set(__self__, "cpu_limit", cpu_limit)
+        if cron_status is not None:
+            warnings.warn("""Please refer to the containers.Trigger resource instead.""", DeprecationWarning)
+            pulumi.log.warn("""cron_status is deprecated: Please refer to the containers.Trigger resource instead.""")
         if cron_status is not None:
             pulumi.set(__self__, "cron_status", cron_status)
         if deploy is not None:
@@ -785,7 +788,7 @@ class _ContainerState:
     @pulumi.getter
     def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         """
         return pulumi.get(self, "args")
 
@@ -819,9 +822,10 @@ class _ContainerState:
 
     @_builtins.property
     @pulumi.getter(name="cronStatus")
+    @_utilities.deprecated("""Please refer to the containers.Trigger resource instead.""")
     def cron_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The cron status of the container.
+        The cron status
         """
         return pulumi.get(self, "cron_status")
 
@@ -1214,7 +1218,7 @@ class _ContainerState:
     @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The container status.
+        The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         """
         return pulumi.get(self, "status")
 
@@ -1433,8 +1437,8 @@ class Container(pulumi.CustomResource):
 
         The following protocols are supported:
 
-        * `h2c`: HTTP/2 over TCP.
-        * `http1`: Hypertext Transfer Protocol.
+        - `h2c`: HTTP/2 over TCP.
+        - `http1`: Hypertext Transfer Protocol.
 
         > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
 
@@ -1533,7 +1537,7 @@ class Container(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
@@ -1733,8 +1737,8 @@ class Container(pulumi.CustomResource):
 
         The following protocols are supported:
 
-        * `h2c`: HTTP/2 over TCP.
-        * `http1`: Hypertext Transfer Protocol.
+        - `h2c`: HTTP/2 over TCP.
+        - `http1`: Hypertext Transfer Protocol.
 
         > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
 
@@ -1984,10 +1988,10 @@ class Container(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] commands: Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
-        :param pulumi.Input[_builtins.str] cron_status: The cron status of the container.
+        :param pulumi.Input[_builtins.str] cron_status: The cron status
         :param pulumi.Input[_builtins.bool] deploy: Boolean indicating whether the container is in a production environment.
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
@@ -2032,7 +2036,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         :param pulumi.Input[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']] startup_probe: Defines how to check if the container has started successfully.
-        :param pulumi.Input[_builtins.str] status: The container status.
+        :param pulumi.Input[_builtins.str] status: The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
         """
@@ -2083,7 +2087,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def args(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
+        Arguments passed to the command specified in the `command` field. These override the default arguments from the container image, and behave like command-line parameters.
         """
         return pulumi.get(self, "args")
 
@@ -2105,9 +2109,10 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="cronStatus")
+    @_utilities.deprecated("""Please refer to the containers.Trigger resource instead.""")
     def cron_status(self) -> pulumi.Output[_builtins.str]:
         """
-        The cron status of the container.
+        The cron status
         """
         return pulumi.get(self, "cron_status")
 
@@ -2376,7 +2381,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        The container status.
+        The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         """
         return pulumi.get(self, "status")
 

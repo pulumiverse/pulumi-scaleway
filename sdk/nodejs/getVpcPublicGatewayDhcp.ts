@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * > **Important:**  The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+ * > **Important:** The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
  * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
  * For more information, please refer to the dedicated guide.
  *
@@ -68,7 +68,7 @@ export interface GetVpcPublicGatewayDhcpResult {
     readonly zone: string;
 }
 /**
- * > **Important:**  The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+ * > **Important:** The data source `scaleway.network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
  * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
  * For more information, please refer to the dedicated guide.
  *

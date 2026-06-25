@@ -113,8 +113,8 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             return new Scaleway.Databases.Inputs.AclAclRuleArgs
     ///             {
-    ///                 Ip = entry.Key,
-    ///                 Description = entry.Value,
+    ///                 Ip = key,
+    ///                 Description = entry,
     ///             };
     ///         }).ToList(),
     ///         InstanceId = mainScalewayRdbInstance.Id,

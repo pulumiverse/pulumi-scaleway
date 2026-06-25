@@ -152,8 +152,7 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     declare public readonly publicNetwork: pulumi.Output<outputs.RedisClusterPublicNetwork>;
     /**
@@ -347,8 +346,7 @@ export interface RedisClusterState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork | undefined>;
     /**
@@ -454,8 +452,7 @@ export interface RedisClusterArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
-     * > The `publicNetwork` block exports:
+     * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set. The `publicNetwork` block exports:
      */
     publicNetwork?: pulumi.Input<inputs.RedisClusterPublicNetwork | undefined>;
     /**

@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * const main = new scaleway.opensearch.Deployment("main", {
  *     name: "my-opensearch-cluster",
  *     version: "2.0",
- *     nodeAmount: 1,
+ *     nodeCount: 1,
  *     nodeType: "SEARCHDB-SHARED-2C-8G",
  *     password: "ThisIsASecurePassword123!",
  *     volume: {
@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  * const prod = new scaleway.opensearch.Deployment("prod", {
  *     name: "logs-prod-cluster",
  *     version: "2.0",
- *     nodeAmount: 3,
+ *     nodeCount: 3,
  *     nodeType: "SEARCHDB-DEDICATED-2C-8G",
  *     password: opensearchPassword,
  *     tags: [
@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  * const analytics = new scaleway.opensearch.Deployment("analytics", {
  *     name: "analytics-cluster",
  *     version: "2.0",
- *     nodeAmount: 1,
+ *     nodeCount: 1,
  *     nodeType: "SEARCHDB-SHARED-4C-16G",
  *     password: opensearchPassword,
  *     tags: [
@@ -75,6 +75,33 @@ import * as utilities from "../utilities";
  *     volume: {
  *         type: "sbs_5k",
  *         sizeInGb: 10,
+ *     },
+ * });
+ * ```
+ *
+ * ### With Private Network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.network.Vpc("main", {name: "my-vpc"});
+ * const pn = new scaleway.network.PrivateNetwork("pn", {
+ *     name: "my-private-network",
+ *     vpcId: main.id,
+ * });
+ * const mainDeployment = new scaleway.opensearch.Deployment("main", {
+ *     name: "my-opensearch-cluster",
+ *     version: "2.0",
+ *     nodeCount: 1,
+ *     nodeType: "SEARCHDB-DEDICATED-2C-8G",
+ *     password: "ThisIsASecurePassword123!",
+ *     privateNetwork: {
+ *         privateNetworkId: pn.id,
+ *     },
+ *     volume: {
+ *         type: "sbs_5k",
+ *         sizeInGb: 5,
  *     },
  * });
  * ```
@@ -139,9 +166,15 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * Use `nodeCount` instead. Changing this forces recreation of the deployment.
+     *
+     * @deprecated Please use nodeCount instead
+     */
+    declare public readonly nodeAmount: pulumi.Output<number | undefined>;
+    /**
      * Number of nodes in the cluster. Changing this forces recreation of the deployment.
      */
-    declare public readonly nodeAmount: pulumi.Output<number>;
+    declare public readonly nodeCount: pulumi.Output<number | undefined>;
     /**
      * Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
      */
@@ -151,13 +184,13 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
-     * Private network configuration
+     * Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
      */
     declare public readonly privateNetwork: pulumi.Output<outputs.opensearch.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
@@ -212,6 +245,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["endpoints"] = state?.endpoints;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeAmount"] = state?.nodeAmount;
+            resourceInputs["nodeCount"] = state?.nodeCount;
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["password"] = state?.password;
             resourceInputs["privateNetwork"] = state?.privateNetwork;
@@ -226,9 +260,6 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["volume"] = state?.volume;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
-            if (args?.nodeAmount === undefined && !opts.urn) {
-                throw new Error("Missing required property 'nodeAmount'");
-            }
             if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
@@ -237,6 +268,7 @@ export class Deployment extends pulumi.CustomResource {
             }
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeAmount"] = args?.nodeAmount;
+            resourceInputs["nodeCount"] = args?.nodeCount;
             resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateNetwork"] = args?.privateNetwork;
@@ -276,9 +308,15 @@ export interface DeploymentState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Number of nodes in the cluster. Changing this forces recreation of the deployment.
+     * Use `nodeCount` instead. Changing this forces recreation of the deployment.
+     *
+     * @deprecated Please use nodeCount instead
      */
     nodeAmount?: pulumi.Input<number | undefined>;
+    /**
+     * Number of nodes in the cluster. Changing this forces recreation of the deployment.
+     */
+    nodeCount?: pulumi.Input<number | undefined>;
     /**
      * Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
      */
@@ -288,13 +326,13 @@ export interface DeploymentState {
      */
     password?: pulumi.Input<string | undefined>;
     /**
-     * Private network configuration
+     * Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
      */
     privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
@@ -342,9 +380,15 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
+     * Use `nodeCount` instead. Changing this forces recreation of the deployment.
+     *
+     * @deprecated Please use nodeCount instead
+     */
+    nodeAmount?: pulumi.Input<number | undefined>;
+    /**
      * Number of nodes in the cluster. Changing this forces recreation of the deployment.
      */
-    nodeAmount: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
     /**
      * Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
      */
@@ -354,13 +398,13 @@ export interface DeploymentArgs {
      */
     password?: pulumi.Input<string | undefined>;
     /**
-     * Private network configuration
+     * Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
      */
     privateNetwork?: pulumi.Input<inputs.opensearch.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */

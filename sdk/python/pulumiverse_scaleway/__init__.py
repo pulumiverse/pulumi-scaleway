@@ -30,6 +30,7 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
+from .datalab import *
 from .domain_record import *
 from .domain_zone import *
 from .edge_services_backend_stage import *
@@ -71,6 +72,8 @@ from .get_database_acl import *
 from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
+from .get_datalab import *
+from .get_datalabs import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -385,6 +388,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.autoscaling",
   "classes": {
    "scaleway:autoscaling/instanceTemplate:InstanceTemplate": "InstanceTemplate"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "billing/budget",
+  "fqn": "pulumiverse_scaleway.billing",
+  "classes": {
+   "scaleway:billing/budget:Budget": "Budget"
   }
  },
  {
@@ -789,6 +800,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "iam/scimToken",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/scimToken:ScimToken": "ScimToken"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "iam/sshKey",
   "fqn": "pulumiverse_scaleway.iam",
   "classes": {
@@ -993,6 +1012,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseUser:DatabaseUser": "DatabaseUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/datalab",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/datalab:Datalab": "Datalab"
   }
  },
  {
@@ -2137,6 +2164,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.network",
   "classes": {
    "scaleway:network/gatewayNetwork:GatewayNetwork": "GatewayNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/ingressRule",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/ingressRule:IngressRule": "IngressRule"
   }
  },
  {

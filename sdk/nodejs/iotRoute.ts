@@ -156,7 +156,7 @@ export class IotRoute extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     declare public readonly database: pulumi.Output<outputs.IotRouteDatabase | undefined>;
     /**
@@ -239,7 +239,7 @@ export interface IotRouteState {
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.IotRouteDatabase | undefined>;
     /**
@@ -273,7 +273,7 @@ export interface IotRouteState {
  */
 export interface IotRouteArgs {
     /**
-     * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+     * Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
     database?: pulumi.Input<inputs.IotRouteDatabase | undefined>;
     /**

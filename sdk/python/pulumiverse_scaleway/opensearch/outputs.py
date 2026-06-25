@@ -107,7 +107,7 @@ class DeploymentEndpointService(dict):
         """
         :param _builtins.str name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
         :param _builtins.int port: Service port number.
-        :param _builtins.str url: Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        :param _builtins.str url: Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -136,7 +136,7 @@ class DeploymentEndpointService(dict):
     @pulumi.getter
     def url(self) -> Optional[_builtins.str]:
         """
-        Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        Full URL to access the service (e.g., <https://abc-123.searchdb.fr-par.scw.cloud:9200>).
         """
         return pulumi.get(self, "url")
 
@@ -163,7 +163,7 @@ class DeploymentPrivateNetwork(dict):
     def __init__(__self__, *,
                  private_network_id: _builtins.str):
         """
-        :param _builtins.str private_network_id: Private network ID if the endpoint is private.
+        :param _builtins.str private_network_id: The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
 
@@ -171,7 +171,7 @@ class DeploymentPrivateNetwork(dict):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> _builtins.str:
         """
-        Private network ID if the endpoint is private.
+        The ID of the private network. Format: `{region}/{id}` or just `{id}`.
         """
         return pulumi.get(self, "private_network_id")
 

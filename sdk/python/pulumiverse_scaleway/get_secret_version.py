@@ -239,7 +239,7 @@ def get_secret_version(organization_id: Optional[_builtins.str] = None,
     Keep in mind that this is a sensitive attribute. For more information,
     see Sensitive Data in State.
 
-    > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+    > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
 
 
     :param _builtins.str project_id: The ID of the Scaleway Project associated with the secret version.
@@ -330,7 +330,7 @@ def get_secret_version_output(organization_id: pulumi.Input[Optional[Optional[_b
     Keep in mind that this is a sensitive attribute. For more information,
     see Sensitive Data in State.
 
-    > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+    > **Important:** This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
 
 
     :param _builtins.str project_id: The ID of the Scaleway Project associated with the secret version.

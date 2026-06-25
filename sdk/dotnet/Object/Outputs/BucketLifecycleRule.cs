@@ -15,41 +15,54 @@ namespace Pulumiverse.Scaleway.Object.Outputs
     public sealed class BucketLifecycleRule
     {
         /// <summary>
-        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// Specifies the number
+        /// of days after initiating a multipart upload when the multipart upload must
+        /// be completed.
         /// 
-        /// &gt; **Important:** Avoid using `Prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        /// &gt; **Important:** Avoid using `Prefix` for `AbortIncompleteMultipartUpload`,
+        /// as any incomplete multipart upload will be billed.
         /// </summary>
         public readonly int? AbortIncompleteMultipartUploadDays;
         /// <summary>
-        /// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
+        /// The element value can be either Enabled or
+        /// Disabled. If a rule is disabled, Scaleway Object Storage does not perform
+        /// any of the actions defined in the rule.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// Specifies a period in the object's expire
+        /// Specifies a period of expiration for the object.
         /// </summary>
         public readonly Outputs.BucketLifecycleRuleExpiration? Expiration;
         /// <summary>
-        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        /// Unique identifier for the rule. Must be less than or
+        /// equal to 255 characters in length.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Configuration block that specifies when noncurrent object versions expire
+        /// Configuration block that
+        /// specifies when noncurrent object versions expire. Supports the following:
         /// </summary>
         public readonly Outputs.BucketLifecycleRuleNoncurrentVersionExpiration? NoncurrentVersionExpiration;
         /// <summary>
-        /// Set of configuration blocks that specify the transition rule for the lifecycle rule that describes when noncurrent objects transition to a specific storage class
+        /// Set of configuration blocks
+        /// that specify the transition rule for the lifecycle rule that describes when
+        /// noncurrent objects transition to a specific storage class. Supports the
+        /// following:
         /// </summary>
         public readonly ImmutableArray<Outputs.BucketLifecycleRuleNoncurrentVersionTransition> NoncurrentVersionTransitions;
         /// <summary>
-        /// Minimum object size (in bytes) to which the rule applies
+        /// Minimum object size (in bytes) to
+        /// which the rule applies.
         /// </summary>
         public readonly int? ObjectSizeGreaterThan;
         /// <summary>
-        /// Maximum object size (in bytes) to which the rule applies
+        /// Maximum object size (in bytes) to
+        /// which the rule applies.
         /// </summary>
         public readonly int? ObjectSizeLessThan;
         /// <summary>
-        /// Object key prefix identifying one or more objects to which the rule applies.
+        /// Object key prefix identifying one or more objects
+        /// to which the rule applies.
         /// </summary>
         public readonly string? Prefix;
         /// <summary>
@@ -57,7 +70,7 @@ namespace Pulumiverse.Scaleway.Object.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Tags;
         /// <summary>
-        /// Define when objects transition to another storage class
+        /// Specifies a period in the object's transitions.
         /// </summary>
         public readonly ImmutableArray<Outputs.BucketLifecycleRuleTransition> Transitions;
 

@@ -27,7 +27,7 @@ class GetBucketServerSideEncryptionConfigurationResult:
     """
     A collection of values returned by getBucketServerSideEncryptionConfiguration.
     """
-    def __init__(__self__, bucket=None, bucket_server_side_encryption_configuration_id=None, id=None, region=None, rules=None):
+    def __init__(__self__, bucket=None, bucket_server_side_encryption_configuration_id=None, id=None, project_id=None, region=None, rules=None):
         if bucket and not isinstance(bucket, str):
             raise TypeError("Expected argument 'bucket' to be a str")
         pulumi.set(__self__, "bucket", bucket)
@@ -37,6 +37,9 @@ class GetBucketServerSideEncryptionConfigurationResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -66,6 +69,11 @@ class GetBucketServerSideEncryptionConfigurationResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
@@ -88,12 +96,14 @@ class AwaitableGetBucketServerSideEncryptionConfigurationResult(GetBucketServerS
             bucket=self.bucket,
             bucket_server_side_encryption_configuration_id=self.bucket_server_side_encryption_configuration_id,
             id=self.id,
+            project_id=self.project_id,
             region=self.region,
             rules=self.rules)
 
 
 def get_bucket_server_side_encryption_configuration(bucket: Optional[_builtins.str] = None,
                                                     bucket_server_side_encryption_configuration_id: Optional[_builtins.str] = None,
+                                                    project_id: Optional[_builtins.str] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketServerSideEncryptionConfigurationResult:
     """
     Get information about a bucket server side encryption configuration. This data source allows you to retrieve information about the server-side encryption configuration of a bucket.
@@ -119,10 +129,13 @@ def get_bucket_server_side_encryption_configuration(bucket: Optional[_builtins.s
 
     :param _builtins.str bucket: The bucket's name or regional ID. Conflicts with `bucket_server_side_encryption_configuration_id`.
     :param _builtins.str bucket_server_side_encryption_configuration_id: The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
+    :param _builtins.str project_id: The ID of the
+           project the bucket is associated with.
     """
     __args__ = dict()
     __args__['bucket'] = bucket
     __args__['bucketServerSideEncryptionConfigurationId'] = bucket_server_side_encryption_configuration_id
+    __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration', __args__, opts=opts, typ=GetBucketServerSideEncryptionConfigurationResult).value
 
@@ -130,10 +143,12 @@ def get_bucket_server_side_encryption_configuration(bucket: Optional[_builtins.s
         bucket=pulumi.get(__ret__, 'bucket'),
         bucket_server_side_encryption_configuration_id=pulumi.get(__ret__, 'bucket_server_side_encryption_configuration_id'),
         id=pulumi.get(__ret__, 'id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         rules=pulumi.get(__ret__, 'rules'))
 def get_bucket_server_side_encryption_configuration_output(bucket: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                            bucket_server_side_encryption_configuration_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                           project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketServerSideEncryptionConfigurationResult]:
     """
     Get information about a bucket server side encryption configuration. This data source allows you to retrieve information about the server-side encryption configuration of a bucket.
@@ -159,15 +174,19 @@ def get_bucket_server_side_encryption_configuration_output(bucket: pulumi.Input[
 
     :param _builtins.str bucket: The bucket's name or regional ID. Conflicts with `bucket_server_side_encryption_configuration_id`.
     :param _builtins.str bucket_server_side_encryption_configuration_id: The ID of the bucket server side encryption configuration. Conflicts with `bucket`.
+    :param _builtins.str project_id: The ID of the
+           project the bucket is associated with.
     """
     __args__ = dict()
     __args__['bucket'] = bucket
     __args__['bucketServerSideEncryptionConfigurationId'] = bucket_server_side_encryption_configuration_id
+    __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration', __args__, opts=opts, typ=GetBucketServerSideEncryptionConfigurationResult)
     return __ret__.apply(lambda __response__: GetBucketServerSideEncryptionConfigurationResult(
         bucket=pulumi.get(__response__, 'bucket'),
         bucket_server_side_encryption_configuration_id=pulumi.get(__response__, 'bucket_server_side_encryption_configuration_id'),
         id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
         rules=pulumi.get(__response__, 'rules')))

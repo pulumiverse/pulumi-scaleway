@@ -170,7 +170,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Output("database")]
         public Output<Outputs.IotRouteDatabase?> Database { get; private set; } = null!;
@@ -259,7 +259,7 @@ namespace Pulumiverse.Scaleway
     public sealed class IotRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseArgs>? Database { get; set; }
@@ -315,7 +315,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
+        /// Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         /// </summary>
         [Input("database")]
         public Input<Inputs.IotRouteDatabaseGetArgs>? Database { get; set; }
