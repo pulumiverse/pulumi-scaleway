@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Kubernetes = Pulumi.Kubernetes;
+    /// using Helm = Pulumi.Helm;
     /// using Null = Pulumi.Null;
     /// using Scaleway = Pulumiverse.Scaleway;
     /// 
@@ -156,22 +156,39 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///         ProjectId = cluster.ProjectId,
     ///     });
     /// 
-    ///     var nginxIngress = new Kubernetes.Helm.sh.V3.Release("nginx_ingress", new()
+    ///     var nginxIngress = new Helm.Release("nginx_ingress", new()
     ///     {
     ///         Name = "nginx-ingress",
     ///         Namespace = "kube-system",
-    ///         RepositoryOpts = 
-    ///         {
-    ///             { "repo", "https://kubernetes.github.io/ingress-nginx" },
-    ///         },
+    ///         Repository = "https://kubernetes.github.io/ingress-nginx",
     ///         Chart = "ingress-nginx",
-    ///         Values = 
+    ///         Set = new[]
     ///         {
-    ///             { "controller.service.loadBalancerIP", nginxIp.IpAddress },
-    ///             { "controller.config.use-proxy-protocol", "true" },
-    ///             { "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2", "true" },
-    ///             { "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone", nginxIp.Zone },
-    ///             { "controller.service.externalTrafficPolicy", "Local" },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.loadBalancerIP" },
+    ///                 { "value", nginxIp.IpAddress },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.config.use-proxy-protocol" },
+    ///                 { "value", "true" },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2" },
+    ///                 { "value", "true" },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone" },
+    ///                 { "value", nginxIp.Zone },
+    ///             },
+    ///             
+    ///             {
+    ///                 { "name", "controller.service.externalTrafficPolicy" },
+    ///                 { "value", "Local" },
+    ///             },
     ///         },
     ///     });
     /// 

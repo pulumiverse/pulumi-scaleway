@@ -645,73 +645,6 @@ export interface DatabaseReadReplicaPrivateNetwork {
     zone: string;
 }
 
-export interface DatalabMain {
-    /**
-     * The node type for the main node.
-     */
-    nodeType: string;
-    /**
-     * Volume details for worker nodes.
-     */
-    rootVolume: outputs.DatalabMainRootVolume;
-    /**
-     * The Spark master URL within the VPC.
-     */
-    sparkMasterUrl: string;
-    /**
-     * The Spark UI URL.
-     */
-    sparkUiUrl: string;
-}
-
-export interface DatalabMainRootVolume {
-    /**
-     * The volume size in bytes.
-     */
-    size: number;
-    /**
-     * The volume type.
-     */
-    type: string;
-}
-
-export interface DatalabTotalStorage {
-    /**
-     * The volume size in bytes.
-     */
-    size: number;
-    /**
-     * The volume type. Defaults to `sbs5k`.
-     */
-    type: string;
-}
-
-export interface DatalabWorker {
-    /**
-     * The number of worker nodes.
-     */
-    nodeCount: number;
-    /**
-     * The node type for worker nodes.
-     */
-    nodeType: string;
-    /**
-     * Volume details for worker nodes.
-     */
-    rootVolume: outputs.DatalabWorkerRootVolume;
-}
-
-export interface DatalabWorkerRootVolume {
-    /**
-     * The volume size in bytes.
-     */
-    size: number;
-    /**
-     * The volume type.
-     */
-    type: string;
-}
-
 export interface DomainRecordGeoIp {
     /**
      * The list of matches
@@ -1513,102 +1446,6 @@ export interface GetDatabaseInstanceUpgradableVersion {
      * Version string
      */
     version: string;
-}
-
-export interface GetDatalabMain {
-    /**
-     * The node type for the main node.
-     */
-    nodeType: string;
-    /**
-     * Volume details for the main node.
-     */
-    rootVolume: outputs.GetDatalabMainRootVolume;
-    /**
-     * The Spark master URL within the VPC.
-     */
-    sparkMasterUrl: string;
-    /**
-     * The Spark UI URL.
-     */
-    sparkUiUrl: string;
-}
-
-export interface GetDatalabMainRootVolume {
-    size: number;
-    type: string;
-}
-
-export interface GetDatalabTotalStorage {
-    size: number;
-    type: string;
-}
-
-export interface GetDatalabWorker {
-    /**
-     * The number of worker nodes.
-     */
-    nodeCount: number;
-    /**
-     * The node type for worker nodes.
-     */
-    nodeType: string;
-    /**
-     * Volume details for worker nodes.
-     */
-    rootVolume: outputs.GetDatalabWorkerRootVolume;
-}
-
-export interface GetDatalabWorkerRootVolume {
-    size: number;
-    type: string;
-}
-
-export interface GetDatalabsDatalab {
-    /**
-     * The creation timestamp of the Datalab instance.
-     */
-    createdAt: string;
-    /**
-     * The description of the Datalab instance.
-     */
-    description: string;
-    /**
-     * Whether a JupyterLab notebook is associated with the Datalab.
-     */
-    hasNotebook: boolean;
-    /**
-     * The unique identifier of the Datalab instance.
-     */
-    id: string;
-    /**
-     * The name to filter Datalabs by.
-     */
-    name: string;
-    /**
-     * The project ID to filter Datalabs by.
-     */
-    projectId: string;
-    /**
-     * The region to list Datalabs from.
-     */
-    region: string;
-    /**
-     * The Spark version of the Datalab instance.
-     */
-    sparkVersion: string;
-    /**
-     * The current status of the Datalab instance.
-     */
-    status: string;
-    /**
-     * The tags to filter Datalabs by.
-     */
-    tags: string[];
-    /**
-     * The last update timestamp of the Datalab instance.
-     */
-    updatedAt: string;
 }
 
 export interface GetDomainRecordGeoIp {
@@ -6519,6 +6356,172 @@ export namespace databases {
          * Private network zone
          */
         zone: string;
+    }
+
+}
+
+export namespace datalab {
+    export interface DatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.DatalabMainRootVolume;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl: string;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl: string;
+    }
+
+    export interface DatalabMainRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type.
+         */
+        type: string;
+    }
+
+    export interface DatalabTotalStorage {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type. Defaults to `sbs5k`.
+         */
+        type: string;
+    }
+
+    export interface DatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: number;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.DatalabWorkerRootVolume;
+    }
+
+    export interface DatalabWorkerRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size: number;
+        /**
+         * The volume type.
+         */
+        type: string;
+    }
+
+    export interface GetDatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: string;
+        /**
+         * Volume details for the main node.
+         */
+        rootVolume: outputs.datalab.GetDatalabMainRootVolume;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl: string;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl: string;
+    }
+
+    export interface GetDatalabMainRootVolume {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabTotalStorage {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: number;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: string;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume: outputs.datalab.GetDatalabWorkerRootVolume;
+    }
+
+    export interface GetDatalabWorkerRootVolume {
+        size: number;
+        type: string;
+    }
+
+    export interface GetDatalabsDatalab {
+        /**
+         * The creation timestamp of the Datalab instance.
+         */
+        createdAt: string;
+        /**
+         * The description of the Datalab instance.
+         */
+        description: string;
+        /**
+         * Whether a JupyterLab notebook is associated with the Datalab.
+         */
+        hasNotebook: boolean;
+        /**
+         * The unique identifier of the Datalab instance.
+         */
+        id: string;
+        /**
+         * The name to filter Datalabs by.
+         */
+        name: string;
+        /**
+         * The project ID to filter Datalabs by.
+         */
+        projectId: string;
+        /**
+         * The region to list Datalabs from.
+         */
+        region: string;
+        /**
+         * The Spark version of the Datalab instance.
+         */
+        sparkVersion: string;
+        /**
+         * The current status of the Datalab instance.
+         */
+        status: string;
+        /**
+         * The tags to filter Datalabs by.
+         */
+        tags: string[];
+        /**
+         * The last update timestamp of the Datalab instance.
+         */
+        updatedAt: string;
     }
 
 }

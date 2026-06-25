@@ -645,73 +645,6 @@ export interface DatabaseReadReplicaPrivateNetwork {
     zone?: pulumi.Input<string | undefined>;
 }
 
-export interface DatalabMain {
-    /**
-     * The node type for the main node.
-     */
-    nodeType: pulumi.Input<string>;
-    /**
-     * Volume details for worker nodes.
-     */
-    rootVolume?: pulumi.Input<inputs.DatalabMainRootVolume | undefined>;
-    /**
-     * The Spark master URL within the VPC.
-     */
-    sparkMasterUrl?: pulumi.Input<string | undefined>;
-    /**
-     * The Spark UI URL.
-     */
-    sparkUiUrl?: pulumi.Input<string | undefined>;
-}
-
-export interface DatalabMainRootVolume {
-    /**
-     * The volume size in bytes.
-     */
-    size?: pulumi.Input<number | undefined>;
-    /**
-     * The volume type.
-     */
-    type?: pulumi.Input<string | undefined>;
-}
-
-export interface DatalabTotalStorage {
-    /**
-     * The volume size in bytes.
-     */
-    size?: pulumi.Input<number | undefined>;
-    /**
-     * The volume type. Defaults to `sbs5k`.
-     */
-    type?: pulumi.Input<string | undefined>;
-}
-
-export interface DatalabWorker {
-    /**
-     * The number of worker nodes.
-     */
-    nodeCount: pulumi.Input<number>;
-    /**
-     * The node type for worker nodes.
-     */
-    nodeType: pulumi.Input<string>;
-    /**
-     * Volume details for worker nodes.
-     */
-    rootVolume?: pulumi.Input<inputs.DatalabWorkerRootVolume | undefined>;
-}
-
-export interface DatalabWorkerRootVolume {
-    /**
-     * The volume size in bytes.
-     */
-    size?: pulumi.Input<number | undefined>;
-    /**
-     * The volume type.
-     */
-    type?: pulumi.Input<string | undefined>;
-}
-
 export interface DomainRecordGeoIp {
     /**
      * The list of matches
@@ -3303,6 +3236,76 @@ export namespace databases {
          */
         zone?: pulumi.Input<string | undefined>;
     }
+}
+
+export namespace datalab {
+    export interface DatalabMain {
+        /**
+         * The node type for the main node.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume?: pulumi.Input<inputs.datalab.DatalabMainRootVolume | undefined>;
+        /**
+         * The Spark master URL within the VPC.
+         */
+        sparkMasterUrl?: pulumi.Input<string | undefined>;
+        /**
+         * The Spark UI URL.
+         */
+        sparkUiUrl?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabMainRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabTotalStorage {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type. Defaults to `sbs5k`.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
+    export interface DatalabWorker {
+        /**
+         * The number of worker nodes.
+         */
+        nodeCount: pulumi.Input<number>;
+        /**
+         * The node type for worker nodes.
+         */
+        nodeType: pulumi.Input<string>;
+        /**
+         * Volume details for worker nodes.
+         */
+        rootVolume?: pulumi.Input<inputs.datalab.DatalabWorkerRootVolume | undefined>;
+    }
+
+    export interface DatalabWorkerRootVolume {
+        /**
+         * The volume size in bytes.
+         */
+        size?: pulumi.Input<number | undefined>;
+        /**
+         * The volume type.
+         */
+        type?: pulumi.Input<string | undefined>;
+    }
+
 }
 
 export namespace datawarehouse {

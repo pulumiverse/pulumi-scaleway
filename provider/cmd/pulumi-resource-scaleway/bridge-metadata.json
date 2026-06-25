@@ -437,7 +437,7 @@
                 }
             },
             "scaleway_datalab": {
-                "current": "scaleway:index/datalab:Datalab",
+                "current": "scaleway:datalab/datalab:Datalab",
                 "majorVersion": 1,
                 "fields": {
                     "tags": {
@@ -3264,7 +3264,7 @@
                 }
             },
             "scaleway_datalab": {
-                "current": "scaleway:index/getDatalab:getDatalab",
+                "current": "scaleway:datalab/getDatalab:getDatalab",
                 "majorVersion": 1,
                 "fields": {
                     "tags": {
@@ -3273,7 +3273,7 @@
                 }
             },
             "scaleway_datalabs": {
-                "current": "scaleway:index/getDatalabs:getDatalabs",
+                "current": "scaleway:datalab/getDatalabs:getDatalabs",
                 "majorVersion": 1,
                 "fields": {
                     "datalabs": {
@@ -6489,6 +6489,7 @@
             "scaleway:databases/serverlessDatabase:ServerlessDatabase": 0,
             "scaleway:databases/snapshot:Snapshot": 0,
             "scaleway:databases/user:User": 0,
+            "scaleway:datalab/datalab:Datalab": 1,
             "scaleway:datawarehouse/database:Database": 0,
             "scaleway:datawarehouse/deployment:Deployment": 0,
             "scaleway:datawarehouse/user:User": 0,
@@ -6549,7 +6550,6 @@
             "scaleway:index/databasePrivilege:DatabasePrivilege": 0,
             "scaleway:index/databaseReadReplica:DatabaseReadReplica": 0,
             "scaleway:index/databaseUser:DatabaseUser": 0,
-            "scaleway:index/datalab:Datalab": 1,
             "scaleway:index/domainRecord:DomainRecord": 0,
             "scaleway:index/domainZone:DomainZone": 0,
             "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage": 0,
@@ -6751,6 +6751,8 @@
             "scaleway:databases/getDatabaseBackup:getDatabaseBackup": 0,
             "scaleway:databases/getInstance:getInstance": 0,
             "scaleway:databases/getPrivilege:getPrivilege": 0,
+            "scaleway:datalab/getDatalab:getDatalab": 1,
+            "scaleway:datalab/getDatalabs:getDatalabs": 1,
             "scaleway:domain/getRecord:getRecord": 0,
             "scaleway:domain/getRegistration:getRegistration": 0,
             "scaleway:domain/getZone:getZone": 0,
@@ -6803,8 +6805,6 @@
             "scaleway:index/getDatabaseBackup:getDatabaseBackup": 0,
             "scaleway:index/getDatabaseInstance:getDatabaseInstance": 0,
             "scaleway:index/getDatabasePrivilege:getDatabasePrivilege": 0,
-            "scaleway:index/getDatalab:getDatalab": 1,
-            "scaleway:index/getDatalabs:getDatalabs": 1,
             "scaleway:index/getDomainRecord:getDomainRecord": 0,
             "scaleway:index/getDomainZone:getDomainZone": 0,
             "scaleway:index/getFlexibleIp:getFlexibleIp": 0,

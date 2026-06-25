@@ -30,7 +30,6 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
-from .datalab import *
 from .domain_record import *
 from .domain_zone import *
 from .edge_services_backend_stage import *
@@ -72,8 +71,6 @@ from .get_database_acl import *
 from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
-from .get_datalab import *
-from .get_datalabs import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -236,6 +233,8 @@ if typing.TYPE_CHECKING:
     containers = __containers
     import pulumiverse_scaleway.databases as __databases
     databases = __databases
+    import pulumiverse_scaleway.datalab as __datalab
+    datalab = __datalab
     import pulumiverse_scaleway.datawarehouse as __datawarehouse
     datawarehouse = __datawarehouse
     import pulumiverse_scaleway.domain as __domain
@@ -302,6 +301,7 @@ else:
     config = _utilities.lazy_import('pulumiverse_scaleway.config')
     containers = _utilities.lazy_import('pulumiverse_scaleway.containers')
     databases = _utilities.lazy_import('pulumiverse_scaleway.databases')
+    datalab = _utilities.lazy_import('pulumiverse_scaleway.datalab')
     datawarehouse = _utilities.lazy_import('pulumiverse_scaleway.datawarehouse')
     domain = _utilities.lazy_import('pulumiverse_scaleway.domain')
     edgeservices = _utilities.lazy_import('pulumiverse_scaleway.edgeservices')
@@ -532,6 +532,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.databases",
   "classes": {
    "scaleway:databases/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "datalab/datalab",
+  "fqn": "pulumiverse_scaleway.datalab",
+  "classes": {
+   "scaleway:datalab/datalab:Datalab": "Datalab"
   }
  },
  {
@@ -1012,14 +1020,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseUser:DatabaseUser": "DatabaseUser"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/datalab",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/datalab:Datalab": "Datalab"
   }
  },
  {

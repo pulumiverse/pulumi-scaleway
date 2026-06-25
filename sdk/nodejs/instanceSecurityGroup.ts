@@ -84,10 +84,10 @@ import * as utilities from "./utilities";
  *     "192.168.0.3",
  * ];
  * const dummy = new scaleway.instance.SecurityGroup("dummy", {
- *     inboundRules: trusted.map(entry => ({
+ *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
  *         action: "accept",
  *         port: 22,
- *         ipRange: entry,
+ *         ipRange: entry.value,
  *     })),
  *     inboundDefaultPolicy: "drop",
  *     outboundDefaultPolicy: "accept",
