@@ -164,6 +164,10 @@
                     }
                 }
             },
+            "scaleway_billing_budget": {
+                "current": "scaleway:billing/budget:Budget",
+                "majorVersion": 1
+            },
             "scaleway_block_snapshot": {
                 "current": "scaleway:block/snapshot:Snapshot",
                 "past": [
@@ -427,6 +431,15 @@
                     "sqs": {
                         "maxItemsOne": true
                     },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_datalab": {
+                "current": "scaleway:index/datalab:Datalab",
+                "majorVersion": 1,
+                "fields": {
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -1065,6 +1078,10 @@
             },
             "scaleway_iam_scim": {
                 "current": "scaleway:iam/scim:Scim",
+                "majorVersion": 1
+            },
+            "scaleway_iam_scim_token": {
+                "current": "scaleway:iam/scimToken:ScimToken",
                 "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
@@ -2637,6 +2654,15 @@
                     }
                 }
             },
+            "scaleway_vpc_ingress_rule": {
+                "current": "scaleway:network/ingressRule:IngressRule",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_vpc_private_network": {
                 "current": "scaleway:network/privateNetwork:PrivateNetwork",
                 "past": [
@@ -2988,6 +3014,10 @@
                     }
                 }
             },
+            "scaleway_billing_budget": {
+                "current": "scaleway:billing/getBudget:getBudget",
+                "majorVersion": 1
+            },
             "scaleway_billing_consumptions": {
                 "current": "scaleway:billing/getConsumptions:getConsumptions",
                 "past": [
@@ -3228,6 +3258,34 @@
                 ],
                 "majorVersion": 1,
                 "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_datalab": {
+                "current": "scaleway:index/getDatalab:getDatalab",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_datalabs": {
+                "current": "scaleway:index/getDatalabs:getDatalabs",
+                "majorVersion": 1,
+                "fields": {
+                    "datalabs": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -3695,6 +3753,10 @@
             },
             "scaleway_iam_scim": {
                 "current": "scaleway:iam/getScim:getScim",
+                "majorVersion": 1
+            },
+            "scaleway_iam_scim_token": {
+                "current": "scaleway:iam/getScimToken:getScimToken",
                 "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
@@ -5160,6 +5222,15 @@
                     }
                 }
             },
+            "scaleway_vpc_ingress_rule": {
+                "current": "scaleway:network/getIngressRule:getIngressRule",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_vpc_private_network": {
                 "current": "scaleway:network/getPrivateNetwork:getPrivateNetwork",
                 "past": [
@@ -6400,6 +6471,7 @@
             "scaleway:autoscaling/instanceGroup:InstanceGroup": 0,
             "scaleway:autoscaling/instancePolicy:InstancePolicy": 0,
             "scaleway:autoscaling/instanceTemplate:InstanceTemplate": 0,
+            "scaleway:billing/budget:Budget": 1,
             "scaleway:block/snapshot:Snapshot": 0,
             "scaleway:block/volume:Volume": 0,
             "scaleway:containers/container:Container": 0,
@@ -6450,6 +6522,7 @@
             "scaleway:iam/saml:Saml": 1,
             "scaleway:iam/samlCertificate:SamlCertificate": 1,
             "scaleway:iam/scim:Scim": 1,
+            "scaleway:iam/scimToken:ScimToken": 1,
             "scaleway:iam/sshKey:SshKey": 0,
             "scaleway:iam/user:User": 0,
             "scaleway:index/accountProject:AccountProject": 0,
@@ -6476,6 +6549,7 @@
             "scaleway:index/databasePrivilege:DatabasePrivilege": 0,
             "scaleway:index/databaseReadReplica:DatabaseReadReplica": 0,
             "scaleway:index/databaseUser:DatabaseUser": 0,
+            "scaleway:index/datalab:Datalab": 1,
             "scaleway:index/domainRecord:DomainRecord": 0,
             "scaleway:index/domainZone:DomainZone": 0,
             "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage": 0,
@@ -6619,6 +6693,7 @@
             "scaleway:network/acl:Acl": 0,
             "scaleway:network/connector:Connector": 0,
             "scaleway:network/gatewayNetwork:GatewayNetwork": 0,
+            "scaleway:network/ingressRule:IngressRule": 0,
             "scaleway:network/privateNetwork:PrivateNetwork": 0,
             "scaleway:network/publicGateway:PublicGateway": 0,
             "scaleway:network/publicGatewayDhcp:PublicGatewayDhcp": 0,
@@ -6664,6 +6739,7 @@
             "scaleway:audittrail/getEvent:getEvent": 0,
             "scaleway:autoscaling/getInstanceGroup:getInstanceGroup": 0,
             "scaleway:autoscaling/getInstancePolicy:getInstancePolicy": 0,
+            "scaleway:billing/getBudget:getBudget": 1,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,
@@ -6703,6 +6779,7 @@
             "scaleway:iam/getSaml:getSaml": 1,
             "scaleway:iam/getSamlCertificate:getSamlCertificate": 1,
             "scaleway:iam/getScim:getScim": 1,
+            "scaleway:iam/getScimToken:getScimToken": 1,
             "scaleway:iam/getSshKey:getSshKey": 0,
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,
@@ -6726,6 +6803,8 @@
             "scaleway:index/getDatabaseBackup:getDatabaseBackup": 0,
             "scaleway:index/getDatabaseInstance:getDatabaseInstance": 0,
             "scaleway:index/getDatabasePrivilege:getDatabasePrivilege": 0,
+            "scaleway:index/getDatalab:getDatalab": 1,
+            "scaleway:index/getDatalabs:getDatalabs": 1,
             "scaleway:index/getDomainRecord:getDomainRecord": 0,
             "scaleway:index/getDomainZone:getDomainZone": 0,
             "scaleway:index/getFlexibleIp:getFlexibleIp": 0,
@@ -6838,6 +6917,7 @@
             "scaleway:network/getAcl:getAcl": 0,
             "scaleway:network/getConnector:getConnector": 0,
             "scaleway:network/getGatewayNetwork:getGatewayNetwork": 0,
+            "scaleway:network/getIngressRule:getIngressRule": 0,
             "scaleway:network/getPrivateNetwork:getPrivateNetwork": 0,
             "scaleway:network/getPublicGateway:getPublicGateway": 0,
             "scaleway:network/getPublicGatewayDhcp:getPublicGatewayDhcp": 0,
