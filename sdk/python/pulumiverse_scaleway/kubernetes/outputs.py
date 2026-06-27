@@ -897,12 +897,12 @@ class GetClusterAutoscalerConfigResult(dict):
         :param _builtins.str expander: The type of node group expander be used in scale up.
         :param _builtins.int expendable_pods_priority_cutoff: Pods with priority below cutoff will be expendable. They can be killed without any consideration during scale down and they don't cause scale up. Pods with null priority (PodPriority disabled) are non expendable.
         :param _builtins.bool ignore_daemonsets_utilization: True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
-        :param _builtins.int log_level: Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+        :param _builtins.int log_level: Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
         :param _builtins.int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param _builtins.str scale_down_delay_after_add: The duration after scale up that scale down evaluation resumes.
         :param _builtins.str scale_down_unneeded_time: The duration a node should be unneeded before it is eligible for scale down.
         :param _builtins.float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
-        :param _builtins.bool skip_nodes_with_local_storage: If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+        :param _builtins.bool skip_nodes_with_local_storage: If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
         """
         pulumi.set(__self__, "balance_similar_node_groups", balance_similar_node_groups)
         pulumi.set(__self__, "disable_scale_down", disable_scale_down)
@@ -969,7 +969,7 @@ class GetClusterAutoscalerConfigResult(dict):
     @pulumi.getter(name="logLevel")
     def log_level(self) -> _builtins.int:
         """
-        Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+        Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
         """
         return pulumi.get(self, "log_level")
 
@@ -1009,7 +1009,7 @@ class GetClusterAutoscalerConfigResult(dict):
     @pulumi.getter(name="skipNodesWithLocalStorage")
     def skip_nodes_with_local_storage(self) -> _builtins.bool:
         """
-        If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+        If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
         """
         return pulumi.get(self, "skip_nodes_with_local_storage")
 

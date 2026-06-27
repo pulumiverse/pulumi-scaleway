@@ -79,7 +79,7 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
- * import * as helm from "@pulumi/helm";
+ * import * as kubernetes from "@pulumi/kubernetes";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
@@ -108,33 +108,20 @@ import * as utilities from "../utilities";
  *     zone: "fr-par-1",
  *     projectId: cluster.projectId,
  * });
- * const nginxIngress = new helm.index.Release("nginx_ingress", {
+ * const nginxIngress = new kubernetes.helm.sh/v3.Release("nginx_ingress", {
  *     name: "nginx-ingress",
  *     namespace: "kube-system",
- *     repository: "https://kubernetes.github.io/ingress-nginx",
+ *     repositoryOpts: {
+ *         repo: "https://kubernetes.github.io/ingress-nginx",
+ *     },
  *     chart: "ingress-nginx",
- *     set: [
- *         {
- *             name: "controller.service.loadBalancerIP",
- *             value: nginxIp.ipAddress,
- *         },
- *         {
- *             name: "controller.config.use-proxy-protocol",
- *             value: "true",
- *         },
- *         {
- *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2",
- *             value: "true",
- *         },
- *         {
- *             name: "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone",
- *             value: nginxIp.zone,
- *         },
- *         {
- *             name: "controller.service.externalTrafficPolicy",
- *             value: "Local",
- *         },
- *     ],
+ *     values: {
+ *         "controller.service.loadBalancerIP": nginxIp.ipAddress,
+ *         "controller.config.use-proxy-protocol": "true",
+ *         "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
+ *         "controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone": nginxIp.zone,
+ *         "controller.service.externalTrafficPolicy": "Local",
+ *     },
  * });
  * ```
  *
