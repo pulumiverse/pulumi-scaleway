@@ -82,12 +82,12 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainSecurityGroupRules = new Scaleway.Instance.SecurityGroupRules("main", new()
     ///     {
-    ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         InboundRules = trusted.Select(entry =&gt; 
     ///         {
     ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
-    ///                 IpRange = entry.Value,
+    ///                 IpRange = entry,
     ///                 Port = 80,
     ///             };
     ///         }).ToList(),
@@ -137,13 +137,13 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var mainSecurityGroupRules = new Scaleway.Instance.SecurityGroupRules("main", new()
     ///     {
-    ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         InboundRules = trusted.Select(entry =&gt; 
     ///         {
     ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
-    ///                 IpRange = entry.Value.IpRange,
-    ///                 Port = entry.Value.Port,
+    ///                 IpRange = entry.IpRange,
+    ///                 Port = entry.Port,
     ///             };
     ///         }).ToList(),
     ///         SecurityGroupId = main.Id,

@@ -2083,7 +2083,7 @@ export interface GetKubernetesClusterAutoscalerConfig {
      */
     ignoreDaemonsetsUtilization: boolean;
     /**
-     * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+     * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
      */
     logLevel: number;
     /**
@@ -2103,7 +2103,7 @@ export interface GetKubernetesClusterAutoscalerConfig {
      */
     scaleDownUtilizationThreshold: number;
     /**
-     * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+     * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
      */
     skipNodesWithLocalStorage: boolean;
 }
@@ -10374,7 +10374,7 @@ export namespace kubernetes {
          */
         ignoreDaemonsetsUtilization: boolean;
         /**
-         * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+         * Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
          */
         logLevel: number;
         /**
@@ -10394,7 +10394,7 @@ export namespace kubernetes {
          */
         scaleDownUtilizationThreshold: number;
         /**
-         * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+         * If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
          */
         skipNodesWithLocalStorage: boolean;
     }

@@ -1005,7 +1005,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_helm as helm
+        import pulumi_kubernetes as kubernetes
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
@@ -1031,33 +1031,20 @@ class KubernetesCluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = helm.Release("nginx_ingress",
+        nginx_ingress = kubernetes.helm_sh.v3.Release("nginx_ingress",
             name=nginx-ingress,
             namespace=kube-system,
-            repository=https://kubernetes.github.io/ingress-nginx,
+            repository_opts={
+                repo: https://kubernetes.github.io/ingress-nginx,
+            },
             chart=ingress-nginx,
-            set=[
-                {
-                    name: controller.service.loadBalancerIP,
-                    value: nginx_ip.ip_address,
-                },
-                {
-                    name: controller.config.use-proxy-protocol,
-                    value: true,
-                },
-                {
-                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2,
-                    value: true,
-                },
-                {
-                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone,
-                    value: nginx_ip.zone,
-                },
-                {
-                    name: controller.service.externalTrafficPolicy,
-                    value: Local,
-                },
-            ])
+            values={
+                controller.service.loadBalancerIP: nginx_ip.ip_address,
+                controller.config.use-proxy-protocol: true,
+                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2: true,
+                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone: nginx_ip.zone,
+                controller.service.externalTrafficPolicy: Local,
+            })
         ```
 
         ### With the Kubernetes provider
@@ -1285,7 +1272,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_helm as helm
+        import pulumi_kubernetes as kubernetes
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
@@ -1311,33 +1298,20 @@ class KubernetesCluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = helm.Release("nginx_ingress",
+        nginx_ingress = kubernetes.helm_sh.v3.Release("nginx_ingress",
             name=nginx-ingress,
             namespace=kube-system,
-            repository=https://kubernetes.github.io/ingress-nginx,
+            repository_opts={
+                repo: https://kubernetes.github.io/ingress-nginx,
+            },
             chart=ingress-nginx,
-            set=[
-                {
-                    name: controller.service.loadBalancerIP,
-                    value: nginx_ip.ip_address,
-                },
-                {
-                    name: controller.config.use-proxy-protocol,
-                    value: true,
-                },
-                {
-                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2,
-                    value: true,
-                },
-                {
-                    name: controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone,
-                    value: nginx_ip.zone,
-                },
-                {
-                    name: controller.service.externalTrafficPolicy,
-                    value: Local,
-                },
-            ])
+            values={
+                controller.service.loadBalancerIP: nginx_ip.ip_address,
+                controller.config.use-proxy-protocol: true,
+                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2: true,
+                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone: nginx_ip.zone,
+                controller.service.externalTrafficPolicy: Local,
+            })
         ```
 
         ### With the Kubernetes provider

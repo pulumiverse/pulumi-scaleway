@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly bool IgnoreDaemonsetsUtilization;
         /// <summary>
-        /// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+        /// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
         /// </summary>
         public readonly int LogLevel;
         /// <summary>
@@ -59,7 +59,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly double ScaleDownUtilizationThreshold;
         /// <summary>
-        /// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+        /// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
         /// </summary>
         public readonly bool SkipNodesWithLocalStorage;
 

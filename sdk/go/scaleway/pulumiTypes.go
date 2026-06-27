@@ -29289,7 +29289,7 @@ type GetKubernetesClusterAutoscalerConfig struct {
 	ExpendablePodsPriorityCutoff int `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization bool `pulumi:"ignoreDaemonsetsUtilization"`
-	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
 	LogLevel int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec int `pulumi:"maxGracefulTerminationSec"`
@@ -29299,7 +29299,7 @@ type GetKubernetesClusterAutoscalerConfig struct {
 	ScaleDownUnneededTime string `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold float64 `pulumi:"scaleDownUtilizationThreshold"`
-	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
 	SkipNodesWithLocalStorage bool `pulumi:"skipNodesWithLocalStorage"`
 }
 
@@ -29327,7 +29327,7 @@ type GetKubernetesClusterAutoscalerConfigArgs struct {
 	ExpendablePodsPriorityCutoff pulumi.IntInput `pulumi:"expendablePodsPriorityCutoff"`
 	// True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
 	IgnoreDaemonsetsUtilization pulumi.BoolInput `pulumi:"ignoreDaemonsetsUtilization"`
-	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+	// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
 	LogLevel pulumi.IntInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
 	MaxGracefulTerminationSec pulumi.IntInput `pulumi:"maxGracefulTerminationSec"`
@@ -29337,7 +29337,7 @@ type GetKubernetesClusterAutoscalerConfigArgs struct {
 	ScaleDownUnneededTime pulumi.StringInput `pulumi:"scaleDownUnneededTime"`
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64Input `pulumi:"scaleDownUtilizationThreshold"`
-	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+	// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
 	SkipNodesWithLocalStorage pulumi.BoolInput `pulumi:"skipNodesWithLocalStorage"`
 }
 
@@ -29422,7 +29422,7 @@ func (o GetKubernetesClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization(
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) bool { return v.IgnoreDaemonsetsUtilization }).(pulumi.BoolOutput)
 }
 
-// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose), defaults to 2.
+// Autoscaler logging level expressed from 0 to 4 (4 being the more verbose).
 func (o GetKubernetesClusterAutoscalerConfigOutput) LogLevel() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) int { return v.LogLevel }).(pulumi.IntOutput)
 }
@@ -29447,7 +29447,7 @@ func (o GetKubernetesClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshol
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) float64 { return v.ScaleDownUtilizationThreshold }).(pulumi.Float64Output)
 }
 
-// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath, defaults to true.
+// If true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
 func (o GetKubernetesClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetKubernetesClusterAutoscalerConfig) bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolOutput)
 }

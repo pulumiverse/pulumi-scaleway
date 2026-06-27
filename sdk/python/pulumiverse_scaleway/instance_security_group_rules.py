@@ -194,9 +194,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip_range": entry["value"],
+                "ip_range": entry,
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+            } for entry in trusted],
             security_group_id=main.id)
         ```
 
@@ -229,9 +229,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip_range": entry["value"]["ipRange"],
-                "port": int(entry["value"]["port"]),
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+                "ip_range": entry["ipRange"],
+                "port": int(entry["port"]),
+            } for entry in trusted],
             security_group_id=main.id)
         ```
 
@@ -304,9 +304,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip_range": entry["value"],
+                "ip_range": entry,
                 "port": 80,
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+            } for entry in trusted],
             security_group_id=main.id)
         ```
 
@@ -339,9 +339,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip_range": entry["value"]["ipRange"],
-                "port": int(entry["value"]["port"]),
-            } for entry in [{"key": k, "value": v} for k, v in sorted(trusted.items())]],
+                "ip_range": entry["ipRange"],
+                "port": int(entry["port"]),
+            } for entry in trusted],
             security_group_id=main.id)
         ```
 
