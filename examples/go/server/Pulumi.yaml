@@ -1,3 +1,0 @@
-name: pulumi-scaleway-examples-go-server
-runtime: go
-description: A minimal Go Pulumi program
