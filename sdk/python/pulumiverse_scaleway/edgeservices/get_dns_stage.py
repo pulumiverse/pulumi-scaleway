@@ -26,7 +26,7 @@ class GetDnsStageResult:
     """
     A collection of values returned by getDnsStage.
     """
-    def __init__(__self__, backend_stage_id=None, cache_stage_id=None, created_at=None, default_fqdn=None, dns_stage_id=None, fqdn=None, fqdns=None, id=None, pipeline_id=None, project_id=None, tls_stage_id=None, type=None, updated_at=None):
+    def __init__(__self__, backend_stage_id=None, cache_stage_id=None, created_at=None, default_fqdn=None, dns_stage_id=None, fqdn=None, fqdns=None, id=None, pipeline_id=None, project_id=None, tls_stage_id=None, type=None, updated_at=None, wildcard_domain=None):
         if backend_stage_id and not isinstance(backend_stage_id, str):
             raise TypeError("Expected argument 'backend_stage_id' to be a str")
         pulumi.set(__self__, "backend_stage_id", backend_stage_id)
@@ -66,6 +66,9 @@ class GetDnsStageResult:
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
+        if wildcard_domain and not isinstance(wildcard_domain, bool):
+            raise TypeError("Expected argument 'wildcard_domain' to be a bool")
+        pulumi.set(__self__, "wildcard_domain", wildcard_domain)
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
@@ -135,6 +138,11 @@ class GetDnsStageResult:
     def updated_at(self) -> _builtins.str:
         return pulumi.get(self, "updated_at")
 
+    @_builtins.property
+    @pulumi.getter(name="wildcardDomain")
+    def wildcard_domain(self) -> _builtins.bool:
+        return pulumi.get(self, "wildcard_domain")
+
 
 class AwaitableGetDnsStageResult(GetDnsStageResult):
     # pylint: disable=using-constant-test
@@ -154,7 +162,8 @@ class AwaitableGetDnsStageResult(GetDnsStageResult):
             project_id=self.project_id,
             tls_stage_id=self.tls_stage_id,
             type=self.type,
-            updated_at=self.updated_at)
+            updated_at=self.updated_at,
+            wildcard_domain=self.wildcard_domain)
 
 
 def get_dns_stage(dns_stage_id: Optional[_builtins.str] = None,
@@ -212,7 +221,8 @@ def get_dns_stage(dns_stage_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tls_stage_id=pulumi.get(__ret__, 'tls_stage_id'),
         type=pulumi.get(__ret__, 'type'),
-        updated_at=pulumi.get(__ret__, 'updated_at'))
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        wildcard_domain=pulumi.get(__ret__, 'wildcard_domain'))
 def get_dns_stage_output(dns_stage_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          fqdn: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          pipeline_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -267,4 +277,5 @@ def get_dns_stage_output(dns_stage_id: pulumi.Input[Optional[Optional[_builtins.
         project_id=pulumi.get(__response__, 'project_id'),
         tls_stage_id=pulumi.get(__response__, 'tls_stage_id'),
         type=pulumi.get(__response__, 'type'),
-        updated_at=pulumi.get(__response__, 'updated_at')))
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        wildcard_domain=pulumi.get(__response__, 'wildcard_domain')))

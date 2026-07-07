@@ -155,6 +155,10 @@ export class JobDefinition extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
+     * Defines a retry policy for the job.
+     */
+    declare public readonly retryPolicy: pulumi.Output<outputs.JobDefinitionRetryPolicy | undefined>;
+    /**
      * A reference to a secret stored in Secret Manager.
      */
     declare public readonly secretReferences: pulumi.Output<outputs.JobDefinitionSecretReference[] | undefined>;
@@ -195,6 +199,7 @@ export class JobDefinition extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["retryPolicy"] = state?.retryPolicy;
             resourceInputs["secretReferences"] = state?.secretReferences;
             resourceInputs["startupCommands"] = state?.startupCommands;
             resourceInputs["timeout"] = state?.timeout;
@@ -224,6 +229,7 @@ export class JobDefinition extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
+            resourceInputs["retryPolicy"] = args?.retryPolicy;
             resourceInputs["secretReferences"] = args?.secretReferences;
             resourceInputs["startupCommands"] = args?.startupCommands;
             resourceInputs["timeout"] = args?.timeout;
@@ -287,6 +293,10 @@ export interface JobDefinitionState {
      * `region`) The region of the Job.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * Defines a retry policy for the job.
+     */
+    retryPolicy?: pulumi.Input<inputs.JobDefinitionRetryPolicy | undefined>;
     /**
      * A reference to a secret stored in Secret Manager.
      */
@@ -355,6 +365,10 @@ export interface JobDefinitionArgs {
      * `region`) The region of the Job.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * Defines a retry policy for the job.
+     */
+    retryPolicy?: pulumi.Input<inputs.JobDefinitionRetryPolicy | undefined>;
     /**
      * A reference to a secret stored in Secret Manager.
      */

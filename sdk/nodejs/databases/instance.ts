@@ -151,6 +151,10 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public readonly logsPolicy: pulumi.Output<outputs.databases.InstanceLogsPolicy>;
     /**
+     * List of scheduled maintenance events on the Database Instance.
+     */
+    declare public /*out*/ readonly maintenances: pulumi.Output<outputs.databases.InstanceMaintenance[]>;
+    /**
      * The name of the Database Instance.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -261,6 +265,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["isHaCluster"] = state?.isHaCluster;
             resourceInputs["loadBalancer"] = state?.loadBalancer;
             resourceInputs["logsPolicy"] = state?.logsPolicy;
+            resourceInputs["maintenances"] = state?.maintenances;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["organizationId"] = state?.organizationId;
@@ -312,6 +317,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["endpointIp"] = undefined /*out*/;
             resourceInputs["endpointPort"] = undefined /*out*/;
+            resourceInputs["maintenances"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
             resourceInputs["upgradableVersions"] = undefined /*out*/;
@@ -393,6 +399,10 @@ export interface InstanceState {
      * Logs policy configuration
      */
     logsPolicy?: pulumi.Input<inputs.databases.InstanceLogsPolicy | undefined>;
+    /**
+     * List of scheduled maintenance events on the Database Instance.
+     */
+    maintenances?: pulumi.Input<pulumi.Input<inputs.databases.InstanceMaintenance>[] | undefined>;
     /**
      * The name of the Database Instance.
      */

@@ -82,6 +82,7 @@ export interface GetDnsStageResult {
     readonly tlsStageId: string;
     readonly type: string;
     readonly updatedAt: string;
+    readonly wildcardDomain: boolean;
 }
 /**
  * Gets information about an Edge Services DNS stage.

@@ -113,7 +113,7 @@ import * as utilities from "../utilities";
  *
  * <!--- Links, invisible in the final document --->
  *
- * [1]: ../index.md#project_id
+ * [1]: ../index.md#arguments-reference
  */
 export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResource {
     /**

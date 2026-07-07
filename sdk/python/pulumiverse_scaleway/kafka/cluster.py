@@ -38,7 +38,7 @@ class ClusterArgs:
 
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
-        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] volume_type: Type of volume where data is stored (e.g., "sbs_5k", "sbs_15k"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
@@ -97,7 +97,7 @@ class ClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[_builtins.str]:
         """
-        Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         """
         return pulumi.get(self, "version")
 
@@ -249,7 +249,7 @@ class _ClusterState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the cluster.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of cluster last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] user_name: Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
-        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] volume_type: Type of volume where data is stored (e.g., "sbs_5k", "sbs_15k"). Changing this forces recreation of the cluster.
         """
@@ -446,7 +446,7 @@ class _ClusterState:
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         """
         return pulumi.get(self, "version")
 
@@ -521,7 +521,7 @@ class Cluster(pulumi.CustomResource):
             vpc_id=main.id)
         main_cluster = scaleway.kafka.Cluster("main",
             name="my-kafka-cluster",
-            version="3.9.0",
+            version="4.1.1",
             node_amount=1,
             node_type="KAFK-PLAY-NANO",
             volume_type="sbs_5k",
@@ -548,7 +548,7 @@ class Cluster(pulumi.CustomResource):
             vpc_id=main.id)
         main_cluster = scaleway.kafka.Cluster("main",
             name="my-kafka-cluster",
-            version="3.9.0",
+            version="4.1.1",
             node_amount=1,
             node_type="KAFK-PLAY-NANO",
             volume_type="sbs_5k",
@@ -584,7 +584,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the cluster.
         :param pulumi.Input[_builtins.str] user_name: Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
-        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] volume_type: Type of volume where data is stored (e.g., "sbs_5k", "sbs_15k"). Changing this forces recreation of the cluster.
         """
@@ -617,7 +617,7 @@ class Cluster(pulumi.CustomResource):
             vpc_id=main.id)
         main_cluster = scaleway.kafka.Cluster("main",
             name="my-kafka-cluster",
-            version="3.9.0",
+            version="4.1.1",
             node_amount=1,
             node_type="KAFK-PLAY-NANO",
             volume_type="sbs_5k",
@@ -644,7 +644,7 @@ class Cluster(pulumi.CustomResource):
             vpc_id=main.id)
         main_cluster = scaleway.kafka.Cluster("main",
             name="my-kafka-cluster",
-            version="3.9.0",
+            version="4.1.1",
             node_amount=1,
             node_type="KAFK-PLAY-NANO",
             volume_type="sbs_5k",
@@ -779,7 +779,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the cluster.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of cluster last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] user_name: Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
-        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] volume_type: Type of volume where data is stored (e.g., "sbs_5k", "sbs_15k"). Changing this forces recreation of the cluster.
         """
@@ -913,7 +913,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.str]:
         """
-        Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         """
         return pulumi.get(self, "version")
 

@@ -488,6 +488,157 @@ func (o InstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type InstanceMaintenance struct {
+	// Closed maintenance date.
+	ClosedAt *string `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied.
+	ForcedAt *string `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user.
+	IsApplicable *bool `pulumi:"isApplicable"`
+	// Maintenance information message.
+	Reason *string `pulumi:"reason"`
+	// Start date of the maintenance window.
+	StartsAt *string `pulumi:"startsAt"`
+	// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+	Status *string `pulumi:"status"`
+	// End date of the maintenance window.
+	StopsAt *string `pulumi:"stopsAt"`
+}
+
+// InstanceMaintenanceInput is an input type that accepts InstanceMaintenanceArgs and InstanceMaintenanceOutput values.
+// You can construct a concrete instance of `InstanceMaintenanceInput` via:
+//
+//	InstanceMaintenanceArgs{...}
+type InstanceMaintenanceInput interface {
+	pulumi.Input
+
+	ToInstanceMaintenanceOutput() InstanceMaintenanceOutput
+	ToInstanceMaintenanceOutputWithContext(context.Context) InstanceMaintenanceOutput
+}
+
+type InstanceMaintenanceArgs struct {
+	// Closed maintenance date.
+	ClosedAt pulumi.StringPtrInput `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied.
+	ForcedAt pulumi.StringPtrInput `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user.
+	IsApplicable pulumi.BoolPtrInput `pulumi:"isApplicable"`
+	// Maintenance information message.
+	Reason pulumi.StringPtrInput `pulumi:"reason"`
+	// Start date of the maintenance window.
+	StartsAt pulumi.StringPtrInput `pulumi:"startsAt"`
+	// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// End date of the maintenance window.
+	StopsAt pulumi.StringPtrInput `pulumi:"stopsAt"`
+}
+
+func (InstanceMaintenanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceMaintenance)(nil)).Elem()
+}
+
+func (i InstanceMaintenanceArgs) ToInstanceMaintenanceOutput() InstanceMaintenanceOutput {
+	return i.ToInstanceMaintenanceOutputWithContext(context.Background())
+}
+
+func (i InstanceMaintenanceArgs) ToInstanceMaintenanceOutputWithContext(ctx context.Context) InstanceMaintenanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceMaintenanceOutput)
+}
+
+// InstanceMaintenanceArrayInput is an input type that accepts InstanceMaintenanceArray and InstanceMaintenanceArrayOutput values.
+// You can construct a concrete instance of `InstanceMaintenanceArrayInput` via:
+//
+//	InstanceMaintenanceArray{ InstanceMaintenanceArgs{...} }
+type InstanceMaintenanceArrayInput interface {
+	pulumi.Input
+
+	ToInstanceMaintenanceArrayOutput() InstanceMaintenanceArrayOutput
+	ToInstanceMaintenanceArrayOutputWithContext(context.Context) InstanceMaintenanceArrayOutput
+}
+
+type InstanceMaintenanceArray []InstanceMaintenanceInput
+
+func (InstanceMaintenanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceMaintenance)(nil)).Elem()
+}
+
+func (i InstanceMaintenanceArray) ToInstanceMaintenanceArrayOutput() InstanceMaintenanceArrayOutput {
+	return i.ToInstanceMaintenanceArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceMaintenanceArray) ToInstanceMaintenanceArrayOutputWithContext(ctx context.Context) InstanceMaintenanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceMaintenanceArrayOutput)
+}
+
+type InstanceMaintenanceOutput struct{ *pulumi.OutputState }
+
+func (InstanceMaintenanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceMaintenance)(nil)).Elem()
+}
+
+func (o InstanceMaintenanceOutput) ToInstanceMaintenanceOutput() InstanceMaintenanceOutput {
+	return o
+}
+
+func (o InstanceMaintenanceOutput) ToInstanceMaintenanceOutputWithContext(ctx context.Context) InstanceMaintenanceOutput {
+	return o
+}
+
+// Closed maintenance date.
+func (o InstanceMaintenanceOutput) ClosedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.ClosedAt }).(pulumi.StringPtrOutput)
+}
+
+// Time when Scaleway-side maintenance will be applied.
+func (o InstanceMaintenanceOutput) ForcedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.ForcedAt }).(pulumi.StringPtrOutput)
+}
+
+// Whether the maintenance can be applied by the user.
+func (o InstanceMaintenanceOutput) IsApplicable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *bool { return v.IsApplicable }).(pulumi.BoolPtrOutput)
+}
+
+// Maintenance information message.
+func (o InstanceMaintenanceOutput) Reason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.Reason }).(pulumi.StringPtrOutput)
+}
+
+// Start date of the maintenance window.
+func (o InstanceMaintenanceOutput) StartsAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.StartsAt }).(pulumi.StringPtrOutput)
+}
+
+// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+func (o InstanceMaintenanceOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// End date of the maintenance window.
+func (o InstanceMaintenanceOutput) StopsAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceMaintenance) *string { return v.StopsAt }).(pulumi.StringPtrOutput)
+}
+
+type InstanceMaintenanceArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceMaintenanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceMaintenance)(nil)).Elem()
+}
+
+func (o InstanceMaintenanceArrayOutput) ToInstanceMaintenanceArrayOutput() InstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o InstanceMaintenanceArrayOutput) ToInstanceMaintenanceArrayOutputWithContext(ctx context.Context) InstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o InstanceMaintenanceArrayOutput) Index(i pulumi.IntInput) InstanceMaintenanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceMaintenance {
+		return vs[0].([]InstanceMaintenance)[vs[1].(int)]
+	}).(InstanceMaintenanceOutput)
+}
+
 type InstancePrivateIp struct {
 	// The private IPv4 address.
 	Address *string `pulumi:"address"`
@@ -1977,6 +2128,157 @@ func (o GetInstanceLogsPolicyArrayOutput) Index(i pulumi.IntInput) GetInstanceLo
 	}).(GetInstanceLogsPolicyOutput)
 }
 
+type GetInstanceMaintenance struct {
+	// Closed maintenance date
+	ClosedAt string `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied
+	ForcedAt string `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user
+	IsApplicable bool `pulumi:"isApplicable"`
+	// Maintenance information message
+	Reason string `pulumi:"reason"`
+	// Start date of the maintenance window
+	StartsAt string `pulumi:"startsAt"`
+	// Status of the maintenance
+	Status string `pulumi:"status"`
+	// End date of the maintenance window
+	StopsAt string `pulumi:"stopsAt"`
+}
+
+// GetInstanceMaintenanceInput is an input type that accepts GetInstanceMaintenanceArgs and GetInstanceMaintenanceOutput values.
+// You can construct a concrete instance of `GetInstanceMaintenanceInput` via:
+//
+//	GetInstanceMaintenanceArgs{...}
+type GetInstanceMaintenanceInput interface {
+	pulumi.Input
+
+	ToGetInstanceMaintenanceOutput() GetInstanceMaintenanceOutput
+	ToGetInstanceMaintenanceOutputWithContext(context.Context) GetInstanceMaintenanceOutput
+}
+
+type GetInstanceMaintenanceArgs struct {
+	// Closed maintenance date
+	ClosedAt pulumi.StringInput `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied
+	ForcedAt pulumi.StringInput `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user
+	IsApplicable pulumi.BoolInput `pulumi:"isApplicable"`
+	// Maintenance information message
+	Reason pulumi.StringInput `pulumi:"reason"`
+	// Start date of the maintenance window
+	StartsAt pulumi.StringInput `pulumi:"startsAt"`
+	// Status of the maintenance
+	Status pulumi.StringInput `pulumi:"status"`
+	// End date of the maintenance window
+	StopsAt pulumi.StringInput `pulumi:"stopsAt"`
+}
+
+func (GetInstanceMaintenanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceMaintenance)(nil)).Elem()
+}
+
+func (i GetInstanceMaintenanceArgs) ToGetInstanceMaintenanceOutput() GetInstanceMaintenanceOutput {
+	return i.ToGetInstanceMaintenanceOutputWithContext(context.Background())
+}
+
+func (i GetInstanceMaintenanceArgs) ToGetInstanceMaintenanceOutputWithContext(ctx context.Context) GetInstanceMaintenanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceMaintenanceOutput)
+}
+
+// GetInstanceMaintenanceArrayInput is an input type that accepts GetInstanceMaintenanceArray and GetInstanceMaintenanceArrayOutput values.
+// You can construct a concrete instance of `GetInstanceMaintenanceArrayInput` via:
+//
+//	GetInstanceMaintenanceArray{ GetInstanceMaintenanceArgs{...} }
+type GetInstanceMaintenanceArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceMaintenanceArrayOutput() GetInstanceMaintenanceArrayOutput
+	ToGetInstanceMaintenanceArrayOutputWithContext(context.Context) GetInstanceMaintenanceArrayOutput
+}
+
+type GetInstanceMaintenanceArray []GetInstanceMaintenanceInput
+
+func (GetInstanceMaintenanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceMaintenance)(nil)).Elem()
+}
+
+func (i GetInstanceMaintenanceArray) ToGetInstanceMaintenanceArrayOutput() GetInstanceMaintenanceArrayOutput {
+	return i.ToGetInstanceMaintenanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceMaintenanceArray) ToGetInstanceMaintenanceArrayOutputWithContext(ctx context.Context) GetInstanceMaintenanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceMaintenanceArrayOutput)
+}
+
+type GetInstanceMaintenanceOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceMaintenanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceMaintenance)(nil)).Elem()
+}
+
+func (o GetInstanceMaintenanceOutput) ToGetInstanceMaintenanceOutput() GetInstanceMaintenanceOutput {
+	return o
+}
+
+func (o GetInstanceMaintenanceOutput) ToGetInstanceMaintenanceOutputWithContext(ctx context.Context) GetInstanceMaintenanceOutput {
+	return o
+}
+
+// Closed maintenance date
+func (o GetInstanceMaintenanceOutput) ClosedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.ClosedAt }).(pulumi.StringOutput)
+}
+
+// Time when Scaleway-side maintenance will be applied
+func (o GetInstanceMaintenanceOutput) ForcedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.ForcedAt }).(pulumi.StringOutput)
+}
+
+// Whether the maintenance can be applied by the user
+func (o GetInstanceMaintenanceOutput) IsApplicable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) bool { return v.IsApplicable }).(pulumi.BoolOutput)
+}
+
+// Maintenance information message
+func (o GetInstanceMaintenanceOutput) Reason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.Reason }).(pulumi.StringOutput)
+}
+
+// Start date of the maintenance window
+func (o GetInstanceMaintenanceOutput) StartsAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.StartsAt }).(pulumi.StringOutput)
+}
+
+// Status of the maintenance
+func (o GetInstanceMaintenanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// End date of the maintenance window
+func (o GetInstanceMaintenanceOutput) StopsAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceMaintenance) string { return v.StopsAt }).(pulumi.StringOutput)
+}
+
+type GetInstanceMaintenanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceMaintenanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceMaintenance)(nil)).Elem()
+}
+
+func (o GetInstanceMaintenanceArrayOutput) ToGetInstanceMaintenanceArrayOutput() GetInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o GetInstanceMaintenanceArrayOutput) ToGetInstanceMaintenanceArrayOutputWithContext(ctx context.Context) GetInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o GetInstanceMaintenanceArrayOutput) Index(i pulumi.IntInput) GetInstanceMaintenanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceMaintenance {
+		return vs[0].([]GetInstanceMaintenance)[vs[1].(int)]
+	}).(GetInstanceMaintenanceOutput)
+}
+
 type GetInstancePrivateIp struct {
 	// The private IPv4 address
 	Address string `pulumi:"address"`
@@ -2498,6 +2800,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLoadBalancerPtrInput)(nil)).Elem(), InstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLogsPolicyInput)(nil)).Elem(), InstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLogsPolicyPtrInput)(nil)).Elem(), InstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceMaintenanceInput)(nil)).Elem(), InstanceMaintenanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceMaintenanceArrayInput)(nil)).Elem(), InstanceMaintenanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateIpInput)(nil)).Elem(), InstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateIpArrayInput)(nil)).Elem(), InstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNetworkInput)(nil)).Elem(), InstancePrivateNetworkArgs{})
@@ -2516,6 +2820,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLoadBalancerArrayInput)(nil)).Elem(), GetInstanceLoadBalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsPolicyInput)(nil)).Elem(), GetInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsPolicyArrayInput)(nil)).Elem(), GetInstanceLogsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceMaintenanceInput)(nil)).Elem(), GetInstanceMaintenanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceMaintenanceArrayInput)(nil)).Elem(), GetInstanceMaintenanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpInput)(nil)).Elem(), GetInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpArrayInput)(nil)).Elem(), GetInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNetworkInput)(nil)).Elem(), GetInstancePrivateNetworkArgs{})
@@ -2530,6 +2836,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceLoadBalancerPtrOutput{})
 	pulumi.RegisterOutputType(InstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(InstanceLogsPolicyPtrOutput{})
+	pulumi.RegisterOutputType(InstanceMaintenanceOutput{})
+	pulumi.RegisterOutputType(InstanceMaintenanceArrayOutput{})
 	pulumi.RegisterOutputType(InstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(InstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(InstancePrivateNetworkOutput{})
@@ -2548,6 +2856,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(GetInstanceLogsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceMaintenanceOutput{})
+	pulumi.RegisterOutputType(GetInstanceMaintenanceArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateNetworkOutput{})

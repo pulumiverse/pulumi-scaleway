@@ -135,6 +135,8 @@ type DatabaseInstance struct {
 	LoadBalancer DatabaseInstanceLoadBalancerOutput `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy DatabaseInstanceLogsPolicyOutput `pulumi:"logsPolicy"`
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances DatabaseInstanceMaintenanceArrayOutput `pulumi:"maintenances"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -267,6 +269,8 @@ type databaseInstanceState struct {
 	LoadBalancer *DatabaseInstanceLoadBalancer `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy *DatabaseInstanceLogsPolicy `pulumi:"logsPolicy"`
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances []DatabaseInstanceMaintenance `pulumi:"maintenances"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -356,6 +360,8 @@ type DatabaseInstanceState struct {
 	LoadBalancer DatabaseInstanceLoadBalancerPtrInput
 	// Logs policy configuration
 	LogsPolicy DatabaseInstanceLogsPolicyPtrInput
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances DatabaseInstanceMaintenanceArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -719,6 +725,11 @@ func (o DatabaseInstanceOutput) LoadBalancer() DatabaseInstanceLoadBalancerOutpu
 // Logs policy configuration
 func (o DatabaseInstanceOutput) LogsPolicy() DatabaseInstanceLogsPolicyOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceLogsPolicyOutput { return v.LogsPolicy }).(DatabaseInstanceLogsPolicyOutput)
+}
+
+// List of scheduled maintenance events on the Database Instance.
+func (o DatabaseInstanceOutput) Maintenances() DatabaseInstanceMaintenanceArrayOutput {
+	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceMaintenanceArrayOutput { return v.Maintenances }).(DatabaseInstanceMaintenanceArrayOutput)
 }
 
 // The name of the Database Instance.

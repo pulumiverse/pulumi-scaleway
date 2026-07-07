@@ -400,6 +400,22 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "billing/budgetAlert",
+  "fqn": "pulumiverse_scaleway.billing",
+  "classes": {
+   "scaleway:billing/budgetAlert:BudgetAlert": "BudgetAlert"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "billing/budgetAlertNotification",
+  "fqn": "pulumiverse_scaleway.billing",
+  "classes": {
+   "scaleway:billing/budgetAlertNotification:BudgetAlertNotification": "BudgetAlertNotification"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "block/snapshot",
   "fqn": "pulumiverse_scaleway.block",
   "classes": {

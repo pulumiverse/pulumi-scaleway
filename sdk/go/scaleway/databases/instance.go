@@ -133,6 +133,8 @@ type Instance struct {
 	LoadBalancer InstanceLoadBalancerOutput `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy InstanceLogsPolicyOutput `pulumi:"logsPolicy"`
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances InstanceMaintenanceArrayOutput `pulumi:"maintenances"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -271,6 +273,8 @@ type instanceState struct {
 	LoadBalancer *InstanceLoadBalancer `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy *InstanceLogsPolicy `pulumi:"logsPolicy"`
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances []InstanceMaintenance `pulumi:"maintenances"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -360,6 +364,8 @@ type InstanceState struct {
 	LoadBalancer InstanceLoadBalancerPtrInput
 	// Logs policy configuration
 	LogsPolicy InstanceLogsPolicyPtrInput
+	// List of scheduled maintenance events on the Database Instance.
+	Maintenances InstanceMaintenanceArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -723,6 +729,11 @@ func (o InstanceOutput) LoadBalancer() InstanceLoadBalancerOutput {
 // Logs policy configuration
 func (o InstanceOutput) LogsPolicy() InstanceLogsPolicyOutput {
 	return o.ApplyT(func(v *Instance) InstanceLogsPolicyOutput { return v.LogsPolicy }).(InstanceLogsPolicyOutput)
+}
+
+// List of scheduled maintenance events on the Database Instance.
+func (o InstanceOutput) Maintenances() InstanceMaintenanceArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceMaintenanceArrayOutput { return v.Maintenances }).(InstanceMaintenanceArrayOutput)
 }
 
 // The name of the Database Instance.

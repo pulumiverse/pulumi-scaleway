@@ -109,6 +109,12 @@ namespace Pulumiverse.Scaleway
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        /// </summary>
+        [Output("wildcardDomain")]
+        public Output<bool> WildcardDomain { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a EdgeServicesDnsStage resource with the given unique name, arguments, and options.
@@ -198,6 +204,12 @@ namespace Pulumiverse.Scaleway
         [Input("tlsStageId")]
         public Input<string>? TlsStageId { get; set; }
 
+        /// <summary>
+        /// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        /// </summary>
+        [Input("wildcardDomain")]
+        public Input<bool>? WildcardDomain { get; set; }
+
         public EdgeServicesDnsStageArgs()
         {
         }
@@ -271,6 +283,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        /// </summary>
+        [Input("wildcardDomain")]
+        public Input<bool>? WildcardDomain { get; set; }
 
         public EdgeServicesDnsStageState()
         {

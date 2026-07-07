@@ -24,7 +24,8 @@ class DnsStageArgs:
                  cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DnsStage resource.
 
@@ -34,6 +35,7 @@ class DnsStageArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
         :param pulumi.Input[_builtins.str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[_builtins.bool] wildcard_domain: Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
         if backend_stage_id is not None:
@@ -46,6 +48,8 @@ class DnsStageArgs:
             pulumi.set(__self__, "project_id", project_id)
         if tls_stage_id is not None:
             pulumi.set(__self__, "tls_stage_id", tls_stage_id)
+        if wildcard_domain is not None:
+            pulumi.set(__self__, "wildcard_domain", wildcard_domain)
 
     @_builtins.property
     @pulumi.getter(name="pipelineId")
@@ -119,6 +123,18 @@ class DnsStageArgs:
     def tls_stage_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_stage_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="wildcardDomain")
+    def wildcard_domain(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        """
+        return pulumi.get(self, "wildcard_domain")
+
+    @wildcard_domain.setter
+    def wildcard_domain(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "wildcard_domain", value)
+
 
 @pulumi.input_type
 class _DnsStageState:
@@ -132,7 +148,8 @@ class _DnsStageState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DnsStage resources.
 
@@ -146,6 +163,7 @@ class _DnsStageState:
         :param pulumi.Input[_builtins.str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] type: The type of the stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the DNS stage.
+        :param pulumi.Input[_builtins.bool] wildcard_domain: Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
         """
         if backend_stage_id is not None:
             pulumi.set(__self__, "backend_stage_id", backend_stage_id)
@@ -167,6 +185,8 @@ class _DnsStageState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if wildcard_domain is not None:
+            pulumi.set(__self__, "wildcard_domain", wildcard_domain)
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
@@ -288,6 +308,18 @@ class _DnsStageState:
     def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
+    @_builtins.property
+    @pulumi.getter(name="wildcardDomain")
+    def wildcard_domain(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        """
+        return pulumi.get(self, "wildcard_domain")
+
+    @wildcard_domain.setter
+    def wildcard_domain(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "wildcard_domain", value)
+
 
 @pulumi.type_token("scaleway:edgeservices/dnsStage:DnsStage")
 class DnsStage(pulumi.CustomResource):
@@ -301,6 +333,7 @@ class DnsStage(pulumi.CustomResource):
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Edge Services DNS Stages.
@@ -335,6 +368,7 @@ class DnsStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
         :param pulumi.Input[_builtins.str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[_builtins.bool] wildcard_domain: Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
         """
         ...
     @overload
@@ -388,6 +422,7 @@ class DnsStage(pulumi.CustomResource):
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -405,6 +440,7 @@ class DnsStage(pulumi.CustomResource):
             __props__.__dict__["pipeline_id"] = pipeline_id
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tls_stage_id"] = tls_stage_id
+            __props__.__dict__["wildcard_domain"] = wildcard_domain
             __props__.__dict__["created_at"] = None
             __props__.__dict__["default_fqdn"] = None
             __props__.__dict__["type"] = None
@@ -430,7 +466,8 @@ class DnsStage(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'DnsStage':
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None) -> 'DnsStage':
         """
         Get an existing DnsStage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -448,6 +485,7 @@ class DnsStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] type: The type of the stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the DNS stage.
+        :param pulumi.Input[_builtins.bool] wildcard_domain: Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -463,6 +501,7 @@ class DnsStage(pulumi.CustomResource):
         __props__.__dict__["tls_stage_id"] = tls_stage_id
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["wildcard_domain"] = wildcard_domain
         return DnsStage(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -544,4 +583,12 @@ class DnsStage(pulumi.CustomResource):
         The date and time of the last update of the DNS stage.
         """
         return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="wildcardDomain")
+    def wildcard_domain(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+        """
+        return pulumi.get(self, "wildcard_domain")
 

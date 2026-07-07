@@ -66,9 +66,11 @@ class PoolArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
-        :param pulumi.Input[_builtins.str] name: The name for the pool.
+        :param pulumi.Input[_builtins.str] name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -274,9 +276,11 @@ class PoolArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name for the pool.
+        The name for the pool. If not provided it will be generated.
 
         > **Important:** Updates to this field will recreate a new resource.
+
+        > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         """
         return pulumi.get(self, "name")
 
@@ -503,9 +507,11 @@ class _PoolState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
-        :param pulumi.Input[_builtins.str] name: The name for the pool.
+        :param pulumi.Input[_builtins.str] name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param pulumi.Input[_builtins.str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -729,9 +735,11 @@ class _PoolState:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name for the pool.
+        The name for the pool. If not provided it will be generated.
 
         > **Important:** Updates to this field will recreate a new resource.
+
+        > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         """
         return pulumi.get(self, "name")
 
@@ -1103,9 +1111,11 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
-        :param pulumi.Input[_builtins.str] name: The name for the pool.
+        :param pulumi.Input[_builtins.str] name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param pulumi.Input[_builtins.str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -1375,9 +1385,11 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: The list of Kubernetes labels applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.int] max_size: The maximum size of the pool, used by the autoscaling feature.
         :param pulumi.Input[_builtins.int] min_size: The minimum size of the pool, used by the autoscaling feature.
-        :param pulumi.Input[_builtins.str] name: The name for the pool.
+        :param pulumi.Input[_builtins.str] name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param pulumi.Input[_builtins.str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -1537,9 +1549,11 @@ class Pool(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name for the pool.
+        The name for the pool. If not provided it will be generated.
 
         > **Important:** Updates to this field will recreate a new resource.
+
+        > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         """
         return pulumi.get(self, "name")
 

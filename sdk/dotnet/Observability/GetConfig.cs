@@ -164,15 +164,15 @@ namespace Pulumiverse.Scaleway.Observability
     public sealed class GetConfigResult
     {
         /// <summary>
-        /// Retention limits and default for custom logs data sources. (see below)
+        /// Retention limits and default for custom logs data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigCustomLogsRetentionResult> CustomLogsRetentions;
         /// <summary>
-        /// Retention limits and default for custom metrics data sources. (see below)
+        /// Retention limits and default for custom metrics data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigCustomMetricsRetentionResult> CustomMetricsRetentions;
         /// <summary>
-        /// Retention limits and default for custom traces data sources. (see below)
+        /// Retention limits and default for custom traces data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigCustomTracesRetentionResult> CustomTracesRetentions;
         /// <summary>
@@ -180,11 +180,11 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Retention limits and default for Scaleway product logs data sources. (see below)
+        /// Retention limits and default for Scaleway product logs data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigProductLogsRetentionResult> ProductLogsRetentions;
         /// <summary>
-        /// Retention limits and default for Scaleway product metrics data sources. (see below)
+        /// Retention limits and default for Scaleway product metrics data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigProductMetricsRetentionResult> ProductMetricsRetentions;
         public readonly string? Region;

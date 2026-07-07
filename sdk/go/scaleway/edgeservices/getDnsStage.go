@@ -99,12 +99,13 @@ type LookupDnsStageResult struct {
 	Fqdn           *string  `pulumi:"fqdn"`
 	Fqdns          []string `pulumi:"fqdns"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	PipelineId *string `pulumi:"pipelineId"`
-	ProjectId  string  `pulumi:"projectId"`
-	TlsStageId string  `pulumi:"tlsStageId"`
-	Type       string  `pulumi:"type"`
-	UpdatedAt  string  `pulumi:"updatedAt"`
+	Id             string  `pulumi:"id"`
+	PipelineId     *string `pulumi:"pipelineId"`
+	ProjectId      string  `pulumi:"projectId"`
+	TlsStageId     string  `pulumi:"tlsStageId"`
+	Type           string  `pulumi:"type"`
+	UpdatedAt      string  `pulumi:"updatedAt"`
+	WildcardDomain bool    `pulumi:"wildcardDomain"`
 }
 
 func LookupDnsStageOutput(ctx *pulumi.Context, args LookupDnsStageOutputArgs, opts ...pulumi.InvokeOption) LookupDnsStageResultOutput {
@@ -198,6 +199,10 @@ func (o LookupDnsStageResultOutput) Type() pulumi.StringOutput {
 
 func (o LookupDnsStageResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsStageResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupDnsStageResultOutput) WildcardDomain() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDnsStageResult) bool { return v.WildcardDomain }).(pulumi.BoolOutput)
 }
 
 func init() {

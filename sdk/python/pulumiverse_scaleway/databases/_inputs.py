@@ -21,6 +21,8 @@ __all__ = [
     'InstanceLoadBalancerArgsDict',
     'InstanceLogsPolicyArgs',
     'InstanceLogsPolicyArgsDict',
+    'InstanceMaintenanceArgs',
+    'InstanceMaintenanceArgsDict',
     'InstancePrivateIpArgs',
     'InstancePrivateIpArgsDict',
     'InstancePrivateNetworkArgs',
@@ -239,6 +241,155 @@ class InstanceLogsPolicyArgs:
     @total_disk_retention.setter
     def total_disk_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "total_disk_retention", value)
+
+
+class InstanceMaintenanceArgsDict(TypedDict):
+    closed_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Closed maintenance date.
+    """
+    forced_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Time when Scaleway-side maintenance will be applied.
+    """
+    is_applicable: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether the maintenance can be applied by the user.
+    """
+    reason: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Maintenance information message.
+    """
+    starts_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Start date of the maintenance window.
+    """
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+    """
+    stops_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    End date of the maintenance window.
+    """
+
+@pulumi.input_type
+class InstanceMaintenanceArgs:
+    def __init__(__self__, *,
+                 closed_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 forced_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_applicable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reason: pulumi.Input[Optional[_builtins.str]] = None,
+                 starts_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 stops_at: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] closed_at: Closed maintenance date.
+        :param pulumi.Input[_builtins.str] forced_at: Time when Scaleway-side maintenance will be applied.
+        :param pulumi.Input[_builtins.bool] is_applicable: Whether the maintenance can be applied by the user.
+        :param pulumi.Input[_builtins.str] reason: Maintenance information message.
+        :param pulumi.Input[_builtins.str] starts_at: Start date of the maintenance window.
+        :param pulumi.Input[_builtins.str] status: Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+        :param pulumi.Input[_builtins.str] stops_at: End date of the maintenance window.
+        """
+        if closed_at is not None:
+            pulumi.set(__self__, "closed_at", closed_at)
+        if forced_at is not None:
+            pulumi.set(__self__, "forced_at", forced_at)
+        if is_applicable is not None:
+            pulumi.set(__self__, "is_applicable", is_applicable)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if starts_at is not None:
+            pulumi.set(__self__, "starts_at", starts_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if stops_at is not None:
+            pulumi.set(__self__, "stops_at", stops_at)
+
+    @_builtins.property
+    @pulumi.getter(name="closedAt")
+    def closed_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Closed maintenance date.
+        """
+        return pulumi.get(self, "closed_at")
+
+    @closed_at.setter
+    def closed_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "closed_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forcedAt")
+    def forced_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Time when Scaleway-side maintenance will be applied.
+        """
+        return pulumi.get(self, "forced_at")
+
+    @forced_at.setter
+    def forced_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "forced_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isApplicable")
+    def is_applicable(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the maintenance can be applied by the user.
+        """
+        return pulumi.get(self, "is_applicable")
+
+    @is_applicable.setter
+    def is_applicable(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_applicable", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Maintenance information message.
+        """
+        return pulumi.get(self, "reason")
+
+    @reason.setter
+    def reason(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "reason", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Start date of the maintenance window.
+        """
+        return pulumi.get(self, "starts_at")
+
+    @starts_at.setter
+    def starts_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "starts_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="stopsAt")
+    def stops_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        End date of the maintenance window.
+        """
+        return pulumi.get(self, "stops_at")
+
+    @stops_at.setter
+    def stops_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "stops_at", value)
 
 
 class InstancePrivateIpArgsDict(TypedDict):

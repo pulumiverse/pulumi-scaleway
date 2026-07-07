@@ -1075,9 +1075,11 @@ func (o ClusterOpenIdConnectConfigPtrOutput) UsernamePrefix() pulumi.StringPtrOu
 type PoolNode struct {
 	// The ID of the IP address resource.
 	Id *string `pulumi:"id"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name *string `pulumi:"name"`
 	// The list of private IPv4 and IPv6 addresses associated with the node.
 	PrivateIps []PoolNodePrivateIp `pulumi:"privateIps"`
@@ -1107,9 +1109,11 @@ type PoolNodeInput interface {
 type PoolNodeArgs struct {
 	// The ID of the IP address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The list of private IPv4 and IPv6 addresses associated with the node.
 	PrivateIps PoolNodePrivateIpArrayInput `pulumi:"privateIps"`
@@ -1181,9 +1185,11 @@ func (o PoolNodeOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolNode) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name for the pool.
+// The name for the pool. If not provided it will be generated.
 //
 // > **Important:** Updates to this field will recreate a new resource.
+//
+// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 func (o PoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

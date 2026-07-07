@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway.Kafka
     ///     var mainCluster = new Scaleway.Kafka.Cluster("main", new()
     ///     {
     ///         Name = "my-kafka-cluster",
-    ///         Version = "3.9.0",
+    ///         Version = "4.1.1",
     ///         NodeAmount = 1,
     ///         NodeType = "KAFK-PLAY-NANO",
     ///         VolumeType = "sbs_5k",
@@ -86,7 +86,7 @@ namespace Pulumiverse.Scaleway.Kafka
     ///     var mainCluster = new Scaleway.Kafka.Cluster("main", new()
     ///     {
     ///         Name = "my-kafka-cluster",
-    ///         Version = "3.9.0",
+    ///         Version = "4.1.1",
     ///         NodeAmount = 1,
     ///         NodeType = "KAFK-PLAY-NANO",
     ///         VolumeType = "sbs_5k",
@@ -197,7 +197,7 @@ namespace Pulumiverse.Scaleway.Kafka
         public Output<string?> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        /// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -336,7 +336,7 @@ namespace Pulumiverse.Scaleway.Kafka
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        /// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -462,7 +462,7 @@ namespace Pulumiverse.Scaleway.Kafka
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+        /// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

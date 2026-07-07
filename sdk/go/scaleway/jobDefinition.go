@@ -138,6 +138,8 @@ type JobDefinition struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Defines a retry policy for the job.
+	RetryPolicy JobDefinitionRetryPolicyPtrOutput `pulumi:"retryPolicy"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayOutput `pulumi:"secretReferences"`
 	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
@@ -214,6 +216,8 @@ type jobDefinitionState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region *string `pulumi:"region"`
+	// Defines a retry policy for the job.
+	RetryPolicy *JobDefinitionRetryPolicy `pulumi:"retryPolicy"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences []JobDefinitionSecretReference `pulumi:"secretReferences"`
 	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
@@ -249,6 +253,8 @@ type JobDefinitionState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the Job.
 	Region pulumi.StringPtrInput
+	// Defines a retry policy for the job.
+	RetryPolicy JobDefinitionRetryPolicyPtrInput
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayInput
 	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
@@ -288,6 +294,8 @@ type jobDefinitionArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region *string `pulumi:"region"`
+	// Defines a retry policy for the job.
+	RetryPolicy *JobDefinitionRetryPolicy `pulumi:"retryPolicy"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences []JobDefinitionSecretReference `pulumi:"secretReferences"`
 	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
@@ -324,6 +332,8 @@ type JobDefinitionArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the Job.
 	Region pulumi.StringPtrInput
+	// Defines a retry policy for the job.
+	RetryPolicy JobDefinitionRetryPolicyPtrInput
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayInput
 	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
@@ -479,6 +489,11 @@ func (o JobDefinitionOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region of the Job.
 func (o JobDefinitionOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *JobDefinition) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// Defines a retry policy for the job.
+func (o JobDefinitionOutput) RetryPolicy() JobDefinitionRetryPolicyPtrOutput {
+	return o.ApplyT(func(v *JobDefinition) JobDefinitionRetryPolicyPtrOutput { return v.RetryPolicy }).(JobDefinitionRetryPolicyPtrOutput)
 }
 
 // A reference to a secret stored in Secret Manager.

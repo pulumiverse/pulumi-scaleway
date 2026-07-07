@@ -276,7 +276,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
 
         <!--- Links, invisible in the final document --->
 
-        [1]: ../index.md#project_id
+        [1]: ../index.md#arguments-reference
 
 
         :param str resource_name: The name of the resource.
@@ -392,7 +392,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
 
         <!--- Links, invisible in the final document --->
 
-        [1]: ../index.md#project_id
+        [1]: ../index.md#arguments-reference
 
 
         :param str resource_name: The name of the resource.

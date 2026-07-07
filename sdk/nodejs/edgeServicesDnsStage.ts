@@ -100,6 +100,10 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
      * The date and time of the last update of the DNS stage.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    /**
+     * Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+     */
+    declare public readonly wildcardDomain: pulumi.Output<boolean>;
 
     /**
      * Create a EdgeServicesDnsStage resource with the given unique name, arguments, and options.
@@ -127,6 +131,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
             resourceInputs["tlsStageId"] = state?.tlsStageId;
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["wildcardDomain"] = state?.wildcardDomain;
         } else {
             const args = argsOrState as EdgeServicesDnsStageArgs | undefined;
             if (args?.pipelineId === undefined && !opts.urn) {
@@ -138,6 +143,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
             resourceInputs["pipelineId"] = args?.pipelineId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["tlsStageId"] = args?.tlsStageId;
+            resourceInputs["wildcardDomain"] = args?.wildcardDomain;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["defaultFqdn"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
@@ -192,6 +198,10 @@ export interface EdgeServicesDnsStageState {
      * The date and time of the last update of the DNS stage.
      */
     updatedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+     */
+    wildcardDomain?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -222,4 +232,8 @@ export interface EdgeServicesDnsStageArgs {
      * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     tlsStageId?: pulumi.Input<string | undefined>;
+    /**
+     * Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+     */
+    wildcardDomain?: pulumi.Input<boolean | undefined>;
 }

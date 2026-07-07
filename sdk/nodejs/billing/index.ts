@@ -10,10 +10,30 @@ export type Budget = import("./budget").Budget;
 export const Budget: typeof import("./budget").Budget = null as any;
 utilities.lazyLoad(exports, ["Budget"], () => require("./budget"));
 
+export { BudgetAlertArgs, BudgetAlertState } from "./budgetAlert";
+export type BudgetAlert = import("./budgetAlert").BudgetAlert;
+export const BudgetAlert: typeof import("./budgetAlert").BudgetAlert = null as any;
+utilities.lazyLoad(exports, ["BudgetAlert"], () => require("./budgetAlert"));
+
+export { BudgetAlertNotificationArgs, BudgetAlertNotificationState } from "./budgetAlertNotification";
+export type BudgetAlertNotification = import("./budgetAlertNotification").BudgetAlertNotification;
+export const BudgetAlertNotification: typeof import("./budgetAlertNotification").BudgetAlertNotification = null as any;
+utilities.lazyLoad(exports, ["BudgetAlertNotification"], () => require("./budgetAlertNotification"));
+
 export { GetBudgetArgs, GetBudgetResult, GetBudgetOutputArgs } from "./getBudget";
 export const getBudget: typeof import("./getBudget").getBudget = null as any;
 export const getBudgetOutput: typeof import("./getBudget").getBudgetOutput = null as any;
 utilities.lazyLoad(exports, ["getBudget","getBudgetOutput"], () => require("./getBudget"));
+
+export { GetBudgetAlertArgs, GetBudgetAlertResult, GetBudgetAlertOutputArgs } from "./getBudgetAlert";
+export const getBudgetAlert: typeof import("./getBudgetAlert").getBudgetAlert = null as any;
+export const getBudgetAlertOutput: typeof import("./getBudgetAlert").getBudgetAlertOutput = null as any;
+utilities.lazyLoad(exports, ["getBudgetAlert","getBudgetAlertOutput"], () => require("./getBudgetAlert"));
+
+export { GetBudgetAlertNotificationArgs, GetBudgetAlertNotificationResult, GetBudgetAlertNotificationOutputArgs } from "./getBudgetAlertNotification";
+export const getBudgetAlertNotification: typeof import("./getBudgetAlertNotification").getBudgetAlertNotification = null as any;
+export const getBudgetAlertNotificationOutput: typeof import("./getBudgetAlertNotification").getBudgetAlertNotificationOutput = null as any;
+utilities.lazyLoad(exports, ["getBudgetAlertNotification","getBudgetAlertNotificationOutput"], () => require("./getBudgetAlertNotification"));
 
 export { GetConsumptionsArgs, GetConsumptionsResult, GetConsumptionsOutputArgs } from "./getConsumptions";
 export const getConsumptions: typeof import("./getConsumptions").getConsumptions = null as any;
@@ -32,9 +52,15 @@ const _module = {
         switch (type) {
             case "scaleway:billing/budget:Budget":
                 return new Budget(name, <any>undefined, { urn })
+            case "scaleway:billing/budgetAlert:BudgetAlert":
+                return new BudgetAlert(name, <any>undefined, { urn })
+            case "scaleway:billing/budgetAlertNotification:BudgetAlertNotification":
+                return new BudgetAlertNotification(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "billing/budget", _module)
+pulumi.runtime.registerResourceModule("scaleway", "billing/budgetAlert", _module)
+pulumi.runtime.registerResourceModule("scaleway", "billing/budgetAlertNotification", _module)

@@ -170,9 +170,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     declare public readonly minSize: pulumi.Output<number>;
     /**
-     * The name for the pool.
+     * The name for the pool. If not provided it will be generated.
      *
      * > **Important:** Updates to this field will recreate a new resource.
+     *
+     * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -405,9 +407,11 @@ export interface KubernetesNodePoolState {
      */
     minSize?: pulumi.Input<number | undefined>;
     /**
-     * The name for the pool.
+     * The name for the pool. If not provided it will be generated.
      *
      * > **Important:** Updates to this field will recreate a new resource.
+     *
+     * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -542,9 +546,11 @@ export interface KubernetesNodePoolArgs {
      */
     minSize?: pulumi.Input<number | undefined>;
     /**
-     * The name for the pool.
+     * The name for the pool. If not provided it will be generated.
      *
      * > **Important:** Updates to this field will recreate a new resource.
+     *
+     * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
      */
     name?: pulumi.Input<string | undefined>;
     /**

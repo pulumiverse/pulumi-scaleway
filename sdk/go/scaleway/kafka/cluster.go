@@ -51,7 +51,7 @@ import (
 //			}
 //			_, err = kafka.NewCluster(ctx, "main", &kafka.ClusterArgs{
 //				Name:           pulumi.String("my-kafka-cluster"),
-//				Version:        pulumi.String("3.9.0"),
+//				Version:        pulumi.String("4.1.1"),
 //				NodeAmount:     pulumi.Int(1),
 //				NodeType:       pulumi.String("KAFK-PLAY-NANO"),
 //				VolumeType:     pulumi.String("sbs_5k"),
@@ -103,7 +103,7 @@ import (
 //			}
 //			_, err = kafka.NewCluster(ctx, "main", &kafka.ClusterArgs{
 //				Name:           pulumi.String("my-kafka-cluster"),
-//				Version:        pulumi.String("3.9.0"),
+//				Version:        pulumi.String("4.1.1"),
 //				NodeAmount:     pulumi.Int(1),
 //				NodeType:       pulumi.String("KAFK-PLAY-NANO"),
 //				VolumeType:     pulumi.String("sbs_5k"),
@@ -163,7 +163,7 @@ type Cluster struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+	// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Volume size in GB. Changing this forces recreation of the cluster.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
@@ -249,7 +249,7 @@ type clusterState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
 	UserName *string `pulumi:"userName"`
-	// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+	// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 	Version *string `pulumi:"version"`
 	// Volume size in GB. Changing this forces recreation of the cluster.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
@@ -284,7 +284,7 @@ type ClusterState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
 	UserName pulumi.StringPtrInput
-	// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+	// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 	Version pulumi.StringPtrInput
 	// Volume size in GB. Changing this forces recreation of the cluster.
 	VolumeSizeInGb pulumi.IntPtrInput
@@ -315,7 +315,7 @@ type clusterArgs struct {
 	Tags []string `pulumi:"tags"`
 	// Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
 	UserName *string `pulumi:"userName"`
-	// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+	// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 	Version string `pulumi:"version"`
 	// Volume size in GB. Changing this forces recreation of the cluster.
 	VolumeSizeInGb int `pulumi:"volumeSizeInGb"`
@@ -343,7 +343,7 @@ type ClusterArgs struct {
 	Tags pulumi.StringArrayInput
 	// Username for the Kafka user. If not specified, no user will be created. Changing this forces recreation of the cluster.
 	UserName pulumi.StringPtrInput
-	// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+	// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 	Version pulumi.StringInput
 	// Volume size in GB. Changing this forces recreation of the cluster.
 	VolumeSizeInGb pulumi.IntInput
@@ -503,7 +503,7 @@ func (o ClusterOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
-// Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+// Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
 func (o ClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

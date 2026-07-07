@@ -16,6 +16,7 @@ from .. import _utilities
 
 __all__ = [
     'DefinitionCron',
+    'DefinitionRetryPolicy',
     'DefinitionSecretReference',
 ]
 
@@ -46,6 +47,42 @@ class DefinitionCron(dict):
         The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
         """
         return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
+class DefinitionRetryPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxRetries":
+            suggest = "max_retries"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DefinitionRetryPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DefinitionRetryPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DefinitionRetryPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_retries: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max_retries: The maximum number of retries upon job failure.
+        """
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of retries upon job failure.
+        """
+        return pulumi.get(self, "max_retries")
 
 
 @pulumi.output_type

@@ -33,6 +33,7 @@ class JobDefinitionArgs:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_policy: pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']] = None,
                  secret_references: pulumi.Input[Optional[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None):
@@ -51,6 +52,7 @@ class JobDefinitionArgs:
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
+        :param pulumi.Input['JobDefinitionRetryPolicyArgs'] retry_policy: Defines a retry policy for the job.
         :param pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -78,6 +80,8 @@ class JobDefinitionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if retry_policy is not None:
+            pulumi.set(__self__, "retry_policy", retry_policy)
         if secret_references is not None:
             pulumi.set(__self__, "secret_references", secret_references)
         if startup_commands is not None:
@@ -231,6 +235,18 @@ class JobDefinitionArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="retryPolicy")
+    def retry_policy(self) -> pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']]:
+        """
+        Defines a retry policy for the job.
+        """
+        return pulumi.get(self, "retry_policy")
+
+    @retry_policy.setter
+    def retry_policy(self, value: pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']]):
+        pulumi.set(self, "retry_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretReferences")
     def secret_references(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]:
         """
@@ -282,6 +298,7 @@ class _JobDefinitionState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_policy: pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']] = None,
                  secret_references: pulumi.Input[Optional[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None):
@@ -300,6 +317,7 @@ class _JobDefinitionState:
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
+        :param pulumi.Input['JobDefinitionRetryPolicyArgs'] retry_policy: Defines a retry policy for the job.
         :param pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -331,6 +349,8 @@ class _JobDefinitionState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if retry_policy is not None:
+            pulumi.set(__self__, "retry_policy", retry_policy)
         if secret_references is not None:
             pulumi.set(__self__, "secret_references", secret_references)
         if startup_commands is not None:
@@ -484,6 +504,18 @@ class _JobDefinitionState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="retryPolicy")
+    def retry_policy(self) -> pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']]:
+        """
+        Defines a retry policy for the job.
+        """
+        return pulumi.get(self, "retry_policy")
+
+    @retry_policy.setter
+    def retry_policy(self, value: pulumi.Input[Optional['JobDefinitionRetryPolicyArgs']]):
+        pulumi.set(self, "retry_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretReferences")
     def secret_references(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]:
         """
@@ -543,6 +575,7 @@ class JobDefinition(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_policy: pulumi.Input[Optional[Union['JobDefinitionRetryPolicyArgs', 'JobDefinitionRetryPolicyArgsDict']]] = None,
                  secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
@@ -627,6 +660,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
+        :param pulumi.Input[Union['JobDefinitionRetryPolicyArgs', 'JobDefinitionRetryPolicyArgsDict']] retry_policy: Defines a retry policy for the job.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -730,6 +764,7 @@ class JobDefinition(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_policy: pulumi.Input[Optional[Union['JobDefinitionRetryPolicyArgs', 'JobDefinitionRetryPolicyArgsDict']]] = None,
                  secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
@@ -763,6 +798,7 @@ class JobDefinition(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["retry_policy"] = retry_policy
             __props__.__dict__["secret_references"] = secret_references
             __props__.__dict__["startup_commands"] = startup_commands
             __props__.__dict__["timeout"] = timeout
@@ -788,6 +824,7 @@ class JobDefinition(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            retry_policy: pulumi.Input[Optional[Union['JobDefinitionRetryPolicyArgs', 'JobDefinitionRetryPolicyArgsDict']]] = None,
             secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
             startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             timeout: pulumi.Input[Optional[_builtins.str]] = None) -> 'JobDefinition':
@@ -810,6 +847,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
+        :param pulumi.Input[Union['JobDefinitionRetryPolicyArgs', 'JobDefinitionRetryPolicyArgsDict']] retry_policy: Defines a retry policy for the job.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -830,6 +868,7 @@ class JobDefinition(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["retry_policy"] = retry_policy
         __props__.__dict__["secret_references"] = secret_references
         __props__.__dict__["startup_commands"] = startup_commands
         __props__.__dict__["timeout"] = timeout
@@ -931,6 +970,14 @@ class JobDefinition(pulumi.CustomResource):
         `region`) The region of the Job.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="retryPolicy")
+    def retry_policy(self) -> pulumi.Output[Optional['outputs.JobDefinitionRetryPolicy']]:
+        """
+        Defines a retry policy for the job.
+        """
+        return pulumi.get(self, "retry_policy")
 
     @_builtins.property
     @pulumi.getter(name="secretReferences")
