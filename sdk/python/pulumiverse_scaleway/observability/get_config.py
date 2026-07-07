@@ -54,7 +54,7 @@ class GetConfigResult:
     @pulumi.getter(name="customLogsRetentions")
     def custom_logs_retentions(self) -> Sequence['outputs.GetConfigCustomLogsRetentionResult']:
         """
-        Retention limits and default for custom logs data sources. (see below)
+        Retention limits and default for custom logs data sources.
         """
         return pulumi.get(self, "custom_logs_retentions")
 
@@ -62,7 +62,7 @@ class GetConfigResult:
     @pulumi.getter(name="customMetricsRetentions")
     def custom_metrics_retentions(self) -> Sequence['outputs.GetConfigCustomMetricsRetentionResult']:
         """
-        Retention limits and default for custom metrics data sources. (see below)
+        Retention limits and default for custom metrics data sources.
         """
         return pulumi.get(self, "custom_metrics_retentions")
 
@@ -70,7 +70,7 @@ class GetConfigResult:
     @pulumi.getter(name="customTracesRetentions")
     def custom_traces_retentions(self) -> Sequence['outputs.GetConfigCustomTracesRetentionResult']:
         """
-        Retention limits and default for custom traces data sources. (see below)
+        Retention limits and default for custom traces data sources.
         """
         return pulumi.get(self, "custom_traces_retentions")
 
@@ -86,7 +86,7 @@ class GetConfigResult:
     @pulumi.getter(name="productLogsRetentions")
     def product_logs_retentions(self) -> Sequence['outputs.GetConfigProductLogsRetentionResult']:
         """
-        Retention limits and default for Scaleway product logs data sources. (see below)
+        Retention limits and default for Scaleway product logs data sources.
         """
         return pulumi.get(self, "product_logs_retentions")
 
@@ -94,7 +94,7 @@ class GetConfigResult:
     @pulumi.getter(name="productMetricsRetentions")
     def product_metrics_retentions(self) -> Sequence['outputs.GetConfigProductMetricsRetentionResult']:
         """
-        Retention limits and default for Scaleway product metrics data sources. (see below)
+        Retention limits and default for Scaleway product metrics data sources.
         """
         return pulumi.get(self, "product_metrics_retentions")
 

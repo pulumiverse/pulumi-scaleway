@@ -185,9 +185,11 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Output<int> MinSize { get; private set; } = null!;
 
         /// <summary>
-        /// The name for the pool.
+        /// The name for the pool. If not provided it will be generated.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// 
+        /// &gt; Note: In order to use the `CreateBeforeDestroy` option of the `Lifecycle` field, `Name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -433,9 +435,11 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Input<int>? MinSize { get; set; }
 
         /// <summary>
-        /// The name for the pool.
+        /// The name for the pool. If not provided it will be generated.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// 
+        /// &gt; Note: In order to use the `CreateBeforeDestroy` option of the `Lifecycle` field, `Name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -650,9 +654,11 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Input<int>? MinSize { get; set; }
 
         /// <summary>
-        /// The name for the pool.
+        /// The name for the pool. If not provided it will be generated.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// 
+        /// &gt; Note: In order to use the `CreateBeforeDestroy` option of the `Lifecycle` field, `Name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

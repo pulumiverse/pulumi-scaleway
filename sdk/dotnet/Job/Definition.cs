@@ -173,6 +173,12 @@ namespace Pulumiverse.Scaleway.Job
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// Defines a retry policy for the job.
+        /// </summary>
+        [Output("retryPolicy")]
+        public Output<Outputs.DefinitionRetryPolicy?> RetryPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// A reference to a secret stored in Secret Manager.
         /// </summary>
         [Output("secretReferences")]
@@ -325,6 +331,12 @@ namespace Pulumiverse.Scaleway.Job
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// Defines a retry policy for the job.
+        /// </summary>
+        [Input("retryPolicy")]
+        public Input<Inputs.DefinitionRetryPolicyArgs>? RetryPolicy { get; set; }
+
         [Input("secretReferences")]
         private InputList<Inputs.DefinitionSecretReferenceArgs>? _secretReferences;
 
@@ -446,6 +458,12 @@ namespace Pulumiverse.Scaleway.Job
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Defines a retry policy for the job.
+        /// </summary>
+        [Input("retryPolicy")]
+        public Input<Inputs.DefinitionRetryPolicyGetArgs>? RetryPolicy { get; set; }
 
         [Input("secretReferences")]
         private InputList<Inputs.DefinitionSecretReferenceGetArgs>? _secretReferences;

@@ -168,6 +168,25 @@
                 "current": "scaleway:billing/budget:Budget",
                 "majorVersion": 1
             },
+            "scaleway_billing_budget_alert": {
+                "current": "scaleway:billing/budgetAlert:BudgetAlert",
+                "majorVersion": 1
+            },
+            "scaleway_billing_budget_alert_notification": {
+                "current": "scaleway:billing/budgetAlertNotification:BudgetAlertNotification",
+                "majorVersion": 1,
+                "fields": {
+                    "email_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "sms_phone_numbers": {
+                        "maxItemsOne": false
+                    },
+                    "webhook_urls": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_block_snapshot": {
                 "current": "scaleway:block/snapshot:Snapshot",
                 "past": [
@@ -1552,6 +1571,9 @@
                     "cron": {
                         "maxItemsOne": true
                     },
+                    "retry_policy": {
+                        "maxItemsOne": true
+                    },
                     "secret_reference": {
                         "maxItemsOne": false
                     },
@@ -2322,6 +2344,9 @@
                     "logs_policy": {
                         "maxItemsOne": true
                     },
+                    "maintenances": {
+                        "maxItemsOne": false
+                    },
                     "private_ip": {
                         "maxItemsOne": false
                     },
@@ -3017,6 +3042,19 @@
             "scaleway_billing_budget": {
                 "current": "scaleway:billing/getBudget:getBudget",
                 "majorVersion": 1
+            },
+            "scaleway_billing_budget_alert": {
+                "current": "scaleway:billing/getBudgetAlert:getBudgetAlert",
+                "majorVersion": 1
+            },
+            "scaleway_billing_budget_alert_notification": {
+                "current": "scaleway:billing/getBudgetAlertNotification:getBudgetAlertNotification",
+                "majorVersion": 1,
+                "fields": {
+                    "recipients": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_billing_consumptions": {
                 "current": "scaleway:billing/getConsumptions:getConsumptions",
@@ -4942,6 +4980,9 @@
                     "logs_policy": {
                         "maxItemsOne": false
                     },
+                    "maintenances": {
+                        "maxItemsOne": false
+                    },
                     "private_ip": {
                         "maxItemsOne": false
                     },
@@ -6472,6 +6513,8 @@
             "scaleway:autoscaling/instancePolicy:InstancePolicy": 0,
             "scaleway:autoscaling/instanceTemplate:InstanceTemplate": 0,
             "scaleway:billing/budget:Budget": 1,
+            "scaleway:billing/budgetAlert:BudgetAlert": 1,
+            "scaleway:billing/budgetAlertNotification:BudgetAlertNotification": 1,
             "scaleway:block/snapshot:Snapshot": 0,
             "scaleway:block/volume:Volume": 0,
             "scaleway:containers/container:Container": 0,
@@ -6740,6 +6783,8 @@
             "scaleway:autoscaling/getInstanceGroup:getInstanceGroup": 0,
             "scaleway:autoscaling/getInstancePolicy:getInstancePolicy": 0,
             "scaleway:billing/getBudget:getBudget": 1,
+            "scaleway:billing/getBudgetAlert:getBudgetAlert": 1,
+            "scaleway:billing/getBudgetAlertNotification:getBudgetAlertNotification": 1,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,

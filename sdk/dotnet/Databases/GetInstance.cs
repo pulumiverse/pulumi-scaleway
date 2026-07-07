@@ -128,6 +128,7 @@ namespace Pulumiverse.Scaleway.Databases
         public readonly bool IsHaCluster;
         public readonly ImmutableArray<Outputs.GetInstanceLoadBalancerResult> LoadBalancers;
         public readonly ImmutableArray<Outputs.GetInstanceLogsPolicyResult> LogsPolicies;
+        public readonly ImmutableArray<Outputs.GetInstanceMaintenanceResult> Maintenances;
         public readonly string? Name;
         public readonly string NodeType;
         public readonly string OrganizationId;
@@ -178,6 +179,8 @@ namespace Pulumiverse.Scaleway.Databases
             ImmutableArray<Outputs.GetInstanceLoadBalancerResult> loadBalancers,
 
             ImmutableArray<Outputs.GetInstanceLogsPolicyResult> logsPolicies,
+
+            ImmutableArray<Outputs.GetInstanceMaintenanceResult> maintenances,
 
             string? name,
 
@@ -230,6 +233,7 @@ namespace Pulumiverse.Scaleway.Databases
             IsHaCluster = isHaCluster;
             LoadBalancers = loadBalancers;
             LogsPolicies = logsPolicies;
+            Maintenances = maintenances;
             Name = name;
             NodeType = nodeType;
             OrganizationId = organizationId;

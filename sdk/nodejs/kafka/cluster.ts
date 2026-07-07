@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * });
  * const mainCluster = new scaleway.kafka.Cluster("main", {
  *     name: "my-kafka-cluster",
- *     version: "3.9.0",
+ *     version: "4.1.1",
  *     nodeAmount: 1,
  *     nodeType: "KAFK-PLAY-NANO",
  *     volumeType: "sbs_5k",
@@ -61,7 +61,7 @@ import * as utilities from "../utilities";
  * });
  * const mainCluster = new scaleway.kafka.Cluster("main", {
  *     name: "my-kafka-cluster",
- *     version: "3.9.0",
+ *     version: "4.1.1",
  *     nodeAmount: 1,
  *     nodeType: "KAFK-PLAY-NANO",
  *     volumeType: "sbs_5k",
@@ -167,7 +167,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly userName: pulumi.Output<string | undefined>;
     /**
-     * Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+     * Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
      */
     declare public readonly version: pulumi.Output<string>;
     /**
@@ -306,7 +306,7 @@ export interface ClusterState {
      */
     userName?: pulumi.Input<string | undefined>;
     /**
-     * Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+     * Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
      */
     version?: pulumi.Input<string | undefined>;
     /**
@@ -360,7 +360,7 @@ export interface ClusterArgs {
      */
     userName?: pulumi.Input<string | undefined>;
     /**
-     * Kafka version to use (e.g., "3.9.0"). Changing this forces recreation of the cluster.
+     * Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
      */
     version: pulumi.Input<string>;
     /**

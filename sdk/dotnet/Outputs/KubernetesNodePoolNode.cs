@@ -19,9 +19,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The name for the pool.
+        /// The name for the pool. If not provided it will be generated.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// 
+        /// &gt; Note: In order to use the `CreateBeforeDestroy` option of the `Lifecycle` field, `Name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         /// </summary>
         public readonly string? Name;
         /// <summary>

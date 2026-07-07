@@ -68,6 +68,7 @@ export interface GetInstanceResult {
     readonly isHaCluster: boolean;
     readonly loadBalancers: outputs.databases.GetInstanceLoadBalancer[];
     readonly logsPolicies: outputs.databases.GetInstanceLogsPolicy[];
+    readonly maintenances: outputs.databases.GetInstanceMaintenance[];
     readonly name?: string;
     readonly nodeType: string;
     readonly organizationId: string;

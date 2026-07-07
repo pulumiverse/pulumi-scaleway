@@ -162,9 +162,11 @@ type Pool struct {
 	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntOutput `pulumi:"minSize"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	//
@@ -290,9 +292,11 @@ type poolState struct {
 	MaxSize *int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize *int `pulumi:"minSize"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name *string `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	//
@@ -374,9 +378,11 @@ type PoolState struct {
 	MaxSize pulumi.IntPtrInput
 	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntPtrInput
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name pulumi.StringPtrInput
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	//
@@ -458,9 +464,11 @@ type poolArgs struct {
 	MaxSize *int `pulumi:"maxSize"`
 	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize *int `pulumi:"minSize"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name *string `pulumi:"name"`
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	//
@@ -533,9 +541,11 @@ type PoolArgs struct {
 	MaxSize pulumi.IntPtrInput
 	// The minimum size of the pool, used by the autoscaling feature.
 	MinSize pulumi.IntPtrInput
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name pulumi.StringPtrInput
 	// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
 	//
@@ -727,9 +737,11 @@ func (o PoolOutput) MinSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pool) pulumi.IntOutput { return v.MinSize }).(pulumi.IntOutput)
 }
 
-// The name for the pool.
+// The name for the pool. If not provided it will be generated.
 //
 // > **Important:** Updates to this field will recreate a new resource.
+//
+// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 func (o PoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

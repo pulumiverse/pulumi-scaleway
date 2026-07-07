@@ -177,7 +177,7 @@ namespace Pulumiverse.Scaleway.Object
     /// 
     /// &lt;!--- Links, invisible in the final document ---&gt;
     /// 
-    /// [1]: ../index.md#project_id
+    /// [1]: ../index.md#arguments-reference
     /// </summary>
     [ScalewayResourceType("scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration")]
     public partial class BucketServerSideEncryptionConfiguration : global::Pulumi.CustomResource

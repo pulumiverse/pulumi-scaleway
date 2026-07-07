@@ -75,6 +75,8 @@ type DnsStage struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the DNS stage.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+	WildcardDomain pulumi.BoolOutput `pulumi:"wildcardDomain"`
 }
 
 // NewDnsStage registers a new resource with the given unique name, arguments, and options.
@@ -136,6 +138,8 @@ type dnsStageState struct {
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the DNS stage.
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+	WildcardDomain *bool `pulumi:"wildcardDomain"`
 }
 
 type DnsStageState struct {
@@ -159,6 +163,8 @@ type DnsStageState struct {
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the DNS stage.
 	UpdatedAt pulumi.StringPtrInput
+	// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+	WildcardDomain pulumi.BoolPtrInput
 }
 
 func (DnsStageState) ElementType() reflect.Type {
@@ -178,6 +184,8 @@ type dnsStageArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId *string `pulumi:"tlsStageId"`
+	// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+	WildcardDomain *bool `pulumi:"wildcardDomain"`
 }
 
 // The set of arguments for constructing a DnsStage resource.
@@ -194,6 +202,8 @@ type DnsStageArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId pulumi.StringPtrInput
+	// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+	WildcardDomain pulumi.BoolPtrInput
 }
 
 func (DnsStageArgs) ElementType() reflect.Type {
@@ -331,6 +341,11 @@ func (o DnsStageOutput) Type() pulumi.StringOutput {
 // The date and time of the last update of the DNS stage.
 func (o DnsStageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsStage) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Defines whether wildcard (subdomains) is supported for the given domain. A wildcard certificate is required to make it work.
+func (o DnsStageOutput) WildcardDomain() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DnsStage) pulumi.BoolOutput { return v.WildcardDomain }).(pulumi.BoolOutput)
 }
 
 type DnsStageArrayOutput struct{ *pulumi.OutputState }

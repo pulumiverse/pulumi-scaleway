@@ -204,7 +204,7 @@ import (
 //
 // <!--- Links, invisible in the final document --->
 //
-// [1]: ../index.md#project_id
+// [1]: ../index.md#arguments-reference
 type BucketServerSideEncryptionConfiguration struct {
 	pulumi.CustomResourceState
 

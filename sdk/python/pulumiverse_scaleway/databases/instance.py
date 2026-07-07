@@ -482,6 +482,7 @@ class _InstanceState:
                  is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
                  load_balancer: pulumi.Input[Optional['InstanceLoadBalancerArgs']] = None,
                  logs_policy: pulumi.Input[Optional['InstanceLogsPolicyArgs']] = None,
+                 maintenances: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceMaintenanceArgs']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -524,6 +525,7 @@ class _InstanceState:
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input['InstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['InstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceMaintenanceArgs']]] maintenances: List of scheduled maintenance events on the Database Instance.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -587,6 +589,8 @@ class _InstanceState:
             pulumi.set(__self__, "load_balancer", load_balancer)
         if logs_policy is not None:
             pulumi.set(__self__, "logs_policy", logs_policy)
+        if maintenances is not None:
+            pulumi.set(__self__, "maintenances", maintenances)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_type is not None:
@@ -789,6 +793,18 @@ class _InstanceState:
     @logs_policy.setter
     def logs_policy(self, value: pulumi.Input[Optional['InstanceLogsPolicyArgs']]):
         pulumi.set(self, "logs_policy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def maintenances(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InstanceMaintenanceArgs']]]]:
+        """
+        List of scheduled maintenance events on the Database Instance.
+        """
+        return pulumi.get(self, "maintenances")
+
+    @maintenances.setter
+    def maintenances(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceMaintenanceArgs']]]]):
+        pulumi.set(self, "maintenances", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1286,6 +1302,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["endpoint_ip"] = None
             __props__.__dict__["endpoint_port"] = None
+            __props__.__dict__["maintenances"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["read_replicas"] = None
             __props__.__dict__["upgradable_versions"] = None
@@ -1316,6 +1333,7 @@ class Instance(pulumi.CustomResource):
             is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
             load_balancer: pulumi.Input[Optional[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']]] = None,
             logs_policy: pulumi.Input[Optional[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']]] = None,
+            maintenances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceMaintenanceArgs', 'InstanceMaintenanceArgsDict']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1362,6 +1380,7 @@ class Instance(pulumi.CustomResource):
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Union['InstanceLoadBalancerArgs', 'InstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input[Union['InstanceLogsPolicyArgs', 'InstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceMaintenanceArgs', 'InstanceMaintenanceArgsDict']]]] maintenances: List of scheduled maintenance events on the Database Instance.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1410,6 +1429,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["is_ha_cluster"] = is_ha_cluster
         __props__.__dict__["load_balancer"] = load_balancer
         __props__.__dict__["logs_policy"] = logs_policy
+        __props__.__dict__["maintenances"] = maintenances
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["organization_id"] = organization_id
@@ -1543,6 +1563,14 @@ class Instance(pulumi.CustomResource):
         Logs policy configuration
         """
         return pulumi.get(self, "logs_policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def maintenances(self) -> pulumi.Output[Sequence['outputs.InstanceMaintenance']]:
+        """
+        List of scheduled maintenance events on the Database Instance.
+        """
+        return pulumi.get(self, "maintenances")
 
     @_builtins.property
     @pulumi.getter

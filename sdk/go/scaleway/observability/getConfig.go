@@ -69,17 +69,17 @@ type GetConfigArgs struct {
 
 // A collection of values returned by getConfig.
 type GetConfigResult struct {
-	// Retention limits and default for custom logs data sources. (see below)
+	// Retention limits and default for custom logs data sources.
 	CustomLogsRetentions []GetConfigCustomLogsRetention `pulumi:"customLogsRetentions"`
-	// Retention limits and default for custom metrics data sources. (see below)
+	// Retention limits and default for custom metrics data sources.
 	CustomMetricsRetentions []GetConfigCustomMetricsRetention `pulumi:"customMetricsRetentions"`
-	// Retention limits and default for custom traces data sources. (see below)
+	// Retention limits and default for custom traces data sources.
 	CustomTracesRetentions []GetConfigCustomTracesRetention `pulumi:"customTracesRetentions"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Retention limits and default for Scaleway product logs data sources. (see below)
+	// Retention limits and default for Scaleway product logs data sources.
 	ProductLogsRetentions []GetConfigProductLogsRetention `pulumi:"productLogsRetentions"`
-	// Retention limits and default for Scaleway product metrics data sources. (see below)
+	// Retention limits and default for Scaleway product metrics data sources.
 	ProductMetricsRetentions []GetConfigProductMetricsRetention `pulumi:"productMetricsRetentions"`
 	Region                   *string                            `pulumi:"region"`
 }
@@ -118,17 +118,17 @@ func (o GetConfigResultOutput) ToGetConfigResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// Retention limits and default for custom logs data sources. (see below)
+// Retention limits and default for custom logs data sources.
 func (o GetConfigResultOutput) CustomLogsRetentions() GetConfigCustomLogsRetentionArrayOutput {
 	return o.ApplyT(func(v GetConfigResult) []GetConfigCustomLogsRetention { return v.CustomLogsRetentions }).(GetConfigCustomLogsRetentionArrayOutput)
 }
 
-// Retention limits and default for custom metrics data sources. (see below)
+// Retention limits and default for custom metrics data sources.
 func (o GetConfigResultOutput) CustomMetricsRetentions() GetConfigCustomMetricsRetentionArrayOutput {
 	return o.ApplyT(func(v GetConfigResult) []GetConfigCustomMetricsRetention { return v.CustomMetricsRetentions }).(GetConfigCustomMetricsRetentionArrayOutput)
 }
 
-// Retention limits and default for custom traces data sources. (see below)
+// Retention limits and default for custom traces data sources.
 func (o GetConfigResultOutput) CustomTracesRetentions() GetConfigCustomTracesRetentionArrayOutput {
 	return o.ApplyT(func(v GetConfigResult) []GetConfigCustomTracesRetention { return v.CustomTracesRetentions }).(GetConfigCustomTracesRetentionArrayOutput)
 }
@@ -138,12 +138,12 @@ func (o GetConfigResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConfigResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Retention limits and default for Scaleway product logs data sources. (see below)
+// Retention limits and default for Scaleway product logs data sources.
 func (o GetConfigResultOutput) ProductLogsRetentions() GetConfigProductLogsRetentionArrayOutput {
 	return o.ApplyT(func(v GetConfigResult) []GetConfigProductLogsRetention { return v.ProductLogsRetentions }).(GetConfigProductLogsRetentionArrayOutput)
 }
 
-// Retention limits and default for Scaleway product metrics data sources. (see below)
+// Retention limits and default for Scaleway product metrics data sources.
 func (o GetConfigResultOutput) ProductMetricsRetentions() GetConfigProductMetricsRetentionArrayOutput {
 	return o.ApplyT(func(v GetConfigResult) []GetConfigProductMetricsRetention { return v.ProductMetricsRetentions }).(GetConfigProductMetricsRetentionArrayOutput)
 }

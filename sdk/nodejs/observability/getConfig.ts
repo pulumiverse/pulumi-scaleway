@@ -53,15 +53,15 @@ export interface GetConfigArgs {
  */
 export interface GetConfigResult {
     /**
-     * Retention limits and default for custom logs data sources. (see below)
+     * Retention limits and default for custom logs data sources.
      */
     readonly customLogsRetentions: outputs.observability.GetConfigCustomLogsRetention[];
     /**
-     * Retention limits and default for custom metrics data sources. (see below)
+     * Retention limits and default for custom metrics data sources.
      */
     readonly customMetricsRetentions: outputs.observability.GetConfigCustomMetricsRetention[];
     /**
-     * Retention limits and default for custom traces data sources. (see below)
+     * Retention limits and default for custom traces data sources.
      */
     readonly customTracesRetentions: outputs.observability.GetConfigCustomTracesRetention[];
     /**
@@ -69,11 +69,11 @@ export interface GetConfigResult {
      */
     readonly id: string;
     /**
-     * Retention limits and default for Scaleway product logs data sources. (see below)
+     * Retention limits and default for Scaleway product logs data sources.
      */
     readonly productLogsRetentions: outputs.observability.GetConfigProductLogsRetention[];
     /**
-     * Retention limits and default for Scaleway product metrics data sources. (see below)
+     * Retention limits and default for Scaleway product metrics data sources.
      */
     readonly productMetricsRetentions: outputs.observability.GetConfigProductMetricsRetention[];
     readonly region?: string;

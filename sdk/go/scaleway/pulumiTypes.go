@@ -4300,6 +4300,157 @@ func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
+type DatabaseInstanceMaintenance struct {
+	// Closed maintenance date.
+	ClosedAt *string `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied.
+	ForcedAt *string `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user.
+	IsApplicable *bool `pulumi:"isApplicable"`
+	// Maintenance information message.
+	Reason *string `pulumi:"reason"`
+	// Start date of the maintenance window.
+	StartsAt *string `pulumi:"startsAt"`
+	// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+	Status *string `pulumi:"status"`
+	// End date of the maintenance window.
+	StopsAt *string `pulumi:"stopsAt"`
+}
+
+// DatabaseInstanceMaintenanceInput is an input type that accepts DatabaseInstanceMaintenanceArgs and DatabaseInstanceMaintenanceOutput values.
+// You can construct a concrete instance of `DatabaseInstanceMaintenanceInput` via:
+//
+//	DatabaseInstanceMaintenanceArgs{...}
+type DatabaseInstanceMaintenanceInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceMaintenanceOutput() DatabaseInstanceMaintenanceOutput
+	ToDatabaseInstanceMaintenanceOutputWithContext(context.Context) DatabaseInstanceMaintenanceOutput
+}
+
+type DatabaseInstanceMaintenanceArgs struct {
+	// Closed maintenance date.
+	ClosedAt pulumi.StringPtrInput `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied.
+	ForcedAt pulumi.StringPtrInput `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user.
+	IsApplicable pulumi.BoolPtrInput `pulumi:"isApplicable"`
+	// Maintenance information message.
+	Reason pulumi.StringPtrInput `pulumi:"reason"`
+	// Start date of the maintenance window.
+	StartsAt pulumi.StringPtrInput `pulumi:"startsAt"`
+	// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// End date of the maintenance window.
+	StopsAt pulumi.StringPtrInput `pulumi:"stopsAt"`
+}
+
+func (DatabaseInstanceMaintenanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (i DatabaseInstanceMaintenanceArgs) ToDatabaseInstanceMaintenanceOutput() DatabaseInstanceMaintenanceOutput {
+	return i.ToDatabaseInstanceMaintenanceOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceMaintenanceArgs) ToDatabaseInstanceMaintenanceOutputWithContext(ctx context.Context) DatabaseInstanceMaintenanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceMaintenanceOutput)
+}
+
+// DatabaseInstanceMaintenanceArrayInput is an input type that accepts DatabaseInstanceMaintenanceArray and DatabaseInstanceMaintenanceArrayOutput values.
+// You can construct a concrete instance of `DatabaseInstanceMaintenanceArrayInput` via:
+//
+//	DatabaseInstanceMaintenanceArray{ DatabaseInstanceMaintenanceArgs{...} }
+type DatabaseInstanceMaintenanceArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceMaintenanceArrayOutput() DatabaseInstanceMaintenanceArrayOutput
+	ToDatabaseInstanceMaintenanceArrayOutputWithContext(context.Context) DatabaseInstanceMaintenanceArrayOutput
+}
+
+type DatabaseInstanceMaintenanceArray []DatabaseInstanceMaintenanceInput
+
+func (DatabaseInstanceMaintenanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (i DatabaseInstanceMaintenanceArray) ToDatabaseInstanceMaintenanceArrayOutput() DatabaseInstanceMaintenanceArrayOutput {
+	return i.ToDatabaseInstanceMaintenanceArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceMaintenanceArray) ToDatabaseInstanceMaintenanceArrayOutputWithContext(ctx context.Context) DatabaseInstanceMaintenanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceMaintenanceArrayOutput)
+}
+
+type DatabaseInstanceMaintenanceOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceMaintenanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (o DatabaseInstanceMaintenanceOutput) ToDatabaseInstanceMaintenanceOutput() DatabaseInstanceMaintenanceOutput {
+	return o
+}
+
+func (o DatabaseInstanceMaintenanceOutput) ToDatabaseInstanceMaintenanceOutputWithContext(ctx context.Context) DatabaseInstanceMaintenanceOutput {
+	return o
+}
+
+// Closed maintenance date.
+func (o DatabaseInstanceMaintenanceOutput) ClosedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.ClosedAt }).(pulumi.StringPtrOutput)
+}
+
+// Time when Scaleway-side maintenance will be applied.
+func (o DatabaseInstanceMaintenanceOutput) ForcedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.ForcedAt }).(pulumi.StringPtrOutput)
+}
+
+// Whether the maintenance can be applied by the user.
+func (o DatabaseInstanceMaintenanceOutput) IsApplicable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *bool { return v.IsApplicable }).(pulumi.BoolPtrOutput)
+}
+
+// Maintenance information message.
+func (o DatabaseInstanceMaintenanceOutput) Reason() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.Reason }).(pulumi.StringPtrOutput)
+}
+
+// Start date of the maintenance window.
+func (o DatabaseInstanceMaintenanceOutput) StartsAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.StartsAt }).(pulumi.StringPtrOutput)
+}
+
+// Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+func (o DatabaseInstanceMaintenanceOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// End date of the maintenance window.
+func (o DatabaseInstanceMaintenanceOutput) StopsAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceMaintenance) *string { return v.StopsAt }).(pulumi.StringPtrOutput)
+}
+
+type DatabaseInstanceMaintenanceArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceMaintenanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (o DatabaseInstanceMaintenanceArrayOutput) ToDatabaseInstanceMaintenanceArrayOutput() DatabaseInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o DatabaseInstanceMaintenanceArrayOutput) ToDatabaseInstanceMaintenanceArrayOutputWithContext(ctx context.Context) DatabaseInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o DatabaseInstanceMaintenanceArrayOutput) Index(i pulumi.IntInput) DatabaseInstanceMaintenanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstanceMaintenance {
+		return vs[0].([]DatabaseInstanceMaintenance)[vs[1].(int)]
+	}).(DatabaseInstanceMaintenanceOutput)
+}
+
 type DatabaseInstancePrivateIp struct {
 	// The private IPv4 address.
 	Address *string `pulumi:"address"`
@@ -12549,6 +12700,143 @@ func (o JobDefinitionCronPtrOutput) Timezone() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type JobDefinitionRetryPolicy struct {
+	// The maximum number of retries upon job failure.
+	MaxRetries *int `pulumi:"maxRetries"`
+}
+
+// JobDefinitionRetryPolicyInput is an input type that accepts JobDefinitionRetryPolicyArgs and JobDefinitionRetryPolicyOutput values.
+// You can construct a concrete instance of `JobDefinitionRetryPolicyInput` via:
+//
+//	JobDefinitionRetryPolicyArgs{...}
+type JobDefinitionRetryPolicyInput interface {
+	pulumi.Input
+
+	ToJobDefinitionRetryPolicyOutput() JobDefinitionRetryPolicyOutput
+	ToJobDefinitionRetryPolicyOutputWithContext(context.Context) JobDefinitionRetryPolicyOutput
+}
+
+type JobDefinitionRetryPolicyArgs struct {
+	// The maximum number of retries upon job failure.
+	MaxRetries pulumi.IntPtrInput `pulumi:"maxRetries"`
+}
+
+func (JobDefinitionRetryPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobDefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (i JobDefinitionRetryPolicyArgs) ToJobDefinitionRetryPolicyOutput() JobDefinitionRetryPolicyOutput {
+	return i.ToJobDefinitionRetryPolicyOutputWithContext(context.Background())
+}
+
+func (i JobDefinitionRetryPolicyArgs) ToJobDefinitionRetryPolicyOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionRetryPolicyOutput)
+}
+
+func (i JobDefinitionRetryPolicyArgs) ToJobDefinitionRetryPolicyPtrOutput() JobDefinitionRetryPolicyPtrOutput {
+	return i.ToJobDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i JobDefinitionRetryPolicyArgs) ToJobDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionRetryPolicyOutput).ToJobDefinitionRetryPolicyPtrOutputWithContext(ctx)
+}
+
+// JobDefinitionRetryPolicyPtrInput is an input type that accepts JobDefinitionRetryPolicyArgs, JobDefinitionRetryPolicyPtr and JobDefinitionRetryPolicyPtrOutput values.
+// You can construct a concrete instance of `JobDefinitionRetryPolicyPtrInput` via:
+//
+//	        JobDefinitionRetryPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobDefinitionRetryPolicyPtrInput interface {
+	pulumi.Input
+
+	ToJobDefinitionRetryPolicyPtrOutput() JobDefinitionRetryPolicyPtrOutput
+	ToJobDefinitionRetryPolicyPtrOutputWithContext(context.Context) JobDefinitionRetryPolicyPtrOutput
+}
+
+type jobDefinitionRetryPolicyPtrType JobDefinitionRetryPolicyArgs
+
+func JobDefinitionRetryPolicyPtr(v *JobDefinitionRetryPolicyArgs) JobDefinitionRetryPolicyPtrInput {
+	return (*jobDefinitionRetryPolicyPtrType)(v)
+}
+
+func (*jobDefinitionRetryPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobDefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (i *jobDefinitionRetryPolicyPtrType) ToJobDefinitionRetryPolicyPtrOutput() JobDefinitionRetryPolicyPtrOutput {
+	return i.ToJobDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *jobDefinitionRetryPolicyPtrType) ToJobDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionRetryPolicyPtrOutput)
+}
+
+type JobDefinitionRetryPolicyOutput struct{ *pulumi.OutputState }
+
+func (JobDefinitionRetryPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobDefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (o JobDefinitionRetryPolicyOutput) ToJobDefinitionRetryPolicyOutput() JobDefinitionRetryPolicyOutput {
+	return o
+}
+
+func (o JobDefinitionRetryPolicyOutput) ToJobDefinitionRetryPolicyOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyOutput {
+	return o
+}
+
+func (o JobDefinitionRetryPolicyOutput) ToJobDefinitionRetryPolicyPtrOutput() JobDefinitionRetryPolicyPtrOutput {
+	return o.ToJobDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o JobDefinitionRetryPolicyOutput) ToJobDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobDefinitionRetryPolicy) *JobDefinitionRetryPolicy {
+		return &v
+	}).(JobDefinitionRetryPolicyPtrOutput)
+}
+
+// The maximum number of retries upon job failure.
+func (o JobDefinitionRetryPolicyOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobDefinitionRetryPolicy) *int { return v.MaxRetries }).(pulumi.IntPtrOutput)
+}
+
+type JobDefinitionRetryPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (JobDefinitionRetryPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobDefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (o JobDefinitionRetryPolicyPtrOutput) ToJobDefinitionRetryPolicyPtrOutput() JobDefinitionRetryPolicyPtrOutput {
+	return o
+}
+
+func (o JobDefinitionRetryPolicyPtrOutput) ToJobDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) JobDefinitionRetryPolicyPtrOutput {
+	return o
+}
+
+func (o JobDefinitionRetryPolicyPtrOutput) Elem() JobDefinitionRetryPolicyOutput {
+	return o.ApplyT(func(v *JobDefinitionRetryPolicy) JobDefinitionRetryPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret JobDefinitionRetryPolicy
+		return ret
+	}).(JobDefinitionRetryPolicyOutput)
+}
+
+// The maximum number of retries upon job failure.
+func (o JobDefinitionRetryPolicyPtrOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *JobDefinitionRetryPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxRetries
+	}).(pulumi.IntPtrOutput)
+}
+
 type JobDefinitionSecretReference struct {
 	// An environment variable containing the secret value. Must be specified if `file` is not specified.
 	Environment *string `pulumi:"environment"`
@@ -13761,9 +14049,11 @@ func (o KubernetesClusterOpenIdConnectConfigPtrOutput) UsernamePrefix() pulumi.S
 type KubernetesNodePoolNode struct {
 	// The ID of the IP address resource.
 	Id *string `pulumi:"id"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name *string `pulumi:"name"`
 	// The list of private IPv4 and IPv6 addresses associated with the node.
 	PrivateIps []KubernetesNodePoolNodePrivateIp `pulumi:"privateIps"`
@@ -13793,9 +14083,11 @@ type KubernetesNodePoolNodeInput interface {
 type KubernetesNodePoolNodeArgs struct {
 	// The ID of the IP address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name for the pool.
+	// The name for the pool. If not provided it will be generated.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
+	//
+	// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The list of private IPv4 and IPv6 addresses associated with the node.
 	PrivateIps KubernetesNodePoolNodePrivateIpArrayInput `pulumi:"privateIps"`
@@ -13867,9 +14159,11 @@ func (o KubernetesNodePoolNodeOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name for the pool.
+// The name for the pool. If not provided it will be generated.
 //
 // > **Important:** Updates to this field will recreate a new resource.
+//
+// > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
 func (o KubernetesNodePoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -24909,6 +25203,157 @@ func (o GetDatabaseInstanceLogsPolicyArrayOutput) Index(i pulumi.IntInput) GetDa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstanceLogsPolicy {
 		return vs[0].([]GetDatabaseInstanceLogsPolicy)[vs[1].(int)]
 	}).(GetDatabaseInstanceLogsPolicyOutput)
+}
+
+type GetDatabaseInstanceMaintenance struct {
+	// Closed maintenance date
+	ClosedAt string `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied
+	ForcedAt string `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user
+	IsApplicable bool `pulumi:"isApplicable"`
+	// Maintenance information message
+	Reason string `pulumi:"reason"`
+	// Start date of the maintenance window
+	StartsAt string `pulumi:"startsAt"`
+	// Status of the maintenance
+	Status string `pulumi:"status"`
+	// End date of the maintenance window
+	StopsAt string `pulumi:"stopsAt"`
+}
+
+// GetDatabaseInstanceMaintenanceInput is an input type that accepts GetDatabaseInstanceMaintenanceArgs and GetDatabaseInstanceMaintenanceOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceMaintenanceInput` via:
+//
+//	GetDatabaseInstanceMaintenanceArgs{...}
+type GetDatabaseInstanceMaintenanceInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceMaintenanceOutput() GetDatabaseInstanceMaintenanceOutput
+	ToGetDatabaseInstanceMaintenanceOutputWithContext(context.Context) GetDatabaseInstanceMaintenanceOutput
+}
+
+type GetDatabaseInstanceMaintenanceArgs struct {
+	// Closed maintenance date
+	ClosedAt pulumi.StringInput `pulumi:"closedAt"`
+	// Time when Scaleway-side maintenance will be applied
+	ForcedAt pulumi.StringInput `pulumi:"forcedAt"`
+	// Whether the maintenance can be applied by the user
+	IsApplicable pulumi.BoolInput `pulumi:"isApplicable"`
+	// Maintenance information message
+	Reason pulumi.StringInput `pulumi:"reason"`
+	// Start date of the maintenance window
+	StartsAt pulumi.StringInput `pulumi:"startsAt"`
+	// Status of the maintenance
+	Status pulumi.StringInput `pulumi:"status"`
+	// End date of the maintenance window
+	StopsAt pulumi.StringInput `pulumi:"stopsAt"`
+}
+
+func (GetDatabaseInstanceMaintenanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceMaintenanceArgs) ToGetDatabaseInstanceMaintenanceOutput() GetDatabaseInstanceMaintenanceOutput {
+	return i.ToGetDatabaseInstanceMaintenanceOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceMaintenanceArgs) ToGetDatabaseInstanceMaintenanceOutputWithContext(ctx context.Context) GetDatabaseInstanceMaintenanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceMaintenanceOutput)
+}
+
+// GetDatabaseInstanceMaintenanceArrayInput is an input type that accepts GetDatabaseInstanceMaintenanceArray and GetDatabaseInstanceMaintenanceArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceMaintenanceArrayInput` via:
+//
+//	GetDatabaseInstanceMaintenanceArray{ GetDatabaseInstanceMaintenanceArgs{...} }
+type GetDatabaseInstanceMaintenanceArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceMaintenanceArrayOutput() GetDatabaseInstanceMaintenanceArrayOutput
+	ToGetDatabaseInstanceMaintenanceArrayOutputWithContext(context.Context) GetDatabaseInstanceMaintenanceArrayOutput
+}
+
+type GetDatabaseInstanceMaintenanceArray []GetDatabaseInstanceMaintenanceInput
+
+func (GetDatabaseInstanceMaintenanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceMaintenanceArray) ToGetDatabaseInstanceMaintenanceArrayOutput() GetDatabaseInstanceMaintenanceArrayOutput {
+	return i.ToGetDatabaseInstanceMaintenanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceMaintenanceArray) ToGetDatabaseInstanceMaintenanceArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceMaintenanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceMaintenanceArrayOutput)
+}
+
+type GetDatabaseInstanceMaintenanceOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceMaintenanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceMaintenanceOutput) ToGetDatabaseInstanceMaintenanceOutput() GetDatabaseInstanceMaintenanceOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceMaintenanceOutput) ToGetDatabaseInstanceMaintenanceOutputWithContext(ctx context.Context) GetDatabaseInstanceMaintenanceOutput {
+	return o
+}
+
+// Closed maintenance date
+func (o GetDatabaseInstanceMaintenanceOutput) ClosedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.ClosedAt }).(pulumi.StringOutput)
+}
+
+// Time when Scaleway-side maintenance will be applied
+func (o GetDatabaseInstanceMaintenanceOutput) ForcedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.ForcedAt }).(pulumi.StringOutput)
+}
+
+// Whether the maintenance can be applied by the user
+func (o GetDatabaseInstanceMaintenanceOutput) IsApplicable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) bool { return v.IsApplicable }).(pulumi.BoolOutput)
+}
+
+// Maintenance information message
+func (o GetDatabaseInstanceMaintenanceOutput) Reason() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.Reason }).(pulumi.StringOutput)
+}
+
+// Start date of the maintenance window
+func (o GetDatabaseInstanceMaintenanceOutput) StartsAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.StartsAt }).(pulumi.StringOutput)
+}
+
+// Status of the maintenance
+func (o GetDatabaseInstanceMaintenanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// End date of the maintenance window
+func (o GetDatabaseInstanceMaintenanceOutput) StopsAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceMaintenance) string { return v.StopsAt }).(pulumi.StringOutput)
+}
+
+type GetDatabaseInstanceMaintenanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceMaintenanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceMaintenance)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceMaintenanceArrayOutput) ToGetDatabaseInstanceMaintenanceArrayOutput() GetDatabaseInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceMaintenanceArrayOutput) ToGetDatabaseInstanceMaintenanceArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceMaintenanceArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceMaintenanceArrayOutput) Index(i pulumi.IntInput) GetDatabaseInstanceMaintenanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstanceMaintenance {
+		return vs[0].([]GetDatabaseInstanceMaintenance)[vs[1].(int)]
+	}).(GetDatabaseInstanceMaintenanceOutput)
 }
 
 type GetDatabaseInstancePrivateIp struct {
@@ -37681,6 +38126,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerPtrInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyPtrInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceMaintenanceInput)(nil)).Elem(), DatabaseInstanceMaintenanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceMaintenanceArrayInput)(nil)).Elem(), DatabaseInstanceMaintenanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateIpInput)(nil)).Elem(), DatabaseInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateIpArrayInput)(nil)).Elem(), DatabaseInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
@@ -37787,6 +38234,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceArrayInput)(nil)).Elem(), IpamIpSourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronInput)(nil)).Elem(), JobDefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronPtrInput)(nil)).Elem(), JobDefinitionCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionRetryPolicyInput)(nil)).Elem(), JobDefinitionRetryPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionRetryPolicyPtrInput)(nil)).Elem(), JobDefinitionRetryPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceInput)(nil)).Elem(), JobDefinitionSecretReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceArrayInput)(nil)).Elem(), JobDefinitionSecretReferenceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyManagerKeyRotationPolicyInput)(nil)).Elem(), KeyManagerKeyRotationPolicyArgs{})
@@ -37956,6 +38405,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyArrayInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceMaintenanceInput)(nil)).Elem(), GetDatabaseInstanceMaintenanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceMaintenanceArrayInput)(nil)).Elem(), GetDatabaseInstanceMaintenanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateIpInput)(nil)).Elem(), GetDatabaseInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateIpArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArgs{})
@@ -38200,6 +38651,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyPtrOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceMaintenanceOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceMaintenanceArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkOutput{})
@@ -38306,6 +38759,8 @@ func init() {
 	pulumi.RegisterOutputType(IpamIpSourceArrayOutput{})
 	pulumi.RegisterOutputType(JobDefinitionCronOutput{})
 	pulumi.RegisterOutputType(JobDefinitionCronPtrOutput{})
+	pulumi.RegisterOutputType(JobDefinitionRetryPolicyOutput{})
+	pulumi.RegisterOutputType(JobDefinitionRetryPolicyPtrOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceArrayOutput{})
 	pulumi.RegisterOutputType(KeyManagerKeyRotationPolicyOutput{})
@@ -38475,6 +38930,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceMaintenanceOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceMaintenanceArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkOutput{})

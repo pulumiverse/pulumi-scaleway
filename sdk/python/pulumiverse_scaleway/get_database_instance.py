@@ -29,7 +29,7 @@ class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, maintenances=None, name=None, node_type=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -75,6 +75,9 @@ class GetDatabaseInstanceResult:
         if logs_policies and not isinstance(logs_policies, list):
             raise TypeError("Expected argument 'logs_policies' to be a list")
         pulumi.set(__self__, "logs_policies", logs_policies)
+        if maintenances and not isinstance(maintenances, list):
+            raise TypeError("Expected argument 'maintenances' to be a list")
+        pulumi.set(__self__, "maintenances", maintenances)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -210,6 +213,11 @@ class GetDatabaseInstanceResult:
 
     @_builtins.property
     @pulumi.getter
+    def maintenances(self) -> Sequence['outputs.GetDatabaseInstanceMaintenanceResult']:
+        return pulumi.get(self, "maintenances")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "name")
 
@@ -320,6 +328,7 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             is_ha_cluster=self.is_ha_cluster,
             load_balancers=self.load_balancers,
             logs_policies=self.logs_policies,
+            maintenances=self.maintenances,
             name=self.name,
             node_type=self.node_type,
             organization_id=self.organization_id,
@@ -383,6 +392,7 @@ def get_database_instance(instance_id: Optional[_builtins.str] = None,
         is_ha_cluster=pulumi.get(__ret__, 'is_ha_cluster'),
         load_balancers=pulumi.get(__ret__, 'load_balancers'),
         logs_policies=pulumi.get(__ret__, 'logs_policies'),
+        maintenances=pulumi.get(__ret__, 'maintenances'),
         name=pulumi.get(__ret__, 'name'),
         node_type=pulumi.get(__ret__, 'node_type'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
@@ -443,6 +453,7 @@ def get_database_instance_output(instance_id: pulumi.Input[Optional[Optional[_bu
         is_ha_cluster=pulumi.get(__response__, 'is_ha_cluster'),
         load_balancers=pulumi.get(__response__, 'load_balancers'),
         logs_policies=pulumi.get(__response__, 'logs_policies'),
+        maintenances=pulumi.get(__response__, 'maintenances'),
         name=pulumi.get(__response__, 'name'),
         node_type=pulumi.get(__response__, 'node_type'),
         organization_id=pulumi.get(__response__, 'organization_id'),

@@ -600,9 +600,11 @@ class PoolNode(dict):
                  status: Optional[_builtins.str] = None):
         """
         :param _builtins.str id: The ID of the IP address resource.
-        :param _builtins.str name: The name for the pool.
+        :param _builtins.str name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param Sequence['PoolNodePrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param _builtins.str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param _builtins.str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
@@ -633,9 +635,11 @@ class PoolNode(dict):
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        The name for the pool.
+        The name for the pool. If not provided it will be generated.
 
         > **Important:** Updates to this field will recreate a new resource.
+
+        > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         """
         return pulumi.get(self, "name")
 

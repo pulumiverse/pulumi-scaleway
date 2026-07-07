@@ -169,6 +169,143 @@ func (o DefinitionCronPtrOutput) Timezone() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type DefinitionRetryPolicy struct {
+	// The maximum number of retries upon job failure.
+	MaxRetries *int `pulumi:"maxRetries"`
+}
+
+// DefinitionRetryPolicyInput is an input type that accepts DefinitionRetryPolicyArgs and DefinitionRetryPolicyOutput values.
+// You can construct a concrete instance of `DefinitionRetryPolicyInput` via:
+//
+//	DefinitionRetryPolicyArgs{...}
+type DefinitionRetryPolicyInput interface {
+	pulumi.Input
+
+	ToDefinitionRetryPolicyOutput() DefinitionRetryPolicyOutput
+	ToDefinitionRetryPolicyOutputWithContext(context.Context) DefinitionRetryPolicyOutput
+}
+
+type DefinitionRetryPolicyArgs struct {
+	// The maximum number of retries upon job failure.
+	MaxRetries pulumi.IntPtrInput `pulumi:"maxRetries"`
+}
+
+func (DefinitionRetryPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (i DefinitionRetryPolicyArgs) ToDefinitionRetryPolicyOutput() DefinitionRetryPolicyOutput {
+	return i.ToDefinitionRetryPolicyOutputWithContext(context.Background())
+}
+
+func (i DefinitionRetryPolicyArgs) ToDefinitionRetryPolicyOutputWithContext(ctx context.Context) DefinitionRetryPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefinitionRetryPolicyOutput)
+}
+
+func (i DefinitionRetryPolicyArgs) ToDefinitionRetryPolicyPtrOutput() DefinitionRetryPolicyPtrOutput {
+	return i.ToDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i DefinitionRetryPolicyArgs) ToDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) DefinitionRetryPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefinitionRetryPolicyOutput).ToDefinitionRetryPolicyPtrOutputWithContext(ctx)
+}
+
+// DefinitionRetryPolicyPtrInput is an input type that accepts DefinitionRetryPolicyArgs, DefinitionRetryPolicyPtr and DefinitionRetryPolicyPtrOutput values.
+// You can construct a concrete instance of `DefinitionRetryPolicyPtrInput` via:
+//
+//	        DefinitionRetryPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefinitionRetryPolicyPtrInput interface {
+	pulumi.Input
+
+	ToDefinitionRetryPolicyPtrOutput() DefinitionRetryPolicyPtrOutput
+	ToDefinitionRetryPolicyPtrOutputWithContext(context.Context) DefinitionRetryPolicyPtrOutput
+}
+
+type definitionRetryPolicyPtrType DefinitionRetryPolicyArgs
+
+func DefinitionRetryPolicyPtr(v *DefinitionRetryPolicyArgs) DefinitionRetryPolicyPtrInput {
+	return (*definitionRetryPolicyPtrType)(v)
+}
+
+func (*definitionRetryPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (i *definitionRetryPolicyPtrType) ToDefinitionRetryPolicyPtrOutput() DefinitionRetryPolicyPtrOutput {
+	return i.ToDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *definitionRetryPolicyPtrType) ToDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) DefinitionRetryPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefinitionRetryPolicyPtrOutput)
+}
+
+type DefinitionRetryPolicyOutput struct{ *pulumi.OutputState }
+
+func (DefinitionRetryPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (o DefinitionRetryPolicyOutput) ToDefinitionRetryPolicyOutput() DefinitionRetryPolicyOutput {
+	return o
+}
+
+func (o DefinitionRetryPolicyOutput) ToDefinitionRetryPolicyOutputWithContext(ctx context.Context) DefinitionRetryPolicyOutput {
+	return o
+}
+
+func (o DefinitionRetryPolicyOutput) ToDefinitionRetryPolicyPtrOutput() DefinitionRetryPolicyPtrOutput {
+	return o.ToDefinitionRetryPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o DefinitionRetryPolicyOutput) ToDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) DefinitionRetryPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefinitionRetryPolicy) *DefinitionRetryPolicy {
+		return &v
+	}).(DefinitionRetryPolicyPtrOutput)
+}
+
+// The maximum number of retries upon job failure.
+func (o DefinitionRetryPolicyOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DefinitionRetryPolicy) *int { return v.MaxRetries }).(pulumi.IntPtrOutput)
+}
+
+type DefinitionRetryPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (DefinitionRetryPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefinitionRetryPolicy)(nil)).Elem()
+}
+
+func (o DefinitionRetryPolicyPtrOutput) ToDefinitionRetryPolicyPtrOutput() DefinitionRetryPolicyPtrOutput {
+	return o
+}
+
+func (o DefinitionRetryPolicyPtrOutput) ToDefinitionRetryPolicyPtrOutputWithContext(ctx context.Context) DefinitionRetryPolicyPtrOutput {
+	return o
+}
+
+func (o DefinitionRetryPolicyPtrOutput) Elem() DefinitionRetryPolicyOutput {
+	return o.ApplyT(func(v *DefinitionRetryPolicy) DefinitionRetryPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret DefinitionRetryPolicy
+		return ret
+	}).(DefinitionRetryPolicyOutput)
+}
+
+// The maximum number of retries upon job failure.
+func (o DefinitionRetryPolicyPtrOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DefinitionRetryPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxRetries
+	}).(pulumi.IntPtrOutput)
+}
+
 type DefinitionSecretReference struct {
 	// An environment variable containing the secret value. Must be specified if `file` is not specified.
 	Environment *string `pulumi:"environment"`
@@ -305,10 +442,14 @@ func (o DefinitionSecretReferenceArrayOutput) Index(i pulumi.IntInput) Definitio
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionCronInput)(nil)).Elem(), DefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionCronPtrInput)(nil)).Elem(), DefinitionCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionRetryPolicyInput)(nil)).Elem(), DefinitionRetryPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionRetryPolicyPtrInput)(nil)).Elem(), DefinitionRetryPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionSecretReferenceInput)(nil)).Elem(), DefinitionSecretReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionSecretReferenceArrayInput)(nil)).Elem(), DefinitionSecretReferenceArray{})
 	pulumi.RegisterOutputType(DefinitionCronOutput{})
 	pulumi.RegisterOutputType(DefinitionCronPtrOutput{})
+	pulumi.RegisterOutputType(DefinitionRetryPolicyOutput{})
+	pulumi.RegisterOutputType(DefinitionRetryPolicyPtrOutput{})
 	pulumi.RegisterOutputType(DefinitionSecretReferenceOutput{})
 	pulumi.RegisterOutputType(DefinitionSecretReferenceArrayOutput{})
 }

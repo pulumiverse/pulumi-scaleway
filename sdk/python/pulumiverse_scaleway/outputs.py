@@ -44,6 +44,7 @@ __all__ = [
     'DatabaseAclAclRule',
     'DatabaseInstanceLoadBalancer',
     'DatabaseInstanceLogsPolicy',
+    'DatabaseInstanceMaintenance',
     'DatabaseInstancePrivateIp',
     'DatabaseInstancePrivateNetwork',
     'DatabaseInstanceReadReplica',
@@ -97,6 +98,7 @@ __all__ = [
     'IpamIpReverse',
     'IpamIpSource',
     'JobDefinitionCron',
+    'JobDefinitionRetryPolicy',
     'JobDefinitionSecretReference',
     'KeyManagerKeyRotationPolicy',
     'KubernetesClusterAutoUpgrade',
@@ -183,6 +185,7 @@ __all__ = [
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstanceLogsPolicyResult',
+    'GetDatabaseInstanceMaintenanceResult',
     'GetDatabaseInstancePrivateIpResult',
     'GetDatabaseInstancePrivateNetworkResult',
     'GetDatabaseInstanceReadReplicaResult',
@@ -1974,6 +1977,122 @@ class DatabaseInstanceLogsPolicy(dict):
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
+class DatabaseInstanceMaintenance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "closedAt":
+            suggest = "closed_at"
+        elif key == "forcedAt":
+            suggest = "forced_at"
+        elif key == "isApplicable":
+            suggest = "is_applicable"
+        elif key == "startsAt":
+            suggest = "starts_at"
+        elif key == "stopsAt":
+            suggest = "stops_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseInstanceMaintenance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseInstanceMaintenance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseInstanceMaintenance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 closed_at: Optional[_builtins.str] = None,
+                 forced_at: Optional[_builtins.str] = None,
+                 is_applicable: Optional[_builtins.bool] = None,
+                 reason: Optional[_builtins.str] = None,
+                 starts_at: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None,
+                 stops_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str closed_at: Closed maintenance date.
+        :param _builtins.str forced_at: Time when Scaleway-side maintenance will be applied.
+        :param _builtins.bool is_applicable: Whether the maintenance can be applied by the user.
+        :param _builtins.str reason: Maintenance information message.
+        :param _builtins.str starts_at: Start date of the maintenance window.
+        :param _builtins.str status: Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+        :param _builtins.str stops_at: End date of the maintenance window.
+        """
+        if closed_at is not None:
+            pulumi.set(__self__, "closed_at", closed_at)
+        if forced_at is not None:
+            pulumi.set(__self__, "forced_at", forced_at)
+        if is_applicable is not None:
+            pulumi.set(__self__, "is_applicable", is_applicable)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if starts_at is not None:
+            pulumi.set(__self__, "starts_at", starts_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if stops_at is not None:
+            pulumi.set(__self__, "stops_at", stops_at)
+
+    @_builtins.property
+    @pulumi.getter(name="closedAt")
+    def closed_at(self) -> Optional[_builtins.str]:
+        """
+        Closed maintenance date.
+        """
+        return pulumi.get(self, "closed_at")
+
+    @_builtins.property
+    @pulumi.getter(name="forcedAt")
+    def forced_at(self) -> Optional[_builtins.str]:
+        """
+        Time when Scaleway-side maintenance will be applied.
+        """
+        return pulumi.get(self, "forced_at")
+
+    @_builtins.property
+    @pulumi.getter(name="isApplicable")
+    def is_applicable(self) -> Optional[_builtins.bool]:
+        """
+        Whether the maintenance can be applied by the user.
+        """
+        return pulumi.get(self, "is_applicable")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Maintenance information message.
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> Optional[_builtins.str]:
+        """
+        Start date of the maintenance window.
+        """
+        return pulumi.get(self, "starts_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="stopsAt")
+    def stops_at(self) -> Optional[_builtins.str]:
+        """
+        End date of the maintenance window.
+        """
+        return pulumi.get(self, "stops_at")
 
 
 @pulumi.output_type
@@ -5319,6 +5438,42 @@ class JobDefinitionCron(dict):
 
 
 @pulumi.output_type
+class JobDefinitionRetryPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxRetries":
+            suggest = "max_retries"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobDefinitionRetryPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobDefinitionRetryPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobDefinitionRetryPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_retries: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int max_retries: The maximum number of retries upon job failure.
+        """
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of retries upon job failure.
+        """
+        return pulumi.get(self, "max_retries")
+
+
+@pulumi.output_type
 class JobDefinitionSecretReference(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5935,9 +6090,11 @@ class KubernetesNodePoolNode(dict):
                  status: Optional[_builtins.str] = None):
         """
         :param _builtins.str id: The ID of the IP address resource.
-        :param _builtins.str name: The name for the pool.
+        :param _builtins.str name: The name for the pool. If not provided it will be generated.
                
                > **Important:** Updates to this field will recreate a new resource.
+               
+               > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         :param Sequence['KubernetesNodePoolNodePrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param _builtins.str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param _builtins.str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
@@ -5968,9 +6125,11 @@ class KubernetesNodePoolNode(dict):
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        The name for the pool.
+        The name for the pool. If not provided it will be generated.
 
         > **Important:** Updates to this field will recreate a new resource.
+
+        > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
         """
         return pulumi.get(self, "name")
 
@@ -10511,6 +10670,90 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
+class GetDatabaseInstanceMaintenanceResult(dict):
+    def __init__(__self__, *,
+                 closed_at: _builtins.str,
+                 forced_at: _builtins.str,
+                 is_applicable: _builtins.bool,
+                 reason: _builtins.str,
+                 starts_at: _builtins.str,
+                 status: _builtins.str,
+                 stops_at: _builtins.str):
+        """
+        :param _builtins.str closed_at: Closed maintenance date
+        :param _builtins.str forced_at: Time when Scaleway-side maintenance will be applied
+        :param _builtins.bool is_applicable: Whether the maintenance can be applied by the user
+        :param _builtins.str reason: Maintenance information message
+        :param _builtins.str starts_at: Start date of the maintenance window
+        :param _builtins.str status: Status of the maintenance
+        :param _builtins.str stops_at: End date of the maintenance window
+        """
+        pulumi.set(__self__, "closed_at", closed_at)
+        pulumi.set(__self__, "forced_at", forced_at)
+        pulumi.set(__self__, "is_applicable", is_applicable)
+        pulumi.set(__self__, "reason", reason)
+        pulumi.set(__self__, "starts_at", starts_at)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "stops_at", stops_at)
+
+    @_builtins.property
+    @pulumi.getter(name="closedAt")
+    def closed_at(self) -> _builtins.str:
+        """
+        Closed maintenance date
+        """
+        return pulumi.get(self, "closed_at")
+
+    @_builtins.property
+    @pulumi.getter(name="forcedAt")
+    def forced_at(self) -> _builtins.str:
+        """
+        Time when Scaleway-side maintenance will be applied
+        """
+        return pulumi.get(self, "forced_at")
+
+    @_builtins.property
+    @pulumi.getter(name="isApplicable")
+    def is_applicable(self) -> _builtins.bool:
+        """
+        Whether the maintenance can be applied by the user
+        """
+        return pulumi.get(self, "is_applicable")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> _builtins.str:
+        """
+        Maintenance information message
+        """
+        return pulumi.get(self, "reason")
+
+    @_builtins.property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> _builtins.str:
+        """
+        Start date of the maintenance window
+        """
+        return pulumi.get(self, "starts_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Status of the maintenance
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="stopsAt")
+    def stops_at(self) -> _builtins.str:
+        """
+        End date of the maintenance window
+        """
+        return pulumi.get(self, "stops_at")
 
 
 @pulumi.output_type

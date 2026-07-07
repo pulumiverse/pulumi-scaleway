@@ -497,6 +497,37 @@ export interface DatabaseInstanceLogsPolicy {
     totalDiskRetention: number;
 }
 
+export interface DatabaseInstanceMaintenance {
+    /**
+     * Closed maintenance date.
+     */
+    closedAt: string;
+    /**
+     * Time when Scaleway-side maintenance will be applied.
+     */
+    forcedAt: string;
+    /**
+     * Whether the maintenance can be applied by the user.
+     */
+    isApplicable: boolean;
+    /**
+     * Maintenance information message.
+     */
+    reason: string;
+    /**
+     * Start date of the maintenance window.
+     */
+    startsAt: string;
+    /**
+     * Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+     */
+    status: string;
+    /**
+     * End date of the maintenance window.
+     */
+    stopsAt: string;
+}
+
 export interface DatabaseInstancePrivateIp {
     /**
      * The private IPv4 address.
@@ -1362,6 +1393,37 @@ export interface GetDatabaseInstanceLogsPolicy {
      * The max disk size of remote logs to keep on the Database Instance.
      */
     totalDiskRetention: number;
+}
+
+export interface GetDatabaseInstanceMaintenance {
+    /**
+     * Closed maintenance date
+     */
+    closedAt: string;
+    /**
+     * Time when Scaleway-side maintenance will be applied
+     */
+    forcedAt: string;
+    /**
+     * Whether the maintenance can be applied by the user
+     */
+    isApplicable: boolean;
+    /**
+     * Maintenance information message
+     */
+    reason: string;
+    /**
+     * Start date of the maintenance window
+     */
+    startsAt: string;
+    /**
+     * Status of the maintenance
+     */
+    status: string;
+    /**
+     * End date of the maintenance window
+     */
+    stopsAt: string;
 }
 
 export interface GetDatabaseInstancePrivateIp {
@@ -4115,6 +4177,13 @@ export interface JobDefinitionCron {
     timezone: string;
 }
 
+export interface JobDefinitionRetryPolicy {
+    /**
+     * The maximum number of retries upon job failure.
+     */
+    maxRetries?: number;
+}
+
 export interface JobDefinitionSecretReference {
     /**
      * An environment variable containing the secret value. Must be specified if `file` is not specified.
@@ -4196,7 +4265,7 @@ export interface KubernetesClusterAutoscalerConfig {
      *
      * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
      */
-    logLevel?: number;
+    logLevel: number;
     /**
      * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
      */
@@ -4218,7 +4287,7 @@ export interface KubernetesClusterAutoscalerConfig {
      *
      * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
      */
-    skipNodesWithLocalStorage?: boolean;
+    skipNodesWithLocalStorage: boolean;
 }
 
 export interface KubernetesClusterKubeconfig {
@@ -4277,9 +4346,11 @@ export interface KubernetesNodePoolNode {
      */
     id: string;
     /**
-     * The name for the pool.
+     * The name for the pool. If not provided it will be generated.
      *
      * > **Important:** Updates to this field will recreate a new resource.
+     *
+     * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
      */
     name: string;
     /**
@@ -6092,6 +6163,37 @@ export namespace databases {
         totalDiskRetention: number;
     }
 
+    export interface GetInstanceMaintenance {
+        /**
+         * Closed maintenance date
+         */
+        closedAt: string;
+        /**
+         * Time when Scaleway-side maintenance will be applied
+         */
+        forcedAt: string;
+        /**
+         * Whether the maintenance can be applied by the user
+         */
+        isApplicable: boolean;
+        /**
+         * Maintenance information message
+         */
+        reason: string;
+        /**
+         * Start date of the maintenance window
+         */
+        startsAt: string;
+        /**
+         * Status of the maintenance
+         */
+        status: string;
+        /**
+         * End date of the maintenance window
+         */
+        stopsAt: string;
+    }
+
     export interface GetInstancePrivateIp {
         /**
          * The private IPv4 address
@@ -6208,6 +6310,37 @@ export namespace databases {
          * The max disk size of remote logs to keep on the Database Instance.
          */
         totalDiskRetention: number;
+    }
+
+    export interface InstanceMaintenance {
+        /**
+         * Closed maintenance date.
+         */
+        closedAt: string;
+        /**
+         * Time when Scaleway-side maintenance will be applied.
+         */
+        forcedAt: string;
+        /**
+         * Whether the maintenance can be applied by the user.
+         */
+        isApplicable: boolean;
+        /**
+         * Maintenance information message.
+         */
+        reason: string;
+        /**
+         * Start date of the maintenance window.
+         */
+        startsAt: string;
+        /**
+         * Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+         */
+        status: string;
+        /**
+         * End date of the maintenance window.
+         */
+        stopsAt: string;
     }
 
     export interface InstancePrivateIp {
@@ -10065,6 +10198,13 @@ export namespace job {
         timezone: string;
     }
 
+    export interface DefinitionRetryPolicy {
+        /**
+         * The maximum number of retries upon job failure.
+         */
+        maxRetries?: number;
+    }
+
     export interface DefinitionSecretReference {
         /**
          * An environment variable containing the secret value. Must be specified if `file` is not specified.
@@ -10258,7 +10398,7 @@ export namespace kubernetes {
          *
          * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
          */
-        logLevel?: number;
+        logLevel: number;
         /**
          * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
          */
@@ -10280,7 +10420,7 @@ export namespace kubernetes {
          *
          * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
          */
-        skipNodesWithLocalStorage?: boolean;
+        skipNodesWithLocalStorage: boolean;
     }
 
     export interface ClusterKubeconfig {
@@ -10534,9 +10674,11 @@ export namespace kubernetes {
          */
         id: string;
         /**
-         * The name for the pool.
+         * The name for the pool. If not provided it will be generated.
          *
          * > **Important:** Updates to this field will recreate a new resource.
+         *
+         * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
          */
         name: string;
         /**

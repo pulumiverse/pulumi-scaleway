@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'DefinitionCronArgs',
     'DefinitionCronArgsDict',
+    'DefinitionRetryPolicyArgs',
+    'DefinitionRetryPolicyArgsDict',
     'DefinitionSecretReferenceArgs',
     'DefinitionSecretReferenceArgsDict',
 ]
@@ -66,6 +68,35 @@ class DefinitionCronArgs:
     @timezone.setter
     def timezone(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "timezone", value)
+
+
+class DefinitionRetryPolicyArgsDict(TypedDict):
+    max_retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The maximum number of retries upon job failure.
+    """
+
+@pulumi.input_type
+class DefinitionRetryPolicyArgs:
+    def __init__(__self__, *,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries upon job failure.
+        """
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum number of retries upon job failure.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
 
 
 class DefinitionSecretReferenceArgsDict(TypedDict):

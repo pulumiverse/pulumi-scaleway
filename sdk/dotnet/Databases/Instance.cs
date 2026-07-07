@@ -169,6 +169,12 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<Outputs.InstanceLogsPolicy> LogsPolicy { get; private set; } = null!;
 
         /// <summary>
+        /// List of scheduled maintenance events on the Database Instance.
+        /// </summary>
+        [Output("maintenances")]
+        public Output<ImmutableArray<Outputs.InstanceMaintenance>> Maintenances { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         [Output("name")]
@@ -657,6 +663,18 @@ namespace Pulumiverse.Scaleway.Databases
         /// </summary>
         [Input("logsPolicy")]
         public Input<Inputs.InstanceLogsPolicyGetArgs>? LogsPolicy { get; set; }
+
+        [Input("maintenances")]
+        private InputList<Inputs.InstanceMaintenanceGetArgs>? _maintenances;
+
+        /// <summary>
+        /// List of scheduled maintenance events on the Database Instance.
+        /// </summary>
+        public InputList<Inputs.InstanceMaintenanceGetArgs> Maintenances
+        {
+            get => _maintenances ?? (_maintenances = new InputList<Inputs.InstanceMaintenanceGetArgs>());
+            set => _maintenances = value;
+        }
 
         /// <summary>
         /// The name of the Database Instance.

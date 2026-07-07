@@ -225,6 +225,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
         public readonly string TlsStageId;
         public readonly string Type;
         public readonly string UpdatedAt;
+        public readonly bool WildcardDomain;
 
         [OutputConstructor]
         private GetDnsStageResult(
@@ -252,7 +253,9 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
             string type,
 
-            string updatedAt)
+            string updatedAt,
+
+            bool wildcardDomain)
         {
             BackendStageId = backendStageId;
             CacheStageId = cacheStageId;
@@ -267,6 +270,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
             TlsStageId = tlsStageId;
             Type = type;
             UpdatedAt = updatedAt;
+            WildcardDomain = wildcardDomain;
         }
     }
 }

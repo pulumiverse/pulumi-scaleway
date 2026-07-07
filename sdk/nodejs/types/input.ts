@@ -497,6 +497,37 @@ export interface DatabaseInstanceLogsPolicy {
     totalDiskRetention?: pulumi.Input<number | undefined>;
 }
 
+export interface DatabaseInstanceMaintenance {
+    /**
+     * Closed maintenance date.
+     */
+    closedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Time when Scaleway-side maintenance will be applied.
+     */
+    forcedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the maintenance can be applied by the user.
+     */
+    isApplicable?: pulumi.Input<boolean | undefined>;
+    /**
+     * Maintenance information message.
+     */
+    reason?: pulumi.Input<string | undefined>;
+    /**
+     * Start date of the maintenance window.
+     */
+    startsAt?: pulumi.Input<string | undefined>;
+    /**
+     * Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+     */
+    status?: pulumi.Input<string | undefined>;
+    /**
+     * End date of the maintenance window.
+     */
+    stopsAt?: pulumi.Input<string | undefined>;
+}
+
 export interface DatabaseInstancePrivateIp {
     /**
      * The private IPv4 address.
@@ -1516,6 +1547,13 @@ export interface JobDefinitionCron {
     timezone: pulumi.Input<string>;
 }
 
+export interface JobDefinitionRetryPolicy {
+    /**
+     * The maximum number of retries upon job failure.
+     */
+    maxRetries?: pulumi.Input<number | undefined>;
+}
+
 export interface JobDefinitionSecretReference {
     /**
      * An environment variable containing the secret value. Must be specified if `file` is not specified.
@@ -1678,9 +1716,11 @@ export interface KubernetesNodePoolNode {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * The name for the pool.
+     * The name for the pool. If not provided it will be generated.
      *
      * > **Important:** Updates to this field will recreate a new resource.
+     *
+     * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -3087,6 +3127,37 @@ export namespace databases {
          * The max disk size of remote logs to keep on the Database Instance.
          */
         totalDiskRetention?: pulumi.Input<number | undefined>;
+    }
+
+    export interface InstanceMaintenance {
+        /**
+         * Closed maintenance date.
+         */
+        closedAt?: pulumi.Input<string | undefined>;
+        /**
+         * Time when Scaleway-side maintenance will be applied.
+         */
+        forcedAt?: pulumi.Input<string | undefined>;
+        /**
+         * Whether the maintenance can be applied by the user.
+         */
+        isApplicable?: pulumi.Input<boolean | undefined>;
+        /**
+         * Maintenance information message.
+         */
+        reason?: pulumi.Input<string | undefined>;
+        /**
+         * Start date of the maintenance window.
+         */
+        startsAt?: pulumi.Input<string | undefined>;
+        /**
+         * Status of the maintenance (`pending`, `ongoing`, `done`, `canceled`, `unknown`).
+         */
+        status?: pulumi.Input<string | undefined>;
+        /**
+         * End date of the maintenance window.
+         */
+        stopsAt?: pulumi.Input<string | undefined>;
     }
 
     export interface InstancePrivateIp {
@@ -5057,6 +5128,13 @@ export namespace job {
         timezone: pulumi.Input<string>;
     }
 
+    export interface DefinitionRetryPolicy {
+        /**
+         * The maximum number of retries upon job failure.
+         */
+        maxRetries?: pulumi.Input<number | undefined>;
+    }
+
     export interface DefinitionSecretReference {
         /**
          * An environment variable containing the secret value. Must be specified if `file` is not specified.
@@ -5284,9 +5362,11 @@ export namespace kubernetes {
          */
         id?: pulumi.Input<string | undefined>;
         /**
-         * The name for the pool.
+         * The name for the pool. If not provided it will be generated.
          *
          * > **Important:** Updates to this field will recreate a new resource.
+         *
+         * > Note: In order to use the `createBeforeDestroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
          */
         name?: pulumi.Input<string | undefined>;
         /**
