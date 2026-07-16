@@ -1721,6 +1721,10 @@
                     }
                 }
             },
+            "scaleway_key_manager_key_material": {
+                "current": "scaleway:keymanager/keyMaterial:KeyMaterial",
+                "majorVersion": 1
+            },
             "scaleway_lb": {
                 "current": "scaleway:loadbalancers/loadBalancer:LoadBalancer",
                 "past": [
@@ -6710,6 +6714,7 @@
             "scaleway:job/definition:Definition": 0,
             "scaleway:kafka/cluster:Cluster": 0,
             "scaleway:keymanager/key:Key": 0,
+            "scaleway:keymanager/keyMaterial:KeyMaterial": 1,
             "scaleway:kubernetes/acl:Acl": 0,
             "scaleway:kubernetes/cluster:Cluster": 0,
             "scaleway:kubernetes/pool:Pool": 0,
