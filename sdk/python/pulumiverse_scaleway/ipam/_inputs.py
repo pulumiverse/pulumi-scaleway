@@ -170,7 +170,6 @@ class IpReverseArgsDict(TypedDict):
     address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Request a specific IP in the specified source pool.
-
     > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
     """
     hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -185,7 +184,6 @@ class IpReverseArgs:
                  hostname: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] hostname: The reverse domain name.
         """
@@ -199,7 +197,6 @@ class IpReverseArgs:
     def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request a specific IP in the specified source pool.
-
         > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")

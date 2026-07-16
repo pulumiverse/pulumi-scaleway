@@ -135,6 +135,12 @@ namespace Pulumiverse.Scaleway.Secrets
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the secret.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the secret.
         /// </summary>
         [Output("status")]
@@ -350,6 +356,12 @@ namespace Pulumiverse.Scaleway.Secrets
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the secret.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the secret.

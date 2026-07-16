@@ -34,7 +34,6 @@ export interface GetIamSshKeyArgs {
     projectId?: string;
     /**
      * The SSH key id.
-     *
      * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
     sshKeyId?: string;
@@ -103,7 +102,6 @@ export interface GetIamSshKeyOutputArgs {
     projectId?: pulumi.Input<string | undefined>;
     /**
      * The SSH key id.
-     *
      * > **Note** You must specify at least one: `name` and/or `sshKeyId`.
      */
     sshKeyId?: pulumi.Input<string | undefined>;

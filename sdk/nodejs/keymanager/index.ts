@@ -20,6 +20,11 @@ export type Key = import("./key").Key;
 export const Key: typeof import("./key").Key = null as any;
 utilities.lazyLoad(exports, ["Key"], () => require("./key"));
 
+export { KeyMaterialArgs, KeyMaterialState } from "./keyMaterial";
+export type KeyMaterial = import("./keyMaterial").KeyMaterial;
+export const KeyMaterial: typeof import("./keyMaterial").KeyMaterial = null as any;
+utilities.lazyLoad(exports, ["KeyMaterial"], () => require("./keyMaterial"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -27,9 +32,12 @@ const _module = {
         switch (type) {
             case "scaleway:keymanager/key:Key":
                 return new Key(name, <any>undefined, { urn })
+            case "scaleway:keymanager/keyMaterial:KeyMaterial":
+                return new KeyMaterial(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "keymanager/key", _module)
+pulumi.runtime.registerResourceModule("scaleway", "keymanager/keyMaterial", _module)

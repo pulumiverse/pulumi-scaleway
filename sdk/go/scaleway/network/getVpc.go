@@ -91,6 +91,7 @@ type LookupVpcResult struct {
 	OrganizationId string   `pulumi:"organizationId"`
 	ProjectId      *string  `pulumi:"projectId"`
 	Region         *string  `pulumi:"region"`
+	Srn            string   `pulumi:"srn"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	VpcId          *string  `pulumi:"vpcId"`
@@ -178,6 +179,10 @@ func (o LookupVpcResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupVpcResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVpcResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupVpcResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcResultOutput) Tags() pulumi.StringArrayOutput {

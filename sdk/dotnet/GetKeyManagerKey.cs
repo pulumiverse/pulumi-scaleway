@@ -232,6 +232,7 @@ namespace Pulumiverse.Scaleway
         public readonly string RotatedAt;
         public readonly int RotationCount;
         public readonly ImmutableArray<Outputs.GetKeyManagerKeyRotationPolicyResult> RotationPolicies;
+        public readonly string Srn;
         public readonly string State;
         public readonly ImmutableArray<string> Tags;
         public readonly bool Unprotected;
@@ -268,6 +269,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetKeyManagerKeyRotationPolicyResult> rotationPolicies,
 
+            string srn,
+
             string state,
 
             ImmutableArray<string> tags,
@@ -292,6 +295,7 @@ namespace Pulumiverse.Scaleway
             RotatedAt = rotatedAt;
             RotationCount = rotationCount;
             RotationPolicies = rotationPolicies;
+            Srn = srn;
             State = state;
             Tags = tags;
             Unprotected = unprotected;

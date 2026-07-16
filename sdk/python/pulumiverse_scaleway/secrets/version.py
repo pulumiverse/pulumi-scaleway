@@ -133,6 +133,7 @@ class _VersionState:
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  revision: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -147,6 +148,7 @@ class _VersionState:
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         :param pulumi.Input[_builtins.str] revision: The revision number of the secret version.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the secret version.
         :param pulumi.Input[_builtins.str] status: The status of the secret version.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the secret version's last update (in RFC 3339 format).
         """
@@ -166,6 +168,8 @@ class _VersionState:
             pulumi.set(__self__, "revision", revision)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -267,6 +271,18 @@ class _VersionState:
     @secret_id.setter
     def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the secret version.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -452,6 +468,7 @@ class Version(pulumi.CustomResource):
             __props__.__dict__["secret_id"] = secret_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["revision"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/secretVersion:SecretVersion")])
@@ -476,6 +493,7 @@ class Version(pulumi.CustomResource):
             region: pulumi.Input[Optional[_builtins.str]] = None,
             revision: pulumi.Input[Optional[_builtins.str]] = None,
             secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Version':
         """
@@ -494,6 +512,7 @@ class Version(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         :param pulumi.Input[_builtins.str] revision: The revision number of the secret version.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the secret version.
         :param pulumi.Input[_builtins.str] status: The status of the secret version.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the secret version's last update (in RFC 3339 format).
         """
@@ -509,6 +528,7 @@ class Version(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["revision"] = revision
         __props__.__dict__["secret_id"] = secret_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
         return Version(resource_name, opts=opts, __props__=__props__)
@@ -577,6 +597,14 @@ class Version(pulumi.CustomResource):
         The ID of the secret associated with the version.
         """
         return pulumi.get(self, "secret_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the secret version.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

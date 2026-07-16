@@ -59,6 +59,10 @@ class AclAclRuleArgsDict(TypedDict):
 
     > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
     """
+    srn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Scaleway Resource Name (SRN) of the ACL rule
+    """
 
 @pulumi.input_type
 class AclAclRuleArgs:
@@ -66,7 +70,8 @@ class AclAclRuleArgs:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
                  ip: pulumi.Input[Optional[_builtins.str]] = None,
-                 scaleway_ranges: pulumi.Input[Optional[_builtins.bool]] = None):
+                 scaleway_ranges: pulumi.Input[Optional[_builtins.bool]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] description: A text describing this rule.
         :param pulumi.Input[_builtins.str] id: The ID of the ACL resource. It is the same as the ID of the cluster.
@@ -77,6 +82,7 @@ class AclAclRuleArgs:
                Only one rule with this field set to true can be added.
                
                > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the ACL rule
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -86,6 +92,8 @@ class AclAclRuleArgs:
             pulumi.set(__self__, "ip", ip)
         if scaleway_ranges is not None:
             pulumi.set(__self__, "scaleway_ranges", scaleway_ranges)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -139,6 +147,18 @@ class AclAclRuleArgs:
     @scaleway_ranges.setter
     def scaleway_ranges(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "scaleway_ranges", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the ACL rule
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
 
 class ClusterAutoUpgradeArgsDict(TypedDict):
@@ -239,7 +259,6 @@ class ClusterAutoscalerConfigArgsDict(TypedDict):
     """
     Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
     Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-
     > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
     """
     max_graceful_termination_sec: NotRequired[pulumi.Input[Optional[_builtins.int]]]
@@ -261,7 +280,6 @@ class ClusterAutoscalerConfigArgsDict(TypedDict):
     skip_nodes_with_local_storage: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-
     > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
     """
 
@@ -289,14 +307,12 @@ class ClusterAutoscalerConfigArgs:
         :param pulumi.Input[_builtins.bool] ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
         :param pulumi.Input[_builtins.int] log_level: Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
                Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-               
                > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         :param pulumi.Input[_builtins.int] max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param pulumi.Input[_builtins.str] scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param pulumi.Input[_builtins.str] scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
         :param pulumi.Input[_builtins.float] scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         :param pulumi.Input[_builtins.bool] skip_nodes_with_local_storage: If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-               
                > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         if balance_similar_node_groups is not None:
@@ -402,7 +418,6 @@ class ClusterAutoscalerConfigArgs:
         """
         Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
         Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-
         > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "log_level")
@@ -464,7 +479,6 @@ class ClusterAutoscalerConfigArgs:
     def skip_nodes_with_local_storage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-
         > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "skip_nodes_with_local_storage")
@@ -735,6 +749,10 @@ class PoolNodeArgsDict(TypedDict):
     """
     The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
     """
+    srn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Scaleway Resource Name (SRN) of the node.
+    """
     status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The status of the node.
@@ -748,6 +766,7 @@ class PoolNodeArgs:
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]] = None,
                  public_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip_v6: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The ID of the IP address resource.
@@ -759,6 +778,7 @@ class PoolNodeArgs:
         :param pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param pulumi.Input[_builtins.str] public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param pulumi.Input[_builtins.str] public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the node.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         """
         if id is not None:
@@ -777,6 +797,8 @@ class PoolNodeArgs:
             pulumi.log.warn("""public_ip_v6 is deprecated: Please use the official Kubernetes provider and the kubernetes_nodes data source""")
         if public_ip_v6 is not None:
             pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -845,6 +867,18 @@ class PoolNodeArgs:
     @public_ip_v6.setter
     def public_ip_v6(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_ip_v6", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter

@@ -120,6 +120,10 @@ export class Connector extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the VPC connector.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the VPC connector.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -158,6 +162,7 @@ export class Connector extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["targetVpcId"] = state?.targetVpcId;
@@ -179,6 +184,7 @@ export class Connector extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -211,6 +217,10 @@ export interface ConnectorState {
      * `region`) The region of the VPC connector.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the VPC connector.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the VPC connector.
      */

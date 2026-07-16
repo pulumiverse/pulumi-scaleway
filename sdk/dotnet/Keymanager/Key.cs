@@ -190,6 +190,12 @@ namespace Pulumiverse.Scaleway.Keymanager
         public Output<Outputs.KeyRotationPolicy?> RotationPolicy { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the key.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The state of the key (e.g., `Enabled`).
         /// </summary>
         [Output("state")]
@@ -421,6 +427,12 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// </summary>
         [Input("rotationPolicy")]
         public Input<Inputs.KeyRotationPolicyGetArgs>? RotationPolicy { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the key.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The state of the key (e.g., `Enabled`).

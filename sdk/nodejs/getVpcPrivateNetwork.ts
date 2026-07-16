@@ -99,6 +99,7 @@ export interface GetVpcPrivateNetworkResult {
     readonly privateNetworkId?: string;
     readonly projectId?: string;
     readonly region?: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly vpcId?: string;

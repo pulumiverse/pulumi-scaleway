@@ -42,6 +42,12 @@ namespace Pulumiverse.Scaleway.Kubernetes.Inputs
         [Input("scalewayRanges")]
         public Input<bool>? ScalewayRanges { get; set; }
 
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the ACL rule
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
+
         public AclAclRuleGetArgs()
         {
         }

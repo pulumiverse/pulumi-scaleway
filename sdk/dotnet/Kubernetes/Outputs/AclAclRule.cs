@@ -35,6 +35,10 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// &gt; **Important:** If the `ScalewayRanges` field is set to true, the `Ip` field cannot be set on the same rule.
         /// </summary>
         public readonly bool? ScalewayRanges;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the ACL rule
+        /// </summary>
+        public readonly string? Srn;
 
         [OutputConstructor]
         private AclAclRule(
@@ -44,12 +48,15 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
             string? ip,
 
-            bool? scalewayRanges)
+            bool? scalewayRanges,
+
+            string? srn)
         {
             Description = description;
             Id = id;
             Ip = ip;
             ScalewayRanges = scalewayRanges;
+            Srn = srn;
         }
     }
 }

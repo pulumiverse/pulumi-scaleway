@@ -472,6 +472,8 @@ type KubernetesCluster struct {
 	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
 	// unsetting it to go back to the default value will not have any effect.
 	ServiceDnsIp pulumi.StringOutput `pulumi:"serviceDnsIp"`
+	// The Scaleway Resource Name (SRN) of the cluster.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the Kubernetes cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -599,6 +601,8 @@ type kubernetesClusterState struct {
 	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
 	// unsetting it to go back to the default value will not have any effect.
 	ServiceDnsIp *string `pulumi:"serviceDnsIp"`
+	// The Scaleway Resource Name (SRN) of the cluster.
+	Srn *string `pulumi:"srn"`
 	// The status of the Kubernetes cluster.
 	Status *string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -684,6 +688,8 @@ type KubernetesClusterState struct {
 	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
 	// unsetting it to go back to the default value will not have any effect.
 	ServiceDnsIp pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the cluster.
+	Srn pulumi.StringPtrInput
 	// The status of the Kubernetes cluster.
 	Status pulumi.StringPtrInput
 	// The tags associated with the Kubernetes cluster.
@@ -1056,6 +1062,11 @@ func (o KubernetesClusterOutput) ServiceCidr() pulumi.StringOutput {
 // unsetting it to go back to the default value will not have any effect.
 func (o KubernetesClusterOutput) ServiceDnsIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ServiceDnsIp }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the cluster.
+func (o KubernetesClusterOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the Kubernetes cluster.

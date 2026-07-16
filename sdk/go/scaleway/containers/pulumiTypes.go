@@ -249,7 +249,7 @@ type ContainerLivenessProbe struct {
 	Interval string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout string `pulumi:"timeout"`
 }
 
@@ -273,7 +273,7 @@ type ContainerLivenessProbeArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout pulumi.StringInput `pulumi:"timeout"`
 }
 
@@ -374,7 +374,7 @@ func (o ContainerLivenessProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerLivenessProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerLivenessProbeOutput) Timeout() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerLivenessProbe) string { return v.Timeout }).(pulumi.StringOutput)
 }
@@ -443,7 +443,7 @@ func (o ContainerLivenessProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerLivenessProbePtrOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerLivenessProbe) *string {
 		if v == nil {
@@ -714,7 +714,7 @@ type ContainerStartupProbe struct {
 	Interval string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout string `pulumi:"timeout"`
 }
 
@@ -738,7 +738,7 @@ type ContainerStartupProbeArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout pulumi.StringInput `pulumi:"timeout"`
 }
 
@@ -839,7 +839,7 @@ func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerStartupProbeOutput) Timeout() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Timeout }).(pulumi.StringOutput)
 }
@@ -908,7 +908,7 @@ func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerStartupProbePtrOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *string {
 		if v == nil {

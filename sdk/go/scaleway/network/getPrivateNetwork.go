@@ -102,6 +102,7 @@ type LookupPrivateNetworkResult struct {
 	PrivateNetworkId *string                       `pulumi:"privateNetworkId"`
 	ProjectId        *string                       `pulumi:"projectId"`
 	Region           *string                       `pulumi:"region"`
+	Srn              string                        `pulumi:"srn"`
 	Tags             []string                      `pulumi:"tags"`
 	UpdatedAt        string                        `pulumi:"updatedAt"`
 	VpcId            *string                       `pulumi:"vpcId"`
@@ -195,6 +196,10 @@ func (o LookupPrivateNetworkResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupPrivateNetworkResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupPrivateNetworkResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateNetworkResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateNetworkResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupPrivateNetworkResultOutput) Tags() pulumi.StringArrayOutput {

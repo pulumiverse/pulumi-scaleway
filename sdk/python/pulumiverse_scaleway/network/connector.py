@@ -111,6 +111,7 @@ class _ConnectorState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  target_vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -124,6 +125,7 @@ class _ConnectorState:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC connector is associated with.
         :param pulumi.Input[_builtins.str] project_id: The Scaleway Project the VPC connector belongs to.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the VPC connector.
         :param pulumi.Input[_builtins.str] status: The status of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
         :param pulumi.Input[_builtins.str] target_vpc_id: The ID of the target VPC to connect to.
@@ -140,6 +142,8 @@ class _ConnectorState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -210,6 +214,18 @@ class _ConnectorState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the VPC connector.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -465,6 +481,7 @@ class Connector(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["project_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Connector, __self__).__init__(
@@ -482,6 +499,7 @@ class Connector(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             target_vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -499,6 +517,7 @@ class Connector(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPC connector is associated with.
         :param pulumi.Input[_builtins.str] project_id: The Scaleway Project the VPC connector belongs to.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the VPC connector.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the VPC connector.
         :param pulumi.Input[_builtins.str] status: The status of the VPC connector.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC connector.
         :param pulumi.Input[_builtins.str] target_vpc_id: The ID of the target VPC to connect to.
@@ -514,6 +533,7 @@ class Connector(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["target_vpc_id"] = target_vpc_id
@@ -560,6 +580,14 @@ class Connector(pulumi.CustomResource):
         `region`) The region of the VPC connector.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the VPC connector.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

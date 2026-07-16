@@ -162,6 +162,7 @@ class _RouteState:
                  nexthop_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
                  nexthop_vpc_connector_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -175,6 +176,7 @@ class _RouteState:
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
         :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the creation of the route (RFC 3339 format).
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the route belongs to.
@@ -193,6 +195,8 @@ class _RouteState:
             pulumi.set(__self__, "nexthop_vpc_connector_id", nexthop_vpc_connector_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -283,6 +287,18 @@ class _RouteState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the route.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -622,6 +638,7 @@ class Route(pulumi.CustomResource):
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/vpcRoute:VpcRoute")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -642,6 +659,7 @@ class Route(pulumi.CustomResource):
             nexthop_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
             nexthop_vpc_connector_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Route':
@@ -659,6 +677,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nexthop_resource_id: The ID of the nexthop resource.
         :param pulumi.Input[_builtins.str] nexthop_vpc_connector_id: The ID of the nexthop VPC Connector.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the route.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the route.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the route.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the creation of the route (RFC 3339 format).
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the route belongs to.
@@ -674,6 +693,7 @@ class Route(pulumi.CustomResource):
         __props__.__dict__["nexthop_resource_id"] = nexthop_resource_id
         __props__.__dict__["nexthop_vpc_connector_id"] = nexthop_vpc_connector_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vpc_id"] = vpc_id
@@ -734,6 +754,14 @@ class Route(pulumi.CustomResource):
         `region`) The region of the route.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the route.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

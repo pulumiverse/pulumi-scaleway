@@ -57,6 +57,7 @@ export interface GetBlockVolumeResult {
     readonly projectId?: string;
     readonly sizeInGb: number;
     readonly snapshotId: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly volumeId?: string;
     readonly zone?: string;

@@ -69,7 +69,6 @@ type LookupIamUserArgs struct {
 	// The tags associated with the user.
 	Tags []string `pulumi:"tags"`
 	// The ID of the IAM user.
-	//
 	// > **Note** You must specify at least one: `email` and/or `userId`.
 	UserId *string `pulumi:"userId"`
 }
@@ -123,7 +122,6 @@ type LookupIamUserOutputArgs struct {
 	// The tags associated with the user.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The ID of the IAM user.
-	//
 	// > **Note** You must specify at least one: `email` and/or `userId`.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }

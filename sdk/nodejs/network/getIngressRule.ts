@@ -97,6 +97,7 @@ export interface GetIngressRuleResult {
     readonly nexthopResourceIp?: string;
     readonly region?: string;
     readonly source: string;
+    readonly srn: string;
     readonly tags?: string[];
     readonly updatedAt: string;
     readonly vpcId?: string;

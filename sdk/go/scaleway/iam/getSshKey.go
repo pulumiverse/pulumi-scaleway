@@ -30,7 +30,6 @@ type LookupSshKeyArgs struct {
 	// key is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The SSH key id.
-	//
 	// > **Note** You must specify at least one: `name` and/or `sshKeyId`.
 	SshKeyId *string `pulumi:"sshKeyId"`
 }
@@ -72,7 +71,6 @@ type LookupSshKeyOutputArgs struct {
 	// key is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The SSH key id.
-	//
 	// > **Note** You must specify at least one: `name` and/or `sshKeyId`.
 	SshKeyId pulumi.StringPtrInput `pulumi:"sshKeyId"`
 }

@@ -113,6 +113,8 @@ type Volume struct {
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// ). The zone in which the volume should be created.
@@ -170,6 +172,8 @@ type volumeState struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
 	// ). The zone in which the volume should be created.
@@ -189,6 +193,8 @@ type VolumeState struct {
 	SizeInGb pulumi.IntPtrInput
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
 	// ). The zone in which the volume should be created.
@@ -353,6 +359,11 @@ func (o VolumeOutput) SizeInGb() pulumi.IntOutput {
 // If set, the new volume will be created from this snapshot.
 func (o VolumeOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the volume.
+func (o VolumeOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the volume.

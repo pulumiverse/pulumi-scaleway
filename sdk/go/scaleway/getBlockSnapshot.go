@@ -49,6 +49,7 @@ type LookupBlockSnapshotResult struct {
 	Name       *string                  `pulumi:"name"`
 	ProjectId  *string                  `pulumi:"projectId"`
 	SnapshotId *string                  `pulumi:"snapshotId"`
+	Srn        string                   `pulumi:"srn"`
 	Tags       []string                 `pulumi:"tags"`
 	VolumeId   *string                  `pulumi:"volumeId"`
 	Zone       *string                  `pulumi:"zone"`
@@ -119,6 +120,10 @@ func (o LookupBlockSnapshotResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupBlockSnapshotResultOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBlockSnapshotResult) *string { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBlockSnapshotResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockSnapshotResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupBlockSnapshotResultOutput) Tags() pulumi.StringArrayOutput {

@@ -26,7 +26,7 @@ class GetConnectorResult:
     """
     A collection of values returned by getConnector.
     """
-    def __init__(__self__, connector_id=None, created_at=None, id=None, name=None, organization_id=None, project_id=None, region=None, status=None, tags=None, target_vpc_id=None, updated_at=None, vpc_id=None):
+    def __init__(__self__, connector_id=None, created_at=None, id=None, name=None, organization_id=None, project_id=None, region=None, srn=None, status=None, tags=None, target_vpc_id=None, updated_at=None, vpc_id=None):
         if connector_id and not isinstance(connector_id, str):
             raise TypeError("Expected argument 'connector_id' to be a str")
         pulumi.set(__self__, "connector_id", connector_id)
@@ -48,6 +48,9 @@ class GetConnectorResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -104,6 +107,11 @@ class GetConnectorResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         return pulumi.get(self, "status")
 
@@ -141,6 +149,7 @@ class AwaitableGetConnectorResult(GetConnectorResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             region=self.region,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             target_vpc_id=self.target_vpc_id,
@@ -209,6 +218,7 @@ def get_connector(connector_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         target_vpc_id=pulumi.get(__ret__, 'target_vpc_id'),
@@ -274,6 +284,7 @@ def get_connector_output(connector_id: pulumi.Input[Optional[Optional[_builtins.
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         target_vpc_id=pulumi.get(__response__, 'target_vpc_id'),

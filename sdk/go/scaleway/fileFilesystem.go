@@ -74,6 +74,8 @@ type FileFilesystem struct {
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the filesystem.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A list of tags associated with the filesystem.
@@ -132,6 +134,8 @@ type fileFilesystemState struct {
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
 	SizeInGb *int `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the filesystem.
+	Srn *string `pulumi:"srn"`
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status *string `pulumi:"status"`
 	// A list of tags associated with the filesystem.
@@ -158,6 +162,8 @@ type FileFilesystemState struct {
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
 	SizeInGb pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the filesystem.
+	Srn pulumi.StringPtrInput
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status pulumi.StringPtrInput
 	// A list of tags associated with the filesystem.
@@ -326,6 +332,11 @@ func (o FileFilesystemOutput) Region() pulumi.StringPtrOutput {
 // - Maximum: 10 TB (10000000000000 bytes)
 func (o FileFilesystemOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *FileFilesystem) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the filesystem.
+func (o FileFilesystemOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FileFilesystem) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The current status of the filesystem. Possible values include creating, available, etc.

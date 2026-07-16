@@ -192,6 +192,10 @@ export class VpcRoute extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the route.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags to associate with the route.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -227,6 +231,7 @@ export class VpcRoute extends pulumi.CustomResource {
             resourceInputs["nexthopResourceId"] = state?.nexthopResourceId;
             resourceInputs["nexthopVpcConnectorId"] = state?.nexthopVpcConnectorId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["vpcId"] = state?.vpcId;
@@ -244,6 +249,7 @@ export class VpcRoute extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -283,6 +289,10 @@ export interface VpcRouteState {
      * `region`) The region of the route.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the route.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the route.
      */

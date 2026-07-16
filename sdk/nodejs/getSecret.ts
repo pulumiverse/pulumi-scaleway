@@ -107,6 +107,7 @@ export interface GetSecretResult {
     readonly protected: boolean;
     readonly region?: string;
     readonly secretId?: string;
+    readonly srn: string;
     readonly status: string;
     readonly tags: string[];
     readonly type: string;

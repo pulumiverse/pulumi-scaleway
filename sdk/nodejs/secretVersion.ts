@@ -115,6 +115,10 @@ export class SecretVersion extends pulumi.CustomResource {
      */
     declare public readonly secretId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the secret version.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the secret version.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -147,6 +151,7 @@ export class SecretVersion extends pulumi.CustomResource {
             resourceInputs["region"] = state?.region;
             resourceInputs["revision"] = state?.revision;
             resourceInputs["secretId"] = state?.secretId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
@@ -162,6 +167,7 @@ export class SecretVersion extends pulumi.CustomResource {
             resourceInputs["secretId"] = args?.secretId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["revision"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -209,6 +215,10 @@ export interface SecretVersionState {
      * The ID of the secret associated with the version.
      */
     secretId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the secret version.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the secret version.
      */

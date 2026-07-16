@@ -26,7 +26,7 @@ class GetVersionResult:
     """
     A collection of values returned by getVersion.
     """
-    def __init__(__self__, available_cnis=None, available_container_runtimes=None, available_feature_gates=None, id=None, major_minor_only=None, name=None, region=None):
+    def __init__(__self__, available_cnis=None, available_container_runtimes=None, available_feature_gates=None, id=None, major_minor_only=None, name=None, region=None, srn=None):
         if available_cnis and not isinstance(available_cnis, list):
             raise TypeError("Expected argument 'available_cnis' to be a list")
         pulumi.set(__self__, "available_cnis", available_cnis)
@@ -48,6 +48,9 @@ class GetVersionResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter(name="availableCnis")
@@ -96,6 +99,14 @@ class GetVersionResult:
     def region(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "region")
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the version.
+        """
+        return pulumi.get(self, "srn")
+
 
 class AwaitableGetVersionResult(GetVersionResult):
     # pylint: disable=using-constant-test
@@ -109,7 +120,8 @@ class AwaitableGetVersionResult(GetVersionResult):
             id=self.id,
             major_minor_only=self.major_minor_only,
             name=self.name,
-            region=self.region)
+            region=self.region,
+            srn=self.srn)
 
 
 def get_version(name: Optional[_builtins.str] = None,
@@ -157,7 +169,8 @@ def get_version(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         major_minor_only=pulumi.get(__ret__, 'major_minor_only'),
         name=pulumi.get(__ret__, 'name'),
-        region=pulumi.get(__ret__, 'region'))
+        region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'))
 def get_version_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                        region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVersionResult]:
@@ -202,4 +215,5 @@ def get_version_output(name: pulumi.Input[Optional[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         major_minor_only=pulumi.get(__response__, 'major_minor_only'),
         name=pulumi.get(__response__, 'name'),
-        region=pulumi.get(__response__, 'region')))
+        region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn')))

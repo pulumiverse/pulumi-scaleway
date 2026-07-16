@@ -27,7 +27,7 @@ class GetPoolResult:
     """
     A collection of values returned by getPool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, srn=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -94,6 +94,9 @@ class GetPoolResult:
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if startup_taints and not isinstance(startup_taints, list):
             raise TypeError("Expected argument 'startup_taints' to be a list")
         pulumi.set(__self__, "startup_taints", startup_taints)
@@ -272,6 +275,14 @@ class GetPoolResult:
         return pulumi.get(self, "size")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="startupTaints")
     def startup_taints(self) -> Sequence['outputs.GetPoolStartupTaintResult']:
         return pulumi.get(self, "startup_taints")
@@ -357,6 +368,7 @@ class AwaitableGetPoolResult(GetPoolResult):
             root_volume_type=self.root_volume_type,
             security_group_id=self.security_group_id,
             size=self.size,
+            srn=self.srn,
             startup_taints=self.startup_taints,
             status=self.status,
             tags=self.tags,
@@ -437,6 +449,7 @@ def get_pool(cluster_id: Optional[_builtins.str] = None,
         root_volume_type=pulumi.get(__ret__, 'root_volume_type'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         size=pulumi.get(__ret__, 'size'),
+        srn=pulumi.get(__ret__, 'srn'),
         startup_taints=pulumi.get(__ret__, 'startup_taints'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -514,6 +527,7 @@ def get_pool_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] 
         root_volume_type=pulumi.get(__response__, 'root_volume_type'),
         security_group_id=pulumi.get(__response__, 'security_group_id'),
         size=pulumi.get(__response__, 'size'),
+        srn=pulumi.get(__response__, 'srn'),
         startup_taints=pulumi.get(__response__, 'startup_taints'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),

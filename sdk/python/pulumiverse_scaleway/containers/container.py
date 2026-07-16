@@ -641,7 +641,7 @@ class _ContainerState:
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
-        :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container
+        :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
@@ -671,7 +671,7 @@ class _ContainerState:
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
-        :param pulumi.Input[_builtins.str] public_endpoint: The native domain name of the container
+        :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
@@ -865,7 +865,7 @@ class _ContainerState:
     @_utilities.deprecated("""This attribute will be removed in the future, please use public_endpoint instead""")
     def domain_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The native domain name of the container
+        The native domain name of the container.
         """
         return pulumi.get(self, "domain_name")
 
@@ -1119,7 +1119,7 @@ class _ContainerState:
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The native domain name of the container
+        The scheme and domain of the container (e.g., `https://example.com`).
         """
         return pulumi.get(self, "public_endpoint")
 
@@ -1996,7 +1996,7 @@ class Container(pulumi.CustomResource):
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
-        :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container
+        :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
@@ -2026,7 +2026,7 @@ class Container(pulumi.CustomResource):
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
-        :param pulumi.Input[_builtins.str] public_endpoint: The native domain name of the container
+        :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
         :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
@@ -2140,7 +2140,7 @@ class Container(pulumi.CustomResource):
     @_utilities.deprecated("""This attribute will be removed in the future, please use public_endpoint instead""")
     def domain_name(self) -> pulumi.Output[_builtins.str]:
         """
-        The native domain name of the container
+        The native domain name of the container.
         """
         return pulumi.get(self, "domain_name")
 
@@ -2314,7 +2314,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> pulumi.Output[_builtins.str]:
         """
-        The native domain name of the container
+        The scheme and domain of the container (e.g., `https://example.com`).
         """
         return pulumi.get(self, "public_endpoint")
 

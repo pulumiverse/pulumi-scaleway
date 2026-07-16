@@ -144,6 +144,12 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the subnet.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the Private Network.
         /// </summary>
         [Output("tags")]
@@ -353,6 +359,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the subnet.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

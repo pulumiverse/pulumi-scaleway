@@ -47,6 +47,7 @@ type LookupSnapshotResult struct {
 	Name       *string             `pulumi:"name"`
 	ProjectId  *string             `pulumi:"projectId"`
 	SnapshotId *string             `pulumi:"snapshotId"`
+	Srn        string              `pulumi:"srn"`
 	Tags       []string            `pulumi:"tags"`
 	VolumeId   *string             `pulumi:"volumeId"`
 	Zone       *string             `pulumi:"zone"`
@@ -117,6 +118,10 @@ func (o LookupSnapshotResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupSnapshotResultOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupSnapshotResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupSnapshotResultOutput) Tags() pulumi.StringArrayOutput {

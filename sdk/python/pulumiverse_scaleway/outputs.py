@@ -1270,7 +1270,7 @@ class ContainerLivenessProbe(dict):
         """
         :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
         :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
-        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param _builtins.str timeout: Duration before the check times out (in duration notation, e.g. "30s").
         :param 'ContainerLivenessProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
         :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
@@ -1302,7 +1302,7 @@ class ContainerLivenessProbe(dict):
     @pulumi.getter
     def timeout(self) -> _builtins.str:
         """
-        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        Duration before the check times out (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "timeout")
 
@@ -1433,7 +1433,7 @@ class ContainerStartupProbe(dict):
         """
         :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
         :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
-        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param _builtins.str timeout: Duration before the check times out (in duration notation, e.g. "30s").
         :param 'ContainerStartupProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
         :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
@@ -1465,7 +1465,7 @@ class ContainerStartupProbe(dict):
     @pulumi.getter
     def timeout(self) -> _builtins.str:
         """
-        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        Duration before the check times out (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "timeout")
 
@@ -5318,7 +5318,6 @@ class IpamIpReverse(dict):
                  hostname: Optional[_builtins.str] = None):
         """
         :param _builtins.str address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param _builtins.str hostname: The reverse domain name.
         """
@@ -5332,7 +5331,6 @@ class IpamIpReverse(dict):
     def address(self) -> Optional[_builtins.str]:
         """
         Request a specific IP in the specified source pool.
-
         > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
@@ -5729,14 +5727,12 @@ class KubernetesClusterAutoscalerConfig(dict):
         :param _builtins.bool ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
         :param _builtins.int log_level: Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
                Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-               
                > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         :param _builtins.int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param _builtins.str scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param _builtins.str scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
         :param _builtins.float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         :param _builtins.bool skip_nodes_with_local_storage: If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-               
                > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         if balance_similar_node_groups is not None:
@@ -5818,7 +5814,6 @@ class KubernetesClusterAutoscalerConfig(dict):
         """
         Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
         Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-
         > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "log_level")
@@ -5860,7 +5855,6 @@ class KubernetesClusterAutoscalerConfig(dict):
     def skip_nodes_with_local_storage(self) -> Optional[_builtins.bool]:
         """
         If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-
         > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "skip_nodes_with_local_storage")
@@ -6087,6 +6081,7 @@ class KubernetesNodePoolNode(dict):
                  private_ips: Optional[Sequence['outputs.KubernetesNodePoolNodePrivateIp']] = None,
                  public_ip: Optional[_builtins.str] = None,
                  public_ip_v6: Optional[_builtins.str] = None,
+                 srn: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None):
         """
         :param _builtins.str id: The ID of the IP address resource.
@@ -6098,6 +6093,7 @@ class KubernetesNodePoolNode(dict):
         :param Sequence['KubernetesNodePoolNodePrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param _builtins.str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param _builtins.str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the node.
         :param _builtins.str status: The status of the node.
         """
         if id is not None:
@@ -6110,6 +6106,8 @@ class KubernetesNodePoolNode(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if public_ip_v6 is not None:
             pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -6158,6 +6156,14 @@ class KubernetesNodePoolNode(dict):
         The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip_v6")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -9031,6 +9037,7 @@ class VpcPrivateNetworkIpv4Subnet(dict):
                  created_at: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  prefix_length: Optional[_builtins.int] = None,
+                 srn: Optional[_builtins.str] = None,
                  subnet: Optional[_builtins.str] = None,
                  subnet_mask: Optional[_builtins.str] = None,
                  updated_at: Optional[_builtins.str] = None):
@@ -9039,6 +9046,7 @@ class VpcPrivateNetworkIpv4Subnet(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet.
         :param _builtins.str id: The subnet ID.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet.
         :param _builtins.str subnet: The subnet CIDR.
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet.
@@ -9051,6 +9059,8 @@ class VpcPrivateNetworkIpv4Subnet(dict):
             pulumi.set(__self__, "id", id)
         if prefix_length is not None:
             pulumi.set(__self__, "prefix_length", prefix_length)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_mask is not None:
@@ -9089,6 +9099,14 @@ class VpcPrivateNetworkIpv4Subnet(dict):
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the subnet.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -9145,6 +9163,7 @@ class VpcPrivateNetworkIpv6Subnet(dict):
                  created_at: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  prefix_length: Optional[_builtins.int] = None,
+                 srn: Optional[_builtins.str] = None,
                  subnet: Optional[_builtins.str] = None,
                  subnet_mask: Optional[_builtins.str] = None,
                  updated_at: Optional[_builtins.str] = None):
@@ -9153,6 +9172,7 @@ class VpcPrivateNetworkIpv6Subnet(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet.
         :param _builtins.str id: The subnet ID.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet.
         :param _builtins.str subnet: The subnet CIDR.
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet.
@@ -9165,6 +9185,8 @@ class VpcPrivateNetworkIpv6Subnet(dict):
             pulumi.set(__self__, "id", id)
         if prefix_length is not None:
             pulumi.set(__self__, "prefix_length", prefix_length)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_mask is not None:
@@ -9203,6 +9225,14 @@ class VpcPrivateNetworkIpv6Subnet(dict):
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the subnet.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -12901,6 +12931,7 @@ class GetKubernetesNodePoolNodeResult(dict):
                  private_ips: Sequence['outputs.GetKubernetesNodePoolNodePrivateIpResult'],
                  public_ip: _builtins.str,
                  public_ip_v6: _builtins.str,
+                 srn: _builtins.str,
                  status: _builtins.str):
         """
         :param _builtins.str id: The ID of the pool.
@@ -12908,6 +12939,7 @@ class GetKubernetesNodePoolNodeResult(dict):
         :param Sequence['GetKubernetesNodePoolNodePrivateIpArgs'] private_ips: List of private IPv4 and IPv6 addresses associated with the node
         :param _builtins.str public_ip: The public IPv4.
         :param _builtins.str public_ip_v6: The public IPv6.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the node.
         :param _builtins.str status: The status of the node.
         """
         pulumi.set(__self__, "id", id)
@@ -12915,6 +12947,7 @@ class GetKubernetesNodePoolNodeResult(dict):
         pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "status", status)
 
     @_builtins.property
@@ -12956,6 +12989,14 @@ class GetKubernetesNodePoolNodeResult(dict):
         The public IPv6.
         """
         return pulumi.get(self, "public_ip_v6")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -15784,6 +15825,7 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
                  created_at: _builtins.str,
                  id: _builtins.str,
                  prefix_length: _builtins.int,
+                 srn: _builtins.str,
                  subnet: _builtins.str,
                  subnet_mask: _builtins.str,
                  updated_at: _builtins.str):
@@ -15792,6 +15834,7 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet
         :param _builtins.str id: The ID of the Private Network.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet
         :param _builtins.str subnet: The subnet CIDR
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet
@@ -15800,6 +15843,7 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "prefix_length", prefix_length)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "subnet", subnet)
         pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -15835,6 +15879,14 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
         The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the subnet
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -15868,6 +15920,7 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
                  created_at: _builtins.str,
                  id: _builtins.str,
                  prefix_length: _builtins.int,
+                 srn: _builtins.str,
                  subnet: _builtins.str,
                  subnet_mask: _builtins.str,
                  updated_at: _builtins.str):
@@ -15876,6 +15929,7 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet
         :param _builtins.str id: The ID of the Private Network.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet
         :param _builtins.str subnet: The subnet CIDR
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet
@@ -15884,6 +15938,7 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "prefix_length", prefix_length)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "subnet", subnet)
         pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -15919,6 +15974,14 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the subnet
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

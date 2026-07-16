@@ -158,6 +158,12 @@ namespace Pulumiverse.Scaleway.Block
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the snapshot.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// A list of tags to apply to the snapshot.
         /// </summary>
         [Output("tags")]
@@ -305,6 +311,12 @@ namespace Pulumiverse.Scaleway.Block
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the snapshot.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

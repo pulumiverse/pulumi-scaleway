@@ -96,6 +96,8 @@ type SecretVersion struct {
 	Revision pulumi.StringOutput `pulumi:"revision"`
 	// The ID of the secret associated with the version.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
+	// The Scaleway Resource Name (SRN) of the secret version.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the secret version.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The date and time of the secret version's last update (in RFC 3339 format).
@@ -163,6 +165,8 @@ type secretVersionState struct {
 	Revision *string `pulumi:"revision"`
 	// The ID of the secret associated with the version.
 	SecretId *string `pulumi:"secretId"`
+	// The Scaleway Resource Name (SRN) of the secret version.
+	Srn *string `pulumi:"srn"`
 	// The status of the secret version.
 	Status *string `pulumi:"status"`
 	// The date and time of the secret version's last update (in RFC 3339 format).
@@ -187,6 +191,8 @@ type SecretVersionState struct {
 	Revision pulumi.StringPtrInput
 	// The ID of the secret associated with the version.
 	SecretId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the secret version.
+	Srn pulumi.StringPtrInput
 	// The status of the secret version.
 	Status pulumi.StringPtrInput
 	// The date and time of the secret version's last update (in RFC 3339 format).
@@ -356,6 +362,11 @@ func (o SecretVersionOutput) Revision() pulumi.StringOutput {
 // The ID of the secret associated with the version.
 func (o SecretVersionOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the secret version.
+func (o SecretVersionOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the secret version.

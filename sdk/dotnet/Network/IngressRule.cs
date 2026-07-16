@@ -173,6 +173,12 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> Source { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the ingress rule.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The tags to associate with the ingress rule.
         /// </summary>
         [Output("tags")]
@@ -334,6 +340,12 @@ namespace Pulumiverse.Scaleway.Network
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the ingress rule.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

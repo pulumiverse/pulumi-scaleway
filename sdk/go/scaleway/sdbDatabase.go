@@ -146,7 +146,6 @@ type SdbDatabase struct {
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrOutput `pulumi:"minCpu"`
 	// The name of the database (e.g. `my-new-database`).
-	//
 	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The projectId you want to attach the resource to
@@ -192,7 +191,6 @@ type sdbDatabaseState struct {
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu *int `pulumi:"minCpu"`
 	// The name of the database (e.g. `my-new-database`).
-	//
 	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name *string `pulumi:"name"`
 	// The projectId you want to attach the resource to
@@ -209,7 +207,6 @@ type SdbDatabaseState struct {
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrInput
 	// The name of the database (e.g. `my-new-database`).
-	//
 	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringPtrInput
 	// The projectId you want to attach the resource to
@@ -228,7 +225,6 @@ type sdbDatabaseArgs struct {
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu *int `pulumi:"minCpu"`
 	// The name of the database (e.g. `my-new-database`).
-	//
 	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name *string `pulumi:"name"`
 	// The projectId you want to attach the resource to
@@ -244,7 +240,6 @@ type SdbDatabaseArgs struct {
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrInput
 	// The name of the database (e.g. `my-new-database`).
-	//
 	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringPtrInput
 	// The projectId you want to attach the resource to
@@ -356,7 +351,6 @@ func (o SdbDatabaseOutput) MinCpu() pulumi.IntPtrOutput {
 }
 
 // The name of the database (e.g. `my-new-database`).
-//
 // > **Important:** Updates to the `name` argument will recreate the database.
 func (o SdbDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)

@@ -87,6 +87,7 @@ export interface GetKeyManagerKeyResult {
     readonly rotatedAt: string;
     readonly rotationCount: number;
     readonly rotationPolicies: outputs.GetKeyManagerKeyRotationPolicy[];
+    readonly srn: string;
     readonly state: string;
     readonly tags: string[];
     readonly unprotected: boolean;

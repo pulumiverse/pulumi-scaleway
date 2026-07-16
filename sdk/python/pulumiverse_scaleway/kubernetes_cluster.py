@@ -419,6 +419,7 @@ class _KubernetesClusterState:
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  service_cidr: pulumi.Input[Optional[_builtins.str]] = None,
                  service_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -467,6 +468,7 @@ class _KubernetesClusterState:
                
                > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
                unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the cluster.
         :param pulumi.Input[_builtins.str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
@@ -525,6 +527,8 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "service_cidr", service_cidr)
         if service_dns_ip is not None:
             pulumi.set(__self__, "service_dns_ip", service_dns_ip)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -798,6 +802,18 @@ class _KubernetesClusterState:
     @service_dns_ip.setter
     def service_dns_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_dns_ip", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the cluster.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1491,6 +1507,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["kubeconfigs"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["upgrade_available"] = None
@@ -1527,6 +1544,7 @@ class KubernetesCluster(pulumi.CustomResource):
             region: pulumi.Input[Optional[_builtins.str]] = None,
             service_cidr: pulumi.Input[Optional[_builtins.str]] = None,
             service_dns_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1579,6 +1597,7 @@ class KubernetesCluster(pulumi.CustomResource):
                
                > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
                unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the cluster.
         :param pulumi.Input[_builtins.str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
@@ -1621,6 +1640,7 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["service_cidr"] = service_cidr
         __props__.__dict__["service_dns_ip"] = service_dns_ip
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -1807,6 +1827,14 @@ class KubernetesCluster(pulumi.CustomResource):
         unsetting it to go back to the default value will not have any effect.
         """
         return pulumi.get(self, "service_dns_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the cluster.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

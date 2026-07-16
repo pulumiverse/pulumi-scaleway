@@ -101,6 +101,8 @@ type GetK8sVersionResult struct {
 	MajorMinorOnly string  `pulumi:"majorMinorOnly"`
 	Name           string  `pulumi:"name"`
 	Region         *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the version.
+	Srn string `pulumi:"srn"`
 }
 
 func GetK8sVersionOutput(ctx *pulumi.Context, args GetK8sVersionOutputArgs, opts ...pulumi.InvokeOption) GetK8sVersionResultOutput {
@@ -169,6 +171,11 @@ func (o GetK8sVersionResultOutput) Name() pulumi.StringOutput {
 
 func (o GetK8sVersionResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetK8sVersionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the version.
+func (o GetK8sVersionResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sVersionResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func init() {

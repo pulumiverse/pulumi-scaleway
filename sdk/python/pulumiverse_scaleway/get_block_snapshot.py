@@ -29,7 +29,7 @@ class GetBlockSnapshotResult:
     """
     A collection of values returned by getBlockSnapshot.
     """
-    def __init__(__self__, exports=None, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, exports=None, id=None, imports=None, name=None, project_id=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
         if exports and not isinstance(exports, list):
             raise TypeError("Expected argument 'exports' to be a list")
         pulumi.set(__self__, "exports", exports)
@@ -48,6 +48,9 @@ class GetBlockSnapshotResult:
         if snapshot_id and not isinstance(snapshot_id, str):
             raise TypeError("Expected argument 'snapshot_id' to be a str")
         pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -93,6 +96,11 @@ class GetBlockSnapshotResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -119,6 +127,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
             name=self.name,
             project_id=self.project_id,
             snapshot_id=self.snapshot_id,
+            srn=self.srn,
             tags=self.tags,
             volume_id=self.volume_id,
             zone=self.zone)
@@ -159,6 +168,7 @@ def get_block_snapshot(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
@@ -196,6 +206,7 @@ def get_block_snapshot_output(name: pulumi.Input[Optional[Optional[_builtins.str
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         volume_id=pulumi.get(__response__, 'volume_id'),
         zone=pulumi.get(__response__, 'zone')))

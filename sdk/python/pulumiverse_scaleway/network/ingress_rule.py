@@ -143,6 +143,7 @@ class _IngressRuleState:
                  nexthop_resource_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  source: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -156,6 +157,7 @@ class _IngressRuleState:
         :param pulumi.Input[_builtins.str] nexthop_resource_ip: IP of the nexthop resource that should handle traffic matched by this rule.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the ingress rule.
         :param pulumi.Input[_builtins.str] source: Source IP range (in CIDR notation) to which the ingress rule applies.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the ingress rule.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the ingress rule.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the ingress rule (RFC 3339 format).
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the VPC in which to create the ingress rule.
@@ -174,6 +176,8 @@ class _IngressRuleState:
             pulumi.set(__self__, "region", region)
         if source is not None:
             pulumi.set(__self__, "source", source)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -264,6 +268,18 @@ class _IngressRuleState:
     @source.setter
     def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the ingress rule.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -526,6 +542,7 @@ class IngressRule(pulumi.CustomResource):
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["is_ipv6"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(IngressRule, __self__).__init__(
             'scaleway:network/ingressRule:IngressRule',
@@ -544,6 +561,7 @@ class IngressRule(pulumi.CustomResource):
             nexthop_resource_ip: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             source: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'IngressRule':
@@ -561,6 +579,7 @@ class IngressRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nexthop_resource_ip: IP of the nexthop resource that should handle traffic matched by this rule.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the ingress rule.
         :param pulumi.Input[_builtins.str] source: Source IP range (in CIDR notation) to which the ingress rule applies.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the ingress rule.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the ingress rule.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the ingress rule (RFC 3339 format).
         :param pulumi.Input[_builtins.str] vpc_id: The ID of the VPC in which to create the ingress rule.
@@ -576,6 +595,7 @@ class IngressRule(pulumi.CustomResource):
         __props__.__dict__["nexthop_resource_ip"] = nexthop_resource_ip
         __props__.__dict__["region"] = region
         __props__.__dict__["source"] = source
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vpc_id"] = vpc_id
@@ -636,6 +656,14 @@ class IngressRule(pulumi.CustomResource):
         Source IP range (in CIDR notation) to which the ingress rule applies.
         """
         return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the ingress rule.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

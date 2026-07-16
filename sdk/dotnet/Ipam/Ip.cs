@@ -195,7 +195,6 @@ namespace Pulumiverse.Scaleway.Ipam
     {
         /// <summary>
         /// Request a specific IP in the specified source pool.
-        /// 
         /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Output("address")]
@@ -326,7 +325,6 @@ namespace Pulumiverse.Scaleway.Ipam
     {
         /// <summary>
         /// Request a specific IP in the specified source pool.
-        /// 
         /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Input("address")]
@@ -396,7 +394,6 @@ namespace Pulumiverse.Scaleway.Ipam
     {
         /// <summary>
         /// Request a specific IP in the specified source pool.
-        /// 
         /// &gt; **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `DependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         /// </summary>
         [Input("address")]

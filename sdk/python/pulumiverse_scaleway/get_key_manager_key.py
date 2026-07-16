@@ -29,7 +29,7 @@ class GetKeyManagerKeyResult:
     """
     A collection of values returned by getKeyManagerKey.
     """
-    def __init__(__self__, algorithm=None, created_at=None, description=None, id=None, key_id=None, locked=None, name=None, origin=None, project_id=None, protected=None, region=None, rotated_at=None, rotation_count=None, rotation_policies=None, state=None, tags=None, unprotected=None, updated_at=None, usage=None):
+    def __init__(__self__, algorithm=None, created_at=None, description=None, id=None, key_id=None, locked=None, name=None, origin=None, project_id=None, protected=None, region=None, rotated_at=None, rotation_count=None, rotation_policies=None, srn=None, state=None, tags=None, unprotected=None, updated_at=None, usage=None):
         if algorithm and not isinstance(algorithm, str):
             raise TypeError("Expected argument 'algorithm' to be a str")
         pulumi.set(__self__, "algorithm", algorithm)
@@ -72,6 +72,9 @@ class GetKeyManagerKeyResult:
         if rotation_policies and not isinstance(rotation_policies, list):
             raise TypeError("Expected argument 'rotation_policies' to be a list")
         pulumi.set(__self__, "rotation_policies", rotation_policies)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
@@ -160,6 +163,11 @@ class GetKeyManagerKeyResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def state(self) -> _builtins.str:
         return pulumi.get(self, "state")
 
@@ -204,6 +212,7 @@ class AwaitableGetKeyManagerKeyResult(GetKeyManagerKeyResult):
             rotated_at=self.rotated_at,
             rotation_count=self.rotation_count,
             rotation_policies=self.rotation_policies,
+            srn=self.srn,
             state=self.state,
             tags=self.tags,
             unprotected=self.unprotected,
@@ -277,6 +286,7 @@ def get_key_manager_key(key_id: Optional[_builtins.str] = None,
         rotated_at=pulumi.get(__ret__, 'rotated_at'),
         rotation_count=pulumi.get(__ret__, 'rotation_count'),
         rotation_policies=pulumi.get(__ret__, 'rotation_policies'),
+        srn=pulumi.get(__ret__, 'srn'),
         state=pulumi.get(__ret__, 'state'),
         tags=pulumi.get(__ret__, 'tags'),
         unprotected=pulumi.get(__ret__, 'unprotected'),
@@ -347,6 +357,7 @@ def get_key_manager_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = N
         rotated_at=pulumi.get(__response__, 'rotated_at'),
         rotation_count=pulumi.get(__response__, 'rotation_count'),
         rotation_policies=pulumi.get(__response__, 'rotation_policies'),
+        srn=pulumi.get(__response__, 'srn'),
         state=pulumi.get(__response__, 'state'),
         tags=pulumi.get(__response__, 'tags'),
         unprotected=pulumi.get(__response__, 'unprotected'),

@@ -148,7 +148,7 @@ export class Connection extends pulumi.CustomResource {
      */
     declare public readonly ikev2Ciphers: pulumi.Output<outputs.s2svpn.ConnectionIkev2Cipher[]>;
     /**
-     * Defines who initiates the IPSec tunnel.
+     * Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
      */
     declare public readonly initiationPolicy: pulumi.Output<string>;
     /**
@@ -324,7 +324,7 @@ export interface ConnectionState {
      */
     ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[] | undefined>;
     /**
-     * Defines who initiates the IPSec tunnel.
+     * Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
      */
     initiationPolicy?: pulumi.Input<string | undefined>;
     /**
@@ -410,7 +410,7 @@ export interface ConnectionArgs {
      */
     ikev2Ciphers?: pulumi.Input<pulumi.Input<inputs.s2svpn.ConnectionIkev2Cipher>[] | undefined>;
     /**
-     * Defines who initiates the IPSec tunnel.
+     * Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
      */
     initiationPolicy?: pulumi.Input<string | undefined>;
     /**

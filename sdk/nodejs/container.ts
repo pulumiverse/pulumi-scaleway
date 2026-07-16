@@ -323,7 +323,7 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * The native domain name of the container
+     * The native domain name of the container.
      *
      * @deprecated This attribute will be removed in the future, please use publicEndpoint instead
      */
@@ -423,7 +423,7 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly protocol: pulumi.Output<string | undefined>;
     /**
-     * The native domain name of the container
+     * The scheme and domain of the container (e.g., `https://example.com`).
      */
     declare public /*out*/ readonly publicEndpoint: pulumi.Output<string>;
     /**
@@ -609,7 +609,7 @@ export interface ContainerState {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The native domain name of the container
+     * The native domain name of the container.
      *
      * @deprecated This attribute will be removed in the future, please use publicEndpoint instead
      */
@@ -709,7 +709,7 @@ export interface ContainerState {
      */
     protocol?: pulumi.Input<string | undefined>;
     /**
-     * The native domain name of the container
+     * The scheme and domain of the container (e.g., `https://example.com`).
      */
     publicEndpoint?: pulumi.Input<string | undefined>;
     /**

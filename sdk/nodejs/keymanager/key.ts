@@ -164,6 +164,10 @@ export class Key extends pulumi.CustomResource {
      */
     declare public readonly rotationPolicy: pulumi.Output<outputs.keymanager.KeyRotationPolicy | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the key.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The state of the key (e.g., `enabled`).
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
@@ -209,6 +213,7 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["rotatedAt"] = state?.rotatedAt;
             resourceInputs["rotationCount"] = state?.rotationCount;
             resourceInputs["rotationPolicy"] = state?.rotationPolicy;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["state"] = state?.state;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["unprotected"] = state?.unprotected;
@@ -237,6 +242,7 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["protected"] = undefined /*out*/;
             resourceInputs["rotatedAt"] = undefined /*out*/;
             resourceInputs["rotationCount"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -302,6 +308,10 @@ export interface KeyState {
      * – Rotation policy for the key:
      */
     rotationPolicy?: pulumi.Input<inputs.keymanager.KeyRotationPolicy | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the key.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The state of the key (e.g., `enabled`).
      */

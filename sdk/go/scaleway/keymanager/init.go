@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "scaleway:keymanager/key:Key":
 		r = &Key{}
+	case "scaleway:keymanager/keyMaterial:KeyMaterial":
+		r = &KeyMaterial{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +41,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"keymanager/key",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"keymanager/keyMaterial",
 		&module{version},
 	)
 }

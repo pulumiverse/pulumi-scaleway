@@ -261,6 +261,8 @@ type Route struct {
 	NexthopVpcConnectorId pulumi.StringPtrOutput `pulumi:"nexthopVpcConnectorId"`
 	// `region`) The region of the route.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the route.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags to associate with the route.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the creation of the route (RFC 3339 format).
@@ -322,6 +324,8 @@ type routeState struct {
 	NexthopVpcConnectorId *string `pulumi:"nexthopVpcConnectorId"`
 	// `region`) The region of the route.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the route.
+	Srn *string `pulumi:"srn"`
 	// The tags to associate with the route.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the creation of the route (RFC 3339 format).
@@ -345,6 +349,8 @@ type RouteState struct {
 	NexthopVpcConnectorId pulumi.StringPtrInput
 	// `region`) The region of the route.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the route.
+	Srn pulumi.StringPtrInput
 	// The tags to associate with the route.
 	Tags pulumi.StringArrayInput
 	// The date and time of the creation of the route (RFC 3339 format).
@@ -516,6 +522,11 @@ func (o RouteOutput) NexthopVpcConnectorId() pulumi.StringPtrOutput {
 // `region`) The region of the route.
 func (o RouteOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the route.
+func (o RouteOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Route) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags to associate with the route.

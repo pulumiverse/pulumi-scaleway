@@ -100,6 +100,7 @@ type LookupKeyResult struct {
 	RotatedAt        string                 `pulumi:"rotatedAt"`
 	RotationCount    int                    `pulumi:"rotationCount"`
 	RotationPolicies []GetKeyRotationPolicy `pulumi:"rotationPolicies"`
+	Srn              string                 `pulumi:"srn"`
 	State            string                 `pulumi:"state"`
 	Tags             []string               `pulumi:"tags"`
 	Unprotected      bool                   `pulumi:"unprotected"`
@@ -197,6 +198,10 @@ func (o LookupKeyResultOutput) RotationCount() pulumi.IntOutput {
 
 func (o LookupKeyResultOutput) RotationPolicies() GetKeyRotationPolicyArrayOutput {
 	return o.ApplyT(func(v LookupKeyResult) []GetKeyRotationPolicy { return v.RotationPolicies }).(GetKeyRotationPolicyArrayOutput)
+}
+
+func (o LookupKeyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKeyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupKeyResultOutput) State() pulumi.StringOutput {

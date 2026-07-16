@@ -93,6 +93,10 @@ export class FileFilesystem extends pulumi.CustomResource {
      */
     declare public readonly sizeInGb: pulumi.Output<number>;
     /**
+     * The Scaleway Resource Name (SRN) of the filesystem.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The current status of the filesystem. Possible values include creating, available, etc.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -125,6 +129,7 @@ export class FileFilesystem extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
             resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -141,6 +146,7 @@ export class FileFilesystem extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["numberOfAttachments"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -184,6 +190,10 @@ export interface FileFilesystemState {
      * - Maximum: 10 TB (10000000000000 bytes)
      */
     sizeInGb?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the filesystem.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The current status of the filesystem. Possible values include creating, available, etc.
      */

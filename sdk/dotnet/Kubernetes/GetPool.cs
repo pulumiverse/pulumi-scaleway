@@ -296,6 +296,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// The size of the pool.
         /// </summary>
         public readonly int? Size;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the node.
+        /// </summary>
+        public readonly string Srn;
         public readonly ImmutableArray<Outputs.GetPoolStartupTaintResult> StartupTaints;
         /// <summary>
         /// The status of the node.
@@ -364,6 +368,8 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             int? size,
 
+            string srn,
+
             ImmutableArray<Outputs.GetPoolStartupTaintResult> startupTaints,
 
             string status,
@@ -404,6 +410,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
             RootVolumeType = rootVolumeType;
             SecurityGroupId = securityGroupId;
             Size = size;
+            Srn = srn;
             StartupTaints = startupTaints;
             Status = status;
             Tags = tags;

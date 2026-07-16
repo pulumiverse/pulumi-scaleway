@@ -108,6 +108,8 @@ type Vpc struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPC.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags to associate with the VPC.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Date and time of VPC's last update (RFC 3339 format).
@@ -162,6 +164,8 @@ type vpcState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the VPC.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPC.
+	Srn *string `pulumi:"srn"`
 	// The tags to associate with the VPC.
 	Tags []string `pulumi:"tags"`
 	// Date and time of VPC's last update (RFC 3339 format).
@@ -187,6 +191,8 @@ type VpcState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the VPC.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the VPC.
+	Srn pulumi.StringPtrInput
 	// The tags to associate with the VPC.
 	Tags pulumi.StringArrayInput
 	// Date and time of VPC's last update (RFC 3339 format).
@@ -362,6 +368,11 @@ func (o VpcOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region of the VPC.
 func (o VpcOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the VPC.
+func (o VpcOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags to associate with the VPC.

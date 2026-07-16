@@ -30,7 +30,6 @@ class SdbDatabaseArgs:
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
         :param pulumi.Input[_builtins.str] name: The name of the database (e.g. `my-new-database`).
-               
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
@@ -75,7 +74,6 @@ class SdbDatabaseArgs:
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the database (e.g. `my-new-database`).
-
         > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")
@@ -125,7 +123,6 @@ class _SdbDatabaseState:
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
         :param pulumi.Input[_builtins.str] name: The name of the database (e.g. `my-new-database`).
-               
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
@@ -184,7 +181,6 @@ class _SdbDatabaseState:
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the database (e.g. `my-new-database`).
-
         > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")
@@ -304,7 +300,6 @@ class SdbDatabase(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
         :param pulumi.Input[_builtins.str] name: The name of the database (e.g. `my-new-database`).
-               
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
@@ -442,7 +437,6 @@ class SdbDatabase(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_cpu: The maximum number of CPU units for your database. Defaults to 15.
         :param pulumi.Input[_builtins.int] min_cpu: The minimum number of CPU units for your database. Defaults to 0.
         :param pulumi.Input[_builtins.str] name: The name of the database (e.g. `my-new-database`).
-               
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
@@ -488,7 +482,6 @@ class SdbDatabase(pulumi.CustomResource):
     def name(self) -> pulumi.Output[_builtins.str]:
         """
         The name of the database (e.g. `my-new-database`).
-
         > **Important:** Updates to the `name` argument will recreate the database.
         """
         return pulumi.get(self, "name")

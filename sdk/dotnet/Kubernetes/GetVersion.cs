@@ -221,6 +221,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public readonly string MajorMinorOnly;
         public readonly string Name;
         public readonly string? Region;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the version.
+        /// </summary>
+        public readonly string Srn;
 
         [OutputConstructor]
         private GetVersionResult(
@@ -236,7 +240,9 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             string name,
 
-            string? region)
+            string? region,
+
+            string srn)
         {
             AvailableCnis = availableCnis;
             AvailableContainerRuntimes = availableContainerRuntimes;
@@ -245,6 +251,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
             MajorMinorOnly = majorMinorOnly;
             Name = name;
             Region = region;
+            Srn = srn;
         }
     }
 }

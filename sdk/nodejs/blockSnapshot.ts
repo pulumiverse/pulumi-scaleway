@@ -131,6 +131,10 @@ export class BlockSnapshot extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the snapshot.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the snapshot.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -163,6 +167,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["import"] = state?.import;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["volumeId"] = state?.volumeId;
             resourceInputs["zone"] = state?.zone;
@@ -175,6 +180,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["volumeId"] = args?.volumeId;
             resourceInputs["zone"] = args?.zone;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BlockSnapshot.__pulumiType, name, resourceInputs, opts);
@@ -201,6 +207,10 @@ export interface BlockSnapshotState {
      * ). The ID of the Scaleway Project the snapshot is associated with.
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the snapshot.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */

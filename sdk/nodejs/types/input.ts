@@ -305,7 +305,7 @@ export interface ContainerLivenessProbe {
      */
     tcp?: pulumi.Input<boolean | undefined>;
     /**
-     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     * Duration before the check times out (in duration notation, e.g. "30s").
      */
     timeout: pulumi.Input<string>;
 }
@@ -350,7 +350,7 @@ export interface ContainerStartupProbe {
      */
     tcp?: pulumi.Input<boolean | undefined>;
     /**
-     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     * Duration before the check times out (in duration notation, e.g. "30s").
      */
     timeout: pulumi.Input<string>;
 }
@@ -1511,7 +1511,6 @@ export interface IpamIpResource {
 export interface IpamIpReverse {
     /**
      * Request a specific IP in the specified source pool.
-     *
      * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address?: pulumi.Input<string | undefined>;
@@ -1632,7 +1631,6 @@ export interface KubernetesClusterAutoscalerConfig {
     /**
      * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
      * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-     *
      * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
      */
     logLevel?: pulumi.Input<number | undefined>;
@@ -1654,7 +1652,6 @@ export interface KubernetesClusterAutoscalerConfig {
     scaleDownUtilizationThreshold?: pulumi.Input<number | undefined>;
     /**
      * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-     *
      * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
      */
     skipNodesWithLocalStorage?: pulumi.Input<boolean | undefined>;
@@ -1739,6 +1736,10 @@ export interface KubernetesNodePoolNode {
      * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIpV6?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the node.
      */
@@ -2596,6 +2597,10 @@ export interface VpcPrivateNetworkIpv4Subnet {
      */
     prefixLength?: pulumi.Input<number | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    srn?: pulumi.Input<string | undefined>;
+    /**
      * The subnet CIDR.
      */
     subnet?: pulumi.Input<string | undefined>;
@@ -2626,6 +2631,10 @@ export interface VpcPrivateNetworkIpv6Subnet {
      * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
      */
     prefixLength?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The subnet CIDR.
      */
@@ -2935,7 +2944,7 @@ export namespace containers {
          */
         tcp?: pulumi.Input<boolean | undefined>;
         /**
-         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         * Duration before the check times out (in duration notation, e.g. "30s").
          */
         timeout: pulumi.Input<string>;
     }
@@ -2980,7 +2989,7 @@ export namespace containers {
          */
         tcp?: pulumi.Input<boolean | undefined>;
         /**
-         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         * Duration before the check times out (in duration notation, e.g. "30s").
          */
         timeout: pulumi.Input<string>;
     }
@@ -5090,7 +5099,6 @@ export namespace ipam {
     export interface IpReverse {
         /**
          * Request a specific IP in the specified source pool.
-         *
          * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
          */
         address?: pulumi.Input<string | undefined>;
@@ -5232,6 +5240,10 @@ export namespace kubernetes {
          * > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
          */
         scalewayRanges?: pulumi.Input<boolean | undefined>;
+        /**
+         * The Scaleway Resource Name (SRN) of the ACL rule
+         */
+        srn?: pulumi.Input<string | undefined>;
     }
 
     export interface ClusterAutoUpgrade {
@@ -5278,7 +5290,6 @@ export namespace kubernetes {
         /**
          * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
          * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-         *
          * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
          */
         logLevel?: pulumi.Input<number | undefined>;
@@ -5300,7 +5311,6 @@ export namespace kubernetes {
         scaleDownUtilizationThreshold?: pulumi.Input<number | undefined>;
         /**
          * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-         *
          * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
          */
         skipNodesWithLocalStorage?: pulumi.Input<boolean | undefined>;
@@ -5385,6 +5395,10 @@ export namespace kubernetes {
          * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
          */
         publicIpV6?: pulumi.Input<string | undefined>;
+        /**
+         * The Scaleway Resource Name (SRN) of the node.
+         */
+        srn?: pulumi.Input<string | undefined>;
         /**
          * The status of the node.
          */
@@ -5880,6 +5894,10 @@ export namespace network {
          */
         prefixLength?: pulumi.Input<number | undefined>;
         /**
+         * The Scaleway Resource Name (SRN) of the subnet.
+         */
+        srn?: pulumi.Input<string | undefined>;
+        /**
          * The subnet CIDR.
          */
         subnet?: pulumi.Input<string | undefined>;
@@ -5910,6 +5928,10 @@ export namespace network {
          * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
          */
         prefixLength?: pulumi.Input<number | undefined>;
+        /**
+         * The Scaleway Resource Name (SRN) of the subnet.
+         */
+        srn?: pulumi.Input<string | undefined>;
         /**
          * The subnet CIDR.
          */

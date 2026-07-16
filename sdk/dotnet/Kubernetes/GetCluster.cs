@@ -278,6 +278,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public readonly string ServiceCidr;
         public readonly string ServiceDnsIp;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the cluster.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// The status of the Kubernetes cluster.
         /// </summary>
         public readonly string Status;
@@ -351,6 +355,8 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             string serviceDnsIp,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -388,6 +394,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
             Region = region;
             ServiceCidr = serviceCidr;
             ServiceDnsIp = serviceDnsIp;
+            Srn = srn;
             Status = status;
             Tags = tags;
             Type = type;

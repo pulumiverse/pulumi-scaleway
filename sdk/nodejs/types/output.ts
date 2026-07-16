@@ -305,7 +305,7 @@ export interface ContainerLivenessProbe {
      */
     tcp?: boolean;
     /**
-     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     * Duration before the check times out (in duration notation, e.g. "30s").
      */
     timeout: string;
 }
@@ -350,7 +350,7 @@ export interface ContainerStartupProbe {
      */
     tcp?: boolean;
     /**
-     * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+     * Duration before the check times out (in duration notation, e.g. "30s").
      */
     timeout: string;
 }
@@ -2242,6 +2242,10 @@ export interface GetKubernetesNodePoolNode {
      */
     publicIpV6: string;
     /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    srn: string;
+    /**
      * The status of the node.
      */
     status: string;
@@ -3309,6 +3313,10 @@ export interface GetVpcPrivateNetworkIpv4Subnet {
      */
     prefixLength: number;
     /**
+     * The Scaleway Resource Name (SRN) of the subnet
+     */
+    srn: string;
+    /**
      * The subnet CIDR
      */
     subnet: string;
@@ -3339,6 +3347,10 @@ export interface GetVpcPrivateNetworkIpv6Subnet {
      * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
      */
     prefixLength: number;
+    /**
+     * The Scaleway Resource Name (SRN) of the subnet
+     */
+    srn: string;
     /**
      * The subnet CIDR
      */
@@ -4141,7 +4153,6 @@ export interface IpamIpResource {
 export interface IpamIpReverse {
     /**
      * Request a specific IP in the specified source pool.
-     *
      * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
      */
     address: string;
@@ -4262,7 +4273,6 @@ export interface KubernetesClusterAutoscalerConfig {
     /**
      * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
      * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-     *
      * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
      */
     logLevel: number;
@@ -4284,7 +4294,6 @@ export interface KubernetesClusterAutoscalerConfig {
     scaleDownUtilizationThreshold?: number;
     /**
      * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-     *
      * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
      */
     skipNodesWithLocalStorage: boolean;
@@ -4369,6 +4378,10 @@ export interface KubernetesNodePoolNode {
      * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIpV6: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    srn: string;
     /**
      * The status of the node.
      */
@@ -5226,6 +5239,10 @@ export interface VpcPrivateNetworkIpv4Subnet {
      */
     prefixLength: number;
     /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    srn: string;
+    /**
      * The subnet CIDR.
      */
     subnet: string;
@@ -5256,6 +5273,10 @@ export interface VpcPrivateNetworkIpv6Subnet {
      * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
      */
     prefixLength: number;
+    /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    srn: string;
     /**
      * The subnet CIDR.
      */
@@ -5856,7 +5877,7 @@ export namespace containers {
          */
         tcp?: boolean;
         /**
-         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         * Duration before the check times out (in duration notation, e.g. "30s").
          */
         timeout: string;
     }
@@ -5901,7 +5922,7 @@ export namespace containers {
          */
         tcp?: boolean;
         /**
-         * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+         * Duration before the check times out (in duration notation, e.g. "30s").
          */
         timeout: string;
     }
@@ -10159,7 +10180,6 @@ export namespace ipam {
     export interface IpReverse {
         /**
          * Request a specific IP in the specified source pool.
-         *
          * > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
          */
         address: string;
@@ -10349,6 +10369,10 @@ export namespace kubernetes {
          * > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
          */
         scalewayRanges?: boolean;
+        /**
+         * The Scaleway Resource Name (SRN) of the ACL rule
+         */
+        srn: string;
     }
 
     export interface ClusterAutoUpgrade {
@@ -10395,7 +10419,6 @@ export namespace kubernetes {
         /**
          * Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
          * Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-         *
          * > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
          */
         logLevel: number;
@@ -10417,7 +10440,6 @@ export namespace kubernetes {
         scaleDownUtilizationThreshold?: number;
         /**
          * If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-         *
          * > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
          */
         skipNodesWithLocalStorage: boolean;
@@ -10611,6 +10633,10 @@ export namespace kubernetes {
          */
         publicIpV6: string;
         /**
+         * The Scaleway Resource Name (SRN) of the node.
+         */
+        srn: string;
+        /**
          * The status of the node.
          */
         status: string;
@@ -10697,6 +10723,10 @@ export namespace kubernetes {
          * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
          */
         publicIpV6: string;
+        /**
+         * The Scaleway Resource Name (SRN) of the node.
+         */
+        srn: string;
         /**
          * The status of the node.
          */
@@ -11963,6 +11993,10 @@ export namespace network {
          */
         prefixLength: number;
         /**
+         * The Scaleway Resource Name (SRN) of the subnet
+         */
+        srn: string;
+        /**
          * The subnet CIDR
          */
         subnet: string;
@@ -11993,6 +12027,10 @@ export namespace network {
          * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
          */
         prefixLength: number;
+        /**
+         * The Scaleway Resource Name (SRN) of the subnet
+         */
+        srn: string;
         /**
          * The subnet CIDR
          */
@@ -12117,6 +12155,10 @@ export namespace network {
          */
         prefixLength: number;
         /**
+         * The Scaleway Resource Name (SRN) of the subnet.
+         */
+        srn: string;
+        /**
          * The subnet CIDR.
          */
         subnet: string;
@@ -12147,6 +12189,10 @@ export namespace network {
          * The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
          */
         prefixLength: number;
+        /**
+         * The Scaleway Resource Name (SRN) of the subnet.
+         */
+        srn: string;
         /**
          * The subnet CIDR.
          */

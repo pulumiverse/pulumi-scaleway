@@ -56,7 +56,6 @@ export interface GetIamUserArgs {
     tags?: string[];
     /**
      * The ID of the IAM user.
-     *
      * > **Note** You must specify at least one: `email` and/or `userId`.
      */
     userId?: string;
@@ -149,7 +148,6 @@ export interface GetIamUserOutputArgs {
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the IAM user.
-     *
      * > **Note** You must specify at least one: `email` and/or `userId`.
      */
     userId?: pulumi.Input<string | undefined>;

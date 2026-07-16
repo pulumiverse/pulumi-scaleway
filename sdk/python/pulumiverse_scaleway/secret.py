@@ -184,6 +184,7 @@ class _SecretState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -202,6 +203,7 @@ class _SecretState:
         :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the secret.
         :param pulumi.Input[_builtins.str] status: The status of the secret.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
         :param pulumi.Input[_builtins.str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
@@ -225,6 +227,8 @@ class _SecretState:
             pulumi.set(__self__, "protected", protected)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -334,6 +338,18 @@ class _SecretState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the secret.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -596,6 +612,7 @@ class Secret(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["version_count"] = None
@@ -618,6 +635,7 @@ class Secret(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             protected: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -640,6 +658,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] protected: True if secret protection is enabled on the secret. A protected secret cannot be deleted, terraform will fail to destroy unless this is set to false.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the resource exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the secret.
         :param pulumi.Input[_builtins.str] status: The status of the secret.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags of the secret (e.g. `["tag", "secret"]`).
         :param pulumi.Input[_builtins.str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
@@ -659,6 +678,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["protected"] = protected
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -731,6 +751,14 @@ class Secret(pulumi.CustomResource):
         in which the resource exists.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the secret.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

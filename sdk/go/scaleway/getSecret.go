@@ -110,6 +110,7 @@ type LookupSecretResult struct {
 	Protected      bool                   `pulumi:"protected"`
 	Region         *string                `pulumi:"region"`
 	SecretId       *string                `pulumi:"secretId"`
+	Srn            string                 `pulumi:"srn"`
 	Status         string                 `pulumi:"status"`
 	Tags           []string               `pulumi:"tags"`
 	Type           string                 `pulumi:"type"`
@@ -209,6 +210,10 @@ func (o LookupSecretResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o LookupSecretResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSecretResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupSecretResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupSecretResultOutput) Status() pulumi.StringOutput {
