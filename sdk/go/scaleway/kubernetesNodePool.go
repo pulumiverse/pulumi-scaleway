@@ -198,6 +198,8 @@ type KubernetesNodePool struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
 	StartupTaints KubernetesNodePoolStartupTaintArrayOutput `pulumi:"startupTaints"`
 	// The status of the node.
@@ -322,6 +324,8 @@ type kubernetesNodePoolState struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size *int `pulumi:"size"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn *string `pulumi:"srn"`
 	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
 	StartupTaints []KubernetesNodePoolStartupTaint `pulumi:"startupTaints"`
 	// The status of the node.
@@ -408,6 +412,8 @@ type KubernetesNodePoolState struct {
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
 	Size pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringPtrInput
 	// The list of Kubernetes taints applied at node creation but not reconciled afterward.
 	StartupTaints KubernetesNodePoolStartupTaintArrayInput
 	// The status of the node.
@@ -795,6 +801,11 @@ func (o KubernetesNodePoolOutput) SecurityGroupId() pulumi.StringOutput {
 // > **Important:** This field will only be used at creation if autoscaling is enabled.
 func (o KubernetesNodePoolOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o KubernetesNodePoolOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of Kubernetes taints applied at node creation but not reconciled afterward.

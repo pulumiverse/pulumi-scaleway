@@ -371,6 +371,7 @@
         "keymanager/getVerify.ts",
         "keymanager/index.ts",
         "keymanager/key.ts",
+        "keymanager/keyMaterial.ts",
         "kubernetes/acl.ts",
         "kubernetes/cluster.ts",
         "kubernetes/getCluster.ts",

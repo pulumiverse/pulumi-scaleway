@@ -477,6 +477,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ServiceDnsIp { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the cluster.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the Kubernetes cluster.
         /// </summary>
         [Output("status")]
@@ -926,6 +932,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("serviceDnsIp")]
         public Input<string>? ServiceDnsIp { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the cluster.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the Kubernetes cluster.

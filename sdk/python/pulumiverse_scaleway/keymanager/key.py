@@ -206,6 +206,7 @@ class _KeyState:
                  rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_policy: pulumi.Input[Optional['KeyRotationPolicyArgs']] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  unprotected: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -229,6 +230,7 @@ class _KeyState:
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
         :param pulumi.Input['KeyRotationPolicyArgs'] rotation_policy: – Rotation policy for the key:
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the key.
         :param pulumi.Input[_builtins.str] state: The state of the key (e.g., `enabled`).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
@@ -259,6 +261,8 @@ class _KeyState:
             pulumi.set(__self__, "rotation_count", rotation_count)
         if rotation_policy is not None:
             pulumi.set(__self__, "rotation_policy", rotation_policy)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if tags is not None:
@@ -416,6 +420,18 @@ class _KeyState:
     @rotation_policy.setter
     def rotation_policy(self, value: pulumi.Input[Optional['KeyRotationPolicyArgs']]):
         pulumi.set(self, "rotation_policy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the key.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -722,6 +738,7 @@ class Key(pulumi.CustomResource):
             __props__.__dict__["protected"] = None
             __props__.__dict__["rotated_at"] = None
             __props__.__dict__["rotation_count"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/keyManagerKey:KeyManagerKey")])
@@ -748,6 +765,7 @@ class Key(pulumi.CustomResource):
             rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_policy: pulumi.Input[Optional[Union['KeyRotationPolicyArgs', 'KeyRotationPolicyArgsDict']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             unprotected: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -775,6 +793,7 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
         :param pulumi.Input[Union['KeyRotationPolicyArgs', 'KeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the key.
         :param pulumi.Input[_builtins.str] state: The state of the key (e.g., `enabled`).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
@@ -797,6 +816,7 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["rotated_at"] = rotated_at
         __props__.__dict__["rotation_count"] = rotation_count
         __props__.__dict__["rotation_policy"] = rotation_policy
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["state"] = state
         __props__.__dict__["tags"] = tags
         __props__.__dict__["unprotected"] = unprotected
@@ -902,6 +922,14 @@ class Key(pulumi.CustomResource):
         – Rotation policy for the key:
         """
         return pulumi.get(self, "rotation_policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the key.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

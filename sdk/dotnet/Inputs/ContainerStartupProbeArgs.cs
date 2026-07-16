@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<bool>? Tcp { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        /// Duration before the check times out (in duration notation, e.g. "30s").
         /// </summary>
         [Input("timeout", required: true)]
         public Input<string> Timeout { get; set; } = null!;

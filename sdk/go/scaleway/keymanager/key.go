@@ -163,6 +163,8 @@ type Key struct {
 	RotationCount pulumi.IntOutput `pulumi:"rotationCount"`
 	// – Rotation policy for the key:
 	RotationPolicy KeyRotationPolicyPtrOutput `pulumi:"rotationPolicy"`
+	// The Scaleway Resource Name (SRN) of the key.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The state of the key (e.g., `enabled`).
 	State pulumi.StringOutput `pulumi:"state"`
 	// – A list of tags to assign to the key.
@@ -244,6 +246,8 @@ type keyState struct {
 	RotationCount *int `pulumi:"rotationCount"`
 	// – Rotation policy for the key:
 	RotationPolicy *KeyRotationPolicy `pulumi:"rotationPolicy"`
+	// The Scaleway Resource Name (SRN) of the key.
+	Srn *string `pulumi:"srn"`
 	// The state of the key (e.g., `enabled`).
 	State *string `pulumi:"state"`
 	// – A list of tags to assign to the key.
@@ -284,6 +288,8 @@ type KeyState struct {
 	RotationCount pulumi.IntPtrInput
 	// – Rotation policy for the key:
 	RotationPolicy KeyRotationPolicyPtrInput
+	// The Scaleway Resource Name (SRN) of the key.
+	Srn pulumi.StringPtrInput
 	// The state of the key (e.g., `enabled`).
 	State pulumi.StringPtrInput
 	// – A list of tags to assign to the key.
@@ -501,6 +507,11 @@ func (o KeyOutput) RotationCount() pulumi.IntOutput {
 // – Rotation policy for the key:
 func (o KeyOutput) RotationPolicy() KeyRotationPolicyPtrOutput {
 	return o.ApplyT(func(v *Key) KeyRotationPolicyPtrOutput { return v.RotationPolicy }).(KeyRotationPolicyPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the key.
+func (o KeyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The state of the key (e.g., `enabled`).

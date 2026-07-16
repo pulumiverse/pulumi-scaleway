@@ -86,6 +86,7 @@ export interface GetVpcResult {
     readonly organizationId: string;
     readonly projectId?: string;
     readonly region?: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly vpcId?: string;

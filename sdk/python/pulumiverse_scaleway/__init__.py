@@ -1976,6 +1976,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "keymanager/keyMaterial",
+  "fqn": "pulumiverse_scaleway.keymanager",
+  "classes": {
+   "scaleway:keymanager/keyMaterial:KeyMaterial": "KeyMaterial"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "kubernetes/acl",
   "fqn": "pulumiverse_scaleway.kubernetes",
   "classes": {

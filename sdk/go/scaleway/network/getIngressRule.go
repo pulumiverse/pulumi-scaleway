@@ -108,6 +108,7 @@ type LookupIngressRuleResult struct {
 	NexthopResourceIp       *string  `pulumi:"nexthopResourceIp"`
 	Region                  *string  `pulumi:"region"`
 	Source                  string   `pulumi:"source"`
+	Srn                     string   `pulumi:"srn"`
 	Tags                    []string `pulumi:"tags"`
 	UpdatedAt               string   `pulumi:"updatedAt"`
 	VpcId                   *string  `pulumi:"vpcId"`
@@ -196,6 +197,10 @@ func (o LookupIngressRuleResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o LookupIngressRuleResultOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIngressRuleResult) string { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o LookupIngressRuleResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIngressRuleResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupIngressRuleResultOutput) Tags() pulumi.StringArrayOutput {

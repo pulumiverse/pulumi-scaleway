@@ -95,6 +95,7 @@ export interface GetConnectorResult {
     readonly organizationId: string;
     readonly projectId?: string;
     readonly region?: string;
+    readonly srn: string;
     readonly status: string;
     readonly tags?: string[];
     readonly targetVpcId?: string;

@@ -117,7 +117,6 @@ export class ServerlessDatabase extends pulumi.CustomResource {
     declare public readonly minCpu: pulumi.Output<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
-     *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -183,7 +182,6 @@ export interface ServerlessDatabaseState {
     minCpu?: pulumi.Input<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
-     *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
     name?: pulumi.Input<string | undefined>;
@@ -211,7 +209,6 @@ export interface ServerlessDatabaseArgs {
     minCpu?: pulumi.Input<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
-     *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
     name?: pulumi.Input<string | undefined>;

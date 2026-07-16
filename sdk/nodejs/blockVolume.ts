@@ -112,6 +112,10 @@ export class BlockVolume extends pulumi.CustomResource {
      */
     declare public readonly snapshotId: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the volume.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the volume.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -142,6 +146,7 @@ export class BlockVolume extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["sizeInGb"] = state?.sizeInGb;
             resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -157,6 +162,7 @@ export class BlockVolume extends pulumi.CustomResource {
             resourceInputs["snapshotId"] = args?.snapshotId;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BlockVolume.__pulumiType, name, resourceInputs, opts);
@@ -191,6 +197,10 @@ export interface BlockVolumeState {
      * If set, the new volume will be created from this snapshot.
      */
     snapshotId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the volume.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the volume.
      */

@@ -117,6 +117,8 @@ type PrivateNetwork struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Private Network.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the subnet.
@@ -185,6 +187,8 @@ type privateNetworkState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the Private Network.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the Private Network.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the subnet.
@@ -218,6 +222,8 @@ type PrivateNetworkState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the Private Network.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the subnet.
@@ -421,6 +427,11 @@ func (o PrivateNetworkOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region of the Private Network.
 func (o PrivateNetworkOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateNetwork) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o PrivateNetworkOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateNetwork) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the Private Network.

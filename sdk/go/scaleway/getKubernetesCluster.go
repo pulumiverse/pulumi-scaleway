@@ -125,6 +125,8 @@ type LookupKubernetesClusterResult struct {
 	Region       *string `pulumi:"region"`
 	ServiceCidr  string  `pulumi:"serviceCidr"`
 	ServiceDnsIp string  `pulumi:"serviceDnsIp"`
+	// The Scaleway Resource Name (SRN) of the cluster.
+	Srn string `pulumi:"srn"`
 	// The status of the Kubernetes cluster.
 	Status string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -280,6 +282,11 @@ func (o LookupKubernetesClusterResultOutput) ServiceCidr() pulumi.StringOutput {
 
 func (o LookupKubernetesClusterResultOutput) ServiceDnsIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.ServiceDnsIp }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the cluster.
+func (o LookupKubernetesClusterResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the Kubernetes cluster.

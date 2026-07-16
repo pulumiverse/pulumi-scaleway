@@ -161,6 +161,8 @@ type Connector struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPC connector.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the VPC connector.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags to associate with the VPC connector.
@@ -219,6 +221,8 @@ type connectorState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPC connector.
+	Srn *string `pulumi:"srn"`
 	// The status of the VPC connector.
 	Status *string `pulumi:"status"`
 	// The tags to associate with the VPC connector.
@@ -242,6 +246,8 @@ type ConnectorState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the VPC connector.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the VPC connector.
+	Srn pulumi.StringPtrInput
 	// The status of the VPC connector.
 	Status pulumi.StringPtrInput
 	// The tags to associate with the VPC connector.
@@ -395,6 +401,11 @@ func (o ConnectorOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region of the VPC connector.
 func (o ConnectorOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connector) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the VPC connector.
+func (o ConnectorOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Connector) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the VPC connector.

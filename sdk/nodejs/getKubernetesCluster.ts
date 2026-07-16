@@ -130,6 +130,10 @@ export interface GetKubernetesClusterResult {
     readonly serviceCidr: string;
     readonly serviceDnsIp: string;
     /**
+     * The Scaleway Resource Name (SRN) of the cluster.
+     */
+    readonly srn: string;
+    /**
      * The status of the Kubernetes cluster.
      */
     readonly status: string;

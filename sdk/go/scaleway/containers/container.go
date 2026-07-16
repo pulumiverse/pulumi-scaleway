@@ -472,7 +472,7 @@ type Container struct {
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The native domain name of the container
+	// The native domain name of the container.
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
@@ -532,7 +532,7 @@ type Container struct {
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
-	// The native domain name of the container
+	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint pulumi.StringOutput `pulumi:"publicEndpoint"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -624,7 +624,7 @@ type containerState struct {
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
-	// The native domain name of the container
+	// The native domain name of the container.
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName *string `pulumi:"domainName"`
@@ -684,7 +684,7 @@ type containerState struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol *string `pulumi:"protocol"`
-	// The native domain name of the container
+	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint *string `pulumi:"publicEndpoint"`
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
@@ -731,7 +731,7 @@ type ContainerState struct {
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
-	// The native domain name of the container
+	// The native domain name of the container.
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringPtrInput
@@ -791,7 +791,7 @@ type ContainerState struct {
 	PrivateNetworkId pulumi.StringPtrInput
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrInput
-	// The native domain name of the container
+	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
@@ -1133,7 +1133,7 @@ func (o ContainerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The native domain name of the container
+// The native domain name of the container.
 //
 // Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 func (o ContainerOutput) DomainName() pulumi.StringOutput {
@@ -1253,7 +1253,7 @@ func (o ContainerOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
-// The native domain name of the container
+// The scheme and domain of the container (e.g., `https://example.com`).
 func (o ContainerOutput) PublicEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.PublicEndpoint }).(pulumi.StringOutput)
 }

@@ -29,7 +29,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, status=None, tags=None, type=None, updated_at=None, version_count=None, versions=None):
+    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, srn=None, status=None, tags=None, type=None, updated_at=None, version_count=None, versions=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -63,6 +63,9 @@ class GetSecretResult:
         if secret_id and not isinstance(secret_id, str):
             raise TypeError("Expected argument 'secret_id' to be a str")
         pulumi.set(__self__, "secret_id", secret_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -142,6 +145,11 @@ class GetSecretResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         return pulumi.get(self, "status")
 
@@ -188,6 +196,7 @@ class AwaitableGetSecretResult(GetSecretResult):
             protected=self.protected,
             region=self.region,
             secret_id=self.secret_id,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             type=self.type,
@@ -268,6 +277,7 @@ def get_secret(name: Optional[_builtins.str] = None,
         protected=pulumi.get(__ret__, 'protected'),
         region=pulumi.get(__ret__, 'region'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
@@ -345,6 +355,7 @@ def get_secret_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         protected=pulumi.get(__response__, 'protected'),
         region=pulumi.get(__response__, 'region'),
         secret_id=pulumi.get(__response__, 'secret_id'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),

@@ -78,6 +78,10 @@ export interface GetVersionResult {
     readonly majorMinorOnly: string;
     readonly name: string;
     readonly region?: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the version.
+     */
+    readonly srn: string;
 }
 /**
  * The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.

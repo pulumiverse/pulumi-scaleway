@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         public Output<ImmutableArray<Outputs.ConnectionIkev2Cipher>> Ikev2Ciphers { get; private set; } = null!;
 
         /// <summary>
-        /// Defines who initiates the IPSec tunnel.
+        /// Defines who initiates the IPSec tunnel. Possible values are `VpnGateway`, `CustomerGateway` or `UnknownInitiationPolicy`. Defaults to `UnknownInitiationPolicy`.
         /// </summary>
         [Output("initiationPolicy")]
         public Output<string> InitiationPolicy { get; private set; } = null!;
@@ -378,7 +378,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         }
 
         /// <summary>
-        /// Defines who initiates the IPSec tunnel.
+        /// Defines who initiates the IPSec tunnel. Possible values are `VpnGateway`, `CustomerGateway` or `UnknownInitiationPolicy`. Defaults to `UnknownInitiationPolicy`.
         /// </summary>
         [Input("initiationPolicy")]
         public Input<string>? InitiationPolicy { get; set; }
@@ -536,7 +536,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         }
 
         /// <summary>
-        /// Defines who initiates the IPSec tunnel.
+        /// Defines who initiates the IPSec tunnel. Possible values are `VpnGateway`, `CustomerGateway` or `UnknownInitiationPolicy`. Defaults to `UnknownInitiationPolicy`.
         /// </summary>
         [Input("initiationPolicy")]
         public Input<string>? InitiationPolicy { get; set; }

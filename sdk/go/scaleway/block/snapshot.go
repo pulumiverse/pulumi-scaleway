@@ -167,6 +167,8 @@ type Snapshot struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
@@ -219,6 +221,8 @@ type snapshotState struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
@@ -236,6 +240,8 @@ type SnapshotState struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Scaleway Project the snapshot is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
 	// The ID of the volume to take a snapshot from.
@@ -388,6 +394,11 @@ func (o SnapshotOutput) Name() pulumi.StringOutput {
 // ). The ID of the Scaleway Project the snapshot is associated with.
 func (o SnapshotOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the snapshot.
+func (o SnapshotOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the snapshot.

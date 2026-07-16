@@ -120,6 +120,7 @@ class _FileFilesystemState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
@@ -136,6 +137,7 @@ class _FileFilesystemState:
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the filesystem.
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update to the File Storage filesystem.
@@ -154,6 +156,8 @@ class _FileFilesystemState:
             pulumi.set(__self__, "region", region)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -247,6 +251,18 @@ class _FileFilesystemState:
     @size_in_gb.setter
     def size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size_in_gb", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the filesystem.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -411,6 +427,7 @@ class FileFilesystem(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["number_of_attachments"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(FileFilesystem, __self__).__init__(
@@ -430,6 +447,7 @@ class FileFilesystem(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'FileFilesystem':
@@ -450,6 +468,7 @@ class FileFilesystem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the filesystem.
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update to the File Storage filesystem.
@@ -465,6 +484,7 @@ class FileFilesystem(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["size_in_gb"] = size_in_gb
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -528,6 +548,14 @@ class FileFilesystem(pulumi.CustomResource):
         - Maximum: 10 TB (10000000000000 bytes)
         """
         return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the filesystem.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

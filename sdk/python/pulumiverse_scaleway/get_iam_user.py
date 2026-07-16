@@ -288,7 +288,6 @@ def get_iam_user(email: Optional[_builtins.str] = None,
            organization the user is associated with.
     :param Sequence[_builtins.str] tags: The tags associated with the user.
     :param _builtins.str user_id: The ID of the IAM user.
-           
            > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")
@@ -352,7 +351,6 @@ def get_iam_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] =
            organization the user is associated with.
     :param Sequence[_builtins.str] tags: The tags associated with the user.
     :param _builtins.str user_id: The ID of the IAM user.
-           
            > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")

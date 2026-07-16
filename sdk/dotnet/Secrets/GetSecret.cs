@@ -272,6 +272,7 @@ namespace Pulumiverse.Scaleway.Secrets
         public readonly bool Protected;
         public readonly string? Region;
         public readonly string? SecretId;
+        public readonly string Srn;
         public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
@@ -303,6 +304,8 @@ namespace Pulumiverse.Scaleway.Secrets
 
             string? secretId,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -326,6 +329,7 @@ namespace Pulumiverse.Scaleway.Secrets
             Protected = @protected;
             Region = region;
             SecretId = secretId;
+            Srn = srn;
             Status = status;
             Tags = tags;
             Type = type;

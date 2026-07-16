@@ -432,7 +432,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The native domain name of the container
+        /// The native domain name of the container.
         /// </summary>
         [Output("domainName")]
         public Output<string> DomainName { get; private set; } = null!;
@@ -562,7 +562,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// The native domain name of the container
+        /// The scheme and domain of the container (e.g., `https://example.com`).
         /// </summary>
         [Output("publicEndpoint")]
         public Output<string> PublicEndpoint { get; private set; } = null!;
@@ -992,7 +992,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The native domain name of the container
+        /// The native domain name of the container.
         /// </summary>
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
@@ -1135,7 +1135,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The native domain name of the container
+        /// The scheme and domain of the container (e.g., `https://example.com`).
         /// </summary>
         [Input("publicEndpoint")]
         public Input<string>? PublicEndpoint { get; set; }

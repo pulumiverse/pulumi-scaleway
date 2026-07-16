@@ -159,7 +159,7 @@ class ContainerLivenessProbe(dict):
         """
         :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
         :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
-        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param _builtins.str timeout: Duration before the check times out (in duration notation, e.g. "30s").
         :param 'ContainerLivenessProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
         :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
@@ -191,7 +191,7 @@ class ContainerLivenessProbe(dict):
     @pulumi.getter
     def timeout(self) -> _builtins.str:
         """
-        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        Duration before the check times out (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "timeout")
 
@@ -322,7 +322,7 @@ class ContainerStartupProbe(dict):
         """
         :param _builtins.int failure_threshold: Number of consecutive failures before considering the container has to be restarted.
         :param _builtins.str interval: Time interval between checks (in duration notation, e.g. "30s").
-        :param _builtins.str timeout: The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        :param _builtins.str timeout: Duration before the check times out (in duration notation, e.g. "30s").
         :param 'ContainerStartupProbeHttpArgs' http: Perform HTTP check on the container with the specified path.
         :param _builtins.bool tcp: When set to `true`, performs TCP checks on the container.
         """
@@ -354,7 +354,7 @@ class ContainerStartupProbe(dict):
     @pulumi.getter
     def timeout(self) -> _builtins.str:
         """
-        The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        Duration before the check times out (in duration notation, e.g. "30s").
         """
         return pulumi.get(self, "timeout")
 

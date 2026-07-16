@@ -403,6 +403,8 @@ type PrivateNetworkIpv4Subnet struct {
 	Id *string `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn *string `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -431,6 +433,8 @@ type PrivateNetworkIpv4SubnetArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -536,6 +540,11 @@ func (o PrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PrivateNetworkIpv4Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o PrivateNetworkIpv4SubnetOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateNetworkIpv4Subnet) *string { return v.Srn }).(pulumi.StringPtrOutput)
+}
+
 // The subnet CIDR.
 func (o PrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateNetworkIpv4Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
@@ -615,6 +624,16 @@ func (o PrivateNetworkIpv4SubnetPtrOutput) PrefixLength() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o PrivateNetworkIpv4SubnetPtrOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Srn
+	}).(pulumi.StringPtrOutput)
+}
+
 // The subnet CIDR.
 func (o PrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateNetworkIpv4Subnet) *string {
@@ -654,6 +673,8 @@ type PrivateNetworkIpv6Subnet struct {
 	Id *string `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn *string `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -682,6 +703,8 @@ type PrivateNetworkIpv6SubnetArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -759,6 +782,11 @@ func (o PrivateNetworkIpv6SubnetOutput) Id() pulumi.StringPtrOutput {
 // The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 func (o PrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PrivateNetworkIpv6Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o PrivateNetworkIpv6SubnetOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateNetworkIpv6Subnet) *string { return v.Srn }).(pulumi.StringPtrOutput)
 }
 
 // The subnet CIDR.
@@ -1186,6 +1214,8 @@ type GetPrivateNetworkIpv4Subnet struct {
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn string `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -1214,6 +1244,8 @@ type GetPrivateNetworkIpv4SubnetArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet pulumi.StringInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -1293,6 +1325,11 @@ func (o GetPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPrivateNetworkIpv4Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet
+func (o GetPrivateNetworkIpv4SubnetOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateNetworkIpv4Subnet) string { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The subnet CIDR
 func (o GetPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateNetworkIpv4Subnet) string { return v.Subnet }).(pulumi.StringOutput)
@@ -1337,6 +1374,8 @@ type GetPrivateNetworkIpv6Subnet struct {
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn string `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -1365,6 +1404,8 @@ type GetPrivateNetworkIpv6SubnetArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet pulumi.StringInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -1442,6 +1483,11 @@ func (o GetPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringOutput {
 // The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 func (o GetPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPrivateNetworkIpv6Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the subnet
+func (o GetPrivateNetworkIpv6SubnetOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateNetworkIpv6Subnet) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The subnet CIDR

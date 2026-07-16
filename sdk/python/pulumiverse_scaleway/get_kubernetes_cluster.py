@@ -29,7 +29,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, pod_cidr=None, private_network_id=None, project_id=None, region=None, service_cidr=None, service_dns_ip=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, upgrade_pools=None, version=None, wildcard_dns=None):
+    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, pod_cidr=None, private_network_id=None, project_id=None, region=None, service_cidr=None, service_dns_ip=None, srn=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, upgrade_pools=None, version=None, wildcard_dns=None):
         if admission_plugins and not isinstance(admission_plugins, list):
             raise TypeError("Expected argument 'admission_plugins' to be a list")
         pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -93,6 +93,9 @@ class GetKubernetesClusterResult:
         if service_dns_ip and not isinstance(service_dns_ip, str):
             raise TypeError("Expected argument 'service_dns_ip' to be a str")
         pulumi.set(__self__, "service_dns_ip", service_dns_ip)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -261,6 +264,14 @@ class GetKubernetesClusterResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the cluster.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         The status of the Kubernetes cluster.
@@ -348,6 +359,7 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             region=self.region,
             service_cidr=self.service_cidr,
             service_dns_ip=self.service_dns_ip,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             type=self.type,
@@ -423,6 +435,7 @@ def get_kubernetes_cluster(cluster_id: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         service_cidr=pulumi.get(__ret__, 'service_cidr'),
         service_dns_ip=pulumi.get(__ret__, 'service_dns_ip'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
@@ -495,6 +508,7 @@ def get_kubernetes_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_bu
         region=pulumi.get(__response__, 'region'),
         service_cidr=pulumi.get(__response__, 'service_cidr'),
         service_dns_ip=pulumi.get(__response__, 'service_dns_ip'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),

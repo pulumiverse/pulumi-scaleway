@@ -245,7 +245,6 @@ func (o IpResourceArrayOutput) Index(i pulumi.IntInput) IpResourceOutput {
 
 type IpReverse struct {
 	// Request a specific IP in the specified source pool.
-	//
 	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address *string `pulumi:"address"`
 	// The reverse domain name.
@@ -265,7 +264,6 @@ type IpReverseInput interface {
 
 type IpReverseArgs struct {
 	// Request a specific IP in the specified source pool.
-	//
 	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The reverse domain name.
@@ -324,7 +322,6 @@ func (o IpReverseOutput) ToIpReverseOutputWithContext(ctx context.Context) IpRev
 }
 
 // Request a specific IP in the specified source pool.
-//
 // > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 func (o IpReverseOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)

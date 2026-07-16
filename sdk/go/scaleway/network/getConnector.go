@@ -106,6 +106,7 @@ type LookupConnectorResult struct {
 	OrganizationId string   `pulumi:"organizationId"`
 	ProjectId      *string  `pulumi:"projectId"`
 	Region         *string  `pulumi:"region"`
+	Srn            string   `pulumi:"srn"`
 	Status         string   `pulumi:"status"`
 	Tags           []string `pulumi:"tags"`
 	TargetVpcId    *string  `pulumi:"targetVpcId"`
@@ -188,6 +189,10 @@ func (o LookupConnectorResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupConnectorResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupConnectorResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupConnectorResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConnectorResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupConnectorResultOutput) Status() pulumi.StringOutput {

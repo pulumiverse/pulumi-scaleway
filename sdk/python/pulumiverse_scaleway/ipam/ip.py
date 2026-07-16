@@ -33,7 +33,6 @@ class IpArgs:
 
         :param pulumi.Input[Sequence[pulumi.Input['IpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpCustomResourceArgs']]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
@@ -72,7 +71,6 @@ class IpArgs:
     def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request a specific IP in the specified source pool.
-
         > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
@@ -162,7 +160,6 @@ class _IpState:
         Input properties used for looking up and filtering Ip resources.
 
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] address_cidr: the IP address in CIDR notation.
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
@@ -209,7 +206,6 @@ class _IpState:
     def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Request a specific IP in the specified source pool.
-
         > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")
@@ -473,7 +469,6 @@ class Ip(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpCustomResourceArgs', 'IpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
@@ -660,7 +655,6 @@ class Ip(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
-               
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] address_cidr: the IP address in CIDR notation.
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
@@ -699,7 +693,6 @@ class Ip(pulumi.CustomResource):
     def address(self) -> pulumi.Output[_builtins.str]:
         """
         Request a specific IP in the specified source pool.
-
         > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         """
         return pulumi.get(self, "address")

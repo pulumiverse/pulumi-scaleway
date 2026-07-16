@@ -278,6 +278,7 @@ class PrivateNetworkIpv4Subnet(dict):
                  created_at: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  prefix_length: Optional[_builtins.int] = None,
+                 srn: Optional[_builtins.str] = None,
                  subnet: Optional[_builtins.str] = None,
                  subnet_mask: Optional[_builtins.str] = None,
                  updated_at: Optional[_builtins.str] = None):
@@ -286,6 +287,7 @@ class PrivateNetworkIpv4Subnet(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet.
         :param _builtins.str id: The subnet ID.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet.
         :param _builtins.str subnet: The subnet CIDR.
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet.
@@ -298,6 +300,8 @@ class PrivateNetworkIpv4Subnet(dict):
             pulumi.set(__self__, "id", id)
         if prefix_length is not None:
             pulumi.set(__self__, "prefix_length", prefix_length)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_mask is not None:
@@ -336,6 +340,14 @@ class PrivateNetworkIpv4Subnet(dict):
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the subnet.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -392,6 +404,7 @@ class PrivateNetworkIpv6Subnet(dict):
                  created_at: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  prefix_length: Optional[_builtins.int] = None,
+                 srn: Optional[_builtins.str] = None,
                  subnet: Optional[_builtins.str] = None,
                  subnet_mask: Optional[_builtins.str] = None,
                  updated_at: Optional[_builtins.str] = None):
@@ -400,6 +413,7 @@ class PrivateNetworkIpv6Subnet(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet.
         :param _builtins.str id: The subnet ID.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet.
         :param _builtins.str subnet: The subnet CIDR.
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet.
@@ -412,6 +426,8 @@ class PrivateNetworkIpv6Subnet(dict):
             pulumi.set(__self__, "id", id)
         if prefix_length is not None:
             pulumi.set(__self__, "prefix_length", prefix_length)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_mask is not None:
@@ -450,6 +466,14 @@ class PrivateNetworkIpv6Subnet(dict):
         The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the subnet.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -647,6 +671,7 @@ class GetPrivateNetworkIpv4SubnetResult(dict):
                  created_at: _builtins.str,
                  id: _builtins.str,
                  prefix_length: _builtins.int,
+                 srn: _builtins.str,
                  subnet: _builtins.str,
                  subnet_mask: _builtins.str,
                  updated_at: _builtins.str):
@@ -655,6 +680,7 @@ class GetPrivateNetworkIpv4SubnetResult(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet
         :param _builtins.str id: The ID of the Private Network.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet
         :param _builtins.str subnet: The subnet CIDR
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet
@@ -663,6 +689,7 @@ class GetPrivateNetworkIpv4SubnetResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "prefix_length", prefix_length)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "subnet", subnet)
         pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -698,6 +725,14 @@ class GetPrivateNetworkIpv4SubnetResult(dict):
         The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the subnet
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -731,6 +766,7 @@ class GetPrivateNetworkIpv6SubnetResult(dict):
                  created_at: _builtins.str,
                  id: _builtins.str,
                  prefix_length: _builtins.int,
+                 srn: _builtins.str,
                  subnet: _builtins.str,
                  subnet_mask: _builtins.str,
                  updated_at: _builtins.str):
@@ -739,6 +775,7 @@ class GetPrivateNetworkIpv6SubnetResult(dict):
         :param _builtins.str created_at: The date and time of the creation of the subnet
         :param _builtins.str id: The ID of the Private Network.
         :param _builtins.int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the subnet
         :param _builtins.str subnet: The subnet CIDR
         :param _builtins.str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param _builtins.str updated_at: The date and time of the last update of the subnet
@@ -747,6 +784,7 @@ class GetPrivateNetworkIpv6SubnetResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "prefix_length", prefix_length)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "subnet", subnet)
         pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -782,6 +820,14 @@ class GetPrivateNetworkIpv6SubnetResult(dict):
         The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
         """
         return pulumi.get(self, "prefix_length")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the subnet
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

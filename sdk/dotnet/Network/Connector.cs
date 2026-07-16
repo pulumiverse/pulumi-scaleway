@@ -153,6 +153,12 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the VPC connector.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the VPC connector.
         /// </summary>
         [Output("status")]
@@ -302,6 +308,12 @@ namespace Pulumiverse.Scaleway.Network
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the VPC connector.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the VPC connector.

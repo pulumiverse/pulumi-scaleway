@@ -360,6 +360,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly serviceDnsIp: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the cluster.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the Kubernetes cluster.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -434,6 +438,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["region"] = state?.region;
             resourceInputs["serviceCidr"] = state?.serviceCidr;
             resourceInputs["serviceDnsIp"] = state?.serviceDnsIp;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
@@ -477,6 +482,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["kubeconfigs"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["upgradeAvailable"] = undefined /*out*/;
@@ -592,6 +598,10 @@ export interface ClusterState {
      * unsetting it to go back to the default value will not have any effect.
      */
     serviceDnsIp?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the cluster.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the Kubernetes cluster.
      */

@@ -2178,7 +2178,7 @@ type ContainerLivenessProbe struct {
 	Interval string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout string `pulumi:"timeout"`
 }
 
@@ -2202,7 +2202,7 @@ type ContainerLivenessProbeArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout pulumi.StringInput `pulumi:"timeout"`
 }
 
@@ -2303,7 +2303,7 @@ func (o ContainerLivenessProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerLivenessProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerLivenessProbeOutput) Timeout() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerLivenessProbe) string { return v.Timeout }).(pulumi.StringOutput)
 }
@@ -2372,7 +2372,7 @@ func (o ContainerLivenessProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerLivenessProbePtrOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerLivenessProbe) *string {
 		if v == nil {
@@ -2643,7 +2643,7 @@ type ContainerStartupProbe struct {
 	Interval string `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp *bool `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout string `pulumi:"timeout"`
 }
 
@@ -2667,7 +2667,7 @@ type ContainerStartupProbeArgs struct {
 	Interval pulumi.StringInput `pulumi:"interval"`
 	// When set to `true`, performs TCP checks on the container.
 	Tcp pulumi.BoolPtrInput `pulumi:"tcp"`
-	// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+	// Duration before the check times out (in duration notation, e.g. "30s").
 	Timeout pulumi.StringInput `pulumi:"timeout"`
 }
 
@@ -2768,7 +2768,7 @@ func (o ContainerStartupProbeOutput) Tcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) *bool { return v.Tcp }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerStartupProbeOutput) Timeout() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStartupProbe) string { return v.Timeout }).(pulumi.StringOutput)
 }
@@ -2837,7 +2837,7 @@ func (o ContainerStartupProbePtrOutput) Tcp() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+// Duration before the check times out (in duration notation, e.g. "30s").
 func (o ContainerStartupProbePtrOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerStartupProbe) *string {
 		if v == nil {
@@ -12319,7 +12319,6 @@ func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput
 
 type IpamIpReverse struct {
 	// Request a specific IP in the specified source pool.
-	//
 	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address *string `pulumi:"address"`
 	// The reverse domain name.
@@ -12339,7 +12338,6 @@ type IpamIpReverseInput interface {
 
 type IpamIpReverseArgs struct {
 	// Request a specific IP in the specified source pool.
-	//
 	// > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The reverse domain name.
@@ -12398,7 +12396,6 @@ func (o IpamIpReverseOutput) ToIpamIpReverseOutputWithContext(ctx context.Contex
 }
 
 // Request a specific IP in the specified source pool.
-//
 // > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `dependsOn` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
 func (o IpamIpReverseOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)
@@ -13320,7 +13317,6 @@ type KubernetesClusterAutoscalerConfig struct {
 	IgnoreDaemonsetsUtilization *bool `pulumi:"ignoreDaemonsetsUtilization"`
 	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-	//
 	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 	LogLevel *int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
@@ -13332,7 +13328,6 @@ type KubernetesClusterAutoscalerConfig struct {
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold *float64 `pulumi:"scaleDownUtilizationThreshold"`
 	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-	//
 	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 	SkipNodesWithLocalStorage *bool `pulumi:"skipNodesWithLocalStorage"`
 }
@@ -13363,7 +13358,6 @@ type KubernetesClusterAutoscalerConfigArgs struct {
 	IgnoreDaemonsetsUtilization pulumi.BoolPtrInput `pulumi:"ignoreDaemonsetsUtilization"`
 	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-	//
 	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 	LogLevel pulumi.IntPtrInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
@@ -13375,7 +13369,6 @@ type KubernetesClusterAutoscalerConfigArgs struct {
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64PtrInput `pulumi:"scaleDownUtilizationThreshold"`
 	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-	//
 	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 	SkipNodesWithLocalStorage pulumi.BoolPtrInput `pulumi:"skipNodesWithLocalStorage"`
 }
@@ -13489,7 +13482,6 @@ func (o KubernetesClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() p
 
 // Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 // Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-//
 // > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 func (o KubernetesClusterAutoscalerConfigOutput) LogLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *int { return v.LogLevel }).(pulumi.IntPtrOutput)
@@ -13516,7 +13508,6 @@ func (o KubernetesClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold()
 }
 
 // If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-//
 // > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 func (o KubernetesClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterAutoscalerConfig) *bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolPtrOutput)
@@ -13608,7 +13599,6 @@ func (o KubernetesClusterAutoscalerConfigPtrOutput) IgnoreDaemonsetsUtilization(
 
 // Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 // Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-//
 // > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 func (o KubernetesClusterAutoscalerConfigPtrOutput) LogLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesClusterAutoscalerConfig) *int {
@@ -13660,7 +13650,6 @@ func (o KubernetesClusterAutoscalerConfigPtrOutput) ScaleDownUtilizationThreshol
 }
 
 // If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-//
 // > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 func (o KubernetesClusterAutoscalerConfigPtrOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesClusterAutoscalerConfig) *bool {
@@ -14065,6 +14054,8 @@ type KubernetesNodePoolNode struct {
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 *string `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn *string `pulumi:"srn"`
 	// The status of the node.
 	Status *string `pulumi:"status"`
 }
@@ -14099,6 +14090,8 @@ type KubernetesNodePoolNodeArgs struct {
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The status of the node.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
@@ -14185,6 +14178,11 @@ func (o KubernetesNodePoolNodeOutput) PublicIp() pulumi.StringPtrOutput {
 // Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o KubernetesNodePoolNodeOutput) PublicIpV6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o KubernetesNodePoolNodeOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Srn }).(pulumi.StringPtrOutput)
 }
 
 // The status of the node.
@@ -21315,6 +21313,8 @@ type VpcPrivateNetworkIpv4Subnet struct {
 	Id *string `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn *string `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -21343,6 +21343,8 @@ type VpcPrivateNetworkIpv4SubnetArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -21448,6 +21450,11 @@ func (o VpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o VpcPrivateNetworkIpv4SubnetOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Srn }).(pulumi.StringPtrOutput)
+}
+
 // The subnet CIDR.
 func (o VpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
@@ -21527,6 +21534,16 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) PrefixLength() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Srn
+	}).(pulumi.StringPtrOutput)
+}
+
 // The subnet CIDR.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
@@ -21566,6 +21583,8 @@ type VpcPrivateNetworkIpv6Subnet struct {
 	Id *string `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn *string `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -21594,6 +21613,8 @@ type VpcPrivateNetworkIpv6SubnetArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -21671,6 +21692,11 @@ func (o VpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringPtrOutput {
 // The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 func (o VpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the subnet.
+func (o VpcPrivateNetworkIpv6SubnetOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Srn }).(pulumi.StringPtrOutput)
 }
 
 // The subnet CIDR.
@@ -30203,6 +30229,8 @@ type GetKubernetesNodePoolNode struct {
 	PublicIp string `pulumi:"publicIp"`
 	// The public IPv6.
 	PublicIpV6 string `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn string `pulumi:"srn"`
 	// The status of the node.
 	Status string `pulumi:"status"`
 }
@@ -30229,6 +30257,8 @@ type GetKubernetesNodePoolNodeArgs struct {
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The public IPv6.
 	PublicIpV6 pulumi.StringInput `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The status of the node.
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -30307,6 +30337,11 @@ func (o GetKubernetesNodePoolNodeOutput) PublicIp() pulumi.StringOutput {
 // The public IPv6.
 func (o GetKubernetesNodePoolNodeOutput) PublicIpV6() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesNodePoolNode) string { return v.PublicIpV6 }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o GetKubernetesNodePoolNodeOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolNode) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the node.
@@ -36438,6 +36473,8 @@ type GetVpcPrivateNetworkIpv4Subnet struct {
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn string `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -36466,6 +36503,8 @@ type GetVpcPrivateNetworkIpv4SubnetArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet pulumi.StringInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -36545,6 +36584,11 @@ func (o GetVpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the subnet
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The subnet CIDR
 func (o GetVpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Subnet }).(pulumi.StringOutput)
@@ -36589,6 +36633,8 @@ type GetVpcPrivateNetworkIpv6Subnet struct {
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn string `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -36617,6 +36663,8 @@ type GetVpcPrivateNetworkIpv6SubnetArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
+	// The Scaleway Resource Name (SRN) of the subnet
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The subnet CIDR
 	Subnet pulumi.StringInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
@@ -36694,6 +36742,11 @@ func (o GetVpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringOutput {
 // The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 func (o GetVpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the subnet
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The subnet CIDR

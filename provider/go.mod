@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.129.2
 	github.com/pulumi/pulumi/sdk/v3 v3.236.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.78.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.79.0
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
@@ -198,7 +198,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.36.0.20260619072639-abd6ee9c3b3a // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.36.0.20260703162743-f8787d0d7041 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.4.0 // indirect

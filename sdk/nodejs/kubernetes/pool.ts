@@ -221,6 +221,10 @@ export class Pool extends pulumi.CustomResource {
      */
     declare public readonly size: pulumi.Output<number>;
     /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The list of Kubernetes taints applied at node creation but not reconciled afterward.
      */
     declare public readonly startupTaints: pulumi.Output<outputs.kubernetes.PoolStartupTaint[] | undefined>;
@@ -297,6 +301,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["rootVolumeType"] = state?.rootVolumeType;
             resourceInputs["securityGroupId"] = state?.securityGroupId;
             resourceInputs["size"] = state?.size;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["startupTaints"] = state?.startupTaints;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -344,6 +349,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["currentSize"] = undefined /*out*/;
             resourceInputs["nodes"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -456,6 +462,10 @@ export interface PoolState {
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
     size?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The list of Kubernetes taints applied at node creation but not reconciled afterward.
      */

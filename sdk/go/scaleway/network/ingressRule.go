@@ -173,6 +173,8 @@ type IngressRule struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Source IP range (in CIDR notation) to which the ingress rule applies.
 	Source pulumi.StringOutput `pulumi:"source"`
+	// The Scaleway Resource Name (SRN) of the ingress rule.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags to associate with the ingress rule.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the ingress rule (RFC 3339 format).
@@ -237,6 +239,8 @@ type ingressRuleState struct {
 	Region *string `pulumi:"region"`
 	// Source IP range (in CIDR notation) to which the ingress rule applies.
 	Source *string `pulumi:"source"`
+	// The Scaleway Resource Name (SRN) of the ingress rule.
+	Srn *string `pulumi:"srn"`
 	// The tags to associate with the ingress rule.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the ingress rule (RFC 3339 format).
@@ -260,6 +264,8 @@ type IngressRuleState struct {
 	Region pulumi.StringPtrInput
 	// Source IP range (in CIDR notation) to which the ingress rule applies.
 	Source pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the ingress rule.
+	Srn pulumi.StringPtrInput
 	// The tags to associate with the ingress rule.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the ingress rule (RFC 3339 format).
@@ -427,6 +433,11 @@ func (o IngressRuleOutput) Region() pulumi.StringPtrOutput {
 // Source IP range (in CIDR notation) to which the ingress rule applies.
 func (o IngressRuleOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v *IngressRule) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the ingress rule.
+func (o IngressRuleOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IngressRule) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags to associate with the ingress rule.

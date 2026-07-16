@@ -161,6 +161,7 @@ class _BlockVolumeState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -172,6 +173,7 @@ class _BlockVolumeState:
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the volume should be created.
         """
@@ -187,6 +189,8 @@ class _BlockVolumeState:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
         if snapshot_id is not None:
             pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -263,6 +267,18 @@ class _BlockVolumeState:
     @snapshot_id.setter
     def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the volume.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -467,6 +483,7 @@ class BlockVolume(pulumi.CustomResource):
             __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["srn"] = None
         super(BlockVolume, __self__).__init__(
             'scaleway:index/blockVolume:BlockVolume',
             resource_name,
@@ -483,6 +500,7 @@ class BlockVolume(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
             snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'BlockVolume':
         """
@@ -498,6 +516,7 @@ class BlockVolume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the volume should be created.
         """
@@ -511,6 +530,7 @@ class BlockVolume(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["size_in_gb"] = size_in_gb
         __props__.__dict__["snapshot_id"] = snapshot_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return BlockVolume(resource_name, opts=opts, __props__=__props__)
@@ -562,6 +582,14 @@ class BlockVolume(pulumi.CustomResource):
         If set, the new volume will be created from this snapshot.
         """
         return pulumi.get(self, "snapshot_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the volume.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

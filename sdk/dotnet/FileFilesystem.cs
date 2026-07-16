@@ -95,6 +95,12 @@ namespace Pulumiverse.Scaleway
         public Output<int> SizeInGb { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the filesystem.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The current status of the filesystem. Possible values include creating, available, etc.
         /// </summary>
         [Output("status")]
@@ -250,6 +256,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the filesystem.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The current status of the filesystem. Possible values include creating, available, etc.

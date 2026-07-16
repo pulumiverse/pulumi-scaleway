@@ -9,5 +9,6 @@ import typing
 from .get_key import *
 from .get_verify import *
 from .key import *
+from .key_material import *
 from ._inputs import *
 from . import outputs

@@ -128,6 +128,10 @@ export class PrivateNetwork extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the Private Network.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -168,6 +172,7 @@ export class PrivateNetwork extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["vpcId"] = state?.vpcId;
@@ -186,6 +191,7 @@ export class PrivateNetwork extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -237,6 +243,10 @@ export interface PrivateNetworkState {
      * `region`) The region of the Private Network.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the subnet.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Private Network.
      */

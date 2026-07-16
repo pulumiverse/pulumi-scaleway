@@ -140,6 +140,10 @@ export class IngressRule extends pulumi.CustomResource {
      */
     declare public readonly source: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the ingress rule.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags to associate with the ingress rule.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -172,6 +176,7 @@ export class IngressRule extends pulumi.CustomResource {
             resourceInputs["nexthopResourceIp"] = state?.nexthopResourceIp;
             resourceInputs["region"] = state?.region;
             resourceInputs["source"] = state?.source;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["vpcId"] = state?.vpcId;
@@ -198,6 +203,7 @@ export class IngressRule extends pulumi.CustomResource {
             resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["isIpv6"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -237,6 +243,10 @@ export interface IngressRuleState {
      * Source IP range (in CIDR notation) to which the ingress rule applies.
      */
     source?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the ingress rule.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags to associate with the ingress rule.
      */

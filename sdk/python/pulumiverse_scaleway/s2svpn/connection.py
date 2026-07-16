@@ -43,7 +43,7 @@ class ConnectionArgs:
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]] esp_ciphers: ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]] ikev2_ciphers: IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
-        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel.
+        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
@@ -154,7 +154,7 @@ class ConnectionArgs:
     @pulumi.getter(name="initiationPolicy")
     def initiation_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Defines who initiates the IPSec tunnel.
+        Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         """
         return pulumi.get(self, "initiation_policy")
 
@@ -277,7 +277,7 @@ class _ConnectionState:
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionEspCipherArgs']]] esp_ciphers: ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         :param pulumi.Input[Sequence[pulumi.Input['ConnectionIkev2CipherArgs']]] ikev2_ciphers: IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
-        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel.
+        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the connection is associated with.
@@ -479,7 +479,7 @@ class _ConnectionState:
     @pulumi.getter(name="initiationPolicy")
     def initiation_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Defines who initiates the IPSec tunnel.
+        Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         """
         return pulumi.get(self, "initiation_policy")
 
@@ -737,7 +737,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]] esp_ciphers: ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]] ikev2_ciphers: IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
-        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel.
+        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
@@ -931,7 +931,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_route_propagation: Defines whether route propagation is enabled or not.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ConnectionEspCipherArgs', 'ConnectionEspCipherArgsDict']]]] esp_ciphers: ESP cipher configuration for Phase 2 (data encryption). See Cipher Config below.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ConnectionIkev2CipherArgs', 'ConnectionIkev2CipherArgsDict']]]] ikev2_ciphers: IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
-        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel.
+        :param pulumi.Input[_builtins.str] initiation_policy: Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the connection is associated with.
@@ -1069,7 +1069,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="initiationPolicy")
     def initiation_policy(self) -> pulumi.Output[_builtins.str]:
         """
-        Defines who initiates the IPSec tunnel.
+        Defines who initiates the IPSec tunnel. Possible values are `vpn_gateway`, `customer_gateway` or `unknown_initiation_policy`. Defaults to `unknown_initiation_policy`.
         """
         return pulumi.get(self, "initiation_policy")
 

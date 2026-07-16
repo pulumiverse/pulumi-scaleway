@@ -127,7 +127,9 @@ type LookupPoolResult struct {
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
 	SecurityGroupId    string  `pulumi:"securityGroupId"`
 	// The size of the pool.
-	Size          *int                  `pulumi:"size"`
+	Size *int `pulumi:"size"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn           string                `pulumi:"srn"`
 	StartupTaints []GetPoolStartupTaint `pulumi:"startupTaints"`
 	// The status of the node.
 	Status string `pulumi:"status"`
@@ -284,6 +286,11 @@ func (o LookupPoolResultOutput) SecurityGroupId() pulumi.StringOutput {
 // The size of the pool.
 func (o LookupPoolResultOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPoolResult) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o LookupPoolResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPoolResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupPoolResultOutput) StartupTaints() GetPoolStartupTaintArrayOutput {

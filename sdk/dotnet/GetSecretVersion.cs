@@ -347,6 +347,10 @@ namespace Pulumiverse.Scaleway
         public readonly string? SecretId;
         public readonly string? SecretName;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the secret version.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// The status of the secret version.
         /// </summary>
         public readonly string Status;
@@ -381,6 +385,8 @@ namespace Pulumiverse.Scaleway
 
             string? secretName,
 
+            string srn,
+
             string status,
 
             string updatedAt)
@@ -397,6 +403,7 @@ namespace Pulumiverse.Scaleway
             Revision = revision;
             SecretId = secretId;
             SecretName = secretName;
+            Srn = srn;
             Status = status;
             UpdatedAt = updatedAt;
         }

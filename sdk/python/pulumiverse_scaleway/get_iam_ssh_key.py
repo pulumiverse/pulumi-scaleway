@@ -159,7 +159,6 @@ def get_iam_ssh_key(name: Optional[_builtins.str] = None,
     :param _builtins.str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
     :param _builtins.str ssh_key_id: The SSH key id.
-           
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     pulumi.log.warn("""get_iam_ssh_key is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey""")
@@ -193,7 +192,6 @@ def get_iam_ssh_key_output(name: pulumi.Input[Optional[Optional[_builtins.str]]]
     :param _builtins.str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
     :param _builtins.str ssh_key_id: The SSH key id.
-           
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     pulumi.log.warn("""get_iam_ssh_key is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey""")

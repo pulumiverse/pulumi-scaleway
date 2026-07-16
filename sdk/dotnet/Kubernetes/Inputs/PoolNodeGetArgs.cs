@@ -54,6 +54,12 @@ namespace Pulumiverse.Scaleway.Kubernetes.Inputs
         public Input<string>? PublicIpV6 { get; set; }
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the node.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
+
+        /// <summary>
         /// The status of the node.
         /// </summary>
         [Input("status")]

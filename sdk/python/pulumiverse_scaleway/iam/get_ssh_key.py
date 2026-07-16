@@ -157,7 +157,6 @@ def get_ssh_key(name: Optional[_builtins.str] = None,
     :param _builtins.str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
     :param _builtins.str ssh_key_id: The SSH key id.
-           
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     __args__ = dict()
@@ -190,7 +189,6 @@ def get_ssh_key_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
     :param _builtins.str project_id: `project_id`) The ID of the project the SSH
            key is associated with.
     :param _builtins.str ssh_key_id: The SSH key id.
-           
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
     __args__ = dict()

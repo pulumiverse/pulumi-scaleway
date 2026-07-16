@@ -146,7 +146,7 @@ type Connection struct {
 	EspCiphers ConnectionEspCipherArrayOutput `pulumi:"espCiphers"`
 	// IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
 	Ikev2Ciphers ConnectionIkev2CipherArrayOutput `pulumi:"ikev2Ciphers"`
-	// Defines who initiates the IPSec tunnel.
+	// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 	InitiationPolicy pulumi.StringOutput `pulumi:"initiationPolicy"`
 	// Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
 	IsIpv6 pulumi.BoolOutput `pulumi:"isIpv6"`
@@ -228,7 +228,7 @@ type connectionState struct {
 	EspCiphers []ConnectionEspCipher `pulumi:"espCiphers"`
 	// IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
 	Ikev2Ciphers []ConnectionIkev2Cipher `pulumi:"ikev2Ciphers"`
-	// Defines who initiates the IPSec tunnel.
+	// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 	InitiationPolicy *string `pulumi:"initiationPolicy"`
 	// Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
 	IsIpv6 *bool `pulumi:"isIpv6"`
@@ -281,7 +281,7 @@ type ConnectionState struct {
 	EspCiphers ConnectionEspCipherArrayInput
 	// IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
 	Ikev2Ciphers ConnectionIkev2CipherArrayInput
-	// Defines who initiates the IPSec tunnel.
+	// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 	InitiationPolicy pulumi.StringPtrInput
 	// Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
 	IsIpv6 pulumi.BoolPtrInput
@@ -328,7 +328,7 @@ type connectionArgs struct {
 	EspCiphers []ConnectionEspCipher `pulumi:"espCiphers"`
 	// IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
 	Ikev2Ciphers []ConnectionIkev2Cipher `pulumi:"ikev2Ciphers"`
-	// Defines who initiates the IPSec tunnel.
+	// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 	InitiationPolicy *string `pulumi:"initiationPolicy"`
 	// Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
 	IsIpv6 *bool `pulumi:"isIpv6"`
@@ -358,7 +358,7 @@ type ConnectionArgs struct {
 	EspCiphers ConnectionEspCipherArrayInput
 	// IKEv2 cipher configuration for Phase 1 (tunnel establishment). See Cipher Config below.
 	Ikev2Ciphers ConnectionIkev2CipherArrayInput
-	// Defines who initiates the IPSec tunnel.
+	// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 	InitiationPolicy pulumi.StringPtrInput
 	// Defines IP version of the IPSec Tunnel. Defaults to `false` (IPv4).
 	IsIpv6 pulumi.BoolPtrInput
@@ -516,7 +516,7 @@ func (o ConnectionOutput) Ikev2Ciphers() ConnectionIkev2CipherArrayOutput {
 	return o.ApplyT(func(v *Connection) ConnectionIkev2CipherArrayOutput { return v.Ikev2Ciphers }).(ConnectionIkev2CipherArrayOutput)
 }
 
-// Defines who initiates the IPSec tunnel.
+// Defines who initiates the IPSec tunnel. Possible values are `vpnGateway`, `customerGateway` or `unknownInitiationPolicy`. Defaults to `unknownInitiationPolicy`.
 func (o ConnectionOutput) InitiationPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.InitiationPolicy }).(pulumi.StringOutput)
 }

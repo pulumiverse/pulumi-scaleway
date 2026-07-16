@@ -60,7 +60,8 @@ class AclAclRule(dict):
                  description: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
                  ip: Optional[_builtins.str] = None,
-                 scaleway_ranges: Optional[_builtins.bool] = None):
+                 scaleway_ranges: Optional[_builtins.bool] = None,
+                 srn: Optional[_builtins.str] = None):
         """
         :param _builtins.str description: A text describing this rule.
         :param _builtins.str id: The ID of the ACL resource. It is the same as the ID of the cluster.
@@ -71,6 +72,7 @@ class AclAclRule(dict):
                Only one rule with this field set to true can be added.
                
                > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the ACL rule
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -80,6 +82,8 @@ class AclAclRule(dict):
             pulumi.set(__self__, "ip", ip)
         if scaleway_ranges is not None:
             pulumi.set(__self__, "scaleway_ranges", scaleway_ranges)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -117,6 +121,14 @@ class AclAclRule(dict):
         > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
         """
         return pulumi.get(self, "scaleway_ranges")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the ACL rule
+        """
+        return pulumi.get(self, "srn")
 
 
 @pulumi.output_type
@@ -239,14 +251,12 @@ class ClusterAutoscalerConfig(dict):
         :param _builtins.bool ignore_daemonsets_utilization: Ignore DaemonSet pods when calculating resource utilization for scaling down.
         :param _builtins.int log_level: Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
                Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-               
                > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         :param _builtins.int max_graceful_termination_sec: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
         :param _builtins.str scale_down_delay_after_add: How long after scale up that scale down evaluation resumes.
         :param _builtins.str scale_down_unneeded_time: How long a node should be unneeded before it is eligible for scale down.
         :param _builtins.float scale_down_utilization_threshold: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
         :param _builtins.bool skip_nodes_with_local_storage: If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-               
                > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         if balance_similar_node_groups is not None:
@@ -328,7 +338,6 @@ class ClusterAutoscalerConfig(dict):
         """
         Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
         Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-
         > **Important:** For now, it is not possible to change the value of `log_level` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "log_level")
@@ -370,7 +379,6 @@ class ClusterAutoscalerConfig(dict):
     def skip_nodes_with_local_storage(self) -> Optional[_builtins.bool]:
         """
         If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-
         > **Important:** For now, it is not possible to change the value of `skip_nodes_with_local_storage` after creation. Changes to this field will recreate a new cluster resource.
         """
         return pulumi.get(self, "skip_nodes_with_local_storage")
@@ -597,6 +605,7 @@ class PoolNode(dict):
                  private_ips: Optional[Sequence['outputs.PoolNodePrivateIp']] = None,
                  public_ip: Optional[_builtins.str] = None,
                  public_ip_v6: Optional[_builtins.str] = None,
+                 srn: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None):
         """
         :param _builtins.str id: The ID of the IP address resource.
@@ -608,6 +617,7 @@ class PoolNode(dict):
         :param Sequence['PoolNodePrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param _builtins.str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param _builtins.str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the node.
         :param _builtins.str status: The status of the node.
         """
         if id is not None:
@@ -620,6 +630,8 @@ class PoolNode(dict):
             pulumi.set(__self__, "public_ip", public_ip)
         if public_ip_v6 is not None:
             pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -668,6 +680,14 @@ class PoolNode(dict):
         The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         """
         return pulumi.get(self, "public_ip_v6")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> Optional[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -1161,6 +1181,7 @@ class GetPoolNodeResult(dict):
                  private_ips: Sequence['outputs.GetPoolNodePrivateIpResult'],
                  public_ip: _builtins.str,
                  public_ip_v6: _builtins.str,
+                 srn: _builtins.str,
                  status: _builtins.str):
         """
         :param _builtins.str id: The ID of the pool.
@@ -1168,6 +1189,7 @@ class GetPoolNodeResult(dict):
         :param Sequence['GetPoolNodePrivateIpArgs'] private_ips: List of private IPv4 and IPv6 addresses associated with the node
         :param _builtins.str public_ip: The public IPv4.
         :param _builtins.str public_ip_v6: The public IPv6.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the node.
         :param _builtins.str status: The status of the node.
         """
         pulumi.set(__self__, "id", id)
@@ -1175,6 +1197,7 @@ class GetPoolNodeResult(dict):
         pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ip_v6", public_ip_v6)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "status", status)
 
     @_builtins.property
@@ -1216,6 +1239,14 @@ class GetPoolNodeResult(dict):
         The public IPv6.
         """
         return pulumi.get(self, "public_ip_v6")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Containers.Outputs
         /// </summary>
         public readonly bool? Tcp;
         /// <summary>
-        /// The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
+        /// Duration before the check times out (in duration notation, e.g. "30s").
         /// </summary>
         public readonly string Timeout;
 

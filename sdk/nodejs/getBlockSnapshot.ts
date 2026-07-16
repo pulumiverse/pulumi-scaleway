@@ -64,6 +64,7 @@ export interface GetBlockSnapshotResult {
     readonly name?: string;
     readonly projectId?: string;
     readonly snapshotId?: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly volumeId?: string;
     readonly zone?: string;

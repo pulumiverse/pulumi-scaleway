@@ -27,6 +27,8 @@ type AclAclRule struct {
 	//
 	// > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
 	ScalewayRanges *bool `pulumi:"scalewayRanges"`
+	// The Scaleway Resource Name (SRN) of the ACL rule
+	Srn *string `pulumi:"srn"`
 }
 
 // AclAclRuleInput is an input type that accepts AclAclRuleArgs and AclAclRuleOutput values.
@@ -54,6 +56,8 @@ type AclAclRuleArgs struct {
 	//
 	// > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
 	ScalewayRanges pulumi.BoolPtrInput `pulumi:"scalewayRanges"`
+	// The Scaleway Resource Name (SRN) of the ACL rule
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 }
 
 func (AclAclRuleArgs) ElementType() reflect.Type {
@@ -130,6 +134,11 @@ func (o AclAclRuleOutput) Ip() pulumi.StringPtrOutput {
 // > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
 func (o AclAclRuleOutput) ScalewayRanges() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AclAclRule) *bool { return v.ScalewayRanges }).(pulumi.BoolPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the ACL rule
+func (o AclAclRuleOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAclRule) *string { return v.Srn }).(pulumi.StringPtrOutput)
 }
 
 type AclAclRuleArrayOutput struct{ *pulumi.OutputState }
@@ -346,7 +355,6 @@ type ClusterAutoscalerConfig struct {
 	IgnoreDaemonsetsUtilization *bool `pulumi:"ignoreDaemonsetsUtilization"`
 	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-	//
 	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 	LogLevel *int `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
@@ -358,7 +366,6 @@ type ClusterAutoscalerConfig struct {
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold *float64 `pulumi:"scaleDownUtilizationThreshold"`
 	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-	//
 	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 	SkipNodesWithLocalStorage *bool `pulumi:"skipNodesWithLocalStorage"`
 }
@@ -389,7 +396,6 @@ type ClusterAutoscalerConfigArgs struct {
 	IgnoreDaemonsetsUtilization pulumi.BoolPtrInput `pulumi:"ignoreDaemonsetsUtilization"`
 	// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 	// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-	//
 	// > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 	LogLevel pulumi.IntPtrInput `pulumi:"logLevel"`
 	// Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
@@ -401,7 +407,6 @@ type ClusterAutoscalerConfigArgs struct {
 	// Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	ScaleDownUtilizationThreshold pulumi.Float64PtrInput `pulumi:"scaleDownUtilizationThreshold"`
 	// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-	//
 	// > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 	SkipNodesWithLocalStorage pulumi.BoolPtrInput `pulumi:"skipNodesWithLocalStorage"`
 }
@@ -515,7 +520,6 @@ func (o ClusterAutoscalerConfigOutput) IgnoreDaemonsetsUtilization() pulumi.Bool
 
 // Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 // Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-//
 // > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 func (o ClusterAutoscalerConfigOutput) LogLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAutoscalerConfig) *int { return v.LogLevel }).(pulumi.IntPtrOutput)
@@ -542,7 +546,6 @@ func (o ClusterAutoscalerConfigOutput) ScaleDownUtilizationThreshold() pulumi.Fl
 }
 
 // If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-//
 // > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 func (o ClusterAutoscalerConfigOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAutoscalerConfig) *bool { return v.SkipNodesWithLocalStorage }).(pulumi.BoolPtrOutput)
@@ -634,7 +637,6 @@ func (o ClusterAutoscalerConfigPtrOutput) IgnoreDaemonsetsUtilization() pulumi.B
 
 // Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
 // Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-//
 // > **Important:** For now, it is not possible to change the value of `logLevel` after creation. Changes to this field will recreate a new cluster resource.
 func (o ClusterAutoscalerConfigPtrOutput) LogLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAutoscalerConfig) *int {
@@ -686,7 +688,6 @@ func (o ClusterAutoscalerConfigPtrOutput) ScaleDownUtilizationThreshold() pulumi
 }
 
 // If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-//
 // > **Important:** For now, it is not possible to change the value of `skipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
 func (o ClusterAutoscalerConfigPtrOutput) SkipNodesWithLocalStorage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAutoscalerConfig) *bool {
@@ -1091,6 +1092,8 @@ type PoolNode struct {
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 *string `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn *string `pulumi:"srn"`
 	// The status of the node.
 	Status *string `pulumi:"status"`
 }
@@ -1125,6 +1128,8 @@ type PoolNodeArgs struct {
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringPtrInput `pulumi:"srn"`
 	// The status of the node.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
@@ -1211,6 +1216,11 @@ func (o PoolNodeOutput) PublicIp() pulumi.StringPtrOutput {
 // Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o PoolNodeOutput) PublicIpV6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o PoolNodeOutput) Srn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolNode) *string { return v.Srn }).(pulumi.StringPtrOutput)
 }
 
 // The status of the node.
@@ -2327,6 +2337,8 @@ type GetPoolNode struct {
 	PublicIp string `pulumi:"publicIp"`
 	// The public IPv6.
 	PublicIpV6 string `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn string `pulumi:"srn"`
 	// The status of the node.
 	Status string `pulumi:"status"`
 }
@@ -2353,6 +2365,8 @@ type GetPoolNodeArgs struct {
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The public IPv6.
 	PublicIpV6 pulumi.StringInput `pulumi:"publicIpV6"`
+	// The Scaleway Resource Name (SRN) of the node.
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// The status of the node.
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -2431,6 +2445,11 @@ func (o GetPoolNodeOutput) PublicIp() pulumi.StringOutput {
 // The public IPv6.
 func (o GetPoolNodeOutput) PublicIpV6() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolNode) string { return v.PublicIpV6 }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the node.
+func (o GetPoolNodeOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolNode) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the node.

@@ -250,6 +250,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? PrivateNetworkId;
         public readonly string? ProjectId;
         public readonly string? Region;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string? VpcId;
@@ -279,6 +280,8 @@ namespace Pulumiverse.Scaleway
 
             string? region,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
@@ -298,6 +301,7 @@ namespace Pulumiverse.Scaleway
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
             Region = region;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
             VpcId = vpcId;

@@ -52,7 +52,6 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// Autoscaler logging level expressed from 0 (least verbose) to 4 (most verbose).
         /// Check out the [autoscaler's FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-increase-the-information-that-the-ca-is-logging) for details.
-        /// 
         /// &gt; **Important:** For now, it is not possible to change the value of `LogLevel` after creation. Changes to this field will recreate a new cluster resource.
         /// </summary>
         [Input("logLevel")]
@@ -84,7 +83,6 @@ namespace Pulumiverse.Scaleway.Inputs
 
         /// <summary>
         /// If set to true, the autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
-        /// 
         /// &gt; **Important:** For now, it is not possible to change the value of `SkipNodesWithLocalStorage` after creation. Changes to this field will recreate a new cluster resource.
         /// </summary>
         [Input("skipNodesWithLocalStorage")]

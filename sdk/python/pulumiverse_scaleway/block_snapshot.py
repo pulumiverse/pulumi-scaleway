@@ -146,6 +146,7 @@ class _BlockSnapshotState:
                  import_: pulumi.Input[Optional['BlockSnapshotImportArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -156,6 +157,7 @@ class _BlockSnapshotState:
         :param pulumi.Input['BlockSnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
@@ -168,6 +170,8 @@ class _BlockSnapshotState:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if volume_id is not None:
@@ -222,6 +226,18 @@ class _BlockSnapshotState:
     @project_id.setter
     def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the snapshot.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -478,6 +494,7 @@ class BlockSnapshot(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["volume_id"] = volume_id
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["srn"] = None
         super(BlockSnapshot, __self__).__init__(
             'scaleway:index/blockSnapshot:BlockSnapshot',
             resource_name,
@@ -492,6 +509,7 @@ class BlockSnapshot(pulumi.CustomResource):
             import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'BlockSnapshot':
@@ -506,6 +524,7 @@ class BlockSnapshot(pulumi.CustomResource):
         :param pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
@@ -518,6 +537,7 @@ class BlockSnapshot(pulumi.CustomResource):
         __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["volume_id"] = volume_id
         __props__.__dict__["zone"] = zone
@@ -554,6 +574,14 @@ class BlockSnapshot(pulumi.CustomResource):
         ). The ID of the Scaleway Project the snapshot is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the snapshot.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

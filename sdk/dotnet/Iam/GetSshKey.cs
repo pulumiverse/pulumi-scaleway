@@ -49,7 +49,6 @@ namespace Pulumiverse.Scaleway.Iam
 
         /// <summary>
         /// The SSH key id.
-        /// 
         /// &gt; **Note** You must specify at least one: `Name` and/or `SshKeyId`.
         /// </summary>
         [Input("sshKeyId")]
@@ -78,7 +77,6 @@ namespace Pulumiverse.Scaleway.Iam
 
         /// <summary>
         /// The SSH key id.
-        /// 
         /// &gt; **Note** You must specify at least one: `Name` and/or `SshKeyId`.
         /// </summary>
         [Input("sshKeyId")]

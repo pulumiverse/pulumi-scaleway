@@ -31,6 +31,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? PrefixLength;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the subnet.
+        /// </summary>
+        public readonly string? Srn;
+        /// <summary>
         /// The subnet CIDR.
         /// </summary>
         public readonly string? Subnet;
@@ -53,6 +57,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             int? prefixLength,
 
+            string? srn,
+
             string? subnet,
 
             string? subnetMask,
@@ -63,6 +69,7 @@ namespace Pulumiverse.Scaleway.Outputs
             CreatedAt = createdAt;
             Id = id;
             PrefixLength = prefixLength;
+            Srn = srn;
             Subnet = subnet;
             SubnetMask = subnetMask;
             UpdatedAt = updatedAt;

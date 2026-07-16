@@ -481,6 +481,7 @@ class _PoolState:
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input['PoolStartupTaintArgs']]]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -531,6 +532,7 @@ class _PoolState:
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the node.
         :param pulumi.Input[Sequence[pulumi.Input['PoolStartupTaintArgs']]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
@@ -588,6 +590,8 @@ class _PoolState:
             pulumi.set(__self__, "security_group_id", security_group_id)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if startup_taints is not None:
             pulumi.set(__self__, "startup_taints", startup_taints)
         if status is not None:
@@ -864,6 +868,18 @@ class _PoolState:
     @size.setter
     def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="startupTaints")
@@ -1321,6 +1337,7 @@ class Pool(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["current_size"] = None
             __props__.__dict__["nodes"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/kubernetesNodePool:KubernetesNodePool")])
@@ -1355,6 +1372,7 @@ class Pool(pulumi.CustomResource):
             root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
             size: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PoolStartupTaintArgs', 'PoolStartupTaintArgsDict']]]]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1409,6 +1427,7 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the node.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PoolStartupTaintArgs', 'PoolStartupTaintArgsDict']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
@@ -1450,6 +1469,7 @@ class Pool(pulumi.CustomResource):
         __props__.__dict__["root_volume_type"] = root_volume_type
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["size"] = size
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["startup_taints"] = startup_taints
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -1638,6 +1658,14 @@ class Pool(pulumi.CustomResource):
         > **Important:** This field will only be used at creation if autoscaling is enabled.
         """
         return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the node.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="startupTaints")

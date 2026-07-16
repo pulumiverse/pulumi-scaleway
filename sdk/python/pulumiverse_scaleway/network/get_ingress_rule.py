@@ -26,7 +26,7 @@ class GetIngressRuleResult:
     """
     A collection of values returned by getIngressRule.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, ingress_rule_id=None, is_ipv6=None, nexthop_private_network_id=None, nexthop_resource_ip=None, region=None, source=None, tags=None, updated_at=None, vpc_id=None):
+    def __init__(__self__, created_at=None, description=None, id=None, ingress_rule_id=None, is_ipv6=None, nexthop_private_network_id=None, nexthop_resource_ip=None, region=None, source=None, srn=None, tags=None, updated_at=None, vpc_id=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -54,6 +54,9 @@ class GetIngressRuleResult:
         if source and not isinstance(source, str):
             raise TypeError("Expected argument 'source' to be a str")
         pulumi.set(__self__, "source", source)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -114,6 +117,11 @@ class GetIngressRuleResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Optional[Sequence[_builtins.str]]:
         return pulumi.get(self, "tags")
 
@@ -143,6 +151,7 @@ class AwaitableGetIngressRuleResult(GetIngressRuleResult):
             nexthop_resource_ip=self.nexthop_resource_ip,
             region=self.region,
             source=self.source,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at,
             vpc_id=self.vpc_id)
@@ -211,6 +220,7 @@ def get_ingress_rule(ingress_rule_id: Optional[_builtins.str] = None,
         nexthop_resource_ip=pulumi.get(__ret__, 'nexthop_resource_ip'),
         region=pulumi.get(__ret__, 'region'),
         source=pulumi.get(__ret__, 'source'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
@@ -276,6 +286,7 @@ def get_ingress_rule_output(ingress_rule_id: pulumi.Input[Optional[Optional[_bui
         nexthop_resource_ip=pulumi.get(__response__, 'nexthop_resource_ip'),
         region=pulumi.get(__response__, 'region'),
         source=pulumi.get(__response__, 'source'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         vpc_id=pulumi.get(__response__, 'vpc_id')))

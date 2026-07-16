@@ -38,6 +38,12 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<int>? PrefixLength { get; set; }
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the subnet.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
+
+        /// <summary>
         /// The subnet CIDR.
         /// </summary>
         [Input("subnet")]

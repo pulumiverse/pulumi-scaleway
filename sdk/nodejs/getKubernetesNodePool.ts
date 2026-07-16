@@ -139,6 +139,10 @@ export interface GetKubernetesNodePoolResult {
      * The size of the pool.
      */
     readonly size?: number;
+    /**
+     * The Scaleway Resource Name (SRN) of the node.
+     */
+    readonly srn: string;
     readonly startupTaints: outputs.GetKubernetesNodePoolStartupTaint[];
     /**
      * The status of the node.

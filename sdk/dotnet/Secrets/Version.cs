@@ -119,6 +119,12 @@ namespace Pulumiverse.Scaleway.Secrets
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the secret version.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the secret version.
         /// </summary>
         [Output("status")]
@@ -319,6 +325,12 @@ namespace Pulumiverse.Scaleway.Secrets
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the secret version.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the secret version.

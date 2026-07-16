@@ -28,7 +28,7 @@ class GetSecretVersionResult:
     """
     A collection of values returned by getSecretVersion.
     """
-    def __init__(__self__, created_at=None, data=None, data_wo=None, data_wo_version=None, description=None, id=None, organization_id=None, project_id=None, region=None, revision=None, secret_id=None, secret_name=None, status=None, updated_at=None):
+    def __init__(__self__, created_at=None, data=None, data_wo=None, data_wo_version=None, description=None, id=None, organization_id=None, project_id=None, region=None, revision=None, secret_id=None, secret_name=None, srn=None, status=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -65,6 +65,9 @@ class GetSecretVersionResult:
         if secret_name and not isinstance(secret_name, str):
             raise TypeError("Expected argument 'secret_name' to be a str")
         pulumi.set(__self__, "secret_name", secret_name)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -146,6 +149,14 @@ class GetSecretVersionResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the secret version.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         The status of the secret version.
@@ -179,6 +190,7 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             revision=self.revision,
             secret_id=self.secret_id,
             secret_name=self.secret_name,
+            srn=self.srn,
             status=self.status,
             updated_at=self.updated_at)
 
@@ -272,6 +284,7 @@ def get_secret_version(organization_id: Optional[_builtins.str] = None,
         revision=pulumi.get(__ret__, 'revision'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
         secret_name=pulumi.get(__ret__, 'secret_name'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_secret_version_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -362,5 +375,6 @@ def get_secret_version_output(organization_id: pulumi.Input[Optional[Optional[_b
         revision=pulumi.get(__response__, 'revision'),
         secret_id=pulumi.get(__response__, 'secret_id'),
         secret_name=pulumi.get(__response__, 'secret_name'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         updated_at=pulumi.get(__response__, 'updated_at')))

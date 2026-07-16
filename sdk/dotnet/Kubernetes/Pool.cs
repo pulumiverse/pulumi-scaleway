@@ -259,6 +259,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the node.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The list of Kubernetes taints applied at node creation but not reconciled afterward.
         /// </summary>
         [Output("startupTaints")]
@@ -732,6 +738,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the node.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("startupTaints")]
         private InputList<Inputs.PoolStartupTaintGetArgs>? _startupTaints;

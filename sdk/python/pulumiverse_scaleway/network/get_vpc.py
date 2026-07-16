@@ -26,7 +26,7 @@ class GetVpcResult:
     """
     A collection of values returned by getVpc.
     """
-    def __init__(__self__, created_at=None, enable_custom_routes_propagation=None, enable_routing=None, enable_transitivity=None, id=None, is_default=None, name=None, organization_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None):
+    def __init__(__self__, created_at=None, enable_custom_routes_propagation=None, enable_routing=None, enable_transitivity=None, id=None, is_default=None, name=None, organization_id=None, project_id=None, region=None, srn=None, tags=None, updated_at=None, vpc_id=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -57,6 +57,9 @@ class GetVpcResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -122,6 +125,11 @@ class GetVpcResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -152,6 +160,7 @@ class AwaitableGetVpcResult(GetVpcResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             region=self.region,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at,
             vpc_id=self.vpc_id)
@@ -209,6 +218,7 @@ def get_vpc(is_default: Optional[_builtins.bool] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
@@ -263,6 +273,7 @@ def get_vpc_output(is_default: pulumi.Input[Optional[Optional[_builtins.bool]]] 
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         vpc_id=pulumi.get(__response__, 'vpc_id')))

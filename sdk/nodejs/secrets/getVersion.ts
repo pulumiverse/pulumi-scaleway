@@ -127,6 +127,10 @@ export interface GetVersionResult {
     readonly secretId?: string;
     readonly secretName?: string;
     /**
+     * The Scaleway Resource Name (SRN) of the secret version.
+     */
+    readonly srn: string;
+    /**
      * The status of the secret version.
      */
     readonly status: string;

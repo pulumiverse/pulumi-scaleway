@@ -114,6 +114,8 @@ type Secret struct {
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the secret.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the secret.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
@@ -181,6 +183,8 @@ type secretState struct {
 	// `region`) The region
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the secret.
+	Srn *string `pulumi:"srn"`
 	// The status of the secret.
 	Status *string `pulumi:"status"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
@@ -213,6 +217,8 @@ type SecretState struct {
 	// `region`) The region
 	// in which the resource exists.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the secret.
+	Srn pulumi.StringPtrInput
 	// The status of the secret.
 	Status pulumi.StringPtrInput
 	// Tags of the secret (e.g. `["tag", "secret"]`).
@@ -402,6 +408,11 @@ func (o SecretOutput) Protected() pulumi.BoolPtrOutput {
 // in which the resource exists.
 func (o SecretOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the secret.
+func (o SecretOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the secret.

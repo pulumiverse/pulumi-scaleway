@@ -146,7 +146,6 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
-        /// 
         /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Output("name")]
@@ -229,7 +228,6 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
-        /// 
         /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Input("name")]
@@ -275,7 +273,6 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
-        /// 
         /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Input("name")]

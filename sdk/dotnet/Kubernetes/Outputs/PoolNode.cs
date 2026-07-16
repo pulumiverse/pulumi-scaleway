@@ -39,6 +39,10 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly string? PublicIpV6;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the node.
+        /// </summary>
+        public readonly string? Srn;
+        /// <summary>
         /// The status of the node.
         /// </summary>
         public readonly string? Status;
@@ -55,6 +59,8 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
             string? publicIpV6,
 
+            string? srn,
+
             string? status)
         {
             Id = id;
@@ -62,6 +68,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
             PrivateIps = privateIps;
             PublicIp = publicIp;
             PublicIpV6 = publicIpV6;
+            Srn = srn;
             Status = status;
         }
     }
