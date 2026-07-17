@@ -205,6 +205,16 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"scaleway_key_manager_key_material": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"key_material": {
+						CSharpName: "KeyMaterialRw",
+					},
+					"salt": {
+						CSharpName: "SaltRw",
+					},
+				},
+			},
 			"scaleway_lb": {
 				Tok: scalewayResource(loadbalancersMod, "LoadBalancer"),
 				Docs: &tfbridge.DocInfo{
