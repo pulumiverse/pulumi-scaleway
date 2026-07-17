@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// The key material to import. The key material is a random sequence of bytes used to derive a cryptographic key. Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input).
         /// </summary>
         [Output("keyMaterial")]
-        public Output<string?> KeyMaterial { get; private set; } = null!;
+        public Output<string?> KeyMaterialRw { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// Optional salt for key derivation. A salt is random data added to key material to ensure unique derived keys, even if the input is similar. It helps strengthen security when the key material has low randomness (low entropy). Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input). Only one of `Salt` or `SaltWo` can be specified.
         /// </summary>
         [Output("salt")]
-        public Output<string?> Salt { get; private set; } = null!;
+        public Output<string?> SaltRw { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -237,7 +237,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// The key material to import. The key material is a random sequence of bytes used to derive a cryptographic key. Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input).
         /// </summary>
-        public Input<string>? KeyMaterial
+        public Input<string>? KeyMaterialRw
         {
             get => _keyMaterial;
             set
@@ -282,7 +282,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// Optional salt for key derivation. A salt is random data added to key material to ensure unique derived keys, even if the input is similar. It helps strengthen security when the key material has low randomness (low entropy). Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input). Only one of `Salt` or `SaltWo` can be specified.
         /// </summary>
-        public Input<string>? Salt
+        public Input<string>? SaltRw
         {
             get => _salt;
             set
@@ -335,7 +335,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// The key material to import. The key material is a random sequence of bytes used to derive a cryptographic key. Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input).
         /// </summary>
-        public Input<string>? KeyMaterial
+        public Input<string>? KeyMaterialRw
         {
             get => _keyMaterial;
             set
@@ -392,7 +392,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// Optional salt for key derivation. A salt is random data added to key material to ensure unique derived keys, even if the input is similar. It helps strengthen security when the key material has low randomness (low entropy). Can be provided as raw bytes or a base64-encoded string (the provider will automatically normalize the input). Only one of `Salt` or `SaltWo` can be specified.
         /// </summary>
-        public Input<string>? Salt
+        public Input<string>? SaltRw
         {
             get => _salt;
             set
