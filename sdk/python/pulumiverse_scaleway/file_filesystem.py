@@ -27,9 +27,9 @@ class FileFilesystemArgs:
         """
         The set of arguments for constructing a FileFilesystem resource.
 
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-               - Minimum: 100 GB (100000000000 bytes)
-               - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+               - Minimum: 25 GB
+               - Maximum: 50 TB (50000 GB)
         :param pulumi.Input[_builtins.str] name: The name of the filesystem. If not provided, a random name will be generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
@@ -50,9 +50,9 @@ class FileFilesystemArgs:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Input[_builtins.int]:
         """
-        The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        - Minimum: 100 GB (100000000000 bytes)
-        - Maximum: 10 TB (10000000000000 bytes)
+        The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        - Minimum: 25 GB
+        - Maximum: 50 TB (50000 GB)
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -134,9 +134,9 @@ class _FileFilesystemState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-               - Minimum: 100 GB (100000000000 bytes)
-               - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+               - Minimum: 25 GB
+               - Maximum: 50 TB (50000 GB)
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the filesystem.
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
@@ -242,9 +242,9 @@ class _FileFilesystemState:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        - Minimum: 100 GB (100000000000 bytes)
-        - Maximum: 10 TB (10000000000000 bytes)
+        The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        - Minimum: 25 GB
+        - Maximum: 50 TB (50000 GB)
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -314,9 +314,7 @@ class FileFilesystem(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
-
-        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
+        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used to share persistent storage between multiple instances (RWX).
 
         This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
 
@@ -329,7 +327,7 @@ class FileFilesystem(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         file = scaleway.FileFilesystem("file",
-            name="my-nfs-filesystem",
+            name="my-filesystem",
             size_in_gb=100)
         ```
 
@@ -348,9 +346,9 @@ class FileFilesystem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-               - Minimum: 100 GB (100000000000 bytes)
-               - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+               - Minimum: 25 GB
+               - Maximum: 50 TB (50000 GB)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
         """
         ...
@@ -360,9 +358,7 @@ class FileFilesystem(pulumi.CustomResource):
                  args: FileFilesystemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
-
-        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
+        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used to share persistent storage between multiple instances (RWX).
 
         This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
 
@@ -375,7 +371,7 @@ class FileFilesystem(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         file = scaleway.FileFilesystem("file",
-            name="my-nfs-filesystem",
+            name="my-filesystem",
             size_in_gb=100)
         ```
 
@@ -465,9 +461,9 @@ class FileFilesystem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-               - Minimum: 100 GB (100000000000 bytes)
-               - Maximum: 10 TB (10000000000000 bytes)
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+               - Minimum: 25 GB
+               - Maximum: 50 TB (50000 GB)
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the filesystem.
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
@@ -543,9 +539,9 @@ class FileFilesystem(pulumi.CustomResource):
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Output[_builtins.int]:
         """
-        The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        - Minimum: 100 GB (100000000000 bytes)
-        - Maximum: 10 TB (10000000000000 bytes)
+        The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        - Minimum: 25 GB
+        - Maximum: 50 TB (50000 GB)
         """
         return pulumi.get(self, "size_in_gb")
 

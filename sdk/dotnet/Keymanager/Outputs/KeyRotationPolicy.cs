@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Keymanager.Outputs
     public sealed class KeyRotationPolicy
     {
         /// <summary>
-        /// The date and time of the next scheduled rotation.
+        /// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `RotationPeriod`.
         /// </summary>
         public readonly string? NextRotationAt;
         /// <summary>

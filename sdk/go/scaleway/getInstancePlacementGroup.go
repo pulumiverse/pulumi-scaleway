@@ -39,10 +39,8 @@ type LookupInstancePlacementGroupArgs struct {
 // A collection of values returned by getInstancePlacementGroup.
 type LookupInstancePlacementGroupResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id   string  `pulumi:"id"`
-	Name *string `pulumi:"name"`
-	// The organization ID the placement group is associated with.
-	OrganizationId   string  `pulumi:"organizationId"`
+	Id               string  `pulumi:"id"`
+	Name             *string `pulumi:"name"`
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group.
 	PolicyMode string `pulumi:"policyMode"`
@@ -103,11 +101,6 @@ func (o LookupInstancePlacementGroupResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupInstancePlacementGroupResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstancePlacementGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// The organization ID the placement group is associated with.
-func (o LookupInstancePlacementGroupResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstancePlacementGroupResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
 func (o LookupInstancePlacementGroupResultOutput) PlacementGroupId() pulumi.StringPtrOutput {

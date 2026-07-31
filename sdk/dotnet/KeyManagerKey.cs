@@ -99,6 +99,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
     /// - **Rotation Policy**: The `RotationPolicy` block allows you to set automatic rotation for your key.
+    ///   If `NextRotationAt` is not set, the Key Manager API schedules the next rotation at `RotationPeriod` from the key's creation, and reschedules it after each rotation.
+    ///   If you set `NextRotationAt` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `NextRotationAt`, so the configured value becomes stale: update or remove it from the configuration (or use `IgnoreChanges`) to avoid a permanent diff.
     /// - **Origin**: The `Origin` argument is optional and defaults to `ScalewayKms`. Use `External` if you want to import an external key (see Scaleway documentation for details).
     /// - **Project and Region**: If not specified, `ProjectId` and `Region` will default to the provider configuration.
     /// - **Algorithm Validation**: The provider validates that the specified `Algorithm` is compatible with the `Usage` type at plan time, providing early feedback on configuration errors.

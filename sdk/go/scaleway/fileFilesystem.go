@@ -12,9 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
-//
-// Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
+// Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used to share persistent storage between multiple instances (RWX).
 //
 // This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
 //
@@ -35,7 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewFileFilesystem(ctx, "file", &scaleway.FileFilesystemArgs{
-//				Name:     pulumi.String("my-nfs-filesystem"),
+//				Name:     pulumi.String("my-filesystem"),
 //				SizeInGb: pulumi.Int(100),
 //			})
 //			if err != nil {
@@ -70,9 +68,9 @@ type FileFilesystem struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-	// - Minimum: 100 GB (100000000000 bytes)
-	// - Maximum: 10 TB (10000000000000 bytes)
+	// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+	// - Minimum: 25 GB
+	// - Maximum: 50 TB (50000 GB)
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// The Scaleway Resource Name (SRN) of the filesystem.
 	Srn pulumi.StringOutput `pulumi:"srn"`
@@ -130,9 +128,9 @@ type fileFilesystemState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
 	Region *string `pulumi:"region"`
-	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-	// - Minimum: 100 GB (100000000000 bytes)
-	// - Maximum: 10 TB (10000000000000 bytes)
+	// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+	// - Minimum: 25 GB
+	// - Maximum: 50 TB (50000 GB)
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// The Scaleway Resource Name (SRN) of the filesystem.
 	Srn *string `pulumi:"srn"`
@@ -158,9 +156,9 @@ type FileFilesystemState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
 	Region pulumi.StringPtrInput
-	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-	// - Minimum: 100 GB (100000000000 bytes)
-	// - Maximum: 10 TB (10000000000000 bytes)
+	// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+	// - Minimum: 25 GB
+	// - Maximum: 50 TB (50000 GB)
 	SizeInGb pulumi.IntPtrInput
 	// The Scaleway Resource Name (SRN) of the filesystem.
 	Srn pulumi.StringPtrInput
@@ -184,9 +182,9 @@ type fileFilesystemArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
 	Region *string `pulumi:"region"`
-	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-	// - Minimum: 100 GB (100000000000 bytes)
-	// - Maximum: 10 TB (10000000000000 bytes)
+	// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+	// - Minimum: 25 GB
+	// - Maximum: 50 TB (50000 GB)
 	SizeInGb int `pulumi:"sizeInGb"`
 	// A list of tags associated with the filesystem.
 	Tags []string `pulumi:"tags"`
@@ -201,9 +199,9 @@ type FileFilesystemArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
 	Region pulumi.StringPtrInput
-	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-	// - Minimum: 100 GB (100000000000 bytes)
-	// - Maximum: 10 TB (10000000000000 bytes)
+	// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+	// - Minimum: 25 GB
+	// - Maximum: 50 TB (50000 GB)
 	SizeInGb pulumi.IntInput
 	// A list of tags associated with the filesystem.
 	Tags pulumi.StringArrayInput
@@ -327,9 +325,9 @@ func (o FileFilesystemOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FileFilesystem) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-// - Minimum: 100 GB (100000000000 bytes)
-// - Maximum: 10 TB (10000000000000 bytes)
+// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+// - Minimum: 25 GB
+// - Maximum: 50 TB (50000 GB)
 func (o FileFilesystemOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *FileFilesystem) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }

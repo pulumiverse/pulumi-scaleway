@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class KeyManagerKeyRotationPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the next scheduled rotation.
+        /// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `RotationPeriod`.
         /// </summary>
         [Input("nextRotationAt")]
         public Input<string>? NextRotationAt { get; set; }

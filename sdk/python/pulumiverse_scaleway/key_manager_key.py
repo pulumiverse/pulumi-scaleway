@@ -579,6 +579,8 @@ class KeyManagerKey(pulumi.CustomResource):
 
         - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
         - **Rotation Policy**: The `rotation_policy` block allows you to set automatic rotation for your key.
+          If `next_rotation_at` is not set, the Key Manager API schedules the next rotation at `rotation_period` from the key's creation, and reschedules it after each rotation.
+          If you set `next_rotation_at` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `next_rotation_at`, so the configured value becomes stale: update or remove it from the configuration (or use `ignore_changes`) to avoid a permanent diff.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
         - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
@@ -677,6 +679,8 @@ class KeyManagerKey(pulumi.CustomResource):
 
         - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
         - **Rotation Policy**: The `rotation_policy` block allows you to set automatic rotation for your key.
+          If `next_rotation_at` is not set, the Key Manager API schedules the next rotation at `rotation_period` from the key's creation, and reschedules it after each rotation.
+          If you set `next_rotation_at` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `next_rotation_at`, so the configured value becomes stale: update or remove it from the configuration (or use `ignore_changes`) to avoid a permanent diff.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
         - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.

@@ -72,6 +72,8 @@ import * as utilities from "../utilities";
  *
  * - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
  * - **Rotation Policy**: The `rotationPolicy` block allows you to set automatic rotation for your key.
+ *   If `nextRotationAt` is not set, the Key Manager API schedules the next rotation at `rotationPeriod` from the key's creation, and reschedules it after each rotation.
+ *   If you set `nextRotationAt` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `nextRotationAt`, so the configured value becomes stale: update or remove it from the configuration (or use `ignoreChanges`) to avoid a permanent diff.
  * - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
  * - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
  * - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.

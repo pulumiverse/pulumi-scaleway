@@ -38,6 +38,9 @@ class InstancePlacementGroupArgs:
         if name is not None:
             pulumi.set(__self__, "name", name)
         if policy_mode is not None:
+            warnings.warn("""Policy mode is deprecated and will be removed with v1 of the Instance API.""", DeprecationWarning)
+            pulumi.log.warn("""policy_mode is deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.""")
+        if policy_mode is not None:
             pulumi.set(__self__, "policy_mode", policy_mode)
         if policy_type is not None:
             pulumi.set(__self__, "policy_type", policy_type)
@@ -62,6 +65,7 @@ class InstancePlacementGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="policyMode")
+    @_utilities.deprecated("""Policy mode is deprecated and will be removed with v1 of the Instance API.""")
     def policy_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
@@ -125,7 +129,6 @@ class InstancePlacementGroupArgs:
 class _InstancePlacementGroupState:
     def __init__(__self__, *,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
                  policy_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -136,7 +139,6 @@ class _InstancePlacementGroupState:
         Input properties used for looking up and filtering InstancePlacementGroup resources.
 
         :param pulumi.Input[_builtins.str] name: The name of the placement group.
-        :param pulumi.Input[_builtins.str] organization_id: The organization ID the placement group is associated with.
         :param pulumi.Input[_builtins.str] policy_mode: The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         :param pulumi.Input[_builtins.bool] policy_respected: Is true when the policy is respected.
         :param pulumi.Input[_builtins.str] policy_type: The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
@@ -146,10 +148,14 @@ class _InstancePlacementGroupState:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+        if policy_mode is not None:
+            warnings.warn("""Policy mode is deprecated and will be removed with v1 of the Instance API.""", DeprecationWarning)
+            pulumi.log.warn("""policy_mode is deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.""")
         if policy_mode is not None:
             pulumi.set(__self__, "policy_mode", policy_mode)
+        if policy_respected is not None:
+            warnings.warn("""policy_respected is deprecated and will be removed with v1 of the Instance API.""", DeprecationWarning)
+            pulumi.log.warn("""policy_respected is deprecated: policy_respected is deprecated and will be removed with v1 of the Instance API.""")
         if policy_respected is not None:
             pulumi.set(__self__, "policy_respected", policy_respected)
         if policy_type is not None:
@@ -174,19 +180,8 @@ class _InstancePlacementGroupState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The organization ID the placement group is associated with.
-        """
-        return pulumi.get(self, "organization_id")
-
-    @organization_id.setter
-    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "organization_id", value)
-
-    @_builtins.property
     @pulumi.getter(name="policyMode")
+    @_utilities.deprecated("""Policy mode is deprecated and will be removed with v1 of the Instance API.""")
     def policy_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
@@ -199,6 +194,7 @@ class _InstancePlacementGroupState:
 
     @_builtins.property
     @pulumi.getter(name="policyRespected")
+    @_utilities.deprecated("""policy_respected is deprecated and will be removed with v1 of the Instance API.""")
     def policy_respected(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is true when the policy is respected.
@@ -370,7 +366,6 @@ class InstancePlacementGroup(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
-            __props__.__dict__["organization_id"] = None
             __props__.__dict__["policy_respected"] = None
         super(InstancePlacementGroup, __self__).__init__(
             'scaleway:index/instancePlacementGroup:InstancePlacementGroup',
@@ -383,7 +378,6 @@ class InstancePlacementGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             policy_mode: pulumi.Input[Optional[_builtins.str]] = None,
             policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
             policy_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -398,7 +392,6 @@ class InstancePlacementGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the placement group.
-        :param pulumi.Input[_builtins.str] organization_id: The organization ID the placement group is associated with.
         :param pulumi.Input[_builtins.str] policy_mode: The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
         :param pulumi.Input[_builtins.bool] policy_respected: Is true when the policy is respected.
         :param pulumi.Input[_builtins.str] policy_type: The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
@@ -411,7 +404,6 @@ class InstancePlacementGroup(pulumi.CustomResource):
         __props__ = _InstancePlacementGroupState.__new__(_InstancePlacementGroupState)
 
         __props__.__dict__["name"] = name
-        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["policy_mode"] = policy_mode
         __props__.__dict__["policy_respected"] = policy_respected
         __props__.__dict__["policy_type"] = policy_type
@@ -429,15 +421,8 @@ class InstancePlacementGroup(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @_builtins.property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> pulumi.Output[_builtins.str]:
-        """
-        The organization ID the placement group is associated with.
-        """
-        return pulumi.get(self, "organization_id")
-
-    @_builtins.property
     @pulumi.getter(name="policyMode")
+    @_utilities.deprecated("""Policy mode is deprecated and will be removed with v1 of the Instance API.""")
     def policy_mode(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
@@ -446,6 +431,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="policyRespected")
+    @_utilities.deprecated("""policy_respected is deprecated and will be removed with v1 of the Instance API.""")
     def policy_respected(self) -> pulumi.Output[_builtins.bool]:
         """
         Is true when the policy is respected.

@@ -105,10 +105,6 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
-        /// <summary>
-        /// The organization ID the placement group is associated with.
-        /// </summary>
-        public readonly string OrganizationId;
         public readonly string? PlacementGroupId;
         /// <summary>
         /// The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group.
@@ -135,8 +131,6 @@ namespace Pulumiverse.Scaleway.Instance
 
             string? name,
 
-            string organizationId,
-
             string? placementGroupId,
 
             string policyMode,
@@ -153,7 +147,6 @@ namespace Pulumiverse.Scaleway.Instance
         {
             Id = id;
             Name = name;
-            OrganizationId = organizationId;
             PlacementGroupId = placementGroupId;
             PolicyMode = policyMode;
             PolicyRespected = policyRespected;

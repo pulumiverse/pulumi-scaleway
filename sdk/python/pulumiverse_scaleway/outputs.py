@@ -5584,7 +5584,7 @@ class KeyManagerKeyRotationPolicy(dict):
                  next_rotation_at: Optional[_builtins.str] = None):
         """
         :param _builtins.str rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
-        :param _builtins.str next_rotation_at: The date and time of the next scheduled rotation.
+        :param _builtins.str next_rotation_at: – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotation_period`.
         """
         pulumi.set(__self__, "rotation_period", rotation_period)
         if next_rotation_at is not None:
@@ -5602,7 +5602,7 @@ class KeyManagerKeyRotationPolicy(dict):
     @pulumi.getter(name="nextRotationAt")
     def next_rotation_at(self) -> Optional[_builtins.str]:
         """
-        The date and time of the next scheduled rotation.
+        – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotation_period`.
         """
         return pulumi.get(self, "next_rotation_at")
 
@@ -12586,7 +12586,7 @@ class GetKeyManagerKeyRotationPolicyResult(dict):
                  next_rotation_at: _builtins.str,
                  rotation_period: _builtins.str):
         """
-        :param _builtins.str next_rotation_at: Timestamp indicating the next scheduled rotation.
+        :param _builtins.str next_rotation_at: Timestamp indicating the next scheduled rotation. Computed from rotation_period if not set.
         :param _builtins.str rotation_period: Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
         """
         pulumi.set(__self__, "next_rotation_at", next_rotation_at)
@@ -12596,7 +12596,7 @@ class GetKeyManagerKeyRotationPolicyResult(dict):
     @pulumi.getter(name="nextRotationAt")
     def next_rotation_at(self) -> _builtins.str:
         """
-        Timestamp indicating the next scheduled rotation.
+        Timestamp indicating the next scheduled rotation. Computed from rotation_period if not set.
         """
         return pulumi.get(self, "next_rotation_at")
 

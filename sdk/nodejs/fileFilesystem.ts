@@ -5,9 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
- *
- * Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
+ * Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used to share persistent storage between multiple instances (RWX).
  *
  * This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
  *
@@ -20,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const file = new scaleway.FileFilesystem("file", {
- *     name: "my-nfs-filesystem",
+ *     name: "my-filesystem",
  *     sizeInGb: 100,
  * });
  * ```
@@ -87,9 +85,9 @@ export class FileFilesystem extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-     * - Minimum: 100 GB (100000000000 bytes)
-     * - Maximum: 10 TB (10000000000000 bytes)
+     * The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+     * - Minimum: 25 GB
+     * - Maximum: 50 TB (50000 GB)
      */
     declare public readonly sizeInGb: pulumi.Output<number>;
     /**
@@ -185,9 +183,9 @@ export interface FileFilesystemState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-     * - Minimum: 100 GB (100000000000 bytes)
-     * - Maximum: 10 TB (10000000000000 bytes)
+     * The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+     * - Minimum: 25 GB
+     * - Maximum: 50 TB (50000 GB)
      */
     sizeInGb?: pulumi.Input<number | undefined>;
     /**
@@ -226,9 +224,9 @@ export interface FileFilesystemArgs {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-     * - Minimum: 100 GB (100000000000 bytes)
-     * - Maximum: 10 TB (10000000000000 bytes)
+     * The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+     * - Minimum: 25 GB
+     * - Maximum: 50 TB (50000 GB)
      */
     sizeInGb: pulumi.Input<number>;
     /**

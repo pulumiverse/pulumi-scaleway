@@ -49,11 +49,13 @@ type PlacementGroup struct {
 
 	// The name of the placement group.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization ID the placement group is associated with.
-	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+	//
+	// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 	PolicyMode pulumi.StringPtrOutput `pulumi:"policyMode"`
 	// Is true when the policy is respected.
+	//
+	// Deprecated: policy_respected is deprecated and will be removed with v1 of the Instance API.
 	PolicyRespected pulumi.BoolOutput `pulumi:"policyRespected"`
 	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrOutput `pulumi:"policyType"`
@@ -103,11 +105,13 @@ func GetPlacementGroup(ctx *pulumi.Context,
 type placementGroupState struct {
 	// The name of the placement group.
 	Name *string `pulumi:"name"`
-	// The organization ID the placement group is associated with.
-	OrganizationId *string `pulumi:"organizationId"`
 	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+	//
+	// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 	PolicyMode *string `pulumi:"policyMode"`
 	// Is true when the policy is respected.
+	//
+	// Deprecated: policy_respected is deprecated and will be removed with v1 of the Instance API.
 	PolicyRespected *bool `pulumi:"policyRespected"`
 	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType *string `pulumi:"policyType"`
@@ -122,11 +126,13 @@ type placementGroupState struct {
 type PlacementGroupState struct {
 	// The name of the placement group.
 	Name pulumi.StringPtrInput
-	// The organization ID the placement group is associated with.
-	OrganizationId pulumi.StringPtrInput
 	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+	//
+	// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 	PolicyMode pulumi.StringPtrInput
 	// Is true when the policy is respected.
+	//
+	// Deprecated: policy_respected is deprecated and will be removed with v1 of the Instance API.
 	PolicyRespected pulumi.BoolPtrInput
 	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrInput
@@ -146,6 +152,8 @@ type placementGroupArgs struct {
 	// The name of the placement group.
 	Name *string `pulumi:"name"`
 	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+	//
+	// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 	PolicyMode *string `pulumi:"policyMode"`
 	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType *string `pulumi:"policyType"`
@@ -162,6 +170,8 @@ type PlacementGroupArgs struct {
 	// The name of the placement group.
 	Name pulumi.StringPtrInput
 	// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+	//
+	// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 	PolicyMode pulumi.StringPtrInput
 	// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
 	PolicyType pulumi.StringPtrInput
@@ -265,17 +275,16 @@ func (o PlacementGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PlacementGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the placement group is associated with.
-func (o PlacementGroupOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v *PlacementGroup) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
-}
-
 // The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+//
+// Deprecated: Policy mode is deprecated and will be removed with v1 of the Instance API.
 func (o PlacementGroupOutput) PolicyMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PlacementGroup) pulumi.StringPtrOutput { return v.PolicyMode }).(pulumi.StringPtrOutput)
 }
 
 // Is true when the policy is respected.
+//
+// Deprecated: policy_respected is deprecated and will be removed with v1 of the Instance API.
 func (o PlacementGroupOutput) PolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PlacementGroup) pulumi.BoolOutput { return v.PolicyRespected }).(pulumi.BoolOutput)
 }

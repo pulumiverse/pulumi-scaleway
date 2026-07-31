@@ -46,12 +46,6 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization ID the placement group is associated with.
-        /// </summary>
-        [Output("organizationId")]
-        public Output<string> OrganizationId { get; private set; } = null!;
-
-        /// <summary>
         /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `Optional` or `Enforced`.
         /// </summary>
         [Output("policyMode")]
@@ -193,12 +187,6 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// The organization ID the placement group is associated with.
-        /// </summary>
-        [Input("organizationId")]
-        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `Optional` or `Enforced`.

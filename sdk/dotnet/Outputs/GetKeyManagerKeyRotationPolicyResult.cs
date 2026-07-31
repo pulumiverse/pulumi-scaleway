@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetKeyManagerKeyRotationPolicyResult
     {
         /// <summary>
-        /// Timestamp indicating the next scheduled rotation.
+        /// Timestamp indicating the next scheduled rotation. Computed from RotationPeriod if not set.
         /// </summary>
         public readonly string NextRotationAt;
         /// <summary>

@@ -8,6 +8,9 @@ import typing
 # Export this package's modules as members:
 from .account_project import *
 from .account_ssh_key import *
+from .annotations_binding import *
+from .annotations_key import *
+from .annotations_value import *
 from .apple_silicon_server import *
 from .baremetal_server import *
 from .block_snapshot import *
@@ -52,6 +55,9 @@ from .function_token import *
 from .function_trigger import *
 from .get_account_project import *
 from .get_account_ssh_key import *
+from .get_annotations_binding import *
+from .get_annotations_key import *
+from .get_annotations_value import *
 from .get_availability_zones import *
 from .get_baremetal_offer import *
 from .get_baremetal_option import *
@@ -860,6 +866,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/accountSshKey:AccountSshKey": "AccountSshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/annotationsBinding",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/annotationsBinding:AnnotationsBinding": "AnnotationsBinding"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/annotationsKey",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/annotationsKey:AnnotationsKey": "AnnotationsKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/annotationsValue",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/annotationsValue:AnnotationsValue": "AnnotationsValue"
   }
  },
  {

@@ -51,10 +51,6 @@ export interface GetInstancePlacementGroupResult {
      */
     readonly id: string;
     readonly name?: string;
-    /**
-     * The organization ID the placement group is associated with.
-     */
-    readonly organizationId: string;
     readonly placementGroupId?: string;
     /**
      * The [policy mode](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group.
