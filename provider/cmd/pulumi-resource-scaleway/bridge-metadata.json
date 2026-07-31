@@ -23,6 +23,18 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_annotations_binding": {
+                "current": "scaleway:index/annotationsBinding:AnnotationsBinding",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_key": {
+                "current": "scaleway:index/annotationsKey:AnnotationsKey",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_value": {
+                "current": "scaleway:index/annotationsValue:AnnotationsValue",
+                "majorVersion": 1
+            },
             "scaleway_apple_silicon_runner": {
                 "current": "scaleway:applesilicon/runner:Runner",
                 "majorVersion": 1,
@@ -2882,6 +2894,18 @@
                         "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1
+            },
+            "scaleway_annotations_binding": {
+                "current": "scaleway:index/getAnnotationsBinding:getAnnotationsBinding",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_key": {
+                "current": "scaleway:index/getAnnotationsKey:getAnnotationsKey",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_value": {
+                "current": "scaleway:index/getAnnotationsValue:getAnnotationsValue",
                 "majorVersion": 1
             },
             "scaleway_apple_silicon_os": {
@@ -6575,6 +6599,9 @@
             "scaleway:iam/user:User": 0,
             "scaleway:index/accountProject:AccountProject": 0,
             "scaleway:index/accountSshKey:AccountSshKey": 0,
+            "scaleway:index/annotationsBinding:AnnotationsBinding": 1,
+            "scaleway:index/annotationsKey:AnnotationsKey": 1,
+            "scaleway:index/annotationsValue:AnnotationsValue": 1,
             "scaleway:index/appleSiliconServer:AppleSiliconServer": 0,
             "scaleway:index/baremetalServer:BaremetalServer": 0,
             "scaleway:index/blockSnapshot:BlockSnapshot": 0,
@@ -6836,6 +6863,9 @@
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,
             "scaleway:index/getAccountSshKey:getAccountSshKey": 0,
+            "scaleway:index/getAnnotationsBinding:getAnnotationsBinding": 1,
+            "scaleway:index/getAnnotationsKey:getAnnotationsKey": 1,
+            "scaleway:index/getAnnotationsValue:getAnnotationsValue": 1,
             "scaleway:index/getAvailabilityZones:getAvailabilityZones": 0,
             "scaleway:index/getBaremetalOffer:getBaremetalOffer": 0,
             "scaleway:index/getBaremetalOption:getBaremetalOption": 0,
