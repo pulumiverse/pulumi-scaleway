@@ -26,16 +26,13 @@ class GetPlacementGroupResult:
     """
     A collection of values returned by getPlacementGroup.
     """
-    def __init__(__self__, id=None, name=None, organization_id=None, placement_group_id=None, policy_mode=None, policy_respected=None, policy_type=None, project_id=None, tags=None, zone=None):
+    def __init__(__self__, id=None, name=None, placement_group_id=None, policy_mode=None, policy_respected=None, policy_type=None, project_id=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if organization_id and not isinstance(organization_id, str):
-            raise TypeError("Expected argument 'organization_id' to be a str")
-        pulumi.set(__self__, "organization_id", organization_id)
         if placement_group_id and not isinstance(placement_group_id, str):
             raise TypeError("Expected argument 'placement_group_id' to be a str")
         pulumi.set(__self__, "placement_group_id", placement_group_id)
@@ -70,14 +67,6 @@ class GetPlacementGroupResult:
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "name")
-
-    @_builtins.property
-    @pulumi.getter(name="organizationId")
-    def organization_id(self) -> _builtins.str:
-        """
-        The organization ID the placement group is associated with.
-        """
-        return pulumi.get(self, "organization_id")
 
     @_builtins.property
     @pulumi.getter(name="placementGroupId")
@@ -135,7 +124,6 @@ class AwaitableGetPlacementGroupResult(GetPlacementGroupResult):
         return GetPlacementGroupResult(
             id=self.id,
             name=self.name,
-            organization_id=self.organization_id,
             placement_group_id=self.placement_group_id,
             policy_mode=self.policy_mode,
             policy_respected=self.policy_respected,
@@ -170,7 +158,6 @@ def get_placement_group(name: Optional[_builtins.str] = None,
     return AwaitableGetPlacementGroupResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
-        organization_id=pulumi.get(__ret__, 'organization_id'),
         placement_group_id=pulumi.get(__ret__, 'placement_group_id'),
         policy_mode=pulumi.get(__ret__, 'policy_mode'),
         policy_respected=pulumi.get(__ret__, 'policy_respected'),
@@ -202,7 +189,6 @@ def get_placement_group_output(name: pulumi.Input[Optional[Optional[_builtins.st
     return __ret__.apply(lambda __response__: GetPlacementGroupResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
-        organization_id=pulumi.get(__response__, 'organization_id'),
         placement_group_id=pulumi.get(__response__, 'placement_group_id'),
         policy_mode=pulumi.get(__response__, 'policy_mode'),
         policy_respected=pulumi.get(__response__, 'policy_respected'),

@@ -217,6 +217,8 @@ from . import outputs
 if typing.TYPE_CHECKING:
     import pulumiverse_scaleway.account as __account
     account = __account
+    import pulumiverse_scaleway.annotations as __annotations
+    annotations = __annotations
     import pulumiverse_scaleway.applesilicon as __applesilicon
     applesilicon = __applesilicon
     import pulumiverse_scaleway.audittrail as __audittrail
@@ -293,6 +295,7 @@ if typing.TYPE_CHECKING:
     tem = __tem
 else:
     account = _utilities.lazy_import('pulumiverse_scaleway.account')
+    annotations = _utilities.lazy_import('pulumiverse_scaleway.annotations')
     applesilicon = _utilities.lazy_import('pulumiverse_scaleway.applesilicon')
     audittrail = _utilities.lazy_import('pulumiverse_scaleway.audittrail')
     autoscaling = _utilities.lazy_import('pulumiverse_scaleway.autoscaling')
@@ -348,6 +351,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.account",
   "classes": {
    "scaleway:account/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "annotations/binding",
+  "fqn": "pulumiverse_scaleway.annotations",
+  "classes": {
+   "scaleway:annotations/binding:Binding": "Binding"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "annotations/key",
+  "fqn": "pulumiverse_scaleway.annotations",
+  "classes": {
+   "scaleway:annotations/key:Key": "Key"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "annotations/value",
+  "fqn": "pulumiverse_scaleway.annotations",
+  "classes": {
+   "scaleway:annotations/value:Value": "Value"
   }
  },
  {

@@ -7206,7 +7206,7 @@ class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
     """
     next_rotation_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    The date and time of the next scheduled rotation.
+    – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotation_period`.
     """
 
 @pulumi.input_type
@@ -7216,7 +7216,7 @@ class KeyManagerKeyRotationPolicyArgs:
                  next_rotation_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
-        :param pulumi.Input[_builtins.str] next_rotation_at: The date and time of the next scheduled rotation.
+        :param pulumi.Input[_builtins.str] next_rotation_at: – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotation_period`.
         """
         pulumi.set(__self__, "rotation_period", rotation_period)
         if next_rotation_at is not None:
@@ -7238,7 +7238,7 @@ class KeyManagerKeyRotationPolicyArgs:
     @pulumi.getter(name="nextRotationAt")
     def next_rotation_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The date and time of the next scheduled rotation.
+        – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotation_period`.
         """
         return pulumi.get(self, "next_rotation_at")
 

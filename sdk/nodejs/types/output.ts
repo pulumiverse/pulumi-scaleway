@@ -2095,7 +2095,7 @@ export interface GetIpamIpsResource {
 
 export interface GetKeyManagerKeyRotationPolicy {
     /**
-     * Timestamp indicating the next scheduled rotation.
+     * Timestamp indicating the next scheduled rotation. Computed from rotationPeriod if not set.
      */
     nextRotationAt: string;
     /**
@@ -4220,9 +4220,9 @@ export interface JobDefinitionSecretReference {
 
 export interface KeyManagerKeyRotationPolicy {
     /**
-     * The date and time of the next scheduled rotation.
+     * – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
      */
-    nextRotationAt?: string;
+    nextRotationAt: string;
     /**
      * – The period between key rotations (e.g., `"720h"` for 30 days).
      */
@@ -10324,7 +10324,7 @@ export namespace kafka {
 export namespace keymanager {
     export interface GetKeyRotationPolicy {
         /**
-         * Timestamp indicating the next scheduled rotation.
+         * Timestamp indicating the next scheduled rotation. Computed from rotationPeriod if not set.
          */
         nextRotationAt: string;
         /**
@@ -10335,9 +10335,9 @@ export namespace keymanager {
 
     export interface KeyRotationPolicy {
         /**
-         * The date and time of the next scheduled rotation.
+         * – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
          */
-        nextRotationAt?: string;
+        nextRotationAt: string;
         /**
          * – The period between key rotations (e.g., `"720h"` for 30 days).
          */

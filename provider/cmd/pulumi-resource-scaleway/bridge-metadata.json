@@ -23,6 +23,18 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_annotations_binding": {
+                "current": "scaleway:annotations/binding:Binding",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_key": {
+                "current": "scaleway:annotations/key:Key",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_value": {
+                "current": "scaleway:annotations/value:Value",
+                "majorVersion": 1
+            },
             "scaleway_apple_silicon_runner": {
                 "current": "scaleway:applesilicon/runner:Runner",
                 "majorVersion": 1,
@@ -2882,6 +2894,18 @@
                         "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1
+            },
+            "scaleway_annotations_binding": {
+                "current": "scaleway:annotations/getBinding:getBinding",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_key": {
+                "current": "scaleway:annotations/getKey:getKey",
+                "majorVersion": 1
+            },
+            "scaleway_annotations_value": {
+                "current": "scaleway:annotations/getValue:getValue",
                 "majorVersion": 1
             },
             "scaleway_apple_silicon_os": {
@@ -6511,6 +6535,9 @@
         "resources": {
             "scaleway:account/project:Project": 0,
             "scaleway:account/sshKey:SshKey": 0,
+            "scaleway:annotations/binding:Binding": 1,
+            "scaleway:annotations/key:Key": 1,
+            "scaleway:annotations/value:Value": 1,
             "scaleway:applesilicon/runner:Runner": 0,
             "scaleway:applesilicon/server:Server": 0,
             "scaleway:autoscaling/instanceGroup:InstanceGroup": 0,
@@ -6783,6 +6810,9 @@
             "scaleway:account/getProject:getProject": 0,
             "scaleway:account/getProjects:getProjects": 0,
             "scaleway:account/getSshKey:getSshKey": 0,
+            "scaleway:annotations/getBinding:getBinding": 1,
+            "scaleway:annotations/getKey:getKey": 1,
+            "scaleway:annotations/getValue:getValue": 1,
             "scaleway:applesilicon/getOs:getOs": 0,
             "scaleway:audittrail/getEvent:getEvent": 0,
             "scaleway:autoscaling/getInstanceGroup:getInstanceGroup": 0,

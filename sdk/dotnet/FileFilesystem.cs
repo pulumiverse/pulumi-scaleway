@@ -11,9 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// &gt; **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
-    /// 
-    /// Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
+    /// Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used to share persistent storage between multiple instances (RWX).
     /// 
     /// This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
     /// 
@@ -31,7 +29,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var file = new Scaleway.FileFilesystem("file", new()
     ///     {
-    ///         Name = "my-nfs-filesystem",
+    ///         Name = "my-filesystem",
     ///         SizeInGb = 100,
     ///     });
     /// 
@@ -87,9 +85,9 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        /// - Minimum: 100 GB (100000000000 bytes)
-        /// - Maximum: 10 TB (10000000000000 bytes)
+        /// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        /// - Minimum: 25 GB
+        /// - Maximum: 50 TB (50000 GB)
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
@@ -185,9 +183,9 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        /// - Minimum: 100 GB (100000000000 bytes)
-        /// - Maximum: 10 TB (10000000000000 bytes)
+        /// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        /// - Minimum: 25 GB
+        /// - Maximum: 50 TB (50000 GB)
         /// </summary>
         [Input("sizeInGb", required: true)]
         public Input<int> SizeInGb { get; set; } = null!;
@@ -250,9 +248,9 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
-        /// - Minimum: 100 GB (100000000000 bytes)
-        /// - Maximum: 10 TB (10000000000000 bytes)
+        /// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
+        /// - Minimum: 25 GB
+        /// - Maximum: 50 TB (50000 GB)
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

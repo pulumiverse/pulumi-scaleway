@@ -14,7 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type KeyRotationPolicy struct {
-	// The date and time of the next scheduled rotation.
+	// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
 	NextRotationAt *string `pulumi:"nextRotationAt"`
 	// – The period between key rotations (e.g., `"720h"` for 30 days).
 	RotationPeriod string `pulumi:"rotationPeriod"`
@@ -32,7 +32,7 @@ type KeyRotationPolicyInput interface {
 }
 
 type KeyRotationPolicyArgs struct {
-	// The date and time of the next scheduled rotation.
+	// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
 	NextRotationAt pulumi.StringPtrInput `pulumi:"nextRotationAt"`
 	// – The period between key rotations (e.g., `"720h"` for 30 days).
 	RotationPeriod pulumi.StringInput `pulumi:"rotationPeriod"`
@@ -115,7 +115,7 @@ func (o KeyRotationPolicyOutput) ToKeyRotationPolicyPtrOutputWithContext(ctx con
 	}).(KeyRotationPolicyPtrOutput)
 }
 
-// The date and time of the next scheduled rotation.
+// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
 func (o KeyRotationPolicyOutput) NextRotationAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeyRotationPolicy) *string { return v.NextRotationAt }).(pulumi.StringPtrOutput)
 }
@@ -149,7 +149,7 @@ func (o KeyRotationPolicyPtrOutput) Elem() KeyRotationPolicyOutput {
 	}).(KeyRotationPolicyOutput)
 }
 
-// The date and time of the next scheduled rotation.
+// – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
 func (o KeyRotationPolicyPtrOutput) NextRotationAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KeyRotationPolicy) *string {
 		if v == nil {
@@ -170,7 +170,7 @@ func (o KeyRotationPolicyPtrOutput) RotationPeriod() pulumi.StringPtrOutput {
 }
 
 type GetKeyRotationPolicy struct {
-	// Timestamp indicating the next scheduled rotation.
+	// Timestamp indicating the next scheduled rotation. Computed from rotationPeriod if not set.
 	NextRotationAt string `pulumi:"nextRotationAt"`
 	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
 	RotationPeriod string `pulumi:"rotationPeriod"`
@@ -188,7 +188,7 @@ type GetKeyRotationPolicyInput interface {
 }
 
 type GetKeyRotationPolicyArgs struct {
-	// Timestamp indicating the next scheduled rotation.
+	// Timestamp indicating the next scheduled rotation. Computed from rotationPeriod if not set.
 	NextRotationAt pulumi.StringInput `pulumi:"nextRotationAt"`
 	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
 	RotationPeriod pulumi.StringInput `pulumi:"rotationPeriod"`
@@ -245,7 +245,7 @@ func (o GetKeyRotationPolicyOutput) ToGetKeyRotationPolicyOutputWithContext(ctx 
 	return o
 }
 
-// Timestamp indicating the next scheduled rotation.
+// Timestamp indicating the next scheduled rotation. Computed from rotationPeriod if not set.
 func (o GetKeyRotationPolicyOutput) NextRotationAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeyRotationPolicy) string { return v.NextRotationAt }).(pulumi.StringOutput)
 }

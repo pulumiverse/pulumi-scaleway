@@ -60,15 +60,15 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The organization ID the placement group is associated with.
-     */
-    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
-    /**
      * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+     *
+     * @deprecated Policy mode is deprecated and will be removed with v1 of the Instance API.
      */
     declare public readonly policyMode: pulumi.Output<string | undefined>;
     /**
      * Is true when the policy is respected.
+     *
+     * @deprecated policy_respected is deprecated and will be removed with v1 of the Instance API.
      */
     declare public /*out*/ readonly policyRespected: pulumi.Output<boolean>;
     /**
@@ -105,7 +105,6 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as InstancePlacementGroupState | undefined;
             resourceInputs["name"] = state?.name;
-            resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["policyMode"] = state?.policyMode;
             resourceInputs["policyRespected"] = state?.policyRespected;
             resourceInputs["policyType"] = state?.policyType;
@@ -120,7 +119,6 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
-            resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["policyRespected"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -137,15 +135,15 @@ export interface InstancePlacementGroupState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The organization ID the placement group is associated with.
-     */
-    organizationId?: pulumi.Input<string | undefined>;
-    /**
      * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+     *
+     * @deprecated Policy mode is deprecated and will be removed with v1 of the Instance API.
      */
     policyMode?: pulumi.Input<string | undefined>;
     /**
      * Is true when the policy is respected.
+     *
+     * @deprecated policy_respected is deprecated and will be removed with v1 of the Instance API.
      */
     policyRespected?: pulumi.Input<boolean | undefined>;
     /**
@@ -176,6 +174,8 @@ export interface InstancePlacementGroupArgs {
     name?: pulumi.Input<string | undefined>;
     /**
      * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+     *
+     * @deprecated Policy mode is deprecated and will be removed with v1 of the Instance API.
      */
     policyMode?: pulumi.Input<string | undefined>;
     /**

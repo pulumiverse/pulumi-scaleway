@@ -1578,7 +1578,7 @@ export interface JobDefinitionSecretReference {
 
 export interface KeyManagerKeyRotationPolicy {
     /**
-     * The date and time of the next scheduled rotation.
+     * – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
      */
     nextRotationAt?: pulumi.Input<string | undefined>;
     /**
@@ -5207,7 +5207,7 @@ export namespace kafka {
 export namespace keymanager {
     export interface KeyRotationPolicy {
         /**
-         * The date and time of the next scheduled rotation.
+         * – The date and time of the next scheduled rotation, in RFC 3339 format. If not set, it is computed by the Key Manager API from `rotationPeriod`.
          */
         nextRotationAt?: pulumi.Input<string | undefined>;
         /**
