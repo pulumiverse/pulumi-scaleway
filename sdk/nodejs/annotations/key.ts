@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Create an annotation key to define custom metadata labels that can be attached to Scaleway resources. Annotation keys allow you to organize and categorize resources using custom tags with meaningful names and descriptions.
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
@@ -24,16 +24,16 @@ import * as utilities from "./utilities";
  * Annotation keys can be imported using their `keyId` and optionally the `organizationId`. If no `organizationId` is specified, the default provider `organizationId` will be used.
  *
  * ```sh
- * $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <key_id>
+ * $ pulumi import scaleway:annotations/key:Key main <key_id>
  * ```
  *
  * ```sh
- * $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <organization_id>/<key_id>
+ * $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
  * ```
  */
-export class AnnotationsKey extends pulumi.CustomResource {
+export class Key extends pulumi.CustomResource {
     /**
-     * Get an existing AnnotationsKey resource's state with the given name, ID, and optional extra
+     * Get an existing Key resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -41,22 +41,22 @@ export class AnnotationsKey extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AnnotationsKeyState, opts?: pulumi.CustomResourceOptions): AnnotationsKey {
-        return new AnnotationsKey(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KeyState, opts?: pulumi.CustomResourceOptions): Key {
+        return new Key(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/annotationsKey:AnnotationsKey';
+    public static readonly __pulumiType = 'scaleway:annotations/key:Key';
 
     /**
-     * Returns true if the given object is an instance of AnnotationsKey.  This is designed to work even
+     * Returns true if the given object is an instance of Key.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AnnotationsKey {
+    public static isInstance(obj: any): obj is Key {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AnnotationsKey.__pulumiType;
+        return obj['__pulumiType'] === Key.__pulumiType;
     }
 
     /**
@@ -73,36 +73,36 @@ export class AnnotationsKey extends pulumi.CustomResource {
     declare public readonly organizationId: pulumi.Output<string>;
 
     /**
-     * Create a AnnotationsKey resource with the given unique name, arguments, and options.
+     * Create a Key resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AnnotationsKeyArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AnnotationsKeyArgs | AnnotationsKeyState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: KeyArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: KeyArgs | KeyState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AnnotationsKeyState | undefined;
+            const state = argsOrState as KeyState | undefined;
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
         } else {
-            const args = argsOrState as AnnotationsKeyArgs | undefined;
+            const args = argsOrState as KeyArgs | undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["organizationId"] = args?.organizationId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AnnotationsKey.__pulumiType, name, resourceInputs, opts);
+        super(Key.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AnnotationsKey resources.
+ * Input properties used for looking up and filtering Key resources.
  */
-export interface AnnotationsKeyState {
+export interface KeyState {
     /**
      * Description of the annotation key.
      */
@@ -118,9 +118,9 @@ export interface AnnotationsKeyState {
 }
 
 /**
- * The set of arguments for constructing a AnnotationsKey resource.
+ * The set of arguments for constructing a Key resource.
  */
-export interface AnnotationsKeyArgs {
+export interface KeyArgs {
     /**
      * Description of the annotation key.
      */

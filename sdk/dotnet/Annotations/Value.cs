@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
     /// <summary>
     /// Create an annotation value to define a specific label instance that can be attached to Scaleway resources. Annotation values are associated with annotation keys and represent concrete tag values (e.g., "production" as a value for an "environment" key).
@@ -23,13 +23,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+    ///     var environment = new Scaleway.Annotations.Key("environment", new()
     ///     {
     ///         Name = "environment",
     ///         Description = "Deployment environment (production, staging, development)",
     ///     });
     /// 
-    ///     var production = new Scaleway.AnnotationsValue("production", new()
+    ///     var production = new Scaleway.Annotations.Value("production", new()
     ///     {
     ///         KeyId = environment.Id,
     ///         Name = "production",
@@ -44,11 +44,11 @@ namespace Pulumiverse.Scaleway
     /// Annotation values can be imported using their `Id`:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/annotationsValue:AnnotationsValue main &lt;value_id&gt;
+    /// $ pulumi import scaleway:annotations/value:Value main &lt;value_id&gt;
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/annotationsValue:AnnotationsValue")]
-    public partial class AnnotationsValue : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:annotations/value:Value")]
+    public partial class Value : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Description of the annotation value.
@@ -76,19 +76,19 @@ namespace Pulumiverse.Scaleway
 
 
         /// <summary>
-        /// Create a AnnotationsValue resource with the given unique name, arguments, and options.
+        /// Create a Value resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AnnotationsValue(string name, AnnotationsValueArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsValue:AnnotationsValue", name, args ?? new AnnotationsValueArgs(), MakeResourceOptions(options, ""))
+        public Value(string name, ValueArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/value:Value", name, args ?? new ValueArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AnnotationsValue(string name, Input<string> id, AnnotationsValueState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsValue:AnnotationsValue", name, state, MakeResourceOptions(options, id))
+        private Value(string name, Input<string> id, ValueState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/value:Value", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -105,7 +105,7 @@ namespace Pulumiverse.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing AnnotationsValue resource's state with the given name, ID, and optional extra
+        /// Get an existing Value resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -113,13 +113,13 @@ namespace Pulumiverse.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AnnotationsValue Get(string name, Input<string> id, AnnotationsValueState? state = null, CustomResourceOptions? options = null)
+        public static Value Get(string name, Input<string> id, ValueState? state = null, CustomResourceOptions? options = null)
         {
-            return new AnnotationsValue(name, id, state, options);
+            return new Value(name, id, state, options);
         }
     }
 
-    public sealed class AnnotationsValueArgs : global::Pulumi.ResourceArgs
+    public sealed class ValueArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the annotation value.
@@ -139,13 +139,13 @@ namespace Pulumiverse.Scaleway
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public AnnotationsValueArgs()
+        public ValueArgs()
         {
         }
-        public static new AnnotationsValueArgs Empty => new AnnotationsValueArgs();
+        public static new ValueArgs Empty => new ValueArgs();
     }
 
-    public sealed class AnnotationsValueState : global::Pulumi.ResourceArgs
+    public sealed class ValueState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the annotation value.
@@ -171,9 +171,9 @@ namespace Pulumiverse.Scaleway
         [Input("valueId")]
         public Input<string>? ValueId { get; set; }
 
-        public AnnotationsValueState()
+        public ValueState()
         {
         }
-        public static new AnnotationsValueState Empty => new AnnotationsValueState();
+        public static new ValueState Empty => new ValueState();
     }
 }

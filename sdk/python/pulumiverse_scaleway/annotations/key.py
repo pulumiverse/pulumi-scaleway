@@ -12,18 +12,18 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AnnotationsKeyArgs', 'AnnotationsKey']
+__all__ = ['KeyArgs', 'Key']
 
 @pulumi.input_type
-class AnnotationsKeyArgs:
+class KeyArgs:
     def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AnnotationsKey resource.
+        The set of arguments for constructing a Key resource.
 
         :param pulumi.Input[_builtins.str] description: Description of the annotation key.
         :param pulumi.Input[_builtins.str] name: Name of the annotation key.
@@ -74,13 +74,13 @@ class AnnotationsKeyArgs:
 
 
 @pulumi.input_type
-class _AnnotationsKeyState:
+class _KeyState:
     def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AnnotationsKey resources.
+        Input properties used for looking up and filtering Key resources.
 
         :param pulumi.Input[_builtins.str] description: Description of the annotation key.
         :param pulumi.Input[_builtins.str] name: Name of the annotation key.
@@ -130,8 +130,8 @@ class _AnnotationsKeyState:
         pulumi.set(self, "organization_id", value)
 
 
-@pulumi.type_token("scaleway:index/annotationsKey:AnnotationsKey")
-class AnnotationsKey(pulumi.CustomResource):
+@pulumi.type_token("scaleway:annotations/key:Key")
+class Key(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -149,7 +149,7 @@ class AnnotationsKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
         ```
@@ -159,11 +159,11 @@ class AnnotationsKey(pulumi.CustomResource):
         Annotation keys can be imported using their `key_id` and optionally the `organization_id`. If no `organization_id` is specified, the default provider `organization_id` will be used.
 
         ```sh
-        $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <key_id>
+        $ pulumi import scaleway:annotations/key:Key main <key_id>
         ```
 
         ```sh
-        $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <organization_id>/<key_id>
+        $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
         ```
 
 
@@ -177,7 +177,7 @@ class AnnotationsKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AnnotationsKeyArgs] = None,
+                 args: Optional[KeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create an annotation key to define custom metadata labels that can be attached to Scaleway resources. Annotation keys allow you to organize and categorize resources using custom tags with meaningful names and descriptions.
@@ -188,7 +188,7 @@ class AnnotationsKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
         ```
@@ -198,21 +198,21 @@ class AnnotationsKey(pulumi.CustomResource):
         Annotation keys can be imported using their `key_id` and optionally the `organization_id`. If no `organization_id` is specified, the default provider `organization_id` will be used.
 
         ```sh
-        $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <key_id>
+        $ pulumi import scaleway:annotations/key:Key main <key_id>
         ```
 
         ```sh
-        $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main <organization_id>/<key_id>
+        $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param AnnotationsKeyArgs args: The arguments to use to populate this resource's properties.
+        :param KeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AnnotationsKeyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(KeyArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -231,13 +231,13 @@ class AnnotationsKey(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AnnotationsKeyArgs.__new__(AnnotationsKeyArgs)
+            __props__ = KeyArgs.__new__(KeyArgs)
 
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
-        super(AnnotationsKey, __self__).__init__(
-            'scaleway:index/annotationsKey:AnnotationsKey',
+        super(Key, __self__).__init__(
+            'scaleway:annotations/key:Key',
             resource_name,
             __props__,
             opts)
@@ -248,9 +248,9 @@ class AnnotationsKey(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            organization_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'AnnotationsKey':
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Key':
         """
-        Get an existing AnnotationsKey resource's state with the given name, id, and optional extra
+        Get an existing Key resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -262,12 +262,12 @@ class AnnotationsKey(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AnnotationsKeyState.__new__(_AnnotationsKeyState)
+        __props__ = _KeyState.__new__(_KeyState)
 
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
-        return AnnotationsKey(resource_name, opts=opts, __props__=__props__)
+        return Key(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter

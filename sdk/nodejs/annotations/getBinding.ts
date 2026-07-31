@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Use this data source to retrieve information about an annotation binding.
@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
@@ -30,26 +30,26 @@ import * as utilities from "./utilities";
  *     description: "Example key for binding",
  *     unprotected: true,
  * });
- * const mainAnnotationsBinding = new scaleway.AnnotationsBinding("main", {
+ * const mainBinding = new scaleway.annotations.Binding("main", {
  *     srn: mainKey.srn,
  *     valueId: production.id,
  * });
- * const main = scaleway.getAnnotationsBindingOutput({
- *     bindingId: mainAnnotationsBinding.id,
+ * const main = scaleway.annotations.getBindingOutput({
+ *     bindingId: mainBinding.id,
  * });
  * ```
  */
-export function getAnnotationsBinding(args: GetAnnotationsBindingArgs, opts?: pulumi.InvokeOptions): Promise<GetAnnotationsBindingResult> {
+export function getBinding(args: GetBindingArgs, opts?: pulumi.InvokeOptions): Promise<GetBindingResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getAnnotationsBinding:getAnnotationsBinding", {
+    return pulumi.runtime.invoke("scaleway:annotations/getBinding:getBinding", {
         "bindingId": args.bindingId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsBinding.
+ * A collection of arguments for invoking getBinding.
  */
-export interface GetAnnotationsBindingArgs {
+export interface GetBindingArgs {
     /**
      * The ID of the annotation binding to retrieve.
      */
@@ -57,9 +57,9 @@ export interface GetAnnotationsBindingArgs {
 }
 
 /**
- * A collection of values returned by getAnnotationsBinding.
+ * A collection of values returned by getBinding.
  */
-export interface GetAnnotationsBindingResult {
+export interface GetBindingResult {
     readonly bindingId: string;
     /**
      * The ID of the annotation binding
@@ -87,11 +87,11 @@ export interface GetAnnotationsBindingResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
@@ -104,26 +104,26 @@ export interface GetAnnotationsBindingResult {
  *     description: "Example key for binding",
  *     unprotected: true,
  * });
- * const mainAnnotationsBinding = new scaleway.AnnotationsBinding("main", {
+ * const mainBinding = new scaleway.annotations.Binding("main", {
  *     srn: mainKey.srn,
  *     valueId: production.id,
  * });
- * const main = scaleway.getAnnotationsBindingOutput({
- *     bindingId: mainAnnotationsBinding.id,
+ * const main = scaleway.annotations.getBindingOutput({
+ *     bindingId: mainBinding.id,
  * });
  * ```
  */
-export function getAnnotationsBindingOutput(args: GetAnnotationsBindingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAnnotationsBindingResult> {
+export function getBindingOutput(args: GetBindingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBindingResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("scaleway:index/getAnnotationsBinding:getAnnotationsBinding", {
+    return pulumi.runtime.invokeOutput("scaleway:annotations/getBinding:getBinding", {
         "bindingId": args.bindingId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsBinding.
+ * A collection of arguments for invoking getBinding.
  */
-export interface GetAnnotationsBindingOutputArgs {
+export interface GetBindingOutputArgs {
     /**
      * The ID of the annotation binding to retrieve.
      */

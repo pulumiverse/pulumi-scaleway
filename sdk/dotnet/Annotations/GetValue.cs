@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
-    public static class GetAnnotationsValue
+    public static class GetValue
     {
         /// <summary>
         /// Retrieves information about an existing annotation value using its ID.
@@ -27,20 +27,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
         ///         Description = "Production environment",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsValue.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetValue.Invoke(new()
         ///     {
         ///         ValueId = production.Id,
         ///     });
@@ -48,8 +48,8 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Task<GetAnnotationsValueResult> InvokeAsync(GetAnnotationsValueArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAnnotationsValueResult>("scaleway:index/getAnnotationsValue:getAnnotationsValue", args ?? new GetAnnotationsValueArgs(), options.WithDefaults());
+        public static Task<GetValueResult> InvokeAsync(GetValueArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetValueResult>("scaleway:annotations/getValue:getValue", args ?? new GetValueArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about an existing annotation value using its ID.
@@ -66,20 +66,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
         ///         Description = "Production environment",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsValue.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetValue.Invoke(new()
         ///     {
         ///         ValueId = production.Id,
         ///     });
@@ -87,8 +87,8 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsValueResult> Invoke(GetAnnotationsValueInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsValueResult>("scaleway:index/getAnnotationsValue:getAnnotationsValue", args ?? new GetAnnotationsValueInvokeArgs(), options.WithDefaults());
+        public static Output<GetValueResult> Invoke(GetValueInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetValueResult>("scaleway:annotations/getValue:getValue", args ?? new GetValueInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about an existing annotation value using its ID.
@@ -105,20 +105,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
         ///         Description = "Production environment",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsValue.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetValue.Invoke(new()
         ///     {
         ///         ValueId = production.Id,
         ///     });
@@ -126,12 +126,12 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsValueResult> Invoke(GetAnnotationsValueInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsValueResult>("scaleway:index/getAnnotationsValue:getAnnotationsValue", args ?? new GetAnnotationsValueInvokeArgs(), options.WithDefaults());
+        public static Output<GetValueResult> Invoke(GetValueInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetValueResult>("scaleway:annotations/getValue:getValue", args ?? new GetValueInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAnnotationsValueArgs : global::Pulumi.InvokeArgs
+    public sealed class GetValueArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation value to retrieve.
@@ -139,13 +139,13 @@ namespace Pulumiverse.Scaleway
         [Input("valueId", required: true)]
         public string ValueId { get; set; } = null!;
 
-        public GetAnnotationsValueArgs()
+        public GetValueArgs()
         {
         }
-        public static new GetAnnotationsValueArgs Empty => new GetAnnotationsValueArgs();
+        public static new GetValueArgs Empty => new GetValueArgs();
     }
 
-    public sealed class GetAnnotationsValueInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetValueInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation value to retrieve.
@@ -153,15 +153,15 @@ namespace Pulumiverse.Scaleway
         [Input("valueId", required: true)]
         public Input<string> ValueId { get; set; } = null!;
 
-        public GetAnnotationsValueInvokeArgs()
+        public GetValueInvokeArgs()
         {
         }
-        public static new GetAnnotationsValueInvokeArgs Empty => new GetAnnotationsValueInvokeArgs();
+        public static new GetValueInvokeArgs Empty => new GetValueInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetAnnotationsValueResult
+    public sealed class GetValueResult
     {
         /// <summary>
         /// Description of the annotation value
@@ -182,7 +182,7 @@ namespace Pulumiverse.Scaleway
         public readonly string ValueId;
 
         [OutputConstructor]
-        private GetAnnotationsValueResult(
+        private GetValueResult(
             string description,
 
             string id,

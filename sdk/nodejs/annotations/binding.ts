@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Creates and manages Scaleway Annotations Bindings.
@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     description: "Example key for binding",
  *     unprotected: true,
  * });
- * const mainAnnotationsBinding = new scaleway.AnnotationsBinding("main", {
+ * const mainBinding = new scaleway.annotations.Binding("main", {
  *     srn: main.srn,
  *     valueId: production.id,
  * });
@@ -41,12 +41,12 @@ import * as utilities from "./utilities";
  * Annotation bindings can be imported using their `id`:
  *
  * ```sh
- * $ pulumi import scaleway:index/annotationsBinding:AnnotationsBinding main <binding_id>
+ * $ pulumi import scaleway:annotations/binding:Binding main <binding_id>
  * ```
  */
-export class AnnotationsBinding extends pulumi.CustomResource {
+export class Binding extends pulumi.CustomResource {
     /**
-     * Get an existing AnnotationsBinding resource's state with the given name, ID, and optional extra
+     * Get an existing Binding resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -54,22 +54,22 @@ export class AnnotationsBinding extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AnnotationsBindingState, opts?: pulumi.CustomResourceOptions): AnnotationsBinding {
-        return new AnnotationsBinding(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BindingState, opts?: pulumi.CustomResourceOptions): Binding {
+        return new Binding(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/annotationsBinding:AnnotationsBinding';
+    public static readonly __pulumiType = 'scaleway:annotations/binding:Binding';
 
     /**
-     * Returns true if the given object is an instance of AnnotationsBinding.  This is designed to work even
+     * Returns true if the given object is an instance of Binding.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AnnotationsBinding {
+    public static isInstance(obj: any): obj is Binding {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AnnotationsBinding.__pulumiType;
+        return obj['__pulumiType'] === Binding.__pulumiType;
     }
 
     /**
@@ -86,23 +86,23 @@ export class AnnotationsBinding extends pulumi.CustomResource {
     declare public readonly valueId: pulumi.Output<string>;
 
     /**
-     * Create a AnnotationsBinding resource with the given unique name, arguments, and options.
+     * Create a Binding resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AnnotationsBindingArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AnnotationsBindingArgs | AnnotationsBindingState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: BindingArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: BindingArgs | BindingState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AnnotationsBindingState | undefined;
+            const state = argsOrState as BindingState | undefined;
             resourceInputs["keyId"] = state?.keyId;
             resourceInputs["srn"] = state?.srn;
             resourceInputs["valueId"] = state?.valueId;
         } else {
-            const args = argsOrState as AnnotationsBindingArgs | undefined;
+            const args = argsOrState as BindingArgs | undefined;
             if (args?.srn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'srn'");
             }
@@ -114,14 +114,14 @@ export class AnnotationsBinding extends pulumi.CustomResource {
             resourceInputs["keyId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AnnotationsBinding.__pulumiType, name, resourceInputs, opts);
+        super(Binding.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AnnotationsBinding resources.
+ * Input properties used for looking up and filtering Binding resources.
  */
-export interface AnnotationsBindingState {
+export interface BindingState {
     /**
      * ID of the key associated to the binding.
      */
@@ -137,9 +137,9 @@ export interface AnnotationsBindingState {
 }
 
 /**
- * The set of arguments for constructing a AnnotationsBinding resource.
+ * The set of arguments for constructing a Binding resource.
  */
-export interface AnnotationsBindingArgs {
+export interface BindingArgs {
     /**
      * Scaleway Resource Number to associate. Changing this forces a new resource to be created.
      */

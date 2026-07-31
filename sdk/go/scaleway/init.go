@@ -25,12 +25,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountProject{}
 	case "scaleway:index/accountSshKey:AccountSshKey":
 		r = &AccountSshKey{}
-	case "scaleway:index/annotationsBinding:AnnotationsBinding":
-		r = &AnnotationsBinding{}
-	case "scaleway:index/annotationsKey:AnnotationsKey":
-		r = &AnnotationsKey{}
-	case "scaleway:index/annotationsValue:AnnotationsValue":
-		r = &AnnotationsValue{}
 	case "scaleway:index/appleSiliconServer:AppleSiliconServer":
 		r = &AppleSiliconServer{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
@@ -300,21 +294,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/accountSshKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/annotationsBinding",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/annotationsKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/annotationsValue",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

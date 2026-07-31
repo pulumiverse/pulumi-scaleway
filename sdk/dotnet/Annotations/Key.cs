@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
     /// <summary>
     /// Create an annotation key to define custom metadata labels that can be attached to Scaleway resources. Annotation keys allow you to organize and categorize resources using custom tags with meaningful names and descriptions.
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+    ///     var environment = new Scaleway.Annotations.Key("environment", new()
     ///     {
     ///         Name = "environment",
     ///         Description = "Deployment environment (production, staging, development)",
@@ -37,15 +37,15 @@ namespace Pulumiverse.Scaleway
     /// Annotation keys can be imported using their `KeyId` and optionally the `OrganizationId`. If no `OrganizationId` is specified, the default provider `OrganizationId` will be used.
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main &lt;key_id&gt;
+    /// $ pulumi import scaleway:annotations/key:Key main &lt;key_id&gt;
     /// ```
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/annotationsKey:AnnotationsKey main &lt;organization_id&gt;/&lt;key_id&gt;
+    /// $ pulumi import scaleway:annotations/key:Key main &lt;organization_id&gt;/&lt;key_id&gt;
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/annotationsKey:AnnotationsKey")]
-    public partial class AnnotationsKey : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:annotations/key:Key")]
+    public partial class Key : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Description of the annotation key.
@@ -67,19 +67,19 @@ namespace Pulumiverse.Scaleway
 
 
         /// <summary>
-        /// Create a AnnotationsKey resource with the given unique name, arguments, and options.
+        /// Create a Key resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AnnotationsKey(string name, AnnotationsKeyArgs? args = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsKey:AnnotationsKey", name, args ?? new AnnotationsKeyArgs(), MakeResourceOptions(options, ""))
+        public Key(string name, KeyArgs? args = null, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/key:Key", name, args ?? new KeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AnnotationsKey(string name, Input<string> id, AnnotationsKeyState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsKey:AnnotationsKey", name, state, MakeResourceOptions(options, id))
+        private Key(string name, Input<string> id, KeyState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/key:Key", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing AnnotationsKey resource's state with the given name, ID, and optional extra
+        /// Get an existing Key resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -104,13 +104,13 @@ namespace Pulumiverse.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AnnotationsKey Get(string name, Input<string> id, AnnotationsKeyState? state = null, CustomResourceOptions? options = null)
+        public static Key Get(string name, Input<string> id, KeyState? state = null, CustomResourceOptions? options = null)
         {
-            return new AnnotationsKey(name, id, state, options);
+            return new Key(name, id, state, options);
         }
     }
 
-    public sealed class AnnotationsKeyArgs : global::Pulumi.ResourceArgs
+    public sealed class KeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the annotation key.
@@ -130,13 +130,13 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
-        public AnnotationsKeyArgs()
+        public KeyArgs()
         {
         }
-        public static new AnnotationsKeyArgs Empty => new AnnotationsKeyArgs();
+        public static new KeyArgs Empty => new KeyArgs();
     }
 
-    public sealed class AnnotationsKeyState : global::Pulumi.ResourceArgs
+    public sealed class KeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of the annotation key.
@@ -156,9 +156,9 @@ namespace Pulumiverse.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
-        public AnnotationsKeyState()
+        public KeyState()
         {
         }
-        public static new AnnotationsKeyState Empty => new AnnotationsKeyState();
+        public static new KeyState Empty => new KeyState();
     }
 }

@@ -12,17 +12,17 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AnnotationsBindingArgs', 'AnnotationsBinding']
+__all__ = ['BindingArgs', 'Binding']
 
 @pulumi.input_type
-class AnnotationsBindingArgs:
+class BindingArgs:
     def __init__(__self__, *,
                  srn: pulumi.Input[_builtins.str],
                  value_id: pulumi.Input[_builtins.str]):
         """
-        The set of arguments for constructing a AnnotationsBinding resource.
+        The set of arguments for constructing a Binding resource.
 
         :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.str] value_id: ID of the value to associate. Changing this forces a new resource to be created.
@@ -56,13 +56,13 @@ class AnnotationsBindingArgs:
 
 
 @pulumi.input_type
-class _AnnotationsBindingState:
+class _BindingState:
     def __init__(__self__, *,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  srn: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AnnotationsBinding resources.
+        Input properties used for looking up and filtering Binding resources.
 
         :param pulumi.Input[_builtins.str] key_id: ID of the key associated to the binding.
         :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
@@ -112,8 +112,8 @@ class _AnnotationsBindingState:
         pulumi.set(self, "value_id", value)
 
 
-@pulumi.type_token("scaleway:index/annotationsBinding:AnnotationsBinding")
-class AnnotationsBinding(pulumi.CustomResource):
+@pulumi.type_token("scaleway:annotations/binding:Binding")
+class Binding(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -130,10 +130,10 @@ class AnnotationsBinding(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
-        production = scaleway.AnnotationsValue("production",
+        production = scaleway.annotations.Value("production",
             key_id=environment.id,
             name="production",
             description="Production environment")
@@ -144,7 +144,7 @@ class AnnotationsBinding(pulumi.CustomResource):
             algorithm="aes_256_gcm",
             description="Example key for binding",
             unprotected=True)
-        main_annotations_binding = scaleway.AnnotationsBinding("main",
+        main_binding = scaleway.annotations.Binding("main",
             srn=main.srn,
             value_id=production.id)
         ```
@@ -154,7 +154,7 @@ class AnnotationsBinding(pulumi.CustomResource):
         Annotation bindings can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:index/annotationsBinding:AnnotationsBinding main <binding_id>
+        $ pulumi import scaleway:annotations/binding:Binding main <binding_id>
         ```
 
 
@@ -167,7 +167,7 @@ class AnnotationsBinding(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AnnotationsBindingArgs,
+                 args: BindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Annotations Bindings.
@@ -178,10 +178,10 @@ class AnnotationsBinding(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
-        production = scaleway.AnnotationsValue("production",
+        production = scaleway.annotations.Value("production",
             key_id=environment.id,
             name="production",
             description="Production environment")
@@ -192,7 +192,7 @@ class AnnotationsBinding(pulumi.CustomResource):
             algorithm="aes_256_gcm",
             description="Example key for binding",
             unprotected=True)
-        main_annotations_binding = scaleway.AnnotationsBinding("main",
+        main_binding = scaleway.annotations.Binding("main",
             srn=main.srn,
             value_id=production.id)
         ```
@@ -202,17 +202,17 @@ class AnnotationsBinding(pulumi.CustomResource):
         Annotation bindings can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:index/annotationsBinding:AnnotationsBinding main <binding_id>
+        $ pulumi import scaleway:annotations/binding:Binding main <binding_id>
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param AnnotationsBindingArgs args: The arguments to use to populate this resource's properties.
+        :param BindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AnnotationsBindingArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(BindingArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -230,7 +230,7 @@ class AnnotationsBinding(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AnnotationsBindingArgs.__new__(AnnotationsBindingArgs)
+            __props__ = BindingArgs.__new__(BindingArgs)
 
             if srn is None and not opts.urn:
                 raise TypeError("Missing required property 'srn'")
@@ -239,8 +239,8 @@ class AnnotationsBinding(pulumi.CustomResource):
                 raise TypeError("Missing required property 'value_id'")
             __props__.__dict__["value_id"] = value_id
             __props__.__dict__["key_id"] = None
-        super(AnnotationsBinding, __self__).__init__(
-            'scaleway:index/annotationsBinding:AnnotationsBinding',
+        super(Binding, __self__).__init__(
+            'scaleway:annotations/binding:Binding',
             resource_name,
             __props__,
             opts)
@@ -251,9 +251,9 @@ class AnnotationsBinding(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             key_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
-            value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'AnnotationsBinding':
+            value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Binding':
         """
-        Get an existing AnnotationsBinding resource's state with the given name, id, and optional extra
+        Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -265,12 +265,12 @@ class AnnotationsBinding(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AnnotationsBindingState.__new__(_AnnotationsBindingState)
+        __props__ = _BindingState.__new__(_BindingState)
 
         __props__.__dict__["key_id"] = key_id
         __props__.__dict__["srn"] = srn
         __props__.__dict__["value_id"] = value_id
-        return AnnotationsBinding(resource_name, opts=opts, __props__=__props__)
+        return Binding(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="keyId")

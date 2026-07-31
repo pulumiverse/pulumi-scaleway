@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Create an annotation value to define a specific label instance that can be attached to Scaleway resources. Annotation values are associated with annotation keys and represent concrete tag values (e.g., "production" as a value for an "environment" key).
@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
@@ -29,12 +29,12 @@ import * as utilities from "./utilities";
  * Annotation values can be imported using their `id`:
  *
  * ```sh
- * $ pulumi import scaleway:index/annotationsValue:AnnotationsValue main <value_id>
+ * $ pulumi import scaleway:annotations/value:Value main <value_id>
  * ```
  */
-export class AnnotationsValue extends pulumi.CustomResource {
+export class Value extends pulumi.CustomResource {
     /**
-     * Get an existing AnnotationsValue resource's state with the given name, ID, and optional extra
+     * Get an existing Value resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -42,22 +42,22 @@ export class AnnotationsValue extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AnnotationsValueState, opts?: pulumi.CustomResourceOptions): AnnotationsValue {
-        return new AnnotationsValue(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ValueState, opts?: pulumi.CustomResourceOptions): Value {
+        return new Value(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/annotationsValue:AnnotationsValue';
+    public static readonly __pulumiType = 'scaleway:annotations/value:Value';
 
     /**
-     * Returns true if the given object is an instance of AnnotationsValue.  This is designed to work even
+     * Returns true if the given object is an instance of Value.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AnnotationsValue {
+    public static isInstance(obj: any): obj is Value {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AnnotationsValue.__pulumiType;
+        return obj['__pulumiType'] === Value.__pulumiType;
     }
 
     /**
@@ -78,24 +78,24 @@ export class AnnotationsValue extends pulumi.CustomResource {
     declare public /*out*/ readonly valueId: pulumi.Output<string>;
 
     /**
-     * Create a AnnotationsValue resource with the given unique name, arguments, and options.
+     * Create a Value resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AnnotationsValueArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AnnotationsValueArgs | AnnotationsValueState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: ValueArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: ValueArgs | ValueState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AnnotationsValueState | undefined;
+            const state = argsOrState as ValueState | undefined;
             resourceInputs["description"] = state?.description;
             resourceInputs["keyId"] = state?.keyId;
             resourceInputs["name"] = state?.name;
             resourceInputs["valueId"] = state?.valueId;
         } else {
-            const args = argsOrState as AnnotationsValueArgs | undefined;
+            const args = argsOrState as ValueArgs | undefined;
             if (args?.keyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyId'");
             }
@@ -105,14 +105,14 @@ export class AnnotationsValue extends pulumi.CustomResource {
             resourceInputs["valueId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AnnotationsValue.__pulumiType, name, resourceInputs, opts);
+        super(Value.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AnnotationsValue resources.
+ * Input properties used for looking up and filtering Value resources.
  */
-export interface AnnotationsValueState {
+export interface ValueState {
     /**
      * Description of the annotation value.
      */
@@ -132,9 +132,9 @@ export interface AnnotationsValueState {
 }
 
 /**
- * The set of arguments for constructing a AnnotationsValue resource.
+ * The set of arguments for constructing a Value resource.
  */
-export interface AnnotationsValueArgs {
+export interface ValueArgs {
     /**
      * Description of the annotation value.
      */

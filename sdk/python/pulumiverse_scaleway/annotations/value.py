@@ -12,18 +12,18 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['AnnotationsValueArgs', 'AnnotationsValue']
+__all__ = ['ValueArgs', 'Value']
 
 @pulumi.input_type
-class AnnotationsValueArgs:
+class ValueArgs:
     def __init__(__self__, *,
                  key_id: pulumi.Input[_builtins.str],
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        The set of arguments for constructing a AnnotationsValue resource.
+        The set of arguments for constructing a Value resource.
 
         :param pulumi.Input[_builtins.str] key_id: ID of the key the value is associated to.
         :param pulumi.Input[_builtins.str] description: Description of the annotation value.
@@ -73,14 +73,14 @@ class AnnotationsValueArgs:
 
 
 @pulumi.input_type
-class _AnnotationsValueState:
+class _ValueState:
     def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering AnnotationsValue resources.
+        Input properties used for looking up and filtering Value resources.
 
         :param pulumi.Input[_builtins.str] description: Description of the annotation value.
         :param pulumi.Input[_builtins.str] key_id: ID of the key the value is associated to.
@@ -145,8 +145,8 @@ class _AnnotationsValueState:
         pulumi.set(self, "value_id", value)
 
 
-@pulumi.type_token("scaleway:index/annotationsValue:AnnotationsValue")
-class AnnotationsValue(pulumi.CustomResource):
+@pulumi.type_token("scaleway:annotations/value:Value")
+class Value(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -164,10 +164,10 @@ class AnnotationsValue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
-        production = scaleway.AnnotationsValue("production",
+        production = scaleway.annotations.Value("production",
             key_id=environment.id,
             name="production",
             description="Production environment")
@@ -178,7 +178,7 @@ class AnnotationsValue(pulumi.CustomResource):
         Annotation values can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:index/annotationsValue:AnnotationsValue main <value_id>
+        $ pulumi import scaleway:annotations/value:Value main <value_id>
         ```
 
 
@@ -192,7 +192,7 @@ class AnnotationsValue(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AnnotationsValueArgs,
+                 args: ValueArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create an annotation value to define a specific label instance that can be attached to Scaleway resources. Annotation values are associated with annotation keys and represent concrete tag values (e.g., "production" as a value for an "environment" key).
@@ -203,10 +203,10 @@ class AnnotationsValue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        environment = scaleway.AnnotationsKey("environment",
+        environment = scaleway.annotations.Key("environment",
             name="environment",
             description="Deployment environment (production, staging, development)")
-        production = scaleway.AnnotationsValue("production",
+        production = scaleway.annotations.Value("production",
             key_id=environment.id,
             name="production",
             description="Production environment")
@@ -217,17 +217,17 @@ class AnnotationsValue(pulumi.CustomResource):
         Annotation values can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:index/annotationsValue:AnnotationsValue main <value_id>
+        $ pulumi import scaleway:annotations/value:Value main <value_id>
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param AnnotationsValueArgs args: The arguments to use to populate this resource's properties.
+        :param ValueArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AnnotationsValueArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(ValueArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -246,7 +246,7 @@ class AnnotationsValue(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AnnotationsValueArgs.__new__(AnnotationsValueArgs)
+            __props__ = ValueArgs.__new__(ValueArgs)
 
             __props__.__dict__["description"] = description
             if key_id is None and not opts.urn:
@@ -254,8 +254,8 @@ class AnnotationsValue(pulumi.CustomResource):
             __props__.__dict__["key_id"] = key_id
             __props__.__dict__["name"] = name
             __props__.__dict__["value_id"] = None
-        super(AnnotationsValue, __self__).__init__(
-            'scaleway:index/annotationsValue:AnnotationsValue',
+        super(Value, __self__).__init__(
+            'scaleway:annotations/value:Value',
             resource_name,
             __props__,
             opts)
@@ -267,9 +267,9 @@ class AnnotationsValue(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'AnnotationsValue':
+            value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Value':
         """
-        Get an existing AnnotationsValue resource's state with the given name, id, and optional extra
+        Get an existing Value resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -282,13 +282,13 @@ class AnnotationsValue(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _AnnotationsValueState.__new__(_AnnotationsValueState)
+        __props__ = _ValueState.__new__(_ValueState)
 
         __props__.__dict__["description"] = description
         __props__.__dict__["key_id"] = key_id
         __props__.__dict__["name"] = name
         __props__.__dict__["value_id"] = value_id
-        return AnnotationsValue(resource_name, opts=opts, __props__=__props__)
+        return Value(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter

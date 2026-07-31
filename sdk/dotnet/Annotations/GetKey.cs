@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
-    public static class GetAnnotationsKey
+    public static class GetKey
     {
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsKey.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetKey.Invoke(new()
         ///     {
         ///         KeyId = environment.Id,
         ///     });
@@ -41,8 +41,8 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Task<GetAnnotationsKeyResult> InvokeAsync(GetAnnotationsKeyArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAnnotationsKeyResult>("scaleway:index/getAnnotationsKey:getAnnotationsKey", args ?? new GetAnnotationsKeyArgs(), options.WithDefaults());
+        public static Task<GetKeyResult> InvokeAsync(GetKeyArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetKeyResult>("scaleway:annotations/getKey:getKey", args ?? new GetKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
@@ -59,13 +59,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsKey.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetKey.Invoke(new()
         ///     {
         ///         KeyId = environment.Id,
         ///     });
@@ -73,8 +73,8 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsKeyResult> Invoke(GetAnnotationsKeyInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsKeyResult>("scaleway:index/getAnnotationsKey:getAnnotationsKey", args ?? new GetAnnotationsKeyInvokeArgs(), options.WithDefaults());
+        public static Output<GetKeyResult> Invoke(GetKeyInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKeyResult>("scaleway:annotations/getKey:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
@@ -91,13 +91,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsKey.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetKey.Invoke(new()
         ///     {
         ///         KeyId = environment.Id,
         ///     });
@@ -105,12 +105,12 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsKeyResult> Invoke(GetAnnotationsKeyInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsKeyResult>("scaleway:index/getAnnotationsKey:getAnnotationsKey", args ?? new GetAnnotationsKeyInvokeArgs(), options.WithDefaults());
+        public static Output<GetKeyResult> Invoke(GetKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKeyResult>("scaleway:annotations/getKey:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAnnotationsKeyArgs : global::Pulumi.InvokeArgs
+    public sealed class GetKeyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation key to retrieve.
@@ -118,13 +118,13 @@ namespace Pulumiverse.Scaleway
         [Input("keyId", required: true)]
         public string KeyId { get; set; } = null!;
 
-        public GetAnnotationsKeyArgs()
+        public GetKeyArgs()
         {
         }
-        public static new GetAnnotationsKeyArgs Empty => new GetAnnotationsKeyArgs();
+        public static new GetKeyArgs Empty => new GetKeyArgs();
     }
 
-    public sealed class GetAnnotationsKeyInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation key to retrieve.
@@ -132,15 +132,15 @@ namespace Pulumiverse.Scaleway
         [Input("keyId", required: true)]
         public Input<string> KeyId { get; set; } = null!;
 
-        public GetAnnotationsKeyInvokeArgs()
+        public GetKeyInvokeArgs()
         {
         }
-        public static new GetAnnotationsKeyInvokeArgs Empty => new GetAnnotationsKeyInvokeArgs();
+        public static new GetKeyInvokeArgs Empty => new GetKeyInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetAnnotationsKeyResult
+    public sealed class GetKeyResult
     {
         /// <summary>
         /// Description of the annotation key
@@ -157,7 +157,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Name;
 
         [OutputConstructor]
-        private GetAnnotationsKeyResult(
+        private GetKeyResult(
             string description,
 
             string id,

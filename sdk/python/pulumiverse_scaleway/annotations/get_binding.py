@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetAnnotationsBindingResult',
-    'AwaitableGetAnnotationsBindingResult',
-    'get_annotations_binding',
-    'get_annotations_binding_output',
+    'GetBindingResult',
+    'AwaitableGetBindingResult',
+    'get_binding',
+    'get_binding_output',
 ]
 
 @pulumi.output_type
-class GetAnnotationsBindingResult:
+class GetBindingResult:
     """
-    A collection of values returned by getAnnotationsBinding.
+    A collection of values returned by getBinding.
     """
     def __init__(__self__, binding_id=None, id=None, key_id=None, srn=None, value_id=None):
         if binding_id and not isinstance(binding_id, str):
@@ -81,12 +81,12 @@ class GetAnnotationsBindingResult:
         return pulumi.get(self, "value_id")
 
 
-class AwaitableGetAnnotationsBindingResult(GetAnnotationsBindingResult):
+class AwaitableGetBindingResult(GetBindingResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAnnotationsBindingResult(
+        return GetBindingResult(
             binding_id=self.binding_id,
             id=self.id,
             key_id=self.key_id,
@@ -94,8 +94,8 @@ class AwaitableGetAnnotationsBindingResult(GetAnnotationsBindingResult):
             value_id=self.value_id)
 
 
-def get_annotations_binding(binding_id: Optional[_builtins.str] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAnnotationsBindingResult:
+def get_binding(binding_id: Optional[_builtins.str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBindingResult:
     """
     Use this data source to retrieve information about an annotation binding.
 
@@ -106,10 +106,10 @@ def get_annotations_binding(binding_id: Optional[_builtins.str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    production = scaleway.AnnotationsValue("production",
+    production = scaleway.annotations.Value("production",
         key_id=environment.id,
         name="production",
         description="Production environment")
@@ -120,10 +120,10 @@ def get_annotations_binding(binding_id: Optional[_builtins.str] = None,
         algorithm="aes_256_gcm",
         description="Example key for binding",
         unprotected=True)
-    main_annotations_binding = scaleway.AnnotationsBinding("main",
+    main_binding = scaleway.annotations.Binding("main",
         srn=main_key.srn,
         value_id=production.id)
-    main = scaleway.get_annotations_binding_output(binding_id=main_annotations_binding.id)
+    main = scaleway.annotations.get_binding_output(binding_id=main_binding.id)
     ```
 
 
@@ -132,16 +132,16 @@ def get_annotations_binding(binding_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['bindingId'] = binding_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getAnnotationsBinding:getAnnotationsBinding', __args__, opts=opts, typ=GetAnnotationsBindingResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:annotations/getBinding:getBinding', __args__, opts=opts, typ=GetBindingResult).value
 
-    return AwaitableGetAnnotationsBindingResult(
+    return AwaitableGetBindingResult(
         binding_id=pulumi.get(__ret__, 'binding_id'),
         id=pulumi.get(__ret__, 'id'),
         key_id=pulumi.get(__ret__, 'key_id'),
         srn=pulumi.get(__ret__, 'srn'),
         value_id=pulumi.get(__ret__, 'value_id'))
-def get_annotations_binding_output(binding_id: pulumi.Input[Optional[_builtins.str]] = None,
-                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAnnotationsBindingResult]:
+def get_binding_output(binding_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBindingResult]:
     """
     Use this data source to retrieve information about an annotation binding.
 
@@ -152,10 +152,10 @@ def get_annotations_binding_output(binding_id: pulumi.Input[Optional[_builtins.s
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    production = scaleway.AnnotationsValue("production",
+    production = scaleway.annotations.Value("production",
         key_id=environment.id,
         name="production",
         description="Production environment")
@@ -166,10 +166,10 @@ def get_annotations_binding_output(binding_id: pulumi.Input[Optional[_builtins.s
         algorithm="aes_256_gcm",
         description="Example key for binding",
         unprotected=True)
-    main_annotations_binding = scaleway.AnnotationsBinding("main",
+    main_binding = scaleway.annotations.Binding("main",
         srn=main_key.srn,
         value_id=production.id)
-    main = scaleway.get_annotations_binding_output(binding_id=main_annotations_binding.id)
+    main = scaleway.annotations.get_binding_output(binding_id=main_binding.id)
     ```
 
 
@@ -178,8 +178,8 @@ def get_annotations_binding_output(binding_id: pulumi.Input[Optional[_builtins.s
     __args__ = dict()
     __args__['bindingId'] = binding_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAnnotationsBinding:getAnnotationsBinding', __args__, opts=opts, typ=GetAnnotationsBindingResult)
-    return __ret__.apply(lambda __response__: GetAnnotationsBindingResult(
+    __ret__ = pulumi.runtime.invoke_output('scaleway:annotations/getBinding:getBinding', __args__, opts=opts, typ=GetBindingResult)
+    return __ret__.apply(lambda __response__: GetBindingResult(
         binding_id=pulumi.get(__response__, 'binding_id'),
         id=pulumi.get(__response__, 'id'),
         key_id=pulumi.get(__response__, 'key_id'),

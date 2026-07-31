@@ -22042,6 +22042,178 @@
                 }
             ]
         },
+        "scaleway:annotations/binding:Binding": {
+            "description": "Creates and manages Scaleway Annotations Bindings.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.annotations.Value(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst main = new scaleway.keymanager.Key(\"main\", {\n    name: \"example-key\",\n    region: \"fr-par\",\n    usage: \"symmetric_encryption\",\n    algorithm: \"aes_256_gcm\",\n    description: \"Example key for binding\",\n    unprotected: true,\n});\nconst mainBinding = new scaleway.annotations.Binding(\"main\", {\n    srn: main.srn,\n    valueId: production.id,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.annotations.Value(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain = scaleway.keymanager.Key(\"main\",\n    name=\"example-key\",\n    region=\"fr-par\",\n    usage=\"symmetric_encryption\",\n    algorithm=\"aes_256_gcm\",\n    description=\"Example key for binding\",\n    unprotected=True)\nmain_binding = scaleway.annotations.Binding(\"main\",\n    srn=main.srn,\n    value_id=production.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.Annotations.Value(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var main = new Scaleway.Keymanager.Key(\"main\", new()\n    {\n        Name = \"example-key\",\n        Region = \"fr-par\",\n        Usage = \"symmetric_encryption\",\n        Algorithm = \"aes_256_gcm\",\n        Description = \"Example key for binding\",\n        Unprotected = true,\n    });\n\n    var mainBinding = new Scaleway.Annotations.Binding(\"main\", new()\n    {\n        Srn = main.Srn,\n        ValueId = production.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := annotations.NewValue(ctx, \"production\", \u0026annotations.ValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := keymanager.NewKey(ctx, \"main\", \u0026keymanager.KeyArgs{\n\t\t\tName:        pulumi.String(\"example-key\"),\n\t\t\tRegion:      pulumi.String(\"fr-par\"),\n\t\t\tUsage:       pulumi.String(\"symmetric_encryption\"),\n\t\t\tAlgorithm:   pulumi.String(\"aes_256_gcm\"),\n\t\t\tDescription: pulumi.String(\"Example key for binding\"),\n\t\t\tUnprotected: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = annotations.NewBinding(ctx, \"main\", \u0026annotations.BindingArgs{\n\t\t\tSrn:     main.Srn,\n\t\t\tValueId: production.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Value;\nimport com.pulumi.scaleway.annotations.ValueArgs;\nimport com.pulumi.scaleway.annotations.Binding;\nimport com.pulumi.scaleway.annotations.BindingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new com.pulumi.scaleway.annotations.Key(\"environment\", com.pulumi.scaleway.annotations.KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new Value(\"production\", ValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        var main = new com.pulumi.scaleway.keymanager.Key(\"main\", com.pulumi.scaleway.keymanager.KeyArgs.builder()\n            .name(\"example-key\")\n            .region(\"fr-par\")\n            .usage(\"symmetric_encryption\")\n            .algorithm(\"aes_256_gcm\")\n            .description(\"Example key for binding\")\n            .unprotected(true)\n            .build());\n\n        var mainBinding = new Binding(\"mainBinding\", BindingArgs.builder()\n            .srn(main.srn())\n            .valueId(production.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:annotations:Value\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n  main:\n    type: scaleway:keymanager:Key\n    properties:\n      name: example-key\n      region: fr-par\n      usage: symmetric_encryption\n      algorithm: aes_256_gcm\n      description: Example key for binding\n      unprotected: true\n  mainBinding:\n    type: scaleway:annotations:Binding\n    name: main\n    properties:\n      srn: ${main.srn}\n      valueId: ${production.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation bindings can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e:\n\n```sh\n$ pulumi import scaleway:annotations/binding:Binding main \u003cbinding_id\u003e\n```\n\n",
+            "properties": {
+                "keyId": {
+                    "type": "string",
+                    "description": "ID of the key associated to the binding.\n"
+                },
+                "srn": {
+                    "type": "string",
+                    "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
+                },
+                "valueId": {
+                    "type": "string",
+                    "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
+                }
+            },
+            "required": [
+                "keyId",
+                "srn",
+                "valueId"
+            ],
+            "inputProperties": {
+                "srn": {
+                    "type": "string",
+                    "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
+                },
+                "valueId": {
+                    "type": "string",
+                    "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
+                }
+            },
+            "requiredInputs": [
+                "srn",
+                "valueId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Binding resources.\n",
+                "properties": {
+                    "keyId": {
+                        "type": "string",
+                        "description": "ID of the key associated to the binding.\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
+                    },
+                    "valueId": {
+                        "type": "string",
+                        "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:annotations/key:Key": {
+            "description": "Create an annotation key to define custom metadata labels that can be attached to Scaleway resources. Annotation keys allow you to organize and categorize resources using custom tags with meaningful names and descriptions.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Key;\nimport com.pulumi.scaleway.annotations.KeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new Key(\"environment\", KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation keys can be imported using their \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`keyId`\u003c/span\u003e and optionally the \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e. If no \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e is specified, the default provider \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e will be used.\n\n```sh\n$ pulumi import scaleway:annotations/key:Key main \u003ckey_id\u003e\n```\n\n```sh\n$ pulumi import scaleway:annotations/key:Key main \u003corganization_id\u003e/\u003ckey_id\u003e\n```\n\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the annotation key.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the annotation key.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
+                }
+            },
+            "required": [
+                "name",
+                "organizationId"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the annotation key.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the annotation key.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Key resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the annotation key.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the annotation key.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:annotations/value:Value": {
+            "description": "Create an annotation value to define a specific label instance that can be attached to Scaleway resources. Annotation values are associated with annotation keys and represent concrete tag values (e.g., \"production\" as a value for an \"environment\" key).\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.annotations.Value(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.annotations.Value(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.Annotations.Value(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = annotations.NewValue(ctx, \"production\", \u0026annotations.ValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Key;\nimport com.pulumi.scaleway.annotations.KeyArgs;\nimport com.pulumi.scaleway.annotations.Value;\nimport com.pulumi.scaleway.annotations.ValueArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new Key(\"environment\", KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new Value(\"production\", ValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:annotations:Value\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation values can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e:\n\n```sh\n$ pulumi import scaleway:annotations/value:Value main \u003cvalue_id\u003e\n```\n\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the annotation value.\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "ID of the key the value is associated to.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the annotation value.\n"
+                },
+                "valueId": {
+                    "type": "string",
+                    "description": "The ID of the annotation value.\n"
+                }
+            },
+            "required": [
+                "keyId",
+                "name",
+                "valueId"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the annotation value.\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "ID of the key the value is associated to.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the annotation value.\n"
+                }
+            },
+            "requiredInputs": [
+                "keyId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Value resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the annotation value.\n"
+                    },
+                    "keyId": {
+                        "type": "string",
+                        "description": "ID of the key the value is associated to.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the annotation value.\n"
+                    },
+                    "valueId": {
+                        "type": "string",
+                        "description": "The ID of the annotation value.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "scaleway:applesilicon/runner:Runner": {
             "description": "Creates and manages Scaleway Apple silicon runners.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.applesilicon.Runner(\"main\", {\n    name: \"my-github-runner\",\n    ciProvider: \"github\",\n    url: \"https://github.com/my-org/my-repo\",\n    token: \"my-token\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.applesilicon.Runner(\"main\",\n    name=\"my-github-runner\",\n    ci_provider=\"github\",\n    url=\"https://github.com/my-org/my-repo\",\n    token=\"my-token\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Applesilicon.Runner(\"main\", new()\n    {\n        Name = \"my-github-runner\",\n        CiProvider = \"github\",\n        Url = \"https://github.com/my-org/my-repo\",\n        Token = \"my-token\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := applesilicon.NewRunner(ctx, \"main\", \u0026applesilicon.RunnerArgs{\n\t\t\tName:       pulumi.String(\"my-github-runner\"),\n\t\t\tCiProvider: pulumi.String(\"github\"),\n\t\t\tUrl:        pulumi.String(\"https://github.com/my-org/my-repo\"),\n\t\t\tToken:      pulumi.String(\"my-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.applesilicon.Runner;\nimport com.pulumi.scaleway.applesilicon.RunnerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Runner(\"main\", RunnerArgs.builder()\n            .name(\"my-github-runner\")\n            .ciProvider(\"github\")\n            .url(\"https://github.com/my-org/my-repo\")\n            .token(\"my-token\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:applesilicon:Runner\n    properties:\n      name: my-github-runner\n      ciProvider: github\n      url: https://github.com/my-org/my-repo\n      token: my-token\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nRunner can be imported using the `{zone}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:applesilicon/runner:Runner main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
@@ -31726,178 +31898,6 @@
                 "type": "object"
             },
             "deprecationMessage": "scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey"
-        },
-        "scaleway:index/annotationsBinding:AnnotationsBinding": {
-            "description": "Creates and manages Scaleway Annotations Bindings.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.AnnotationsValue(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst main = new scaleway.keymanager.Key(\"main\", {\n    name: \"example-key\",\n    region: \"fr-par\",\n    usage: \"symmetric_encryption\",\n    algorithm: \"aes_256_gcm\",\n    description: \"Example key for binding\",\n    unprotected: true,\n});\nconst mainAnnotationsBinding = new scaleway.AnnotationsBinding(\"main\", {\n    srn: main.srn,\n    valueId: production.id,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.AnnotationsValue(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain = scaleway.keymanager.Key(\"main\",\n    name=\"example-key\",\n    region=\"fr-par\",\n    usage=\"symmetric_encryption\",\n    algorithm=\"aes_256_gcm\",\n    description=\"Example key for binding\",\n    unprotected=True)\nmain_annotations_binding = scaleway.AnnotationsBinding(\"main\",\n    srn=main.srn,\n    value_id=production.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.AnnotationsValue(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var main = new Scaleway.Keymanager.Key(\"main\", new()\n    {\n        Name = \"example-key\",\n        Region = \"fr-par\",\n        Usage = \"symmetric_encryption\",\n        Algorithm = \"aes_256_gcm\",\n        Description = \"Example key for binding\",\n        Unprotected = true,\n    });\n\n    var mainAnnotationsBinding = new Scaleway.AnnotationsBinding(\"main\", new()\n    {\n        Srn = main.Srn,\n        ValueId = production.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := scaleway.NewAnnotationsValue(ctx, \"production\", \u0026scaleway.AnnotationsValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := keymanager.NewKey(ctx, \"main\", \u0026keymanager.KeyArgs{\n\t\t\tName:        pulumi.String(\"example-key\"),\n\t\t\tRegion:      pulumi.String(\"fr-par\"),\n\t\t\tUsage:       pulumi.String(\"symmetric_encryption\"),\n\t\t\tAlgorithm:   pulumi.String(\"aes_256_gcm\"),\n\t\t\tDescription: pulumi.String(\"Example key for binding\"),\n\t\t\tUnprotected: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewAnnotationsBinding(ctx, \"main\", \u0026scaleway.AnnotationsBindingArgs{\n\t\t\tSrn:     main.Srn,\n\t\t\tValueId: production.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport com.pulumi.scaleway.AnnotationsValue;\nimport com.pulumi.scaleway.AnnotationsValueArgs;\nimport com.pulumi.scaleway.keymanager.Key;\nimport com.pulumi.scaleway.keymanager.KeyArgs;\nimport com.pulumi.scaleway.AnnotationsBinding;\nimport com.pulumi.scaleway.AnnotationsBindingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new AnnotationsValue(\"production\", AnnotationsValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        var main = new Key(\"main\", KeyArgs.builder()\n            .name(\"example-key\")\n            .region(\"fr-par\")\n            .usage(\"symmetric_encryption\")\n            .algorithm(\"aes_256_gcm\")\n            .description(\"Example key for binding\")\n            .unprotected(true)\n            .build());\n\n        var mainAnnotationsBinding = new AnnotationsBinding(\"mainAnnotationsBinding\", AnnotationsBindingArgs.builder()\n            .srn(main.srn())\n            .valueId(production.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:AnnotationsValue\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n  main:\n    type: scaleway:keymanager:Key\n    properties:\n      name: example-key\n      region: fr-par\n      usage: symmetric_encryption\n      algorithm: aes_256_gcm\n      description: Example key for binding\n      unprotected: true\n  mainAnnotationsBinding:\n    type: scaleway:AnnotationsBinding\n    name: main\n    properties:\n      srn: ${main.srn}\n      valueId: ${production.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation bindings can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e:\n\n```sh\n$ pulumi import scaleway:index/annotationsBinding:AnnotationsBinding main \u003cbinding_id\u003e\n```\n\n",
-            "properties": {
-                "keyId": {
-                    "type": "string",
-                    "description": "ID of the key associated to the binding.\n"
-                },
-                "srn": {
-                    "type": "string",
-                    "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
-                },
-                "valueId": {
-                    "type": "string",
-                    "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
-                }
-            },
-            "required": [
-                "keyId",
-                "srn",
-                "valueId"
-            ],
-            "inputProperties": {
-                "srn": {
-                    "type": "string",
-                    "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
-                },
-                "valueId": {
-                    "type": "string",
-                    "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
-                }
-            },
-            "requiredInputs": [
-                "srn",
-                "valueId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AnnotationsBinding resources.\n",
-                "properties": {
-                    "keyId": {
-                        "type": "string",
-                        "description": "ID of the key associated to the binding.\n"
-                    },
-                    "srn": {
-                        "type": "string",
-                        "description": "Scaleway Resource Number to associate. Changing this forces a new resource to be created.\n"
-                    },
-                    "valueId": {
-                        "type": "string",
-                        "description": "ID of the value to associate. Changing this forces a new resource to be created.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "scaleway:index/annotationsKey:AnnotationsKey": {
-            "description": "Create an annotation key to define custom metadata labels that can be attached to Scaleway resources. Annotation keys allow you to organize and categorize resources using custom tags with meaningful names and descriptions.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation keys can be imported using their \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`keyId`\u003c/span\u003e and optionally the \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e. If no \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e is specified, the default provider \u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e will be used.\n\n```sh\n$ pulumi import scaleway:index/annotationsKey:AnnotationsKey main \u003ckey_id\u003e\n```\n\n```sh\n$ pulumi import scaleway:index/annotationsKey:AnnotationsKey main \u003corganization_id\u003e/\u003ckey_id\u003e\n```\n\n",
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of the annotation key.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the annotation key.\n"
-                },
-                "organizationId": {
-                    "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
-                }
-            },
-            "required": [
-                "name",
-                "organizationId"
-            ],
-            "inputProperties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of the annotation key.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the annotation key.\n"
-                },
-                "organizationId": {
-                    "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AnnotationsKey resources.\n",
-                "properties": {
-                    "description": {
-                        "type": "string",
-                        "description": "Description of the annotation key.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the annotation key.\n"
-                    },
-                    "organizationId": {
-                        "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`organizationId`\" pulumi-lang-dotnet=\"`OrganizationId`\" pulumi-lang-go=\"`organizationId`\" pulumi-lang-python=\"`organization_id`\" pulumi-lang-yaml=\"`organizationId`\" pulumi-lang-java=\"`organizationId`\"\u003e`organizationId`\u003c/span\u003e) The organization ID to create the key in.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "scaleway:index/annotationsValue:AnnotationsValue": {
-            "description": "Create an annotation value to define a specific label instance that can be attached to Scaleway resources. Annotation values are associated with annotation keys and represent concrete tag values (e.g., \"production\" as a value for an \"environment\" key).\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.AnnotationsValue(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.AnnotationsValue(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.AnnotationsValue(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewAnnotationsValue(ctx, \"production\", \u0026scaleway.AnnotationsValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport com.pulumi.scaleway.AnnotationsValue;\nimport com.pulumi.scaleway.AnnotationsValueArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new AnnotationsValue(\"production\", AnnotationsValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:AnnotationsValue\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAnnotation values can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e:\n\n```sh\n$ pulumi import scaleway:index/annotationsValue:AnnotationsValue main \u003cvalue_id\u003e\n```\n\n",
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of the annotation value.\n"
-                },
-                "keyId": {
-                    "type": "string",
-                    "description": "ID of the key the value is associated to.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the annotation value.\n"
-                },
-                "valueId": {
-                    "type": "string",
-                    "description": "The ID of the annotation value.\n"
-                }
-            },
-            "required": [
-                "keyId",
-                "name",
-                "valueId"
-            ],
-            "inputProperties": {
-                "description": {
-                    "type": "string",
-                    "description": "Description of the annotation value.\n"
-                },
-                "keyId": {
-                    "type": "string",
-                    "description": "ID of the key the value is associated to.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the annotation value.\n"
-                }
-            },
-            "requiredInputs": [
-                "keyId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AnnotationsValue resources.\n",
-                "properties": {
-                    "description": {
-                        "type": "string",
-                        "description": "Description of the annotation value.\n"
-                    },
-                    "keyId": {
-                        "type": "string",
-                        "description": "ID of the key the value is associated to.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the annotation value.\n"
-                    },
-                    "valueId": {
-                        "type": "string",
-                        "description": "The ID of the annotation value.\n"
-                    }
-                },
-                "type": "object"
-            }
         },
         "scaleway:index/appleSiliconServer:AppleSiliconServer": {
             "description": "The \u003cspan pulumi-lang-nodejs=\"`scaleway.applesilicon.Server`\" pulumi-lang-dotnet=\"`scaleway.applesilicon.Server`\" pulumi-lang-go=\"`applesilicon.Server`\" pulumi-lang-python=\"`applesilicon.Server`\" pulumi-lang-yaml=\"`scaleway.applesilicon.Server`\" pulumi-lang-java=\"`scaleway.applesilicon.Server`\"\u003e`scaleway.applesilicon.Server`\u003c/span\u003e resource creates and manages Scaleway Apple silicon servers.\n\nFor more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst server = new scaleway.applesilicon.Server(\"server\", {\n    name: \"test-m1\",\n    type: \"M1-M\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nserver = scaleway.applesilicon.Server(\"server\",\n    name=\"test-m1\",\n    type=\"M1-M\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var server = new Scaleway.Applesilicon.Server(\"server\", new()\n    {\n        Name = \"test-m1\",\n        Type = \"M1-M\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := applesilicon.NewServer(ctx, \"server\", \u0026applesilicon.ServerArgs{\n\t\t\tName: pulumi.String(\"test-m1\"),\n\t\t\tType: pulumi.String(\"M1-M\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.applesilicon.Server;\nimport com.pulumi.scaleway.applesilicon.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var server = new Server(\"server\", ServerArgs.builder()\n            .name(\"test-m1\")\n            .type(\"M1-M\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  server:\n    type: scaleway:applesilicon:Server\n    properties:\n      name: test-m1\n      type: M1-M\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Enable VPC and attach private network\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc_apple_silicon = new scaleway.network.Vpc(\"vpc-apple-silicon\", {name: \"vpc-apple-silicon\"});\nconst pn_apple_silicon = new scaleway.network.PrivateNetwork(\"pn-apple-silicon\", {\n    name: \"pn-apple-silicon\",\n    vpcId: vpc_apple_silicon.id,\n});\nconst my_server = new scaleway.applesilicon.Server(\"my-server\", {\n    name: \"TestAccServerEnableVPC\",\n    type: \"M2-M\",\n    enableVpc: true,\n    privateNetworks: [{\n        id: pn_apple_silicon.id,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc_apple_silicon = scaleway.network.Vpc(\"vpc-apple-silicon\", name=\"vpc-apple-silicon\")\npn_apple_silicon = scaleway.network.PrivateNetwork(\"pn-apple-silicon\",\n    name=\"pn-apple-silicon\",\n    vpc_id=vpc_apple_silicon.id)\nmy_server = scaleway.applesilicon.Server(\"my-server\",\n    name=\"TestAccServerEnableVPC\",\n    type=\"M2-M\",\n    enable_vpc=True,\n    private_networks=[{\n        \"id\": pn_apple_silicon.id,\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc_apple_silicon = new Scaleway.Network.Vpc(\"vpc-apple-silicon\", new()\n    {\n        Name = \"vpc-apple-silicon\",\n    });\n\n    var pn_apple_silicon = new Scaleway.Network.PrivateNetwork(\"pn-apple-silicon\", new()\n    {\n        Name = \"pn-apple-silicon\",\n        VpcId = vpc_apple_silicon.Id,\n    });\n\n    var my_server = new Scaleway.Applesilicon.Server(\"my-server\", new()\n    {\n        Name = \"TestAccServerEnableVPC\",\n        Type = \"M2-M\",\n        EnableVpc = true,\n        PrivateNetworks = new[]\n        {\n            new Scaleway.Applesilicon.Inputs.ServerPrivateNetworkArgs\n            {\n                Id = pn_apple_silicon.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc_apple_silicon, err := network.NewVpc(ctx, \"vpc-apple-silicon\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"vpc-apple-silicon\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn_apple_silicon, err := network.NewPrivateNetwork(ctx, \"pn-apple-silicon\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:  pulumi.String(\"pn-apple-silicon\"),\n\t\t\tVpcId: vpc_apple_silicon.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = applesilicon.NewServer(ctx, \"my-server\", \u0026applesilicon.ServerArgs{\n\t\t\tName:      pulumi.String(\"TestAccServerEnableVPC\"),\n\t\t\tType:      pulumi.String(\"M2-M\"),\n\t\t\tEnableVpc: pulumi.Bool(true),\n\t\t\tPrivateNetworks: applesilicon.ServerPrivateNetworkArray{\n\t\t\t\t\u0026applesilicon.ServerPrivateNetworkArgs{\n\t\t\t\t\tId: pn_apple_silicon.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.applesilicon.Server;\nimport com.pulumi.scaleway.applesilicon.ServerArgs;\nimport com.pulumi.scaleway.applesilicon.inputs.ServerPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc_apple_silicon = new Vpc(\"vpc-apple-silicon\", VpcArgs.builder()\n            .name(\"vpc-apple-silicon\")\n            .build());\n\n        var pn_apple_silicon = new PrivateNetwork(\"pn-apple-silicon\", PrivateNetworkArgs.builder()\n            .name(\"pn-apple-silicon\")\n            .vpcId(vpc_apple_silicon.id())\n            .build());\n\n        var my_server = new Server(\"my-server\", ServerArgs.builder()\n            .name(\"TestAccServerEnableVPC\")\n            .type(\"M2-M\")\n            .enableVpc(true)\n            .privateNetworks(ServerPrivateNetworkArgs.builder()\n                .id(pn_apple_silicon.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc-apple-silicon:\n    type: scaleway:network:Vpc\n    properties:\n      name: vpc-apple-silicon\n  pn-apple-silicon:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: pn-apple-silicon\n      vpcId: ${[\"vpc-apple-silicon\"].id}\n  my-server:\n    type: scaleway:applesilicon:Server\n    properties:\n      name: TestAccServerEnableVPC\n      type: M2-M\n      enableVpc: true\n      privateNetworks:\n        - id: ${[\"pn-apple-silicon\"].id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With \u003cspan pulumi-lang-nodejs=\"`github`\" pulumi-lang-dotnet=\"`Github`\" pulumi-lang-go=\"`github`\" pulumi-lang-python=\"`github`\" pulumi-lang-yaml=\"`github`\" pulumi-lang-java=\"`github`\"\u003e`github`\u003c/span\u003e runner\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst byName = scaleway.applesilicon.getOs({\n    name: \"devos-sequoia-15.6\",\n});\nconst main = new scaleway.applesilicon.Runner(\"main\", {\n    name: \"TestAccRunnerGithub\",\n    ciProvider: \"github\",\n    url: \"https://github.com/my-repo-url\",\n    token: \"MY_GITHUB_RUNNER_TOKEN\",\n});\nconst mainServer = new scaleway.applesilicon.Server(\"main\", {\n    name: \"TestAccServerRunner\",\n    type: \"M2-L\",\n    publicBandwidth: 1000000000,\n    osId: byName.then(byName =\u003e byName.id),\n    runnerIds: [main.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nby_name = scaleway.applesilicon.get_os(name=\"devos-sequoia-15.6\")\nmain = scaleway.applesilicon.Runner(\"main\",\n    name=\"TestAccRunnerGithub\",\n    ci_provider=\"github\",\n    url=\"https://github.com/my-repo-url\",\n    token=\"MY_GITHUB_RUNNER_TOKEN\")\nmain_server = scaleway.applesilicon.Server(\"main\",\n    name=\"TestAccServerRunner\",\n    type=\"M2-L\",\n    public_bandwidth=1000000000,\n    os_id=by_name.id,\n    runner_ids=[main.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Scaleway.Applesilicon.GetOs.Invoke(new()\n    {\n        Name = \"devos-sequoia-15.6\",\n    });\n\n    var main = new Scaleway.Applesilicon.Runner(\"main\", new()\n    {\n        Name = \"TestAccRunnerGithub\",\n        CiProvider = \"github\",\n        Url = \"https://github.com/my-repo-url\",\n        Token = \"MY_GITHUB_RUNNER_TOKEN\",\n    });\n\n    var mainServer = new Scaleway.Applesilicon.Server(\"main\", new()\n    {\n        Name = \"TestAccServerRunner\",\n        Type = \"M2-L\",\n        PublicBandwidth = 1000000000,\n        OsId = byName.Apply(getOsResult =\u003e getOsResult.Id),\n        RunnerIds = new[]\n        {\n            main.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbyName, err := applesilicon.GetOs(ctx, \u0026applesilicon.GetOsArgs{\n\t\t\tName: pulumi.StringRef(\"devos-sequoia-15.6\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := applesilicon.NewRunner(ctx, \"main\", \u0026applesilicon.RunnerArgs{\n\t\t\tName:       pulumi.String(\"TestAccRunnerGithub\"),\n\t\t\tCiProvider: pulumi.String(\"github\"),\n\t\t\tUrl:        pulumi.String(\"https://github.com/my-repo-url\"),\n\t\t\tToken:      pulumi.String(\"MY_GITHUB_RUNNER_TOKEN\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = applesilicon.NewServer(ctx, \"main\", \u0026applesilicon.ServerArgs{\n\t\t\tName:            pulumi.String(\"TestAccServerRunner\"),\n\t\t\tType:            pulumi.String(\"M2-L\"),\n\t\t\tPublicBandwidth: pulumi.Int(1000000000),\n\t\t\tOsId:            pulumi.String(pulumi.String(byName.Id)),\n\t\t\tRunnerIds: pulumi.StringArray{\n\t\t\t\tmain.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.applesilicon.ApplesiliconFunctions;\nimport com.pulumi.scaleway.applesilicon.inputs.GetOsArgs;\nimport com.pulumi.scaleway.applesilicon.Runner;\nimport com.pulumi.scaleway.applesilicon.RunnerArgs;\nimport com.pulumi.scaleway.applesilicon.Server;\nimport com.pulumi.scaleway.applesilicon.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = ApplesiliconFunctions.getOs(GetOsArgs.builder()\n            .name(\"devos-sequoia-15.6\")\n            .build());\n\n        var main = new Runner(\"main\", RunnerArgs.builder()\n            .name(\"TestAccRunnerGithub\")\n            .ciProvider(\"github\")\n            .url(\"https://github.com/my-repo-url\")\n            .token(\"MY_GITHUB_RUNNER_TOKEN\")\n            .build());\n\n        var mainServer = new Server(\"mainServer\", ServerArgs.builder()\n            .name(\"TestAccServerRunner\")\n            .type(\"M2-L\")\n            .publicBandwidth(1000000000)\n            .osId(byName.id())\n            .runnerIds(main.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:applesilicon:Runner\n    properties:\n      name: TestAccRunnerGithub\n      ciProvider: github\n      url: https://github.com/my-repo-url\n      token: MY_GITHUB_RUNNER_TOKEN\n  mainServer:\n    type: scaleway:applesilicon:Server\n    name: main\n    properties:\n      name: TestAccServerRunner\n      type: M2-L\n      publicBandwidth: 1e+09\n      osId: ${byName.id}\n      runnerIds:\n        - ${main.id}\nvariables:\n  byName:\n    fn::invoke:\n      function: scaleway:applesilicon:getOs\n      arguments:\n        name: devos-sequoia-15.6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nInstance servers can be imported using the `{zone}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n",
@@ -66104,6 +66104,145 @@
                 "type": "object"
             }
         },
+        "scaleway:annotations/getBinding:getBinding": {
+            "description": "Use this data source to retrieve information about an annotation binding.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.annotations.Value(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst mainKey = new scaleway.keymanager.Key(\"main\", {\n    name: \"example-key\",\n    region: \"fr-par\",\n    usage: \"symmetric_encryption\",\n    algorithm: \"aes_256_gcm\",\n    description: \"Example key for binding\",\n    unprotected: true,\n});\nconst mainBinding = new scaleway.annotations.Binding(\"main\", {\n    srn: mainKey.srn,\n    valueId: production.id,\n});\nconst main = scaleway.annotations.getBindingOutput({\n    bindingId: mainBinding.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.annotations.Value(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain_key = scaleway.keymanager.Key(\"main\",\n    name=\"example-key\",\n    region=\"fr-par\",\n    usage=\"symmetric_encryption\",\n    algorithm=\"aes_256_gcm\",\n    description=\"Example key for binding\",\n    unprotected=True)\nmain_binding = scaleway.annotations.Binding(\"main\",\n    srn=main_key.srn,\n    value_id=production.id)\nmain = scaleway.annotations.get_binding_output(binding_id=main_binding.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.Annotations.Value(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var mainKey = new Scaleway.Keymanager.Key(\"main\", new()\n    {\n        Name = \"example-key\",\n        Region = \"fr-par\",\n        Usage = \"symmetric_encryption\",\n        Algorithm = \"aes_256_gcm\",\n        Description = \"Example key for binding\",\n        Unprotected = true,\n    });\n\n    var mainBinding = new Scaleway.Annotations.Binding(\"main\", new()\n    {\n        Srn = mainKey.Srn,\n        ValueId = production.Id,\n    });\n\n    var main = Scaleway.Annotations.GetBinding.Invoke(new()\n    {\n        BindingId = mainBinding.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := annotations.NewValue(ctx, \"production\", \u0026annotations.ValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainKey, err := keymanager.NewKey(ctx, \"main\", \u0026keymanager.KeyArgs{\n\t\t\tName:        pulumi.String(\"example-key\"),\n\t\t\tRegion:      pulumi.String(\"fr-par\"),\n\t\t\tUsage:       pulumi.String(\"symmetric_encryption\"),\n\t\t\tAlgorithm:   pulumi.String(\"aes_256_gcm\"),\n\t\t\tDescription: pulumi.String(\"Example key for binding\"),\n\t\t\tUnprotected: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainBinding, err := annotations.NewBinding(ctx, \"main\", \u0026annotations.BindingArgs{\n\t\t\tSrn:     mainKey.Srn,\n\t\t\tValueId: production.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = annotations.LookupBindingOutput(ctx, annotations.GetBindingOutputArgs{\n\t\t\tBindingId: mainBinding.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Value;\nimport com.pulumi.scaleway.annotations.ValueArgs;\nimport com.pulumi.scaleway.annotations.Binding;\nimport com.pulumi.scaleway.annotations.BindingArgs;\nimport com.pulumi.scaleway.annotations.AnnotationsFunctions;\nimport com.pulumi.scaleway.annotations.inputs.GetBindingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new com.pulumi.scaleway.annotations.Key(\"environment\", com.pulumi.scaleway.annotations.KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new Value(\"production\", ValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        var mainKey = new com.pulumi.scaleway.keymanager.Key(\"mainKey\", com.pulumi.scaleway.keymanager.KeyArgs.builder()\n            .name(\"example-key\")\n            .region(\"fr-par\")\n            .usage(\"symmetric_encryption\")\n            .algorithm(\"aes_256_gcm\")\n            .description(\"Example key for binding\")\n            .unprotected(true)\n            .build());\n\n        var mainBinding = new Binding(\"mainBinding\", BindingArgs.builder()\n            .srn(mainKey.srn())\n            .valueId(production.id())\n            .build());\n\n        final var main = AnnotationsFunctions.getBinding(GetBindingArgs.builder()\n            .bindingId(mainBinding.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:annotations:Value\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n  mainKey:\n    type: scaleway:keymanager:Key\n    name: main\n    properties:\n      name: example-key\n      region: fr-par\n      usage: symmetric_encryption\n      algorithm: aes_256_gcm\n      description: Example key for binding\n      unprotected: true\n  mainBinding:\n    type: scaleway:annotations:Binding\n    name: main\n    properties:\n      srn: ${mainKey.srn}\n      valueId: ${production.id}\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:annotations:getBinding\n      arguments:\n        bindingId: ${mainBinding.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBinding.\n",
+                "properties": {
+                    "bindingId": {
+                        "type": "string",
+                        "description": "The ID of the annotation binding to retrieve.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bindingId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBinding.\n",
+                "properties": {
+                    "bindingId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The ID of the annotation binding\n",
+                        "type": "string"
+                    },
+                    "keyId": {
+                        "description": "ID of the key associated to the binding\n",
+                        "type": "string"
+                    },
+                    "srn": {
+                        "description": "Scaleway Resource Number associated to the binding\n",
+                        "type": "string"
+                    },
+                    "valueId": {
+                        "description": "ID of the value associated to the binding\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "bindingId",
+                    "id",
+                    "keyId",
+                    "srn",
+                    "valueId"
+                ],
+                "type": "object"
+            }
+        },
+        "scaleway:annotations/getKey:getKey": {
+            "description": "Retrieves information about an existing annotation key using its ID.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst main = scaleway.annotations.getKeyOutput({\n    keyId: environment.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nmain = scaleway.annotations.get_key_output(key_id=environment.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var main = Scaleway.Annotations.GetKey.Invoke(new()\n    {\n        KeyId = environment.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = annotations.LookupKeyOutput(ctx, annotations.GetKeyOutputArgs{\n\t\t\tKeyId: environment.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Key;\nimport com.pulumi.scaleway.annotations.KeyArgs;\nimport com.pulumi.scaleway.annotations.AnnotationsFunctions;\nimport com.pulumi.scaleway.annotations.inputs.GetKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new Key(\"environment\", KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        final var main = AnnotationsFunctions.getKey(GetKeyArgs.builder()\n            .keyId(environment.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:annotations:getKey\n      arguments:\n        keyId: ${environment.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKey.\n",
+                "properties": {
+                    "keyId": {
+                        "type": "string",
+                        "description": "The ID of the annotation key to retrieve.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "keyId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKey.\n",
+                "properties": {
+                    "description": {
+                        "description": "Description of the annotation key\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The ID of the annotation key\n",
+                        "type": "string"
+                    },
+                    "keyId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name of the annotation key\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "description",
+                    "id",
+                    "keyId",
+                    "name"
+                ],
+                "type": "object"
+            }
+        },
+        "scaleway:annotations/getValue:getValue": {
+            "description": "Retrieves information about an existing annotation value using its ID.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.annotations.Key(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.annotations.Value(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst main = scaleway.annotations.getValueOutput({\n    valueId: production.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.annotations.Key(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.annotations.Value(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain = scaleway.annotations.get_value_output(value_id=production.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.Annotations.Key(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.Annotations.Value(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var main = Scaleway.Annotations.GetValue.Invoke(new()\n    {\n        ValueId = production.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/annotations\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := annotations.NewKey(ctx, \"environment\", \u0026annotations.KeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := annotations.NewValue(ctx, \"production\", \u0026annotations.ValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = annotations.LookupValueOutput(ctx, annotations.GetValueOutputArgs{\n\t\t\tValueId: production.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.annotations.Key;\nimport com.pulumi.scaleway.annotations.KeyArgs;\nimport com.pulumi.scaleway.annotations.Value;\nimport com.pulumi.scaleway.annotations.ValueArgs;\nimport com.pulumi.scaleway.annotations.AnnotationsFunctions;\nimport com.pulumi.scaleway.annotations.inputs.GetValueArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new Key(\"environment\", KeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new Value(\"production\", ValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        final var main = AnnotationsFunctions.getValue(GetValueArgs.builder()\n            .valueId(production.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:annotations:Key\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:annotations:Value\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:annotations:getValue\n      arguments:\n        valueId: ${production.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getValue.\n",
+                "properties": {
+                    "valueId": {
+                        "type": "string",
+                        "description": "The ID of the annotation value to retrieve.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "valueId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getValue.\n",
+                "properties": {
+                    "description": {
+                        "description": "Description of the annotation value\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The ID of the annotation value\n",
+                        "type": "string"
+                    },
+                    "keyId": {
+                        "description": "ID of the key the value is associated to\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name of the annotation value\n",
+                        "type": "string"
+                    },
+                    "valueId": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "description",
+                    "id",
+                    "keyId",
+                    "name",
+                    "valueId"
+                ],
+                "type": "object"
+            }
+        },
         "scaleway:applesilicon/getOs:getOs": {
             "description": "Gets information about a Apple Silicon operating system.\nFor more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/#path-os-list-all-operating-systems-os).\n\nYou can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw apple-silicon os list` to list all available operating systems.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\n// Get info by os name and version\nconst byName = scaleway.applesilicon.getOs({\n    name: \"devos-sequoia-15.6\",\n});\n// Get info by os id\nconst byId = scaleway.applesilicon.getOs({\n    osId: \"cafecafe-5018-4dcd-bd08-35f031b0ac3e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\n# Get info by os name and version\nby_name = scaleway.applesilicon.get_os(name=\"devos-sequoia-15.6\")\n# Get info by os id\nby_id = scaleway.applesilicon.get_os(os_id=\"cafecafe-5018-4dcd-bd08-35f031b0ac3e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Get info by os name and version\n    var byName = Scaleway.Applesilicon.GetOs.Invoke(new()\n    {\n        Name = \"devos-sequoia-15.6\",\n    });\n\n    // Get info by os id\n    var byId = Scaleway.Applesilicon.GetOs.Invoke(new()\n    {\n        OsId = \"cafecafe-5018-4dcd-bd08-35f031b0ac3e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Get info by os name and version\n\t\t_, err := applesilicon.GetOs(ctx, \u0026applesilicon.GetOsArgs{\n\t\t\tName: pulumi.StringRef(\"devos-sequoia-15.6\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Get info by os id\n\t\t_, err = applesilicon.GetOs(ctx, \u0026applesilicon.GetOsArgs{\n\t\t\tOsId: pulumi.StringRef(\"cafecafe-5018-4dcd-bd08-35f031b0ac3e\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.applesilicon.ApplesiliconFunctions;\nimport com.pulumi.scaleway.applesilicon.inputs.GetOsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Get info by os name and version\n        final var byName = ApplesiliconFunctions.getOs(GetOsArgs.builder()\n            .name(\"devos-sequoia-15.6\")\n            .build());\n\n        // Get info by os id\n        final var byId = ApplesiliconFunctions.getOs(GetOsArgs.builder()\n            .osId(\"cafecafe-5018-4dcd-bd08-35f031b0ac3e\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  # Get info by os name and version\n  byName:\n    fn::invoke:\n      function: scaleway:applesilicon:getOs\n      arguments:\n        name: devos-sequoia-15.6\n  # Get info by os id\n  byId:\n    fn::invoke:\n      function: scaleway:applesilicon:getOs\n      arguments:\n        osId: cafecafe-5018-4dcd-bd08-35f031b0ac3e\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -70686,145 +70825,6 @@
                     "publicKey",
                     "updatedAt",
                     "id"
-                ],
-                "type": "object"
-            }
-        },
-        "scaleway:index/getAnnotationsBinding:getAnnotationsBinding": {
-            "description": "Use this data source to retrieve information about an annotation binding.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.AnnotationsValue(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst mainKey = new scaleway.keymanager.Key(\"main\", {\n    name: \"example-key\",\n    region: \"fr-par\",\n    usage: \"symmetric_encryption\",\n    algorithm: \"aes_256_gcm\",\n    description: \"Example key for binding\",\n    unprotected: true,\n});\nconst mainAnnotationsBinding = new scaleway.AnnotationsBinding(\"main\", {\n    srn: mainKey.srn,\n    valueId: production.id,\n});\nconst main = scaleway.getAnnotationsBindingOutput({\n    bindingId: mainAnnotationsBinding.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.AnnotationsValue(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain_key = scaleway.keymanager.Key(\"main\",\n    name=\"example-key\",\n    region=\"fr-par\",\n    usage=\"symmetric_encryption\",\n    algorithm=\"aes_256_gcm\",\n    description=\"Example key for binding\",\n    unprotected=True)\nmain_annotations_binding = scaleway.AnnotationsBinding(\"main\",\n    srn=main_key.srn,\n    value_id=production.id)\nmain = scaleway.get_annotations_binding_output(binding_id=main_annotations_binding.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.AnnotationsValue(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var mainKey = new Scaleway.Keymanager.Key(\"main\", new()\n    {\n        Name = \"example-key\",\n        Region = \"fr-par\",\n        Usage = \"symmetric_encryption\",\n        Algorithm = \"aes_256_gcm\",\n        Description = \"Example key for binding\",\n        Unprotected = true,\n    });\n\n    var mainAnnotationsBinding = new Scaleway.AnnotationsBinding(\"main\", new()\n    {\n        Srn = mainKey.Srn,\n        ValueId = production.Id,\n    });\n\n    var main = Scaleway.GetAnnotationsBinding.Invoke(new()\n    {\n        BindingId = mainAnnotationsBinding.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := scaleway.NewAnnotationsValue(ctx, \"production\", \u0026scaleway.AnnotationsValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainKey, err := keymanager.NewKey(ctx, \"main\", \u0026keymanager.KeyArgs{\n\t\t\tName:        pulumi.String(\"example-key\"),\n\t\t\tRegion:      pulumi.String(\"fr-par\"),\n\t\t\tUsage:       pulumi.String(\"symmetric_encryption\"),\n\t\t\tAlgorithm:   pulumi.String(\"aes_256_gcm\"),\n\t\t\tDescription: pulumi.String(\"Example key for binding\"),\n\t\t\tUnprotected: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainAnnotationsBinding, err := scaleway.NewAnnotationsBinding(ctx, \"main\", \u0026scaleway.AnnotationsBindingArgs{\n\t\t\tSrn:     mainKey.Srn,\n\t\t\tValueId: production.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetAnnotationsBindingOutput(ctx, scaleway.GetAnnotationsBindingOutputArgs{\n\t\t\tBindingId: mainAnnotationsBinding.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport com.pulumi.scaleway.AnnotationsValue;\nimport com.pulumi.scaleway.AnnotationsValueArgs;\nimport com.pulumi.scaleway.keymanager.Key;\nimport com.pulumi.scaleway.keymanager.KeyArgs;\nimport com.pulumi.scaleway.AnnotationsBinding;\nimport com.pulumi.scaleway.AnnotationsBindingArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAnnotationsBindingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new AnnotationsValue(\"production\", AnnotationsValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        var mainKey = new Key(\"mainKey\", KeyArgs.builder()\n            .name(\"example-key\")\n            .region(\"fr-par\")\n            .usage(\"symmetric_encryption\")\n            .algorithm(\"aes_256_gcm\")\n            .description(\"Example key for binding\")\n            .unprotected(true)\n            .build());\n\n        var mainAnnotationsBinding = new AnnotationsBinding(\"mainAnnotationsBinding\", AnnotationsBindingArgs.builder()\n            .srn(mainKey.srn())\n            .valueId(production.id())\n            .build());\n\n        final var main = ScalewayFunctions.getAnnotationsBinding(GetAnnotationsBindingArgs.builder()\n            .bindingId(mainAnnotationsBinding.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:AnnotationsValue\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\n  mainKey:\n    type: scaleway:keymanager:Key\n    name: main\n    properties:\n      name: example-key\n      region: fr-par\n      usage: symmetric_encryption\n      algorithm: aes_256_gcm\n      description: Example key for binding\n      unprotected: true\n  mainAnnotationsBinding:\n    type: scaleway:AnnotationsBinding\n    name: main\n    properties:\n      srn: ${mainKey.srn}\n      valueId: ${production.id}\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:getAnnotationsBinding\n      arguments:\n        bindingId: ${mainAnnotationsBinding.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getAnnotationsBinding.\n",
-                "properties": {
-                    "bindingId": {
-                        "type": "string",
-                        "description": "The ID of the annotation binding to retrieve.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "bindingId"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getAnnotationsBinding.\n",
-                "properties": {
-                    "bindingId": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "description": "The ID of the annotation binding\n",
-                        "type": "string"
-                    },
-                    "keyId": {
-                        "description": "ID of the key associated to the binding\n",
-                        "type": "string"
-                    },
-                    "srn": {
-                        "description": "Scaleway Resource Number associated to the binding\n",
-                        "type": "string"
-                    },
-                    "valueId": {
-                        "description": "ID of the value associated to the binding\n",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "bindingId",
-                    "id",
-                    "keyId",
-                    "srn",
-                    "valueId"
-                ],
-                "type": "object"
-            }
-        },
-        "scaleway:index/getAnnotationsKey:getAnnotationsKey": {
-            "description": "Retrieves information about an existing annotation key using its ID.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst main = scaleway.getAnnotationsKeyOutput({\n    keyId: environment.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nmain = scaleway.get_annotations_key_output(key_id=environment.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var main = Scaleway.GetAnnotationsKey.Invoke(new()\n    {\n        KeyId = environment.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetAnnotationsKeyOutput(ctx, scaleway.GetAnnotationsKeyOutputArgs{\n\t\t\tKeyId: environment.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAnnotationsKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        final var main = ScalewayFunctions.getAnnotationsKey(GetAnnotationsKeyArgs.builder()\n            .keyId(environment.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:getAnnotationsKey\n      arguments:\n        keyId: ${environment.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getAnnotationsKey.\n",
-                "properties": {
-                    "keyId": {
-                        "type": "string",
-                        "description": "The ID of the annotation key to retrieve.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "keyId"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getAnnotationsKey.\n",
-                "properties": {
-                    "description": {
-                        "description": "Description of the annotation key\n",
-                        "type": "string"
-                    },
-                    "id": {
-                        "description": "The ID of the annotation key\n",
-                        "type": "string"
-                    },
-                    "keyId": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Name of the annotation key\n",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "description",
-                    "id",
-                    "keyId",
-                    "name"
-                ],
-                "type": "object"
-            }
-        },
-        "scaleway:index/getAnnotationsValue:getAnnotationsValue": {
-            "description": "Retrieves information about an existing annotation value using its ID.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst environment = new scaleway.AnnotationsKey(\"environment\", {\n    name: \"environment\",\n    description: \"Deployment environment (production, staging, development)\",\n});\nconst production = new scaleway.AnnotationsValue(\"production\", {\n    keyId: environment.id,\n    name: \"production\",\n    description: \"Production environment\",\n});\nconst main = scaleway.getAnnotationsValueOutput({\n    valueId: production.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\nimport pulumiverse_scaleway as scaleway\n\nenvironment = scaleway.AnnotationsKey(\"environment\",\n    name=\"environment\",\n    description=\"Deployment environment (production, staging, development)\")\nproduction = scaleway.AnnotationsValue(\"production\",\n    key_id=environment.id,\n    name=\"production\",\n    description=\"Production environment\")\nmain = scaleway.get_annotations_value_output(value_id=production.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var environment = new Scaleway.AnnotationsKey(\"environment\", new()\n    {\n        Name = \"environment\",\n        Description = \"Deployment environment (production, staging, development)\",\n    });\n\n    var production = new Scaleway.AnnotationsValue(\"production\", new()\n    {\n        KeyId = environment.Id,\n        Name = \"production\",\n        Description = \"Production environment\",\n    });\n\n    var main = Scaleway.GetAnnotationsValue.Invoke(new()\n    {\n        ValueId = production.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tenvironment, err := scaleway.NewAnnotationsKey(ctx, \"environment\", \u0026scaleway.AnnotationsKeyArgs{\n\t\t\tName:        pulumi.String(\"environment\"),\n\t\t\tDescription: pulumi.String(\"Deployment environment (production, staging, development)\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tproduction, err := scaleway.NewAnnotationsValue(ctx, \"production\", \u0026scaleway.AnnotationsValueArgs{\n\t\t\tKeyId:       environment.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production environment\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetAnnotationsValueOutput(ctx, scaleway.GetAnnotationsValueOutputArgs{\n\t\t\tValueId: production.ID(),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AnnotationsKey;\nimport com.pulumi.scaleway.AnnotationsKeyArgs;\nimport com.pulumi.scaleway.AnnotationsValue;\nimport com.pulumi.scaleway.AnnotationsValueArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAnnotationsValueArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var environment = new AnnotationsKey(\"environment\", AnnotationsKeyArgs.builder()\n            .name(\"environment\")\n            .description(\"Deployment environment (production, staging, development)\")\n            .build());\n\n        var production = new AnnotationsValue(\"production\", AnnotationsValueArgs.builder()\n            .keyId(environment.id())\n            .name(\"production\")\n            .description(\"Production environment\")\n            .build());\n\n        final var main = ScalewayFunctions.getAnnotationsValue(GetAnnotationsValueArgs.builder()\n            .valueId(production.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  environment:\n    type: scaleway:AnnotationsKey\n    properties:\n      name: environment\n      description: Deployment environment (production, staging, development)\n  production:\n    type: scaleway:AnnotationsValue\n    properties:\n      keyId: ${environment.id}\n      name: production\n      description: Production environment\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:getAnnotationsValue\n      arguments:\n        valueId: ${production.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getAnnotationsValue.\n",
-                "properties": {
-                    "valueId": {
-                        "type": "string",
-                        "description": "The ID of the annotation value to retrieve.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "valueId"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getAnnotationsValue.\n",
-                "properties": {
-                    "description": {
-                        "description": "Description of the annotation value\n",
-                        "type": "string"
-                    },
-                    "id": {
-                        "description": "The ID of the annotation value\n",
-                        "type": "string"
-                    },
-                    "keyId": {
-                        "description": "ID of the key the value is associated to\n",
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Name of the annotation value\n",
-                        "type": "string"
-                    },
-                    "valueId": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "description",
-                    "id",
-                    "keyId",
-                    "name",
-                    "valueId"
                 ],
                 "type": "object"
             }

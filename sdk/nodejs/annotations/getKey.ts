@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Retrieves information about an existing annotation key using its ID.
@@ -13,26 +13,26 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const main = scaleway.getAnnotationsKeyOutput({
+ * const main = scaleway.annotations.getKeyOutput({
  *     keyId: environment.id,
  * });
  * ```
  */
-export function getAnnotationsKey(args: GetAnnotationsKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAnnotationsKeyResult> {
+export function getKey(args: GetKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getAnnotationsKey:getAnnotationsKey", {
+    return pulumi.runtime.invoke("scaleway:annotations/getKey:getKey", {
         "keyId": args.keyId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsKey.
+ * A collection of arguments for invoking getKey.
  */
-export interface GetAnnotationsKeyArgs {
+export interface GetKeyArgs {
     /**
      * The ID of the annotation key to retrieve.
      */
@@ -40,9 +40,9 @@ export interface GetAnnotationsKeyArgs {
 }
 
 /**
- * A collection of values returned by getAnnotationsKey.
+ * A collection of values returned by getKey.
  */
-export interface GetAnnotationsKeyResult {
+export interface GetKeyResult {
     /**
      * Description of the annotation key
      */
@@ -66,26 +66,26 @@ export interface GetAnnotationsKeyResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const main = scaleway.getAnnotationsKeyOutput({
+ * const main = scaleway.annotations.getKeyOutput({
  *     keyId: environment.id,
  * });
  * ```
  */
-export function getAnnotationsKeyOutput(args: GetAnnotationsKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAnnotationsKeyResult> {
+export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("scaleway:index/getAnnotationsKey:getAnnotationsKey", {
+    return pulumi.runtime.invokeOutput("scaleway:annotations/getKey:getKey", {
         "keyId": args.keyId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsKey.
+ * A collection of arguments for invoking getKey.
  */
-export interface GetAnnotationsKeyOutputArgs {
+export interface GetKeyOutputArgs {
     /**
      * The ID of the annotation key to retrieve.
      */

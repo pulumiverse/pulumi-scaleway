@@ -15,21 +15,6 @@ export type AccountSshKey = import("./accountSshKey").AccountSshKey;
 export const AccountSshKey: typeof import("./accountSshKey").AccountSshKey = null as any;
 utilities.lazyLoad(exports, ["AccountSshKey"], () => require("./accountSshKey"));
 
-export { AnnotationsBindingArgs, AnnotationsBindingState } from "./annotationsBinding";
-export type AnnotationsBinding = import("./annotationsBinding").AnnotationsBinding;
-export const AnnotationsBinding: typeof import("./annotationsBinding").AnnotationsBinding = null as any;
-utilities.lazyLoad(exports, ["AnnotationsBinding"], () => require("./annotationsBinding"));
-
-export { AnnotationsKeyArgs, AnnotationsKeyState } from "./annotationsKey";
-export type AnnotationsKey = import("./annotationsKey").AnnotationsKey;
-export const AnnotationsKey: typeof import("./annotationsKey").AnnotationsKey = null as any;
-utilities.lazyLoad(exports, ["AnnotationsKey"], () => require("./annotationsKey"));
-
-export { AnnotationsValueArgs, AnnotationsValueState } from "./annotationsValue";
-export type AnnotationsValue = import("./annotationsValue").AnnotationsValue;
-export const AnnotationsValue: typeof import("./annotationsValue").AnnotationsValue = null as any;
-utilities.lazyLoad(exports, ["AnnotationsValue"], () => require("./annotationsValue"));
-
 export { AppleSiliconServerArgs, AppleSiliconServerState } from "./appleSiliconServer";
 export type AppleSiliconServer = import("./appleSiliconServer").AppleSiliconServer;
 export const AppleSiliconServer: typeof import("./appleSiliconServer").AppleSiliconServer = null as any;
@@ -249,21 +234,6 @@ export { GetAccountSshKeyArgs, GetAccountSshKeyResult, GetAccountSshKeyOutputArg
 export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSshKey = null as any;
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
-
-export { GetAnnotationsBindingArgs, GetAnnotationsBindingResult, GetAnnotationsBindingOutputArgs } from "./getAnnotationsBinding";
-export const getAnnotationsBinding: typeof import("./getAnnotationsBinding").getAnnotationsBinding = null as any;
-export const getAnnotationsBindingOutput: typeof import("./getAnnotationsBinding").getAnnotationsBindingOutput = null as any;
-utilities.lazyLoad(exports, ["getAnnotationsBinding","getAnnotationsBindingOutput"], () => require("./getAnnotationsBinding"));
-
-export { GetAnnotationsKeyArgs, GetAnnotationsKeyResult, GetAnnotationsKeyOutputArgs } from "./getAnnotationsKey";
-export const getAnnotationsKey: typeof import("./getAnnotationsKey").getAnnotationsKey = null as any;
-export const getAnnotationsKeyOutput: typeof import("./getAnnotationsKey").getAnnotationsKeyOutput = null as any;
-utilities.lazyLoad(exports, ["getAnnotationsKey","getAnnotationsKeyOutput"], () => require("./getAnnotationsKey"));
-
-export { GetAnnotationsValueArgs, GetAnnotationsValueResult, GetAnnotationsValueOutputArgs } from "./getAnnotationsValue";
-export const getAnnotationsValue: typeof import("./getAnnotationsValue").getAnnotationsValue = null as any;
-export const getAnnotationsValueOutput: typeof import("./getAnnotationsValue").getAnnotationsValueOutput = null as any;
-utilities.lazyLoad(exports, ["getAnnotationsValue","getAnnotationsValueOutput"], () => require("./getAnnotationsValue"));
 
 export { GetAvailabilityZonesArgs, GetAvailabilityZonesResult, GetAvailabilityZonesOutputArgs } from "./getAvailabilityZones";
 export const getAvailabilityZones: typeof import("./getAvailabilityZones").getAvailabilityZones = null as any;
@@ -1056,6 +1026,7 @@ utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 
 // Export sub-modules:
 import * as account from "./account";
+import * as annotations from "./annotations";
 import * as applesilicon from "./applesilicon";
 import * as audittrail from "./audittrail";
 import * as autoscaling from "./autoscaling";
@@ -1097,6 +1068,7 @@ import * as types from "./types";
 
 export {
     account,
+    annotations,
     applesilicon,
     audittrail,
     autoscaling,
@@ -1145,12 +1117,6 @@ const _module = {
                 return new AccountProject(name, <any>undefined, { urn })
             case "scaleway:index/accountSshKey:AccountSshKey":
                 return new AccountSshKey(name, <any>undefined, { urn })
-            case "scaleway:index/annotationsBinding:AnnotationsBinding":
-                return new AnnotationsBinding(name, <any>undefined, { urn })
-            case "scaleway:index/annotationsKey:AnnotationsKey":
-                return new AnnotationsKey(name, <any>undefined, { urn })
-            case "scaleway:index/annotationsValue:AnnotationsValue":
-                return new AnnotationsValue(name, <any>undefined, { urn })
             case "scaleway:index/appleSiliconServer:AppleSiliconServer":
                 return new AppleSiliconServer(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
@@ -1388,9 +1354,6 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/annotationsBinding", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/annotationsKey", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/annotationsValue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSiliconServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)

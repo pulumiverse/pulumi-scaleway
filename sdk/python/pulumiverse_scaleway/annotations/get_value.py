@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetAnnotationsValueResult',
-    'AwaitableGetAnnotationsValueResult',
-    'get_annotations_value',
-    'get_annotations_value_output',
+    'GetValueResult',
+    'AwaitableGetValueResult',
+    'get_value',
+    'get_value_output',
 ]
 
 @pulumi.output_type
-class GetAnnotationsValueResult:
+class GetValueResult:
     """
-    A collection of values returned by getAnnotationsValue.
+    A collection of values returned by getValue.
     """
     def __init__(__self__, description=None, id=None, key_id=None, name=None, value_id=None):
         if description and not isinstance(description, str):
@@ -81,12 +81,12 @@ class GetAnnotationsValueResult:
         return pulumi.get(self, "value_id")
 
 
-class AwaitableGetAnnotationsValueResult(GetAnnotationsValueResult):
+class AwaitableGetValueResult(GetValueResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAnnotationsValueResult(
+        return GetValueResult(
             description=self.description,
             id=self.id,
             key_id=self.key_id,
@@ -94,8 +94,8 @@ class AwaitableGetAnnotationsValueResult(GetAnnotationsValueResult):
             value_id=self.value_id)
 
 
-def get_annotations_value(value_id: Optional[_builtins.str] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAnnotationsValueResult:
+def get_value(value_id: Optional[_builtins.str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetValueResult:
     """
     Retrieves information about an existing annotation value using its ID.
 
@@ -106,14 +106,14 @@ def get_annotations_value(value_id: Optional[_builtins.str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    production = scaleway.AnnotationsValue("production",
+    production = scaleway.annotations.Value("production",
         key_id=environment.id,
         name="production",
         description="Production environment")
-    main = scaleway.get_annotations_value_output(value_id=production.id)
+    main = scaleway.annotations.get_value_output(value_id=production.id)
     ```
 
 
@@ -122,16 +122,16 @@ def get_annotations_value(value_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['valueId'] = value_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getAnnotationsValue:getAnnotationsValue', __args__, opts=opts, typ=GetAnnotationsValueResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:annotations/getValue:getValue', __args__, opts=opts, typ=GetValueResult).value
 
-    return AwaitableGetAnnotationsValueResult(
+    return AwaitableGetValueResult(
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         key_id=pulumi.get(__ret__, 'key_id'),
         name=pulumi.get(__ret__, 'name'),
         value_id=pulumi.get(__ret__, 'value_id'))
-def get_annotations_value_output(value_id: pulumi.Input[Optional[_builtins.str]] = None,
-                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAnnotationsValueResult]:
+def get_value_output(value_id: pulumi.Input[Optional[_builtins.str]] = None,
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetValueResult]:
     """
     Retrieves information about an existing annotation value using its ID.
 
@@ -142,14 +142,14 @@ def get_annotations_value_output(value_id: pulumi.Input[Optional[_builtins.str]]
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    production = scaleway.AnnotationsValue("production",
+    production = scaleway.annotations.Value("production",
         key_id=environment.id,
         name="production",
         description="Production environment")
-    main = scaleway.get_annotations_value_output(value_id=production.id)
+    main = scaleway.annotations.get_value_output(value_id=production.id)
     ```
 
 
@@ -158,8 +158,8 @@ def get_annotations_value_output(value_id: pulumi.Input[Optional[_builtins.str]]
     __args__ = dict()
     __args__['valueId'] = value_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAnnotationsValue:getAnnotationsValue', __args__, opts=opts, typ=GetAnnotationsValueResult)
-    return __ret__.apply(lambda __response__: GetAnnotationsValueResult(
+    __ret__ = pulumi.runtime.invoke_output('scaleway:annotations/getValue:getValue', __args__, opts=opts, typ=GetValueResult)
+    return __ret__.apply(lambda __response__: GetValueResult(
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         key_id=pulumi.get(__response__, 'key_id'),

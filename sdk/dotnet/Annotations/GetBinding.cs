@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
-    public static class GetAnnotationsBinding
+    public static class GetBinding
     {
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
@@ -50,22 +50,22 @@ namespace Pulumiverse.Scaleway
         ///         Unprotected = true,
         ///     });
         /// 
-        ///     var mainAnnotationsBinding = new Scaleway.AnnotationsBinding("main", new()
+        ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
         ///         Srn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsBinding.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetBinding.Invoke(new()
         ///     {
-        ///         BindingId = mainAnnotationsBinding.Id,
+        ///         BindingId = mainBinding.Id,
         ///     });
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Task<GetAnnotationsBindingResult> InvokeAsync(GetAnnotationsBindingArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAnnotationsBindingResult>("scaleway:index/getAnnotationsBinding:getAnnotationsBinding", args ?? new GetAnnotationsBindingArgs(), options.WithDefaults());
+        public static Task<GetBindingResult> InvokeAsync(GetBindingArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBindingResult>("scaleway:annotations/getBinding:getBinding", args ?? new GetBindingArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
@@ -82,13 +82,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
@@ -105,22 +105,22 @@ namespace Pulumiverse.Scaleway
         ///         Unprotected = true,
         ///     });
         /// 
-        ///     var mainAnnotationsBinding = new Scaleway.AnnotationsBinding("main", new()
+        ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
         ///         Srn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsBinding.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetBinding.Invoke(new()
         ///     {
-        ///         BindingId = mainAnnotationsBinding.Id,
+        ///         BindingId = mainBinding.Id,
         ///     });
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsBindingResult> Invoke(GetAnnotationsBindingInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsBindingResult>("scaleway:index/getAnnotationsBinding:getAnnotationsBinding", args ?? new GetAnnotationsBindingInvokeArgs(), options.WithDefaults());
+        public static Output<GetBindingResult> Invoke(GetBindingInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBindingResult>("scaleway:annotations/getBinding:getBinding", args ?? new GetBindingInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
@@ -137,13 +137,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+        ///     var environment = new Scaleway.Annotations.Key("environment", new()
         ///     {
         ///         Name = "environment",
         ///         Description = "Deployment environment (production, staging, development)",
         ///     });
         /// 
-        ///     var production = new Scaleway.AnnotationsValue("production", new()
+        ///     var production = new Scaleway.Annotations.Value("production", new()
         ///     {
         ///         KeyId = environment.Id,
         ///         Name = "production",
@@ -160,26 +160,26 @@ namespace Pulumiverse.Scaleway
         ///         Unprotected = true,
         ///     });
         /// 
-        ///     var mainAnnotationsBinding = new Scaleway.AnnotationsBinding("main", new()
+        ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
         ///         Srn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
-        ///     var main = Scaleway.GetAnnotationsBinding.Invoke(new()
+        ///     var main = Scaleway.Annotations.GetBinding.Invoke(new()
         ///     {
-        ///         BindingId = mainAnnotationsBinding.Id,
+        ///         BindingId = mainBinding.Id,
         ///     });
         /// 
         /// });
         /// ```
         /// </summary>
-        public static Output<GetAnnotationsBindingResult> Invoke(GetAnnotationsBindingInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAnnotationsBindingResult>("scaleway:index/getAnnotationsBinding:getAnnotationsBinding", args ?? new GetAnnotationsBindingInvokeArgs(), options.WithDefaults());
+        public static Output<GetBindingResult> Invoke(GetBindingInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBindingResult>("scaleway:annotations/getBinding:getBinding", args ?? new GetBindingInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAnnotationsBindingArgs : global::Pulumi.InvokeArgs
+    public sealed class GetBindingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation binding to retrieve.
@@ -187,13 +187,13 @@ namespace Pulumiverse.Scaleway
         [Input("bindingId", required: true)]
         public string BindingId { get; set; } = null!;
 
-        public GetAnnotationsBindingArgs()
+        public GetBindingArgs()
         {
         }
-        public static new GetAnnotationsBindingArgs Empty => new GetAnnotationsBindingArgs();
+        public static new GetBindingArgs Empty => new GetBindingArgs();
     }
 
-    public sealed class GetAnnotationsBindingInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetBindingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the annotation binding to retrieve.
@@ -201,15 +201,15 @@ namespace Pulumiverse.Scaleway
         [Input("bindingId", required: true)]
         public Input<string> BindingId { get; set; } = null!;
 
-        public GetAnnotationsBindingInvokeArgs()
+        public GetBindingInvokeArgs()
         {
         }
-        public static new GetAnnotationsBindingInvokeArgs Empty => new GetAnnotationsBindingInvokeArgs();
+        public static new GetBindingInvokeArgs Empty => new GetBindingInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetAnnotationsBindingResult
+    public sealed class GetBindingResult
     {
         public readonly string BindingId;
         /// <summary>
@@ -230,7 +230,7 @@ namespace Pulumiverse.Scaleway
         public readonly string ValueId;
 
         [OutputConstructor]
-        private GetAnnotationsBindingResult(
+        private GetBindingResult(
             string bindingId,
 
             string id,

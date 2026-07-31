@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetAnnotationsKeyResult',
-    'AwaitableGetAnnotationsKeyResult',
-    'get_annotations_key',
-    'get_annotations_key_output',
+    'GetKeyResult',
+    'AwaitableGetKeyResult',
+    'get_key',
+    'get_key_output',
 ]
 
 @pulumi.output_type
-class GetAnnotationsKeyResult:
+class GetKeyResult:
     """
-    A collection of values returned by getAnnotationsKey.
+    A collection of values returned by getKey.
     """
     def __init__(__self__, description=None, id=None, key_id=None, name=None):
         if description and not isinstance(description, str):
@@ -70,20 +70,20 @@ class GetAnnotationsKeyResult:
         return pulumi.get(self, "name")
 
 
-class AwaitableGetAnnotationsKeyResult(GetAnnotationsKeyResult):
+class AwaitableGetKeyResult(GetKeyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAnnotationsKeyResult(
+        return GetKeyResult(
             description=self.description,
             id=self.id,
             key_id=self.key_id,
             name=self.name)
 
 
-def get_annotations_key(key_id: Optional[_builtins.str] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAnnotationsKeyResult:
+def get_key(key_id: Optional[_builtins.str] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
     """
     Retrieves information about an existing annotation key using its ID.
 
@@ -94,10 +94,10 @@ def get_annotations_key(key_id: Optional[_builtins.str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    main = scaleway.get_annotations_key_output(key_id=environment.id)
+    main = scaleway.annotations.get_key_output(key_id=environment.id)
     ```
 
 
@@ -106,15 +106,15 @@ def get_annotations_key(key_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['keyId'] = key_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getAnnotationsKey:getAnnotationsKey', __args__, opts=opts, typ=GetAnnotationsKeyResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:annotations/getKey:getKey', __args__, opts=opts, typ=GetKeyResult).value
 
-    return AwaitableGetAnnotationsKeyResult(
+    return AwaitableGetKeyResult(
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         key_id=pulumi.get(__ret__, 'key_id'),
         name=pulumi.get(__ret__, 'name'))
-def get_annotations_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
-                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAnnotationsKeyResult]:
+def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyResult]:
     """
     Retrieves information about an existing annotation key using its ID.
 
@@ -125,10 +125,10 @@ def get_annotations_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = N
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    environment = scaleway.AnnotationsKey("environment",
+    environment = scaleway.annotations.Key("environment",
         name="environment",
         description="Deployment environment (production, staging, development)")
-    main = scaleway.get_annotations_key_output(key_id=environment.id)
+    main = scaleway.annotations.get_key_output(key_id=environment.id)
     ```
 
 
@@ -137,8 +137,8 @@ def get_annotations_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = N
     __args__ = dict()
     __args__['keyId'] = key_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAnnotationsKey:getAnnotationsKey', __args__, opts=opts, typ=GetAnnotationsKeyResult)
-    return __ret__.apply(lambda __response__: GetAnnotationsKeyResult(
+    __ret__ = pulumi.runtime.invoke_output('scaleway:annotations/getKey:getKey', __args__, opts=opts, typ=GetKeyResult)
+    return __ret__.apply(lambda __response__: GetKeyResult(
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         key_id=pulumi.get(__response__, 'key_id'),

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Retrieves information about an existing annotation value using its ID.
@@ -13,31 +13,31 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
  * });
- * const main = scaleway.getAnnotationsValueOutput({
+ * const main = scaleway.annotations.getValueOutput({
  *     valueId: production.id,
  * });
  * ```
  */
-export function getAnnotationsValue(args: GetAnnotationsValueArgs, opts?: pulumi.InvokeOptions): Promise<GetAnnotationsValueResult> {
+export function getValue(args: GetValueArgs, opts?: pulumi.InvokeOptions): Promise<GetValueResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getAnnotationsValue:getAnnotationsValue", {
+    return pulumi.runtime.invoke("scaleway:annotations/getValue:getValue", {
         "valueId": args.valueId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsValue.
+ * A collection of arguments for invoking getValue.
  */
-export interface GetAnnotationsValueArgs {
+export interface GetValueArgs {
     /**
      * The ID of the annotation value to retrieve.
      */
@@ -45,9 +45,9 @@ export interface GetAnnotationsValueArgs {
 }
 
 /**
- * A collection of values returned by getAnnotationsValue.
+ * A collection of values returned by getValue.
  */
-export interface GetAnnotationsValueResult {
+export interface GetValueResult {
     /**
      * Description of the annotation value
      */
@@ -75,31 +75,31 @@ export interface GetAnnotationsValueResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const environment = new scaleway.AnnotationsKey("environment", {
+ * const environment = new scaleway.annotations.Key("environment", {
  *     name: "environment",
  *     description: "Deployment environment (production, staging, development)",
  * });
- * const production = new scaleway.AnnotationsValue("production", {
+ * const production = new scaleway.annotations.Value("production", {
  *     keyId: environment.id,
  *     name: "production",
  *     description: "Production environment",
  * });
- * const main = scaleway.getAnnotationsValueOutput({
+ * const main = scaleway.annotations.getValueOutput({
  *     valueId: production.id,
  * });
  * ```
  */
-export function getAnnotationsValueOutput(args: GetAnnotationsValueOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAnnotationsValueResult> {
+export function getValueOutput(args: GetValueOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetValueResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("scaleway:index/getAnnotationsValue:getAnnotationsValue", {
+    return pulumi.runtime.invokeOutput("scaleway:annotations/getValue:getValue", {
         "valueId": args.valueId,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getAnnotationsValue.
+ * A collection of arguments for invoking getValue.
  */
-export interface GetAnnotationsValueOutputArgs {
+export interface GetValueOutputArgs {
     /**
      * The ID of the annotation value to retrieve.
      */

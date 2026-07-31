@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Annotations
 {
     /// <summary>
     /// Creates and manages Scaleway Annotations Bindings.
@@ -23,13 +23,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var environment = new Scaleway.AnnotationsKey("environment", new()
+    ///     var environment = new Scaleway.Annotations.Key("environment", new()
     ///     {
     ///         Name = "environment",
     ///         Description = "Deployment environment (production, staging, development)",
     ///     });
     /// 
-    ///     var production = new Scaleway.AnnotationsValue("production", new()
+    ///     var production = new Scaleway.Annotations.Value("production", new()
     ///     {
     ///         KeyId = environment.Id,
     ///         Name = "production",
@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway
     ///         Unprotected = true,
     ///     });
     /// 
-    ///     var mainAnnotationsBinding = new Scaleway.AnnotationsBinding("main", new()
+    ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
     ///     {
     ///         Srn = main.Srn,
     ///         ValueId = production.Id,
@@ -60,11 +60,11 @@ namespace Pulumiverse.Scaleway
     /// Annotation bindings can be imported using their `Id`:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/annotationsBinding:AnnotationsBinding main &lt;binding_id&gt;
+    /// $ pulumi import scaleway:annotations/binding:Binding main &lt;binding_id&gt;
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/annotationsBinding:AnnotationsBinding")]
-    public partial class AnnotationsBinding : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:annotations/binding:Binding")]
+    public partial class Binding : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the key associated to the binding.
@@ -86,19 +86,19 @@ namespace Pulumiverse.Scaleway
 
 
         /// <summary>
-        /// Create a AnnotationsBinding resource with the given unique name, arguments, and options.
+        /// Create a Binding resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AnnotationsBinding(string name, AnnotationsBindingArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsBinding:AnnotationsBinding", name, args ?? new AnnotationsBindingArgs(), MakeResourceOptions(options, ""))
+        public Binding(string name, BindingArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/binding:Binding", name, args ?? new BindingArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AnnotationsBinding(string name, Input<string> id, AnnotationsBindingState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/annotationsBinding:AnnotationsBinding", name, state, MakeResourceOptions(options, id))
+        private Binding(string name, Input<string> id, BindingState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:annotations/binding:Binding", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing AnnotationsBinding resource's state with the given name, ID, and optional extra
+        /// Get an existing Binding resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -123,13 +123,13 @@ namespace Pulumiverse.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AnnotationsBinding Get(string name, Input<string> id, AnnotationsBindingState? state = null, CustomResourceOptions? options = null)
+        public static Binding Get(string name, Input<string> id, BindingState? state = null, CustomResourceOptions? options = null)
         {
-            return new AnnotationsBinding(name, id, state, options);
+            return new Binding(name, id, state, options);
         }
     }
 
-    public sealed class AnnotationsBindingArgs : global::Pulumi.ResourceArgs
+    public sealed class BindingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
@@ -143,13 +143,13 @@ namespace Pulumiverse.Scaleway
         [Input("valueId", required: true)]
         public Input<string> ValueId { get; set; } = null!;
 
-        public AnnotationsBindingArgs()
+        public BindingArgs()
         {
         }
-        public static new AnnotationsBindingArgs Empty => new AnnotationsBindingArgs();
+        public static new BindingArgs Empty => new BindingArgs();
     }
 
-    public sealed class AnnotationsBindingState : global::Pulumi.ResourceArgs
+    public sealed class BindingState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the key associated to the binding.
@@ -169,9 +169,9 @@ namespace Pulumiverse.Scaleway
         [Input("valueId")]
         public Input<string>? ValueId { get; set; }
 
-        public AnnotationsBindingState()
+        public BindingState()
         {
         }
-        public static new AnnotationsBindingState Empty => new AnnotationsBindingState();
+        public static new BindingState Empty => new BindingState();
     }
 }

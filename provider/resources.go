@@ -43,6 +43,7 @@ const (
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/scaleway/scaleway/latest/docs
 	accountMod       = "account"
+	annotationsMod   = "annotations"
 	auditTrailMod    = "audittrail"
 	appleSiliconMod  = "applesilicon"
 	autoscalingMod   = "autoscaling"
@@ -357,6 +358,7 @@ func Provider() tfbridge.ProviderInfo {
 			scalewayMod,
 			map[string]string{
 				"account":       accountMod,
+				"annotations":   annotationsMod,
 				"apple_silicon": appleSiliconMod,
 				"audit_trail":   auditTrailMod,
 				"autoscaling":   autoscalingMod,
