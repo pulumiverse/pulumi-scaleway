@@ -37,7 +37,8 @@ import (
 
 const (
 	// packages:
-	scalewayPkg = "scaleway"
+	provider    = "scaleway"
+	scalewayPkg = provider
 	// modules:
 	scalewayMod = "index" // the y module
 	// further modules follow the grouping of the upstream TF provider
@@ -130,9 +131,9 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                       p,
-		Name:                    "scaleway",
+		Name:                    provider,
 		Description:             "A Pulumi package for creating and managing Scaleway cloud resources.",
-		Keywords:                []string{"pulumi", "scaleway", "pulumiverse"},
+		Keywords:                []string{"pulumi", provider, "pulumiverse"},
 		TFProviderLicense:       refProviderLicense(tfbridge.MITLicenseType),
 		License:                 "Apache-2.0",
 		LogoURL:                 "https://raw.githubusercontent.com/pulumiverse/pulumi-scaleway/master/assets/scaleway.png", //nolint:golint,lll
@@ -140,7 +141,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:              "https://github.com/pulumiverse/pulumi-scaleway",
 		PluginDownloadURL:       "github://api.github.com/pulumiverse",
 		MetadataInfo:            tfbridge.NewProviderMetadata(metadata),
-		GitHubOrg:               "scaleway", // not in the terraform-providers repo
+		GitHubOrg:               provider, // not in the terraform-providers repo
 		Publisher:               "pulumiverse",
 		DisplayName:             "Scaleway",
 		TFProviderModuleVersion: "v2",
