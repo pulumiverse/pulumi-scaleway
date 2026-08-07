@@ -4,4 +4,3 @@
 "vfox-pulumi:pulumi/pulumi-aws" = "7.37.0"
 "vfox-pulumi:pulumi/pulumi-gitlab" = "10.0.0"
 "vfox-pulumi:pulumi/pulumi-null" = "0.2.0"
-golangci-lint = "2.10.1"
