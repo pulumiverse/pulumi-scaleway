@@ -157,8 +157,8 @@ type Key struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolOutput `pulumi:"protected"`
-	// The region in which to create the key (e.g., `fr-par`).
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The date and time when the key was last rotated.
 	RotatedAt pulumi.StringOutput `pulumi:"rotatedAt"`
 	// The number of times the key has been rotated.
@@ -240,7 +240,7 @@ type keyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected *bool `pulumi:"protected"`
-	// The region in which to create the key (e.g., `fr-par`).
+	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region *string `pulumi:"region"`
 	// The date and time when the key was last rotated.
 	RotatedAt *string `pulumi:"rotatedAt"`
@@ -282,7 +282,7 @@ type KeyState struct {
 	ProjectId pulumi.StringPtrInput
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolPtrInput
-	// The region in which to create the key (e.g., `fr-par`).
+	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region pulumi.StringPtrInput
 	// The date and time when the key was last rotated.
 	RotatedAt pulumi.StringPtrInput
@@ -322,7 +322,7 @@ type keyArgs struct {
 	//
 	// **Key Usage and Algorithm (both required):**
 	ProjectId *string `pulumi:"projectId"`
-	// The region in which to create the key (e.g., `fr-par`).
+	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region *string `pulumi:"region"`
 	// – Rotation policy for the key:
 	RotationPolicy *KeyRotationPolicy `pulumi:"rotationPolicy"`
@@ -349,7 +349,7 @@ type KeyArgs struct {
 	//
 	// **Key Usage and Algorithm (both required):**
 	ProjectId pulumi.StringPtrInput
-	// The region in which to create the key (e.g., `fr-par`).
+	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region pulumi.StringPtrInput
 	// – Rotation policy for the key:
 	RotationPolicy KeyRotationPolicyPtrInput
@@ -491,9 +491,9 @@ func (o KeyOutput) Protected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Key) pulumi.BoolOutput { return v.Protected }).(pulumi.BoolOutput)
 }
 
-// The region in which to create the key (e.g., `fr-par`).
-func (o KeyOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
+func (o KeyOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The date and time when the key was last rotated.

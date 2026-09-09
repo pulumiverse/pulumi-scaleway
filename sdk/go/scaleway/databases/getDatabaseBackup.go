@@ -99,12 +99,8 @@ type LookupDatabaseBackupResult struct {
 }
 
 func LookupDatabaseBackupOutput(ctx *pulumi.Context, args LookupDatabaseBackupOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseBackupResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseBackupResultOutput, error) {
-			args := v.(LookupDatabaseBackupArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:databases/getDatabaseBackup:getDatabaseBackup", args, LookupDatabaseBackupResultOutput{}, options).(LookupDatabaseBackupResultOutput), nil
-		}).(LookupDatabaseBackupResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:databases/getDatabaseBackup:getDatabaseBackup", args, LookupDatabaseBackupResultOutput{}, options).(LookupDatabaseBackupResultOutput)
 }
 
 // A collection of arguments for invoking getDatabaseBackup.

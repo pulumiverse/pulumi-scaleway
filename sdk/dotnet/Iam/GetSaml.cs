@@ -154,6 +154,10 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         public readonly string SingleSignOnUrl;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SAML configuration
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// The status of the SAML configuration
         /// </summary>
         public readonly string Status;
@@ -170,6 +174,8 @@ namespace Pulumiverse.Scaleway.Iam
 
             string singleSignOnUrl,
 
+            string srn,
+
             string status)
         {
             EntityId = entityId;
@@ -177,6 +183,7 @@ namespace Pulumiverse.Scaleway.Iam
             OrganizationId = organizationId;
             ServiceProvider = serviceProvider;
             SingleSignOnUrl = singleSignOnUrl;
+            Srn = srn;
             Status = status;
         }
     }

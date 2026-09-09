@@ -75,8 +75,8 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				ServerId:         base.ID(),
-//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         base.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				Zone:             pn01.Zone,
 //			})
 //			if err != nil {
@@ -115,7 +115,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -124,7 +124,7 @@ import (
 //				Address: pulumi.String("172.16.64.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -139,10 +139,10 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				PrivateNetworkId: pn01.ID(),
-//				ServerId:         server01.ID(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				ServerId:         server01.ID().ToIDOutput().ToStringOutput(),
 //				IpamIpIds: pulumi.StringArray{
-//					ip01.ID(),
+//					ip01.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -167,6 +167,8 @@ type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
 	// IPAM ip list, should be for internal use only
+	//
+	// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds pulumi.StringArrayOutput `pulumi:"ipamIpIds"`
@@ -176,12 +178,14 @@ type InstancePrivateNic struct {
 	PrivateIps InstancePrivateNicPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
+	// The projectId you want to attach the resource to
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The ID of the server associated with.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The tags associated with the private NIC.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewInstancePrivateNic registers a new resource with the given unique name, arguments, and options.
@@ -221,6 +225,8 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 // Input properties used for looking up and filtering InstancePrivateNic resources.
 type instancePrivateNicState struct {
 	// IPAM ip list, should be for internal use only
+	//
+	// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 	IpIds []string `pulumi:"ipIds"`
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
@@ -230,6 +236,8 @@ type instancePrivateNicState struct {
 	PrivateIps []InstancePrivateNicPrivateIp `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// The projectId you want to attach the resource to
+	ProjectId *string `pulumi:"projectId"`
 	// The ID of the server associated with.
 	ServerId *string `pulumi:"serverId"`
 	// The tags associated with the private NIC.
@@ -240,6 +248,8 @@ type instancePrivateNicState struct {
 
 type InstancePrivateNicState struct {
 	// IPAM ip list, should be for internal use only
+	//
+	// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 	IpIds pulumi.StringArrayInput
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds pulumi.StringArrayInput
@@ -249,6 +259,8 @@ type InstancePrivateNicState struct {
 	PrivateIps InstancePrivateNicPrivateIpArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringPtrInput
+	// The projectId you want to attach the resource to
+	ProjectId pulumi.StringPtrInput
 	// The ID of the server associated with.
 	ServerId pulumi.StringPtrInput
 	// The tags associated with the private NIC.
@@ -263,6 +275,8 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 
 type instancePrivateNicArgs struct {
 	// IPAM ip list, should be for internal use only
+	//
+	// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 	IpIds []string `pulumi:"ipIds"`
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
@@ -270,6 +284,8 @@ type instancePrivateNicArgs struct {
 	PrivateIps []InstancePrivateNicPrivateIp `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
+	// The projectId you want to attach the resource to
+	ProjectId *string `pulumi:"projectId"`
 	// The ID of the server associated with.
 	ServerId string `pulumi:"serverId"`
 	// The tags associated with the private NIC.
@@ -281,6 +297,8 @@ type instancePrivateNicArgs struct {
 // The set of arguments for constructing a InstancePrivateNic resource.
 type InstancePrivateNicArgs struct {
 	// IPAM ip list, should be for internal use only
+	//
+	// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 	IpIds pulumi.StringArrayInput
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds pulumi.StringArrayInput
@@ -288,6 +306,8 @@ type InstancePrivateNicArgs struct {
 	PrivateIps InstancePrivateNicPrivateIpArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
+	// The projectId you want to attach the resource to
+	ProjectId pulumi.StringPtrInput
 	// The ID of the server associated with.
 	ServerId pulumi.StringInput
 	// The tags associated with the private NIC.
@@ -384,6 +404,8 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx cont
 }
 
 // IPAM ip list, should be for internal use only
+//
+// Deprecated: Setting this attribute won't have any effect, please use ipamIpIds instead.
 func (o InstancePrivateNicOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
@@ -408,6 +430,11 @@ func (o InstancePrivateNicOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
+// The projectId you want to attach the resource to
+func (o InstancePrivateNicOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
 // The ID of the server associated with.
 func (o InstancePrivateNicOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
@@ -419,8 +446,8 @@ func (o InstancePrivateNicOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the server must be created.
-func (o InstancePrivateNicOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o InstancePrivateNicOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type InstancePrivateNicArrayOutput struct{ *pulumi.OutputState }

@@ -47,8 +47,8 @@ import * as utilities from "./utilities";
  *     secretName: main.name,
  *     revision: "1",
  * });
- * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
- * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
+ * export const scalewaySecretAccessPayload = dataBySecretName.data;
+ * export const scalewaySecretAccessPayloadById = dataBySecretId.data;
  * ```
  *
  * ## Data
@@ -184,8 +184,8 @@ export interface GetSecretVersionResult {
  *     secretName: main.name,
  *     revision: "1",
  * });
- * export const scalewaySecretAccessPayload = dataBySecretName.apply(dataBySecretName => dataBySecretName.data);
- * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
+ * export const scalewaySecretAccessPayload = dataBySecretName.data;
+ * export const scalewaySecretAccessPayloadById = dataBySecretId.data;
  * ```
  *
  * ## Data

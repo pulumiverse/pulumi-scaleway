@@ -74,7 +74,7 @@ export class NatsAccount extends pulumi.CustomResource {
      * `region`). The region
      * in which the account should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a NatsAccount resource with the given unique name, arguments, and options.

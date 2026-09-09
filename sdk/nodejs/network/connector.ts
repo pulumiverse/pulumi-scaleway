@@ -118,7 +118,7 @@ export class Connector extends pulumi.CustomResource {
     /**
      * `region`) The region of the VPC connector.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Scaleway Resource Name (SRN) of the VPC connector.
      */

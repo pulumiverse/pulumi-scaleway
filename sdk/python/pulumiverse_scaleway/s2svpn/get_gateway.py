@@ -27,7 +27,7 @@ class GetGatewayResult:
     """
     A collection of values returned by getGateway.
     """
-    def __init__(__self__, asn=None, created_at=None, gateway_type=None, id=None, ipam_private_ipv4_id=None, ipam_private_ipv6_id=None, name=None, organization_id=None, private_network_id=None, project_id=None, public_configs=None, region=None, status=None, tags=None, updated_at=None, vpn_gateway_id=None, zone=None):
+    def __init__(__self__, asn=None, created_at=None, gateway_type=None, id=None, ipam_private_ipv4_id=None, ipam_private_ipv6_id=None, name=None, organization_id=None, private_network_id=None, project_id=None, public_configs=None, region=None, srn=None, status=None, tags=None, updated_at=None, vpn_gateway_id=None, zone=None):
         if asn and not isinstance(asn, int):
             raise TypeError("Expected argument 'asn' to be a int")
         pulumi.set(__self__, "asn", asn)
@@ -64,6 +64,9 @@ class GetGatewayResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -169,6 +172,11 @@ class GetGatewayResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         The status of the VPN gateway.
@@ -223,6 +231,7 @@ class AwaitableGetGatewayResult(GetGatewayResult):
             project_id=self.project_id,
             public_configs=self.public_configs,
             region=self.region,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             updated_at=self.updated_at,
@@ -285,6 +294,7 @@ def get_gateway(name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         public_configs=pulumi.get(__ret__, 'public_configs'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -344,6 +354,7 @@ def get_gateway_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         project_id=pulumi.get(__response__, 'project_id'),
         public_configs=pulumi.get(__response__, 'public_configs'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),

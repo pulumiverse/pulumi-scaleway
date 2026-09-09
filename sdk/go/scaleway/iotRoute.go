@@ -55,7 +55,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("default"),
-//				HubId: mainHub.ID(),
+//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
 //				Topic: pulumi.String("#"),
 //				Database: &iot.RouteDatabaseArgs{
 //					Query: pulumi.String(`INSERT INTO measurements(
@@ -121,7 +121,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainHub.ID(),
+//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
 //				Topic: pulumi.String("#"),
 //				S3: &iot.RouteS3Args{
 //					BucketRegion: mainBucket.Region,
@@ -162,7 +162,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainHub.ID(),
+//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
 //				Topic: pulumi.String("#"),
 //				Rest: &iot.RouteRestArgs{
 //					Verb: pulumi.String("get"),
@@ -201,8 +201,8 @@ type IotRoute struct {
 	HubId pulumi.StringOutput `pulumi:"hubId"`
 	// The name of the IoT Route you want to create (e.g. `my-route`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// (Defaults to provider `region`) The region in which the Route is attached to.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrOutput `pulumi:"rest"`
 	// Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
@@ -255,7 +255,7 @@ type iotRouteState struct {
 	HubId *string `pulumi:"hubId"`
 	// The name of the IoT Route you want to create (e.g. `my-route`).
 	Name *string `pulumi:"name"`
-	// (Defaults to provider `region`) The region in which the Route is attached to.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
 	Region *string `pulumi:"region"`
 	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest *IotRouteRest `pulumi:"rest"`
@@ -274,7 +274,7 @@ type IotRouteState struct {
 	HubId pulumi.StringPtrInput
 	// The name of the IoT Route you want to create (e.g. `my-route`).
 	Name pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in which the Route is attached to.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
 	Region pulumi.StringPtrInput
 	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrInput
@@ -295,7 +295,7 @@ type iotRouteArgs struct {
 	HubId string `pulumi:"hubId"`
 	// The name of the IoT Route you want to create (e.g. `my-route`).
 	Name *string `pulumi:"name"`
-	// (Defaults to provider `region`) The region in which the Route is attached to.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
 	Region *string `pulumi:"region"`
 	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest *IotRouteRest `pulumi:"rest"`
@@ -313,7 +313,7 @@ type IotRouteArgs struct {
 	HubId pulumi.StringInput
 	// The name of the IoT Route you want to create (e.g. `my-route`).
 	Name pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in which the Route is attached to.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
 	Region pulumi.StringPtrInput
 	// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
 	Rest IotRouteRestPtrInput
@@ -430,9 +430,9 @@ func (o IotRouteOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotRoute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in which the Route is attached to.
-func (o IotRouteOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IotRoute) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
+func (o IotRouteOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotRoute) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.

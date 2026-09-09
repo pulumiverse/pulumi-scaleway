@@ -46,8 +46,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID(),
-//				TargetVpcId: vpc02.ID(),
+//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -86,8 +86,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID(),
-//				TargetVpcId: vpc02.ID(),
+//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
 //				Region:      pulumi.String("nl-ams"),
 //			})
 //			if err != nil {
@@ -125,8 +125,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID(),
-//				TargetVpcId: vpc02.ID(),
+//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("production"),
 //					pulumi.String("connector"),
@@ -160,7 +160,7 @@ type Connector struct {
 	// The Scaleway Project the VPC connector belongs to.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC connector.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the VPC connector.
 	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the VPC connector.
@@ -399,8 +399,8 @@ func (o ConnectorOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the VPC connector.
-func (o ConnectorOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Connector) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ConnectorOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Connector) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the VPC connector.

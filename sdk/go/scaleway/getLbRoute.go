@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			lb01, err := loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			bkd01, err := loadbalancers.NewBackend(ctx, "bkd01", &loadbalancers.BackendArgs{
-//				LbId:            lb01.ID(),
+//				LbId:            lb01.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -51,23 +51,23 @@ import (
 //				return err
 //			}
 //			frt01, err := loadbalancers.NewFrontend(ctx, "frt01", &loadbalancers.FrontendArgs{
-//				LbId:        lb01.ID(),
-//				BackendId:   bkd01.ID(),
+//				LbId:        lb01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:   bkd01.ID().ToIDOutput().ToStringOutput(),
 //				InboundPort: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			rt01, err := loadbalancers.NewRoute(ctx, "rt01", &loadbalancers.RouteArgs{
-//				FrontendId: frt01.ID(),
-//				BackendId:  bkd01.ID(),
+//				FrontendId: frt01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:  bkd01.ID().ToIDOutput().ToStringOutput(),
 //				MatchSni:   pulumi.String("sni.scaleway.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = loadbalancers.LookupRouteOutput(ctx, loadbalancers.GetRouteOutputArgs{
-//				RouteId: rt01.ID(),
+//				RouteId: rt01.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -108,12 +108,8 @@ type GetLbRouteResult struct {
 }
 
 func GetLbRouteOutput(ctx *pulumi.Context, args GetLbRouteOutputArgs, opts ...pulumi.InvokeOption) GetLbRouteResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbRouteResultOutput, error) {
-			args := v.(GetLbRouteArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbRoute:getLbRoute", args, GetLbRouteResultOutput{}, options).(GetLbRouteResultOutput), nil
-		}).(GetLbRouteResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbRoute:getLbRoute", args, GetLbRouteResultOutput{}, options).(GetLbRouteResultOutput)
 }
 
 // A collection of arguments for invoking getLbRoute.

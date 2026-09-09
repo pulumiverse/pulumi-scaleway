@@ -52,6 +52,8 @@ type Saml struct {
 	ServiceProvider SamlServiceProviderOutput `pulumi:"serviceProvider"`
 	// (Computed) The single sign-on URL of the SAML Identity Provider.
 	SingleSignOnUrl pulumi.StringOutput `pulumi:"singleSignOnUrl"`
+	// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// (Computed) The status of the SAML configuration.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -94,6 +96,8 @@ type samlState struct {
 	ServiceProvider *SamlServiceProvider `pulumi:"serviceProvider"`
 	// (Computed) The single sign-on URL of the SAML Identity Provider.
 	SingleSignOnUrl *string `pulumi:"singleSignOnUrl"`
+	// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+	Srn *string `pulumi:"srn"`
 	// (Computed) The status of the SAML configuration.
 	Status *string `pulumi:"status"`
 }
@@ -107,6 +111,8 @@ type SamlState struct {
 	ServiceProvider SamlServiceProviderPtrInput
 	// (Computed) The single sign-on URL of the SAML Identity Provider.
 	SingleSignOnUrl pulumi.StringPtrInput
+	// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+	Srn pulumi.StringPtrInput
 	// (Computed) The status of the SAML configuration.
 	Status pulumi.StringPtrInput
 }
@@ -231,6 +237,11 @@ func (o SamlOutput) ServiceProvider() SamlServiceProviderOutput {
 // (Computed) The single sign-on URL of the SAML Identity Provider.
 func (o SamlOutput) SingleSignOnUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Saml) pulumi.StringOutput { return v.SingleSignOnUrl }).(pulumi.StringOutput)
+}
+
+// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+func (o SamlOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Saml) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // (Computed) The status of the SAML configuration.

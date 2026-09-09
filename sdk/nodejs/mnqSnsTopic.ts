@@ -107,7 +107,7 @@ export class MnqSnsTopic extends pulumi.CustomResource {
      * `region`). The region
      * in which SNS is enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The secret key of the SNS credentials.
      */

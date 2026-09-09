@@ -41,14 +41,14 @@ import (
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          pn.ID(),
+//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
+//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -90,7 +90,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				PrivateNetworkId:          pn.ID(),
+//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &kubernetes.ClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -106,7 +106,7 @@ import (
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId:   cluster.ID(),
+//				ClusterId:   cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:     cluster.Version,
 //				Name:        pulumi.String("tf-pool"),
 //				NodeType:    pulumi.String("DEV1-M"),
@@ -132,7 +132,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-kubernetes/sdk/go/kubernetes/helm.sh/v3"
+//	helmv3 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/helm/v3"
 //	"github.com/pulumi/pulumi-null/sdk/go/null"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
@@ -152,13 +152,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
-//				PrivateNetworkId:          pn.ID(),
+//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
+//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -169,15 +169,15 @@ import (
 //			}
 //			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
 //				Triggers: pulumi.StringMap{
-//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Host, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Token, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].ClusterCaCertificate, nil
-//					}).(pulumi.StringPtrOutput)),
+//					"host": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].Host, nil
+//					}).(pulumi.StringPtrOutput),
+//					"token": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].Token, nil
+//					}).(pulumi.StringPtrOutput),
+//					"clusterCaCertificate": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].ClusterCaCertificate, nil
+//					}).(pulumi.StringPtrOutput),
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				pool,
@@ -192,19 +192,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = helm.sh / v3.NewRelease(ctx, "nginx_ingress", &helm.sh/v3.ReleaseArgs{
-//				Name:      "nginx-ingress",
-//				Namespace: "kube-system",
-//				RepositoryOpts: map[string]interface{}{
-//					"repo": "https://kubernetes.github.io/ingress-nginx",
+//			_, err = helmv3.NewRelease(ctx, "nginx_ingress", &helmv3.ReleaseArgs{
+//				Name:      pulumi.String("nginx-ingress"),
+//				Namespace: pulumi.String("kube-system"),
+//				RepositoryOpts: &helmv3.RepositoryOptsArgs{
+//					Repo: pulumi.String("https://kubernetes.github.io/ingress-nginx"),
 //				},
-//				Chart: "ingress-nginx",
-//				Values: map[string]interface{}{
+//				Chart: pulumi.String("ingress-nginx"),
+//				Values: pulumi.Map{
 //					"controller.service.loadBalancerIP":    nginxIp.IpAddress,
-//					"controller.config.use-proxy-protocol": "true",
-//					"controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
+//					"controller.config.use-proxy-protocol": pulumi.Any("true"),
+//					"controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2": pulumi.Any("true"),
 //					"controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone":              nginxIp.Zone,
-//					"controller.service.externalTrafficPolicy":                                                           "Local",
+//					"controller.service.externalTrafficPolicy":                                                           pulumi.Any("Local"),
 //				},
 //			})
 //			if err != nil {
@@ -240,14 +240,14 @@ import (
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          pn.ID(),
+//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
+//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -260,15 +260,15 @@ import (
 //			// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
 //			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
 //				Triggers: pulumi.StringMap{
-//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Host, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Token, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].ClusterCaCertificate, nil
-//					}).(pulumi.StringPtrOutput)),
+//					"host": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].Host, nil
+//					}).(pulumi.StringPtrOutput),
+//					"token": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].Token, nil
+//					}).(pulumi.StringPtrOutput),
+//					"clusterCaCertificate": cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return kubeconfigs[0].ClusterCaCertificate, nil
+//					}).(pulumi.StringPtrOutput),
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				pool,
@@ -308,7 +308,7 @@ import (
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
+//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("external"),
@@ -459,7 +459,7 @@ type Cluster struct {
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The subnet used for the Service CIDR.
 	//
 	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
@@ -1048,8 +1048,8 @@ func (o ClusterOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the cluster should be created.
-func (o ClusterOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ClusterOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The subnet used for the Service CIDR.

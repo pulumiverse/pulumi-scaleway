@@ -105,7 +105,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
     /**
      * `region`). The region in which the namespace is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The configuration of the Scaleway SQS queue used by the trigger
      */

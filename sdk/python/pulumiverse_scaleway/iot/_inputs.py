@@ -81,11 +81,11 @@ class DeviceCertificateArgs:
 
 
 class DeviceMessageFiltersArgsDict(TypedDict):
-    publish: NotRequired[pulumi.Input[Optional['DeviceMessageFiltersPublishArgs']]]
+    publish: NotRequired[pulumi.Input[Optional['DeviceMessageFiltersPublishArgsDict']]]
     """
     Rules used to restrict topics the device can publish to.
     """
-    subscribe: NotRequired[pulumi.Input[Optional['DeviceMessageFiltersSubscribeArgs']]]
+    subscribe: NotRequired[pulumi.Input[Optional['DeviceMessageFiltersSubscribeArgsDict']]]
     """
     Rules used to restrict topics the device can subscribe to.
     """

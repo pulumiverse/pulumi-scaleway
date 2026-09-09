@@ -61,12 +61,8 @@ type LookupLoadbalancerIpResult struct {
 }
 
 func LookupLoadbalancerIpOutput(ctx *pulumi.Context, args LookupLoadbalancerIpOutputArgs, opts ...pulumi.InvokeOption) LookupLoadbalancerIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLoadbalancerIpResultOutput, error) {
-			args := v.(LookupLoadbalancerIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, LookupLoadbalancerIpResultOutput{}, options).(LookupLoadbalancerIpResultOutput), nil
-		}).(LookupLoadbalancerIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", args, LookupLoadbalancerIpResultOutput{}, options).(LookupLoadbalancerIpResultOutput)
 }
 
 // A collection of arguments for invoking getLoadbalancerIp.

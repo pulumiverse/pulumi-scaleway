@@ -114,7 +114,7 @@ export interface GetPreconfiguredAlertResult {
      */
     readonly id: string;
     readonly projectId: string;
-    readonly region?: string;
+    readonly region: string;
     /**
      * Status of the alert rule (`enabled`, `disabled`, `enabling`, `disabling`).
      */

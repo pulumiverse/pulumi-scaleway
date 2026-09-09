@@ -242,7 +242,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// The ID of the project the dedicated connection belongs to.
         /// </summary>
         public readonly string ProjectId;
-        public readonly string? Region;
+        public readonly string Region;
         /// <summary>
         /// Status of the dedicated connection.
         /// </summary>
@@ -282,7 +282,7 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string projectId,
 
-            string? region,
+            string region,
 
             string status,
 

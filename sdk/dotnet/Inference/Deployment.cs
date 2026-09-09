@@ -16,8 +16,6 @@ namespace Pulumiverse.Scaleway.Inference
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,7 +33,7 @@ namespace Pulumiverse.Scaleway.Inference
     ///     {
     ///         Name = "tf-inference-deployment",
     ///         NodeType = "L4",
-    ///         ModelName = myModel.Apply(getModelResult =&gt; getModelResult.Id),
+    ///         ModelId = myModel.Apply(getModelResult =&gt; getModelResult.Id),
     ///         PublicEndpoint = new Scaleway.Inference.Inputs.DeploymentPublicEndpointArgs
     ///         {
     ///             IsEnabled = true,
@@ -139,7 +137,7 @@ namespace Pulumiverse.Scaleway.Inference
         /// `Region`) The region in which the deployment is created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the pool.

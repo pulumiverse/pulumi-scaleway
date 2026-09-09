@@ -89,6 +89,7 @@ type LookupPolicyResult struct {
 	PolicyId       *string `pulumi:"policyId"`
 	// List of rules in the policy.
 	Rules []GetPolicyRule `pulumi:"rules"`
+	Srn   string          `pulumi:"srn"`
 	// The tags associated with the IAM policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the policy.
@@ -98,12 +99,8 @@ type LookupPolicyResult struct {
 }
 
 func LookupPolicyOutput(ctx *pulumi.Context, args LookupPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPolicyResultOutput, error) {
-			args := v.(LookupPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getPolicy:getPolicy", args, LookupPolicyResultOutput{}, options).(LookupPolicyResultOutput), nil
-		}).(LookupPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getPolicy:getPolicy", args, LookupPolicyResultOutput{}, options).(LookupPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getPolicy.
@@ -186,6 +183,10 @@ func (o LookupPolicyResultOutput) PolicyId() pulumi.StringPtrOutput {
 // List of rules in the policy.
 func (o LookupPolicyResultOutput) Rules() GetPolicyRuleArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyRule { return v.Rules }).(GetPolicyRuleArrayOutput)
+}
+
+func (o LookupPolicyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the IAM policy.

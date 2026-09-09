@@ -81,12 +81,8 @@ type LookupDatabasePrivilegeResult struct {
 }
 
 func LookupDatabasePrivilegeOutput(ctx *pulumi.Context, args LookupDatabasePrivilegeOutputArgs, opts ...pulumi.InvokeOption) LookupDatabasePrivilegeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatabasePrivilegeResultOutput, error) {
-			args := v.(LookupDatabasePrivilegeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, LookupDatabasePrivilegeResultOutput{}, options).(LookupDatabasePrivilegeResultOutput), nil
-		}).(LookupDatabasePrivilegeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", args, LookupDatabasePrivilegeResultOutput{}, options).(LookupDatabasePrivilegeResultOutput)
 }
 
 // A collection of arguments for invoking getDatabasePrivilege.

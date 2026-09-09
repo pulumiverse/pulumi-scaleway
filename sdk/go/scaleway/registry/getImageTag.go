@@ -47,9 +47,9 @@ type GetImageTagResult struct {
 	ImageId string  `pulumi:"imageId"`
 	Name    *string `pulumi:"name"`
 	// The organization ID the image tag is associated with.
-	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
-	Region         *string `pulumi:"region"`
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
 	// The status of the registry image tag.
 	Status string  `pulumi:"status"`
 	TagId  *string `pulumi:"tagId"`
@@ -58,12 +58,8 @@ type GetImageTagResult struct {
 }
 
 func GetImageTagOutput(ctx *pulumi.Context, args GetImageTagOutputArgs, opts ...pulumi.InvokeOption) GetImageTagResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetImageTagResultOutput, error) {
-			args := v.(GetImageTagArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:registry/getImageTag:getImageTag", args, GetImageTagResultOutput{}, options).(GetImageTagResultOutput), nil
-		}).(GetImageTagResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:registry/getImageTag:getImageTag", args, GetImageTagResultOutput{}, options).(GetImageTagResultOutput)
 }
 
 // A collection of arguments for invoking getImageTag.
@@ -131,8 +127,8 @@ func (o GetImageTagResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageTagResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetImageTagResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageTagResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetImageTagResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageTagResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The status of the registry image tag.

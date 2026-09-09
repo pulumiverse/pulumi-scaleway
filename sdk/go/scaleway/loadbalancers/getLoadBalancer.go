@@ -66,7 +66,7 @@ type LookupLoadBalancerArgs struct {
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	ReleaseIp *bool   `pulumi:"releaseIp"`
-	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+	// (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -96,17 +96,13 @@ type LookupLoadBalancerResult struct {
 	Tags []string `pulumi:"tags"`
 	// The Load Balancer type.
 	Type string `pulumi:"type"`
-	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+	// (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone *string `pulumi:"zone"`
 }
 
 func LookupLoadBalancerOutput(ctx *pulumi.Context, args LookupLoadBalancerOutputArgs, opts ...pulumi.InvokeOption) LookupLoadBalancerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLoadBalancerResultOutput, error) {
-			args := v.(LookupLoadBalancerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getLoadBalancer:getLoadBalancer", args, LookupLoadBalancerResultOutput{}, options).(LookupLoadBalancerResultOutput), nil
-		}).(LookupLoadBalancerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getLoadBalancer:getLoadBalancer", args, LookupLoadBalancerResultOutput{}, options).(LookupLoadBalancerResultOutput)
 }
 
 // A collection of arguments for invoking getLoadBalancer.
@@ -117,7 +113,7 @@ type LookupLoadBalancerOutputArgs struct {
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	ReleaseIp pulumi.BoolPtrInput   `pulumi:"releaseIp"`
-	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+	// (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -224,7 +220,7 @@ func (o LookupLoadBalancerResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadBalancerResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+// (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
 func (o LookupLoadBalancerResultOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLoadBalancerResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }

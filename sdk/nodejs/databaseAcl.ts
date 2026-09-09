@@ -137,7 +137,7 @@ export class DatabaseAcl extends pulumi.CustomResource {
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a DatabaseAcl resource with the given unique name, arguments, and options.

@@ -98,8 +98,6 @@ type GetDatalabsArgs struct {
 type GetDatalabsResult struct {
 	// The list of Datalab instances.
 	Datalabs []GetDatalabsDatalab `pulumi:"datalabs"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The name of the Datalab instance.
 	Name           *string `pulumi:"name"`
 	OrganizationId *string `pulumi:"organizationId"`
@@ -112,12 +110,8 @@ type GetDatalabsResult struct {
 }
 
 func GetDatalabsOutput(ctx *pulumi.Context, args GetDatalabsOutputArgs, opts ...pulumi.InvokeOption) GetDatalabsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDatalabsResultOutput, error) {
-			args := v.(GetDatalabsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:datalab/getDatalabs:getDatalabs", args, GetDatalabsResultOutput{}, options).(GetDatalabsResultOutput), nil
-		}).(GetDatalabsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:datalab/getDatalabs:getDatalabs", args, GetDatalabsResultOutput{}, options).(GetDatalabsResultOutput)
 }
 
 // A collection of arguments for invoking getDatalabs.
@@ -156,11 +150,6 @@ func (o GetDatalabsResultOutput) ToGetDatalabsResultOutputWithContext(ctx contex
 // The list of Datalab instances.
 func (o GetDatalabsResultOutput) Datalabs() GetDatalabsDatalabArrayOutput {
 	return o.ApplyT(func(v GetDatalabsResult) []GetDatalabsDatalab { return v.Datalabs }).(GetDatalabsDatalabArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetDatalabsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatalabsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the Datalab instance.

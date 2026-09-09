@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
-//				UserId:      main.ID(),
+//				UserId:      main.ID().ToIDOutput().ToStringOutput(),
 //				Description: pulumi.String("a description"),
 //			})
 //			if err != nil {
@@ -148,6 +148,8 @@ type IamApiKey struct {
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
 	// The secret Key of the IAM API key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	// The Scaleway Resource Name (SRN) of the API key.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The date and time of the last update of the IAM API key.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// ID of the user attached to the API key.
@@ -208,6 +210,8 @@ type iamApiKeyState struct {
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The secret Key of the IAM API key.
 	SecretKey *string `pulumi:"secretKey"`
+	// The Scaleway Resource Name (SRN) of the API key.
+	Srn *string `pulumi:"srn"`
 	// The date and time of the last update of the IAM API key.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// ID of the user attached to the API key.
@@ -235,6 +239,8 @@ type IamApiKeyState struct {
 	ExpiresAt pulumi.StringPtrInput
 	// The secret Key of the IAM API key.
 	SecretKey pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the API key.
+	Srn pulumi.StringPtrInput
 	// The date and time of the last update of the IAM API key.
 	UpdatedAt pulumi.StringPtrInput
 	// ID of the user attached to the API key.
@@ -408,6 +414,11 @@ func (o IamApiKeyOutput) ExpiresAt() pulumi.StringPtrOutput {
 // The secret Key of the IAM API key.
 func (o IamApiKeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the API key.
+func (o IamApiKeyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The date and time of the last update of the IAM API key.

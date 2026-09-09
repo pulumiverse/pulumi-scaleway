@@ -204,8 +204,8 @@ class ContainerDomain(pulumi.CustomResource):
             name="subdomain",
             type="CNAME",
             data=std.format(input="%s.",
-                args=[std.trimprefix(input=app.public_endpoint,
-                    prefix="https://")["result"]])["result"],
+                args=[std.trimprefix_output(input=app.public_endpoint,
+                    prefix="https://").result]).result,
             ttl=3600)
         app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
@@ -278,8 +278,8 @@ class ContainerDomain(pulumi.CustomResource):
             name="subdomain",
             type="CNAME",
             data=std.format(input="%s.",
-                args=[std.trimprefix(input=app.public_endpoint,
-                    prefix="https://")["result"]])["result"],
+                args=[std.trimprefix_output(input=app.public_endpoint,
+                    prefix="https://").result]).result,
             ttl=3600)
         app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
@@ -389,7 +389,7 @@ class ContainerDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the container exists.
         """

@@ -45,7 +45,7 @@ import (
 //					pulumi.String("tag1"),
 //					pulumi.String("tag2"),
 //				},
-//				NamespaceId:      main.ID(),
+//				NamespaceId:      main.ID().ToIDOutput().ToStringOutput(),
 //				Image:            pulumi.String("nginx:latest"),
 //				Port:             pulumi.Int(80),
 //				CpuLimit:         pulumi.Int(1024),
@@ -99,7 +99,7 @@ import (
 //				return err
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				VpcId: vpc.ID(),
+//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -109,10 +109,10 @@ import (
 //				return err
 //			}
 //			_, err = containers.NewContainer(ctx, "with_pn", &containers.ContainerArgs{
-//				NamespaceId:      withPn.ID(),
+//				NamespaceId:      withPn.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("container-with-private-network"),
 //				Image:            pulumi.String("my-image:latest"),
-//				PrivateNetworkId: pn.ID(),
+//				PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -156,16 +156,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeTimestamp, err := std.Timestamp(ctx, map[string]interface{}{}, nil)
+//			invokeTimestamp, err := std.Timestamp(ctx, &std.TimestampArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:           pulumi.String("my-container"),
-//				NamespaceId:    mainNamespace.ID(),
+//				NamespaceId:    mainNamespace.ID().ToIDOutput().ToStringOutput(),
 //				Image:          pulumi.Sprintf("%v/%v:%v", main.Endpoint, mainGetImage.Name, mainGetImage.Tags[0]),
 //				Port:           pulumi.Int(80),
-//				RegistrySha256: invokeTimestamp.Result,
+//				RegistrySha256: pulumi.String(invokeTimestamp.Result),
 //			})
 //			if err != nil {
 //				return err
@@ -205,15 +205,13 @@ import (
 //				return err
 //			}
 //			nginx := registry.GetImageOutput(ctx, registry.GetImageOutputArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("nginx"),
 //			}, nil)
-//			nginxLatest := nginx.ApplyT(func(nginx registry.GetImageResult) (registry.GetImageTagResult, error) {
-//				return registry.GetImageTagResult(interface{}(registry.GetImageTag(ctx, &registry.GetImageTagArgs{
-//					ImageId: nginx.Id,
-//					Name:    pulumi.StringRef(pulumi.StringRef("latest")),
-//				}, nil))), nil
-//			}).(registry.GetImageTagResultOutput)
+//			nginxLatest := registry.GetImageTagOutput(ctx, registry.GetImageTagOutputArgs{
+//				ImageId: nginx.Id(),
+//				Name:    pulumi.String("latest"),
+//			}, nil)
 //			mainNamespace, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
 //				Name: pulumi.String("my-container-namespace"),
 //			})
@@ -222,16 +220,14 @@ import (
 //			}
 //			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("nginx-latest"),
-//				NamespaceId: mainNamespace.ID(),
+//				NamespaceId: mainNamespace.ID().ToIDOutput().ToStringOutput(),
 //				Image: pulumi.All(nginx, nginxLatest).ApplyT(func(_args []interface{}) (string, error) {
 //					nginx := _args[0].(registry.GetImageResult)
 //					nginxLatest := _args[1].(registry.GetImageTagResult)
 //					return fmt.Sprintf("%v/%v:%v", mainScalewayRegistryNamespace.Endpoint, nginx.Name, nginxLatest.Name), nil
 //				}).(pulumi.StringOutput),
-//				Port: pulumi.Int(80),
-//				RegistrySha256: pulumi.String(nginxLatest.ApplyT(func(nginxLatest registry.GetImageTagResult) (*string, error) {
-//					return &nginxLatest.Digest, nil
-//				}).(pulumi.StringPtrOutput)),
+//				Port:           pulumi.Int(80),
+//				RegistrySha256: nginxLatest.Digest(),
 //			})
 //			if err != nil {
 //				return err
@@ -273,7 +269,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewPolicy(ctx, "access_private_containers", &iam.PolicyArgs{
-//				ApplicationId: containerAuth.ID(),
+//				ApplicationId: containerAuth.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -289,7 +285,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: containerAuth.ID(),
+//				ApplicationId: containerAuth.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -302,7 +298,7 @@ import (
 //				return err
 //			}
 //			privateContainer, err := containers.NewContainer(ctx, "private", &containers.ContainerArgs{
-//				NamespaceId: private.ID(),
+//				NamespaceId: private.ID().ToIDOutput().ToStringOutput(),
 //				Image:       pulumi.String("rg.fr-par.scw.cloud/my-registry-ns/my-image:latest"),
 //				Privacy:     pulumi.String("private"),
 //			})
@@ -536,8 +532,8 @@ type Container struct {
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint pulumi.StringOutput `pulumi:"publicEndpoint"`
-	// (Defaults to provider `region`) The region in which the container was created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	//
 	// - > **Important:** Exactly one of `image` or `registryImage` must be set.
@@ -682,7 +678,7 @@ type containerState struct {
 	Protocol *string `pulumi:"protocol"`
 	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint *string `pulumi:"publicEndpoint"`
-	// (Defaults to provider `region`) The region in which the container was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	//
@@ -789,7 +785,7 @@ type ContainerState struct {
 	Protocol pulumi.StringPtrInput
 	// The scheme and domain of the container (e.g., `https://example.com`).
 	PublicEndpoint pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in which the container was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	//
@@ -888,7 +884,7 @@ type containerArgs struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol *string `pulumi:"protocol"`
-	// (Defaults to provider `region`) The region in which the container was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
 	Region *string `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	//
@@ -982,7 +978,7 @@ type ContainerArgs struct {
 	PrivateNetworkId pulumi.StringPtrInput
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in which the container was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
 	Region pulumi.StringPtrInput
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	//
@@ -1254,9 +1250,9 @@ func (o ContainerOutput) PublicEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.PublicEndpoint }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in which the container was created.
-func (o ContainerOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
+func (o ContainerOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)

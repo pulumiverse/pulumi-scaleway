@@ -50,7 +50,7 @@ class AclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgs']]]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AclActionRedirectArgsDict']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """
@@ -713,7 +713,7 @@ class FrontendAclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgs']]]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FrontendAclActionRedirectArgsDict']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """

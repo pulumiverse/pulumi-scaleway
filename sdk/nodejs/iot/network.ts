@@ -87,9 +87,9 @@ export class Network extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region in which the Network is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The endpoint key to keep secret.
      */
@@ -171,7 +171,7 @@ export interface NetworkState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the Network is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -201,7 +201,7 @@ export interface NetworkArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the Network is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
      */
     region?: pulumi.Input<string | undefined>;
     /**

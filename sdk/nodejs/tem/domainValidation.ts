@@ -62,7 +62,7 @@ export class DomainValidation extends pulumi.CustomResource {
     /**
      * `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
      */

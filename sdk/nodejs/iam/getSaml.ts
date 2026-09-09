@@ -66,6 +66,10 @@ export interface GetSamlResult {
      */
     readonly singleSignOnUrl: string;
     /**
+     * The Scaleway Resource Name (SRN) of the SAML configuration
+     */
+    readonly srn: string;
+    /**
      * The status of the SAML configuration
      */
     readonly status: string;

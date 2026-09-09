@@ -26,7 +26,7 @@ class GetApplicationResult:
     """
     A collection of values returned by getApplication.
     """
-    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, id=None, name=None, organization_id=None, tags=None, updated_at=None):
+    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, id=None, name=None, organization_id=None, srn=None, tags=None, updated_at=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
@@ -48,6 +48,9 @@ class GetApplicationResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -95,6 +98,11 @@ class GetApplicationResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -117,6 +125,7 @@ class AwaitableGetApplicationResult(GetApplicationResult):
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at)
 
@@ -163,6 +172,7 @@ def get_application(application_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_application_output(application_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -206,5 +216,6 @@ def get_application_output(application_id: pulumi.Input[Optional[Optional[_built
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at')))

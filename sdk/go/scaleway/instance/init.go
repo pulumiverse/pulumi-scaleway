@@ -39,6 +39,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Server{}
 	case "scaleway:instance/snapshot:Snapshot":
 		r = &Snapshot{}
+	case "scaleway:instance/template:Template":
+		r = &Template{}
 	case "scaleway:instance/userData:UserData":
 		r = &UserData{}
 	case "scaleway:instance/volume:Volume":
@@ -99,6 +101,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"instance/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"instance/template",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

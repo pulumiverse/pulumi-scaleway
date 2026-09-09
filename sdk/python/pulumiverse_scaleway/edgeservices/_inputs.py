@@ -136,7 +136,7 @@ class BackendStageFunctionBackendConfigArgs:
 
 
 class BackendStageLbBackendConfigArgsDict(TypedDict):
-    lb_config: NotRequired[pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgs']]]
+    lb_config: NotRequired[pulumi.Input[Optional['BackendStageLbBackendConfigLbConfigArgsDict']]]
     """
     The Load Balancer config.
     """
@@ -436,7 +436,7 @@ class RouteStageRuleArgsDict(TypedDict):
     """
     The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
     """
-    rule_http_match: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgs']]]
+    rule_http_match: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchArgsDict']]]
     """
     The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
     """
@@ -501,7 +501,7 @@ class RouteStageRuleArgs:
 
 
 class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
-    host_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgs']]]
+    host_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchHostFilterArgsDict']]]
     """
     Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
     """
@@ -509,7 +509,7 @@ class RouteStageRuleRuleHttpMatchArgsDict(TypedDict):
     """
     HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
     """
-    path_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgs']]]
+    path_filter: NotRequired[pulumi.Input[Optional['RouteStageRuleRuleHttpMatchPathFilterArgsDict']]]
     """
     HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
     """

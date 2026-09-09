@@ -28,7 +28,7 @@ class GetIpResult:
     """
     A collection of values returned by getIp.
     """
-    def __init__(__self__, address=None, address_cidr=None, attached=None, id=None, ipam_ip_id=None, mac_address=None, organization_id=None, private_network_id=None, project_id=None, region=None, resource=None, tags=None, type=None, zonal=None):
+    def __init__(__self__, address=None, address_cidr=None, attached=None, id=None, ipam_ip_id=None, mac_address=None, organization_id=None, private_network_id=None, project_id=None, region=None, resource=None, srn=None, tags=None, type=None, zonal=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -62,6 +62,9 @@ class GetIpResult:
         if resource and not isinstance(resource, dict):
             raise TypeError("Expected argument 'resource' to be a dict")
         pulumi.set(__self__, "resource", resource)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -128,13 +131,18 @@ class GetIpResult:
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
+    def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
 
     @_builtins.property
     @pulumi.getter
     def resource(self) -> Optional['outputs.GetIpResourceResult']:
         return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -148,7 +156,7 @@ class GetIpResult:
 
     @_builtins.property
     @pulumi.getter
-    def zonal(self) -> Optional[_builtins.str]:
+    def zonal(self) -> _builtins.str:
         return pulumi.get(self, "zonal")
 
 
@@ -169,6 +177,7 @@ class AwaitableGetIpResult(GetIpResult):
             project_id=self.project_id,
             region=self.region,
             resource=self.resource,
+            srn=self.srn,
             tags=self.tags,
             type=self.type,
             zonal=self.zonal)
@@ -293,6 +302,7 @@ def get_ip(attached: Optional[_builtins.bool] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         resource=pulumi.get(__ret__, 'resource'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zonal=pulumi.get(__ret__, 'zonal'))
@@ -414,6 +424,7 @@ def get_ip_output(attached: pulumi.Input[Optional[Optional[_builtins.bool]]] = N
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
         resource=pulumi.get(__response__, 'resource'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),
         zonal=pulumi.get(__response__, 'zonal')))

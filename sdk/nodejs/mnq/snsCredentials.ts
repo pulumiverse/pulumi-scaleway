@@ -86,7 +86,7 @@ export class SnsCredentials extends pulumi.CustomResource {
     /**
      * `region`). The region in which SNS is enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The secret value of the key.
      */

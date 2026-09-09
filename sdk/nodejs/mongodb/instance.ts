@@ -119,7 +119,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * `region`) The region in which the MongoDB® instance should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Map of settings to define for the instance.
      */

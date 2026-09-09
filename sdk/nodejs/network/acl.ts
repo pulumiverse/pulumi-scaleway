@@ -83,7 +83,7 @@ export class Acl extends pulumi.CustomResource {
     /**
      * `region`) The region of the ACL.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The list of Network ACL rules.
      */

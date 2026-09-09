@@ -97,6 +97,7 @@ class _VpcPublicGatewayIpState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  reverse: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -108,6 +109,7 @@ class _VpcPublicGatewayIpState:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the Public Gateway IP is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Public Gateway IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Public Gateway IP.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the Public Gateway IP.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Public Gateway IP should be created.
@@ -122,6 +124,8 @@ class _VpcPublicGatewayIpState:
             pulumi.set(__self__, "project_id", project_id)
         if reverse is not None:
             pulumi.set(__self__, "reverse", reverse)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -188,6 +192,18 @@ class _VpcPublicGatewayIpState:
     @reverse.setter
     def reverse(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reverse", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the IP.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -349,6 +365,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
             __props__.__dict__["address"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(VpcPublicGatewayIp, __self__).__init__(
             'scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp',
@@ -365,6 +382,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             reverse: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'VpcPublicGatewayIp':
@@ -380,6 +398,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the Public Gateway IP is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Public Gateway IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain name for the IP address
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Public Gateway IP.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the Public Gateway IP.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Public Gateway IP should be created.
@@ -393,6 +412,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reverse"] = reverse
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
@@ -440,6 +460,14 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the IP.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         The tags associated with the Public Gateway IP.
@@ -456,7 +484,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the Public Gateway IP should be created.
         """

@@ -146,6 +146,7 @@ class _GroupState:
                  external_membership: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -153,13 +154,14 @@ class _GroupState:
         Input properties used for looking up and filtering Group resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
-        :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group
+        :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group.
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
         :param pulumi.Input[_builtins.bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[_builtins.str] name: The name of the IAM group.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the group.
-        :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the group
+        :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] user_ids: The list of IDs of the users attached to the group.
         """
         if application_ids is not None:
@@ -174,6 +176,8 @@ class _GroupState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -197,7 +201,7 @@ class _GroupState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The date and time of the creation of the group
+        The date and time of the creation of the group.
         """
         return pulumi.get(self, "created_at")
 
@@ -255,6 +259,18 @@ class _GroupState:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the group.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the group.
@@ -269,7 +285,7 @@ class _GroupState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The date and time of the last update of the group
+        The date and time of the last update of the group.
         """
         return pulumi.get(self, "updated_at")
 
@@ -347,7 +363,7 @@ class Group(pulumi.CustomResource):
         users = std.toset(input=[
             "user1@mail.com",
             "user2@mail.com",
-        ])["result"]
+        ]).result
         users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         with_users = scaleway.iam.Group("with_users",
             name="iam_group_with_app",
@@ -423,7 +439,7 @@ class Group(pulumi.CustomResource):
         users = std.toset(input=[
             "user1@mail.com",
             "user2@mail.com",
-        ])["result"]
+        ]).result
         users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         with_users = scaleway.iam.Group("with_users",
             name="iam_group_with_app",
@@ -479,6 +495,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["user_ids"] = user_ids
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/iamGroup:IamGroup")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -498,6 +515,7 @@ class Group(pulumi.CustomResource):
             external_membership: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Group':
@@ -509,13 +527,14 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] application_ids: The list of IDs of the applications attached to the group.
-        :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group
+        :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the group.
         :param pulumi.Input[_builtins.str] description: The description of the IAM group.
         :param pulumi.Input[_builtins.bool] external_membership: Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
         :param pulumi.Input[_builtins.str] name: The name of the IAM group.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the group.
-        :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the group
+        :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] user_ids: The list of IDs of the users attached to the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -528,6 +547,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["external_membership"] = external_membership
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_ids"] = user_ids
@@ -545,7 +565,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The date and time of the creation of the group
+        The date and time of the creation of the group.
         """
         return pulumi.get(self, "created_at")
 
@@ -583,6 +603,14 @@ class Group(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the group.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         The tags associated with the group.
@@ -593,7 +621,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The date and time of the last update of the group
+        The date and time of the last update of the group.
         """
         return pulumi.get(self, "updated_at")
 

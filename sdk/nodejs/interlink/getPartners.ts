@@ -63,7 +63,7 @@ export interface GetPartnersResult {
      */
     readonly partners: outputs.interlink.GetPartnersPartner[];
     readonly popIds?: string[];
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets information about multiple Interlink Partners.

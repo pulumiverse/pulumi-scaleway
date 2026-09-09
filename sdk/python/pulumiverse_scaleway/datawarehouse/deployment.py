@@ -285,6 +285,7 @@ class _DeploymentState:
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
                  shard_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -310,6 +311,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
         :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the deployment.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "provisioning").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -344,6 +346,8 @@ class _DeploymentState:
             pulumi.set(__self__, "replica_count", replica_count)
         if shard_count is not None:
             pulumi.set(__self__, "shard_count", shard_count)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if started is not None:
             pulumi.set(__self__, "started", started)
         if status is not None:
@@ -525,6 +529,18 @@ class _DeploymentState:
     @shard_count.setter
     def shard_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "shard_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the deployment.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -850,6 +866,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["version"] = version
             __props__.__dict__["created_at"] = None
             __props__.__dict__["public_networks"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
@@ -878,6 +895,7 @@ class Deployment(pulumi.CustomResource):
             region: pulumi.Input[Optional[_builtins.str]] = None,
             replica_count: pulumi.Input[Optional[_builtins.int]] = None,
             shard_count: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             started: pulumi.Input[Optional[_builtins.bool]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -907,6 +925,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
         :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the deployment.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "provisioning").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -931,6 +950,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["replica_count"] = replica_count
         __props__.__dict__["shard_count"] = shard_count
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["started"] = started
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -1031,7 +1051,7 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the deployment should be created.
         """
@@ -1052,6 +1072,14 @@ class Deployment(pulumi.CustomResource):
         Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         """
         return pulumi.get(self, "shard_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the deployment.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

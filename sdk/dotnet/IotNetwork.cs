@@ -86,10 +86,10 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Network is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The endpoint key to keep secret.
@@ -173,7 +173,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Network is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -223,7 +223,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Network is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

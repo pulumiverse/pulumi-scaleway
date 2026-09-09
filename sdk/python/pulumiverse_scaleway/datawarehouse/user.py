@@ -110,7 +110,8 @@ class _UserState:
                  is_admin: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 region: pulumi.Input[Optional[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
 
@@ -119,6 +120,7 @@ class _UserState:
         :param pulumi.Input[_builtins.str] name: Name of the ClickHouse user.
         :param pulumi.Input[_builtins.str] password: Password for the ClickHouse user.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the user should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the user.
         """
         if deployment_id is not None:
             pulumi.set(__self__, "deployment_id", deployment_id)
@@ -130,6 +132,8 @@ class _UserState:
             pulumi.set(__self__, "password", password)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
@@ -190,6 +194,18 @@ class _UserState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the user.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
 
 @pulumi.type_token("scaleway:datawarehouse/user:User")
@@ -368,6 +384,7 @@ class User(pulumi.CustomResource):
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["region"] = region
+            __props__.__dict__["srn"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
@@ -384,7 +401,8 @@ class User(pulumi.CustomResource):
             is_admin: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
-            region: pulumi.Input[Optional[_builtins.str]] = None) -> 'User':
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -397,6 +415,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the ClickHouse user.
         :param pulumi.Input[_builtins.str] password: Password for the ClickHouse user.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the user should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -407,6 +426,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         return User(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -443,9 +463,17 @@ class User(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the user should be created.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the user.
+        """
+        return pulumi.get(self, "srn")
 

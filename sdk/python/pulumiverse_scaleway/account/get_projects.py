@@ -154,13 +154,13 @@ def get_projects(organization_id: Optional[_builtins.str] = None,
     import pulumiverse_scaleway as scaleway
 
     all = scaleway.account.get_projects()
-    main: list[Any] = []
+    main: list[scaleway.account.SshKey] = []
     def create_main(range_body):
-        for range in [{"value": i} for i in range(0, range_body)]:
-            main.append(scaleway.account.SshKey(f"main-{range['value']}",
+        for main_range in [{"value": i} for i in range(0, range_body)]:
+            main.append(scaleway.account.SshKey(f"main-{main_range['value']}",
                 name="main",
                 public_key=public_key,
-                project_id=all.projects[range["value"]].id))
+                project_id=all.projects[main_range["value"]].id))
 
     (len(all.projects)).apply(create_main)
     ```
@@ -214,13 +214,13 @@ def get_projects_output(organization_id: pulumi.Input[Optional[Optional[_builtin
     import pulumiverse_scaleway as scaleway
 
     all = scaleway.account.get_projects()
-    main: list[Any] = []
+    main: list[scaleway.account.SshKey] = []
     def create_main(range_body):
-        for range in [{"value": i} for i in range(0, range_body)]:
-            main.append(scaleway.account.SshKey(f"main-{range['value']}",
+        for main_range in [{"value": i} for i in range(0, range_body)]:
+            main.append(scaleway.account.SshKey(f"main-{main_range['value']}",
                 name="main",
                 public_key=public_key,
-                project_id=all.projects[range["value"]].id))
+                project_id=all.projects[main_range["value"]].id))
 
     (len(all.projects)).apply(create_main)
     ```

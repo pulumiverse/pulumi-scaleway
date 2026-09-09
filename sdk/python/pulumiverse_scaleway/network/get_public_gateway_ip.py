@@ -26,7 +26,7 @@ class GetPublicGatewayIpResult:
     """
     A collection of values returned by getPublicGatewayIp.
     """
-    def __init__(__self__, address=None, created_at=None, id=None, ip_id=None, organization_id=None, project_id=None, reverse=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, address=None, created_at=None, id=None, ip_id=None, organization_id=None, project_id=None, reverse=None, srn=None, tags=None, updated_at=None, zone=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -48,6 +48,9 @@ class GetPublicGatewayIpResult:
         if reverse and not isinstance(reverse, str):
             raise TypeError("Expected argument 'reverse' to be a str")
         pulumi.set(__self__, "reverse", reverse)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -98,6 +101,11 @@ class GetPublicGatewayIpResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -125,6 +133,7 @@ class AwaitableGetPublicGatewayIpResult(GetPublicGatewayIpResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             reverse=self.reverse,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at,
             zone=self.zone)
@@ -161,6 +170,7 @@ def get_public_gateway_ip(ip_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reverse=pulumi.get(__ret__, 'reverse'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
@@ -194,6 +204,7 @@ def get_public_gateway_ip_output(ip_id: pulumi.Input[Optional[Optional[_builtins
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         reverse=pulumi.get(__response__, 'reverse'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         zone=pulumi.get(__response__, 'zone')))

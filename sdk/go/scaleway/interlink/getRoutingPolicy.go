@@ -110,6 +110,7 @@ type LookupRoutingPolicyResult struct {
 	ProjectId        *string  `pulumi:"projectId"`
 	Region           *string  `pulumi:"region"`
 	RoutingPolicyId  *string  `pulumi:"routingPolicyId"`
+	Srn              string   `pulumi:"srn"`
 	// The tags associated with the routing policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the routing policy.
@@ -117,12 +118,8 @@ type LookupRoutingPolicyResult struct {
 }
 
 func LookupRoutingPolicyOutput(ctx *pulumi.Context, args LookupRoutingPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupRoutingPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRoutingPolicyResultOutput, error) {
-			args := v.(LookupRoutingPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getRoutingPolicy:getRoutingPolicy", args, LookupRoutingPolicyResultOutput{}, options).(LookupRoutingPolicyResultOutput), nil
-		}).(LookupRoutingPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getRoutingPolicy:getRoutingPolicy", args, LookupRoutingPolicyResultOutput{}, options).(LookupRoutingPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getRoutingPolicy.
@@ -202,6 +199,10 @@ func (o LookupRoutingPolicyResultOutput) Region() pulumi.StringPtrOutput {
 
 func (o LookupRoutingPolicyResultOutput) RoutingPolicyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRoutingPolicyResult) *string { return v.RoutingPolicyId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRoutingPolicyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoutingPolicyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the routing policy.

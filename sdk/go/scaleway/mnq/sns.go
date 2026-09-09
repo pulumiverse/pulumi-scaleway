@@ -66,7 +66,7 @@ import (
 //			}
 //			// For specific Project in default region
 //			_, err = mnq.NewSns(ctx, "for_project", &mnq.SnsArgs{
-//				ProjectId: pulumi.String(pulumi.String(project.Id)),
+//				ProjectId: pulumi.String(project.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -93,7 +93,7 @@ type Sns struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which SNS will be enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewSns registers a new resource with the given unique name, arguments, and options.
@@ -271,8 +271,8 @@ func (o SnsOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which SNS will be enabled.
-func (o SnsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sns) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SnsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sns) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type SnsArrayOutput struct{ *pulumi.OutputState }

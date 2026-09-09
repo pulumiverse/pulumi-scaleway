@@ -26,6 +26,7 @@ class InstancePrivateNicArgs:
                  ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -36,17 +37,23 @@ class InstancePrivateNicArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: IPAM ip list, should be for internal use only
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipam_ip_ids: IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
+        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         pulumi.set(__self__, "server_id", server_id)
         if ip_ids is not None:
+            warnings.warn("""Setting this attribute won't have any effect, please use ipam_ip_ids instead.""", DeprecationWarning)
+            pulumi.log.warn("""ip_ids is deprecated: Setting this attribute won't have any effect, please use ipam_ip_ids instead.""")
+        if ip_ids is not None:
             pulumi.set(__self__, "ip_ids", ip_ids)
         if ipam_ip_ids is not None:
             pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -78,6 +85,7 @@ class InstancePrivateNicArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
+    @_utilities.deprecated("""Setting this attribute won't have any effect, please use ipam_ip_ids instead.""")
     def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM ip list, should be for internal use only
@@ -113,6 +121,18 @@ class InstancePrivateNicArgs:
         pulumi.set(self, "private_ips", value)
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -145,6 +165,7 @@ class _InstancePrivateNicState:
                  mac_address: pulumi.Input[Optional[_builtins.str]] = None,
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -156,10 +177,14 @@ class _InstancePrivateNicState:
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the private NIC.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateNicPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
+        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
         """
+        if ip_ids is not None:
+            warnings.warn("""Setting this attribute won't have any effect, please use ipam_ip_ids instead.""", DeprecationWarning)
+            pulumi.log.warn("""ip_ids is deprecated: Setting this attribute won't have any effect, please use ipam_ip_ids instead.""")
         if ip_ids is not None:
             pulumi.set(__self__, "ip_ids", ip_ids)
         if ipam_ip_ids is not None:
@@ -170,6 +195,8 @@ class _InstancePrivateNicState:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
         if tags is not None:
@@ -179,6 +206,7 @@ class _InstancePrivateNicState:
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
+    @_utilities.deprecated("""Setting this attribute won't have any effect, please use ipam_ip_ids instead.""")
     def ip_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         IPAM ip list, should be for internal use only
@@ -238,6 +266,18 @@ class _InstancePrivateNicState:
         pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -289,6 +329,7 @@ class InstancePrivateNic(pulumi.CustomResource):
                  ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -371,6 +412,7 @@ class InstancePrivateNic(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipam_ip_ids: IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
+        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
@@ -472,6 +514,7 @@ class InstancePrivateNic(pulumi.CustomResource):
                  ipam_ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -491,6 +534,7 @@ class InstancePrivateNic(pulumi.CustomResource):
             if private_network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_network_id'")
             __props__.__dict__["private_network_id"] = private_network_id
+            __props__.__dict__["project_id"] = project_id
             if server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_id'")
             __props__.__dict__["server_id"] = server_id
@@ -512,6 +556,7 @@ class InstancePrivateNic(pulumi.CustomResource):
             mac_address: pulumi.Input[Optional[_builtins.str]] = None,
             private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
             server_id: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstancePrivateNic':
@@ -527,6 +572,7 @@ class InstancePrivateNic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the private NIC.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateNicPrivateIpArgs', 'InstancePrivateNicPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
+        :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
@@ -540,6 +586,7 @@ class InstancePrivateNic(pulumi.CustomResource):
         __props__.__dict__["mac_address"] = mac_address
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network_id"] = private_network_id
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["server_id"] = server_id
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
@@ -547,6 +594,7 @@ class InstancePrivateNic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="ipIds")
+    @_utilities.deprecated("""Setting this attribute won't have any effect, please use ipam_ip_ids instead.""")
     def ip_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         IPAM ip list, should be for internal use only
@@ -586,6 +634,14 @@ class InstancePrivateNic(pulumi.CustomResource):
         return pulumi.get(self, "private_network_id")
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The project_id you want to attach the resource to
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[_builtins.str]:
         """
@@ -603,7 +659,7 @@ class InstancePrivateNic(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the server must be created.
         """

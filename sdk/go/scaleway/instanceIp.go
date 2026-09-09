@@ -66,7 +66,7 @@ type InstanceIp struct {
 	// The type of the IP (`routedIpv4`, `routedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the IP should be reserved.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewInstanceIp registers a new resource with the given unique name, arguments, and options.
@@ -295,8 +295,8 @@ func (o InstanceIpOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the IP should be reserved.
-func (o InstanceIpOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *InstanceIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o InstanceIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type InstanceIpArrayOutput struct{ *pulumi.OutputState }

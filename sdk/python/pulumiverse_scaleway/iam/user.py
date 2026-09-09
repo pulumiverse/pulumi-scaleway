@@ -253,6 +253,7 @@ class _UserState:
                  phone_number: pulumi.Input[Optional[_builtins.str]] = None,
                  send_password_email: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_welcome_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -279,6 +280,7 @@ class _UserState:
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the user.
         :param pulumi.Input[_builtins.str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the user.
         :param pulumi.Input[_builtins.str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -319,6 +321,8 @@ class _UserState:
             pulumi.set(__self__, "send_password_email", send_password_email)
         if send_welcome_email is not None:
             pulumi.set(__self__, "send_welcome_email", send_welcome_email)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -537,6 +541,18 @@ class _UserState:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the user.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -654,11 +670,11 @@ class User(pulumi.CustomResource):
                 "username": "test2",
             },
         ]
-        users_user: list[Any] = []
-        for range in [{"value": i} for i in range(0, len(users))]:
-            users_user.append(scaleway.iam.User(f"users-{range['value']}",
-                email=users[range["value"]]["email"],
-                username=users[range["value"]]["username"]))
+        users_user: list[scaleway.iam.User] = []
+        for users_user_range in [{"value": i} for i in range(0, len(users))]:
+            users_user.append(scaleway.iam.User(f"users-{users_user_range['value']}",
+                email=users[users_user_range["value"]]["email"],
+                username=users[users_user_range["value"]]["username"]))
         ```
 
         ## Import
@@ -731,11 +747,11 @@ class User(pulumi.CustomResource):
                 "username": "test2",
             },
         ]
-        users_user: list[Any] = []
-        for range in [{"value": i} for i in range(0, len(users))]:
-            users_user.append(scaleway.iam.User(f"users-{range['value']}",
-                email=users[range["value"]]["email"],
-                username=users[range["value"]]["username"]))
+        users_user: list[scaleway.iam.User] = []
+        for users_user_range in [{"value": i} for i in range(0, len(users))]:
+            users_user.append(scaleway.iam.User(f"users-{users_user_range['value']}",
+                email=users[users_user_range["value"]]["email"],
+                username=users[users_user_range["value"]]["username"]))
         ```
 
         ## Import
@@ -807,6 +823,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["last_login_at"] = None
             __props__.__dict__["locked"] = None
             __props__.__dict__["mfa"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["updated_at"] = None
@@ -841,6 +858,7 @@ class User(pulumi.CustomResource):
             phone_number: pulumi.Input[Optional[_builtins.str]] = None,
             send_password_email: pulumi.Input[Optional[_builtins.bool]] = None,
             send_welcome_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -871,6 +889,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the user.
         :param pulumi.Input[_builtins.str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the user.
         :param pulumi.Input[_builtins.str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -898,6 +917,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["phone_number"] = phone_number
         __props__.__dict__["send_password_email"] = send_password_email
         __props__.__dict__["send_welcome_email"] = send_welcome_email
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -1041,6 +1061,14 @@ class User(pulumi.CustomResource):
         Whether or not to send a welcome email that includes onboarding information.
         """
         return pulumi.get(self, "send_welcome_email")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the user.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

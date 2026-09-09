@@ -56,12 +56,8 @@ type LookupRegistryNamespaceResult struct {
 }
 
 func LookupRegistryNamespaceOutput(ctx *pulumi.Context, args LookupRegistryNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryNamespaceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRegistryNamespaceResultOutput, error) {
-			args := v.(LookupRegistryNamespaceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, LookupRegistryNamespaceResultOutput{}, options).(LookupRegistryNamespaceResultOutput), nil
-		}).(LookupRegistryNamespaceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", args, LookupRegistryNamespaceResultOutput{}, options).(LookupRegistryNamespaceResultOutput)
 }
 
 // A collection of arguments for invoking getRegistryNamespace.

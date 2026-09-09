@@ -53,12 +53,8 @@ type LookupPlacementGroupResult struct {
 }
 
 func LookupPlacementGroupOutput(ctx *pulumi.Context, args LookupPlacementGroupOutputArgs, opts ...pulumi.InvokeOption) LookupPlacementGroupResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPlacementGroupResultOutput, error) {
-			args := v.(LookupPlacementGroupArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getPlacementGroup:getPlacementGroup", args, LookupPlacementGroupResultOutput{}, options).(LookupPlacementGroupResultOutput), nil
-		}).(LookupPlacementGroupResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getPlacementGroup:getPlacementGroup", args, LookupPlacementGroupResultOutput{}, options).(LookupPlacementGroupResultOutput)
 }
 
 // A collection of arguments for invoking getPlacementGroup.

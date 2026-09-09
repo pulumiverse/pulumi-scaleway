@@ -258,7 +258,7 @@ type GetEventResult struct {
 	ProjectId      *string `pulumi:"projectId"`
 	RecordedAfter  *string `pulumi:"recordedAfter"`
 	RecordedBefore *string `pulumi:"recordedBefore"`
-	Region         *string `pulumi:"region"`
+	Region         string  `pulumi:"region"`
 	ResourceId     *string `pulumi:"resourceId"`
 	ResourceType   *string `pulumi:"resourceType"`
 	// API name called to trigger the event. Possible values are: `scaleway.secret_manager.v1beta1.Api`, `scaleway.key_manager.v1alpha1.Api`, `scaleway.iam.v1alpha1.Api`, `scaleway.iam.v1alpha1.UnauthenticatedApi`, `scaleway.k8s.v1.Api`, `scaleway.account.v3.UserApi`, `scaleway.account.v3.OrganizationApi`, `scaleway.account.v2.GDPRApi`, `scaleway.apple_silicon.v1alpha1.Api`, `scaleway.instance.v1.Api`, `scaleway.baremetal.v1.Api`, or `scaleway.lb.v1.ZonedApi`.
@@ -269,12 +269,8 @@ type GetEventResult struct {
 }
 
 func GetEventOutput(ctx *pulumi.Context, args GetEventOutputArgs, opts ...pulumi.InvokeOption) GetEventResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEventResultOutput, error) {
-			args := v.(GetEventArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:audittrail/getEvent:getEvent", args, GetEventResultOutput{}, options).(GetEventResultOutput), nil
-		}).(GetEventResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:audittrail/getEvent:getEvent", args, GetEventResultOutput{}, options).(GetEventResultOutput)
 }
 
 // A collection of arguments for invoking getEvent.
@@ -375,8 +371,8 @@ func (o GetEventResultOutput) RecordedBefore() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetEventResult) *string { return v.RecordedBefore }).(pulumi.StringPtrOutput)
 }
 
-func (o GetEventResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetEventResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetEventResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func (o GetEventResultOutput) ResourceId() pulumi.StringPtrOutput {

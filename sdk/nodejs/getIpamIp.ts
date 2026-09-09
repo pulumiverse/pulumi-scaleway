@@ -171,11 +171,12 @@ export interface GetIpamIpResult {
     readonly organizationId: string;
     readonly privateNetworkId?: string;
     readonly projectId: string;
-    readonly region?: string;
+    readonly region: string;
     readonly resource?: outputs.GetIpamIpResource;
+    readonly srn: string;
     readonly tags?: string[];
     readonly type?: string;
-    readonly zonal?: string;
+    readonly zonal: string;
 }
 /**
  * Gets information about IP addresses managed by Scaleway's IP Address Management (IPAM) service. IPAM is used for the DHCP bundled with VPC Private Networks.

@@ -36,12 +36,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["importCommand"] = Output.Tuple(example, example).Apply(values =&gt;
-        ///         {
-        ///             var example = values.Item1;
-        ///             var example1 = values.Item2;
-        ///             return $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example1.TaskId}";
-        ///         }),
+        ///         ["importCommand"] = $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example.Apply(getRegistrationResult =&gt; getRegistrationResult.TaskId)}",
         ///     };
         /// });
         /// ```
@@ -92,12 +87,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["importCommand"] = Output.Tuple(example, example).Apply(values =&gt;
-        ///         {
-        ///             var example = values.Item1;
-        ///             var example1 = values.Item2;
-        ///             return $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example1.TaskId}";
-        ///         }),
+        ///         ["importCommand"] = $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example.Apply(getRegistrationResult =&gt; getRegistrationResult.TaskId)}",
         ///     };
         /// });
         /// ```
@@ -148,12 +138,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["importCommand"] = Output.Tuple(example, example).Apply(values =&gt;
-        ///         {
-        ///             var example = values.Item1;
-        ///             var example1 = values.Item2;
-        ///             return $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example1.TaskId}";
-        ///         }),
+        ///         ["importCommand"] = $"terraform import scaleway_domain_registration.example {example.Apply(getRegistrationResult =&gt; getRegistrationResult.ProjectId)}/{example.Apply(getRegistrationResult =&gt; getRegistrationResult.TaskId)}",
         ///     };
         /// });
         /// ```

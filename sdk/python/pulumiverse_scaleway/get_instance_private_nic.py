@@ -29,7 +29,7 @@ class GetInstancePrivateNicResult:
     """
     A collection of values returned by getInstancePrivateNic.
     """
-    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_ips=None, private_network_id=None, private_nic_id=None, server_id=None, tags=None, zone=None):
+    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_ips=None, private_network_id=None, private_nic_id=None, project_id=None, server_id=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -51,6 +51,9 @@ class GetInstancePrivateNicResult:
         if private_nic_id and not isinstance(private_nic_id, str):
             raise TypeError("Expected argument 'private_nic_id' to be a str")
         pulumi.set(__self__, "private_nic_id", private_nic_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
@@ -100,6 +103,11 @@ class GetInstancePrivateNicResult:
         return pulumi.get(self, "private_nic_id")
 
     @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
     @pulumi.getter(name="serverId")
     def server_id(self) -> _builtins.str:
         return pulumi.get(self, "server_id")
@@ -128,6 +136,7 @@ class AwaitableGetInstancePrivateNicResult(GetInstancePrivateNicResult):
             private_ips=self.private_ips,
             private_network_id=self.private_network_id,
             private_nic_id=self.private_nic_id,
+            project_id=self.project_id,
             server_id=self.server_id,
             tags=self.tags,
             zone=self.zone)
@@ -184,6 +193,7 @@ def get_instance_private_nic(private_network_id: Optional[_builtins.str] = None,
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         private_nic_id=pulumi.get(__ret__, 'private_nic_id'),
+        project_id=pulumi.get(__ret__, 'project_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
@@ -237,6 +247,7 @@ def get_instance_private_nic_output(private_network_id: pulumi.Input[Optional[Op
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         private_nic_id=pulumi.get(__response__, 'private_nic_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
         server_id=pulumi.get(__response__, 'server_id'),
         tags=pulumi.get(__response__, 'tags'),
         zone=pulumi.get(__response__, 'zone')))

@@ -278,7 +278,7 @@ class User(pulumi.CustomResource):
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+        Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
 
         > **Security Best Practice:**
         For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
@@ -378,7 +378,7 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+        Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
 
         > **Security Best Practice:**
         For enhanced security, we recommend using the `password_wo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
@@ -591,7 +591,7 @@ class User(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the MongoDB® user should be created.
         """

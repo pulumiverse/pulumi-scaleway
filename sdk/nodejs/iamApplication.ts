@@ -79,6 +79,10 @@ export class IamApplication extends pulumi.CustomResource {
      */
     declare public readonly organizationId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the application.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the application.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -108,6 +112,7 @@ export class IamApplication extends pulumi.CustomResource {
             resourceInputs["editable"] = state?.editable;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
@@ -118,6 +123,7 @@ export class IamApplication extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -149,6 +155,10 @@ export interface IamApplicationState {
      * `organizationId`) The ID of the organization the application is associated with.
      */
     organizationId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the application.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the application.
      */

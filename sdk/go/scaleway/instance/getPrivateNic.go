@@ -92,18 +92,15 @@ type LookupPrivateNicResult struct {
 	PrivateIps       []GetPrivateNicPrivateIp `pulumi:"privateIps"`
 	PrivateNetworkId *string                  `pulumi:"privateNetworkId"`
 	PrivateNicId     *string                  `pulumi:"privateNicId"`
+	ProjectId        string                   `pulumi:"projectId"`
 	ServerId         string                   `pulumi:"serverId"`
 	Tags             []string                 `pulumi:"tags"`
 	Zone             *string                  `pulumi:"zone"`
 }
 
 func LookupPrivateNicOutput(ctx *pulumi.Context, args LookupPrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateNicResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPrivateNicResultOutput, error) {
-			args := v.(LookupPrivateNicArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getPrivateNic:getPrivateNic", args, LookupPrivateNicResultOutput{}, options).(LookupPrivateNicResultOutput), nil
-		}).(LookupPrivateNicResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getPrivateNic:getPrivateNic", args, LookupPrivateNicResultOutput{}, options).(LookupPrivateNicResultOutput)
 }
 
 // A collection of arguments for invoking getPrivateNic.
@@ -169,6 +166,10 @@ func (o LookupPrivateNicResultOutput) PrivateNetworkId() pulumi.StringPtrOutput 
 
 func (o LookupPrivateNicResultOutput) PrivateNicId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupPrivateNicResult) *string { return v.PrivateNicId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateNicResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateNicResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o LookupPrivateNicResultOutput) ServerId() pulumi.StringOutput {

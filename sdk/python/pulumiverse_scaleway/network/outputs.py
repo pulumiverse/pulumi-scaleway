@@ -866,9 +866,9 @@ class GetRoutesRouteResult(dict):
                  nexthop_private_network_id: _builtins.str,
                  nexthop_resource_id: _builtins.str,
                  nexthop_resource_type: _builtins.str,
+                 region: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 vpc_id: _builtins.str,
-                 region: Optional[_builtins.str] = None):
+                 vpc_id: _builtins.str):
         """
         :param _builtins.str created_at: The date on which the route was created (RFC 3339 format).
         :param _builtins.str description: The description of the route.
@@ -880,9 +880,9 @@ class GetRoutesRouteResult(dict):
         :param _builtins.str nexthop_private_network_id: The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
         :param _builtins.str nexthop_resource_id: The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
         :param _builtins.str nexthop_resource_type: The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+        :param _builtins.str region: `region`). The region in which the routes exist.
         :param Sequence[_builtins.str] tags: List of tags to filter for. routes with these exact tags are listed.
         :param _builtins.str vpc_id: The VPC ID to filter for. routes with a similar VPC ID are listed.
-        :param _builtins.str region: `region`). The region in which the routes exist.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
@@ -893,10 +893,9 @@ class GetRoutesRouteResult(dict):
         pulumi.set(__self__, "nexthop_private_network_id", nexthop_private_network_id)
         pulumi.set(__self__, "nexthop_resource_id", nexthop_resource_id)
         pulumi.set(__self__, "nexthop_resource_type", nexthop_resource_type)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "vpc_id", vpc_id)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -973,6 +972,14 @@ class GetRoutesRouteResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`). The region in which the routes exist.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         List of tags to filter for. routes with these exact tags are listed.
@@ -987,14 +994,6 @@ class GetRoutesRouteResult(dict):
         """
         return pulumi.get(self, "vpc_id")
 
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
-        """
-        `region`). The region in which the routes exist.
-        """
-        return pulumi.get(self, "region")
-
 
 @pulumi.output_type
 class GetVpcsVpcResult(dict):
@@ -1005,9 +1004,9 @@ class GetVpcsVpcResult(dict):
                  name: _builtins.str,
                  organization_id: _builtins.str,
                  project_id: _builtins.str,
+                 region: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 update_at: _builtins.str,
-                 region: Optional[_builtins.str] = None):
+                 update_at: _builtins.str):
         """
         :param _builtins.str created_at: Date and time of VPC's creation (RFC 3339 format).
         :param _builtins.str id: The associated VPC ID.
@@ -1016,9 +1015,9 @@ class GetVpcsVpcResult(dict):
         :param _builtins.str name: The VPC name to filter for. VPCs with a similar name are listed.
         :param _builtins.str organization_id: The Organization ID the VPC is associated with.
         :param _builtins.str project_id: The ID of the Project the VPC is associated with.
+        :param _builtins.str region: `region`). The region in which the VPCs exist.
         :param Sequence[_builtins.str] tags: List of tags to filter for. VPCs with these exact tags are listed.
         :param _builtins.str update_at: Date on which the VPC was last updated (RFC 3339 format)
-        :param _builtins.str region: `region`). The region in which the VPCs exist.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -1026,10 +1025,9 @@ class GetVpcsVpcResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_at", update_at)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -1082,6 +1080,14 @@ class GetVpcsVpcResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`). The region in which the VPCs exist.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         List of tags to filter for. VPCs with these exact tags are listed.
@@ -1095,13 +1101,5 @@ class GetVpcsVpcResult(dict):
         Date on which the VPC was last updated (RFC 3339 format)
         """
         return pulumi.get(self, "update_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
-        """
-        `region`). The region in which the VPCs exist.
-        """
-        return pulumi.get(self, "region")
 
 

@@ -13,6 +13,767 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GroupLoadBalancerConfiguration struct {
+	// The auto-healing configuration.
+	//
+	// > The `autoHealing` block contains:
+	AutoHealing *GroupLoadBalancerConfigurationAutoHealing `pulumi:"autoHealing"`
+	// The list of load balancer backend configurations.
+	//
+	// > The `backends` block contains:
+	Backends []GroupLoadBalancerConfigurationBackend `pulumi:"backends"`
+	// The ID of the load balancer.
+	LoadBalancerId string `pulumi:"loadBalancerId"`
+}
+
+// GroupLoadBalancerConfigurationInput is an input type that accepts GroupLoadBalancerConfigurationArgs and GroupLoadBalancerConfigurationOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationInput` via:
+//
+//	GroupLoadBalancerConfigurationArgs{...}
+type GroupLoadBalancerConfigurationInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationOutput() GroupLoadBalancerConfigurationOutput
+	ToGroupLoadBalancerConfigurationOutputWithContext(context.Context) GroupLoadBalancerConfigurationOutput
+}
+
+type GroupLoadBalancerConfigurationArgs struct {
+	// The auto-healing configuration.
+	//
+	// > The `autoHealing` block contains:
+	AutoHealing GroupLoadBalancerConfigurationAutoHealingPtrInput `pulumi:"autoHealing"`
+	// The list of load balancer backend configurations.
+	//
+	// > The `backends` block contains:
+	Backends GroupLoadBalancerConfigurationBackendArrayInput `pulumi:"backends"`
+	// The ID of the load balancer.
+	LoadBalancerId pulumi.StringInput `pulumi:"loadBalancerId"`
+}
+
+func (GroupLoadBalancerConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfiguration)(nil)).Elem()
+}
+
+func (i GroupLoadBalancerConfigurationArgs) ToGroupLoadBalancerConfigurationOutput() GroupLoadBalancerConfigurationOutput {
+	return i.ToGroupLoadBalancerConfigurationOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationArgs) ToGroupLoadBalancerConfigurationOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationOutput)
+}
+
+func (i GroupLoadBalancerConfigurationArgs) ToGroupLoadBalancerConfigurationPtrOutput() GroupLoadBalancerConfigurationPtrOutput {
+	return i.ToGroupLoadBalancerConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationArgs) ToGroupLoadBalancerConfigurationPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationOutput).ToGroupLoadBalancerConfigurationPtrOutputWithContext(ctx)
+}
+
+// GroupLoadBalancerConfigurationPtrInput is an input type that accepts GroupLoadBalancerConfigurationArgs, GroupLoadBalancerConfigurationPtr and GroupLoadBalancerConfigurationPtrOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationPtrInput` via:
+//
+//	        GroupLoadBalancerConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type GroupLoadBalancerConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationPtrOutput() GroupLoadBalancerConfigurationPtrOutput
+	ToGroupLoadBalancerConfigurationPtrOutputWithContext(context.Context) GroupLoadBalancerConfigurationPtrOutput
+}
+
+type groupLoadBalancerConfigurationPtrType GroupLoadBalancerConfigurationArgs
+
+func GroupLoadBalancerConfigurationPtr(v *GroupLoadBalancerConfigurationArgs) GroupLoadBalancerConfigurationPtrInput {
+	return (*groupLoadBalancerConfigurationPtrType)(v)
+}
+
+func (*groupLoadBalancerConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupLoadBalancerConfiguration)(nil)).Elem()
+}
+
+func (i *groupLoadBalancerConfigurationPtrType) ToGroupLoadBalancerConfigurationPtrOutput() GroupLoadBalancerConfigurationPtrOutput {
+	return i.ToGroupLoadBalancerConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *groupLoadBalancerConfigurationPtrType) ToGroupLoadBalancerConfigurationPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfiguration)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationOutput) ToGroupLoadBalancerConfigurationOutput() GroupLoadBalancerConfigurationOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationOutput) ToGroupLoadBalancerConfigurationOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationOutput) ToGroupLoadBalancerConfigurationPtrOutput() GroupLoadBalancerConfigurationPtrOutput {
+	return o.ToGroupLoadBalancerConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o GroupLoadBalancerConfigurationOutput) ToGroupLoadBalancerConfigurationPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupLoadBalancerConfiguration) *GroupLoadBalancerConfiguration {
+		return &v
+	}).(GroupLoadBalancerConfigurationPtrOutput)
+}
+
+// The auto-healing configuration.
+//
+// > The `autoHealing` block contains:
+func (o GroupLoadBalancerConfigurationOutput) AutoHealing() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfiguration) *GroupLoadBalancerConfigurationAutoHealing {
+		return v.AutoHealing
+	}).(GroupLoadBalancerConfigurationAutoHealingPtrOutput)
+}
+
+// The list of load balancer backend configurations.
+//
+// > The `backends` block contains:
+func (o GroupLoadBalancerConfigurationOutput) Backends() GroupLoadBalancerConfigurationBackendArrayOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfiguration) []GroupLoadBalancerConfigurationBackend { return v.Backends }).(GroupLoadBalancerConfigurationBackendArrayOutput)
+}
+
+// The ID of the load balancer.
+func (o GroupLoadBalancerConfigurationOutput) LoadBalancerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfiguration) string { return v.LoadBalancerId }).(pulumi.StringOutput)
+}
+
+type GroupLoadBalancerConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupLoadBalancerConfiguration)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationPtrOutput) ToGroupLoadBalancerConfigurationPtrOutput() GroupLoadBalancerConfigurationPtrOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationPtrOutput) ToGroupLoadBalancerConfigurationPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationPtrOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationPtrOutput) Elem() GroupLoadBalancerConfigurationOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfiguration) GroupLoadBalancerConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret GroupLoadBalancerConfiguration
+		return ret
+	}).(GroupLoadBalancerConfigurationOutput)
+}
+
+// The auto-healing configuration.
+//
+// > The `autoHealing` block contains:
+func (o GroupLoadBalancerConfigurationPtrOutput) AutoHealing() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfiguration) *GroupLoadBalancerConfigurationAutoHealing {
+		if v == nil {
+			return nil
+		}
+		return v.AutoHealing
+	}).(GroupLoadBalancerConfigurationAutoHealingPtrOutput)
+}
+
+// The list of load balancer backend configurations.
+//
+// > The `backends` block contains:
+func (o GroupLoadBalancerConfigurationPtrOutput) Backends() GroupLoadBalancerConfigurationBackendArrayOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfiguration) []GroupLoadBalancerConfigurationBackend {
+		if v == nil {
+			return nil
+		}
+		return v.Backends
+	}).(GroupLoadBalancerConfigurationBackendArrayOutput)
+}
+
+// The ID of the load balancer.
+func (o GroupLoadBalancerConfigurationPtrOutput) LoadBalancerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LoadBalancerId
+	}).(pulumi.StringPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationAutoHealing struct {
+	// Whether auto-healing is enabled.
+	Enabled *bool `pulumi:"enabled"`
+	// The grace period for health checks.
+	GracePeriod *string `pulumi:"gracePeriod"`
+}
+
+// GroupLoadBalancerConfigurationAutoHealingInput is an input type that accepts GroupLoadBalancerConfigurationAutoHealingArgs and GroupLoadBalancerConfigurationAutoHealingOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationAutoHealingInput` via:
+//
+//	GroupLoadBalancerConfigurationAutoHealingArgs{...}
+type GroupLoadBalancerConfigurationAutoHealingInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationAutoHealingOutput() GroupLoadBalancerConfigurationAutoHealingOutput
+	ToGroupLoadBalancerConfigurationAutoHealingOutputWithContext(context.Context) GroupLoadBalancerConfigurationAutoHealingOutput
+}
+
+type GroupLoadBalancerConfigurationAutoHealingArgs struct {
+	// Whether auto-healing is enabled.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The grace period for health checks.
+	GracePeriod pulumi.StringPtrInput `pulumi:"gracePeriod"`
+}
+
+func (GroupLoadBalancerConfigurationAutoHealingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfigurationAutoHealing)(nil)).Elem()
+}
+
+func (i GroupLoadBalancerConfigurationAutoHealingArgs) ToGroupLoadBalancerConfigurationAutoHealingOutput() GroupLoadBalancerConfigurationAutoHealingOutput {
+	return i.ToGroupLoadBalancerConfigurationAutoHealingOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationAutoHealingArgs) ToGroupLoadBalancerConfigurationAutoHealingOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationAutoHealingOutput)
+}
+
+func (i GroupLoadBalancerConfigurationAutoHealingArgs) ToGroupLoadBalancerConfigurationAutoHealingPtrOutput() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return i.ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationAutoHealingArgs) ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationAutoHealingOutput).ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(ctx)
+}
+
+// GroupLoadBalancerConfigurationAutoHealingPtrInput is an input type that accepts GroupLoadBalancerConfigurationAutoHealingArgs, GroupLoadBalancerConfigurationAutoHealingPtr and GroupLoadBalancerConfigurationAutoHealingPtrOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationAutoHealingPtrInput` via:
+//
+//	        GroupLoadBalancerConfigurationAutoHealingArgs{...}
+//
+//	or:
+//
+//	        nil
+type GroupLoadBalancerConfigurationAutoHealingPtrInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationAutoHealingPtrOutput() GroupLoadBalancerConfigurationAutoHealingPtrOutput
+	ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(context.Context) GroupLoadBalancerConfigurationAutoHealingPtrOutput
+}
+
+type groupLoadBalancerConfigurationAutoHealingPtrType GroupLoadBalancerConfigurationAutoHealingArgs
+
+func GroupLoadBalancerConfigurationAutoHealingPtr(v *GroupLoadBalancerConfigurationAutoHealingArgs) GroupLoadBalancerConfigurationAutoHealingPtrInput {
+	return (*groupLoadBalancerConfigurationAutoHealingPtrType)(v)
+}
+
+func (*groupLoadBalancerConfigurationAutoHealingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupLoadBalancerConfigurationAutoHealing)(nil)).Elem()
+}
+
+func (i *groupLoadBalancerConfigurationAutoHealingPtrType) ToGroupLoadBalancerConfigurationAutoHealingPtrOutput() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return i.ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(context.Background())
+}
+
+func (i *groupLoadBalancerConfigurationAutoHealingPtrType) ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationAutoHealingPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationAutoHealingOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationAutoHealingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfigurationAutoHealing)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) ToGroupLoadBalancerConfigurationAutoHealingOutput() GroupLoadBalancerConfigurationAutoHealingOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) ToGroupLoadBalancerConfigurationAutoHealingOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) ToGroupLoadBalancerConfigurationAutoHealingPtrOutput() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o.ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(context.Background())
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupLoadBalancerConfigurationAutoHealing) *GroupLoadBalancerConfigurationAutoHealing {
+		return &v
+	}).(GroupLoadBalancerConfigurationAutoHealingPtrOutput)
+}
+
+// Whether auto-healing is enabled.
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfigurationAutoHealing) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The grace period for health checks.
+func (o GroupLoadBalancerConfigurationAutoHealingOutput) GracePeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfigurationAutoHealing) *string { return v.GracePeriod }).(pulumi.StringPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationAutoHealingPtrOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationAutoHealingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupLoadBalancerConfigurationAutoHealing)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingPtrOutput) ToGroupLoadBalancerConfigurationAutoHealingPtrOutput() GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingPtrOutput) ToGroupLoadBalancerConfigurationAutoHealingPtrOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationAutoHealingPtrOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationAutoHealingPtrOutput) Elem() GroupLoadBalancerConfigurationAutoHealingOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfigurationAutoHealing) GroupLoadBalancerConfigurationAutoHealing {
+		if v != nil {
+			return *v
+		}
+		var ret GroupLoadBalancerConfigurationAutoHealing
+		return ret
+	}).(GroupLoadBalancerConfigurationAutoHealingOutput)
+}
+
+// Whether auto-healing is enabled.
+func (o GroupLoadBalancerConfigurationAutoHealingPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfigurationAutoHealing) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The grace period for health checks.
+func (o GroupLoadBalancerConfigurationAutoHealingPtrOutput) GracePeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupLoadBalancerConfigurationAutoHealing) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GracePeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationBackend struct {
+	// The IP address family (IPv4 or IPv6).
+	AddressFamily string `pulumi:"addressFamily"`
+	// The ID of the load balancer backend.
+	BackendId string `pulumi:"backendId"`
+	// The ID of the private network.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+}
+
+// GroupLoadBalancerConfigurationBackendInput is an input type that accepts GroupLoadBalancerConfigurationBackendArgs and GroupLoadBalancerConfigurationBackendOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationBackendInput` via:
+//
+//	GroupLoadBalancerConfigurationBackendArgs{...}
+type GroupLoadBalancerConfigurationBackendInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationBackendOutput() GroupLoadBalancerConfigurationBackendOutput
+	ToGroupLoadBalancerConfigurationBackendOutputWithContext(context.Context) GroupLoadBalancerConfigurationBackendOutput
+}
+
+type GroupLoadBalancerConfigurationBackendArgs struct {
+	// The IP address family (IPv4 or IPv6).
+	AddressFamily pulumi.StringInput `pulumi:"addressFamily"`
+	// The ID of the load balancer backend.
+	BackendId pulumi.StringInput `pulumi:"backendId"`
+	// The ID of the private network.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+}
+
+func (GroupLoadBalancerConfigurationBackendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfigurationBackend)(nil)).Elem()
+}
+
+func (i GroupLoadBalancerConfigurationBackendArgs) ToGroupLoadBalancerConfigurationBackendOutput() GroupLoadBalancerConfigurationBackendOutput {
+	return i.ToGroupLoadBalancerConfigurationBackendOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationBackendArgs) ToGroupLoadBalancerConfigurationBackendOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationBackendOutput)
+}
+
+// GroupLoadBalancerConfigurationBackendArrayInput is an input type that accepts GroupLoadBalancerConfigurationBackendArray and GroupLoadBalancerConfigurationBackendArrayOutput values.
+// You can construct a concrete instance of `GroupLoadBalancerConfigurationBackendArrayInput` via:
+//
+//	GroupLoadBalancerConfigurationBackendArray{ GroupLoadBalancerConfigurationBackendArgs{...} }
+type GroupLoadBalancerConfigurationBackendArrayInput interface {
+	pulumi.Input
+
+	ToGroupLoadBalancerConfigurationBackendArrayOutput() GroupLoadBalancerConfigurationBackendArrayOutput
+	ToGroupLoadBalancerConfigurationBackendArrayOutputWithContext(context.Context) GroupLoadBalancerConfigurationBackendArrayOutput
+}
+
+type GroupLoadBalancerConfigurationBackendArray []GroupLoadBalancerConfigurationBackendInput
+
+func (GroupLoadBalancerConfigurationBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupLoadBalancerConfigurationBackend)(nil)).Elem()
+}
+
+func (i GroupLoadBalancerConfigurationBackendArray) ToGroupLoadBalancerConfigurationBackendArrayOutput() GroupLoadBalancerConfigurationBackendArrayOutput {
+	return i.ToGroupLoadBalancerConfigurationBackendArrayOutputWithContext(context.Background())
+}
+
+func (i GroupLoadBalancerConfigurationBackendArray) ToGroupLoadBalancerConfigurationBackendArrayOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupLoadBalancerConfigurationBackendArrayOutput)
+}
+
+type GroupLoadBalancerConfigurationBackendOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupLoadBalancerConfigurationBackend)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationBackendOutput) ToGroupLoadBalancerConfigurationBackendOutput() GroupLoadBalancerConfigurationBackendOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationBackendOutput) ToGroupLoadBalancerConfigurationBackendOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationBackendOutput {
+	return o
+}
+
+// The IP address family (IPv4 or IPv6).
+func (o GroupLoadBalancerConfigurationBackendOutput) AddressFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfigurationBackend) string { return v.AddressFamily }).(pulumi.StringOutput)
+}
+
+// The ID of the load balancer backend.
+func (o GroupLoadBalancerConfigurationBackendOutput) BackendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfigurationBackend) string { return v.BackendId }).(pulumi.StringOutput)
+}
+
+// The ID of the private network.
+func (o GroupLoadBalancerConfigurationBackendOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GroupLoadBalancerConfigurationBackend) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+type GroupLoadBalancerConfigurationBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupLoadBalancerConfigurationBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupLoadBalancerConfigurationBackend)(nil)).Elem()
+}
+
+func (o GroupLoadBalancerConfigurationBackendArrayOutput) ToGroupLoadBalancerConfigurationBackendArrayOutput() GroupLoadBalancerConfigurationBackendArrayOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationBackendArrayOutput) ToGroupLoadBalancerConfigurationBackendArrayOutputWithContext(ctx context.Context) GroupLoadBalancerConfigurationBackendArrayOutput {
+	return o
+}
+
+func (o GroupLoadBalancerConfigurationBackendArrayOutput) Index(i pulumi.IntInput) GroupLoadBalancerConfigurationBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupLoadBalancerConfigurationBackend {
+		return vs[0].([]GroupLoadBalancerConfigurationBackend)[vs[1].(int)]
+	}).(GroupLoadBalancerConfigurationBackendOutput)
+}
+
+type GroupScalingPolicy struct {
+	// The target CPU utilization percentage to trigger scaling events.
+	CpuTarget *int `pulumi:"cpuTarget"`
+	// The fixed number of instances for the group.
+	FixedSize *int `pulumi:"fixedSize"`
+	// The maximum number of instances in the group.
+	MaximumSize int `pulumi:"maximumSize"`
+	// The target memory utilization percentage to trigger scaling events.
+	//
+	// > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+	MemoryTarget *int `pulumi:"memoryTarget"`
+	// The minimum number of instances in the group.
+	MinimumSize int `pulumi:"minimumSize"`
+	// The cooldown duration after a scale-in event.
+	ScaleInCooldown *string `pulumi:"scaleInCooldown"`
+	// The number of instances to remove during scale-in event.
+	ScaleInStep *int `pulumi:"scaleInStep"`
+	// The cooldown duration after a scale-out event.
+	ScaleOutCooldown *string `pulumi:"scaleOutCooldown"`
+	// The number of instances to add during scale-out event.
+	ScaleOutStep *int `pulumi:"scaleOutStep"`
+}
+
+// GroupScalingPolicyInput is an input type that accepts GroupScalingPolicyArgs and GroupScalingPolicyOutput values.
+// You can construct a concrete instance of `GroupScalingPolicyInput` via:
+//
+//	GroupScalingPolicyArgs{...}
+type GroupScalingPolicyInput interface {
+	pulumi.Input
+
+	ToGroupScalingPolicyOutput() GroupScalingPolicyOutput
+	ToGroupScalingPolicyOutputWithContext(context.Context) GroupScalingPolicyOutput
+}
+
+type GroupScalingPolicyArgs struct {
+	// The target CPU utilization percentage to trigger scaling events.
+	CpuTarget pulumi.IntPtrInput `pulumi:"cpuTarget"`
+	// The fixed number of instances for the group.
+	FixedSize pulumi.IntPtrInput `pulumi:"fixedSize"`
+	// The maximum number of instances in the group.
+	MaximumSize pulumi.IntInput `pulumi:"maximumSize"`
+	// The target memory utilization percentage to trigger scaling events.
+	//
+	// > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+	MemoryTarget pulumi.IntPtrInput `pulumi:"memoryTarget"`
+	// The minimum number of instances in the group.
+	MinimumSize pulumi.IntInput `pulumi:"minimumSize"`
+	// The cooldown duration after a scale-in event.
+	ScaleInCooldown pulumi.StringPtrInput `pulumi:"scaleInCooldown"`
+	// The number of instances to remove during scale-in event.
+	ScaleInStep pulumi.IntPtrInput `pulumi:"scaleInStep"`
+	// The cooldown duration after a scale-out event.
+	ScaleOutCooldown pulumi.StringPtrInput `pulumi:"scaleOutCooldown"`
+	// The number of instances to add during scale-out event.
+	ScaleOutStep pulumi.IntPtrInput `pulumi:"scaleOutStep"`
+}
+
+func (GroupScalingPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupScalingPolicy)(nil)).Elem()
+}
+
+func (i GroupScalingPolicyArgs) ToGroupScalingPolicyOutput() GroupScalingPolicyOutput {
+	return i.ToGroupScalingPolicyOutputWithContext(context.Background())
+}
+
+func (i GroupScalingPolicyArgs) ToGroupScalingPolicyOutputWithContext(ctx context.Context) GroupScalingPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupScalingPolicyOutput)
+}
+
+func (i GroupScalingPolicyArgs) ToGroupScalingPolicyPtrOutput() GroupScalingPolicyPtrOutput {
+	return i.ToGroupScalingPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GroupScalingPolicyArgs) ToGroupScalingPolicyPtrOutputWithContext(ctx context.Context) GroupScalingPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupScalingPolicyOutput).ToGroupScalingPolicyPtrOutputWithContext(ctx)
+}
+
+// GroupScalingPolicyPtrInput is an input type that accepts GroupScalingPolicyArgs, GroupScalingPolicyPtr and GroupScalingPolicyPtrOutput values.
+// You can construct a concrete instance of `GroupScalingPolicyPtrInput` via:
+//
+//	        GroupScalingPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GroupScalingPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGroupScalingPolicyPtrOutput() GroupScalingPolicyPtrOutput
+	ToGroupScalingPolicyPtrOutputWithContext(context.Context) GroupScalingPolicyPtrOutput
+}
+
+type groupScalingPolicyPtrType GroupScalingPolicyArgs
+
+func GroupScalingPolicyPtr(v *GroupScalingPolicyArgs) GroupScalingPolicyPtrInput {
+	return (*groupScalingPolicyPtrType)(v)
+}
+
+func (*groupScalingPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupScalingPolicy)(nil)).Elem()
+}
+
+func (i *groupScalingPolicyPtrType) ToGroupScalingPolicyPtrOutput() GroupScalingPolicyPtrOutput {
+	return i.ToGroupScalingPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *groupScalingPolicyPtrType) ToGroupScalingPolicyPtrOutputWithContext(ctx context.Context) GroupScalingPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupScalingPolicyPtrOutput)
+}
+
+type GroupScalingPolicyOutput struct{ *pulumi.OutputState }
+
+func (GroupScalingPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupScalingPolicy)(nil)).Elem()
+}
+
+func (o GroupScalingPolicyOutput) ToGroupScalingPolicyOutput() GroupScalingPolicyOutput {
+	return o
+}
+
+func (o GroupScalingPolicyOutput) ToGroupScalingPolicyOutputWithContext(ctx context.Context) GroupScalingPolicyOutput {
+	return o
+}
+
+func (o GroupScalingPolicyOutput) ToGroupScalingPolicyPtrOutput() GroupScalingPolicyPtrOutput {
+	return o.ToGroupScalingPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GroupScalingPolicyOutput) ToGroupScalingPolicyPtrOutputWithContext(ctx context.Context) GroupScalingPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupScalingPolicy) *GroupScalingPolicy {
+		return &v
+	}).(GroupScalingPolicyPtrOutput)
+}
+
+// The target CPU utilization percentage to trigger scaling events.
+func (o GroupScalingPolicyOutput) CpuTarget() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *int { return v.CpuTarget }).(pulumi.IntPtrOutput)
+}
+
+// The fixed number of instances for the group.
+func (o GroupScalingPolicyOutput) FixedSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *int { return v.FixedSize }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of instances in the group.
+func (o GroupScalingPolicyOutput) MaximumSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) int { return v.MaximumSize }).(pulumi.IntOutput)
+}
+
+// The target memory utilization percentage to trigger scaling events.
+//
+// > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+func (o GroupScalingPolicyOutput) MemoryTarget() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *int { return v.MemoryTarget }).(pulumi.IntPtrOutput)
+}
+
+// The minimum number of instances in the group.
+func (o GroupScalingPolicyOutput) MinimumSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) int { return v.MinimumSize }).(pulumi.IntOutput)
+}
+
+// The cooldown duration after a scale-in event.
+func (o GroupScalingPolicyOutput) ScaleInCooldown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *string { return v.ScaleInCooldown }).(pulumi.StringPtrOutput)
+}
+
+// The number of instances to remove during scale-in event.
+func (o GroupScalingPolicyOutput) ScaleInStep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *int { return v.ScaleInStep }).(pulumi.IntPtrOutput)
+}
+
+// The cooldown duration after a scale-out event.
+func (o GroupScalingPolicyOutput) ScaleOutCooldown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *string { return v.ScaleOutCooldown }).(pulumi.StringPtrOutput)
+}
+
+// The number of instances to add during scale-out event.
+func (o GroupScalingPolicyOutput) ScaleOutStep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupScalingPolicy) *int { return v.ScaleOutStep }).(pulumi.IntPtrOutput)
+}
+
+type GroupScalingPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GroupScalingPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupScalingPolicy)(nil)).Elem()
+}
+
+func (o GroupScalingPolicyPtrOutput) ToGroupScalingPolicyPtrOutput() GroupScalingPolicyPtrOutput {
+	return o
+}
+
+func (o GroupScalingPolicyPtrOutput) ToGroupScalingPolicyPtrOutputWithContext(ctx context.Context) GroupScalingPolicyPtrOutput {
+	return o
+}
+
+func (o GroupScalingPolicyPtrOutput) Elem() GroupScalingPolicyOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) GroupScalingPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GroupScalingPolicy
+		return ret
+	}).(GroupScalingPolicyOutput)
+}
+
+// The target CPU utilization percentage to trigger scaling events.
+func (o GroupScalingPolicyPtrOutput) CpuTarget() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CpuTarget
+	}).(pulumi.IntPtrOutput)
+}
+
+// The fixed number of instances for the group.
+func (o GroupScalingPolicyPtrOutput) FixedSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FixedSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of instances in the group.
+func (o GroupScalingPolicyPtrOutput) MaximumSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaximumSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The target memory utilization percentage to trigger scaling events.
+//
+// > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+func (o GroupScalingPolicyPtrOutput) MemoryTarget() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MemoryTarget
+	}).(pulumi.IntPtrOutput)
+}
+
+// The minimum number of instances in the group.
+func (o GroupScalingPolicyPtrOutput) MinimumSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MinimumSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// The cooldown duration after a scale-in event.
+func (o GroupScalingPolicyPtrOutput) ScaleInCooldown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleInCooldown
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of instances to remove during scale-in event.
+func (o GroupScalingPolicyPtrOutput) ScaleInStep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleInStep
+	}).(pulumi.IntPtrOutput)
+}
+
+// The cooldown duration after a scale-out event.
+func (o GroupScalingPolicyPtrOutput) ScaleOutCooldown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleOutCooldown
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of instances to add during scale-out event.
+func (o GroupScalingPolicyPtrOutput) ScaleOutStep() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GroupScalingPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ScaleOutStep
+	}).(pulumi.IntPtrOutput)
+}
+
 type InstanceGroupCapacity struct {
 	// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
 	CooldownDelay *int `pulumi:"cooldownDelay"`
@@ -1220,6 +1981,14 @@ func (o GetInstancePolicyMetricArrayOutput) Index(i pulumi.IntInput) GetInstance
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationInput)(nil)).Elem(), GroupLoadBalancerConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationPtrInput)(nil)).Elem(), GroupLoadBalancerConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationAutoHealingInput)(nil)).Elem(), GroupLoadBalancerConfigurationAutoHealingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationAutoHealingPtrInput)(nil)).Elem(), GroupLoadBalancerConfigurationAutoHealingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationBackendInput)(nil)).Elem(), GroupLoadBalancerConfigurationBackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupLoadBalancerConfigurationBackendArrayInput)(nil)).Elem(), GroupLoadBalancerConfigurationBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupScalingPolicyInput)(nil)).Elem(), GroupScalingPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupScalingPolicyPtrInput)(nil)).Elem(), GroupScalingPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGroupCapacityInput)(nil)).Elem(), InstanceGroupCapacityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGroupCapacityArrayInput)(nil)).Elem(), InstanceGroupCapacityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGroupLoadBalancerInput)(nil)).Elem(), InstanceGroupLoadBalancerArgs{})
@@ -1238,6 +2007,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceGroupLoadBalancerArrayInput)(nil)).Elem(), GetInstanceGroupLoadBalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePolicyMetricInput)(nil)).Elem(), GetInstancePolicyMetricArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePolicyMetricArrayInput)(nil)).Elem(), GetInstancePolicyMetricArray{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationOutput{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationAutoHealingOutput{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationAutoHealingPtrOutput{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationBackendOutput{})
+	pulumi.RegisterOutputType(GroupLoadBalancerConfigurationBackendArrayOutput{})
+	pulumi.RegisterOutputType(GroupScalingPolicyOutput{})
+	pulumi.RegisterOutputType(GroupScalingPolicyPtrOutput{})
 	pulumi.RegisterOutputType(InstanceGroupCapacityOutput{})
 	pulumi.RegisterOutputType(InstanceGroupCapacityArrayOutput{})
 	pulumi.RegisterOutputType(InstanceGroupLoadBalancerOutput{})

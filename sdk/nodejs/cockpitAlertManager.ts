@@ -137,7 +137,7 @@ export class CockpitAlertManager extends pulumi.CustomResource {
     /**
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a CockpitAlertManager resource with the given unique name, arguments, and options.

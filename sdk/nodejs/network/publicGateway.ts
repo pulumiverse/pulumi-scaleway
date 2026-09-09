@@ -37,16 +37,16 @@ import * as utilities from "../utilities";
  *     name: "key1",
  *     publicKey: std.file({
  *         input: "~/.ssh/id_rsa.pub",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  * });
  * const key2 = new scaleway.iam.SshKey("key2", {
  *     name: "key2",
  *     publicKey: std.file({
  *         input: "~/.ssh/another_key.pub",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  * });
- * const sshKeysHash = std.sha256({
- *     input: std.join({
+ * const sshKeysHash = std.sha256Output({
+ *     input: std.joinOutput({
  *         separator: ",",
  *         input: [
  *             key1.publicKey,
@@ -154,6 +154,10 @@ export class PublicGateway extends pulumi.CustomResource {
      */
     declare public readonly refreshSshKeys: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the public gateway.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the public gateway.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -178,7 +182,7 @@ export class PublicGateway extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a PublicGateway resource with the given unique name, arguments, and options.
@@ -205,6 +209,7 @@ export class PublicGateway extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["refreshSshKeys"] = state?.refreshSshKeys;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
@@ -231,6 +236,7 @@ export class PublicGateway extends pulumi.CustomResource {
             resourceInputs["bandwidth"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["upstreamDnsServers"] = undefined /*out*/;
@@ -296,6 +302,10 @@ export interface PublicGatewayState {
      * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
     refreshSshKeys?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the public gateway.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the public gateway.
      */

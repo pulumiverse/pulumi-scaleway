@@ -123,7 +123,7 @@ export class DatabaseBackup extends pulumi.CustomResource {
     /**
      * `region`) The region in which the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Whether the backup is stored in the same region as the source instance.
      */

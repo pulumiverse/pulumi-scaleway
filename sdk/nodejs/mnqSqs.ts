@@ -85,7 +85,7 @@ export class MnqSqs extends pulumi.CustomResource {
      * `region`). The region
      * in which SQS will be enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a MnqSqs resource with the given unique name, arguments, and options.

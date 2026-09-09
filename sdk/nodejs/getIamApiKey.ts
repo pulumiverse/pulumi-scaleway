@@ -54,6 +54,7 @@ export interface GetIamApiKeyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly srn: string;
     readonly updatedAt: string;
     readonly userId: string;
 }

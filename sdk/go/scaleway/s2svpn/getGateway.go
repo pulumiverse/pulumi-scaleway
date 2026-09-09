@@ -111,6 +111,7 @@ type LookupGatewayResult struct {
 	// The public endpoint configuration of the VPN gateway.
 	PublicConfigs []GetGatewayPublicConfig `pulumi:"publicConfigs"`
 	Region        *string                  `pulumi:"region"`
+	Srn           string                   `pulumi:"srn"`
 	// The status of the VPN gateway.
 	Status string `pulumi:"status"`
 	// The tags associated with the VPN gateway.
@@ -123,12 +124,8 @@ type LookupGatewayResult struct {
 }
 
 func LookupGatewayOutput(ctx *pulumi.Context, args LookupGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupGatewayResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGatewayResultOutput, error) {
-			args := v.(LookupGatewayArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:s2svpn/getGateway:getGateway", args, LookupGatewayResultOutput{}, options).(LookupGatewayResultOutput), nil
-		}).(LookupGatewayResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:s2svpn/getGateway:getGateway", args, LookupGatewayResultOutput{}, options).(LookupGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getGateway.
@@ -219,6 +216,10 @@ func (o LookupGatewayResultOutput) PublicConfigs() GetGatewayPublicConfigArrayOu
 
 func (o LookupGatewayResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupGatewayResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupGatewayResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGatewayResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the VPN gateway.

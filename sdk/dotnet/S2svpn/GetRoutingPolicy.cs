@@ -243,6 +243,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? RoutingPolicyId;
+        public readonly string Srn;
         /// <summary>
         /// The tags associated with the routing policy.
         /// </summary>
@@ -274,6 +275,8 @@ namespace Pulumiverse.Scaleway.S2svpn
 
             string? routingPolicyId,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt)
@@ -288,6 +291,7 @@ namespace Pulumiverse.Scaleway.S2svpn
             ProjectId = projectId;
             Region = region;
             RoutingPolicyId = routingPolicyId;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
         }

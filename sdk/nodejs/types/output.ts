@@ -575,7 +575,7 @@ export interface DatabaseInstancePrivateNetwork {
     /**
      * The zone you want to attach the resource to
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface DatabaseInstanceReadReplica {
@@ -751,7 +751,7 @@ export interface EdgeServicesBackendStageContainerBackendConfig {
     /**
      * `region`) The region of the Serverless Container.
      */
-    region?: string;
+    region: string;
 }
 
 export interface EdgeServicesBackendStageFunctionBackendConfig {
@@ -762,7 +762,7 @@ export interface EdgeServicesBackendStageFunctionBackendConfig {
     /**
      * `region`) The region of the Serverless Function.
      */
-    region?: string;
+    region: string;
 }
 
 export interface EdgeServicesBackendStageLbBackendConfig {
@@ -796,7 +796,7 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface EdgeServicesBackendStageS3BackendConfig {
@@ -885,7 +885,7 @@ export interface EdgeServicesTlsStageSecret {
     /**
      * The region of the secret.
      */
-    region?: string;
+    region: string;
     /**
      * The ID of the Secret
      */
@@ -1656,7 +1656,7 @@ export interface GetFlexibleIpsIpMacAddress {
     /**
      * `zone`) The zone in which IPs exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetInstancePrivateNicPrivateIp {
@@ -1905,7 +1905,7 @@ export interface GetInstanceServersServer {
     /**
      * `zone`) The zone in which servers exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetInstanceServersServerPrivateIp {
@@ -2722,7 +2722,7 @@ export interface GetLbIpsIp {
     /**
      * `zone`) The zone in which the IPs exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetLbRoutesRoute {
@@ -2836,7 +2836,7 @@ export interface GetLbsLb {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetLbsLbInstance {
@@ -2863,7 +2863,7 @@ export interface GetLbsLbInstance {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetLbsLbIp {
@@ -2894,7 +2894,7 @@ export interface GetLbsLbIp {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface GetLoadbalancerCertificateCustomCertificate {
@@ -2948,7 +2948,7 @@ export interface GetLoadbalancerPrivateNetwork {
      */
     status: string;
     /**
-     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+     * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone: string;
 }
@@ -3406,7 +3406,7 @@ export interface GetVpcRoutesRoute {
     /**
      * `region`). The region in which the routes exist.
      */
-    region?: string;
+    region: string;
     /**
      * List of tags to filter for. routes with these exact tags are listed.
      */
@@ -3446,7 +3446,7 @@ export interface GetVpcsVpc {
     /**
      * `region`). The region in which the VPCs exist.
      */
-    region?: string;
+    region: string;
     /**
      * List of tags to filter for. VPCs with these exact tags are listed.
      */
@@ -3929,7 +3929,7 @@ export interface InstanceServerPrivateNetwork {
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone?: string;
+    zone: string;
 }
 
 export interface InstanceServerPublicIp {
@@ -5570,6 +5570,92 @@ export namespace autoscaling {
         threshold: number;
     }
 
+    export interface GroupLoadBalancerConfiguration {
+        /**
+         * The auto-healing configuration.
+         *
+         * > The `autoHealing` block contains:
+         */
+        autoHealing: outputs.autoscaling.GroupLoadBalancerConfigurationAutoHealing;
+        /**
+         * The list of load balancer backend configurations.
+         *
+         * > The `backends` block contains:
+         */
+        backends: outputs.autoscaling.GroupLoadBalancerConfigurationBackend[];
+        /**
+         * The ID of the load balancer.
+         */
+        loadBalancerId: string;
+    }
+
+    export interface GroupLoadBalancerConfigurationAutoHealing {
+        /**
+         * Whether auto-healing is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The grace period for health checks.
+         */
+        gracePeriod: string;
+    }
+
+    export interface GroupLoadBalancerConfigurationBackend {
+        /**
+         * The IP address family (IPv4 or IPv6).
+         */
+        addressFamily: string;
+        /**
+         * The ID of the load balancer backend.
+         */
+        backendId: string;
+        /**
+         * The ID of the private network.
+         */
+        privateNetworkId?: string;
+    }
+
+    export interface GroupScalingPolicy {
+        /**
+         * The target CPU utilization percentage to trigger scaling events.
+         */
+        cpuTarget?: number;
+        /**
+         * The fixed number of instances for the group.
+         */
+        fixedSize?: number;
+        /**
+         * The maximum number of instances in the group.
+         */
+        maximumSize: number;
+        /**
+         * The target memory utilization percentage to trigger scaling events.
+         *
+         * > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+         */
+        memoryTarget?: number;
+        /**
+         * The minimum number of instances in the group.
+         */
+        minimumSize: number;
+        /**
+         * The cooldown duration after a scale-in event.
+         */
+        scaleInCooldown: string;
+        /**
+         * The number of instances to remove during scale-in event.
+         */
+        scaleInStep: number;
+        /**
+         * The cooldown duration after a scale-out event.
+         */
+        scaleOutCooldown: string;
+        /**
+         * The number of instances to add during scale-out event.
+         */
+        scaleOutStep: number;
+    }
+
     export interface InstanceGroupCapacity {
         /**
          * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
@@ -6411,7 +6497,7 @@ export namespace databases {
         /**
          * The zone you want to attach the resource to
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface InstanceReadReplica {
@@ -7989,7 +8075,7 @@ export namespace edgeservices {
         /**
          * `region`) The region of the Serverless Container.
          */
-        region?: string;
+        region: string;
     }
 
     export interface BackendStageFunctionBackendConfig {
@@ -8000,7 +8086,7 @@ export namespace edgeservices {
         /**
          * `region`) The region of the Serverless Function.
          */
-        region?: string;
+        region: string;
     }
 
     export interface BackendStageLbBackendConfig {
@@ -8034,7 +8120,7 @@ export namespace edgeservices {
         /**
          * `zone`) The zone of the Load Balancer.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface BackendStageS3BackendConfig {
@@ -8272,7 +8358,7 @@ export namespace edgeservices {
         /**
          * The region of the secret.
          */
-        region?: string;
+        region: string;
         /**
          * The ID of the Secret
          */
@@ -8361,7 +8447,7 @@ export namespace elasticmetal {
         /**
          * `zone`) The zone in which IPs exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetOfferCpu {
@@ -9399,7 +9485,7 @@ export namespace instance {
         /**
          * `zone`) The zone in which servers exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetServersServerPrivateIp {
@@ -9674,7 +9760,7 @@ export namespace instance {
         /**
          * `zone`) The zone in which the server should be created.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface ServerPublicIp {
@@ -9754,6 +9840,39 @@ export namespace instance {
          * Key of the object to import
          */
         key: string;
+    }
+
+    export interface TemplateVolume {
+        /**
+         * The ID of the base snapshot for the volume.
+         *
+         * > **Important:** Only one of `baseSnapshotId` and `imageLabel` can be set.
+         */
+        baseSnapshotId?: string;
+        /**
+         * The label of the image used as base for the volume.
+         */
+        imageLabel?: string;
+        /**
+         * The name of volume.
+         */
+        name: string;
+        /**
+         * The performance IOPS of the volume, required for `sbs` type volumes.
+         */
+        perfIops?: number;
+        /**
+         * The size of the volume in gigabytes.
+         */
+        sizeInGb: number;
+        /**
+         * The tags associated with the volume.
+         */
+        tags?: string[];
+        /**
+         * The type of the volume.
+         */
+        volumeType: string;
     }
 
 }
@@ -11427,7 +11546,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the IPs exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetLoadBalancerPrivateIp {
@@ -11463,7 +11582,7 @@ export namespace loadbalancers {
          */
         status: string;
         /**
-         * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+         * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
          */
         zone: string;
     }
@@ -11544,7 +11663,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetLoadBalancersLbInstance {
@@ -11571,7 +11690,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetLoadBalancersLbIp {
@@ -11602,7 +11721,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone?: string;
+        zone: string;
     }
 
     export interface GetRoutesRoute {
@@ -12086,7 +12205,7 @@ export namespace network {
         /**
          * `region`). The region in which the routes exist.
          */
-        region?: string;
+        region: string;
         /**
          * List of tags to filter for. routes with these exact tags are listed.
          */
@@ -12126,7 +12245,7 @@ export namespace network {
         /**
          * `region`). The region in which the VPCs exist.
          */
-        region?: string;
+        region: string;
         /**
          * List of tags to filter for. VPCs with these exact tags are listed.
          */
@@ -13372,11 +13491,11 @@ export namespace s2svpn {
         /**
          * The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
          */
-        ipamIpv4Id?: string;
+        ipamIpv4Id: string;
         /**
          * The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
          */
-        ipamIpv6Id?: string;
+        ipamIpv6Id: string;
     }
 
     export interface GetConnectionBgpConfigIpv4 {

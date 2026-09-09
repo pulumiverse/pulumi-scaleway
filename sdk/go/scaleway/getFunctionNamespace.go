@@ -61,12 +61,8 @@ type LookupFunctionNamespaceResult struct {
 }
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFunctionNamespaceResultOutput, error) {
-			args := v.(LookupFunctionNamespaceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, LookupFunctionNamespaceResultOutput{}, options).(LookupFunctionNamespaceResultOutput), nil
-		}).(LookupFunctionNamespaceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, LookupFunctionNamespaceResultOutput{}, options).(LookupFunctionNamespaceResultOutput)
 }
 
 // A collection of arguments for invoking getFunctionNamespace.

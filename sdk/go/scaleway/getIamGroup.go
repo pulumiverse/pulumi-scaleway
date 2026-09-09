@@ -84,18 +84,15 @@ type LookupIamGroupResult struct {
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
 	OrganizationId *string  `pulumi:"organizationId"`
+	Srn            string   `pulumi:"srn"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	UserIds        []string `pulumi:"userIds"`
 }
 
 func LookupIamGroupOutput(ctx *pulumi.Context, args LookupIamGroupOutputArgs, opts ...pulumi.InvokeOption) LookupIamGroupResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIamGroupResultOutput, error) {
-			args := v.(LookupIamGroupArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getIamGroup:getIamGroup", args, LookupIamGroupResultOutput{}, options).(LookupIamGroupResultOutput), nil
-		}).(LookupIamGroupResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getIamGroup:getIamGroup", args, LookupIamGroupResultOutput{}, options).(LookupIamGroupResultOutput)
 }
 
 // A collection of arguments for invoking getIamGroup.
@@ -161,6 +158,10 @@ func (o LookupIamGroupResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupIamGroupResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupIamGroupResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamGroupResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupIamGroupResultOutput) Tags() pulumi.StringArrayOutput {

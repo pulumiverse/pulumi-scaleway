@@ -148,6 +148,7 @@ class _RoutingPolicyState:
                  prefix_filter_outs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -161,6 +162,7 @@ class _RoutingPolicyState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prefix_filter_outs: List of IP prefixes (in CIDR notation) to advertise to the peer gateway. These are the routes that Scaleway will announce to the customer gateway.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the routing policy is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the routing policy should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the routing policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the routing policy.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the routing policy (RFC 3339 format).
         """
@@ -180,6 +182,8 @@ class _RoutingPolicyState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -280,6 +284,18 @@ class _RoutingPolicyState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the routing policy.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -470,6 +486,7 @@ class RoutingPolicy(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(RoutingPolicy, __self__).__init__(
             'scaleway:s2svpn/routingPolicy:RoutingPolicy',
@@ -489,6 +506,7 @@ class RoutingPolicy(pulumi.CustomResource):
             prefix_filter_outs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'RoutingPolicy':
         """
@@ -506,6 +524,7 @@ class RoutingPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] prefix_filter_outs: List of IP prefixes (in CIDR notation) to advertise to the peer gateway. These are the routes that Scaleway will announce to the customer gateway.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the routing policy is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the routing policy should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the routing policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the routing policy.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the routing policy (RFC 3339 format).
         """
@@ -521,6 +540,7 @@ class RoutingPolicy(pulumi.CustomResource):
         __props__.__dict__["prefix_filter_outs"] = prefix_filter_outs
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         return RoutingPolicy(resource_name, opts=opts, __props__=__props__)
@@ -583,11 +603,19 @@ class RoutingPolicy(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the routing policy should be created.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the routing policy.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

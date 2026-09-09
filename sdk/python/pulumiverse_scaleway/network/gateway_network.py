@@ -222,6 +222,7 @@ class _GatewayNetworkState:
                  mac_address: pulumi.Input[Optional[_builtins.str]] = None,
                  private_ips: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  static_address: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -239,6 +240,7 @@ class _GatewayNetworkState:
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the gateway network.
         :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the GatewayNetwork.
@@ -277,6 +279,8 @@ class _GatewayNetworkState:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if static_address is not None:
             warnings.warn("""Please use ipam_config instead.""", DeprecationWarning)
             pulumi.log.warn("""static_address is deprecated: Please use ipam_config instead.""")
@@ -411,6 +415,18 @@ class _GatewayNetworkState:
     @private_network_id.setter
     def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_network_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the gateway network.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
@@ -702,6 +718,7 @@ class GatewayNetwork(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["mac_address"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork")])
@@ -726,6 +743,7 @@ class GatewayNetwork(pulumi.CustomResource):
             mac_address: pulumi.Input[Optional[_builtins.str]] = None,
             private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             static_address: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -747,6 +765,7 @@ class GatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the gateway network.
         :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the GatewayNetwork.
@@ -770,6 +789,7 @@ class GatewayNetwork(pulumi.CustomResource):
         __props__.__dict__["mac_address"] = mac_address
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network_id"] = private_network_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["static_address"] = static_address
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
@@ -860,6 +880,14 @@ class GatewayNetwork(pulumi.CustomResource):
         return pulumi.get(self, "private_network_id")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the gateway network.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="staticAddress")
     @_utilities.deprecated("""Please use ipam_config instead.""")
     def static_address(self) -> pulumi.Output[_builtins.str]:
@@ -886,7 +914,7 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the gateway network should be created.
 

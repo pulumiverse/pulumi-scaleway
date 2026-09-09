@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId:   instance.ID(),
+//				InstanceId:   instance.ID().ToIDOutput().ToStringOutput(),
 //				DirectAccess: &databases.ReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
@@ -93,9 +93,9 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ToStringOutput(),
 //				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
-//					PrivateNetworkId: pn.ID(),
+//					PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
 //				},
 //			})
@@ -140,9 +140,9 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId: instance.ID(),
+//				InstanceId: instance.ID().ToIDOutput().ToStringOutput(),
 //				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
-//					PrivateNetworkId: pn.ID(),
+//					PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
 //					EnableIpam:       pulumi.Bool(true),
 //				},
 //			})
@@ -177,7 +177,7 @@ type DatabaseReadReplica struct {
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Read Replica should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
 }
@@ -389,8 +389,8 @@ func (o DatabaseReadReplicaOutput) PrivateNetwork() DatabaseReadReplicaPrivateNe
 
 // `region`) The region
 // in which the Read Replica should be created.
-func (o DatabaseReadReplicaOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabaseReadReplicaOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Defines whether to create the replica in the same availability zone as the main instance nodes or not.

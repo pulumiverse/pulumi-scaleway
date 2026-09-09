@@ -72,9 +72,9 @@ type GetOfferSubscriptionResult struct {
 	// The maximum number of webhooks that can be associated with the offer subscription per domain.
 	MaxWebhooksPerDomain int `pulumi:"maxWebhooksPerDomain"`
 	// The name of the offer associated with the subscription (e.g., `scale`).
-	OfferName string  `pulumi:"offerName"`
-	ProjectId string  `pulumi:"projectId"`
-	Region    *string `pulumi:"region"`
+	OfferName string `pulumi:"offerName"`
+	ProjectId string `pulumi:"projectId"`
+	Region    string `pulumi:"region"`
 	// The Service Level Agreement (SLA) percentage of the offer subscription.
 	Sla float64 `pulumi:"sla"`
 	// The date and time of the subscription.
@@ -82,12 +82,8 @@ type GetOfferSubscriptionResult struct {
 }
 
 func GetOfferSubscriptionOutput(ctx *pulumi.Context, args GetOfferSubscriptionOutputArgs, opts ...pulumi.InvokeOption) GetOfferSubscriptionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOfferSubscriptionResultOutput, error) {
-			args := v.(GetOfferSubscriptionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:tem/getOfferSubscription:getOfferSubscription", args, GetOfferSubscriptionResultOutput{}, options).(GetOfferSubscriptionResultOutput), nil
-		}).(GetOfferSubscriptionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:tem/getOfferSubscription:getOfferSubscription", args, GetOfferSubscriptionResultOutput{}, options).(GetOfferSubscriptionResultOutput)
 }
 
 // A collection of arguments for invoking getOfferSubscription.
@@ -161,8 +157,8 @@ func (o GetOfferSubscriptionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetOfferSubscriptionResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOfferSubscriptionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetOfferSubscriptionResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Service Level Agreement (SLA) percentage of the offer subscription.

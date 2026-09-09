@@ -243,6 +243,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetInstancePrivateNicPrivateIpResult> PrivateIps;
         public readonly string? PrivateNetworkId;
         public readonly string? PrivateNicId;
+        public readonly string ProjectId;
         public readonly string ServerId;
         public readonly ImmutableArray<string> Tags;
         public readonly string? Zone;
@@ -263,6 +264,8 @@ namespace Pulumiverse.Scaleway
 
             string? privateNicId,
 
+            string projectId,
+
             string serverId,
 
             ImmutableArray<string> tags,
@@ -276,6 +279,7 @@ namespace Pulumiverse.Scaleway
             PrivateIps = privateIps;
             PrivateNetworkId = privateNetworkId;
             PrivateNicId = privateNicId;
+            ProjectId = projectId;
             ServerId = serverId;
             Tags = tags;
             Zone = zone;

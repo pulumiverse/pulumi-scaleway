@@ -95,6 +95,7 @@ class _SamlCertificateState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  origin: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SamlCertificate resources.
@@ -104,6 +105,7 @@ class _SamlCertificateState:
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
         :param pulumi.Input[_builtins.str] origin: (String) The origin of the SAML certificate. Possible values are: `scaleway`, `identity_provider`.
         :param pulumi.Input[_builtins.str] saml_id: The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
+        :param pulumi.Input[_builtins.str] srn: (String) The Scaleway Resource Name (SRN) of the SAML certificate.
         :param pulumi.Input[_builtins.str] type: The type of the SAML certificate. Possible values are: `signing`, `encryption`.
         """
         if content is not None:
@@ -116,6 +118,8 @@ class _SamlCertificateState:
             pulumi.set(__self__, "origin", origin)
         if saml_id is not None:
             pulumi.set(__self__, "saml_id", saml_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -178,6 +182,18 @@ class _SamlCertificateState:
     @saml_id.setter
     def saml_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "saml_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -290,6 +306,7 @@ class SamlCertificate(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["expires_at"] = None
             __props__.__dict__["origin"] = None
+            __props__.__dict__["srn"] = None
         super(SamlCertificate, __self__).__init__(
             'scaleway:iam/samlCertificate:SamlCertificate',
             resource_name,
@@ -305,6 +322,7 @@ class SamlCertificate(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             origin: pulumi.Input[Optional[_builtins.str]] = None,
             saml_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SamlCertificate':
         """
         Get an existing SamlCertificate resource's state with the given name, id, and optional extra
@@ -318,6 +336,7 @@ class SamlCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
         :param pulumi.Input[_builtins.str] origin: (String) The origin of the SAML certificate. Possible values are: `scaleway`, `identity_provider`.
         :param pulumi.Input[_builtins.str] saml_id: The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
+        :param pulumi.Input[_builtins.str] srn: (String) The Scaleway Resource Name (SRN) of the SAML certificate.
         :param pulumi.Input[_builtins.str] type: The type of the SAML certificate. Possible values are: `signing`, `encryption`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -329,6 +348,7 @@ class SamlCertificate(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["origin"] = origin
         __props__.__dict__["saml_id"] = saml_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["type"] = type
         return SamlCertificate(resource_name, opts=opts, __props__=__props__)
 
@@ -371,6 +391,14 @@ class SamlCertificate(pulumi.CustomResource):
         The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
         """
         return pulumi.get(self, "saml_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

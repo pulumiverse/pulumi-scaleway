@@ -100,7 +100,7 @@ class GetLoadBalancersResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         The zone of the Load Balancer.
         """

@@ -56,7 +56,7 @@ export interface GetLoadbalancerArgs {
     projectId?: string;
     releaseIp?: boolean;
     /**
-     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+     * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone?: string;
 }
@@ -98,7 +98,7 @@ export interface GetLoadbalancerResult {
      */
     readonly type: string;
     /**
-     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+     * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     readonly zone?: string;
 }
@@ -152,7 +152,7 @@ export interface GetLoadbalancerOutputArgs {
     projectId?: pulumi.Input<string | undefined>;
     releaseIp?: pulumi.Input<boolean | undefined>;
     /**
-     * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+     * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone?: pulumi.Input<string | undefined>;
 }

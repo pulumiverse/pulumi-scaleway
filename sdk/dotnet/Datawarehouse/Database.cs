@@ -73,13 +73,19 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `Region`) The region in which the database should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Size of the database in GB.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the database.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
 
         /// <summary>
@@ -177,6 +183,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the database.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         public DatabaseState()
         {

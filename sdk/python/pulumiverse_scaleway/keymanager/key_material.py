@@ -370,7 +370,7 @@ class KeyMaterial(pulumi.CustomResource):
         key_material = random.Bytes("key_material", length=32)
         main_key_material = scaleway.keymanager.KeyMaterial("main",
             key_id=main.id,
-            key_material_wo=std.base64encode(input=key_material["base64"])["result"],
+            key_material_wo=std.base64encode(input=key_material["base64"]).result,
             key_material_wo_version=1)
         ```
 
@@ -391,9 +391,9 @@ class KeyMaterial(pulumi.CustomResource):
         salt = random.Bytes("salt", length=16)
         main_key_material = scaleway.keymanager.KeyMaterial("main",
             key_id=main.id,
-            key_material_wo=std.base64encode(input=key_material["base64"])["result"],
+            key_material_wo=std.base64encode(input=key_material["base64"]).result,
             key_material_wo_version=1,
-            salt_wo=std.base64encode(input=salt["base64"])["result"],
+            salt_wo=std.base64encode(input=salt["base64"]).result,
             salt_wo_version=1)
         ```
 
@@ -443,7 +443,7 @@ class KeyMaterial(pulumi.CustomResource):
         key_material = random.Bytes("key_material", length=32)
         main_key_material = scaleway.keymanager.KeyMaterial("main",
             key_id=main.id,
-            key_material_wo=std.base64encode(input=key_material["base64"])["result"],
+            key_material_wo=std.base64encode(input=key_material["base64"]).result,
             key_material_wo_version=1)
         ```
 
@@ -464,9 +464,9 @@ class KeyMaterial(pulumi.CustomResource):
         salt = random.Bytes("salt", length=16)
         main_key_material = scaleway.keymanager.KeyMaterial("main",
             key_id=main.id,
-            key_material_wo=std.base64encode(input=key_material["base64"])["result"],
+            key_material_wo=std.base64encode(input=key_material["base64"]).result,
             key_material_wo_version=1,
-            salt_wo=std.base64encode(input=salt["base64"])["result"],
+            salt_wo=std.base64encode(input=salt["base64"]).result,
             salt_wo_version=1)
         ```
 

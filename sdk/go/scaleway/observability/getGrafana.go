@@ -94,7 +94,7 @@ import (
 //				return err
 //			}
 //			mainCockpit, err := observability.NewCockpit(ctx, "main", &observability.CockpitArgs{
-//				ProjectId: project.ID(),
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -103,12 +103,8 @@ import (
 //				ProjectId: mainCockpit.ProjectId,
 //			}, nil)
 //			ctx.Export("grafanaConnectionInfo", pulumi.StringMap{
-//				"url": main.ApplyT(func(main observability.GetGrafanaResult) (*string, error) {
-//					return &main.GrafanaUrl, nil
-//				}).(pulumi.StringPtrOutput),
-//				"projectId": main.ApplyT(func(main observability.GetGrafanaResult) (*string, error) {
-//					return &main.ProjectId, nil
-//				}).(pulumi.StringPtrOutput),
+//				"url":       main.GrafanaUrl(),
+//				"projectId": main.ProjectId(),
 //			})
 //			return nil
 //		})
@@ -185,12 +181,8 @@ type GetGrafanaResult struct {
 }
 
 func GetGrafanaOutput(ctx *pulumi.Context, args GetGrafanaOutputArgs, opts ...pulumi.InvokeOption) GetGrafanaResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetGrafanaResultOutput, error) {
-			args := v.(GetGrafanaArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getGrafana:getGrafana", args, GetGrafanaResultOutput{}, options).(GetGrafanaResultOutput), nil
-		}).(GetGrafanaResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getGrafana:getGrafana", args, GetGrafanaResultOutput{}, options).(GetGrafanaResultOutput)
 }
 
 // A collection of arguments for invoking getGrafana.

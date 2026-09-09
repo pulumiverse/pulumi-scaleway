@@ -59,12 +59,8 @@ type LookupInstanceIpResult struct {
 }
 
 func LookupInstanceIpOutput(ctx *pulumi.Context, args LookupInstanceIpOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstanceIpResultOutput, error) {
-			args := v.(LookupInstanceIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getInstanceIp:getInstanceIp", args, LookupInstanceIpResultOutput{}, options).(LookupInstanceIpResultOutput), nil
-		}).(LookupInstanceIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getInstanceIp:getInstanceIp", args, LookupInstanceIpResultOutput{}, options).(LookupInstanceIpResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceIp.

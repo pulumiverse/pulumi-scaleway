@@ -232,9 +232,9 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a ObjectBucketPolicy resource with the given unique name, arguments, and options.
@@ -297,7 +297,7 @@ export interface ObjectBucketPolicyState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
     region?: pulumi.Input<string | undefined>;
 }
@@ -325,7 +325,7 @@ export interface ObjectBucketPolicyArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
     region?: pulumi.Input<string | undefined>;
 }

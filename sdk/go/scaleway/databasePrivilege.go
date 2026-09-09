@@ -42,14 +42,14 @@ import (
 //				return err
 //			}
 //			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainUser, err := databases.NewUser(ctx, "main", &databases.UserArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("my-db-user"),
 //				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
 //				IsAdmin:    pulumi.Bool(false),
@@ -58,7 +58,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewPrivilege(ctx, "main", &databases.PrivilegeArgs{
-//				InstanceId:   main.ID(),
+//				InstanceId:   main.ID().ToIDOutput().ToStringOutput(),
 //				UserName:     mainUser.Name,
 //				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),
@@ -136,7 +136,7 @@ type DatabasePrivilege struct {
 	// Permission synchronization status. Possible values:
 	PermissionStatus pulumi.StringOutput `pulumi:"permissionStatus"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
@@ -360,8 +360,8 @@ func (o DatabasePrivilegeOutput) PermissionStatus() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabasePrivilegeOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabasePrivilegeOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Name of the user (e.g. `my-db-user`).

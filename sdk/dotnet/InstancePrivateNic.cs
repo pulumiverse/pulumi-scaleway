@@ -167,6 +167,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
+        /// The ProjectId you want to attach the resource to
+        /// </summary>
+        [Output("projectId")]
+        public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the server associated with.
         /// </summary>
         [Output("serverId")]
@@ -182,7 +188,7 @@ namespace Pulumiverse.Scaleway
         /// `Zone`) The zone in which the server must be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -237,6 +243,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// IPAM ip list, should be for internal use only
         /// </summary>
+        [Obsolete(@"Setting this attribute won't have any effect, please use IpamIpIds instead.")]
         public InputList<string> IpIds
         {
             get => _ipIds ?? (_ipIds = new InputList<string>());
@@ -272,6 +279,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
+
+        /// <summary>
+        /// The ProjectId you want to attach the resource to
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The ID of the server associated with.
@@ -311,6 +324,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// IPAM ip list, should be for internal use only
         /// </summary>
+        [Obsolete(@"Setting this attribute won't have any effect, please use IpamIpIds instead.")]
         public InputList<string> IpIds
         {
             get => _ipIds ?? (_ipIds = new InputList<string>());
@@ -352,6 +366,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
+
+        /// <summary>
+        /// The ProjectId you want to attach the resource to
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The ID of the server associated with.

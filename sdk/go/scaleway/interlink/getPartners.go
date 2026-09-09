@@ -75,16 +75,12 @@ type GetPartnersResult struct {
 	// List of partners matching the filters. Each entry contains:
 	Partners []GetPartnersPartner `pulumi:"partners"`
 	PopIds   []string             `pulumi:"popIds"`
-	Region   *string              `pulumi:"region"`
+	Region   string               `pulumi:"region"`
 }
 
 func GetPartnersOutput(ctx *pulumi.Context, args GetPartnersOutputArgs, opts ...pulumi.InvokeOption) GetPartnersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPartnersResultOutput, error) {
-			args := v.(GetPartnersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getPartners:getPartners", args, GetPartnersResultOutput{}, options).(GetPartnersResultOutput), nil
-		}).(GetPartnersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getPartners:getPartners", args, GetPartnersResultOutput{}, options).(GetPartnersResultOutput)
 }
 
 // A collection of arguments for invoking getPartners.
@@ -128,8 +124,8 @@ func (o GetPartnersResultOutput) PopIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPartnersResult) []string { return v.PopIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetPartnersResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPartnersResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetPartnersResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPartnersResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

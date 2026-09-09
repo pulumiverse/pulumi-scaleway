@@ -85,6 +85,10 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      */
     declare public readonly reverse: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the IP.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the Public Gateway IP.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -95,7 +99,7 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the Public Gateway IP should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a VpcPublicGatewayIp resource with the given unique name, arguments, and options.
@@ -118,6 +122,7 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["reverse"] = state?.reverse;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["zone"] = state?.zone;
@@ -130,6 +135,7 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
             resourceInputs["address"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -161,6 +167,10 @@ export interface VpcPublicGatewayIpState {
      * The reverse domain name for the IP address
      */
     reverse?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the IP.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Public Gateway IP.
      */

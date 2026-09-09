@@ -186,6 +186,7 @@ namespace Pulumiverse.Scaleway.Iam
         public readonly string Id;
         public readonly string? Name;
         public readonly string? OrganizationId;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly ImmutableArray<string> UserIds;
@@ -208,6 +209,8 @@ namespace Pulumiverse.Scaleway.Iam
 
             string? organizationId,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
@@ -222,6 +225,7 @@ namespace Pulumiverse.Scaleway.Iam
             Id = id;
             Name = name;
             OrganizationId = organizationId;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
             UserIds = userIds;

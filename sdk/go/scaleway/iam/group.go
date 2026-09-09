@@ -66,7 +66,7 @@ import (
 //			_, err = iam.NewGroup(ctx, "with_app", &iam.GroupArgs{
 //				Name: pulumi.String("iam_group_with_app"),
 //				ApplicationIds: pulumi.StringArray{
-//					app.ID(),
+//					app.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				UserIds: pulumi.StringArray{},
 //			})
@@ -93,7 +93,7 @@ type Group struct {
 
 	// The list of IDs of the applications attached to the group.
 	ApplicationIds pulumi.StringArrayOutput `pulumi:"applicationIds"`
-	// The date and time of the creation of the group
+	// The date and time of the creation of the group.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the IAM group.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -103,9 +103,11 @@ type Group struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the group.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the group
+	// The date and time of the last update of the group.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
 	UserIds pulumi.StringArrayOutput `pulumi:"userIds"`
@@ -149,7 +151,7 @@ func GetGroup(ctx *pulumi.Context,
 type groupState struct {
 	// The list of IDs of the applications attached to the group.
 	ApplicationIds []string `pulumi:"applicationIds"`
-	// The date and time of the creation of the group
+	// The date and time of the creation of the group.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the IAM group.
 	Description *string `pulumi:"description"`
@@ -159,9 +161,11 @@ type groupState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the group.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the group.
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the group
+	// The date and time of the last update of the group.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The list of IDs of the users attached to the group.
 	UserIds []string `pulumi:"userIds"`
@@ -170,7 +174,7 @@ type groupState struct {
 type GroupState struct {
 	// The list of IDs of the applications attached to the group.
 	ApplicationIds pulumi.StringArrayInput
-	// The date and time of the creation of the group
+	// The date and time of the creation of the group.
 	CreatedAt pulumi.StringPtrInput
 	// The description of the IAM group.
 	Description pulumi.StringPtrInput
@@ -180,9 +184,11 @@ type GroupState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the group.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the group.
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the group
+	// The date and time of the last update of the group.
 	UpdatedAt pulumi.StringPtrInput
 	// The list of IDs of the users attached to the group.
 	UserIds pulumi.StringArrayInput
@@ -319,7 +325,7 @@ func (o GroupOutput) ApplicationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.ApplicationIds }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the creation of the group
+// The date and time of the creation of the group.
 func (o GroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -344,12 +350,17 @@ func (o GroupOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the group.
+func (o GroupOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The tags associated with the group.
 func (o GroupOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the last update of the group
+// The date and time of the last update of the group.
 func (o GroupOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

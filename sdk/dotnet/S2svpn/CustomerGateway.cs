@@ -149,7 +149,13 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// `Region`) The region in which the customer gateway should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the customer gateway.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The list of tags to apply to the customer gateway.
@@ -313,6 +319,12 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the customer gateway.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

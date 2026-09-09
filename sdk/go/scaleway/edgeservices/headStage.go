@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			mainDnsStage, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
-//				PipelineId: main.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
 //				TlsStageId: pulumi.Any(mainScalewayEdgeServicesTlsStage.Id),
 //				Fqdns: pulumi.StringArray{
 //					pulumi.String("subdomain.example.com"),
@@ -48,8 +48,8 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewHeadStage(ctx, "main", &edgeservices.HeadStageArgs{
-//				PipelineId:  main.ID(),
-//				HeadStageId: mainDnsStage.ID(),
+//				PipelineId:  main.ID().ToIDOutput().ToStringOutput(),
+//				HeadStageId: mainDnsStage.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

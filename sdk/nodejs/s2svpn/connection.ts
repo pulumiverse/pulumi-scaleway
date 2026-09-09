@@ -170,7 +170,7 @@ export class Connection extends pulumi.CustomResource {
     /**
      * `region`) The region in which the connection should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Whether route propagation is enabled.
      */
@@ -183,6 +183,10 @@ export class Connection extends pulumi.CustomResource {
      * The version of the secret containing the PSK.
      */
     declare public /*out*/ readonly secretVersion: pulumi.Output<number>;
+    /**
+     * The Scaleway Resource Name (SRN) of the connection.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * The status of the connection.
      */
@@ -237,6 +241,7 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["routePropagationEnabled"] = state?.routePropagationEnabled;
             resourceInputs["secretId"] = state?.secretId;
             resourceInputs["secretVersion"] = state?.secretVersion;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["tunnelStatus"] = state?.tunnelStatus;
@@ -266,6 +271,7 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["routePropagationEnabled"] = undefined /*out*/;
             resourceInputs["secretId"] = undefined /*out*/;
             resourceInputs["secretVersion"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["tunnelStatus"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -359,6 +365,10 @@ export interface ConnectionState {
      * The version of the secret containing the PSK.
      */
     secretVersion?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the connection.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the connection.
      */

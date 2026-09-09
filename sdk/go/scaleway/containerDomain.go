@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
-//				ContainerId: app.ID(),
+//				ContainerId: app.ID().ToIDOutput().ToStringOutput(),
 //				Hostname:    pulumi.String("container.domain.tld"),
 //			})
 //			if err != nil {
@@ -75,7 +75,7 @@ import (
 //			}
 //			app, err := containers.NewContainer(ctx, "app", &containers.ContainerArgs{
 //				Name:        pulumi.String("app"),
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Image:       pulumi.String("nginx:latest"),
 //				Port:        pulumi.Int(80),
 //				Privacy:     pulumi.String("public"),
@@ -84,13 +84,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFormat, err := std.Format(ctx, map[string]interface{}{
-//				"input": "%s.",
-//				"args": []interface{}{
-//					std.Trimprefix(ctx, map[string]interface{}{
-//						"input":  app.PublicEndpoint,
-//						"prefix": "https://",
-//					}, nil).Result,
+//			invokeFormat, err := std.Format(ctx, &std.FormatArgs{
+//				Input: "%s.",
+//				Args: pulumi.StringArray{
+//					std.Trimprefix(ctx, std.TrimprefixArgs{
+//						Input:  app.PublicEndpoint,
+//						Prefix: "https://",
+//					}, nil).Result(),
 //				},
 //			}, nil)
 //			if err != nil {
@@ -100,14 +100,14 @@ import (
 //				DnsZone: pulumi.String("scaleway-terraform.com"),
 //				Name:    pulumi.String("subdomain"),
 //				Type:    pulumi.String("CNAME"),
-//				Data:    invokeFormat.Result,
+//				Data:    pulumi.String(invokeFormat.Result),
 //				Ttl:     pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
-//				ContainerId: app.ID(),
+//				ContainerId: app.ID().ToIDOutput().ToStringOutput(),
 //				Hostname: pulumi.All(appRecord.Name, appRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {
 //					name := _args[0].(string)
 //					dnsZone := _args[1].(string)
@@ -140,7 +140,7 @@ type ContainerDomain struct {
 	// The hostname with a CNAME record.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// (Deprecated) The URL used to query the container.
 	//
 	// Deprecated: URL won't be displayed on v1
@@ -329,8 +329,8 @@ func (o ContainerDomainOutput) Hostname() pulumi.StringOutput {
 }
 
 // `region`) The region in which the container exists.
-func (o ContainerDomainOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ContainerDomain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ContainerDomainOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // (Deprecated) The URL used to query the container.

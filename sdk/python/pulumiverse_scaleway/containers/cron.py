@@ -31,7 +31,7 @@ class CronArgs:
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         :param pulumi.Input[_builtins.str] name: The name of the container CRON trigger. If not provided, a random name is generated.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region
                in which the CRON trigger is created.
         """
         pulumi.set(__self__, "args", args)
@@ -94,7 +94,7 @@ class CronArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region
+        (Optional, Computed, Defaults to provider `region`) The region
         in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")
@@ -119,7 +119,7 @@ class _CronState:
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your container’s event object
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] name: The name of the container CRON trigger. If not provided, a random name is generated.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region
                in which the CRON trigger is created.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         :param pulumi.Input[_builtins.str] status: The CRON status.
@@ -177,7 +177,7 @@ class _CronState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region
+        (Optional, Computed, Defaults to provider `region`) The region
         in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")
@@ -274,7 +274,7 @@ class Cron(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your container’s event object
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] name: The name of the container CRON trigger. If not provided, a random name is generated.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region
                in which the CRON trigger is created.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         """
@@ -399,7 +399,7 @@ class Cron(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] args: The key-value mapping to define arguments that will be passed to your container’s event object
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to link to your CRON trigger.
         :param pulumi.Input[_builtins.str] name: The name of the container CRON trigger. If not provided, a random name is generated.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region
                in which the CRON trigger is created.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
         :param pulumi.Input[_builtins.str] status: The CRON status.
@@ -442,9 +442,9 @@ class Cron(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        (Defaults to provider `region`) The region
+        (Optional, Computed, Defaults to provider `region`) The region
         in which the CRON trigger is created.
         """
         return pulumi.get(self, "region")

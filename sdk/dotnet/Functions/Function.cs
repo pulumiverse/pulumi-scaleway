@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway.Functions
     ///         ZipHash = Std.Filesha256.Invoke(new()
     ///         {
     ///             Input = "function.zip",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         Deploy = true,
     ///     });
     /// 
@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway.Functions
     ///         ZipHash = Std.Filesha256.Invoke(new()
     ///         {
     ///             Input = "function.zip",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         Deploy = true,
     ///     });
     /// 
@@ -281,7 +281,7 @@ namespace Pulumiverse.Scaleway.Functions
         /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)

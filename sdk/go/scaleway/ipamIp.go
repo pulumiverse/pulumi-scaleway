@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -51,7 +51,7 @@ import (
 //			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -98,7 +98,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -133,7 +133,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv6Subnets: network.PrivateNetworkIpv6SubnetArray{
 //					&network.PrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
@@ -147,7 +147,7 @@ import (
 //				IsIpv6: pulumi.Bool(true),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -182,7 +182,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -194,7 +194,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				CustomResources: ipam.IpCustomResourceArray{
@@ -238,13 +238,15 @@ type IpamIp struct {
 	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the IP.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The IP resource.
 	Resources IpamIpResourceArrayOutput `pulumi:"resources"`
 	// The reverse DNS for this IP.
 	Reverses IpamIpReverseArrayOutput `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayOutput `pulumi:"sources"`
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Date and time of IP's last update (RFC 3339 format).
@@ -307,6 +309,8 @@ type ipamIpState struct {
 	Reverses []IpamIpReverse `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources []IpamIpSource `pulumi:"sources"`
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
 	// Date and time of IP's last update (RFC 3339 format).
@@ -337,6 +341,8 @@ type IpamIpState struct {
 	Reverses IpamIpReverseArrayInput
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayInput
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the IP.
 	Tags pulumi.StringArrayInput
 	// Date and time of IP's last update (RFC 3339 format).
@@ -505,8 +511,8 @@ func (o IpamIpOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the IP.
-func (o IpamIpOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IpamIp) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o IpamIpOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The IP resource.
@@ -522,6 +528,11 @@ func (o IpamIpOutput) Reverses() IpamIpReverseArrayOutput {
 // The source in which to book the IP.
 func (o IpamIpOutput) Sources() IpamIpSourceArrayOutput {
 	return o.ApplyT(func(v *IpamIp) IpamIpSourceArrayOutput { return v.Sources }).(IpamIpSourceArrayOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the IP.
+func (o IpamIpOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpamIp) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the IP.

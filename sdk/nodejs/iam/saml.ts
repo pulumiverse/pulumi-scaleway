@@ -66,6 +66,10 @@ export class Saml extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly singleSignOnUrl: pulumi.Output<string>;
     /**
+     * (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * (Computed) The status of the SAML configuration.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -87,6 +91,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["serviceProvider"] = state?.serviceProvider;
             resourceInputs["singleSignOnUrl"] = state?.singleSignOnUrl;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as SamlArgs | undefined;
@@ -94,6 +99,7 @@ export class Saml extends pulumi.CustomResource {
             resourceInputs["entityId"] = undefined /*out*/;
             resourceInputs["serviceProvider"] = undefined /*out*/;
             resourceInputs["singleSignOnUrl"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -121,6 +127,10 @@ export interface SamlState {
      * (Computed) The single sign-on URL of the SAML Identity Provider.
      */
     singleSignOnUrl?: pulumi.Input<string | undefined>;
+    /**
+     * (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The status of the SAML configuration.
      */

@@ -157,7 +157,7 @@ export class TemWebhook extends pulumi.CustomResource {
     /**
      * . The region in which the webhook should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Amazon Resource Name (ARN) of the SNS topic.
      */

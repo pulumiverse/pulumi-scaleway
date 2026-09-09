@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Runtime:     pulumi.String("go118"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -49,7 +49,7 @@ import (
 //			}
 //			// Namespace Token
 //			_, err = functions.NewToken(ctx, "namespace", &functions.TokenArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {
@@ -57,7 +57,7 @@ import (
 //			}
 //			// Function Token
 //			_, err = functions.NewToken(ctx, "function", &functions.TokenArgs{
-//				FunctionId: mainFunction.ID(),
+//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -91,7 +91,7 @@ type Token struct {
 	// `region`). The region in which the namespace is created.
 	//
 	// > **Important** Updating any of the arguments above will recreate the token.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
@@ -324,8 +324,8 @@ func (o TokenOutput) NamespaceId() pulumi.StringPtrOutput {
 // `region`). The region in which the namespace is created.
 //
 // > **Important** Updating any of the arguments above will recreate the token.
-func (o TokenOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o TokenOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The token.

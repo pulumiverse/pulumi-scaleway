@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-//				IpId: main.ID(),
+//				IpId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("data-test-lb-backend"),
 //				Type: pulumi.String("LB-S"),
 //			})
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			mainBackend, err := loadbalancers.NewBackend(ctx, "main", &loadbalancers.BackendArgs{
-//				LbId:            mainLoadBalancer.ID(),
+//				LbId:            mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
@@ -51,11 +51,11 @@ import (
 //				return err
 //			}
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
-//				BackendId: mainBackend.ID(),
+//				BackendId: mainBackend.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
 //				Name: mainBackend.Name,
-//				LbId: mainLoadBalancer.ID(),
+//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -122,12 +122,8 @@ type LookupBackendResult struct {
 }
 
 func LookupBackendOutput(ctx *pulumi.Context, args LookupBackendOutputArgs, opts ...pulumi.InvokeOption) LookupBackendResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackendResultOutput, error) {
-			args := v.(LookupBackendArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getBackend:getBackend", args, LookupBackendResultOutput{}, options).(LookupBackendResultOutput), nil
-		}).(LookupBackendResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getBackend:getBackend", args, LookupBackendResultOutput{}, options).(LookupBackendResultOutput)
 }
 
 // A collection of arguments for invoking getBackend.

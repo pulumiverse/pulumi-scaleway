@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPartnersPartnerResult> Partners;
         public readonly ImmutableArray<string> PopIds;
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetPartnersResult(
@@ -197,7 +197,7 @@ namespace Pulumiverse.Scaleway.Interlink
 
             ImmutableArray<string> popIds,
 
-            string? region)
+            string region)
         {
             Id = id;
             Partners = partners;

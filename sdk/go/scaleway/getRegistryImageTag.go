@@ -49,9 +49,9 @@ type GetRegistryImageTagResult struct {
 	ImageId string  `pulumi:"imageId"`
 	Name    *string `pulumi:"name"`
 	// The organization ID the image tag is associated with.
-	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
-	Region         *string `pulumi:"region"`
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
 	// The status of the registry image tag.
 	Status string  `pulumi:"status"`
 	TagId  *string `pulumi:"tagId"`
@@ -60,12 +60,8 @@ type GetRegistryImageTagResult struct {
 }
 
 func GetRegistryImageTagOutput(ctx *pulumi.Context, args GetRegistryImageTagOutputArgs, opts ...pulumi.InvokeOption) GetRegistryImageTagResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetRegistryImageTagResultOutput, error) {
-			args := v.(GetRegistryImageTagArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getRegistryImageTag:getRegistryImageTag", args, GetRegistryImageTagResultOutput{}, options).(GetRegistryImageTagResultOutput), nil
-		}).(GetRegistryImageTagResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getRegistryImageTag:getRegistryImageTag", args, GetRegistryImageTagResultOutput{}, options).(GetRegistryImageTagResultOutput)
 }
 
 // A collection of arguments for invoking getRegistryImageTag.
@@ -133,8 +129,8 @@ func (o GetRegistryImageTagResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageTagResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetRegistryImageTagResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistryImageTagResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetRegistryImageTagResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageTagResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The status of the registry image tag.

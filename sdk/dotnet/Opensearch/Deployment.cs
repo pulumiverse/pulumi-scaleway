@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway.Opensearch
 {
     /// <summary>
     /// Creates and manages Scaleway OpenSearch deployments.
-    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+    /// For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/cloud-essentials-for-opensearch).
     /// 
     /// ## Example Usage
     /// 
@@ -244,7 +244,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// `Region`) The region in which the deployment should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of the deployment (e.g., "ready", "creating", "upgrading").

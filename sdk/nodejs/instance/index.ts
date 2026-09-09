@@ -100,6 +100,11 @@ export type Snapshot = import("./snapshot").Snapshot;
 export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
 utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
 
+export { TemplateArgs, TemplateState } from "./template";
+export type Template = import("./template").Template;
+export const Template: typeof import("./template").Template = null as any;
+utilities.lazyLoad(exports, ["Template"], () => require("./template"));
+
 export { UserDataArgs, UserDataState } from "./userData";
 export type UserData = import("./userData").UserData;
 export const UserData: typeof import("./userData").UserData = null as any;
@@ -133,6 +138,8 @@ const _module = {
                 return new Server(name, <any>undefined, { urn })
             case "scaleway:instance/snapshot:Snapshot":
                 return new Snapshot(name, <any>undefined, { urn })
+            case "scaleway:instance/template:Template":
+                return new Template(name, <any>undefined, { urn })
             case "scaleway:instance/userData:UserData":
                 return new UserData(name, <any>undefined, { urn })
             case "scaleway:instance/volume:Volume":
@@ -151,5 +158,6 @@ pulumi.runtime.registerResourceModule("scaleway", "instance/securityGroup", _mod
 pulumi.runtime.registerResourceModule("scaleway", "instance/securityGroupRules", _module)
 pulumi.runtime.registerResourceModule("scaleway", "instance/server", _module)
 pulumi.runtime.registerResourceModule("scaleway", "instance/snapshot", _module)
+pulumi.runtime.registerResourceModule("scaleway", "instance/template", _module)
 pulumi.runtime.registerResourceModule("scaleway", "instance/userData", _module)
 pulumi.runtime.registerResourceModule("scaleway", "instance/volume", _module)

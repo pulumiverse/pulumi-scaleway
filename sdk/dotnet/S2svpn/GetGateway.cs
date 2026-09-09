@@ -254,6 +254,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// </summary>
         public readonly ImmutableArray<Outputs.GetGatewayPublicConfigResult> PublicConfigs;
         public readonly string? Region;
+        public readonly string Srn;
         /// <summary>
         /// The status of the VPN gateway.
         /// </summary>
@@ -298,6 +299,8 @@ namespace Pulumiverse.Scaleway.S2svpn
 
             string? region,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -320,6 +323,7 @@ namespace Pulumiverse.Scaleway.S2svpn
             ProjectId = projectId;
             PublicConfigs = publicConfigs;
             Region = region;
+            Srn = srn;
             Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;

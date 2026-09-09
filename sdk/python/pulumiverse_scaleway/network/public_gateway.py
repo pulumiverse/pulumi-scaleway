@@ -235,6 +235,7 @@ class _PublicGatewayState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -256,6 +257,7 @@ class _PublicGatewayState:
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the Public Gateway is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the public gateway is associated with.
         :param pulumi.Input[_builtins.str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the public gateway.
         :param pulumi.Input[_builtins.str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the Public Gateway.
         :param pulumi.Input[_builtins.str] type: The gateway type.
@@ -290,6 +292,8 @@ class _PublicGatewayState:
             pulumi.set(__self__, "project_id", project_id)
         if refresh_ssh_keys is not None:
             pulumi.set(__self__, "refresh_ssh_keys", refresh_ssh_keys)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -453,6 +457,18 @@ class _PublicGatewayState:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the public gateway.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the public gateway.
@@ -574,15 +590,15 @@ class PublicGateway(pulumi.CustomResource):
 
         key1 = scaleway.iam.SshKey("key1",
             name="key1",
-            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+            public_key=std.file(input="~/.ssh/id_rsa.pub").result)
         key2 = scaleway.iam.SshKey("key2",
             name="key2",
-            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
-        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            public_key=std.file(input="~/.ssh/another_key.pub").result)
+        ssh_keys_hash = std.sha256_output(input=std.join_output(separator=",",
             input=[
                 key1.public_key,
                 key2.public_key,
-            ])["result"])["result"]
+            ]).result).result
         main = scaleway.network.PublicGateway("main",
             name="public_gateway_demo",
             type="VPC-GW-S",
@@ -655,15 +671,15 @@ class PublicGateway(pulumi.CustomResource):
 
         key1 = scaleway.iam.SshKey("key1",
             name="key1",
-            public_key=std.file(input="~/.ssh/id_rsa.pub")["result"])
+            public_key=std.file(input="~/.ssh/id_rsa.pub").result)
         key2 = scaleway.iam.SshKey("key2",
             name="key2",
-            public_key=std.file(input="~/.ssh/another_key.pub")["result"])
-        ssh_keys_hash = std.sha256(input=std.join(separator=",",
+            public_key=std.file(input="~/.ssh/another_key.pub").result)
+        ssh_keys_hash = std.sha256_output(input=std.join_output(separator=",",
             input=[
                 key1.public_key,
                 key2.public_key,
-            ])["result"])["result"]
+            ]).result).result
         main = scaleway.network.PublicGateway("main",
             name="public_gateway_demo",
             type="VPC-GW-S",
@@ -738,6 +754,7 @@ class PublicGateway(pulumi.CustomResource):
             __props__.__dict__["bandwidth"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["upstream_dns_servers"] = None
@@ -765,6 +782,7 @@ class PublicGateway(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -790,6 +808,7 @@ class PublicGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the Public Gateway is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the public gateway is associated with.
         :param pulumi.Input[_builtins.str] refresh_ssh_keys: Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the public gateway.
         :param pulumi.Input[_builtins.str] status: The status of the public gateway.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the Public Gateway.
         :param pulumi.Input[_builtins.str] type: The gateway type.
@@ -813,6 +832,7 @@ class PublicGateway(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["refresh_ssh_keys"] = refresh_ssh_keys
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -920,6 +940,14 @@ class PublicGateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the public gateway.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
         The status of the public gateway.
@@ -961,7 +989,7 @@ class PublicGateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the Public Gateway should be created.
         """

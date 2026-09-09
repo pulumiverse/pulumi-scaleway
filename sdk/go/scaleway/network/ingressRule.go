@@ -40,15 +40,15 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID(),
+//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID(),
+//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Description:             pulumi.String("Allow ingress traffic from 10.0.0.0/24"),
 //			})
@@ -82,16 +82,16 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
-//				VpcId:  vpc01.ID(),
+//				VpcId:  vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Region: pulumi.String("nl-ams"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID(),
+//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID(),
+//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Region:                  pulumi.String("nl-ams"),
 //			})
@@ -124,15 +124,15 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID(),
+//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID(),
+//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Description:             pulumi.String("Allow ingress traffic from 10.0.0.0/24"),
 //				Tags: pulumi.StringArray{
@@ -170,7 +170,7 @@ type IngressRule struct {
 	// IP of the nexthop resource that should handle traffic matched by this rule.
 	NexthopResourceIp pulumi.StringOutput `pulumi:"nexthopResourceIp"`
 	// `region`) The region of the ingress rule.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Source IP range (in CIDR notation) to which the ingress rule applies.
 	Source pulumi.StringOutput `pulumi:"source"`
 	// The Scaleway Resource Name (SRN) of the ingress rule.
@@ -426,8 +426,8 @@ func (o IngressRuleOutput) NexthopResourceIp() pulumi.StringOutput {
 }
 
 // `region`) The region of the ingress rule.
-func (o IngressRuleOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IngressRule) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o IngressRuleOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IngressRule) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Source IP range (in CIDR notation) to which the ingress rule applies.

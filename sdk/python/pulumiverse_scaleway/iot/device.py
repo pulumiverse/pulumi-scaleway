@@ -431,25 +431,6 @@ class Device(pulumi.CustomResource):
             name="test-iot")
         ```
 
-        ### With custom certificate
-
-        ```python
-        import pulumi
-        import pulumi_local as local
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iot.Hub("main",
-            name="test-iot",
-            product_plan="plan_shared")
-        device_cert = local.file(filename="device-certificate.pem")
-        main_device = scaleway.iot.Device("main",
-            hub_id=main.id,
-            name="test-iot",
-            certificate={
-                "crt": device_cert["content"],
-            })
-        ```
-
         ## Import
 
         IoT devices can be imported using the `{region}/{id}`, e.g.
@@ -501,25 +482,6 @@ class Device(pulumi.CustomResource):
         main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot")
-        ```
-
-        ### With custom certificate
-
-        ```python
-        import pulumi
-        import pulumi_local as local
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iot.Hub("main",
-            name="test-iot",
-            product_plan="plan_shared")
-        device_cert = local.file(filename="device-certificate.pem")
-        main_device = scaleway.iot.Device("main",
-            hub_id=main.id,
-            name="test-iot",
-            certificate={
-                "crt": device_cert["content"],
-            })
         ```
 
         ## Import
@@ -737,7 +699,7 @@ class Device(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         The region you want to attach the resource to
         """

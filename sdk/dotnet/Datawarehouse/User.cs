@@ -118,7 +118,13 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `Region`) The region in which the user should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the user.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
 
         /// <summary>
@@ -258,6 +264,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the user.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         public UserState()
         {

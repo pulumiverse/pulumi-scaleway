@@ -89,6 +89,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SSH key.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the last update of the SSH key.
         /// </summary>
         [Output("updatedAt")]
@@ -216,6 +222,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SSH key.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the SSH key.

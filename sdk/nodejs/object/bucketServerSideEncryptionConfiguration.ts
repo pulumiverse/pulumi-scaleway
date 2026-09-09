@@ -155,7 +155,7 @@ export class BucketServerSideEncryptionConfiguration extends pulumi.CustomResour
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Set of server-side encryption configuration rules
      */

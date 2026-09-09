@@ -83,7 +83,7 @@ namespace Pulumiverse.Scaleway.Mnq
         /// `Region`). The region in which SNS is enabled.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The secret value of the key.

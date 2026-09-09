@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway.Keymanager
     ///         KeyMaterialWo = Std.Base64encode.Invoke(new()
     ///         {
     ///             Input = keyMaterial.Base64,
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         KeyMaterialWoVersion = 1,
     ///     });
     /// 
@@ -94,12 +94,12 @@ namespace Pulumiverse.Scaleway.Keymanager
     ///         KeyMaterialWo = Std.Base64encode.Invoke(new()
     ///         {
     ///             Input = keyMaterial.Base64,
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         KeyMaterialWoVersion = 1,
     ///         SaltWo = Std.Base64encode.Invoke(new()
     ///         {
     ///             Input = salt.Base64,
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         SaltWoVersion = 1,
     ///     });
     /// 

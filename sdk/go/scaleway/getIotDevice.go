@@ -59,12 +59,8 @@ type LookupIotDeviceResult struct {
 }
 
 func LookupIotDeviceOutput(ctx *pulumi.Context, args LookupIotDeviceOutputArgs, opts ...pulumi.InvokeOption) LookupIotDeviceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIotDeviceResultOutput, error) {
-			args := v.(LookupIotDeviceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getIotDevice:getIotDevice", args, LookupIotDeviceResultOutput{}, options).(LookupIotDeviceResultOutput), nil
-		}).(LookupIotDeviceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getIotDevice:getIotDevice", args, LookupIotDeviceResultOutput{}, options).(LookupIotDeviceResultOutput)
 }
 
 // A collection of arguments for invoking getIotDevice.

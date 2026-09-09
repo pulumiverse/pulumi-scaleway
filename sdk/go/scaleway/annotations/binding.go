@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID(),
+//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -57,7 +57,7 @@ import (
 //			}
 //			_, err = annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
 //				Srn:     main.Srn,
-//				ValueId: production.ID(),
+//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

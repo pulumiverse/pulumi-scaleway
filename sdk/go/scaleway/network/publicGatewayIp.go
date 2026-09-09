@@ -72,12 +72,14 @@ type PublicGatewayIp struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The reverse domain name for the IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the Public Gateway IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the Public Gateway IP.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Public Gateway IP should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewPublicGatewayIp registers a new resource with the given unique name, arguments, and options.
@@ -126,6 +128,8 @@ type publicGatewayIpState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain name for the IP address
 	Reverse *string `pulumi:"reverse"`
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the Public Gateway IP.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the Public Gateway IP.
@@ -145,6 +149,8 @@ type PublicGatewayIpState struct {
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain name for the IP address
 	Reverse pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the IP.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the Public Gateway IP.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the Public Gateway IP.
@@ -292,6 +298,11 @@ func (o PublicGatewayIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringOutput { return v.Reverse }).(pulumi.StringOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the IP.
+func (o PublicGatewayIpOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The tags associated with the Public Gateway IP.
 func (o PublicGatewayIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
@@ -303,8 +314,8 @@ func (o PublicGatewayIpOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Public Gateway IP should be created.
-func (o PublicGatewayIpOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o PublicGatewayIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type PublicGatewayIpArrayOutput struct{ *pulumi.OutputState }

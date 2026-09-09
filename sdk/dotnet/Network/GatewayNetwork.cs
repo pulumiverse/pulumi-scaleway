@@ -199,6 +199,12 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the gateway network.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// Please use `IpamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Output("staticAddress")]
@@ -224,7 +230,7 @@ namespace Pulumiverse.Scaleway.Network
         /// For more information, please refer to the dedicated guide.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -432,6 +438,12 @@ namespace Pulumiverse.Scaleway.Network
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the gateway network.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// Please use `IpamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.

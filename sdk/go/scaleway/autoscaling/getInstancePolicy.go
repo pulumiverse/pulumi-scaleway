@@ -86,12 +86,8 @@ type LookupInstancePolicyResult struct {
 }
 
 func LookupInstancePolicyOutput(ctx *pulumi.Context, args LookupInstancePolicyOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstancePolicyResultOutput, error) {
-			args := v.(LookupInstancePolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:autoscaling/getInstancePolicy:getInstancePolicy", args, LookupInstancePolicyResultOutput{}, options).(LookupInstancePolicyResultOutput), nil
-		}).(LookupInstancePolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:autoscaling/getInstancePolicy:getInstancePolicy", args, LookupInstancePolicyResultOutput{}, options).(LookupInstancePolicyResultOutput)
 }
 
 // A collection of arguments for invoking getInstancePolicy.

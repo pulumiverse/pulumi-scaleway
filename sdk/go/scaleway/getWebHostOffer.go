@@ -89,16 +89,12 @@ type GetWebHostOfferResult struct {
 	//
 	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetWebHostOfferProduct `pulumi:"products"`
-	Region   *string                  `pulumi:"region"`
+	Region   string                   `pulumi:"region"`
 }
 
 func GetWebHostOfferOutput(ctx *pulumi.Context, args GetWebHostOfferOutputArgs, opts ...pulumi.InvokeOption) GetWebHostOfferResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetWebHostOfferResultOutput, error) {
-			args := v.(GetWebHostOfferArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getWebHostOffer:getWebHostOffer", args, GetWebHostOfferResultOutput{}, options).(GetWebHostOfferResultOutput), nil
-		}).(GetWebHostOfferResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getWebHostOffer:getWebHostOffer", args, GetWebHostOfferResultOutput{}, options).(GetWebHostOfferResultOutput)
 }
 
 // A collection of arguments for invoking getWebHostOffer.
@@ -172,8 +168,8 @@ func (o GetWebHostOfferResultOutput) Products() GetWebHostOfferProductArrayOutpu
 	return o.ApplyT(func(v GetWebHostOfferResult) []GetWebHostOfferProduct { return v.Products }).(GetWebHostOfferProductArrayOutput)
 }
 
-func (o GetWebHostOfferResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebHostOfferResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetWebHostOfferResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

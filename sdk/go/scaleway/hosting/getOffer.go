@@ -87,16 +87,12 @@ type GetOfferResult struct {
 	//
 	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetOfferProduct `pulumi:"products"`
-	Region   *string           `pulumi:"region"`
+	Region   string            `pulumi:"region"`
 }
 
 func GetOfferOutput(ctx *pulumi.Context, args GetOfferOutputArgs, opts ...pulumi.InvokeOption) GetOfferResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOfferResultOutput, error) {
-			args := v.(GetOfferArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:hosting/getOffer:getOffer", args, GetOfferResultOutput{}, options).(GetOfferResultOutput), nil
-		}).(GetOfferResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:hosting/getOffer:getOffer", args, GetOfferResultOutput{}, options).(GetOfferResultOutput)
 }
 
 // A collection of arguments for invoking getOffer.
@@ -170,8 +166,8 @@ func (o GetOfferResultOutput) Products() GetOfferProductArrayOutput {
 	return o.ApplyT(func(v GetOfferResult) []GetOfferProduct { return v.Products }).(GetOfferProductArrayOutput)
 }
 
-func (o GetOfferResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOfferResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetOfferResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOfferResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -53,7 +53,7 @@ import (
 //				Zone:  pulumi.String("fr-par-1"),
 //				PrivateNetworks: instance.ServerPrivateNetworkArray{
 //					&instance.ServerPrivateNetworkArgs{
-//						PnId: main.ID(),
+//						PnId: main.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -73,15 +73,15 @@ import (
 //			mainPublicGateway, err := network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: mainPublicGatewayIp.ID(),
+//				IpId: mainPublicGatewayIp.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainGatewayNetwork, err := network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        mainPublicGateway.ID(),
-//				PrivateNetworkId: main.ID(),
-//				DhcpId:           mainPublicGatewayDhcp.ID(),
+//				GatewayId:        mainPublicGateway.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: main.ID().ToIDOutput().ToStringOutput(),
+//				DhcpId:           mainPublicGatewayDhcp.ID().ToIDOutput().ToStringOutput(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -92,10 +92,10 @@ import (
 //				return err
 //			}
 //			_, err = network.NewPublicGatewayDhcpReservation(ctx, "main", &network.PublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: mainGatewayNetwork.ID(),
-//				MacAddress: pulumi.String(mainServer.PrivateNetworks.ApplyT(func(privateNetworks []instance.ServerPrivateNetwork) (*string, error) {
-//					return &privateNetworks[0].MacAddress, nil
-//				}).(pulumi.StringPtrOutput)),
+//				GatewayNetworkId: mainGatewayNetwork.ID().ToIDOutput().ToStringOutput(),
+//				MacAddress: mainServer.PrivateNetworks.ApplyT(func(privateNetworks []instance.ServerPrivateNetwork) (*string, error) {
+//					return privateNetworks[0].MacAddress, nil
+//				}).(pulumi.StringPtrOutput),
 //				IpAddress: pulumi.String("192.168.1.1"),
 //			})
 //			if err != nil {
@@ -134,7 +134,7 @@ type VpcPublicGatewayDhcpReservation struct {
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVpcPublicGatewayDhcpReservation registers a new resource with the given unique name, arguments, and options.
@@ -363,8 +363,8 @@ func (o VpcPublicGatewayDhcpReservationOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the public gateway DHCP config should be created.
-func (o VpcPublicGatewayDhcpReservationOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o VpcPublicGatewayDhcpReservationOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type VpcPublicGatewayDhcpReservationArrayOutput struct{ *pulumi.OutputState }

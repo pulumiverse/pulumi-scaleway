@@ -46,12 +46,8 @@ type GetBillingConsumptionsResult struct {
 }
 
 func GetBillingConsumptionsOutput(ctx *pulumi.Context, args GetBillingConsumptionsOutputArgs, opts ...pulumi.InvokeOption) GetBillingConsumptionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBillingConsumptionsResultOutput, error) {
-			args := v.(GetBillingConsumptionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", args, GetBillingConsumptionsResultOutput{}, options).(GetBillingConsumptionsResultOutput), nil
-		}).(GetBillingConsumptionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", args, GetBillingConsumptionsResultOutput{}, options).(GetBillingConsumptionsResultOutput)
 }
 
 // A collection of arguments for invoking getBillingConsumptions.

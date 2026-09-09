@@ -90,12 +90,8 @@ type LookupModelResult struct {
 }
 
 func LookupModelOutput(ctx *pulumi.Context, args LookupModelOutputArgs, opts ...pulumi.InvokeOption) LookupModelResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupModelResultOutput, error) {
-			args := v.(LookupModelArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:inference/getModel:getModel", args, LookupModelResultOutput{}, options).(LookupModelResultOutput), nil
-		}).(LookupModelResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:inference/getModel:getModel", args, LookupModelResultOutput{}, options).(LookupModelResultOutput)
 }
 
 // A collection of arguments for invoking getModel.

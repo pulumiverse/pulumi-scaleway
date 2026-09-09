@@ -44,7 +44,7 @@ class ContainerHealthCheckArgsDict(TypedDict):
     """
     Number of consecutive health check failures before considering the container unhealthy.
     """
-    https: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]]]
+    https: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]]]
     """
     HTTP health check configuration.
     """
@@ -176,7 +176,7 @@ class ContainerLivenessProbeArgsDict(TypedDict):
     """
     Duration before the check times out (in duration notation, e.g. "30s").
     """
-    http: NotRequired[pulumi.Input[Optional['ContainerLivenessProbeHttpArgs']]]
+    http: NotRequired[pulumi.Input[Optional['ContainerLivenessProbeHttpArgsDict']]]
     """
     Perform HTTP check on the container with the specified path.
     """
@@ -379,7 +379,7 @@ class ContainerStartupProbeArgsDict(TypedDict):
     """
     Duration before the check times out (in duration notation, e.g. "30s").
     """
-    http: NotRequired[pulumi.Input[Optional['ContainerStartupProbeHttpArgs']]]
+    http: NotRequired[pulumi.Input[Optional['ContainerStartupProbeHttpArgsDict']]]
     """
     Perform HTTP check on the container with the specified path.
     """

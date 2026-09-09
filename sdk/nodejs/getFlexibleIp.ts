@@ -72,6 +72,7 @@ export interface GetFlexibleIpResult {
     readonly projectId: string;
     readonly reverse: string;
     readonly serverId: string;
+    readonly srn: string;
     readonly status: string;
     readonly tags: string[];
     readonly updatedAt: string;

@@ -45,8 +45,8 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewGroupMembership(ctx, "member", &iam.GroupMembershipArgs{
-//				GroupId:       group.ID(),
-//				ApplicationId: app.ID(),
+//				GroupId:       group.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

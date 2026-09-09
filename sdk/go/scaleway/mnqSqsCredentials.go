@@ -74,7 +74,7 @@ type MnqSqsCredentials struct {
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which SQS is enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 }
@@ -278,8 +278,8 @@ func (o MnqSqsCredentialsOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which SQS is enabled.
-func (o MnqSqsCredentialsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o MnqSqsCredentialsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The secret value of the key.

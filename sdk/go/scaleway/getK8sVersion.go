@@ -97,21 +97,17 @@ type GetK8sVersionResult struct {
 	// The list of supported feature gates for this version.
 	AvailableFeatureGates []string `pulumi:"availableFeatureGates"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	MajorMinorOnly string  `pulumi:"majorMinorOnly"`
-	Name           string  `pulumi:"name"`
-	Region         *string `pulumi:"region"`
+	Id             string `pulumi:"id"`
+	MajorMinorOnly string `pulumi:"majorMinorOnly"`
+	Name           string `pulumi:"name"`
+	Region         string `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the version.
 	Srn string `pulumi:"srn"`
 }
 
 func GetK8sVersionOutput(ctx *pulumi.Context, args GetK8sVersionOutputArgs, opts ...pulumi.InvokeOption) GetK8sVersionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetK8sVersionResultOutput, error) {
-			args := v.(GetK8sVersionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getK8sVersion:getK8sVersion", args, GetK8sVersionResultOutput{}, options).(GetK8sVersionResultOutput), nil
-		}).(GetK8sVersionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getK8sVersion:getK8sVersion", args, GetK8sVersionResultOutput{}, options).(GetK8sVersionResultOutput)
 }
 
 // A collection of arguments for invoking getK8sVersion.
@@ -169,8 +165,8 @@ func (o GetK8sVersionResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetK8sVersionResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetK8sVersionResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetK8sVersionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetK8sVersionResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sVersionResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the version.

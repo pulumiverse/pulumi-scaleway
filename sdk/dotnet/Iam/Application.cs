@@ -74,6 +74,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the application.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the application.
         /// </summary>
         [Output("tags")]
@@ -203,6 +209,12 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the application.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

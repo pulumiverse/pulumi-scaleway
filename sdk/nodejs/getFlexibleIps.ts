@@ -108,9 +108,9 @@ export interface GetFlexibleIpsResult {
      */
     readonly tags?: string[];
     /**
-     * (Defaults to provider `zone`) The zone in which the MAC address exist.
+     * (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
      */
-    readonly zone?: string;
+    readonly zone: string;
 }
 /**
  * Gets information about multiple Flexible IPs.

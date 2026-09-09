@@ -76,7 +76,7 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
      * `region`). The region
      * in which the account exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a MnqNatsCredentials resource with the given unique name, arguments, and options.

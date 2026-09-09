@@ -11338,7 +11338,7 @@ class GetFlexibleIpsIpMacAddressResult(dict):
                  mac_type: _builtins.str,
                  status: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str created_at: The date on which the flexible IP was created (RFC 3339 format).
         :param _builtins.str id: The MAC address ID.
@@ -11354,8 +11354,7 @@ class GetFlexibleIpsIpMacAddressResult(dict):
         pulumi.set(__self__, "mac_type", mac_type)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -11407,7 +11406,7 @@ class GetFlexibleIpsIpMacAddressResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which IPs exist.
         """
@@ -11904,7 +11903,7 @@ class GetInstanceServersServerResult(dict):
                  state: _builtins.str,
                  tags: Sequence[_builtins.str],
                  type: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param _builtins.str bootscript_id: UUID of the bootscript
@@ -11940,8 +11939,7 @@ class GetInstanceServersServerResult(dict):
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="bootType")
@@ -12074,7 +12072,7 @@ class GetInstanceServersServerResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which servers exist.
         """
@@ -14196,7 +14194,7 @@ class GetLbIpsIpResult(dict):
                  project_id: _builtins.str,
                  reverse: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str id: The ID of the associated IP.
         :param _builtins.str ip_address: The IP address
@@ -14214,8 +14212,7 @@ class GetLbIpsIpResult(dict):
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "reverse", reverse)
         pulumi.set(__self__, "tags", tags)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter
@@ -14275,7 +14272,7 @@ class GetLbIpsIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the IPs exist.
         """
@@ -14398,7 +14395,7 @@ class GetLbsLbResult(dict):
                  tags: Sequence[_builtins.str],
                  type: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.int backend_count: Number of backends the Load Balancer has.
         :param _builtins.str created_at: Date on which the Load Balancer was created.
@@ -14438,8 +14435,7 @@ class GetLbsLbResult(dict):
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="backendCount")
@@ -14587,7 +14583,7 @@ class GetLbsLbResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """
@@ -14602,7 +14598,7 @@ class GetLbsLbInstanceResult(dict):
                  ip_address: _builtins.str,
                  status: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str created_at: Date on which the Load Balancer was created.
         :param _builtins.str id: The ID of the Load Balancer.
@@ -14616,8 +14612,7 @@ class GetLbsLbInstanceResult(dict):
         pulumi.set(__self__, "ip_address", ip_address)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -14661,7 +14656,7 @@ class GetLbsLbInstanceResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """
@@ -14677,7 +14672,7 @@ class GetLbsLbIpResult(dict):
                  organization_id: _builtins.str,
                  project_id: _builtins.str,
                  reverse: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str id: The ID of the Load Balancer.
         :param _builtins.str ip_address: IP address
@@ -14693,8 +14688,7 @@ class GetLbsLbIpResult(dict):
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "reverse", reverse)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter
@@ -14746,7 +14740,7 @@ class GetLbsLbIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """
@@ -14844,7 +14838,7 @@ class GetLoadbalancerPrivateNetworkResult(dict):
         :param _builtins.str private_network_id: The Private Network ID
         :param Sequence[_builtins.str] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param _builtins.str status: The status of private network connection
-        :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         pulumi.set(__self__, "dhcp_config", dhcp_config)
         pulumi.set(__self__, "ipam_ids", ipam_ids)
@@ -14897,7 +14891,7 @@ class GetLoadbalancerPrivateNetworkResult(dict):
     @pulumi.getter
     def zone(self) -> _builtins.str:
         """
-        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -16020,9 +16014,9 @@ class GetVpcRoutesRouteResult(dict):
                  nexthop_private_network_id: _builtins.str,
                  nexthop_resource_id: _builtins.str,
                  nexthop_resource_type: _builtins.str,
+                 region: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 vpc_id: _builtins.str,
-                 region: Optional[_builtins.str] = None):
+                 vpc_id: _builtins.str):
         """
         :param _builtins.str created_at: The date on which the route was created (RFC 3339 format).
         :param _builtins.str description: The description of the route.
@@ -16034,9 +16028,9 @@ class GetVpcRoutesRouteResult(dict):
         :param _builtins.str nexthop_private_network_id: The next hop private network ID to filter for. routes with a similar next hop private network ID are listed.
         :param _builtins.str nexthop_resource_id: The next hop resource ID to filter for. routes with a similar next hop resource ID are listed.
         :param _builtins.str nexthop_resource_type: The next hop resource type to filter for. routes with a similar next hop resource type are listed.
+        :param _builtins.str region: `region`). The region in which the routes exist.
         :param Sequence[_builtins.str] tags: List of tags to filter for. routes with these exact tags are listed.
         :param _builtins.str vpc_id: The VPC ID to filter for. routes with a similar VPC ID are listed.
-        :param _builtins.str region: `region`). The region in which the routes exist.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "description", description)
@@ -16047,10 +16041,9 @@ class GetVpcRoutesRouteResult(dict):
         pulumi.set(__self__, "nexthop_private_network_id", nexthop_private_network_id)
         pulumi.set(__self__, "nexthop_resource_id", nexthop_resource_id)
         pulumi.set(__self__, "nexthop_resource_type", nexthop_resource_type)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "vpc_id", vpc_id)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -16127,6 +16120,14 @@ class GetVpcRoutesRouteResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`). The region in which the routes exist.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         List of tags to filter for. routes with these exact tags are listed.
@@ -16141,14 +16142,6 @@ class GetVpcRoutesRouteResult(dict):
         """
         return pulumi.get(self, "vpc_id")
 
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
-        """
-        `region`). The region in which the routes exist.
-        """
-        return pulumi.get(self, "region")
-
 
 @pulumi.output_type
 class GetVpcsVpcResult(dict):
@@ -16159,9 +16152,9 @@ class GetVpcsVpcResult(dict):
                  name: _builtins.str,
                  organization_id: _builtins.str,
                  project_id: _builtins.str,
+                 region: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 update_at: _builtins.str,
-                 region: Optional[_builtins.str] = None):
+                 update_at: _builtins.str):
         """
         :param _builtins.str created_at: Date and time of VPC's creation (RFC 3339 format).
         :param _builtins.str id: The associated VPC ID.
@@ -16170,9 +16163,9 @@ class GetVpcsVpcResult(dict):
         :param _builtins.str name: The VPC name to filter for. VPCs with a similar name are listed.
         :param _builtins.str organization_id: The Organization ID the VPC is associated with.
         :param _builtins.str project_id: The ID of the Project the VPC is associated with.
+        :param _builtins.str region: `region`). The region in which the VPCs exist.
         :param Sequence[_builtins.str] tags: List of tags to filter for. VPCs with these exact tags are listed.
         :param _builtins.str update_at: Date on which the VPC was last updated (RFC 3339 format)
-        :param _builtins.str region: `region`). The region in which the VPCs exist.
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -16180,10 +16173,9 @@ class GetVpcsVpcResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_at", update_at)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -16236,6 +16228,14 @@ class GetVpcsVpcResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`). The region in which the VPCs exist.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         List of tags to filter for. VPCs with these exact tags are listed.
@@ -16249,14 +16249,6 @@ class GetVpcsVpcResult(dict):
         Date on which the VPC was last updated (RFC 3339 format)
         """
         return pulumi.get(self, "update_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
-        """
-        `region`). The region in which the VPCs exist.
-        """
-        return pulumi.get(self, "region")
 
 
 @pulumi.output_type

@@ -174,7 +174,7 @@ export class BucketAcl extends pulumi.CustomResource {
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a BucketAcl resource with the given unique name, arguments, and options.

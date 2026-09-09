@@ -40,52 +40,8 @@ import (
 //				return err
 //			}
 //			_, err = iot.NewDevice(ctx, "main", &iot.DeviceArgs{
-//				HubId: main.ID(),
+//				HubId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:  pulumi.String("test-iot"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With custom certificate
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-local/sdk/go/local"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := iot.NewHub(ctx, "main", &iot.HubArgs{
-//				Name:        pulumi.String("test-iot"),
-//				ProductPlan: pulumi.String("plan_shared"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			deviceCert, err := local.File(ctx, map[string]interface{}{
-//				"filename": "device-certificate.pem",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iot.NewDevice(ctx, "main", &iot.DeviceArgs{
-//				HubId: main.ID(),
-//				Name:  pulumi.String("test-iot"),
-//				Certificate: &iot.DeviceCertificateArgs{
-//					Crt: pulumi.Any(deviceCert.Content),
-//				},
 //			})
 //			if err != nil {
 //				return err
@@ -135,7 +91,7 @@ type IotDevice struct {
 	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region you want to attach the resource to
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The current status of the device.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The date and time the device resource was updated.
@@ -443,8 +399,8 @@ func (o IotDeviceOutput) Name() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o IotDeviceOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IotDevice) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o IotDeviceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The current status of the device.

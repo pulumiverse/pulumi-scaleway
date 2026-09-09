@@ -63,14 +63,14 @@ import (
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
 //			main, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
-//				Name:      pulumi.String(pulumi.String(domainName)),
+//				Name:      pulumi.String(domainName),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("TXT"),
 //				Data:    main.SpfValue,
 //			})
@@ -78,7 +78,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Name:    main.DkimName,
 //				Type:    pulumi.String("TXT"),
 //				Data:    main.DkimConfig,
@@ -87,7 +87,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("MX"),
 //				Data:    main.MxConfig,
 //			})
@@ -95,7 +95,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dmarc", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Name:    main.DmarcName,
 //				Type:    pulumi.String("TXT"),
 //				Data:    main.DmarcConfig,
@@ -127,7 +127,7 @@ import (
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
 //			_, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
-//				Name:       pulumi.String(pulumi.String(domainName)),
+//				Name:       pulumi.String(domainName),
 //				AcceptTos:  pulumi.Bool(true),
 //				Autoconfig: pulumi.Bool(true),
 //			})
@@ -166,21 +166,21 @@ import (
 //			}
 //			_, err = gitlab.NewProjectVariable(ctx, "smtp_auth_user", &gitlab.ProjectVariableArgs{
 //				Key:   pulumi.String("SMTP_AUTH_USER"),
-//				Value: pulumi.String(pulumi.String(myDomain.SmtpsAuthUser)),
+//				Value: pulumi.String(myDomain.SmtpsAuthUser),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = gitlab.NewProjectVariable(ctx, "smtp_port", &gitlab.ProjectVariableArgs{
 //				Key:   pulumi.String("SMTP_PORT"),
-//				Value: pulumi.String(pulumi.Int(myDomain.SmtpsPort)),
+//				Value: pulumi.Int(myDomain.SmtpsPort),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = gitlab.NewProjectVariable(ctx, "smtp_host", &gitlab.ProjectVariableArgs{
 //				Key:   pulumi.String("SMTP_HOST"),
-//				Value: pulumi.String(pulumi.Any(myDomain.SmtpsHost)),
+//				Value: pulumi.Any(myDomain.SmtpsHost),
 //			})
 //			if err != nil {
 //				return err
@@ -235,7 +235,7 @@ type Domain struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
 	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The domain's reputation.
 	Reputations DomainReputationArrayOutput `pulumi:"reputations"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
@@ -624,8 +624,8 @@ func (o DomainOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region in which the domain should be created.
 // > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
-func (o DomainOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Domain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DomainOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The domain's reputation.

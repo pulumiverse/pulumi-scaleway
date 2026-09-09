@@ -135,7 +135,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         /// `Zone`) The zone in which the Instance policy exists.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

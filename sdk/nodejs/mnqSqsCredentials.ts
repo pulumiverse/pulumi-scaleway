@@ -89,7 +89,7 @@ export class MnqSqsCredentials extends pulumi.CustomResource {
     /**
      * `region`). The region in which SQS is enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The secret value of the key.
      */

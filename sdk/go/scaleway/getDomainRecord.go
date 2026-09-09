@@ -112,12 +112,8 @@ type LookupDomainRecordResult struct {
 }
 
 func LookupDomainRecordOutput(ctx *pulumi.Context, args LookupDomainRecordOutputArgs, opts ...pulumi.InvokeOption) LookupDomainRecordResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDomainRecordResultOutput, error) {
-			args := v.(LookupDomainRecordArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getDomainRecord:getDomainRecord", args, LookupDomainRecordResultOutput{}, options).(LookupDomainRecordResultOutput), nil
-		}).(LookupDomainRecordResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getDomainRecord:getDomainRecord", args, LookupDomainRecordResultOutput{}, options).(LookupDomainRecordResultOutput)
 }
 
 // A collection of arguments for invoking getDomainRecord.

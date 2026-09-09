@@ -70,6 +70,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> SamlId { get; private set; } = null!;
 
         /// <summary>
+        /// (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The type of the SAML certificate. Possible values are: `Signing`, `Encryption`.
         /// </summary>
         [Output("type")]
@@ -183,6 +189,12 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         [Input("samlId")]
         public Input<string>? SamlId { get; set; }
+
+        /// <summary>
+        /// (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The type of the SAML certificate. Possible values are: `Signing`, `Encryption`.

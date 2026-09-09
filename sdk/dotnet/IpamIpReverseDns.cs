@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
     ///             Host = 42,
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         Ttl = 3600,
     ///         Priority = 1,
     ///     });
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
     ///             Host = 42,
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });
@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`) The region of the IP reverse DNS.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
 
         /// <summary>

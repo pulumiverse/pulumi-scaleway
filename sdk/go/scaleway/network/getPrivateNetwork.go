@@ -110,12 +110,8 @@ type LookupPrivateNetworkResult struct {
 }
 
 func LookupPrivateNetworkOutput(ctx *pulumi.Context, args LookupPrivateNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateNetworkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPrivateNetworkResultOutput, error) {
-			args := v.(LookupPrivateNetworkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getPrivateNetwork:getPrivateNetwork", args, LookupPrivateNetworkResultOutput{}, options).(LookupPrivateNetworkResultOutput), nil
-		}).(LookupPrivateNetworkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getPrivateNetwork:getPrivateNetwork", args, LookupPrivateNetworkResultOutput{}, options).(LookupPrivateNetworkResultOutput)
 }
 
 // A collection of arguments for invoking getPrivateNetwork.

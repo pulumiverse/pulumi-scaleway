@@ -105,7 +105,7 @@ type Vpc struct {
 	// `projectId`) The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the VPC.
 	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags to associate with the VPC.
@@ -370,8 +370,8 @@ func (o VpcOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the VPC.
-func (o VpcOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vpc) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o VpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the VPC.

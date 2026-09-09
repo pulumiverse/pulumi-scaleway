@@ -156,13 +156,13 @@ namespace Pulumiverse.Scaleway
     ///         ProjectId = cluster.ProjectId,
     ///     });
     /// 
-    ///     var nginxIngress = new Kubernetes.Helm.sh.V3.Release("nginx_ingress", new()
+    ///     var nginxIngress = new Kubernetes.Helm.V3.Release("nginx_ingress", new()
     ///     {
     ///         Name = "nginx-ingress",
     ///         Namespace = "kube-system",
-    ///         RepositoryOpts = 
+    ///         RepositoryOpts = new Kubernetes.Types.Inputs.Helm.V3.RepositoryOptsArgs
     ///         {
-    ///             { "repo", "https://kubernetes.github.io/ingress-nginx" },
+    ///             Repo = "https://kubernetes.github.io/ingress-nginx",
     ///         },
     ///         Chart = "ingress-nginx",
     ///         Values = 
@@ -456,7 +456,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`) The region in which the cluster should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The subnet used for the Service CIDR.

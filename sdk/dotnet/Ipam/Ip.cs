@@ -234,7 +234,7 @@ namespace Pulumiverse.Scaleway.Ipam
         /// `Region`) The region of the IP.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The IP resource.
@@ -253,6 +253,12 @@ namespace Pulumiverse.Scaleway.Ipam
         /// </summary>
         [Output("sources")]
         public Output<ImmutableArray<Outputs.IpSource>> Sources { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the IP.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the IP.
@@ -476,6 +482,12 @@ namespace Pulumiverse.Scaleway.Ipam
             get => _sources ?? (_sources = new InputList<Inputs.IpSourceGetArgs>());
             set => _sources = value;
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the IP.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

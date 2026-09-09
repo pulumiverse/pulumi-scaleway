@@ -101,12 +101,8 @@ type LookupWafStageResult struct {
 }
 
 func LookupWafStageOutput(ctx *pulumi.Context, args LookupWafStageOutputArgs, opts ...pulumi.InvokeOption) LookupWafStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupWafStageResultOutput, error) {
-			args := v.(LookupWafStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getWafStage:getWafStage", args, LookupWafStageResultOutput{}, options).(LookupWafStageResultOutput), nil
-		}).(LookupWafStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getWafStage:getWafStage", args, LookupWafStageResultOutput{}, options).(LookupWafStageResultOutput)
 }
 
 // A collection of arguments for invoking getWafStage.

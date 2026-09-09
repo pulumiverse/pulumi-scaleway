@@ -112,12 +112,8 @@ type LookupDatalabResult struct {
 }
 
 func LookupDatalabOutput(ctx *pulumi.Context, args LookupDatalabOutputArgs, opts ...pulumi.InvokeOption) LookupDatalabResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatalabResultOutput, error) {
-			args := v.(LookupDatalabArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:datalab/getDatalab:getDatalab", args, LookupDatalabResultOutput{}, options).(LookupDatalabResultOutput), nil
-		}).(LookupDatalabResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:datalab/getDatalab:getDatalab", args, LookupDatalabResultOutput{}, options).(LookupDatalabResultOutput)
 }
 
 // A collection of arguments for invoking getDatalab.

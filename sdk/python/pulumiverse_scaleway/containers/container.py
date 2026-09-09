@@ -91,7 +91,7 @@ class ContainerArgs:
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
                - > **Important:** Exactly one of `image` or `registry_image` must be set.
@@ -482,7 +482,7 @@ class ContainerArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the container was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         """
         return pulumi.get(self, "region")
 
@@ -672,7 +672,7 @@ class _ContainerState:
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
                - > **Important:** Exactly one of `image` or `registry_image` must be set.
@@ -1131,7 +1131,7 @@ class _ContainerState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the container was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         """
         return pulumi.get(self, "region")
 
@@ -1372,7 +1372,7 @@ class Container(pulumi.CustomResource):
             namespace_id=main_namespace.id,
             image=f"{main.endpoint}/{main_get_image.name}:{main_get_image.tags[0]}",
             port=80,
-            registry_sha256=std.timestamp()["result"])
+            registry_sha256=std.timestamp().result)
         ```
 
         ### Redeploy the container when the image changes
@@ -1390,8 +1390,8 @@ class Container(pulumi.CustomResource):
         main = scaleway.registry.Namespace("main", name="some-unique-name")
         nginx = scaleway.registry.get_image_output(namespace_id=main.id,
             name="nginx")
-        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
-            name="latest"))
+        nginx_latest = scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest")
         main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
         main_container = scaleway.containers.Container("main",
             name="nginx-latest",
@@ -1572,7 +1572,7 @@ class Container(pulumi.CustomResource):
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
                - > **Important:** Exactly one of `image` or `registry_image` must be set.
@@ -1672,7 +1672,7 @@ class Container(pulumi.CustomResource):
             namespace_id=main_namespace.id,
             image=f"{main.endpoint}/{main_get_image.name}:{main_get_image.tags[0]}",
             port=80,
-            registry_sha256=std.timestamp()["result"])
+            registry_sha256=std.timestamp().result)
         ```
 
         ### Redeploy the container when the image changes
@@ -1690,8 +1690,8 @@ class Container(pulumi.CustomResource):
         main = scaleway.registry.Namespace("main", name="some-unique-name")
         nginx = scaleway.registry.get_image_output(namespace_id=main.id,
             name="nginx")
-        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
-            name="latest"))
+        nginx_latest = scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest")
         main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
         main_container = scaleway.containers.Container("main",
             name="nginx-latest",
@@ -2027,7 +2027,7 @@ class Container(pulumi.CustomResource):
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the container was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
                
                - > **Important:** Exactly one of `image` or `registry_image` must be set.
@@ -2320,9 +2320,9 @@ class Container(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        (Defaults to provider `region`) The region in which the container was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         """
         return pulumi.get(self, "region")
 

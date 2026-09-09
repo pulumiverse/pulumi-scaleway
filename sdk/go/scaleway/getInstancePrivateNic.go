@@ -94,18 +94,15 @@ type LookupInstancePrivateNicResult struct {
 	PrivateIps       []GetInstancePrivateNicPrivateIp `pulumi:"privateIps"`
 	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
 	PrivateNicId     *string                          `pulumi:"privateNicId"`
+	ProjectId        string                           `pulumi:"projectId"`
 	ServerId         string                           `pulumi:"serverId"`
 	Tags             []string                         `pulumi:"tags"`
 	Zone             *string                          `pulumi:"zone"`
 }
 
 func LookupInstancePrivateNicOutput(ctx *pulumi.Context, args LookupInstancePrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePrivateNicResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstancePrivateNicResultOutput, error) {
-			args := v.(LookupInstancePrivateNicArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, LookupInstancePrivateNicResultOutput{}, options).(LookupInstancePrivateNicResultOutput), nil
-		}).(LookupInstancePrivateNicResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, LookupInstancePrivateNicResultOutput{}, options).(LookupInstancePrivateNicResultOutput)
 }
 
 // A collection of arguments for invoking getInstancePrivateNic.
@@ -171,6 +168,10 @@ func (o LookupInstancePrivateNicResultOutput) PrivateNetworkId() pulumi.StringPt
 
 func (o LookupInstancePrivateNicResultOutput) PrivateNicId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstancePrivateNicResult) *string { return v.PrivateNicId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstancePrivateNicResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstancePrivateNicResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o LookupInstancePrivateNicResultOutput) ServerId() pulumi.StringOutput {

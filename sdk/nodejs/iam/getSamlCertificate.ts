@@ -53,13 +53,13 @@ export interface GetSamlCertificateResult {
      */
     readonly expiresAt: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The origin of the SAML certificate. Possible values are: `scaleway`, `identityProvider`.
      */
     readonly origin: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the SAML certificate
+     */
+    readonly srn: string;
     /**
      * The type of the SAML certificate. Possible values are: `signing`, `encryption`.
      */

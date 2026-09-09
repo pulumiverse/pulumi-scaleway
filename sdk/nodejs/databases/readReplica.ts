@@ -142,7 +142,7 @@ export class ReadReplica extends pulumi.CustomResource {
      * `region`) The region
      * in which the Read Replica should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
      */

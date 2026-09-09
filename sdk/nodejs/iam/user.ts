@@ -43,10 +43,10 @@ import * as utilities from "../utilities";
  *     },
  * ];
  * const usersUser: scaleway.iam.User[] = [];
- * for (const range = {value: 0}; range.value < users.length; range.value++) {
- *     usersUser.push(new scaleway.iam.User(`users-${range.value}`, {
- *         email: users[range.value].email,
- *         username: users[range.value].username,
+ * for (let range = 0; range < users.length; range++) {
+ *     usersUser.push(new scaleway.iam.User(`users-${range}`, {
+ *         email: users[range].email,
+ *         username: users[range].username,
  *     }));
  * }
  * ```
@@ -157,6 +157,10 @@ export class User extends pulumi.CustomResource {
      */
     declare public readonly sendWelcomeEmail: pulumi.Output<boolean | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the user.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -207,6 +211,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["phoneNumber"] = state?.phoneNumber;
             resourceInputs["sendPasswordEmail"] = state?.sendPasswordEmail;
             resourceInputs["sendWelcomeEmail"] = state?.sendWelcomeEmail;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
@@ -239,6 +244,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["lastLoginAt"] = undefined /*out*/;
             resourceInputs["locked"] = undefined /*out*/;
             resourceInputs["mfa"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -325,6 +331,10 @@ export interface UserState {
      * Whether or not to send a welcome email that includes onboarding information.
      */
     sendWelcomeEmail?: pulumi.Input<boolean | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the user.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */

@@ -95,16 +95,12 @@ type GetPopsResult struct {
 	// List of PoPs matching the filters. Each entry contains:
 	Pops []GetPopsPop `pulumi:"pops"`
 	// Region of the PoP.
-	Region *string `pulumi:"region"`
+	Region string `pulumi:"region"`
 }
 
 func GetPopsOutput(ctx *pulumi.Context, args GetPopsOutputArgs, opts ...pulumi.InvokeOption) GetPopsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPopsResultOutput, error) {
-			args := v.(GetPopsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getPops:getPops", args, GetPopsResultOutput{}, options).(GetPopsResultOutput), nil
-		}).(GetPopsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getPops:getPops", args, GetPopsResultOutput{}, options).(GetPopsResultOutput)
 }
 
 // A collection of arguments for invoking getPops.
@@ -175,8 +171,8 @@ func (o GetPopsResultOutput) Pops() GetPopsPopArrayOutput {
 }
 
 // Region of the PoP.
-func (o GetPopsResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPopsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetPopsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

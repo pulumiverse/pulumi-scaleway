@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: mainNamespace.ID(),
+//				NamespaceId: mainNamespace.ID().ToIDOutput().ToStringOutput(),
 //				Runtime:     pulumi.String("go118"),
 //				Privacy:     pulumi.String("private"),
 //				Handler:     pulumi.String("Handle"),
@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			_, err = functions.NewDomain(ctx, "main", &functions.DomainArgs{
-//				FunctionId: mainFunction.ID(),
+//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
 //				Hostname:   pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				mainFunction,
@@ -82,8 +82,8 @@ type FunctionDomain struct {
 	//
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in which the domain was created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The URL used to query the function.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -132,7 +132,7 @@ type functionDomainState struct {
 	//
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname *string `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in which the domain was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region *string `pulumi:"region"`
 	// The URL used to query the function.
 	Url *string `pulumi:"url"`
@@ -147,7 +147,7 @@ type FunctionDomainState struct {
 	//
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringPtrInput
-	// (Defaults to provider `region`) The region in which the domain was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringPtrInput
 	// The URL used to query the function.
 	Url pulumi.StringPtrInput
@@ -166,7 +166,7 @@ type functionDomainArgs struct {
 	//
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname string `pulumi:"hostname"`
-	// (Defaults to provider `region`) The region in which the domain was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region *string `pulumi:"region"`
 }
 
@@ -180,7 +180,7 @@ type FunctionDomainArgs struct {
 	//
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringInput
-	// (Defaults to provider `region`) The region in which the domain was created.
+	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringPtrInput
 }
 
@@ -285,9 +285,9 @@ func (o FunctionDomainOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `region`) The region in which the domain was created.
-func (o FunctionDomainOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FunctionDomain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
+func (o FunctionDomainOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The URL used to query the function.

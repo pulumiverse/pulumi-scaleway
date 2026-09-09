@@ -218,7 +218,7 @@ export class LoadBalancer extends pulumi.CustomResource {
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a LoadBalancer resource with the given unique name, arguments, and options.

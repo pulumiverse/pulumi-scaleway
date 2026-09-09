@@ -90,7 +90,7 @@ export class InstanceIp extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstanceIp resource with the given unique name, arguments, and options.

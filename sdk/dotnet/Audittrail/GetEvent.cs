@@ -641,7 +641,7 @@ namespace Pulumiverse.Scaleway.Audittrail
         public readonly string? ProjectId;
         public readonly string? RecordedAfter;
         public readonly string? RecordedBefore;
-        public readonly string? Region;
+        public readonly string Region;
         public readonly string? ResourceId;
         public readonly string? ResourceType;
         /// <summary>
@@ -676,7 +676,7 @@ namespace Pulumiverse.Scaleway.Audittrail
 
             string? recordedBefore,
 
-            string? region,
+            string region,
 
             string? resourceId,
 

@@ -73,6 +73,22 @@
                     }
                 }
             },
+            "scaleway_autoscaling_group": {
+                "current": "scaleway:autoscaling/group:Group",
+                "majorVersion": 1,
+                "fields": {
+                    "load_balancer_configuration": {
+                        "fields": {
+                            "backends": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_autoscaling_instance_group": {
                 "current": "scaleway:autoscaling/instanceGroup:InstanceGroup",
                 "majorVersion": 1,
@@ -1380,6 +1396,34 @@
                     },
                     "tags": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_instance_template": {
+                "current": "scaleway:instance/template:Template",
+                "majorVersion": 1,
+                "fields": {
+                    "filesystem_ids": {
+                        "maxItemsOne": false
+                    },
+                    "private_networks": {
+                        "maxItemsOne": false
+                    },
+                    "server_tags": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "volumes": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -6531,6 +6575,24 @@
             }
         }
     },
+    "default-resource-schema-fixups": {
+        "resources": {
+            "scaleway_annotations_binding": {},
+            "scaleway_annotations_key": {},
+            "scaleway_annotations_value": {},
+            "scaleway_autoscaling_group": {},
+            "scaleway_billing_budget": {},
+            "scaleway_billing_budget_alert": {},
+            "scaleway_billing_budget_alert_notification": {},
+            "scaleway_datalab": {},
+            "scaleway_iam_saml": {},
+            "scaleway_iam_saml_certificate": {},
+            "scaleway_iam_scim": {},
+            "scaleway_iam_scim_token": {},
+            "scaleway_instance_template": {},
+            "scaleway_key_manager_key_material": {}
+        }
+    },
     "mux": {
         "resources": {
             "scaleway:account/project:Project": 0,
@@ -6540,6 +6602,7 @@
             "scaleway:annotations/value:Value": 1,
             "scaleway:applesilicon/runner:Runner": 0,
             "scaleway:applesilicon/server:Server": 0,
+            "scaleway:autoscaling/group:Group": 1,
             "scaleway:autoscaling/instanceGroup:InstanceGroup": 0,
             "scaleway:autoscaling/instancePolicy:InstancePolicy": 0,
             "scaleway:autoscaling/instanceTemplate:InstanceTemplate": 0,
@@ -6728,6 +6791,7 @@
             "scaleway:instance/securityGroupRules:SecurityGroupRules": 0,
             "scaleway:instance/server:Server": 0,
             "scaleway:instance/snapshot:Snapshot": 0,
+            "scaleway:instance/template:Template": 1,
             "scaleway:instance/userData:UserData": 0,
             "scaleway:instance/volume:Volume": 0,
             "scaleway:interlink/link:Link": 0,
@@ -6950,6 +7014,8 @@
             "scaleway:index/getVpcs:getVpcs": 0,
             "scaleway:index/getWebHostOffer:getWebHostOffer": 0,
             "scaleway:index/getWebhosting:getWebhosting": 0,
+            "scaleway:index/idFromRegionalId:idFromRegionalId": 1,
+            "scaleway:index/regionFromId:regionFromId": 1,
             "scaleway:inference/getModel:getModel": 0,
             "scaleway:instance/getImage:getImage": 0,
             "scaleway:instance/getIp:getIp": 0,
@@ -7033,6 +7099,40 @@
             "scaleway:secrets/getVersion:getVersion": 0,
             "scaleway:tem/getDomain:getDomain": 0,
             "scaleway:tem/getOfferSubscription:getOfferSubscription": 0
+        },
+        "listResources": {
+            "scaleway:account/project:Project": 1,
+            "scaleway:block/snapshot:Snapshot": 1,
+            "scaleway:block/volume:Volume": 1,
+            "scaleway:databases/database:Database": 1,
+            "scaleway:databases/databaseBackup:DatabaseBackup": 1,
+            "scaleway:databases/instance:Instance": 1,
+            "scaleway:databases/snapshot:Snapshot": 1,
+            "scaleway:domain/record:Record": 1,
+            "scaleway:domain/zone:Zone": 1,
+            "scaleway:iam/apiKey:ApiKey": 1,
+            "scaleway:iam/application:Application": 1,
+            "scaleway:iam/group:Group": 1,
+            "scaleway:iam/policy:Policy": 1,
+            "scaleway:iam/sshKey:SshKey": 1,
+            "scaleway:iam/user:User": 1,
+            "scaleway:ipam/ip:Ip": 1,
+            "scaleway:keymanager/key:Key": 1,
+            "scaleway:loadbalancers/backend:Backend": 1,
+            "scaleway:loadbalancers/frontend:Frontend": 1,
+            "scaleway:loadbalancers/loadBalancer:LoadBalancer": 1,
+            "scaleway:mongodb/instance:Instance": 1,
+            "scaleway:network/connector:Connector": 1,
+            "scaleway:network/privateNetwork:PrivateNetwork": 1,
+            "scaleway:network/publicGateway:PublicGateway": 1,
+            "scaleway:network/publicGatewayIp:PublicGatewayIp": 1,
+            "scaleway:network/route:Route": 1,
+            "scaleway:network/vpc:Vpc": 1,
+            "scaleway:object/bucket:Bucket": 1,
+            "scaleway:opensearch/deployment:Deployment": 1,
+            "scaleway:redis/cluster:Cluster": 1,
+            "scaleway:secrets/secret:Secret": 1,
+            "scaleway:secrets/version:Version": 1
         }
     }
 }

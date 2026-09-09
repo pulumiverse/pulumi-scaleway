@@ -196,6 +196,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// List of rules in the policy.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyRuleResult> Rules;
+        public readonly string Srn;
         /// <summary>
         /// The tags associated with the IAM policy.
         /// </summary>
@@ -233,6 +234,8 @@ namespace Pulumiverse.Scaleway.Iam
 
             ImmutableArray<Outputs.GetPolicyRuleResult> rules,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
@@ -250,6 +253,7 @@ namespace Pulumiverse.Scaleway.Iam
             OrganizationId = organizationId;
             PolicyId = policyId;
             Rules = rules;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
             UserId = userId;

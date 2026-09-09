@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  *
- * !> **Important:** The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
+ * > **Important:** The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
  *
  * ## Example Usage
  *
@@ -88,6 +88,10 @@ export class SshKey extends pulumi.CustomResource {
      */
     declare public readonly publicKey: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the SSH key
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The date and time of the last update of the iam SSH Key
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
@@ -112,6 +116,7 @@ export class SshKey extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicKey"] = state?.publicKey;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as SshKeyArgs | undefined;
@@ -125,6 +130,7 @@ export class SshKey extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["fingerprint"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,6 +172,10 @@ export interface SshKeyState {
      * The public SSH key to be added.
      */
     publicKey?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the SSH key
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the iam SSH Key
      */

@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Creates and manages Scaleway OpenSearch deployments.
- * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+ * For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/cloud-essentials-for-opensearch).
  *
  * ## Example Usage
  *
@@ -202,7 +202,7 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * `region`) The region in which the deployment should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The status of the deployment (e.g., "ready", "creating", "upgrading").
      */

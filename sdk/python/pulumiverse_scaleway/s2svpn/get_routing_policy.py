@@ -26,7 +26,7 @@ class GetRoutingPolicyResult:
     """
     A collection of values returned by getRoutingPolicy.
     """
-    def __init__(__self__, created_at=None, id=None, is_ipv6=None, name=None, organization_id=None, prefix_filter_ins=None, prefix_filter_outs=None, project_id=None, region=None, routing_policy_id=None, tags=None, updated_at=None):
+    def __init__(__self__, created_at=None, id=None, is_ipv6=None, name=None, organization_id=None, prefix_filter_ins=None, prefix_filter_outs=None, project_id=None, region=None, routing_policy_id=None, srn=None, tags=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -57,6 +57,9 @@ class GetRoutingPolicyResult:
         if routing_policy_id and not isinstance(routing_policy_id, str):
             raise TypeError("Expected argument 'routing_policy_id' to be a str")
         pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -134,6 +137,11 @@ class GetRoutingPolicyResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         The tags associated with the routing policy.
@@ -165,6 +173,7 @@ class AwaitableGetRoutingPolicyResult(GetRoutingPolicyResult):
             project_id=self.project_id,
             region=self.region,
             routing_policy_id=self.routing_policy_id,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at)
 
@@ -222,6 +231,7 @@ def get_routing_policy(name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         routing_policy_id=pulumi.get(__ret__, 'routing_policy_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_routing_policy_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -276,5 +286,6 @@ def get_routing_policy_output(name: pulumi.Input[Optional[Optional[_builtins.str
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
         routing_policy_id=pulumi.get(__response__, 'routing_policy_id'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at')))

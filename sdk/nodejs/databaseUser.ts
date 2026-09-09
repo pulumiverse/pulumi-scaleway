@@ -127,7 +127,7 @@ export class DatabaseUser extends pulumi.CustomResource {
     /**
      * The Scaleway region this resource resides in.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a DatabaseUser resource with the given unique name, arguments, and options.

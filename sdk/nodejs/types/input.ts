@@ -2759,6 +2759,92 @@ export namespace audittrail {
 }
 
 export namespace autoscaling {
+    export interface GroupLoadBalancerConfiguration {
+        /**
+         * The auto-healing configuration.
+         *
+         * > The `autoHealing` block contains:
+         */
+        autoHealing?: pulumi.Input<inputs.autoscaling.GroupLoadBalancerConfigurationAutoHealing | undefined>;
+        /**
+         * The list of load balancer backend configurations.
+         *
+         * > The `backends` block contains:
+         */
+        backends: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupLoadBalancerConfigurationBackend>[]>;
+        /**
+         * The ID of the load balancer.
+         */
+        loadBalancerId: pulumi.Input<string>;
+    }
+
+    export interface GroupLoadBalancerConfigurationAutoHealing {
+        /**
+         * Whether auto-healing is enabled.
+         */
+        enabled?: pulumi.Input<boolean | undefined>;
+        /**
+         * The grace period for health checks.
+         */
+        gracePeriod?: pulumi.Input<string | undefined>;
+    }
+
+    export interface GroupLoadBalancerConfigurationBackend {
+        /**
+         * The IP address family (IPv4 or IPv6).
+         */
+        addressFamily: pulumi.Input<string>;
+        /**
+         * The ID of the load balancer backend.
+         */
+        backendId: pulumi.Input<string>;
+        /**
+         * The ID of the private network.
+         */
+        privateNetworkId?: pulumi.Input<string | undefined>;
+    }
+
+    export interface GroupScalingPolicy {
+        /**
+         * The target CPU utilization percentage to trigger scaling events.
+         */
+        cpuTarget?: pulumi.Input<number | undefined>;
+        /**
+         * The fixed number of instances for the group.
+         */
+        fixedSize?: pulumi.Input<number | undefined>;
+        /**
+         * The maximum number of instances in the group.
+         */
+        maximumSize: pulumi.Input<number>;
+        /**
+         * The target memory utilization percentage to trigger scaling events.
+         *
+         * > **Important:** Exactly one of `fixedSize`, `cpuTarget` and `memoryTarget` must be defined.
+         */
+        memoryTarget?: pulumi.Input<number | undefined>;
+        /**
+         * The minimum number of instances in the group.
+         */
+        minimumSize: pulumi.Input<number>;
+        /**
+         * The cooldown duration after a scale-in event.
+         */
+        scaleInCooldown?: pulumi.Input<string | undefined>;
+        /**
+         * The number of instances to remove during scale-in event.
+         */
+        scaleInStep?: pulumi.Input<number | undefined>;
+        /**
+         * The cooldown duration after a scale-out event.
+         */
+        scaleOutCooldown?: pulumi.Input<string | undefined>;
+        /**
+         * The number of instances to add during scale-out event.
+         */
+        scaleOutStep?: pulumi.Input<number | undefined>;
+    }
+
     export interface InstanceGroupCapacity {
         /**
          * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
@@ -4859,6 +4945,39 @@ export namespace instance {
          * Key of the object to import
          */
         key: pulumi.Input<string>;
+    }
+
+    export interface TemplateVolume {
+        /**
+         * The ID of the base snapshot for the volume.
+         *
+         * > **Important:** Only one of `baseSnapshotId` and `imageLabel` can be set.
+         */
+        baseSnapshotId?: pulumi.Input<string | undefined>;
+        /**
+         * The label of the image used as base for the volume.
+         */
+        imageLabel?: pulumi.Input<string | undefined>;
+        /**
+         * The name of volume.
+         */
+        name?: pulumi.Input<string | undefined>;
+        /**
+         * The performance IOPS of the volume, required for `sbs` type volumes.
+         */
+        perfIops?: pulumi.Input<number | undefined>;
+        /**
+         * The size of the volume in gigabytes.
+         */
+        sizeInGb: pulumi.Input<number>;
+        /**
+         * The tags associated with the volume.
+         */
+        tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The type of the volume.
+         */
+        volumeType: pulumi.Input<string>;
     }
 }
 

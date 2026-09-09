@@ -71,6 +71,10 @@ export class SamlCertificate extends pulumi.CustomResource {
      */
     declare public readonly samlId: pulumi.Output<string>;
     /**
+     * (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The type of the SAML certificate. Possible values are: `signing`, `encryption`.
      */
     declare public readonly type: pulumi.Output<string>;
@@ -93,6 +97,7 @@ export class SamlCertificate extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["origin"] = state?.origin;
             resourceInputs["samlId"] = state?.samlId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SamlCertificateArgs | undefined;
@@ -108,6 +113,7 @@ export class SamlCertificate extends pulumi.CustomResource {
             resourceInputs["type"] = args?.type;
             resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["origin"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SamlCertificate.__pulumiType, name, resourceInputs, opts);
@@ -138,6 +144,10 @@ export interface SamlCertificateState {
      * The ID of the SAML configuration. If not provided, the organization's SAML configuration is used.
      */
     samlId?: pulumi.Input<string | undefined>;
+    /**
+     * (String) The Scaleway Resource Name (SRN) of the SAML certificate.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The type of the SAML certificate. Possible values are: `signing`, `encryption`.
      */

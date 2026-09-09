@@ -26,7 +26,7 @@ class GetSamlCertificateResult:
     """
     A collection of values returned by getSamlCertificate.
     """
-    def __init__(__self__, certificate_id=None, content=None, expires_at=None, id=None, origin=None, type=None):
+    def __init__(__self__, certificate_id=None, content=None, expires_at=None, origin=None, srn=None, type=None):
         if certificate_id and not isinstance(certificate_id, str):
             raise TypeError("Expected argument 'certificate_id' to be a str")
         pulumi.set(__self__, "certificate_id", certificate_id)
@@ -36,12 +36,12 @@ class GetSamlCertificateResult:
         if expires_at and not isinstance(expires_at, str):
             raise TypeError("Expected argument 'expires_at' to be a str")
         pulumi.set(__self__, "expires_at", expires_at)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if origin and not isinstance(origin, str):
             raise TypeError("Expected argument 'origin' to be a str")
         pulumi.set(__self__, "origin", origin)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -72,19 +72,19 @@ class GetSamlCertificateResult:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter
     def origin(self) -> _builtins.str:
         """
         The origin of the SAML certificate. Possible values are: `scaleway`, `identity_provider`.
         """
         return pulumi.get(self, "origin")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the SAML certificate
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -104,8 +104,8 @@ class AwaitableGetSamlCertificateResult(GetSamlCertificateResult):
             certificate_id=self.certificate_id,
             content=self.content,
             expires_at=self.expires_at,
-            id=self.id,
             origin=self.origin,
+            srn=self.srn,
             type=self.type)
 
 
@@ -136,8 +136,8 @@ def get_saml_certificate(certificate_id: Optional[_builtins.str] = None,
         certificate_id=pulumi.get(__ret__, 'certificate_id'),
         content=pulumi.get(__ret__, 'content'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
-        id=pulumi.get(__ret__, 'id'),
         origin=pulumi.get(__ret__, 'origin'),
+        srn=pulumi.get(__ret__, 'srn'),
         type=pulumi.get(__ret__, 'type'))
 def get_saml_certificate_output(certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSamlCertificateResult]:
@@ -165,6 +165,6 @@ def get_saml_certificate_output(certificate_id: pulumi.Input[Optional[_builtins.
         certificate_id=pulumi.get(__response__, 'certificate_id'),
         content=pulumi.get(__response__, 'content'),
         expires_at=pulumi.get(__response__, 'expires_at'),
-        id=pulumi.get(__response__, 'id'),
         origin=pulumi.get(__response__, 'origin'),
+        srn=pulumi.get(__response__, 'srn'),
         type=pulumi.get(__response__, 'type')))

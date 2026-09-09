@@ -12,7 +12,7 @@ namespace Pulumiverse.Scaleway.Kafka
 {
     /// <summary>
     /// Creates and manages Scaleway Kafka clusters.
-    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-services/kafka/).
+    /// For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).
     /// 
     /// &gt; **Important:** The Kafka product is currently in Public Beta.
     /// 
@@ -170,7 +170,7 @@ namespace Pulumiverse.Scaleway.Kafka
         /// `Region`) The region in which the cluster should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of the cluster (e.g., "ready", "creating", "configuring").

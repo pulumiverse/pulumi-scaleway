@@ -125,6 +125,10 @@ export class ApiKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly secretKey: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the API key.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The date and time of the last update of the IAM API key.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
@@ -156,6 +160,7 @@ export class ApiKey extends pulumi.CustomResource {
             resourceInputs["editable"] = state?.editable;
             resourceInputs["expiresAt"] = state?.expiresAt;
             resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["userId"] = state?.userId;
         } else {
@@ -170,6 +175,7 @@ export class ApiKey extends pulumi.CustomResource {
             resourceInputs["creationIp"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
             resourceInputs["secretKey"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -222,6 +228,10 @@ export interface ApiKeyState {
      * The secret Key of the IAM API key.
      */
     secretKey?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the API key.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the IAM API key.
      */

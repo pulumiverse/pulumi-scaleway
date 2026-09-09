@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = network.NewPublicGatewayIpReverseDns(ctx, "main", &network.PublicGatewayIpReverseDnsArgs{
-//				GatewayIpId: main.ID(),
+//				GatewayIpId: main.ID().ToIDOutput().ToStringOutput(),
 //				Reverse:     pulumi.String("tf.example.com"),
 //			})
 //			if err != nil {
@@ -73,7 +73,7 @@ type PublicGatewayIpReverseDns struct {
 	// The reverse domain name for this IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// `zone`) The zone in which the IP should be reserved.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewPublicGatewayIpReverseDns registers a new resource with the given unique name, arguments, and options.
@@ -256,8 +256,8 @@ func (o PublicGatewayIpReverseDnsOutput) Reverse() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the IP should be reserved.
-func (o PublicGatewayIpReverseDnsOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PublicGatewayIpReverseDns) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o PublicGatewayIpReverseDnsOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *PublicGatewayIpReverseDns) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type PublicGatewayIpReverseDnsArrayOutput struct{ *pulumi.OutputState }

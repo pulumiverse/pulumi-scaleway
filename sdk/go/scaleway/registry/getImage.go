@@ -48,9 +48,9 @@ type GetImageResult struct {
 	Name        *string `pulumi:"name"`
 	NamespaceId string  `pulumi:"namespaceId"`
 	// The organization ID the image is associated with.
-	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
-	Region         *string `pulumi:"region"`
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
 	// The size of the registry image.
 	Size int `pulumi:"size"`
 	// The tags associated with the registry image
@@ -62,12 +62,8 @@ type GetImageResult struct {
 }
 
 func GetImageOutput(ctx *pulumi.Context, args GetImageOutputArgs, opts ...pulumi.InvokeOption) GetImageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetImageResultOutput, error) {
-			args := v.(GetImageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:registry/getImage:getImage", args, GetImageResultOutput{}, options).(GetImageResultOutput), nil
-		}).(GetImageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:registry/getImage:getImage", args, GetImageResultOutput{}, options).(GetImageResultOutput)
 }
 
 // A collection of arguments for invoking getImage.
@@ -133,8 +129,8 @@ func (o GetImageResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetImageResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the registry image.

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+ * Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
  *
  * > **Security Best Practice:**
  * For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
@@ -145,7 +145,7 @@ export class User extends pulumi.CustomResource {
     /**
      * `region`) The region in which the MongoDB® user should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * List of roles assigned to the user. Each role block supports:
      */

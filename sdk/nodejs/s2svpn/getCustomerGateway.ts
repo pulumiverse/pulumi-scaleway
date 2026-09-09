@@ -96,6 +96,7 @@ export interface GetCustomerGatewayResult {
     readonly organizationId: string;
     readonly projectId?: string;
     readonly region?: string;
+    readonly srn: string;
     /**
      * The tags associated with the customer gateway.
      */

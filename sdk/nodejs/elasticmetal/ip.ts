@@ -140,6 +140,10 @@ export class Ip extends pulumi.CustomResource {
      */
     declare public readonly serverId: pulumi.Output<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the flexible IP.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the flexible IP.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -154,7 +158,7 @@ export class Ip extends pulumi.CustomResource {
     /**
      * `zone`) The zone of the Flexible IP.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Ip resource with the given unique name, arguments, and options.
@@ -177,6 +181,7 @@ export class Ip extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["reverse"] = state?.reverse;
             resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -193,6 +198,7 @@ export class Ip extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -239,6 +245,10 @@ export interface IpState {
      * The ID of the associated server.
      */
     serverId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the flexible IP.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the flexible IP.
      */

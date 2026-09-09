@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Namespace Token
 //			_, err = containers.NewToken(ctx, "namespace", &containers.TokenArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {
@@ -54,7 +54,7 @@ import (
 //			}
 //			// Container Token
 //			_, err = containers.NewToken(ctx, "container", &containers.TokenArgs{
-//				ContainerId: mainContainer.ID(),
+//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -88,7 +88,7 @@ type Token struct {
 	// `region`). The region in which the namespace is created.
 	//
 	// > **Important:** Updating any of the arguments above will recreate the token.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
@@ -321,8 +321,8 @@ func (o TokenOutput) NamespaceId() pulumi.StringPtrOutput {
 // `region`). The region in which the namespace is created.
 //
 // > **Important:** Updating any of the arguments above will recreate the token.
-func (o TokenOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o TokenOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The token.

@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlert(ctx, "main", &billing.BudgetAlertArgs{
-//				BudgetId:  main.ID(),
+//				BudgetId:  main.ID().ToIDOutput().ToStringOutput(),
 //				Threshold: pulumi.Int(80),
 //			})
 //			if err != nil {

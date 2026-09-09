@@ -70,7 +70,7 @@ import (
 //			_, err = inference.NewDeployment(ctx, "my_deployment", &inference.DeploymentArgs{
 //				Name:     pulumi.String("test-inference-deployment-basic"),
 //				NodeType: pulumi.String("H100"),
-//				ModelId:  myModel.ID(),
+//				ModelId:  myModel.ID().ToIDOutput().ToStringOutput(),
 //				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
 //					IsEnabled: pulumi.Bool(true),
 //				},
@@ -138,7 +138,7 @@ type Model struct {
 	// `projectId`) The ID of the project the deployment is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the deployment is created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -437,8 +437,8 @@ func (o ModelOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the deployment is created.
-func (o ModelOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ModelOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.

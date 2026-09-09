@@ -83,6 +83,7 @@ type LookupFlexibleIpResult struct {
 	ProjectId      string   `pulumi:"projectId"`
 	Reverse        string   `pulumi:"reverse"`
 	ServerId       string   `pulumi:"serverId"`
+	Srn            string   `pulumi:"srn"`
 	Status         string   `pulumi:"status"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
@@ -90,12 +91,8 @@ type LookupFlexibleIpResult struct {
 }
 
 func LookupFlexibleIpOutput(ctx *pulumi.Context, args LookupFlexibleIpOutputArgs, opts ...pulumi.InvokeOption) LookupFlexibleIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFlexibleIpResultOutput, error) {
-			args := v.(LookupFlexibleIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", args, LookupFlexibleIpResultOutput{}, options).(LookupFlexibleIpResultOutput), nil
-		}).(LookupFlexibleIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", args, LookupFlexibleIpResultOutput{}, options).(LookupFlexibleIpResultOutput)
 }
 
 // A collection of arguments for invoking getFlexibleIp.
@@ -168,6 +165,10 @@ func (o LookupFlexibleIpResultOutput) Reverse() pulumi.StringOutput {
 
 func (o LookupFlexibleIpResultOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupFlexibleIpResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupFlexibleIpResultOutput) Status() pulumi.StringOutput {

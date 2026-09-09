@@ -160,6 +160,10 @@ export class GatewayNetwork extends pulumi.CustomResource {
      */
     declare public readonly privateNetworkId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the gateway network.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipamConfig instead.
@@ -180,7 +184,7 @@ export class GatewayNetwork extends pulumi.CustomResource {
      * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
      * For more information, please refer to the dedicated guide.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a GatewayNetwork resource with the given unique name, arguments, and options.
@@ -205,6 +209,7 @@ export class GatewayNetwork extends pulumi.CustomResource {
             resourceInputs["macAddress"] = state?.macAddress;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["staticAddress"] = state?.staticAddress;
             resourceInputs["status"] = state?.status;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -229,6 +234,7 @@ export class GatewayNetwork extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -289,6 +295,10 @@ export interface GatewayNetworkState {
      * The ID of the Private Network.
      */
     privateNetworkId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the gateway network.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *

@@ -67,12 +67,14 @@ import * as utilities from "../utilities";
  * const project = scaleway.account.getProject({
  *     name: projectName,
  * });
- * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: scaleway.iam.getUser({
+ * const usersGetUser = std.toset({
+ *     input: users,
+ * }).then(invoke => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: scaleway.iam.getUser({
  *     email: __value,
- * }) }), {});
+ * }) }), {}));
  * const withUsers = new scaleway.iam.Group("with_users", {
  *     name: "developers",
- *     userIds: Object.values(usersGetUser).map(user => (user.id)),
+ *     userIds: usersGetUser.apply(usersGetUser => Object.values(usersGetUser).map(user => (user.id))),
  * });
  * const iamTfStoragePolicy = new scaleway.iam.Policy("iam_tf_storage_policy", {
  *     name: "developers permissions",
@@ -183,6 +185,10 @@ export class Policy extends pulumi.CustomResource {
      */
     declare public readonly rules: pulumi.Output<outputs.iam.PolicyRule[]>;
     /**
+     * The Scaleway Resource Name (SRN) of the policy.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the IAM policy.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -217,6 +223,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["noPrincipal"] = state?.noPrincipal;
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["rules"] = state?.rules;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["userId"] = state?.userId;
@@ -236,6 +243,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["userId"] = args?.userId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -287,6 +295,10 @@ export interface PolicyState {
      * List of rules in the policy.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.iam.PolicyRule>[] | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the policy.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the IAM policy.
      */

@@ -291,6 +291,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// The version of the secret containing the PSK.
         /// </summary>
         public readonly int SecretVersion;
+        public readonly string Srn;
         /// <summary>
         /// The status of the connection.
         /// </summary>
@@ -358,6 +359,8 @@ namespace Pulumiverse.Scaleway.S2svpn
 
             int secretVersion,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -390,6 +393,7 @@ namespace Pulumiverse.Scaleway.S2svpn
             RoutePropagationEnabled = routePropagationEnabled;
             SecretId = secretId;
             SecretVersion = secretVersion;
+            Srn = srn;
             Status = status;
             Tags = tags;
             TunnelStatus = tunnelStatus;

@@ -153,6 +153,7 @@ class _IpamIpState:
                  resources: pulumi.Input[Optional[Sequence[pulumi.Input['IpamIpResourceArgs']]]] = None,
                  reverses: pulumi.Input[Optional[Sequence[pulumi.Input['IpamIpReverseArgs']]]] = None,
                  sources: pulumi.Input[Optional[Sequence[pulumi.Input['IpamIpSourceArgs']]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -170,6 +171,7 @@ class _IpamIpState:
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpResourceArgs']]] resources: The IP resource.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]] reverses: The reverse DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IP.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of IP's last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] zone: The zone of the IP.
@@ -194,6 +196,8 @@ class _IpamIpState:
             pulumi.set(__self__, "reverses", reverses)
         if sources is not None:
             pulumi.set(__self__, "sources", sources)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -321,6 +325,18 @@ class _IpamIpState:
     @sources.setter
     def sources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpamIpSourceArgs']]]]):
         pulumi.set(self, "sources", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the IP.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -626,6 +642,7 @@ class IpamIp(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["resources"] = None
             __props__.__dict__["reverses"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["zone"] = None
         super(IpamIp, __self__).__init__(
@@ -648,6 +665,7 @@ class IpamIp(pulumi.CustomResource):
             resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]]] = None,
             reverses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]]] = None,
             sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'IpamIp':
@@ -669,6 +687,7 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]] resources: The IP resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]] reverses: The reverse DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]] sources: The source in which to book the IP.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IP.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of IP's last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] zone: The zone of the IP.
@@ -687,6 +706,7 @@ class IpamIp(pulumi.CustomResource):
         __props__.__dict__["resources"] = resources
         __props__.__dict__["reverses"] = reverses
         __props__.__dict__["sources"] = sources
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
@@ -743,7 +763,7 @@ class IpamIp(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region of the IP.
         """
@@ -772,6 +792,14 @@ class IpamIp(pulumi.CustomResource):
         The source in which to book the IP.
         """
         return pulumi.get(self, "sources")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the IP.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

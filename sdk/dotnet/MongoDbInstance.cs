@@ -131,7 +131,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Map of settings to define for the instance.

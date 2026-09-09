@@ -48,7 +48,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
-//				ApplicationId: app.ID(),
+//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -92,7 +92,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
-//				ApplicationId: app.ID(),
+//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						OrganizationId: app.OrganizationId,
@@ -188,6 +188,8 @@ type IamPolicy struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayOutput `pulumi:"rules"`
+	// The Scaleway Resource Name (SRN) of the policy.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the IAM policy.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the policy.
@@ -249,6 +251,8 @@ type iamPolicyState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
+	// The Scaleway Resource Name (SRN) of the policy.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the IAM policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the policy.
@@ -278,6 +282,8 @@ type IamPolicyState struct {
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
+	// The Scaleway Resource Name (SRN) of the policy.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the IAM policy.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the policy.
@@ -469,6 +475,11 @@ func (o IamPolicyOutput) OrganizationId() pulumi.StringOutput {
 // List of rules in the policy.
 func (o IamPolicyOutput) Rules() IamPolicyRuleArrayOutput {
 	return o.ApplyT(func(v *IamPolicy) IamPolicyRuleArrayOutput { return v.Rules }).(IamPolicyRuleArrayOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the policy.
+func (o IamPolicyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the IAM policy.

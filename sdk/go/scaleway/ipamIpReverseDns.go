@@ -42,7 +42,7 @@ import (
 //			srv01, err := instance.NewServer(ctx, "srv01", &instance.ServerArgs{
 //				Name: pulumi.String("tf-tests-instance-server-ips"),
 //				IpIds: pulumi.StringArray{
-//					ip01.ID(),
+//					ip01.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("PRO2-XXS"),
@@ -53,46 +53,32 @@ import (
 //			}
 //			ipam01 := ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
 //				Resource: &ipam.GetIpResourceArgs{
-//					Id:   srv01.ID(),
+//					Id:   srv01.ID().ToIDOutput().ToStringOutput(),
 //					Type: pulumi.String("instance_server"),
 //				},
 //				Type: pulumi.String("ipv6"),
 //			}, nil)
-//			invokeCidrhost, err := std.Cidrhost(ctx, map[string]interface{}{
-//				"input": ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
-//					return &ipam01.AddressCidr, nil
-//				}).(pulumi.StringPtrOutput),
-//				"host": 42,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
 //			_, err = domain.NewRecord(ctx, "tf_AAAA", &domain.RecordArgs{
-//				DnsZone:  pulumi.String("example.com"),
-//				Name:     pulumi.String(""),
-//				Type:     pulumi.String("AAAA"),
-//				Data:     invokeCidrhost.Result,
+//				DnsZone: pulumi.String("example.com"),
+//				Name:    pulumi.String(""),
+//				Type:    pulumi.String("AAAA"),
+//				Data: std.CidrhostOutput(ctx, std.CidrhostOutputArgs{
+//					Input: ipam01.AddressCidr(),
+//					Host:  pulumi.Int(42),
+//				}, nil).Result(),
 //				Ttl:      pulumi.Int(3600),
 //				Priority: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			invokeCidrhost1, err := std.Cidrhost(ctx, map[string]interface{}{
-//				"input": ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
-//					return &ipam01.AddressCidr, nil
-//				}).(pulumi.StringPtrOutput),
-//				"host": 42,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
 //			_, err = ipam.NewIpReverseDns(ctx, "base", &ipam.IpReverseDnsArgs{
-//				IpamIpId: pulumi.String(ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
-//					return &ipam01.Id, nil
-//				}).(pulumi.StringPtrOutput)),
+//				IpamIpId: ipam01.Id(),
 //				Hostname: pulumi.String("example.com"),
-//				Address:  invokeCidrhost1.Result,
+//				Address: std.CidrhostOutput(ctx, std.CidrhostOutputArgs{
+//					Input: ipam01.AddressCidr(),
+//					Host:  pulumi.Int(42),
+//				}, nil).Result(),
 //			})
 //			if err != nil {
 //				return err
@@ -122,7 +108,7 @@ type IpamIpReverseDns struct {
 	// The IPAM IP ID.
 	IpamIpId pulumi.StringOutput `pulumi:"ipamIpId"`
 	// `region`) The region of the IP reverse DNS.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewIpamIpReverseDns registers a new resource with the given unique name, arguments, and options.
@@ -315,8 +301,8 @@ func (o IpamIpReverseDnsOutput) IpamIpId() pulumi.StringOutput {
 }
 
 // `region`) The region of the IP reverse DNS.
-func (o IpamIpReverseDnsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IpamIpReverseDns) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o IpamIpReverseDnsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpamIpReverseDns) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type IpamIpReverseDnsArrayOutput struct{ *pulumi.OutputState }

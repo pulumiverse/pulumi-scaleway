@@ -48,8 +48,8 @@ import * as utilities from "../utilities";
  *     projectId: mainCockpit.projectId,
  * });
  * export const grafanaConnectionInfo = {
- *     url: main.apply(main => main.grafanaUrl),
- *     projectId: main.apply(main => main.projectId),
+ *     url: main.grafanaUrl,
+ *     projectId: main.projectId,
  * };
  * ```
  *
@@ -157,8 +157,8 @@ export interface GetGrafanaResult {
  *     projectId: mainCockpit.projectId,
  * });
  * export const grafanaConnectionInfo = {
- *     url: main.apply(main => main.grafanaUrl),
- *     projectId: main.apply(main => main.projectId),
+ *     url: main.grafanaUrl,
+ *     projectId: main.projectId,
  * };
  * ```
  *

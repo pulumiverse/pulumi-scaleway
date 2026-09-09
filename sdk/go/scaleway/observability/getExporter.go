@@ -118,12 +118,8 @@ type LookupExporterResult struct {
 }
 
 func LookupExporterOutput(ctx *pulumi.Context, args LookupExporterOutputArgs, opts ...pulumi.InvokeOption) LookupExporterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupExporterResultOutput, error) {
-			args := v.(LookupExporterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getExporter:getExporter", args, LookupExporterResultOutput{}, options).(LookupExporterResultOutput), nil
-		}).(LookupExporterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getExporter:getExporter", args, LookupExporterResultOutput{}, options).(LookupExporterResultOutput)
 }
 
 // A collection of arguments for invoking getExporter.

@@ -127,7 +127,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `Region`) The region of the VPC.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway Resource Name (SRN) of the VPC.

@@ -95,12 +95,8 @@ type LookupDeploymentResult struct {
 }
 
 func LookupDeploymentOutput(ctx *pulumi.Context, args LookupDeploymentOutputArgs, opts ...pulumi.InvokeOption) LookupDeploymentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDeploymentResultOutput, error) {
-			args := v.(LookupDeploymentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:opensearch/getDeployment:getDeployment", args, LookupDeploymentResultOutput{}, options).(LookupDeploymentResultOutput), nil
-		}).(LookupDeploymentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:opensearch/getDeployment:getDeployment", args, LookupDeploymentResultOutput{}, options).(LookupDeploymentResultOutput)
 }
 
 // A collection of arguments for invoking getDeployment.

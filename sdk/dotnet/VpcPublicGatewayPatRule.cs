@@ -156,6 +156,12 @@ namespace Pulumiverse.Scaleway
         public Output<int> PublicPort { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the PAT rule.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the last update of the PAT rule configuration.
         /// </summary>
         [Output("updatedAt")]
@@ -165,7 +171,7 @@ namespace Pulumiverse.Scaleway
         /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -299,6 +305,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("publicPort")]
         public Input<int>? PublicPort { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the PAT rule.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the PAT rule configuration.

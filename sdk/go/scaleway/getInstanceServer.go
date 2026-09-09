@@ -87,12 +87,8 @@ type LookupInstanceServerResult struct {
 }
 
 func LookupInstanceServerOutput(ctx *pulumi.Context, args LookupInstanceServerOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceServerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstanceServerResultOutput, error) {
-			args := v.(LookupInstanceServerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getInstanceServer:getInstanceServer", args, LookupInstanceServerResultOutput{}, options).(LookupInstanceServerResultOutput), nil
-		}).(LookupInstanceServerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getInstanceServer:getInstanceServer", args, LookupInstanceServerResultOutput{}, options).(LookupInstanceServerResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceServer.

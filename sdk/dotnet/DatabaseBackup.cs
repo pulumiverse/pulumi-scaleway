@@ -140,7 +140,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Whether the backup is stored in the same region as the source instance.

@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `Region`) The region of the ACL.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The list of Network ACL rules.

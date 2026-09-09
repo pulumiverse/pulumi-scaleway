@@ -140,13 +140,13 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         public readonly string ExpiresAt;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The origin of the SAML certificate. Possible values are: `Scaleway`, `IdentityProvider`.
         /// </summary>
         public readonly string Origin;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SAML certificate
+        /// </summary>
+        public readonly string Srn;
         /// <summary>
         /// The type of the SAML certificate. Possible values are: `Signing`, `Encryption`.
         /// </summary>
@@ -160,17 +160,17 @@ namespace Pulumiverse.Scaleway.Iam
 
             string expiresAt,
 
-            string id,
-
             string origin,
+
+            string srn,
 
             string type)
         {
             CertificateId = certificateId;
             Content = content;
             ExpiresAt = expiresAt;
-            Id = id;
             Origin = origin;
+            Srn = srn;
             Type = type;
         }
     }

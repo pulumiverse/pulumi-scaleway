@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+// Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
 //
 // > **Security Best Practice:**
 // For enhanced security, we recommend using the `passwordWo` write-only argument instead of the regular `password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "main", &mongodb.UserArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("my_user"),
 //				Password:   pulumi.String("my_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -90,7 +90,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "app_user", &mongodb.UserArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("app_user"),
 //				Password:   pulumi.String("app_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -108,7 +108,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "admin_user", &mongodb.UserArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("admin_user"),
 //				Password:   pulumi.String("admin_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -153,7 +153,7 @@ type User struct {
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// `region`) The region in which the MongoDB® user should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// List of roles assigned to the user. Each role block supports:
 	Roles UserRoleArrayOutput `pulumi:"roles"`
 }
@@ -392,8 +392,8 @@ func (o UserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 }
 
 // `region`) The region in which the MongoDB® user should be created.
-func (o UserOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o UserOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // List of roles assigned to the user. Each role block supports:

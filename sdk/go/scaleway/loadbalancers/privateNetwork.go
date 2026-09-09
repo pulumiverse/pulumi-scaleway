@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -53,7 +53,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -68,9 +68,9 @@ import (
 //				return err
 //			}
 //			_, err = loadbalancers.NewPrivateNetwork(ctx, "lbpn01", &loadbalancers.PrivateNetworkArgs{
-//				LbId:             lb01.ID(),
-//				PrivateNetworkId: pn01.ID(),
-//				IpamIpIds:        ip01.ID(),
+//				LbId:             lb01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				IpamIpIds:        ip01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -106,7 +106,7 @@ type PrivateNetwork struct {
 	// The date and time of the last update of the Private Network attachment (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Private Network should be attached.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewPrivateNetwork registers a new resource with the given unique name, arguments, and options.
@@ -336,8 +336,8 @@ func (o PrivateNetworkOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Private Network should be attached.
-func (o PrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivateNetwork) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o PrivateNetworkOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateNetwork) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type PrivateNetworkArrayOutput struct{ *pulumi.OutputState }

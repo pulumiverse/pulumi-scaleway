@@ -26,56 +26,57 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// main, err := loadbalancers.NewIp(ctx, "main", nil)
-// if err != nil {
-// return err
-// }
-// mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-// IpId: main.ID(),
-// Name: pulumi.String("data-test-lb-cert"),
-// Type: pulumi.String("LB-S"),
-// })
-// if err != nil {
-// return err
-// }
-// invokeReplace, err := std.Replace(ctx, map[string]interface{}{
-// "text": ipAddress,
-// "search": ".",
-// "replace": "-",
-// }, nil)
-// if err != nil {
-// return err
-// }
-// mainCertificate, err := loadbalancers.NewCertificate(ctx, "main", &loadbalancers.CertificateArgs{
-// LbId: mainLoadBalancer.ID(),
-// Name: pulumi.String("data-test-lb-cert"),
-// Letsencrypt: &loadbalancers.CertificateLetsencryptArgs{
-// CommonName: pulumi.All(mainLoadBalancer.IpAddress,mainLoadBalancer.Region).ApplyT(func(_args []interface{}) (string, error) {
-// ipAddress := _args[0].(string)
-// region := _args[1].(string)
-// %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
-// },
-// })
-// if err != nil {
-// return err
-// }
-// _ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
-// CertificateId: mainCertificate.ID(),
-// }, nil);
-// _ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
-// Name: mainCertificate.Name,
-// LbId: mainLoadBalancer.ID(),
-// }, nil);
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := loadbalancers.NewIp(ctx, "main", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
+//				IpId: main.ID().ToIDOutput().ToStringOutput(),
+//				Name: pulumi.String("data-test-lb-cert"),
+//				Type: pulumi.String("LB-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainCertificate, err := loadbalancers.NewCertificate(ctx, "main", &loadbalancers.CertificateArgs{
+//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				Name: pulumi.String("data-test-lb-cert"),
+//				Letsencrypt: &loadbalancers.CertificateLetsencryptArgs{
+//					CommonName: pulumi.All(std.ReplaceOutput(ctx, std.ReplaceOutputArgs{
+//						Text:    mainLoadBalancer.IpAddress,
+//						Search:  pulumi.String("."),
+//						Replace: pulumi.String("-"),
+//					}, nil), mainLoadBalancer.Region).ApplyT(func(_args []interface{}) (string, error) {
+//						invoke := _args[0].(std.ReplaceResult)
+//						region := _args[1].(string)
+//						return fmt.Sprintf("%v.lb.%v.scw.cloud", invoke.Result, region), nil
+//					}).(pulumi.StringOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
+//				CertificateId: mainCertificate.ID().ToIDOutput().ToStringOutput(),
+//			}, nil)
+//			_ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
+//				Name: mainCertificate.Name,
+//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCertificate(ctx *pulumi.Context, args *LookupCertificateArgs, opts ...pulumi.InvokeOption) (*LookupCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -117,12 +118,8 @@ type LookupCertificateResult struct {
 }
 
 func LookupCertificateOutput(ctx *pulumi.Context, args LookupCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupCertificateResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCertificateResultOutput, error) {
-			args := v.(LookupCertificateArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getCertificate:getCertificate", args, LookupCertificateResultOutput{}, options).(LookupCertificateResultOutput), nil
-		}).(LookupCertificateResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getCertificate:getCertificate", args, LookupCertificateResultOutput{}, options).(LookupCertificateResultOutput)
 }
 
 // A collection of arguments for invoking getCertificate.

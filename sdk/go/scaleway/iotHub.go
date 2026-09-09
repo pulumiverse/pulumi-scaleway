@@ -94,7 +94,7 @@ type IotHub struct {
 	// `projectId`) The ID of the project the IoT Hub Instance is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the Database Instance should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The current status of the Hub.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The date and time the Hub resource was updated.
@@ -454,8 +454,8 @@ func (o IotHubOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the Database Instance should be created.
-func (o IotHubOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IotHub) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o IotHubOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The current status of the Hub.

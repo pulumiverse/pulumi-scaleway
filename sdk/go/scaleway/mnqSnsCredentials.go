@@ -74,7 +74,7 @@ type MnqSnsCredentials struct {
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which SNS is enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret value of the key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 }
@@ -278,8 +278,8 @@ func (o MnqSnsCredentialsOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which SNS is enabled.
-func (o MnqSnsCredentialsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o MnqSnsCredentialsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The secret value of the key.

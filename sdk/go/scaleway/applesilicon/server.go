@@ -68,7 +68,7 @@ import (
 //			}
 //			pn_apple_silicon, err := network.NewPrivateNetwork(ctx, "pn-apple-silicon", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("pn-apple-silicon"),
-//				VpcId: vpc_apple_silicon.ID(),
+//				VpcId: vpc_apple_silicon.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,7 +79,7 @@ import (
 //				EnableVpc: pulumi.Bool(true),
 //				PrivateNetworks: applesilicon.ServerPrivateNetworkArray{
 //					&applesilicon.ServerPrivateNetworkArgs{
-//						Id: pn_apple_silicon.ID(),
+//						Id: pn_apple_silicon.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -125,9 +125,9 @@ import (
 //				Name:            pulumi.String("TestAccServerRunner"),
 //				Type:            pulumi.String("M2-L"),
 //				PublicBandwidth: pulumi.Int(1000000000),
-//				OsId:            pulumi.String(pulumi.String(byName.Id)),
+//				OsId:            pulumi.String(byName.Id),
 //				RunnerIds: pulumi.StringArray{
-//					main.ID(),
+//					main.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -194,7 +194,7 @@ type Server struct {
 	VpcStatus pulumi.StringOutput `pulumi:"vpcStatus"`
 	// `zone`) The zone in which
 	// the server should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewServer registers a new resource with the given unique name, arguments, and options.
@@ -592,8 +592,8 @@ func (o ServerOutput) VpcStatus() pulumi.StringOutput {
 
 // `zone`) The zone in which
 // the server should be created.
-func (o ServerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o ServerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type ServerArrayOutput struct{ *pulumi.OutputState }

@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewAcl(ctx, "main", &databases.AclArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				AclRules: databases.AclAclRuleArray{
 //					&databases.AclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
@@ -103,6 +103,66 @@ import (
 //
 // ### Dynamic ACL Rules with Variables
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"sort"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			// Map of allowed IPs with descriptions
+//			allowedIps := map[string]string{
+//				"1.2.3.4/32":  "Office IP",
+//				"10.0.0.0/24": "Internal network",
+//				"5.6.7.8/32":  "Home IP",
+//			}
+//			if param := cfg.GetObject("allowedIps"); param != nil {
+//				allowedIps = param
+//			}
+//			var forResult0 []map[string]string
+//			forRange0 := allowedIps
+//			forKeys0 := make([]string, 0, len(forRange0))
+//			for forKey0 := range forRange0 {
+//				forKeys0 = append(forKeys0, forKey0)
+//			}
+//			sort.Strings(forKeys0)
+//			for _, key := range forKeys0 {
+//				entry := forRange0[key]
+//				forResult0 = append(forResult0, map[string]string{
+//					"ip":          key,
+//					"description": entry,
+//				})
+//			}
+//			_, err := databases.NewAcl(ctx, "main", &databases.AclArgs{
+//				AclRules:   toPulumiStringMapArray(forResult0),
+//				InstanceId: pulumi.Any(mainScalewayRdbInstance.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+//	func toPulumiStringMapArray(arr []StringMap) pulumi.StringMapArray {
+//		var pulumiArr pulumi.StringMapArray
+//		for _, v := range arr {
+//			pulumiArr = append(pulumiArr, pulumi.StringMap(v))
+//		}
+//		return pulumiArr
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -122,7 +182,7 @@ type Acl struct {
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// `region`) The region in which the Database Instance should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -325,8 +385,8 @@ func (o AclOutput) InstanceId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the Database Instance should be created.
-func (o AclOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o AclOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

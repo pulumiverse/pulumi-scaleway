@@ -99,12 +99,8 @@ type LookupBucketServerSideEncryptionConfigurationResult struct {
 }
 
 func LookupBucketServerSideEncryptionConfigurationOutput(ctx *pulumi.Context, args LookupBucketServerSideEncryptionConfigurationOutputArgs, opts ...pulumi.InvokeOption) LookupBucketServerSideEncryptionConfigurationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBucketServerSideEncryptionConfigurationResultOutput, error) {
-			args := v.(LookupBucketServerSideEncryptionConfigurationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration", args, LookupBucketServerSideEncryptionConfigurationResultOutput{}, options).(LookupBucketServerSideEncryptionConfigurationResultOutput), nil
-		}).(LookupBucketServerSideEncryptionConfigurationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration", args, LookupBucketServerSideEncryptionConfigurationResultOutput{}, options).(LookupBucketServerSideEncryptionConfigurationResultOutput)
 }
 
 // A collection of arguments for invoking getBucketServerSideEncryptionConfiguration.

@@ -83,16 +83,12 @@ type GetLbAclsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           *string `pulumi:"zone"`
+	Zone           string  `pulumi:"zone"`
 }
 
 func GetLbAclsOutput(ctx *pulumi.Context, args GetLbAclsOutputArgs, opts ...pulumi.InvokeOption) GetLbAclsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbAclsResultOutput, error) {
-			args := v.(GetLbAclsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbAcls:getLbAcls", args, GetLbAclsResultOutput{}, options).(GetLbAclsResultOutput), nil
-		}).(GetLbAclsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbAcls:getLbAcls", args, GetLbAclsResultOutput{}, options).(GetLbAclsResultOutput)
 }
 
 // A collection of arguments for invoking getLbAcls.
@@ -152,8 +148,8 @@ func (o GetLbAclsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetLbAclsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLbAclsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetLbAclsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbAclsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

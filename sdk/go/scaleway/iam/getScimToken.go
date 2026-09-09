@@ -41,7 +41,7 @@ import (
 //			}
 //			// Create a SCIM token (or use an existing one)
 //			mainScimToken, err := iam.NewScimToken(ctx, "main", &iam.ScimTokenArgs{
-//				ScimId:         mainScim.ID(),
+//				ScimId:         mainScim.ID().ToIDOutput().ToStringOutput(),
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
@@ -49,8 +49,8 @@ import (
 //			}
 //			// Get information about the SCIM token
 //			_ = iam.LookupScimTokenOutput(ctx, iam.GetScimTokenOutputArgs{
-//				ScimId:         mainScim.ID(),
-//				TokenId:        mainScimToken.ID(),
+//				ScimId:         mainScim.ID().ToIDOutput().ToStringOutput(),
+//				TokenId:        mainScimToken.ID().ToIDOutput().ToStringOutput(),
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			return nil
@@ -95,12 +95,8 @@ type LookupScimTokenResult struct {
 }
 
 func LookupScimTokenOutput(ctx *pulumi.Context, args LookupScimTokenOutputArgs, opts ...pulumi.InvokeOption) LookupScimTokenResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupScimTokenResultOutput, error) {
-			args := v.(LookupScimTokenArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getScimToken:getScimToken", args, LookupScimTokenResultOutput{}, options).(LookupScimTokenResultOutput), nil
-		}).(LookupScimTokenResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getScimToken:getScimToken", args, LookupScimTokenResultOutput{}, options).(LookupScimTokenResultOutput)
 }
 
 // A collection of arguments for invoking getScimToken.

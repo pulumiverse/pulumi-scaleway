@@ -102,7 +102,7 @@ class GetInstanceServersResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         The zone in which the server is.
         """

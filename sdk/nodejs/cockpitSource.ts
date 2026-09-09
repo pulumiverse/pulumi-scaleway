@@ -90,7 +90,7 @@ export class CockpitSource extends pulumi.CustomResource {
     /**
      * ) The region where the data source is located.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
      */

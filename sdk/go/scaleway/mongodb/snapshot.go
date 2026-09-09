@@ -68,7 +68,7 @@ type Snapshot struct {
 	// The type of node associated with the MongoDB® snapshot.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// `region`) The region in which the MongoDB® snapshot should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the MongoDB® snapshot in bytes.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The date and time of the last update of the MongoDB® snapshot.
@@ -319,8 +319,8 @@ func (o SnapshotOutput) NodeType() pulumi.StringOutput {
 }
 
 // `region`) The region in which the MongoDB® snapshot should be created.
-func (o SnapshotOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SnapshotOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the MongoDB® snapshot in bytes.

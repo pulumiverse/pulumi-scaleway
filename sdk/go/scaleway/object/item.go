@@ -37,17 +37,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilemd5, err := std.Filemd5(ctx, map[string]interface{}{
-//				"input": "myfile",
+//			invokeFilemd5, err := std.Filemd5(ctx, &std.Filemd5Args{
+//				Input: "myfile",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = object.NewItem(ctx, "some_file", &object.ItemArgs{
-//				Bucket: someBucket.ID(),
+//				Bucket: someBucket.ID().ToIDOutput().ToStringOutput(),
 //				Key:    pulumi.String("object_path"),
 //				File:   pulumi.String("myfile"),
-//				Hash:   invokeFilemd5.Result,
+//				Hash:   pulumi.String(invokeFilemd5.Result),
 //			})
 //			if err != nil {
 //				return err
@@ -100,7 +100,7 @@ type Item struct {
 	// like objects. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Customer's encryption keys to encrypt data (SSE-C)
 	SseCustomerKey pulumi.StringPtrOutput `pulumi:"sseCustomerKey"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -451,8 +451,8 @@ func (o ItemOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The Scaleway region the bucket resides in.
-func (o ItemOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ItemOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Customer's encryption keys to encrypt data (SSE-C)

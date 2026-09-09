@@ -76,7 +76,7 @@ export interface GetConfigResult {
      * Retention limits and default for Scaleway product metrics data sources.
      */
     readonly productMetricsRetentions: outputs.observability.GetConfigProductMetricsRetention[];
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets regional Cockpit configuration, including retention limits and defaults for custom and product data sources.

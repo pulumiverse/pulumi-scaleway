@@ -182,7 +182,7 @@ export class SecurityGroup extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the security group should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a SecurityGroup resource with the given unique name, arguments, and options.

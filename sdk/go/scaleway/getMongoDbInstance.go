@@ -82,12 +82,8 @@ type LookupMongoDbInstanceResult struct {
 }
 
 func LookupMongoDbInstanceOutput(ctx *pulumi.Context, args LookupMongoDbInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupMongoDbInstanceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMongoDbInstanceResultOutput, error) {
-			args := v.(LookupMongoDbInstanceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getMongoDbInstance:getMongoDbInstance", args, LookupMongoDbInstanceResultOutput{}, options).(LookupMongoDbInstanceResultOutput), nil
-		}).(LookupMongoDbInstanceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getMongoDbInstance:getMongoDbInstance", args, LookupMongoDbInstanceResultOutput{}, options).(LookupMongoDbInstanceResultOutput)
 }
 
 // A collection of arguments for invoking getMongoDbInstance.

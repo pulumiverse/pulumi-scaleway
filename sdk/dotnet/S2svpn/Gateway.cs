@@ -126,7 +126,13 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// `Region`) The region in which the VPN gateway should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the VPN gateway.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The status of the VPN gateway.
@@ -150,7 +156,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// `Zone`) The zone in which the VPN gateway should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -350,6 +356,12 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the VPN gateway.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the VPN gateway.

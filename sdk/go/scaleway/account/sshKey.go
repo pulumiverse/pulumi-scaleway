@@ -16,7 +16,7 @@ import (
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 //
-// !> **Important:** The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
+// > **Important:** The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
 //
 // ## Example Usage
 //
@@ -69,6 +69,8 @@ type SshKey struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// The Scaleway Resource Name (SRN) of the SSH key
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The date and time of the last update of the iam SSH Key
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -126,6 +128,8 @@ type sshKeyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
+	// The Scaleway Resource Name (SRN) of the SSH key
+	Srn *string `pulumi:"srn"`
 	// The date and time of the last update of the iam SSH Key
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -145,6 +149,8 @@ type SshKeyState struct {
 	ProjectId pulumi.StringPtrInput
 	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the SSH key
+	Srn pulumi.StringPtrInput
 	// The date and time of the last update of the iam SSH Key
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -296,6 +302,11 @@ func (o SshKeyOutput) ProjectId() pulumi.StringOutput {
 // The public SSH key to be added.
 func (o SshKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the SSH key
+func (o SshKeyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshKey) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The date and time of the last update of the iam SSH Key

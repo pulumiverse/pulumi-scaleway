@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The specifications of volumes allowed for the server type.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerTypeVolumeResult> Volumes;
-        public readonly string? Zone;
+        public readonly string Zone;
 
         [OutputConstructor]
         private GetServerTypeResult(
@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway.Instance
 
             ImmutableArray<Outputs.GetServerTypeVolumeResult> volumes,
 
-            string? zone)
+            string zone)
         {
             Arch = arch;
             Availability = availability;

@@ -61,7 +61,7 @@ import (
 //				ProjectId: main.ProjectId,
 //				AccessKey: mainSnsCredentials.AccessKey,
 //				SecretKey: mainSnsCredentials.SecretKey,
-//				TopicId:   topic.ID(),
+//				TopicId:   topic.ID().ToIDOutput().ToStringOutput(),
 //				Protocol:  pulumi.String("http"),
 //				Endpoint:  pulumi.String("http://example.com"),
 //			})
@@ -98,7 +98,7 @@ type SnsTopicSubscription struct {
 	RedrivePolicy pulumi.BoolOutput `pulumi:"redrivePolicy"`
 	// `region`). The region
 	// in which SNS is enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 	// The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
@@ -388,8 +388,8 @@ func (o SnsTopicSubscriptionOutput) RedrivePolicy() pulumi.BoolOutput {
 
 // `region`). The region
 // in which SNS is enabled.
-func (o SnsTopicSubscriptionOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnsTopicSubscription) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SnsTopicSubscriptionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnsTopicSubscription) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The secret key of the SNS credentials.

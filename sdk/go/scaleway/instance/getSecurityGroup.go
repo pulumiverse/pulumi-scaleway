@@ -60,12 +60,8 @@ type LookupSecurityGroupResult struct {
 }
 
 func LookupSecurityGroupOutput(ctx *pulumi.Context, args LookupSecurityGroupOutputArgs, opts ...pulumi.InvokeOption) LookupSecurityGroupResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSecurityGroupResultOutput, error) {
-			args := v.(LookupSecurityGroupArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getSecurityGroup:getSecurityGroup", args, LookupSecurityGroupResultOutput{}, options).(LookupSecurityGroupResultOutput), nil
-		}).(LookupSecurityGroupResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getSecurityGroup:getSecurityGroup", args, LookupSecurityGroupResultOutput{}, options).(LookupSecurityGroupResultOutput)
 }
 
 // A collection of arguments for invoking getSecurityGroup.

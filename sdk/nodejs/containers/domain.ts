@@ -48,11 +48,11 @@ import * as utilities from "../utilities";
  *     type: "CNAME",
  *     data: std.format({
  *         input: "%s.",
- *         args: [std.trimprefix({
+ *         args: [std.trimprefixOutput({
  *             input: app.publicEndpoint,
  *             prefix: "https://",
  *         }).result],
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     ttl: 3600,
  * });
  * const appDomain = new scaleway.containers.Domain("app", {
@@ -108,7 +108,7 @@ export class Domain extends pulumi.CustomResource {
     /**
      * `region`) The region in which the container exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * (Deprecated) The URL used to query the container.
      *

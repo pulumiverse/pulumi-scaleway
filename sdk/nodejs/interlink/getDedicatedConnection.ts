@@ -99,7 +99,7 @@ export interface GetDedicatedConnectionResult {
      * The ID of the project the dedicated connection belongs to.
      */
     readonly projectId: string;
-    readonly region?: string;
+    readonly region: string;
     /**
      * Status of the dedicated connection.
      */

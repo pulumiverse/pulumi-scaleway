@@ -111,12 +111,8 @@ type LookupBackendStageResult struct {
 }
 
 func LookupBackendStageOutput(ctx *pulumi.Context, args LookupBackendStageOutputArgs, opts ...pulumi.InvokeOption) LookupBackendStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackendStageResultOutput, error) {
-			args := v.(LookupBackendStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getBackendStage:getBackendStage", args, LookupBackendStageResultOutput{}, options).(LookupBackendStageResultOutput), nil
-		}).(LookupBackendStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getBackendStage:getBackendStage", args, LookupBackendStageResultOutput{}, options).(LookupBackendStageResultOutput)
 }
 
 // A collection of arguments for invoking getBackendStage.

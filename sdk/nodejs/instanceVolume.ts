@@ -101,7 +101,7 @@ export class InstanceVolume extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstanceVolume resource with the given unique name, arguments, and options.

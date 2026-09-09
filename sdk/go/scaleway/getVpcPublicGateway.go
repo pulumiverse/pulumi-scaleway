@@ -40,7 +40,7 @@ import (
 //				Zone: pulumi.String("nl-ams-1"),
 //			}, nil)
 //			_ = network.LookupPublicGatewayOutput(ctx, network.GetPublicGatewayOutputArgs{
-//				PublicGatewayId: main.ID(),
+//				PublicGatewayId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -87,6 +87,7 @@ type LookupVpcPublicGatewayResult struct {
 	ProjectId          *string  `pulumi:"projectId"`
 	PublicGatewayId    *string  `pulumi:"publicGatewayId"`
 	RefreshSshKeys     string   `pulumi:"refreshSshKeys"`
+	Srn                string   `pulumi:"srn"`
 	Status             string   `pulumi:"status"`
 	Tags               []string `pulumi:"tags"`
 	Type               string   `pulumi:"type"`
@@ -96,12 +97,8 @@ type LookupVpcPublicGatewayResult struct {
 }
 
 func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupVpcPublicGatewayResultOutput, error) {
-			args := v.(LookupVpcPublicGatewayArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args, LookupVpcPublicGatewayResultOutput{}, options).(LookupVpcPublicGatewayResultOutput), nil
-		}).(LookupVpcPublicGatewayResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args, LookupVpcPublicGatewayResultOutput{}, options).(LookupVpcPublicGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getVpcPublicGateway.
@@ -189,6 +186,10 @@ func (o LookupVpcPublicGatewayResultOutput) PublicGatewayId() pulumi.StringPtrOu
 
 func (o LookupVpcPublicGatewayResultOutput) RefreshSshKeys() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.RefreshSshKeys }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcPublicGatewayResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcPublicGatewayResultOutput) Status() pulumi.StringOutput {

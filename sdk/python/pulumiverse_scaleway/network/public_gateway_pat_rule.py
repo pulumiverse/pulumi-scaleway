@@ -127,6 +127,7 @@ class _PublicGatewayPatRuleState:
                  private_port: pulumi.Input[Optional[_builtins.int]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  public_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -139,6 +140,7 @@ class _PublicGatewayPatRuleState:
         :param pulumi.Input[_builtins.int] private_port: The private port to translate to.
         :param pulumi.Input[_builtins.str] protocol: The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         :param pulumi.Input[_builtins.int] public_port: The public port to listen on.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the PAT rule.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the PAT rule configuration.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """
@@ -156,6 +158,8 @@ class _PublicGatewayPatRuleState:
             pulumi.set(__self__, "protocol", protocol)
         if public_port is not None:
             pulumi.set(__self__, "public_port", public_port)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if zone is not None:
@@ -244,6 +248,18 @@ class _PublicGatewayPatRuleState:
     @public_port.setter
     def public_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "public_port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the PAT rule.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -466,6 +482,7 @@ class PublicGatewayPatRule(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -486,6 +503,7 @@ class PublicGatewayPatRule(pulumi.CustomResource):
             private_port: pulumi.Input[Optional[_builtins.int]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             public_port: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'PublicGatewayPatRule':
         """
@@ -502,6 +520,7 @@ class PublicGatewayPatRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] private_port: The private port to translate to.
         :param pulumi.Input[_builtins.str] protocol: The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
         :param pulumi.Input[_builtins.int] public_port: The public port to listen on.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the PAT rule.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the PAT rule configuration.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """
@@ -516,6 +535,7 @@ class PublicGatewayPatRule(pulumi.CustomResource):
         __props__.__dict__["private_port"] = private_port
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["public_port"] = public_port
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
         return PublicGatewayPatRule(resource_name, opts=opts, __props__=__props__)
@@ -577,6 +597,14 @@ class PublicGatewayPatRule(pulumi.CustomResource):
         return pulumi.get(self, "public_port")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the PAT rule.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         """
@@ -586,7 +614,7 @@ class PublicGatewayPatRule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """

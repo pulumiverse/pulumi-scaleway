@@ -109,6 +109,7 @@ export interface GetGatewayResult {
      */
     readonly publicConfigs: outputs.s2svpn.GetGatewayPublicConfig[];
     readonly region?: string;
+    readonly srn: string;
     /**
      * The status of the VPN gateway.
      */

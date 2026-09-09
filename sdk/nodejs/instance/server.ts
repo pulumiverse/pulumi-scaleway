@@ -216,7 +216,7 @@ import * as utilities from "../utilities";
  * - `pnId` - (Required) The private network ID where to connect.
  * - `macAddress` The private NIC MAC address.
  * - `status` The private NIC state.
- * - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+ * - `zone` - (Optional, Computed, Defaults to provider `zone`) The zone in which the server must be created.
  *
  * > **Important:** You can only attach an instance in the same zone as a private network.
  * **Important:** Instance supports a maximum of 8 different private networks.
@@ -397,7 +397,7 @@ export class Server extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the server should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Server resource with the given unique name, arguments, and options.

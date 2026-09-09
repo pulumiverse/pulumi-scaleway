@@ -78,11 +78,15 @@ export class Database extends pulumi.CustomResource {
     /**
      * `region`) The region in which the database should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Size of the database in GB.
      */
     declare public /*out*/ readonly size: pulumi.Output<number>;
+    /**
+     * The Scaleway Resource Name (SRN) of the database.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
 
     /**
      * Create a Database resource with the given unique name, arguments, and options.
@@ -101,6 +105,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["region"] = state?.region;
             resourceInputs["size"] = state?.size;
+            resourceInputs["srn"] = state?.srn;
         } else {
             const args = argsOrState as DatabaseArgs | undefined;
             if (args?.deploymentId === undefined && !opts.urn) {
@@ -110,6 +115,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["region"] = args?.region;
             resourceInputs["size"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Database.__pulumiType, name, resourceInputs, opts);
@@ -136,6 +142,10 @@ export interface DatabaseState {
      * Size of the database in GB.
      */
     size?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the database.
+     */
+    srn?: pulumi.Input<string | undefined>;
 }
 
 /**

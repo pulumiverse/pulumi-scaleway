@@ -143,7 +143,7 @@ export interface GetIpamIpsResult {
     /**
      * The region of the IP.
      */
-    readonly region?: string;
+    readonly region: string;
     /**
      * The list of public IPs attached to the resource.
      */

@@ -258,6 +258,7 @@ class _ConnectionState:
                  route_propagation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tunnel_status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -286,6 +287,7 @@ class _ConnectionState:
         :param pulumi.Input[_builtins.bool] route_propagation_enabled: Whether route propagation is enabled.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret containing the pre-shared key (PSK) for the connection.
         :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the connection.
         :param pulumi.Input[_builtins.str] status: The status of the connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
         :param pulumi.Input[_builtins.str] tunnel_status: The status of the IPSec tunnel.
@@ -332,6 +334,8 @@ class _ConnectionState:
             pulumi.set(__self__, "secret_id", secret_id)
         if secret_version is not None:
             pulumi.set(__self__, "secret_version", secret_version)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -582,6 +586,18 @@ class _ConnectionState:
     @secret_version.setter
     def secret_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the connection.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -875,6 +891,7 @@ class Connection(pulumi.CustomResource):
             __props__.__dict__["route_propagation_enabled"] = None
             __props__.__dict__["secret_id"] = None
             __props__.__dict__["secret_version"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["tunnel_status"] = None
             __props__.__dict__["updated_at"] = None
@@ -908,6 +925,7 @@ class Connection(pulumi.CustomResource):
             route_propagation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             secret_id: pulumi.Input[Optional[_builtins.str]] = None,
             secret_version: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tunnel_status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -940,6 +958,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] route_propagation_enabled: Whether route propagation is enabled.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret containing the pre-shared key (PSK) for the connection.
         :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the connection.
         :param pulumi.Input[_builtins.str] status: The status of the connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
         :param pulumi.Input[_builtins.str] tunnel_status: The status of the IPSec tunnel.
@@ -970,6 +989,7 @@ class Connection(pulumi.CustomResource):
         __props__.__dict__["route_propagation_enabled"] = route_propagation_enabled
         __props__.__dict__["secret_id"] = secret_id
         __props__.__dict__["secret_version"] = secret_version
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["tunnel_status"] = tunnel_status
@@ -1107,7 +1127,7 @@ class Connection(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the connection should be created.
         """
@@ -1136,6 +1156,14 @@ class Connection(pulumi.CustomResource):
         The version of the secret containing the PSK.
         """
         return pulumi.get(self, "secret_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the connection.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

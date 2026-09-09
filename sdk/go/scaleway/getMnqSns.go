@@ -77,12 +77,8 @@ type LookupMnqSnsResult struct {
 }
 
 func LookupMnqSnsOutput(ctx *pulumi.Context, args LookupMnqSnsOutputArgs, opts ...pulumi.InvokeOption) LookupMnqSnsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMnqSnsResultOutput, error) {
-			args := v.(LookupMnqSnsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getMnqSns:getMnqSns", args, LookupMnqSnsResultOutput{}, options).(LookupMnqSnsResultOutput), nil
-		}).(LookupMnqSnsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getMnqSns:getMnqSns", args, LookupMnqSnsResultOutput{}, options).(LookupMnqSnsResultOutput)
 }
 
 // A collection of arguments for invoking getMnqSns.

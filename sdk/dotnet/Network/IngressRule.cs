@@ -164,7 +164,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `Region`) The region of the ingress rule.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Source IP range (in CIDR notation) to which the ingress rule applies.

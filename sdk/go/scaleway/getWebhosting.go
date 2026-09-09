@@ -98,12 +98,8 @@ type LookupWebhostingResult struct {
 }
 
 func LookupWebhostingOutput(ctx *pulumi.Context, args LookupWebhostingOutputArgs, opts ...pulumi.InvokeOption) LookupWebhostingResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupWebhostingResultOutput, error) {
-			args := v.(LookupWebhostingArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getWebhosting:getWebhosting", args, LookupWebhostingResultOutput{}, options).(LookupWebhostingResultOutput), nil
-		}).(LookupWebhostingResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getWebhosting:getWebhosting", args, LookupWebhostingResultOutput{}, options).(LookupWebhostingResultOutput)
 }
 
 // A collection of arguments for invoking getWebhosting.

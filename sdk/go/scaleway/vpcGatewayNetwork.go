@@ -44,7 +44,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -57,8 +57,8 @@ import (
 //				return err
 //			}
 //			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
+//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				EnableMasquerade: pulumi.Bool(true),
 //				IpamConfigs: network.GatewayNetworkIpamConfigArray{
 //					&network.GatewayNetworkIpamConfigArgs{
@@ -101,7 +101,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -110,7 +110,7 @@ import (
 //				Address: pulumi.String("172.16.64.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -125,13 +125,13 @@ import (
 //				return err
 //			}
 //			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
+//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //				EnableMasquerade: pulumi.Bool(true),
 //				IpamConfigs: network.GatewayNetworkIpamConfigArray{
 //					&network.GatewayNetworkIpamConfigArgs{
 //						PushDefaultRoute: pulumi.Bool(true),
-//						IpamIpId:         ip01.ID(),
+//						IpamIpId:         ip01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -182,6 +182,8 @@ type VpcGatewayNetwork struct {
 	PrivateIps VpcGatewayNetworkPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The ID of the Private Network.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
+	// The Scaleway Resource Name (SRN) of the gateway network.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
 	// Deprecated: Please use ipamConfig instead.
@@ -195,7 +197,7 @@ type VpcGatewayNetwork struct {
 	// > **Important:**
 	// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
 	// For more information, please refer to the dedicated guide.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVpcGatewayNetwork registers a new resource with the given unique name, arguments, and options.
@@ -260,6 +262,8 @@ type vpcGatewayNetworkState struct {
 	PrivateIps []VpcGatewayNetworkPrivateIp `pulumi:"privateIps"`
 	// The ID of the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// The Scaleway Resource Name (SRN) of the gateway network.
+	Srn *string `pulumi:"srn"`
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
 	// Deprecated: Please use ipamConfig instead.
@@ -303,6 +307,8 @@ type VpcGatewayNetworkState struct {
 	PrivateIps VpcGatewayNetworkPrivateIpArrayInput
 	// The ID of the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the gateway network.
+	Srn pulumi.StringPtrInput
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
 	// Deprecated: Please use ipamConfig instead.
@@ -537,6 +543,11 @@ func (o VpcGatewayNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the gateway network.
+func (o VpcGatewayNetworkOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 //
 // Deprecated: Please use ipamConfig instead.
@@ -559,8 +570,8 @@ func (o VpcGatewayNetworkOutput) UpdatedAt() pulumi.StringOutput {
 // > **Important:**
 // In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
 // For more information, please refer to the dedicated guide.
-func (o VpcGatewayNetworkOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o VpcGatewayNetworkOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type VpcGatewayNetworkArrayOutput struct{ *pulumi.OutputState }

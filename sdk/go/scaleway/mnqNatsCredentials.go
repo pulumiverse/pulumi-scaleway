@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = mnq.NewNatsCredentials(ctx, "main", &mnq.NatsCredentialsArgs{
-//				AccountId: main.ID(),
+//				AccountId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -70,7 +70,7 @@ type MnqNatsCredentials struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`). The region
 	// in which the account exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewMnqNatsCredentials registers a new resource with the given unique name, arguments, and options.
@@ -262,8 +262,8 @@ func (o MnqNatsCredentialsOutput) Name() pulumi.StringOutput {
 
 // `region`). The region
 // in which the account exists.
-func (o MnqNatsCredentialsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MnqNatsCredentials) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o MnqNatsCredentialsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *MnqNatsCredentials) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type MnqNatsCredentialsArrayOutput struct{ *pulumi.OutputState }

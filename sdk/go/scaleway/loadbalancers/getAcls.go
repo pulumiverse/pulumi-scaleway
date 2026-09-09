@@ -81,16 +81,12 @@ type GetAclsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           *string `pulumi:"zone"`
+	Zone           string  `pulumi:"zone"`
 }
 
 func GetAclsOutput(ctx *pulumi.Context, args GetAclsOutputArgs, opts ...pulumi.InvokeOption) GetAclsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAclsResultOutput, error) {
-			args := v.(GetAclsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getAcls:getAcls", args, GetAclsResultOutput{}, options).(GetAclsResultOutput), nil
-		}).(GetAclsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getAcls:getAcls", args, GetAclsResultOutput{}, options).(GetAclsResultOutput)
 }
 
 // A collection of arguments for invoking getAcls.
@@ -150,8 +146,8 @@ func (o GetAclsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetAclsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAclsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetAclsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

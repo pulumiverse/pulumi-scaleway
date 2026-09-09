@@ -40,7 +40,7 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "base", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					main.ID(),
+//					main.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Zone: main.Zone,
 //				Type: pulumi.String("LB-S"),
@@ -108,8 +108,8 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					v4.ID(),
-//					v6.ID(),
+//					v4.ID().ToIDOutput().ToStringOutput(),
+//					v6.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Name: pulumi.String("ipv6-lb"),
 //				Type: pulumi.String("LB-S"),
@@ -146,7 +146,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -158,7 +158,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -171,14 +171,14 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					v4.ID(),
+//					v4.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Name: pulumi.String("my-lb"),
 //				Type: pulumi.String("LB-S"),
 //				PrivateNetworks: loadbalancers.LoadBalancerPrivateNetworkArray{
 //					&loadbalancers.LoadBalancerPrivateNetworkArgs{
-//						PrivateNetworkId: pn01.ID(),
-//						IpamIds:          ip01.ID(),
+//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						IpamIds:          ip01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -256,7 +256,7 @@ type LoadBalancer struct {
 	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone of the Load Balancer.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewLoadBalancer registers a new resource with the given unique name, arguments, and options.
@@ -669,8 +669,8 @@ func (o LoadBalancerOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone of the Load Balancer.
-func (o LoadBalancerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LoadBalancer) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o LoadBalancerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadBalancer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type LoadBalancerArrayOutput struct{ *pulumi.OutputState }

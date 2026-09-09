@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			lb01, err := loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			bkd01, err := loadbalancers.NewBackend(ctx, "bkd01", &loadbalancers.BackendArgs{
-//				LbId:            lb01.ID(),
+//				LbId:            lb01.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -54,16 +54,16 @@ import (
 //				return err
 //			}
 //			frt01, err := loadbalancers.NewFrontend(ctx, "frt01", &loadbalancers.FrontendArgs{
-//				LbId:        lb01.ID(),
-//				BackendId:   bkd01.ID(),
+//				LbId:        lb01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:   bkd01.ID().ToIDOutput().ToStringOutput(),
 //				InboundPort: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = loadbalancers.NewRoute(ctx, "rt01", &loadbalancers.RouteArgs{
-//				FrontendId: frt01.ID(),
-//				BackendId:  bkd01.ID(),
+//				FrontendId: frt01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:  bkd01.ID().ToIDOutput().ToStringOutput(),
 //				MatchSni:   pulumi.String("sni.scaleway.com"),
 //			})
 //			if err != nil {
@@ -94,7 +94,7 @@ import (
 //				return err
 //			}
 //			lb01, err := loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
@@ -102,7 +102,7 @@ import (
 //				return err
 //			}
 //			bkd01, err := loadbalancers.NewBackend(ctx, "bkd01", &loadbalancers.BackendArgs{
-//				LbId:            lb01.ID(),
+//				LbId:            lb01.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -111,16 +111,16 @@ import (
 //				return err
 //			}
 //			frt01, err := loadbalancers.NewFrontend(ctx, "frt01", &loadbalancers.FrontendArgs{
-//				LbId:        lb01.ID(),
-//				BackendId:   bkd01.ID(),
+//				LbId:        lb01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:   bkd01.ID().ToIDOutput().ToStringOutput(),
 //				InboundPort: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = loadbalancers.NewRoute(ctx, "rt01", &loadbalancers.RouteArgs{
-//				FrontendId:      frt01.ID(),
-//				BackendId:       bkd01.ID(),
+//				FrontendId:      frt01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:       bkd01.ID().ToIDOutput().ToStringOutput(),
 //				MatchHostHeader: pulumi.String("host.scaleway.com"),
 //			})
 //			if err != nil {
@@ -151,7 +151,7 @@ import (
 //				return err
 //			}
 //			lb, err := loadbalancers.NewLoadBalancer(ctx, "lb", &loadbalancers.LoadBalancerArgs{
-//				IpId: ip.ID(),
+//				IpId: ip.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("my-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
@@ -159,7 +159,7 @@ import (
 //				return err
 //			}
 //			app, err := loadbalancers.NewBackend(ctx, "app", &loadbalancers.BackendArgs{
-//				LbId:            lb.ID(),
+//				LbId:            lb.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -168,7 +168,7 @@ import (
 //				return err
 //			}
 //			admin, err := loadbalancers.NewBackend(ctx, "admin", &loadbalancers.BackendArgs{
-//				LbId:            lb.ID(),
+//				LbId:            lb.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(8080),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -177,24 +177,24 @@ import (
 //				return err
 //			}
 //			frontend, err := loadbalancers.NewFrontend(ctx, "frontend", &loadbalancers.FrontendArgs{
-//				LbId:        lb.ID(),
-//				BackendId:   app.ID(),
+//				LbId:        lb.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:   app.ID().ToIDOutput().ToStringOutput(),
 //				InboundPort: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = loadbalancers.NewRoute(ctx, "admin_route", &loadbalancers.RouteArgs{
-//				FrontendId:     frontend.ID(),
-//				BackendId:      admin.ID(),
+//				FrontendId:     frontend.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:      admin.ID().ToIDOutput().ToStringOutput(),
 //				MatchPathBegin: pulumi.String("/admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = loadbalancers.NewRoute(ctx, "default_route", &loadbalancers.RouteArgs{
-//				FrontendId:     frontend.ID(),
-//				BackendId:      app.ID(),
+//				FrontendId:     frontend.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:      app.ID().ToIDOutput().ToStringOutput(),
 //				MatchPathBegin: pulumi.String("/"),
 //			})
 //			if err != nil {

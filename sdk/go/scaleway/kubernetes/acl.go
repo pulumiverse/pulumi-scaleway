@@ -44,13 +44,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
-//				PrivateNetworkId:          aclBasic.ID(),
+//				PrivateNetworkId:          aclBasic.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAcl(ctx, "acl_basic", &kubernetes.AclArgs{
-//				ClusterId: aclBasicCluster.ID(),
+//				ClusterId: aclBasicCluster.ID().ToIDOutput().ToStringOutput(),
 //				AclRules: kubernetes.AclAclRuleArray{
 //					&kubernetes.AclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
@@ -94,13 +94,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
-//				PrivateNetworkId:          aclBasic.ID(),
+//				PrivateNetworkId:          aclBasic.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAcl(ctx, "acl_basic", &kubernetes.AclArgs{
-//				ClusterId:   aclBasicCluster.ID(),
+//				ClusterId:   aclBasicCluster.ID().ToIDOutput().ToStringOutput(),
 //				NoIpAllowed: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -135,7 +135,7 @@ type Acl struct {
 	// > **Important:** This field cannot be set to true if the `aclRules` block is defined.
 	NoIpAllowed pulumi.BoolPtrOutput `pulumi:"noIpAllowed"`
 	// `region`) The region in which the ACL rule should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -352,8 +352,8 @@ func (o AclOutput) NoIpAllowed() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region in which the ACL rule should be created.
-func (o AclOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o AclOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

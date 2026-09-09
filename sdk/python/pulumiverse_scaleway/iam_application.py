@@ -97,6 +97,7 @@ class _IamApplicationState:
                  editable: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -107,6 +108,7 @@ class _IamApplicationState:
         :param pulumi.Input[_builtins.bool] editable: Whether the application is editable.
         :param pulumi.Input[_builtins.str] name: The name of the iam application.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the application.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the application.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the application.
         """
@@ -120,6 +122,8 @@ class _IamApplicationState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -184,6 +188,18 @@ class _IamApplicationState:
     @organization_id.setter
     def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the application.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -320,6 +336,7 @@ class IamApplication(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["editable"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(IamApplication, __self__).__init__(
             'scaleway:index/iamApplication:IamApplication',
@@ -336,6 +353,7 @@ class IamApplication(pulumi.CustomResource):
             editable: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'IamApplication':
         """
@@ -350,6 +368,7 @@ class IamApplication(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] editable: Whether the application is editable.
         :param pulumi.Input[_builtins.str] name: The name of the iam application.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the application is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the application.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the application.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the application.
         """
@@ -362,6 +381,7 @@ class IamApplication(pulumi.CustomResource):
         __props__.__dict__["editable"] = editable
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         return IamApplication(resource_name, opts=opts, __props__=__props__)
@@ -405,6 +425,14 @@ class IamApplication(pulumi.CustomResource):
         `organization_id`) The ID of the organization the application is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the application.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

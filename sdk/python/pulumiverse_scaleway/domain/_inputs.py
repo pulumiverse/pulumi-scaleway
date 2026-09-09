@@ -431,11 +431,11 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     Alternative email address for the contact.
     """
-    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionEuArgs']]]
+    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionEuArgsDict']]]
     """
     Details specific to European domain extensions.
     """
-    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrArgs']]]
+    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrArgsDict']]]
     """
     Details specific to French domain extensions.
     """
@@ -848,19 +848,19 @@ class RegistrationAdministrativeContactExtensionEuArgs:
 
 
 class RegistrationAdministrativeContactExtensionFrArgsDict(TypedDict):
-    association_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrAssociationInfoArgs']]]
+    association_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrAssociationInfoArgsDict']]]
     """
     Association-specific information for the domain (French extension).
     """
-    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs']]]
+    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgsDict']]]
     """
     AFNIC authorization information for the contact (French extension).
     """
-    duns_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrDunsInfoArgs']]]
+    duns_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrDunsInfoArgsDict']]]
     """
     DUNS information for the domain owner (specific to French domains).
     """
-    individual_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrIndividualInfoArgs']]]
+    individual_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict']]]
     """
     Information about the individual registration for French domains.
     """
@@ -868,7 +868,7 @@ class RegistrationAdministrativeContactExtensionFrArgsDict(TypedDict):
     """
     Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
     """
-    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs']]]
+    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict']]]
     """
     Trademark-related information for the domain (French extension).
     """
@@ -1166,7 +1166,7 @@ class RegistrationDsRecordArgsDict(TypedDict):
     """
     The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
     """
-    digests: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordDigestArgs']]]]]
+    digests: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordDigestArgsDict']]]]]
     """
     Details about the digest.
     """
@@ -1174,7 +1174,7 @@ class RegistrationDsRecordArgsDict(TypedDict):
     """
     The identifier for the dnssec key.
     """
-    public_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgs']]]]]
+    public_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgsDict']]]]]
     """
     Public key associated with the dnssec record.
     """
@@ -1255,7 +1255,7 @@ class RegistrationDsRecordDigestArgsDict(TypedDict):
     """
     The digest value.
     """
-    public_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgs']]]]]
+    public_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgsDict']]]]]
     """
     The public key associated with the digest.
     """
@@ -1428,11 +1428,11 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     Alternative email address for the contact.
     """
-    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionEuArgs']]]
+    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionEuArgsDict']]]
     """
     Details specific to European domain extensions.
     """
-    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrArgs']]]
+    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrArgsDict']]]
     """
     Details specific to French domain extensions.
     """
@@ -1845,19 +1845,19 @@ class RegistrationOwnerContactExtensionEuArgs:
 
 
 class RegistrationOwnerContactExtensionFrArgsDict(TypedDict):
-    association_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrAssociationInfoArgs']]]
+    association_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrAssociationInfoArgsDict']]]
     """
     Association-specific information for the domain (French extension).
     """
-    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs']]]
+    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgsDict']]]
     """
     AFNIC authorization information for the contact (French extension).
     """
-    duns_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrDunsInfoArgs']]]
+    duns_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrDunsInfoArgsDict']]]
     """
     DUNS information for the domain owner (specific to French domains).
     """
-    individual_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrIndividualInfoArgs']]]
+    individual_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrIndividualInfoArgsDict']]]
     """
     Information about the individual registration for French domains.
     """
@@ -1865,7 +1865,7 @@ class RegistrationOwnerContactExtensionFrArgsDict(TypedDict):
     """
     Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
     """
-    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrTrademarkInfoArgs']]]
+    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict']]]
     """
     Trademark-related information for the domain (French extension).
     """
@@ -2211,11 +2211,11 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     Alternative email address for the contact.
     """
-    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionEuArgs']]]
+    extension_eu: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionEuArgsDict']]]
     """
     Details specific to European domain extensions.
     """
-    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrArgs']]]
+    extension_fr: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrArgsDict']]]
     """
     Details specific to French domain extensions.
     """
@@ -2628,19 +2628,19 @@ class RegistrationTechnicalContactExtensionEuArgs:
 
 
 class RegistrationTechnicalContactExtensionFrArgsDict(TypedDict):
-    association_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrAssociationInfoArgs']]]
+    association_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrAssociationInfoArgsDict']]]
     """
     Association-specific information for the domain (French extension).
     """
-    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs']]]
+    code_auth_afnic_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgsDict']]]
     """
     AFNIC authorization information for the contact (French extension).
     """
-    duns_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrDunsInfoArgs']]]
+    duns_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrDunsInfoArgsDict']]]
     """
     DUNS information for the domain owner (specific to French domains).
     """
-    individual_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrIndividualInfoArgs']]]
+    individual_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict']]]
     """
     Information about the individual registration for French domains.
     """
@@ -2648,7 +2648,7 @@ class RegistrationTechnicalContactExtensionFrArgsDict(TypedDict):
     """
     Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
     """
-    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrTrademarkInfoArgs']]]
+    trademark_info: NotRequired[pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict']]]
     """
     Trademark-related information for the domain (French extension).
     """

@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Kafka clusters.
-// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-services/kafka/).
+// For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).
 //
 // > **Important:** The Kafka product is currently in Public Beta.
 //
@@ -44,7 +44,7 @@ import (
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
 //				Region: pulumi.String("fr-par"),
-//				VpcId:  main.ID(),
+//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -59,7 +59,7 @@ import (
 //				UserName:       pulumi.String("admin"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
-//					PnId: pn.ID(),
+//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -96,7 +96,7 @@ import (
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
 //				Region: pulumi.String("fr-par"),
-//				VpcId:  main.ID(),
+//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -115,7 +115,7 @@ import (
 //					pulumi.String("messaging"),
 //				},
 //				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
-//					PnId: pn.ID(),
+//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -154,7 +154,7 @@ type Cluster struct {
 	// Public endpoint information.
 	PublicNetworks ClusterPublicNetworkArrayOutput `pulumi:"publicNetworks"`
 	// `region`) The region in which the cluster should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The status of the cluster (e.g., "ready", "creating", "configuring").
 	Status pulumi.StringOutput `pulumi:"status"`
 	// List of tags to apply to the cluster.
@@ -479,8 +479,8 @@ func (o ClusterOutput) PublicNetworks() ClusterPublicNetworkArrayOutput {
 }
 
 // `region`) The region in which the cluster should be created.
-func (o ClusterOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ClusterOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The status of the cluster (e.g., "ready", "creating", "configuring").

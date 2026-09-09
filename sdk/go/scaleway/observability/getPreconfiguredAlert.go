@@ -111,20 +111,16 @@ type GetPreconfiguredAlertResult struct {
 	// ID of the data source containing the alert rule.
 	DataSourceId *string `pulumi:"dataSourceId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	ProjectId string  `pulumi:"projectId"`
-	Region    *string `pulumi:"region"`
+	Id        string `pulumi:"id"`
+	ProjectId string `pulumi:"projectId"`
+	Region    string `pulumi:"region"`
 	// Status of the alert rule (`enabled`, `disabled`, `enabling`, `disabling`).
 	RuleStatus *string `pulumi:"ruleStatus"`
 }
 
 func GetPreconfiguredAlertOutput(ctx *pulumi.Context, args GetPreconfiguredAlertOutputArgs, opts ...pulumi.InvokeOption) GetPreconfiguredAlertResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPreconfiguredAlertResultOutput, error) {
-			args := v.(GetPreconfiguredAlertArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert", args, GetPreconfiguredAlertResultOutput{}, options).(GetPreconfiguredAlertResultOutput), nil
-		}).(GetPreconfiguredAlertResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert", args, GetPreconfiguredAlertResultOutput{}, options).(GetPreconfiguredAlertResultOutput)
 }
 
 // A collection of arguments for invoking getPreconfiguredAlert.
@@ -177,8 +173,8 @@ func (o GetPreconfiguredAlertResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPreconfiguredAlertResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetPreconfiguredAlertResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPreconfiguredAlertResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetPreconfiguredAlertResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Status of the alert rule (`enabled`, `disabled`, `enabling`, `disabling`).

@@ -29,7 +29,7 @@ class GetVpcGatewayNetworkResult:
     """
     A collection of values returned by getVpcGatewayNetwork.
     """
-    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_ips=None, private_network_id=None, static_address=None, status=None, updated_at=None, zone=None):
+    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_ips=None, private_network_id=None, srn=None, static_address=None, status=None, updated_at=None, zone=None):
         if cleanup_dhcp and not isinstance(cleanup_dhcp, bool):
             raise TypeError("Expected argument 'cleanup_dhcp' to be a bool")
         pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
@@ -66,6 +66,9 @@ class GetVpcGatewayNetworkResult:
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if static_address and not isinstance(static_address, str):
             raise TypeError("Expected argument 'static_address' to be a str")
         pulumi.set(__self__, "static_address", static_address)
@@ -143,6 +146,11 @@ class GetVpcGatewayNetworkResult:
         return pulumi.get(self, "private_network_id")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="staticAddress")
     def static_address(self) -> _builtins.str:
         return pulumi.get(self, "static_address")
@@ -181,6 +189,7 @@ class AwaitableGetVpcGatewayNetworkResult(GetVpcGatewayNetworkResult):
             mac_address=self.mac_address,
             private_ips=self.private_ips,
             private_network_id=self.private_network_id,
+            srn=self.srn,
             static_address=self.static_address,
             status=self.status,
             updated_at=self.updated_at,
@@ -240,6 +249,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[_builtins.str] = None,
         mac_address=pulumi.get(__ret__, 'mac_address'),
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         static_address=pulumi.get(__ret__, 'static_address'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -296,6 +306,7 @@ def get_vpc_gateway_network_output(dhcp_id: pulumi.Input[Optional[Optional[_buil
         mac_address=pulumi.get(__response__, 'mac_address'),
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
+        srn=pulumi.get(__response__, 'srn'),
         static_address=pulumi.get(__response__, 'static_address'),
         status=pulumi.get(__response__, 'status'),
         updated_at=pulumi.get(__response__, 'updated_at'),

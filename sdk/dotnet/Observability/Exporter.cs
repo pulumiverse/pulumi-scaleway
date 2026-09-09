@@ -171,7 +171,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// ) The region where the exporter is located.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Status of the data export (`Creating`, `Ready`, `Error`).

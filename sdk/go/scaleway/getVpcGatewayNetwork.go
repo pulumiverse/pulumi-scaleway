@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupGatewayNetworkOutput(ctx, network.GetGatewayNetworkOutputArgs{
-//				GatewayNetworkId: main.ID(),
+//				GatewayNetworkId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_, err = network.LookupGatewayNetwork(ctx, &network.LookupGatewayNetworkArgs{
 //				GatewayId:        pulumi.StringRef(pg01.Id),
@@ -89,6 +89,7 @@ type LookupVpcGatewayNetworkResult struct {
 	MacAddress       string                           `pulumi:"macAddress"`
 	PrivateIps       []GetVpcGatewayNetworkPrivateIp  `pulumi:"privateIps"`
 	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
+	Srn              string                           `pulumi:"srn"`
 	StaticAddress    string                           `pulumi:"staticAddress"`
 	Status           string                           `pulumi:"status"`
 	UpdatedAt        string                           `pulumi:"updatedAt"`
@@ -96,12 +97,8 @@ type LookupVpcGatewayNetworkResult struct {
 }
 
 func LookupVpcGatewayNetworkOutput(ctx *pulumi.Context, args LookupVpcGatewayNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcGatewayNetworkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupVpcGatewayNetworkResultOutput, error) {
-			args := v.(LookupVpcGatewayNetworkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args, LookupVpcGatewayNetworkResultOutput{}, options).(LookupVpcGatewayNetworkResultOutput), nil
-		}).(LookupVpcGatewayNetworkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args, LookupVpcGatewayNetworkResultOutput{}, options).(LookupVpcGatewayNetworkResultOutput)
 }
 
 // A collection of arguments for invoking getVpcGatewayNetwork.
@@ -180,6 +177,10 @@ func (o LookupVpcGatewayNetworkResultOutput) PrivateIps() GetVpcGatewayNetworkPr
 
 func (o LookupVpcGatewayNetworkResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVpcGatewayNetworkResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupVpcGatewayNetworkResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVpcGatewayNetworkResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupVpcGatewayNetworkResultOutput) StaticAddress() pulumi.StringOutput {

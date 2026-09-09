@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewSource(ctx, "main", &observability.SourceArgs{
-//				ProjectId:     project.ID(),
+//				ProjectId:     project.ID().ToIDOutput().ToStringOutput(),
 //				Name:          pulumi.String("my-data-source"),
 //				Type:          pulumi.String("metrics"),
 //				RetentionDays: pulumi.Int(6),
@@ -77,7 +77,7 @@ type Source struct {
 	// The URL endpoint used for pushing data to the Cockpit data source.
 	PushUrl pulumi.StringOutput `pulumi:"pushUrl"`
 	// ) The region where the data source is located.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
 	RetentionDays pulumi.IntOutput `pulumi:"retentionDays"`
 	// Indicates whether the data source is synchronized with Grafana.
@@ -322,8 +322,8 @@ func (o SourceOutput) PushUrl() pulumi.StringOutput {
 }
 
 // ) The region where the data source is located.
-func (o SourceOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Source) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SourceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Source) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.

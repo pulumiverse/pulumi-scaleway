@@ -214,7 +214,7 @@ type BucketServerSideEncryptionConfiguration struct {
 	// project the bucket is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Set of server-side encryption configuration rules
 	Rules BucketServerSideEncryptionConfigurationRuleArrayOutput `pulumi:"rules"`
 }
@@ -406,8 +406,8 @@ func (o BucketServerSideEncryptionConfigurationOutput) ProjectId() pulumi.String
 }
 
 // The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
-func (o BucketServerSideEncryptionConfigurationOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o BucketServerSideEncryptionConfigurationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Set of server-side encryption configuration rules

@@ -75,12 +75,8 @@ type LookupSnsResult struct {
 }
 
 func LookupSnsOutput(ctx *pulumi.Context, args LookupSnsOutputArgs, opts ...pulumi.InvokeOption) LookupSnsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSnsResultOutput, error) {
-			args := v.(LookupSnsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:mnq/getSns:getSns", args, LookupSnsResultOutput{}, options).(LookupSnsResultOutput), nil
-		}).(LookupSnsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:mnq/getSns:getSns", args, LookupSnsResultOutput{}, options).(LookupSnsResultOutput)
 }
 
 // A collection of arguments for invoking getSns.

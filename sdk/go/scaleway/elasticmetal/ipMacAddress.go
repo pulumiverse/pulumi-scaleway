@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
-//				FlexibleIpId: main.ID(),
+//				FlexibleIpId: main.ID().ToIDOutput().ToStringOutput(),
 //				Type:         pulumi.String("kvm"),
 //			})
 //			if err != nil {
@@ -70,36 +70,36 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("TestAccScalewayBaremetalServer_WithoutInstallConfig"),
-//				Offer:                  pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ip01, err := elasticmetal.NewIp(ctx, "ip01", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ip02, err := elasticmetal.NewIp(ctx, "ip02", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ip03, err := elasticmetal.NewIp(ctx, "ip03", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
-//				FlexibleIpId: ip01.ID(),
+//				FlexibleIpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //				Type:         pulumi.String("kvm"),
 //				FlexibleIpIdsToDuplicates: pulumi.StringArray{
-//					ip02.ID(),
-//					ip03.ID(),
+//					ip02.ID().ToIDOutput().ToStringOutput(),
+//					ip03.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -137,7 +137,7 @@ type IpMacAddress struct {
 	// The date at which the Virtual Mac Address was last updated (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The zone of the Virtual Mac Address.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewIpMacAddress registers a new resource with the given unique name, arguments, and options.
@@ -374,8 +374,8 @@ func (o IpMacAddressOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // The zone of the Virtual Mac Address.
-func (o IpMacAddressOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IpMacAddress) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o IpMacAddressOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *IpMacAddress) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type IpMacAddressArrayOutput struct{ *pulumi.OutputState }

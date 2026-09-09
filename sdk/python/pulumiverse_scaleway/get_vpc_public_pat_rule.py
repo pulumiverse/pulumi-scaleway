@@ -28,7 +28,7 @@ class GetVpcPublicPatRuleResult:
     """
     A collection of values returned by getVpcPublicPatRule.
     """
-    def __init__(__self__, created_at=None, gateway_id=None, id=None, organization_id=None, pat_rule_id=None, private_ip=None, private_port=None, protocol=None, public_port=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, gateway_id=None, id=None, organization_id=None, pat_rule_id=None, private_ip=None, private_port=None, protocol=None, public_port=None, srn=None, updated_at=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -56,6 +56,9 @@ class GetVpcPublicPatRuleResult:
         if public_port and not isinstance(public_port, int):
             raise TypeError("Expected argument 'public_port' to be a int")
         pulumi.set(__self__, "public_port", public_port)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -127,6 +130,11 @@ class GetVpcPublicPatRuleResult:
         return pulumi.get(self, "public_port")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         return pulumi.get(self, "updated_at")
@@ -152,6 +160,7 @@ class AwaitableGetVpcPublicPatRuleResult(GetVpcPublicPatRuleResult):
             private_port=self.private_port,
             protocol=self.protocol,
             public_port=self.public_port,
+            srn=self.srn,
             updated_at=self.updated_at,
             zone=self.zone)
 
@@ -234,6 +243,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[_builtins.str] = None,
         private_port=pulumi.get(__ret__, 'private_port'),
         protocol=pulumi.get(__ret__, 'protocol'),
         public_port=pulumi.get(__ret__, 'public_port'),
+        srn=pulumi.get(__ret__, 'srn'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         zone=pulumi.get(__ret__, 'zone'))
 def get_vpc_public_pat_rule_output(pat_rule_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -313,5 +323,6 @@ def get_vpc_public_pat_rule_output(pat_rule_id: pulumi.Input[Optional[_builtins.
         private_port=pulumi.get(__response__, 'private_port'),
         protocol=pulumi.get(__response__, 'protocol'),
         public_port=pulumi.get(__response__, 'public_port'),
+        srn=pulumi.get(__response__, 'srn'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         zone=pulumi.get(__response__, 'zone')))

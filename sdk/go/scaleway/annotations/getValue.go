@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID(),
+//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_ = annotations.LookupValueOutput(ctx, annotations.GetValueOutputArgs{
-//				ValueId: production.ID(),
+//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -80,12 +80,8 @@ type LookupValueResult struct {
 }
 
 func LookupValueOutput(ctx *pulumi.Context, args LookupValueOutputArgs, opts ...pulumi.InvokeOption) LookupValueResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupValueResultOutput, error) {
-			args := v.(LookupValueArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:annotations/getValue:getValue", args, LookupValueResultOutput{}, options).(LookupValueResultOutput), nil
-		}).(LookupValueResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:annotations/getValue:getValue", args, LookupValueResultOutput{}, options).(LookupValueResultOutput)
 }
 
 // A collection of arguments for invoking getValue.

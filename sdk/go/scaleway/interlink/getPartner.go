@@ -99,19 +99,15 @@ type GetPartnerResult struct {
 	Name      string  `pulumi:"name"`
 	PartnerId *string `pulumi:"partnerId"`
 	// URL of the partner's portal.
-	PortalUrl string  `pulumi:"portalUrl"`
-	Region    *string `pulumi:"region"`
+	PortalUrl string `pulumi:"portalUrl"`
+	Region    string `pulumi:"region"`
 	// Last update date of the partner.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func GetPartnerOutput(ctx *pulumi.Context, args GetPartnerOutputArgs, opts ...pulumi.InvokeOption) GetPartnerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPartnerResultOutput, error) {
-			args := v.(GetPartnerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getPartner:getPartner", args, GetPartnerResultOutput{}, options).(GetPartnerResultOutput), nil
-		}).(GetPartnerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getPartner:getPartner", args, GetPartnerResultOutput{}, options).(GetPartnerResultOutput)
 }
 
 // A collection of arguments for invoking getPartner.
@@ -176,8 +172,8 @@ func (o GetPartnerResultOutput) PortalUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPartnerResult) string { return v.PortalUrl }).(pulumi.StringOutput)
 }
 
-func (o GetPartnerResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPartnerResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetPartnerResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPartnerResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Last update date of the partner.

@@ -64,41 +64,41 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
-//				"input": "~/.ssh/id_rsa.pub",
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "~/.ssh/id_rsa.pub",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			key1, err := iam.NewSshKey(ctx, "key1", &iam.SshKeyArgs{
 //				Name:      pulumi.String("key1"),
-//				PublicKey: invokeFile.Result,
+//				PublicKey: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile1, err := std.File(ctx, map[string]interface{}{
-//				"input": "~/.ssh/another_key.pub",
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "~/.ssh/another_key.pub",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			key2, err := iam.NewSshKey(ctx, "key2", &iam.SshKeyArgs{
 //				Name:      pulumi.String("key2"),
-//				PublicKey: invokeFile1.Result,
+//				PublicKey: pulumi.String(invokeFile1.Result),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			sshKeysHash := std.Sha256(ctx, map[string]interface{}{
-//				"input": std.Join(ctx, map[string]interface{}{
-//					"separator": ",",
-//					"input": pulumi.StringArray{
+//			sshKeysHash := std.Sha256Output(ctx, std.Sha256OutputArgs{
+//				Input: std.JoinOutput(ctx, std.JoinOutputArgs{
+//					Separator: pulumi.String(","),
+//					Input: pulumi.StringArray{
 //						key1.PublicKey,
 //						key2.PublicKey,
 //					},
-//				}, nil).Result,
-//			}, nil).Result
+//				}, nil).Result(),
+//			}, nil).Result()
 //			_, err = network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
 //				Name: pulumi.String("public_gateway_demo"),
 //				Type: pulumi.String("VPC-GW-S"),
@@ -108,7 +108,7 @@ import (
 //				},
 //				BastionEnabled: pulumi.Bool(true),
 //				BastionPort:    pulumi.Int(61000),
-//				RefreshSshKeys: pulumi.Any(sshKeysHash),
+//				RefreshSshKeys: pulumi.String(sshKeysHash),
 //			})
 //			if err != nil {
 //				return err
@@ -155,6 +155,8 @@ type PublicGateway struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
 	RefreshSshKeys pulumi.StringPtrOutput `pulumi:"refreshSshKeys"`
+	// The Scaleway Resource Name (SRN) of the public gateway.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the public gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags to associate with the Public Gateway.
@@ -168,7 +170,7 @@ type PublicGateway struct {
 	// Deprecated: This field is no longer supported in the v2 API
 	UpstreamDnsServers pulumi.StringArrayOutput `pulumi:"upstreamDnsServers"`
 	// `zone`) The zone in which the Public Gateway should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewPublicGateway registers a new resource with the given unique name, arguments, and options.
@@ -236,6 +238,8 @@ type publicGatewayState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
 	RefreshSshKeys *string `pulumi:"refreshSshKeys"`
+	// The Scaleway Resource Name (SRN) of the public gateway.
+	Srn *string `pulumi:"srn"`
 	// The status of the public gateway.
 	Status *string `pulumi:"status"`
 	// The tags to associate with the Public Gateway.
@@ -279,6 +283,8 @@ type PublicGatewayState struct {
 	ProjectId pulumi.StringPtrInput
 	// Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
 	RefreshSshKeys pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the public gateway.
+	Srn pulumi.StringPtrInput
 	// The status of the public gateway.
 	Status pulumi.StringPtrInput
 	// The tags to associate with the Public Gateway.
@@ -507,6 +513,11 @@ func (o PublicGatewayOutput) RefreshSshKeys() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.StringPtrOutput { return v.RefreshSshKeys }).(pulumi.StringPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the public gateway.
+func (o PublicGatewayOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The status of the public gateway.
 func (o PublicGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
@@ -535,8 +546,8 @@ func (o PublicGatewayOutput) UpstreamDnsServers() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the Public Gateway should be created.
-func (o PublicGatewayOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PublicGateway) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o PublicGatewayOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type PublicGatewayArrayOutput struct{ *pulumi.OutputState }

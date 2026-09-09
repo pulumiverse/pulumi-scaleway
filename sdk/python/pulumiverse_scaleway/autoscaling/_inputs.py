@@ -15,6 +15,14 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'GroupLoadBalancerConfigurationArgs',
+    'GroupLoadBalancerConfigurationArgsDict',
+    'GroupLoadBalancerConfigurationAutoHealingArgs',
+    'GroupLoadBalancerConfigurationAutoHealingArgsDict',
+    'GroupLoadBalancerConfigurationBackendArgs',
+    'GroupLoadBalancerConfigurationBackendArgsDict',
+    'GroupScalingPolicyArgs',
+    'GroupScalingPolicyArgsDict',
     'InstanceGroupCapacityArgs',
     'InstanceGroupCapacityArgsDict',
     'InstanceGroupLoadBalancerArgs',
@@ -28,6 +36,394 @@ __all__ = [
     'InstanceTemplateVolumeFromSnapshotArgs',
     'InstanceTemplateVolumeFromSnapshotArgsDict',
 ]
+
+class GroupLoadBalancerConfigurationArgsDict(TypedDict):
+    backends: pulumi.Input[Sequence[pulumi.Input['GroupLoadBalancerConfigurationBackendArgsDict']]]
+    """
+    The list of load balancer backend configurations.
+
+    > The `backends` block contains:
+    """
+    load_balancer_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the load balancer.
+    """
+    auto_healing: NotRequired[pulumi.Input[Optional['GroupLoadBalancerConfigurationAutoHealingArgsDict']]]
+    """
+    The auto-healing configuration.
+
+    > The `auto_healing` block contains:
+    """
+
+@pulumi.input_type
+class GroupLoadBalancerConfigurationArgs:
+    def __init__(__self__, *,
+                 backends: pulumi.Input[Sequence[pulumi.Input['GroupLoadBalancerConfigurationBackendArgs']]],
+                 load_balancer_id: pulumi.Input[_builtins.str],
+                 auto_healing: pulumi.Input[Optional['GroupLoadBalancerConfigurationAutoHealingArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['GroupLoadBalancerConfigurationBackendArgs']]] backends: The list of load balancer backend configurations.
+               
+               > The `backends` block contains:
+        :param pulumi.Input[_builtins.str] load_balancer_id: The ID of the load balancer.
+        :param pulumi.Input['GroupLoadBalancerConfigurationAutoHealingArgs'] auto_healing: The auto-healing configuration.
+               
+               > The `auto_healing` block contains:
+        """
+        pulumi.set(__self__, "backends", backends)
+        pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if auto_healing is not None:
+            pulumi.set(__self__, "auto_healing", auto_healing)
+
+    @_builtins.property
+    @pulumi.getter
+    def backends(self) -> pulumi.Input[Sequence[pulumi.Input['GroupLoadBalancerConfigurationBackendArgs']]]:
+        """
+        The list of load balancer backend configurations.
+
+        > The `backends` block contains:
+        """
+        return pulumi.get(self, "backends")
+
+    @backends.setter
+    def backends(self, value: pulumi.Input[Sequence[pulumi.Input['GroupLoadBalancerConfigurationBackendArgs']]]):
+        pulumi.set(self, "backends", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loadBalancerId")
+    def load_balancer_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the load balancer.
+        """
+        return pulumi.get(self, "load_balancer_id")
+
+    @load_balancer_id.setter
+    def load_balancer_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "load_balancer_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoHealing")
+    def auto_healing(self) -> pulumi.Input[Optional['GroupLoadBalancerConfigurationAutoHealingArgs']]:
+        """
+        The auto-healing configuration.
+
+        > The `auto_healing` block contains:
+        """
+        return pulumi.get(self, "auto_healing")
+
+    @auto_healing.setter
+    def auto_healing(self, value: pulumi.Input[Optional['GroupLoadBalancerConfigurationAutoHealingArgs']]):
+        pulumi.set(self, "auto_healing", value)
+
+
+class GroupLoadBalancerConfigurationAutoHealingArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether auto-healing is enabled.
+    """
+    grace_period: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The grace period for health checks.
+    """
+
+@pulumi.input_type
+class GroupLoadBalancerConfigurationAutoHealingArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 grace_period: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: Whether auto-healing is enabled.
+        :param pulumi.Input[_builtins.str] grace_period: The grace period for health checks.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if grace_period is not None:
+            pulumi.set(__self__, "grace_period", grace_period)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether auto-healing is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gracePeriod")
+    def grace_period(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The grace period for health checks.
+        """
+        return pulumi.get(self, "grace_period")
+
+    @grace_period.setter
+    def grace_period(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "grace_period", value)
+
+
+class GroupLoadBalancerConfigurationBackendArgsDict(TypedDict):
+    address_family: pulumi.Input[_builtins.str]
+    """
+    The IP address family (IPv4 or IPv6).
+    """
+    backend_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the load balancer backend.
+    """
+    private_network_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The ID of the private network.
+    """
+
+@pulumi.input_type
+class GroupLoadBalancerConfigurationBackendArgs:
+    def __init__(__self__, *,
+                 address_family: pulumi.Input[_builtins.str],
+                 backend_id: pulumi.Input[_builtins.str],
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] address_family: The IP address family (IPv4 or IPv6).
+        :param pulumi.Input[_builtins.str] backend_id: The ID of the load balancer backend.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network.
+        """
+        pulumi.set(__self__, "address_family", address_family)
+        pulumi.set(__self__, "backend_id", backend_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> pulumi.Input[_builtins.str]:
+        """
+        The IP address family (IPv4 or IPv6).
+        """
+        return pulumi.get(self, "address_family")
+
+    @address_family.setter
+    def address_family(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "address_family", value)
+
+    @_builtins.property
+    @pulumi.getter(name="backendId")
+    def backend_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ID of the load balancer backend.
+        """
+        return pulumi.get(self, "backend_id")
+
+    @backend_id.setter
+    def backend_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "backend_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_network_id", value)
+
+
+class GroupScalingPolicyArgsDict(TypedDict):
+    maximum_size: pulumi.Input[_builtins.int]
+    """
+    The maximum number of instances in the group.
+    """
+    minimum_size: pulumi.Input[_builtins.int]
+    """
+    The minimum number of instances in the group.
+    """
+    cpu_target: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The target CPU utilization percentage to trigger scaling events.
+    """
+    fixed_size: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The fixed number of instances for the group.
+    """
+    memory_target: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The target memory utilization percentage to trigger scaling events.
+
+    > **Important:** Exactly one of `fixed_size`, `cpu_target` and `memory_target` must be defined.
+    """
+    scale_in_cooldown: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The cooldown duration after a scale-in event.
+    """
+    scale_in_step: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The number of instances to remove during scale-in event.
+    """
+    scale_out_cooldown: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The cooldown duration after a scale-out event.
+    """
+    scale_out_step: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The number of instances to add during scale-out event.
+    """
+
+@pulumi.input_type
+class GroupScalingPolicyArgs:
+    def __init__(__self__, *,
+                 maximum_size: pulumi.Input[_builtins.int],
+                 minimum_size: pulumi.Input[_builtins.int],
+                 cpu_target: pulumi.Input[Optional[_builtins.int]] = None,
+                 fixed_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 memory_target: pulumi.Input[Optional[_builtins.int]] = None,
+                 scale_in_cooldown: pulumi.Input[Optional[_builtins.str]] = None,
+                 scale_in_step: pulumi.Input[Optional[_builtins.int]] = None,
+                 scale_out_cooldown: pulumi.Input[Optional[_builtins.str]] = None,
+                 scale_out_step: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] maximum_size: The maximum number of instances in the group.
+        :param pulumi.Input[_builtins.int] minimum_size: The minimum number of instances in the group.
+        :param pulumi.Input[_builtins.int] cpu_target: The target CPU utilization percentage to trigger scaling events.
+        :param pulumi.Input[_builtins.int] fixed_size: The fixed number of instances for the group.
+        :param pulumi.Input[_builtins.int] memory_target: The target memory utilization percentage to trigger scaling events.
+               
+               > **Important:** Exactly one of `fixed_size`, `cpu_target` and `memory_target` must be defined.
+        :param pulumi.Input[_builtins.str] scale_in_cooldown: The cooldown duration after a scale-in event.
+        :param pulumi.Input[_builtins.int] scale_in_step: The number of instances to remove during scale-in event.
+        :param pulumi.Input[_builtins.str] scale_out_cooldown: The cooldown duration after a scale-out event.
+        :param pulumi.Input[_builtins.int] scale_out_step: The number of instances to add during scale-out event.
+        """
+        pulumi.set(__self__, "maximum_size", maximum_size)
+        pulumi.set(__self__, "minimum_size", minimum_size)
+        if cpu_target is not None:
+            pulumi.set(__self__, "cpu_target", cpu_target)
+        if fixed_size is not None:
+            pulumi.set(__self__, "fixed_size", fixed_size)
+        if memory_target is not None:
+            pulumi.set(__self__, "memory_target", memory_target)
+        if scale_in_cooldown is not None:
+            pulumi.set(__self__, "scale_in_cooldown", scale_in_cooldown)
+        if scale_in_step is not None:
+            pulumi.set(__self__, "scale_in_step", scale_in_step)
+        if scale_out_cooldown is not None:
+            pulumi.set(__self__, "scale_out_cooldown", scale_out_cooldown)
+        if scale_out_step is not None:
+            pulumi.set(__self__, "scale_out_step", scale_out_step)
+
+    @_builtins.property
+    @pulumi.getter(name="maximumSize")
+    def maximum_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        The maximum number of instances in the group.
+        """
+        return pulumi.get(self, "maximum_size")
+
+    @maximum_size.setter
+    def maximum_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "maximum_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minimumSize")
+    def minimum_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        The minimum number of instances in the group.
+        """
+        return pulumi.get(self, "minimum_size")
+
+    @minimum_size.setter
+    def minimum_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "minimum_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuTarget")
+    def cpu_target(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The target CPU utilization percentage to trigger scaling events.
+        """
+        return pulumi.get(self, "cpu_target")
+
+    @cpu_target.setter
+    def cpu_target(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "cpu_target", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fixedSize")
+    def fixed_size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The fixed number of instances for the group.
+        """
+        return pulumi.get(self, "fixed_size")
+
+    @fixed_size.setter
+    def fixed_size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "fixed_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryTarget")
+    def memory_target(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The target memory utilization percentage to trigger scaling events.
+
+        > **Important:** Exactly one of `fixed_size`, `cpu_target` and `memory_target` must be defined.
+        """
+        return pulumi.get(self, "memory_target")
+
+    @memory_target.setter
+    def memory_target(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "memory_target", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scaleInCooldown")
+    def scale_in_cooldown(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The cooldown duration after a scale-in event.
+        """
+        return pulumi.get(self, "scale_in_cooldown")
+
+    @scale_in_cooldown.setter
+    def scale_in_cooldown(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "scale_in_cooldown", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scaleInStep")
+    def scale_in_step(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The number of instances to remove during scale-in event.
+        """
+        return pulumi.get(self, "scale_in_step")
+
+    @scale_in_step.setter
+    def scale_in_step(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "scale_in_step", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scaleOutCooldown")
+    def scale_out_cooldown(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The cooldown duration after a scale-out event.
+        """
+        return pulumi.get(self, "scale_out_cooldown")
+
+    @scale_out_cooldown.setter
+    def scale_out_cooldown(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "scale_out_cooldown", value)
+
+    @_builtins.property
+    @pulumi.getter(name="scaleOutStep")
+    def scale_out_step(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The number of instances to add during scale-out event.
+        """
+        return pulumi.get(self, "scale_out_step")
+
+    @scale_out_step.setter
+    def scale_out_step(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "scale_out_step", value)
+
 
 class InstanceGroupCapacityArgsDict(TypedDict):
     cooldown_delay: NotRequired[pulumi.Input[Optional[_builtins.int]]]
@@ -326,11 +722,11 @@ class InstanceTemplateVolumeArgsDict(TypedDict):
     """
     Force the Instance to boot on this volume.
     """
-    from_empty: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgs']]]
+    from_empty: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromEmptyArgsDict']]]
     """
     Volume instance template from empty
     """
-    from_snapshot: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgs']]]
+    from_snapshot: NotRequired[pulumi.Input[Optional['InstanceTemplateVolumeFromSnapshotArgsDict']]]
     """
     Volume instance template from snapshot
     """

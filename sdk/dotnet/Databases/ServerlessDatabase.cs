@@ -108,9 +108,9 @@ namespace Pulumiverse.Scaleway.Databases
     ///                 {
     ///                     Input = database.Endpoint,
     ///                     Prefix = "postgres://",
-    ///                 }).Result,
+    ///                 }).Apply(invoke =&gt; invoke.Result),
     ///             },
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     };
     /// });
     /// ```
@@ -161,7 +161,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
 
         /// <summary>

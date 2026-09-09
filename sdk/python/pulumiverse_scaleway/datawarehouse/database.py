@@ -78,7 +78,8 @@ class _DatabaseState:
                  deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 size: pulumi.Input[Optional[_builtins.int]] = None):
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
 
@@ -86,6 +87,7 @@ class _DatabaseState:
         :param pulumi.Input[_builtins.str] name: Name of the database.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the database should be created.
         :param pulumi.Input[_builtins.int] size: Size of the database in GB.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the database.
         """
         if deployment_id is not None:
             pulumi.set(__self__, "deployment_id", deployment_id)
@@ -95,6 +97,8 @@ class _DatabaseState:
             pulumi.set(__self__, "region", region)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter(name="deploymentId")
@@ -143,6 +147,18 @@ class _DatabaseState:
     @size.setter
     def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the database.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
 
 @pulumi.type_token("scaleway:datawarehouse/database:Database")
@@ -268,6 +284,7 @@ class Database(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             __props__.__dict__["size"] = None
+            __props__.__dict__["srn"] = None
         super(Database, __self__).__init__(
             'scaleway:datawarehouse/database:Database',
             resource_name,
@@ -281,7 +298,8 @@ class Database(pulumi.CustomResource):
             deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            size: pulumi.Input[Optional[_builtins.int]] = None) -> 'Database':
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -293,6 +311,7 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the database.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the database should be created.
         :param pulumi.Input[_builtins.int] size: Size of the database in GB.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -302,6 +321,7 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
+        __props__.__dict__["srn"] = srn
         return Database(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -322,7 +342,7 @@ class Database(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the database should be created.
         """
@@ -335,4 +355,12 @@ class Database(pulumi.CustomResource):
         Size of the database in GB.
         """
         return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the database.
+        """
+        return pulumi.get(self, "srn")
 

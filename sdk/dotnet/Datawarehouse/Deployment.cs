@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `Region`) The region in which the deployment should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Number of replicas. Can be updated in place via the deployment configuration API.
@@ -205,6 +205,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Output("shardCount")]
         public Output<int> ShardCount { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the deployment.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
@@ -527,6 +533,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Input("shardCount")]
         public Input<int>? ShardCount { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the deployment.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.

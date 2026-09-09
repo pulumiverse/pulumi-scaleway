@@ -137,7 +137,7 @@ export class BucketWebsiteConfiguration extends pulumi.CustomResource {
     /**
      * The region you want to attach the resource to
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
      */

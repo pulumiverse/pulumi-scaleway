@@ -76,16 +76,12 @@ type GetOptionResult struct {
 	// The name of the option.
 	Name     *string `pulumi:"name"`
 	OptionId *string `pulumi:"optionId"`
-	Zone     *string `pulumi:"zone"`
+	Zone     string  `pulumi:"zone"`
 }
 
 func GetOptionOutput(ctx *pulumi.Context, args GetOptionOutputArgs, opts ...pulumi.InvokeOption) GetOptionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOptionResultOutput, error) {
-			args := v.(GetOptionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:elasticmetal/getOption:getOption", args, GetOptionResultOutput{}, options).(GetOptionResultOutput), nil
-		}).(GetOptionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:elasticmetal/getOption:getOption", args, GetOptionResultOutput{}, options).(GetOptionResultOutput)
 }
 
 // A collection of arguments for invoking getOption.
@@ -136,8 +132,8 @@ func (o GetOptionResultOutput) OptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetOptionResult) *string { return v.OptionId }).(pulumi.StringPtrOutput)
 }
 
-func (o GetOptionResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOptionResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetOptionResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOptionResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -45,14 +45,14 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("MyServer"),
-//				Offer:                  pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "first", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("first"),
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "second", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("second"),
@@ -73,7 +73,7 @@ import (
 //			}
 //			_ = elasticmetal.GetIpsOutput(ctx, elasticmetal.GetIpsOutputArgs{
 //				ServerIds: pulumi.StringArray{
-//					base.ID(),
+//					base.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			}, nil)
 //			return nil
@@ -116,17 +116,13 @@ type GetIpsResult struct {
 	ServerIds []string `pulumi:"serverIds"`
 	// The list of tags which are attached to the flexible IP.
 	Tags []string `pulumi:"tags"`
-	// (Defaults to provider `zone`) The zone in which the MAC address exist.
-	Zone *string `pulumi:"zone"`
+	// (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
+	Zone string `pulumi:"zone"`
 }
 
 func GetIpsOutput(ctx *pulumi.Context, args GetIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetIpsResultOutput, error) {
-			args := v.(GetIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:elasticmetal/getIps:getIps", args, GetIpsResultOutput{}, options).(GetIpsResultOutput), nil
-		}).(GetIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:elasticmetal/getIps:getIps", args, GetIpsResultOutput{}, options).(GetIpsResultOutput)
 }
 
 // A collection of arguments for invoking getIps.
@@ -189,9 +185,9 @@ func (o GetIpsResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// (Defaults to provider `zone`) The zone in which the MAC address exist.
-func (o GetIpsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIpsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+// (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
+func (o GetIpsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

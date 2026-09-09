@@ -26,7 +26,7 @@ class GetSshKeyResult:
     """
     A collection of values returned by getSshKey.
     """
-    def __init__(__self__, created_at=None, disabled=None, fingerprint=None, id=None, name=None, organization_id=None, project_id=None, public_key=None, ssh_key_id=None, updated_at=None):
+    def __init__(__self__, created_at=None, disabled=None, fingerprint=None, id=None, name=None, organization_id=None, project_id=None, public_key=None, srn=None, ssh_key_id=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -51,6 +51,9 @@ class GetSshKeyResult:
         if public_key and not isinstance(public_key, str):
             raise TypeError("Expected argument 'public_key' to be a str")
         pulumi.set(__self__, "public_key", public_key)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if ssh_key_id and not isinstance(ssh_key_id, str):
             raise TypeError("Expected argument 'ssh_key_id' to be a str")
         pulumi.set(__self__, "ssh_key_id", ssh_key_id)
@@ -114,6 +117,11 @@ class GetSshKeyResult:
         return pulumi.get(self, "public_key")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="sshKeyId")
     def ssh_key_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "ssh_key_id")
@@ -141,6 +149,7 @@ class AwaitableGetSshKeyResult(GetSshKeyResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             public_key=self.public_key,
+            srn=self.srn,
             ssh_key_id=self.ssh_key_id,
             updated_at=self.updated_at)
 
@@ -175,6 +184,7 @@ def get_ssh_key(name: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_key=pulumi.get(__ret__, 'public_key'),
+        srn=pulumi.get(__ret__, 'srn'),
         ssh_key_id=pulumi.get(__ret__, 'ssh_key_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_ssh_key_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -206,5 +216,6 @@ def get_ssh_key_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         public_key=pulumi.get(__response__, 'public_key'),
+        srn=pulumi.get(__response__, 'srn'),
         ssh_key_id=pulumi.get(__response__, 'ssh_key_id'),
         updated_at=pulumi.get(__response__, 'updated_at')))

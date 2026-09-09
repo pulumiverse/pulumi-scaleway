@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.

@@ -118,7 +118,7 @@ type VpcPrivateNetwork struct {
 	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Private Network.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the subnet.
 	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the Private Network.
@@ -421,8 +421,8 @@ func (o VpcPrivateNetworkOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the Private Network.
-func (o VpcPrivateNetworkOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o VpcPrivateNetworkOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the subnet.

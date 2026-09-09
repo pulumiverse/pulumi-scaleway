@@ -27,7 +27,7 @@ class GetPolicyResult:
     """
     A collection of values returned by getPolicy.
     """
-    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, group_id=None, id=None, name=None, no_principal=None, organization_id=None, policy_id=None, rules=None, tags=None, updated_at=None, user_id=None):
+    def __init__(__self__, application_id=None, created_at=None, description=None, editable=None, group_id=None, id=None, name=None, no_principal=None, organization_id=None, policy_id=None, rules=None, srn=None, tags=None, updated_at=None, user_id=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
@@ -61,6 +61,9 @@ class GetPolicyResult:
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -155,6 +158,11 @@ class GetPolicyResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         The tags associated with the IAM policy.
@@ -195,6 +203,7 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             organization_id=self.organization_id,
             policy_id=self.policy_id,
             rules=self.rules,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at,
             user_id=self.user_id)
@@ -243,6 +252,7 @@ def get_policy(name: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         policy_id=pulumi.get(__ret__, 'policy_id'),
         rules=pulumi.get(__ret__, 'rules'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_id=pulumi.get(__ret__, 'user_id'))
@@ -288,6 +298,7 @@ def get_policy_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         organization_id=pulumi.get(__response__, 'organization_id'),
         policy_id=pulumi.get(__response__, 'policy_id'),
         rules=pulumi.get(__response__, 'rules'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         user_id=pulumi.get(__response__, 'user_id')))

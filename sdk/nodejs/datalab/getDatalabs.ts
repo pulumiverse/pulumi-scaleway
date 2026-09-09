@@ -82,10 +82,6 @@ export interface GetDatalabsResult {
      */
     readonly datalabs: outputs.datalab.GetDatalabsDatalab[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The name of the Datalab instance.
      */
     readonly name?: string;

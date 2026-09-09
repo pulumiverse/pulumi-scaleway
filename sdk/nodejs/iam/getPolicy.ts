@@ -93,6 +93,7 @@ export interface GetPolicyResult {
      * List of rules in the policy.
      */
     readonly rules: outputs.iam.GetPolicyRule[];
+    readonly srn: string;
     /**
      * The tags associated with the IAM policy.
      */

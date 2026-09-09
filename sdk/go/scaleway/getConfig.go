@@ -66,10 +66,8 @@ type GetConfigResult struct {
 }
 
 func GetConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("scaleway:index/getConfig:getConfig", nil, GetConfigResultOutput{}, options).(GetConfigResultOutput), nil
-	}).(GetConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getConfig:getConfig", nil, GetConfigResultOutput{}, options).(GetConfigResultOutput)
 }
 
 // A collection of values returned by getConfig.

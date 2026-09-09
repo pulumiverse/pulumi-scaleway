@@ -29,29 +29,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With custom certificate
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as local from "@pulumi/local";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.iot.Hub("main", {
- *     name: "test-iot",
- *     productPlan: "plan_shared",
- * });
- * const deviceCert = local.File({
- *     filename: "device-certificate.pem",
- * });
- * const mainDevice = new scaleway.iot.Device("main", {
- *     hubId: main.id,
- *     name: "test-iot",
- *     certificate: {
- *         crt: deviceCert.content,
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * IoT devices can be imported using the `{region}/{id}`, e.g.
@@ -140,7 +117,7 @@ export class IotDevice extends pulumi.CustomResource {
     /**
      * The region you want to attach the resource to
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The current status of the device.
      */

@@ -115,6 +115,7 @@ namespace Pulumiverse.Scaleway.Account
         /// The string of the SSH public key.
         /// </summary>
         public readonly string PublicKey;
+        public readonly string Srn;
         public readonly string? SshKeyId;
         public readonly string UpdatedAt;
 
@@ -136,6 +137,8 @@ namespace Pulumiverse.Scaleway.Account
 
             string publicKey,
 
+            string srn,
+
             string? sshKeyId,
 
             string updatedAt)
@@ -148,6 +151,7 @@ namespace Pulumiverse.Scaleway.Account
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicKey = publicKey;
+            Srn = srn;
             SshKeyId = sshKeyId;
             UpdatedAt = updatedAt;
         }

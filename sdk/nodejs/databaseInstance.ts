@@ -208,7 +208,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      * `region`) The region
      * in which the Database Instance should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Map of engine settings to be set on a running instance.
      */

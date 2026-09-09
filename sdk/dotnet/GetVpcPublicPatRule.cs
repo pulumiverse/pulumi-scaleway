@@ -382,6 +382,7 @@ namespace Pulumiverse.Scaleway
         /// The public port to listen on.
         /// </summary>
         public readonly int PublicPort;
+        public readonly string Srn;
         public readonly string UpdatedAt;
         public readonly string? Zone;
 
@@ -405,6 +406,8 @@ namespace Pulumiverse.Scaleway
 
             int publicPort,
 
+            string srn,
+
             string updatedAt,
 
             string? zone)
@@ -418,6 +421,7 @@ namespace Pulumiverse.Scaleway
             PrivatePort = privatePort;
             Protocol = protocol;
             PublicPort = publicPort;
+            Srn = srn;
             UpdatedAt = updatedAt;
             Zone = zone;
         }

@@ -517,7 +517,7 @@ class PublicGatewayDhcpReservation(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the public gateway DHCP config should be created.
         """

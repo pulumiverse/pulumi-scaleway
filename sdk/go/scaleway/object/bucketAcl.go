@@ -76,7 +76,7 @@ import (
 //				return err
 //			}
 //			_, err = object.NewBucketAcl(ctx, "main", &object.BucketAclArgs{
-//				Bucket: main.ID(),
+//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
 //				AccessControlPolicy: &object.BucketAclAccessControlPolicyArgs{
 //					Grants: object.BucketAclAccessControlPolicyGrantArray{
 //						&object.BucketAclAccessControlPolicyGrantArgs{
@@ -181,7 +181,7 @@ type BucketAcl struct {
 	// like bucket ACLs. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewBucketAcl registers a new resource with the given unique name, arguments, and options.
@@ -420,8 +420,8 @@ func (o BucketAclOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
-func (o BucketAclOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BucketAcl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o BucketAclOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type BucketAclArrayOutput struct{ *pulumi.OutputState }

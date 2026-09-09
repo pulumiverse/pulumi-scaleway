@@ -431,7 +431,7 @@ namespace Pulumiverse.Scaleway.Ipam
         /// <summary>
         /// The region of the IP.
         /// </summary>
-        public readonly string? Region;
+        public readonly string Region;
         /// <summary>
         /// The list of public IPs attached to the resource.
         /// </summary>
@@ -462,7 +462,7 @@ namespace Pulumiverse.Scaleway.Ipam
 
             string projectId,
 
-            string? region,
+            string region,
 
             Outputs.GetIpsResourceResult? resource,
 

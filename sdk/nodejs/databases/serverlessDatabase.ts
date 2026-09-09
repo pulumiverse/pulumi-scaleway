@@ -59,12 +59,12 @@ import * as utilities from "../utilities";
  *     args: [
  *         app.id,
  *         apiKey.secretKey,
- *         std.trimprefix({
+ *         std.trimprefixOutput({
  *             input: database.endpoint,
  *             prefix: "postgres://",
  *         }).result,
  *     ],
- * }).result;
+ * }).then(invoke => invoke.result);
  * ```
  *
  * ## Import
@@ -127,7 +127,7 @@ export class ServerlessDatabase extends pulumi.CustomResource {
     /**
      * `region`) The region in which the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a ServerlessDatabase resource with the given unique name, arguments, and options.

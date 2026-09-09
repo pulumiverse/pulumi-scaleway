@@ -133,7 +133,7 @@ export class IotHub extends pulumi.CustomResource {
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The current status of the Hub.
      */

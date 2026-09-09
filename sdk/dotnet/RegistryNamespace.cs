@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
 
         /// <summary>

@@ -180,11 +180,11 @@ def get_certificate(certificate_id: Optional[_builtins.str] = None,
         name="data-test-lb-cert",
         letsencrypt={
             "common_name": pulumi.Output.all(
-                ip_address=main_load_balancer.ip_address,
+                invoke=std.replace_output(text=main_load_balancer.ip_address,
+                    search=".",
+                    replace="-"),
                 region=main_load_balancer.region
-    ).apply(lambda resolved_outputs: f"{std.replace(text=resolved_outputs['ip_address'],
-                search='.',
-                replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
+    ).apply(lambda resolved_outputs: f"{resolved_outputs['invoke'].result}.lb.{resolved_outputs['region']}.scw.cloud")
     ,
         })
     by_id = scaleway.loadbalancers.get_certificate_output(certificate_id=main_certificate.id)
@@ -250,11 +250,11 @@ def get_certificate_output(certificate_id: pulumi.Input[Optional[Optional[_built
         name="data-test-lb-cert",
         letsencrypt={
             "common_name": pulumi.Output.all(
-                ip_address=main_load_balancer.ip_address,
+                invoke=std.replace_output(text=main_load_balancer.ip_address,
+                    search=".",
+                    replace="-"),
                 region=main_load_balancer.region
-    ).apply(lambda resolved_outputs: f"{std.replace(text=resolved_outputs['ip_address'],
-                search='.',
-                replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
+    ).apply(lambda resolved_outputs: f"{resolved_outputs['invoke'].result}.lb.{resolved_outputs['region']}.scw.cloud")
     ,
         })
     by_id = scaleway.loadbalancers.get_certificate_output(certificate_id=main_certificate.id)

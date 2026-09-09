@@ -68,7 +68,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -85,7 +85,7 @@ import (
 //				ClusterSize: pulumi.Int(3),
 //				PrivateNetworks: redis.ClusterPrivateNetworkArray{
 //					&redis.ClusterPrivateNetworkArgs{
-//						Id: pn01.ID(),
+//						Id: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -95,7 +95,7 @@ import (
 //			_ = ipam.GetIpsOutput(ctx, ipam.GetIpsOutputArgs{
 //				Type: pulumi.String("ipv4"),
 //				Resource: &ipam.GetIpsResourceArgs{
-//					Id:   redis01.ID(),
+//					Id:   redis01.ID().ToIDOutput().ToStringOutput(),
 //					Type: pulumi.String("redis_cluster"),
 //				},
 //			}, nil)
@@ -150,7 +150,7 @@ type GetIpsResult struct {
 	// The ID of the Project the resource is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The region of the IP.
-	Region *string `pulumi:"region"`
+	Region string `pulumi:"region"`
 	// The list of public IPs attached to the resource.
 	Resource *GetIpsResource `pulumi:"resource"`
 	// The tags associated with the IP.
@@ -161,12 +161,8 @@ type GetIpsResult struct {
 }
 
 func GetIpsOutput(ctx *pulumi.Context, args GetIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetIpsResultOutput, error) {
-			args := v.(GetIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:ipam/getIps:getIps", args, GetIpsResultOutput{}, options).(GetIpsResultOutput), nil
-		}).(GetIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:ipam/getIps:getIps", args, GetIpsResultOutput{}, options).(GetIpsResultOutput)
 }
 
 // A collection of arguments for invoking getIps.
@@ -243,8 +239,8 @@ func (o GetIpsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region of the IP.
-func (o GetIpsResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIpsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetIpsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The list of public IPs attached to the resource.

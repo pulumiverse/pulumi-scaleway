@@ -32,7 +32,7 @@ class DatalabMainArgsDict(TypedDict):
     """
     The node type for the main node.
     """
-    root_volume: NotRequired[pulumi.Input[Optional['DatalabMainRootVolumeArgs']]]
+    root_volume: NotRequired[pulumi.Input[Optional['DatalabMainRootVolumeArgsDict']]]
     """
     Volume details for worker nodes.
     """
@@ -222,7 +222,7 @@ class DatalabWorkerArgsDict(TypedDict):
     """
     The node type for worker nodes.
     """
-    root_volume: NotRequired[pulumi.Input[Optional['DatalabWorkerRootVolumeArgs']]]
+    root_volume: NotRequired[pulumi.Input[Optional['DatalabWorkerRootVolumeArgsDict']]]
     """
     Volume details for worker nodes.
     """

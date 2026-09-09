@@ -62,6 +62,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> SingleSignOnUrl { get; private set; } = null!;
 
         /// <summary>
+        /// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// (Computed) The status of the SAML configuration.
         /// </summary>
         [Output("status")]
@@ -151,6 +157,12 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         [Input("singleSignOnUrl")]
         public Input<string>? SingleSignOnUrl { get; set; }
+
+        /// <summary>
+        /// (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// (Computed) The status of the SAML configuration.

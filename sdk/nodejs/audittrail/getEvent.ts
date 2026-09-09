@@ -207,7 +207,7 @@ export interface GetEventResult {
     readonly projectId?: string;
     readonly recordedAfter?: string;
     readonly recordedBefore?: string;
-    readonly region?: string;
+    readonly region: string;
     readonly resourceId?: string;
     readonly resourceType?: string;
     /**

@@ -86,9 +86,9 @@ export class FunctionDomain extends pulumi.CustomResource {
      */
     declare public readonly hostname: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region in which the domain was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The URL used to query the function.
      */
@@ -149,7 +149,7 @@ export interface FunctionDomainState {
      */
     hostname?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the domain was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -175,7 +175,7 @@ export interface FunctionDomainArgs {
      */
     hostname: pulumi.Input<string>;
     /**
-     * (Defaults to provider `region`) The region in which the domain was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
      */
     region?: pulumi.Input<string | undefined>;
 }

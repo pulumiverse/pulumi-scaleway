@@ -69,6 +69,8 @@ type IamSshKey struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// The Scaleway Resource Name (SRN) of the SSH key.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The date and time of the last update of the SSH key.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -121,6 +123,8 @@ type iamSshKeyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The public SSH key to be added.
 	PublicKey *string `pulumi:"publicKey"`
+	// The Scaleway Resource Name (SRN) of the SSH key.
+	Srn *string `pulumi:"srn"`
 	// The date and time of the last update of the SSH key.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -141,6 +145,8 @@ type IamSshKeyState struct {
 	ProjectId pulumi.StringPtrInput
 	// The public SSH key to be added.
 	PublicKey pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the SSH key.
+	Srn pulumi.StringPtrInput
 	// The date and time of the last update of the SSH key.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -295,6 +301,11 @@ func (o IamSshKeyOutput) ProjectId() pulumi.StringOutput {
 // The public SSH key to be added.
 func (o IamSshKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamSshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the SSH key.
+func (o IamSshKeyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IamSshKey) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The date and time of the last update of the SSH key.

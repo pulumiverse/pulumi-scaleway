@@ -113,16 +113,12 @@ type GetProductsResult struct {
 	Names []string `pulumi:"names"`
 	// List of available Cockpit products. (see below)
 	Products []GetProductsProduct `pulumi:"products"`
-	Region   *string              `pulumi:"region"`
+	Region   string               `pulumi:"region"`
 }
 
 func GetProductsOutput(ctx *pulumi.Context, args GetProductsOutputArgs, opts ...pulumi.InvokeOption) GetProductsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetProductsResultOutput, error) {
-			args := v.(GetProductsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getProducts:getProducts", args, GetProductsResultOutput{}, options).(GetProductsResultOutput), nil
-		}).(GetProductsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getProducts:getProducts", args, GetProductsResultOutput{}, options).(GetProductsResultOutput)
 }
 
 // A collection of arguments for invoking getProducts.
@@ -165,8 +161,8 @@ func (o GetProductsResultOutput) Products() GetProductsProductArrayOutput {
 	return o.ApplyT(func(v GetProductsResult) []GetProductsProduct { return v.Products }).(GetProductsProductArrayOutput)
 }
 
-func (o GetProductsResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetProductsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetProductsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProductsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

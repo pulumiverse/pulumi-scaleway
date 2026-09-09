@@ -42,41 +42,6 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With custom certificate
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Local = Pulumi.Local;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Iot.Hub("main", new()
-    ///     {
-    ///         Name = "test-iot",
-    ///         ProductPlan = "plan_shared",
-    ///     });
-    /// 
-    ///     var deviceCert = Local.File.Invoke(new()
-    ///     {
-    ///         Filename = "device-certificate.pem",
-    ///     });
-    /// 
-    ///     var mainDevice = new Scaleway.Iot.Device("main", new()
-    ///     {
-    ///         HubId = main.Id,
-    ///         Name = "test-iot",
-    ///         Certificate = new Scaleway.Iot.Inputs.DeviceCertificateArgs
-    ///         {
-    ///             Crt = deviceCert.Content,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// IoT devices can be imported using the `{region}/{id}`, e.g.
@@ -159,7 +124,7 @@ namespace Pulumiverse.Scaleway
         /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The current status of the device.

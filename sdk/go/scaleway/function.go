@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Runtime:     pulumi.String("go124"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -80,14 +80,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilesha256, err := std.Filesha256(ctx, map[string]interface{}{
-//				"input": "function.zip",
+//			invokeFilesha256, err := std.Filesha256(ctx, &std.Filesha256Args{
+//				Input: "function.zip",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Description: pulumi.String("function with zip file"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tag1"),
@@ -98,7 +98,7 @@ import (
 //				Privacy: pulumi.String("private"),
 //				Timeout: pulumi.Int(10),
 //				ZipFile: pulumi.String("function.zip"),
-//				ZipHash: invokeFilesha256.Result,
+//				ZipHash: pulumi.String(invokeFilesha256.Result),
 //				Deploy:  pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -142,7 +142,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewPolicy(ctx, "access_private_funcs", &iam.PolicyArgs{
-//				ApplicationId: funcAuth.ID(),
+//				ApplicationId: funcAuth.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -158,7 +158,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: funcAuth.ID(),
+//				ApplicationId: funcAuth.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -170,19 +170,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFilesha256, err := std.Filesha256(ctx, map[string]interface{}{
-//				"input": "function.zip",
+//			invokeFilesha256, err := std.Filesha256(ctx, &std.Filesha256Args{
+//				Input: "function.zip",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			privateFunction, err := functions.NewFunction(ctx, "private", &functions.FunctionArgs{
-//				NamespaceId: private.ID(),
+//				NamespaceId: private.ID().ToIDOutput().ToStringOutput(),
 //				Runtime:     pulumi.String("go124"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
 //				ZipFile:     pulumi.String("function.zip"),
-//				ZipHash:     invokeFilesha256.Result,
+//				ZipHash:     pulumi.String(invokeFilesha256.Result),
 //				Deploy:      pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -247,7 +247,7 @@ type Function struct {
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
 	// Execution environment of the function.
@@ -687,8 +687,8 @@ func (o FunctionOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the namespace should be created.
-func (o FunctionOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o FunctionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)

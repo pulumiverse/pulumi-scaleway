@@ -100,7 +100,7 @@ export interface GetPopsResult {
     /**
      * Region of the PoP.
      */
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets information about multiple Interlink PoPs (Points of Presence).

@@ -110,14 +110,14 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
-//				Bucket: main.ID(),
-//				Policy: pulumi.String(pulumi.String(json0)),
+//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
+//				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = object.NewBucketWebsiteConfiguration(ctx, "main", &object.BucketWebsiteConfigurationArgs{
-//				Bucket: main.ID(),
+//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
 //				IndexDocument: &object.BucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
@@ -161,7 +161,7 @@ type BucketWebsiteConfiguration struct {
 	// like bucket website configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 	WebsiteDomain pulumi.StringOutput `pulumi:"websiteDomain"`
 	// The website endpoint.
@@ -406,8 +406,8 @@ func (o BucketWebsiteConfigurationOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o BucketWebsiteConfigurationOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BucketWebsiteConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o BucketWebsiteConfigurationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketWebsiteConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).

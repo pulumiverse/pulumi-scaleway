@@ -146,7 +146,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      * `zone`) The zone in which
      * the snapshot should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstanceSnapshot resource with the given unique name, arguments, and options.
