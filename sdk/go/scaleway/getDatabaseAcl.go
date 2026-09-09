@@ -70,12 +70,8 @@ type LookupDatabaseAclResult struct {
 }
 
 func LookupDatabaseAclOutput(ctx *pulumi.Context, args LookupDatabaseAclOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseAclResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseAclResultOutput, error) {
-			args := v.(LookupDatabaseAclArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, LookupDatabaseAclResultOutput{}, options).(LookupDatabaseAclResultOutput), nil
-		}).(LookupDatabaseAclResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getDatabaseAcl:getDatabaseAcl", args, LookupDatabaseAclResultOutput{}, options).(LookupDatabaseAclResultOutput)
 }
 
 // A collection of arguments for invoking getDatabaseAcl.

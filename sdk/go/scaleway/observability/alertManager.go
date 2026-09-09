@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId: project.ID(),
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
 //						Email: pulumi.String("alert1@example.com"),
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId:           project.ID(),
+//				ProjectId:           project.ID().ToIDOutput().ToStringOutput(),
 //				EnableManagedAlerts: pulumi.Bool(true),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
@@ -126,7 +126,7 @@ type AlertManager struct {
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewAlertManager registers a new resource with the given unique name, arguments, and options.
@@ -348,8 +348,8 @@ func (o AlertManagerOutput) ProjectId() pulumi.StringOutput {
 }
 
 // ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
-func (o AlertManagerOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertManager) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o AlertManagerOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertManager) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type AlertManagerArrayOutput struct{ *pulumi.OutputState }

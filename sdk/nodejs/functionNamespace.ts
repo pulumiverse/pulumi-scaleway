@@ -90,7 +90,7 @@ export class FunctionNamespace extends pulumi.CustomResource {
     /**
      * `region`). The region in which the namespace is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The registry endpoint of the namespace.
      */

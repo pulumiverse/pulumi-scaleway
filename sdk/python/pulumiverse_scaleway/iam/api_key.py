@@ -121,6 +121,7 @@ class _ApiKeyState:
                  editable: pulumi.Input[Optional[_builtins.bool]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -136,6 +137,7 @@ class _ApiKeyState:
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
         :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the API key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the IAM API key.
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
                > **Note** You must specify at least one: `application_id` and/or `user_id`.
@@ -158,6 +160,8 @@ class _ApiKeyState:
             pulumi.set(__self__, "expires_at", expires_at)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_id is not None:
@@ -271,6 +275,18 @@ class _ApiKeyState:
     @secret_key.setter
     def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the API key.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -471,6 +487,7 @@ class ApiKey(pulumi.CustomResource):
             __props__.__dict__["creation_ip"] = None
             __props__.__dict__["editable"] = None
             __props__.__dict__["secret_key"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/iamApiKey:IamApiKey")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -495,6 +512,7 @@ class ApiKey(pulumi.CustomResource):
             editable: pulumi.Input[Optional[_builtins.bool]] = None,
             expires_at: pulumi.Input[Optional[_builtins.str]] = None,
             secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ApiKey':
         """
@@ -514,6 +532,7 @@ class ApiKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
         :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the API key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the IAM API key.
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
                > **Note** You must specify at least one: `application_id` and/or `user_id`.
@@ -531,6 +550,7 @@ class ApiKey(pulumi.CustomResource):
         __props__.__dict__["editable"] = editable
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["secret_key"] = secret_key
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_id"] = user_id
         return ApiKey(resource_name, opts=opts, __props__=__props__)
@@ -607,6 +627,14 @@ class ApiKey(pulumi.CustomResource):
         The secret Key of the IAM API key.
         """
         return pulumi.get(self, "secret_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the API key.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

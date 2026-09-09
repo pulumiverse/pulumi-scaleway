@@ -35,7 +35,7 @@ class IotRouteArgs:
         :param pulumi.Input[_builtins.str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
         :param pulumi.Input['IotRouteDatabaseArgs'] database: Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Route you want to create (e.g. `my-route`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         :param pulumi.Input['IotRouteRestArgs'] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input['IotRouteS3Args'] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         """
@@ -104,7 +104,7 @@ class IotRouteArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the Route is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -155,7 +155,7 @@ class _IotRouteState:
         :param pulumi.Input['IotRouteDatabaseArgs'] database: Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Route will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Route you want to create (e.g. `my-route`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         :param pulumi.Input['IotRouteRestArgs'] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input['IotRouteS3Args'] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
@@ -229,7 +229,7 @@ class _IotRouteState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the Route is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -405,7 +405,7 @@ class IotRoute(pulumi.CustomResource):
         :param pulumi.Input[Union['IotRouteDatabaseArgs', 'IotRouteDatabaseArgsDict']] database: Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Route will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Route you want to create (e.g. `my-route`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         :param pulumi.Input[Union['IotRouteRestArgs', 'IotRouteRestArgsDict']] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[Union['IotRouteS3Args', 'IotRouteS3ArgsDict']] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
@@ -596,7 +596,7 @@ class IotRoute(pulumi.CustomResource):
         :param pulumi.Input[Union['IotRouteDatabaseArgs', 'IotRouteDatabaseArgsDict']] database: Configuration block for the database routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Route will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Route you want to create (e.g. `my-route`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Route is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         :param pulumi.Input[Union['IotRouteRestArgs', 'IotRouteRestArgsDict']] rest: Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[Union['IotRouteS3Args', 'IotRouteS3ArgsDict']] s3: Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
         :param pulumi.Input[_builtins.str] topic: The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
@@ -649,9 +649,9 @@ class IotRoute(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        (Defaults to provider `region`) The region in which the Route is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
         """
         return pulumi.get(self, "region")
 

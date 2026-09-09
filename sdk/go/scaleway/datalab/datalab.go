@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			mainPrivateNetwork, err := network.NewPrivateNetwork(ctx, "main", &network.PrivateNetworkArgs{
-//				VpcId:  main.ID(),
+//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
 //				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
@@ -47,7 +47,7 @@ import (
 //			_, err = datalab.NewDatalab(ctx, "main", &datalab.DatalabArgs{
 //				Name:             pulumi.String("my-datalab"),
 //				SparkVersion:     pulumi.String("4.0.0"),
-//				PrivateNetworkId: mainPrivateNetwork.ID(),
+//				PrivateNetworkId: mainPrivateNetwork.ID().ToIDOutput().ToStringOutput(),
 //				Region:           pulumi.String("fr-par"),
 //				Main: &datalab.DatalabMainArgs{
 //					NodeType: pulumi.String("DATALAB-SHARED-4C-8G"),

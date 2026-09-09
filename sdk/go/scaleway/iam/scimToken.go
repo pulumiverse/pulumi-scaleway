@@ -42,7 +42,7 @@ import (
 //			}
 //			// Create a SCIM token
 //			_, err = iam.NewScimToken(ctx, "main", &iam.ScimTokenArgs{
-//				ScimId:         main.ID(),
+//				ScimId:         main.ID().ToIDOutput().ToStringOutput(),
 //				OrganizationId: pulumi.String("your-organization-id"),
 //			})
 //			if err != nil {

@@ -47,7 +47,7 @@ import (
 //				Name:            pulumi.String("my-server"),
 //				Type:            pulumi.String("PLAY2-NANO"),
 //				Image:           pulumi.String("ubuntu_jammy"),
-//				SecurityGroupId: sg01.ID(),
+//				SecurityGroupId: sg01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -59,8 +59,8 @@ import (
 //				return err
 //			}
 //			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				ServerId:         srv01.ID(),
-//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         srv01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -78,15 +78,15 @@ import (
 //			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("my-pg"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			gn01, err := network.NewGatewayNetwork(ctx, "gn01", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
-//				DhcpId:           dhcp01.ID(),
+//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				DhcpId:           dhcp01.ID().ToIDOutput().ToStringOutput(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			})
@@ -94,7 +94,7 @@ import (
 //				return err
 //			}
 //			rsv01, err := network.NewPublicGatewayDhcpReservation(ctx, "rsv01", &network.PublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: gn01.ID(),
+//				GatewayNetworkId: gn01.ID().ToIDOutput().ToStringOutput(),
 //				MacAddress:       pnic01.MacAddress,
 //				IpAddress:        pulumi.String("192.168.0.7"),
 //			})
@@ -102,7 +102,7 @@ import (
 //				return err
 //			}
 //			pat01, err := network.NewPublicGatewayPatRule(ctx, "pat01", &network.PublicGatewayPatRuleArgs{
-//				GatewayId:   pg01.ID(),
+//				GatewayId:   pg01.ID().ToIDOutput().ToStringOutput(),
 //				PrivateIp:   rsv01.IpAddress,
 //				PrivatePort: pulumi.Int(22),
 //				PublicPort:  pulumi.Int(2202),
@@ -112,7 +112,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupPublicGatewayPatRuleOutput(ctx, network.GetPublicGatewayPatRuleOutputArgs{
-//				PatRuleId: pat01.ID(),
+//				PatRuleId: pat01.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -155,17 +155,14 @@ type LookupPublicGatewayPatRuleResult struct {
 	Protocol string `pulumi:"protocol"`
 	// The public port to listen on.
 	PublicPort int     `pulumi:"publicPort"`
+	Srn        string  `pulumi:"srn"`
 	UpdatedAt  string  `pulumi:"updatedAt"`
 	Zone       *string `pulumi:"zone"`
 }
 
 func LookupPublicGatewayPatRuleOutput(ctx *pulumi.Context, args LookupPublicGatewayPatRuleOutputArgs, opts ...pulumi.InvokeOption) LookupPublicGatewayPatRuleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPublicGatewayPatRuleResultOutput, error) {
-			args := v.(LookupPublicGatewayPatRuleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getPublicGatewayPatRule:getPublicGatewayPatRule", args, LookupPublicGatewayPatRuleResultOutput{}, options).(LookupPublicGatewayPatRuleResultOutput), nil
-		}).(LookupPublicGatewayPatRuleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getPublicGatewayPatRule:getPublicGatewayPatRule", args, LookupPublicGatewayPatRuleResultOutput{}, options).(LookupPublicGatewayPatRuleResultOutput)
 }
 
 // A collection of arguments for invoking getPublicGatewayPatRule.
@@ -236,6 +233,10 @@ func (o LookupPublicGatewayPatRuleResultOutput) Protocol() pulumi.StringOutput {
 // The public port to listen on.
 func (o LookupPublicGatewayPatRuleResultOutput) PublicPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPublicGatewayPatRuleResult) int { return v.PublicPort }).(pulumi.IntOutput)
+}
+
+func (o LookupPublicGatewayPatRuleResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPublicGatewayPatRuleResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupPublicGatewayPatRuleResultOutput) UpdatedAt() pulumi.StringOutput {

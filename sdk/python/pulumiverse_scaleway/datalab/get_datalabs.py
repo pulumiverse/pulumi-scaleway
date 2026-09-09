@@ -27,13 +27,10 @@ class GetDatalabsResult:
     """
     A collection of values returned by getDatalabs.
     """
-    def __init__(__self__, datalabs=None, id=None, name=None, organization_id=None, project_id=None, region=None, tags=None):
+    def __init__(__self__, datalabs=None, name=None, organization_id=None, project_id=None, region=None, tags=None):
         if datalabs and not isinstance(datalabs, list):
             raise TypeError("Expected argument 'datalabs' to be a list")
         pulumi.set(__self__, "datalabs", datalabs)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -57,14 +54,6 @@ class GetDatalabsResult:
         The list of Datalab instances.
         """
         return pulumi.get(self, "datalabs")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -111,7 +100,6 @@ class AwaitableGetDatalabsResult(GetDatalabsResult):
             yield self
         return GetDatalabsResult(
             datalabs=self.datalabs,
-            id=self.id,
             name=self.name,
             organization_id=self.organization_id,
             project_id=self.project_id,
@@ -168,7 +156,6 @@ def get_datalabs(name: Optional[_builtins.str] = None,
 
     return AwaitableGetDatalabsResult(
         datalabs=pulumi.get(__ret__, 'datalabs'),
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -222,7 +209,6 @@ def get_datalabs_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = 
     __ret__ = pulumi.runtime.invoke_output('scaleway:datalab/getDatalabs:getDatalabs', __args__, opts=opts, typ=GetDatalabsResult)
     return __ret__.apply(lambda __response__: GetDatalabsResult(
         datalabs=pulumi.get(__response__, 'datalabs'),
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),

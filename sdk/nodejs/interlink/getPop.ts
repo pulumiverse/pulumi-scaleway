@@ -93,7 +93,7 @@ export interface GetPopResult {
     readonly logoUrl: string;
     readonly name: string;
     readonly popId?: string;
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets information about an Interlink PoP (Point of Presence).

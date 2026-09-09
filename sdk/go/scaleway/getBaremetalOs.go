@@ -81,16 +81,12 @@ type GetBaremetalOsResult struct {
 	Name    *string `pulumi:"name"`
 	OsId    *string `pulumi:"osId"`
 	Version *string `pulumi:"version"`
-	Zone    *string `pulumi:"zone"`
+	Zone    string  `pulumi:"zone"`
 }
 
 func GetBaremetalOsOutput(ctx *pulumi.Context, args GetBaremetalOsOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBaremetalOsResultOutput, error) {
-			args := v.(GetBaremetalOsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBaremetalOs:getBaremetalOs", args, GetBaremetalOsResultOutput{}, options).(GetBaremetalOsResultOutput), nil
-		}).(GetBaremetalOsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBaremetalOs:getBaremetalOs", args, GetBaremetalOsResultOutput{}, options).(GetBaremetalOsResultOutput)
 }
 
 // A collection of arguments for invoking getBaremetalOs.
@@ -141,8 +137,8 @@ func (o GetBaremetalOsResultOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOsResult) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBaremetalOsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBaremetalOsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetBaremetalOsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalOsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

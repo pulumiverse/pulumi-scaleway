@@ -50,6 +50,7 @@ export interface GetPublicGatewayIpResult {
     readonly organizationId: string;
     readonly projectId: string;
     readonly reverse: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly zone: string;

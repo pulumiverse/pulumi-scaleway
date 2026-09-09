@@ -187,7 +187,7 @@ export class Route extends pulumi.CustomResource {
     /**
      * `region`) The region of the route.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Scaleway Resource Name (SRN) of the route.
      */

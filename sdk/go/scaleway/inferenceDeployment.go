@@ -17,8 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
 // ```go
 // package main
 //
@@ -38,9 +36,9 @@ import (
 //				return err
 //			}
 //			_, err = inference.NewDeployment(ctx, "deployment", &inference.DeploymentArgs{
-//				Name:      pulumi.String("tf-inference-deployment"),
-//				NodeType:  pulumi.String("L4"),
-//				ModelName: myModel.Id,
+//				Name:     pulumi.String("tf-inference-deployment"),
+//				NodeType: pulumi.String("L4"),
+//				ModelId:  pulumi.String(myModel.Id),
 //				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
 //					IsEnabled: pulumi.Bool(true),
 //				},
@@ -94,7 +92,7 @@ type InferenceDeployment struct {
 	// The number of bits each model parameter should be quantized to
 	Quantization pulumi.IntPtrOutput `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the pool.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The status of the deployment.
@@ -434,8 +432,8 @@ func (o InferenceDeploymentOutput) Quantization() pulumi.IntPtrOutput {
 }
 
 // `region`) The region in which the deployment is created.
-func (o InferenceDeploymentOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o InferenceDeploymentOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

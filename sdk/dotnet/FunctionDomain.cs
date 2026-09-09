@@ -83,10 +83,10 @@ namespace Pulumiverse.Scaleway
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the domain was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The URL used to query the function.
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Hostname { get; set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the domain was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -188,7 +188,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the domain was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

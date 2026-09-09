@@ -129,7 +129,8 @@ type LookupConnectionResult struct {
 	// The ID of the secret containing the pre-shared key (PSK).
 	SecretId string `pulumi:"secretId"`
 	// The version of the secret containing the PSK.
-	SecretVersion int `pulumi:"secretVersion"`
+	SecretVersion int    `pulumi:"secretVersion"`
+	Srn           string `pulumi:"srn"`
 	// The status of the connection.
 	Status string `pulumi:"status"`
 	// The tags associated with the connection.
@@ -143,12 +144,8 @@ type LookupConnectionResult struct {
 }
 
 func LookupConnectionOutput(ctx *pulumi.Context, args LookupConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupConnectionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupConnectionResultOutput, error) {
-			args := v.(LookupConnectionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:s2svpn/getConnection:getConnection", args, LookupConnectionResultOutput{}, options).(LookupConnectionResultOutput), nil
-		}).(LookupConnectionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:s2svpn/getConnection:getConnection", args, LookupConnectionResultOutput{}, options).(LookupConnectionResultOutput)
 }
 
 // A collection of arguments for invoking getConnection.
@@ -288,6 +285,10 @@ func (o LookupConnectionResultOutput) SecretId() pulumi.StringOutput {
 // The version of the secret containing the PSK.
 func (o LookupConnectionResultOutput) SecretVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupConnectionResult) int { return v.SecretVersion }).(pulumi.IntOutput)
+}
+
+func (o LookupConnectionResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConnectionResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the connection.

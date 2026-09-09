@@ -298,6 +298,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// BGP configuration on Scaleway's side.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLinkScwBgpConfigResult> ScwBgpConfigs;
+        public readonly string Srn;
         /// <summary>
         /// Status of the link.
         /// </summary>
@@ -361,6 +362,8 @@ namespace Pulumiverse.Scaleway.Interlink
 
             ImmutableArray<Outputs.GetLinkScwBgpConfigResult> scwBgpConfigs,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -391,6 +394,7 @@ namespace Pulumiverse.Scaleway.Interlink
             RoutingPolicyV4Id = routingPolicyV4Id;
             RoutingPolicyV6Id = routingPolicyV6Id;
             ScwBgpConfigs = scwBgpConfigs;
+            Srn = srn;
             Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;

@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Creates and manages Scaleway Kafka clusters.
- * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-services/kafka/).
+ * For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).
  *
  * > **Important:** The Kafka product is currently in Public Beta.
  *
@@ -149,7 +149,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * `region`) The region in which the cluster should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The status of the cluster (e.g., "ready", "creating", "configuring").
      */

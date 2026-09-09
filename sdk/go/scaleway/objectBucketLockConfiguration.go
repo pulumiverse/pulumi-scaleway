@@ -92,7 +92,7 @@ type ObjectBucketLockConfiguration struct {
 	// like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRuleOutput `pulumi:"rule"`
 }
@@ -299,8 +299,8 @@ func (o ObjectBucketLockConfigurationOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o ObjectBucketLockConfigurationOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ObjectBucketLockConfigurationOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Specifies the object lock rule for the specified object.

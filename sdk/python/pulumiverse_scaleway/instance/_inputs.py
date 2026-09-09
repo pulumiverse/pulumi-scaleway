@@ -41,6 +41,8 @@ __all__ = [
     'ServerRootVolumeArgsDict',
     'SnapshotImportArgs',
     'SnapshotImportArgsDict',
+    'TemplateVolumeArgs',
+    'TemplateVolumeArgsDict',
 ]
 
 class ImageAdditionalVolumeArgsDict(TypedDict):
@@ -1417,5 +1419,158 @@ class SnapshotImportArgs:
     @key.setter
     def key(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "key", value)
+
+
+class TemplateVolumeArgsDict(TypedDict):
+    size_in_gb: pulumi.Input[_builtins.int]
+    """
+    The size of the volume in gigabytes.
+    """
+    volume_type: pulumi.Input[_builtins.str]
+    """
+    The type of the volume.
+    """
+    base_snapshot_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The ID of the base snapshot for the volume.
+
+    > **Important:** Only one of `base_snapshot_id` and `image_label` can be set.
+    """
+    image_label: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The label of the image used as base for the volume.
+    """
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The name of volume.
+    """
+    perf_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The performance IOPS of the volume, required for `sbs` type volumes.
+    """
+    tags: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    The tags associated with the volume.
+    """
+
+@pulumi.input_type
+class TemplateVolumeArgs:
+    def __init__(__self__, *,
+                 size_in_gb: pulumi.Input[_builtins.int],
+                 volume_type: pulumi.Input[_builtins.str],
+                 base_snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 perf_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
+        :param pulumi.Input[_builtins.str] volume_type: The type of the volume.
+        :param pulumi.Input[_builtins.str] base_snapshot_id: The ID of the base snapshot for the volume.
+               
+               > **Important:** Only one of `base_snapshot_id` and `image_label` can be set.
+        :param pulumi.Input[_builtins.str] image_label: The label of the image used as base for the volume.
+        :param pulumi.Input[_builtins.str] name: The name of volume.
+        :param pulumi.Input[_builtins.int] perf_iops: The performance IOPS of the volume, required for `sbs` type volumes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the volume.
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "volume_type", volume_type)
+        if base_snapshot_id is not None:
+            pulumi.set(__self__, "base_snapshot_id", base_snapshot_id)
+        if image_label is not None:
+            pulumi.set(__self__, "image_label", image_label)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if perf_iops is not None:
+            pulumi.set(__self__, "perf_iops", perf_iops)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> pulumi.Input[_builtins.int]:
+        """
+        The size of the volume in gigabytes.
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @size_in_gb.setter
+    def size_in_gb(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size_in_gb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The type of the volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "volume_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="baseSnapshotId")
+    def base_snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the base snapshot for the volume.
+
+        > **Important:** Only one of `base_snapshot_id` and `image_label` can be set.
+        """
+        return pulumi.get(self, "base_snapshot_id")
+
+    @base_snapshot_id.setter
+    def base_snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "base_snapshot_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="imageLabel")
+    def image_label(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The label of the image used as base for the volume.
+        """
+        return pulumi.get(self, "image_label")
+
+    @image_label.setter
+    def image_label(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "image_label", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of volume.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="perfIops")
+    def perf_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The performance IOPS of the volume, required for `sbs` type volumes.
+        """
+        return pulumi.get(self, "perf_iops")
+
+    @perf_iops.setter
+    def perf_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "perf_iops", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The tags associated with the volume.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
 
 

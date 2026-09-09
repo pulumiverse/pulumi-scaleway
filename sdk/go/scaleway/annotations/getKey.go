@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_ = annotations.LookupKeyOutput(ctx, annotations.GetKeyOutputArgs{
-//				KeyId: environment.ID(),
+//				KeyId: environment.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -70,12 +70,8 @@ type LookupKeyResult struct {
 }
 
 func LookupKeyOutput(ctx *pulumi.Context, args LookupKeyOutputArgs, opts ...pulumi.InvokeOption) LookupKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupKeyResultOutput, error) {
-			args := v.(LookupKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:annotations/getKey:getKey", args, LookupKeyResultOutput{}, options).(LookupKeyResultOutput), nil
-		}).(LookupKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:annotations/getKey:getKey", args, LookupKeyResultOutput{}, options).(LookupKeyResultOutput)
 }
 
 // A collection of arguments for invoking getKey.

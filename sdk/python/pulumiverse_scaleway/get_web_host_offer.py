@@ -119,7 +119,7 @@ class GetWebHostOfferResult:
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
+    def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
 
 

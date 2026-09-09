@@ -251,7 +251,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// <summary>
         /// Region of the PoP.
         /// </summary>
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetPopsResult(
@@ -269,7 +269,7 @@ namespace Pulumiverse.Scaleway.Interlink
 
             ImmutableArray<Outputs.GetPopsPopResult> pops,
 
-            string? region)
+            string region)
         {
             DedicatedAvailable = dedicatedAvailable;
             HostingProviderName = hostingProviderName;

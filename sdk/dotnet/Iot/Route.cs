@@ -187,10 +187,10 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Route is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
@@ -280,7 +280,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Route is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -336,7 +336,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the Route is attached to.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

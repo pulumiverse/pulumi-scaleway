@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
-//				ProjectId: project.ID(),
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //				Name:      pulumi.String("my-awesome-token"),
 //			})
 //			if err != nil {
@@ -79,7 +79,7 @@ import (
 //			}
 //			// Create a token that can read metrics and logs but not write
 //			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
-//				ProjectId: project.ID(),
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //				Name:      pulumi.String("my-awesome-token"),
 //				Scopes: &observability.TokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
@@ -114,7 +114,7 @@ type Token struct {
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the Cockpit token is located.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Scopes allowed, each with default values:
 	Scopes TokenScopesOutput `pulumi:"scopes"`
 	// The secret key of the token.
@@ -326,8 +326,8 @@ func (o TokenOutput) ProjectId() pulumi.StringOutput {
 }
 
 // ) The region where the Cockpit token is located.
-func (o TokenOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o TokenOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Scopes allowed, each with default values:

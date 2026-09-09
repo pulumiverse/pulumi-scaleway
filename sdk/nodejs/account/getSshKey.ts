@@ -60,6 +60,7 @@ export interface GetSshKeyResult {
      * The string of the SSH public key.
      */
     readonly publicKey: string;
+    readonly srn: string;
     readonly sshKeyId?: string;
     readonly updatedAt: string;
 }

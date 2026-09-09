@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway
         /// `Zone`) The zone in which the placement group should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

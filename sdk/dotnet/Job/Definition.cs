@@ -170,7 +170,7 @@ namespace Pulumiverse.Scaleway.Job
         /// `Region`) The region of the Job.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Defines a retry policy for the job.

@@ -88,7 +88,7 @@ export class Token extends pulumi.CustomResource {
      *
      * > **Important:** Updating any of the arguments above will recreate the token.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The token.
      */

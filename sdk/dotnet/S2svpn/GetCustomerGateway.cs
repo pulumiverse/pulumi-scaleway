@@ -243,6 +243,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         public readonly string OrganizationId;
         public readonly string? ProjectId;
         public readonly string? Region;
+        public readonly string Srn;
         /// <summary>
         /// The tags associated with the customer gateway.
         /// </summary>
@@ -274,6 +275,8 @@ namespace Pulumiverse.Scaleway.S2svpn
 
             string? region,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt)
@@ -288,6 +291,7 @@ namespace Pulumiverse.Scaleway.S2svpn
             OrganizationId = organizationId;
             ProjectId = projectId;
             Region = region;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
         }

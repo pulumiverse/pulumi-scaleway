@@ -52,15 +52,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeBase64encode, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": keyMaterial.Base64,
+//			invokeBase64encode, err := std.Base64encode(ctx, &std.Base64encodeArgs{
+//				Input: keyMaterial.Base64,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keymanager.NewKeyMaterial(ctx, "main", &keymanager.KeyMaterialArgs{
-//				KeyId:                main.ID(),
-//				KeyMaterialWo:        invokeBase64encode.Result,
+//				KeyId:                main.ID().ToIDOutput().ToStringOutput(),
+//				KeyMaterialWo:        pulumi.String(invokeBase64encode.Result),
 //				KeyMaterialWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
@@ -109,23 +109,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeBase64encode, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": keyMaterial.Base64,
+//			invokeBase64encode, err := std.Base64encode(ctx, &std.Base64encodeArgs{
+//				Input: keyMaterial.Base64,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeBase64encode1, err := std.Base64encode(ctx, map[string]interface{}{
-//				"input": salt.Base64,
+//			invokeBase64encode1, err := std.Base64encode(ctx, &std.Base64encodeArgs{
+//				Input: salt.Base64,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keymanager.NewKeyMaterial(ctx, "main", &keymanager.KeyMaterialArgs{
-//				KeyId:                main.ID(),
-//				KeyMaterialWo:        invokeBase64encode.Result,
+//				KeyId:                main.ID().ToIDOutput().ToStringOutput(),
+//				KeyMaterialWo:        pulumi.String(invokeBase64encode.Result),
 //				KeyMaterialWoVersion: pulumi.Int(1),
-//				SaltWo:               invokeBase64encode1.Result,
+//				SaltWo:               pulumi.String(invokeBase64encode1.Result),
 //				SaltWoVersion:        pulumi.Int(1),
 //			})
 //			if err != nil {

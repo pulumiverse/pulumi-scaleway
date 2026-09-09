@@ -108,7 +108,7 @@ export class PrivateNetwork extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the Private Network should be attached.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a PrivateNetwork resource with the given unique name, arguments, and options.

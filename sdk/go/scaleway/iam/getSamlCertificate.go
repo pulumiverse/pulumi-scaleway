@@ -63,21 +63,17 @@ type LookupSamlCertificateResult struct {
 	Content string `pulumi:"content"`
 	// The expiration date and time of the SAML certificate
 	ExpiresAt string `pulumi:"expiresAt"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The origin of the SAML certificate. Possible values are: `scaleway`, `identityProvider`.
 	Origin string `pulumi:"origin"`
+	// The Scaleway Resource Name (SRN) of the SAML certificate
+	Srn string `pulumi:"srn"`
 	// The type of the SAML certificate. Possible values are: `signing`, `encryption`.
 	Type string `pulumi:"type"`
 }
 
 func LookupSamlCertificateOutput(ctx *pulumi.Context, args LookupSamlCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupSamlCertificateResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSamlCertificateResultOutput, error) {
-			args := v.(LookupSamlCertificateArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getSamlCertificate:getSamlCertificate", args, LookupSamlCertificateResultOutput{}, options).(LookupSamlCertificateResultOutput), nil
-		}).(LookupSamlCertificateResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getSamlCertificate:getSamlCertificate", args, LookupSamlCertificateResultOutput{}, options).(LookupSamlCertificateResultOutput)
 }
 
 // A collection of arguments for invoking getSamlCertificate.
@@ -120,14 +116,14 @@ func (o LookupSamlCertificateResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSamlCertificateResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o LookupSamlCertificateResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSamlCertificateResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
 // The origin of the SAML certificate. Possible values are: `scaleway`, `identityProvider`.
 func (o LookupSamlCertificateResultOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSamlCertificateResult) string { return v.Origin }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the SAML certificate
+func (o LookupSamlCertificateResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSamlCertificateResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The type of the SAML certificate. Possible values are: `signing`, `encryption`.

@@ -113,6 +113,53 @@ import (
 //
 // If you use terraform >= 0.12.6, you can leverage the `forEach` feature with this resource.
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			trusted := []string{
+//				"192.168.0.1",
+//				"192.168.0.2",
+//				"192.168.0.3",
+//			}
+//			var forResult0 []map[string]interface{}
+//			for _, entry := range trusted {
+//				forResult0 = append(forResult0, map[string]interface{}{
+//					"action":  "accept",
+//					"port":    22,
+//					"ipRange": entry,
+//				})
+//			}
+//			_, err := instance.NewSecurityGroup(ctx, "dummy", &instance.SecurityGroupArgs{
+//				InboundRules:          toPulumiMapArray(forResult0),
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+//	func toPulumiMapArray(arr []Map) pulumi.MapArray {
+//		var pulumiArr pulumi.MapArray
+//		for _, v := range arr {
+//			pulumiArr = append(pulumiArr, pulumi.Map(v))
+//		}
+//		return pulumiArr
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Instance security group can be imported using the `{zone}/{id}`, e.g.
@@ -149,7 +196,7 @@ type SecurityGroup struct {
 	// The tags of the security group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewSecurityGroup registers a new resource with the given unique name, arguments, and options.
@@ -457,8 +504,8 @@ func (o SecurityGroupOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the security group should be created.
-func (o SecurityGroupOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SecurityGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o SecurityGroupOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type SecurityGroupArrayOutput struct{ *pulumi.OutputState }

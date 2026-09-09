@@ -4,3 +4,6 @@
 "vfox-pulumi:pulumi/pulumi-aws" = "7.37.0"
 "vfox-pulumi:pulumi/pulumi-gitlab" = "10.0.0"
 "vfox-pulumi:pulumi/pulumi-null" = "0.2.0"
+"vfox-pulumi:pulumi/pulumi-std" = "2.2.0"
+"vfox-pulumi:pulumi/pulumi-kubernetes" = "4.33.0"
+"vfox-pulumi:pulumi/pulumi-local" = "0.1.6"

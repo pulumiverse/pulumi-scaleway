@@ -79,16 +79,12 @@ type GetLbRoutesResult struct {
 	ProjectId      string `pulumi:"projectId"`
 	// List of retrieved routes
 	Routes []GetLbRoutesRoute `pulumi:"routes"`
-	Zone   *string            `pulumi:"zone"`
+	Zone   string             `pulumi:"zone"`
 }
 
 func GetLbRoutesOutput(ctx *pulumi.Context, args GetLbRoutesOutputArgs, opts ...pulumi.InvokeOption) GetLbRoutesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbRoutesResultOutput, error) {
-			args := v.(GetLbRoutesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbRoutes:getLbRoutes", args, GetLbRoutesResultOutput{}, options).(GetLbRoutesResultOutput), nil
-		}).(GetLbRoutesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbRoutes:getLbRoutes", args, GetLbRoutesResultOutput{}, options).(GetLbRoutesResultOutput)
 }
 
 // A collection of arguments for invoking getLbRoutes.
@@ -141,8 +137,8 @@ func (o GetLbRoutesResultOutput) Routes() GetLbRoutesRouteArrayOutput {
 	return o.ApplyT(func(v GetLbRoutesResult) []GetLbRoutesRoute { return v.Routes }).(GetLbRoutesRouteArrayOutput)
 }
 
-func (o GetLbRoutesResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLbRoutesResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetLbRoutesResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRoutesResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

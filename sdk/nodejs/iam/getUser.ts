@@ -84,6 +84,7 @@ export interface GetUserResult {
     readonly phoneNumber: string;
     readonly sendPasswordEmail: boolean;
     readonly sendWelcomeEmail: boolean;
+    readonly srn: string;
     readonly status: string;
     /**
      * The tags associated with the user.

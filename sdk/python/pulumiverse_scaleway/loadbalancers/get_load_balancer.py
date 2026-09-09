@@ -208,7 +208,7 @@ class GetLoadBalancerResult:
     @pulumi.getter
     def zone(self) -> Optional[_builtins.str]:
         """
-        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -268,7 +268,7 @@ def get_load_balancer(lb_id: Optional[_builtins.str] = None,
 
     :param _builtins.str name: The Load Balancer name.
     :param _builtins.str project_id: The ID of the Project the Load Balancer is associated with.
-    :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+    :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id
@@ -327,7 +327,7 @@ def get_load_balancer_output(lb_id: pulumi.Input[Optional[Optional[_builtins.str
 
     :param _builtins.str name: The Load Balancer name.
     :param _builtins.str project_id: The ID of the Project the Load Balancer is associated with.
-    :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+    :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     __args__ = dict()
     __args__['lbId'] = lb_id

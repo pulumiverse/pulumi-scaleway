@@ -71,14 +71,14 @@ import (
 //					VolumeType: pulumi.String("l_ssd"),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					main.ID(),
+//					main.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = instance.NewSnapshot(ctx, "main", &instance.SnapshotArgs{
-//				VolumeId: main.ID(),
+//				VolumeId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				mainServer,
 //			}))
@@ -167,7 +167,7 @@ type Snapshot struct {
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// `zone`) The zone in which
 	// the snapshot should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -438,8 +438,8 @@ func (o SnapshotOutput) VolumeId() pulumi.StringPtrOutput {
 
 // `zone`) The zone in which
 // the snapshot should be created.
-func (o SnapshotOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o SnapshotOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type SnapshotArrayOutput struct{ *pulumi.OutputState }

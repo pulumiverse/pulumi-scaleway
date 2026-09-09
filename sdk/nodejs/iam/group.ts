@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  *         "user1@mail.com",
  *         "user2@mail.com",
  *     ],
- * }).result;
+ * }).then(invoke => invoke.result);
  * const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: scaleway.iam.getUser({
  *     email: __value,
  * }) }), {});
@@ -102,7 +102,7 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly applicationIds: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the creation of the group
+     * The date and time of the creation of the group.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
@@ -122,11 +122,15 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly organizationId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the group.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the group.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the group
+     * The date and time of the last update of the group.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
@@ -153,6 +157,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["externalMembership"] = state?.externalMembership;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["userIds"] = state?.userIds;
@@ -166,6 +171,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["userIds"] = args?.userIds;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -184,7 +190,7 @@ export interface GroupState {
      */
     applicationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The date and time of the creation of the group
+     * The date and time of the creation of the group.
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
@@ -204,11 +210,15 @@ export interface GroupState {
      */
     organizationId?: pulumi.Input<string | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the group.
+     */
+    srn?: pulumi.Input<string | undefined>;
+    /**
      * The tags associated with the group.
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The date and time of the last update of the group
+     * The date and time of the last update of the group.
      */
     updatedAt?: pulumi.Input<string | undefined>;
     /**

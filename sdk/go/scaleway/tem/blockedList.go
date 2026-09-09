@@ -66,7 +66,7 @@ type BlockedList struct {
 	// Reason for blocking the email address.
 	Reason pulumi.StringPtrOutput `pulumi:"reason"`
 	// The region in which the blocklist is created. Defaults to the provider's region.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Type of the blocklist. Possible values are:
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -282,8 +282,8 @@ func (o BlockedListOutput) Reason() pulumi.StringPtrOutput {
 }
 
 // The region in which the blocklist is created. Defaults to the provider's region.
-func (o BlockedListOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BlockedList) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o BlockedListOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *BlockedList) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Type of the blocklist. Possible values are:

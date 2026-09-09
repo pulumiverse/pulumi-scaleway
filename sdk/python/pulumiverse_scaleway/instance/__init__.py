@@ -25,6 +25,7 @@ from .security_group import *
 from .security_group_rules import *
 from .server import *
 from .snapshot import *
+from .template import *
 from .user_data import *
 from .volume import *
 from ._inputs import *

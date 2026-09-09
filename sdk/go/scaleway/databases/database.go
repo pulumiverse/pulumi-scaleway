@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("my-new-database"),
 //			})
 //			if err != nil {
@@ -77,7 +77,7 @@ type Database struct {
 	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Size of the database (in bytes).
 	Size pulumi.StringOutput `pulumi:"size"`
 }
@@ -291,8 +291,8 @@ func (o DatabaseOutput) Owner() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabaseOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabaseOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Size of the database (in bytes).

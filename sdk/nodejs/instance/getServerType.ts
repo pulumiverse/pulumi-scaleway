@@ -93,7 +93,7 @@ export interface GetServerTypeResult {
      * The specifications of volumes allowed for the server type.
      */
     readonly volumes: outputs.instance.GetServerTypeVolume[];
-    readonly zone?: string;
+    readonly zone: string;
 }
 /**
  * Gets information about a server type.

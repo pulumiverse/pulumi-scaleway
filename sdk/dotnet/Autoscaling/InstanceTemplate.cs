@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         /// `Zone`) The zone in which the Instance template exists.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

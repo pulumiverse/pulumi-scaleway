@@ -54,16 +54,12 @@ type GetLbIpsResult struct {
 	ProjectId string   `pulumi:"projectId"`
 	Tags      []string `pulumi:"tags"`
 	// The zone of the Load Balancer.
-	Zone *string `pulumi:"zone"`
+	Zone string `pulumi:"zone"`
 }
 
 func GetLbIpsOutput(ctx *pulumi.Context, args GetLbIpsOutputArgs, opts ...pulumi.InvokeOption) GetLbIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbIpsResultOutput, error) {
-			args := v.(GetLbIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbIps:getLbIps", args, GetLbIpsResultOutput{}, options).(GetLbIpsResultOutput), nil
-		}).(GetLbIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbIps:getLbIps", args, GetLbIpsResultOutput{}, options).(GetLbIpsResultOutput)
 }
 
 // A collection of arguments for invoking getLbIps.
@@ -132,8 +128,8 @@ func (o GetLbIpsResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone of the Load Balancer.
-func (o GetLbIpsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLbIpsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetLbIpsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbIpsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

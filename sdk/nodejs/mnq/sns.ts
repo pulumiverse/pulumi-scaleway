@@ -83,7 +83,7 @@ export class Sns extends pulumi.CustomResource {
      * `region`). The region
      * in which SNS will be enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a Sns resource with the given unique name, arguments, and options.

@@ -57,16 +57,12 @@ type GetOfferResult struct {
 	// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
 	Stock              string  `pulumi:"stock"`
 	SubscriptionPeriod *string `pulumi:"subscriptionPeriod"`
-	Zone               *string `pulumi:"zone"`
+	Zone               string  `pulumi:"zone"`
 }
 
 func GetOfferOutput(ctx *pulumi.Context, args GetOfferOutputArgs, opts ...pulumi.InvokeOption) GetOfferResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOfferResultOutput, error) {
-			args := v.(GetOfferArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:elasticmetal/getOffer:getOffer", args, GetOfferResultOutput{}, options).(GetOfferResultOutput), nil
-		}).(GetOfferResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:elasticmetal/getOffer:getOffer", args, GetOfferResultOutput{}, options).(GetOfferResultOutput)
 }
 
 // A collection of arguments for invoking getOffer.
@@ -154,8 +150,8 @@ func (o GetOfferResultOutput) SubscriptionPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetOfferResult) *string { return v.SubscriptionPeriod }).(pulumi.StringPtrOutput)
 }
 
-func (o GetOfferResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOfferResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetOfferResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOfferResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

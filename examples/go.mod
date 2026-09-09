@@ -1,6 +1,6 @@
 module github.com/pulumiverse/pulumi-scaleway/examples
 
-go 1.25.8
+go 1.26.6
 
 require github.com/pulumi/pulumi/pkg/v3 v3.236.0
 

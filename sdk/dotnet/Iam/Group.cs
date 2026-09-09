@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway.Iam
     ///             "user1@mail.com",
     ///             "user2@mail.com",
     ///         },
-    ///     }).Result;
+    ///     }).Apply(invoke =&gt; invoke.Result);
     /// 
     ///     var usersGetUser = .ToDictionary(item =&gt; {
     ///         var __key = item.Key;
@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<ImmutableArray<string>> ApplicationIds { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the group
+        /// The date and time of the creation of the group.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -154,13 +154,19 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the group.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the group.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the group
+        /// The date and time of the last update of the group.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -303,7 +309,7 @@ namespace Pulumiverse.Scaleway.Iam
         }
 
         /// <summary>
-        /// The date and time of the creation of the group
+        /// The date and time of the creation of the group.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -332,6 +338,12 @@ namespace Pulumiverse.Scaleway.Iam
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the group.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -345,7 +357,7 @@ namespace Pulumiverse.Scaleway.Iam
         }
 
         /// <summary>
-        /// The date and time of the last update of the group
+        /// The date and time of the last update of the group.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

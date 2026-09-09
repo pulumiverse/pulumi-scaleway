@@ -66,12 +66,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			users := []map[string]interface{}{
-//				map[string]interface{}{
+//			users := []map[string]string{
+//				{
 //					"email":    "test@test.com",
 //					"username": "test",
 //				},
-//				map[string]interface{}{
+//				{
 //					"email":    "test2@test.com",
 //					"username": "test2",
 //				},
@@ -81,8 +81,8 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := iam.NewUser(ctx, fmt.Sprintf("users-%v", key0), &iam.UserArgs{
-//					Email:    pulumi.String(users[val0]["email"].(string)),
-//					Username: pulumi.String(users[val0]["username"].(string)),
+//					Email:    pulumi.String(users[val0]["email"]),
+//					Username: pulumi.String(users[val0]["username"]),
 //				})
 //				if err != nil {
 //					return err
@@ -140,6 +140,8 @@ type User struct {
 	SendPasswordEmail pulumi.BoolPtrOutput `pulumi:"sendPasswordEmail"`
 	// Whether or not to send a welcome email that includes onboarding information.
 	SendWelcomeEmail pulumi.BoolPtrOutput `pulumi:"sendWelcomeEmail"`
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the user.
@@ -240,6 +242,8 @@ type userState struct {
 	SendPasswordEmail *bool `pulumi:"sendPasswordEmail"`
 	// Whether or not to send a welcome email that includes onboarding information.
 	SendWelcomeEmail *bool `pulumi:"sendWelcomeEmail"`
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn *string `pulumi:"srn"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status *string `pulumi:"status"`
 	// The tags associated with the user.
@@ -288,6 +292,8 @@ type UserState struct {
 	SendPasswordEmail pulumi.BoolPtrInput
 	// Whether or not to send a welcome email that includes onboarding information.
 	SendWelcomeEmail pulumi.BoolPtrInput
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn pulumi.StringPtrInput
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringPtrInput
 	// The tags associated with the user.
@@ -536,6 +542,11 @@ func (o UserOutput) SendPasswordEmail() pulumi.BoolPtrOutput {
 // Whether or not to send a welcome email that includes onboarding information.
 func (o UserOutput) SendWelcomeEmail() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.SendWelcomeEmail }).(pulumi.BoolPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the user.
+func (o UserOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).

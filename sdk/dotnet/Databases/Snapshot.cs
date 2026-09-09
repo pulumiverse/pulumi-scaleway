@@ -167,10 +167,10 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        /// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the snapshot in bytes.
@@ -266,7 +266,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        /// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -310,7 +310,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string>? NodeType { get; set; }
 
         /// <summary>
-        /// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        /// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

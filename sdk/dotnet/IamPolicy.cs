@@ -121,24 +121,18 @@ namespace Pulumiverse.Scaleway
     ///         Name = projectName,
     ///     });
     /// 
-    ///     var usersGetUser = .ToDictionary(item =&gt; {
-    ///         var __key = item.Key;
-    ///         return __key;
-    ///     }, item =&gt; {
-    ///         var __value = item.Value;
-    ///         return Scaleway.Iam.GetUser.Invoke(new()
-    ///         {
-    ///             Email = __value,
-    ///         });
-    ///     });
+    ///     var usersGetUser = Std.Toset.Invoke(new()
+    ///     {
+    ///         Input = users,
+    ///     }).Apply(invoke =&gt; );
     /// 
     ///     var withUsers = new Scaleway.Iam.Group("with_users", new()
     ///     {
     ///         Name = "developers",
-    ///         UserIds = (usersGetUser).Values.Select(user =&gt; 
+    ///         UserIds = usersGetUser.Apply(usersGetUser =&gt; (usersGetUser).Values.Select(user =&gt; 
     ///         {
     ///             return user.Id;
-    ///         }).ToList(),
+    ///         }).ToList()),
     ///     });
     /// 
     ///     var iamTfStoragePolicy = new Scaleway.Iam.Policy("iam_tf_storage_policy", new()
@@ -269,6 +263,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.IamPolicyRule>> Rules { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the policy.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the IAM policy.
@@ -472,6 +472,12 @@ namespace Pulumiverse.Scaleway
             get => _rules ?? (_rules = new InputList<Inputs.IamPolicyRuleGetArgs>());
             set => _rules = value;
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the policy.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

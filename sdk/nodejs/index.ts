@@ -690,6 +690,10 @@ export type IamUser = import("./iamUser").IamUser;
 export const IamUser: typeof import("./iamUser").IamUser = null as any;
 utilities.lazyLoad(exports, ["IamUser"], () => require("./iamUser"));
 
+export const idFromRegionalId: typeof import("./idFromRegionalId").idFromRegionalId = null as any;
+export const idFromRegionalIdOutput: typeof import("./idFromRegionalId").idFromRegionalIdOutput = null as any;
+utilities.lazyLoad(exports, ["idFromRegionalId","idFromRegionalIdOutput"], () => require("./idFromRegionalId"));
+
 export { InferenceDeploymentArgs, InferenceDeploymentState } from "./inferenceDeployment";
 export type InferenceDeployment = import("./inferenceDeployment").InferenceDeployment;
 export const InferenceDeployment: typeof import("./inferenceDeployment").InferenceDeployment = null as any;
@@ -932,6 +936,10 @@ export { RedisClusterArgs, RedisClusterState } from "./redisCluster";
 export type RedisCluster = import("./redisCluster").RedisCluster;
 export const RedisCluster: typeof import("./redisCluster").RedisCluster = null as any;
 utilities.lazyLoad(exports, ["RedisCluster"], () => require("./redisCluster"));
+
+export const regionFromId: typeof import("./regionFromId").regionFromId = null as any;
+export const regionFromIdOutput: typeof import("./regionFromId").regionFromIdOutput = null as any;
+utilities.lazyLoad(exports, ["regionFromId","regionFromIdOutput"], () => require("./regionFromId"));
 
 export { RegistryNamespaceArgs, RegistryNamespaceState } from "./registryNamespace";
 export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;

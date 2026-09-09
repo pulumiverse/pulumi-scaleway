@@ -90,7 +90,7 @@ class GetLbBackendsResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         return pulumi.get(self, "zone")
 
 

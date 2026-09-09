@@ -203,12 +203,8 @@ type GetSourcesResult struct {
 }
 
 func GetSourcesOutput(ctx *pulumi.Context, args GetSourcesOutputArgs, opts ...pulumi.InvokeOption) GetSourcesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSourcesResultOutput, error) {
-			args := v.(GetSourcesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getSources:getSources", args, GetSourcesResultOutput{}, options).(GetSourcesResultOutput), nil
-		}).(GetSourcesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getSources:getSources", args, GetSourcesResultOutput{}, options).(GetSourcesResultOutput)
 }
 
 // A collection of arguments for invoking getSources.

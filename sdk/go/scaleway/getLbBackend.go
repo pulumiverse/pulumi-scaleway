@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-//				IpId: main.ID(),
+//				IpId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("data-test-lb-backend"),
 //				Type: pulumi.String("LB-S"),
 //			})
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			mainBackend, err := loadbalancers.NewBackend(ctx, "main", &loadbalancers.BackendArgs{
-//				LbId:            mainLoadBalancer.ID(),
+//				LbId:            mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
@@ -51,11 +51,11 @@ import (
 //				return err
 //			}
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
-//				BackendId: mainBackend.ID(),
+//				BackendId: mainBackend.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
 //				Name: mainBackend.Name,
-//				LbId: mainLoadBalancer.ID(),
+//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -124,12 +124,8 @@ type GetLbBackendResult struct {
 }
 
 func GetLbBackendOutput(ctx *pulumi.Context, args GetLbBackendOutputArgs, opts ...pulumi.InvokeOption) GetLbBackendResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbBackendResultOutput, error) {
-			args := v.(GetLbBackendArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbBackend:getLbBackend", args, GetLbBackendResultOutput{}, options).(GetLbBackendResultOutput), nil
-		}).(GetLbBackendResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbBackend:getLbBackend", args, GetLbBackendResultOutput{}, options).(GetLbBackendResultOutput)
 }
 
 // A collection of arguments for invoking getLbBackend.

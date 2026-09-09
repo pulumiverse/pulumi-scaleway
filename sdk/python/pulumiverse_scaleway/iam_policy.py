@@ -186,6 +186,7 @@ class _IamPolicyState:
                  no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  rules: pulumi.Input[Optional[Sequence[pulumi.Input['IamPolicyRuleArgs']]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -203,6 +204,7 @@ class _IamPolicyState:
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]] rules: List of rules in the policy.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the policy.
         :param pulumi.Input[_builtins.str] user_id: ID of the user the policy will be linked to
@@ -225,6 +227,8 @@ class _IamPolicyState:
             pulumi.set(__self__, "organization_id", organization_id)
         if rules is not None:
             pulumi.set(__self__, "rules", rules)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -344,6 +348,18 @@ class _IamPolicyState:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the policy.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags associated with the IAM policy.
@@ -457,7 +473,7 @@ class IamPolicy(pulumi.CustomResource):
         ]
         project_name = "default"
         project = scaleway.account.get_project(name=project_name)
-        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users).result)}
         with_users = scaleway.iam.Group("with_users",
             name="developers",
             user_ids=[user.id for user in users_get_user.values()])
@@ -579,7 +595,7 @@ class IamPolicy(pulumi.CustomResource):
         ]
         project_name = "default"
         project = scaleway.account.get_project(name=project_name)
-        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users)["result"])}
+        users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(std.toset(input=users).result)}
         with_users = scaleway.iam.Group("with_users",
             name="developers",
             user_ids=[user.id for user in users_get_user.values()])
@@ -671,6 +687,7 @@ class IamPolicy(pulumi.CustomResource):
             __props__.__dict__["user_id"] = user_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["editable"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(IamPolicy, __self__).__init__(
             'scaleway:index/iamPolicy:IamPolicy',
@@ -691,6 +708,7 @@ class IamPolicy(pulumi.CustomResource):
             no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'IamPolicy':
@@ -712,6 +730,7 @@ class IamPolicy(pulumi.CustomResource):
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]] rules: List of rules in the policy.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the policy.
         :param pulumi.Input[_builtins.str] user_id: ID of the user the policy will be linked to
@@ -729,6 +748,7 @@ class IamPolicy(pulumi.CustomResource):
         __props__.__dict__["no_principal"] = no_principal
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["rules"] = rules
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_id"] = user_id
@@ -807,6 +827,14 @@ class IamPolicy(pulumi.CustomResource):
         List of rules in the policy.
         """
         return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the policy.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

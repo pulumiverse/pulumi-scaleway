@@ -12,8 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
@@ -24,7 +22,7 @@ import * as utilities from "./utilities";
  * const deployment = new scaleway.inference.Deployment("deployment", {
  *     name: "tf-inference-deployment",
  *     nodeType: "L4",
- *     modelName: myModel.then(myModel => myModel.id),
+ *     modelId: myModel.then(myModel => myModel.id),
  *     publicEndpoint: {
  *         isEnabled: true,
  *     },
@@ -126,7 +124,7 @@ export class InferenceDeployment extends pulumi.CustomResource {
     /**
      * `region`) The region in which the deployment is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The size of the pool.
      */

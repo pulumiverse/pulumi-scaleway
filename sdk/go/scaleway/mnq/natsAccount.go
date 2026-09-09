@@ -63,7 +63,7 @@ type NatsAccount struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which the account should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewNatsAccount registers a new resource with the given unique name, arguments, and options.
@@ -259,8 +259,8 @@ func (o NatsAccountOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which the account should be created.
-func (o NatsAccountOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NatsAccount) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o NatsAccountOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *NatsAccount) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type NatsAccountArrayOutput struct{ *pulumi.OutputState }

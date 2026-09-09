@@ -127,7 +127,7 @@ export class Model extends pulumi.CustomResource {
     /**
      * `region`) The region in which the deployment is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */

@@ -50,7 +50,7 @@ type GetVpcRoutesResult struct {
 	NexthopPrivateNetworkId *string `pulumi:"nexthopPrivateNetworkId"`
 	NexthopResourceId       *string `pulumi:"nexthopResourceId"`
 	NexthopResourceType     *string `pulumi:"nexthopResourceType"`
-	Region                  *string `pulumi:"region"`
+	Region                  string  `pulumi:"region"`
 	// List of retrieved routes
 	Routes []GetVpcRoutesRoute `pulumi:"routes"`
 	Tags   []string            `pulumi:"tags"`
@@ -58,12 +58,8 @@ type GetVpcRoutesResult struct {
 }
 
 func GetVpcRoutesOutput(ctx *pulumi.Context, args GetVpcRoutesOutputArgs, opts ...pulumi.InvokeOption) GetVpcRoutesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetVpcRoutesResultOutput, error) {
-			args := v.(GetVpcRoutesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", args, GetVpcRoutesResultOutput{}, options).(GetVpcRoutesResultOutput), nil
-		}).(GetVpcRoutesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", args, GetVpcRoutesResultOutput{}, options).(GetVpcRoutesResultOutput)
 }
 
 // A collection of arguments for invoking getVpcRoutes.
@@ -124,8 +120,8 @@ func (o GetVpcRoutesResultOutput) NexthopResourceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVpcRoutesResult) *string { return v.NexthopResourceType }).(pulumi.StringPtrOutput)
 }
 
-func (o GetVpcRoutesResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetVpcRoutesResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetVpcRoutesResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcRoutesResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // List of retrieved routes

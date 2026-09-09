@@ -1226,7 +1226,7 @@ class Server(pulumi.CustomResource):
         - `pn_id` - (Required) The private network ID where to connect.
         - `mac_address` The private NIC MAC address.
         - `status` The private NIC state.
-        - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+        - `zone` - (Optional, Computed, Defaults to provider `zone`) The zone in which the server must be created.
 
         > **Important:** You can only attach an instance in the same zone as a private network.
         **Important:** Instance supports a maximum of 8 different private networks.
@@ -1500,7 +1500,7 @@ class Server(pulumi.CustomResource):
         - `pn_id` - (Required) The private network ID where to connect.
         - `mac_address` The private NIC MAC address.
         - `status` The private NIC state.
-        - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+        - `zone` - (Optional, Computed, Defaults to provider `zone`) The zone in which the server must be created.
 
         > **Important:** You can only attach an instance in the same zone as a private network.
         **Important:** Instance supports a maximum of 8 different private networks.
@@ -1972,7 +1972,7 @@ class Server(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the server should be created.
         """

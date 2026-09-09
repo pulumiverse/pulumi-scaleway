@@ -70,7 +70,7 @@ type Runner struct {
 	// The URL of the runner to run
 	Url pulumi.StringOutput `pulumi:"url"`
 	// The zone of the runner
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewRunner registers a new resource with the given unique name, arguments, and options.
@@ -323,8 +323,8 @@ func (o RunnerOutput) Url() pulumi.StringOutput {
 }
 
 // The zone of the runner
-func (o RunnerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Runner) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o RunnerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Runner) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type RunnerArrayOutput struct{ *pulumi.OutputState }

@@ -97,7 +97,7 @@ namespace Pulumiverse.Scaleway.Applesilicon
         /// The zone of the runner
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

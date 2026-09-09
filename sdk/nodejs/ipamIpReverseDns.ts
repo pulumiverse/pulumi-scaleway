@@ -35,18 +35,18 @@ import * as utilities from "./utilities";
  *     dnsZone: "example.com",
  *     name: "",
  *     type: "AAAA",
- *     data: std.cidrhost({
- *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
+ *     data: std.cidrhostOutput({
+ *         input: ipam01.addressCidr,
  *         host: 42,
  *     }).result,
  *     ttl: 3600,
  *     priority: 1,
  * });
  * const base = new scaleway.ipam.IpReverseDns("base", {
- *     ipamIpId: ipam01.apply(ipam01 => ipam01.id),
+ *     ipamIpId: ipam01.id,
  *     hostname: "example.com",
- *     address: std.cidrhost({
- *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
+ *     address: std.cidrhostOutput({
+ *         input: ipam01.addressCidr,
  *         host: 42,
  *     }).result,
  * });
@@ -106,7 +106,7 @@ export class IpamIpReverseDns extends pulumi.CustomResource {
     /**
      * `region`) The region of the IP reverse DNS.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a IpamIpReverseDns resource with the given unique name, arguments, and options.

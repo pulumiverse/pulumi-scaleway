@@ -68,7 +68,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
+//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -85,7 +85,7 @@ import (
 //				ClusterSize: pulumi.Int(3),
 //				PrivateNetworks: redis.ClusterPrivateNetworkArray{
 //					&redis.ClusterPrivateNetworkArgs{
-//						Id: pn01.ID(),
+//						Id: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -95,7 +95,7 @@ import (
 //			_ = ipam.GetIpsOutput(ctx, ipam.GetIpsOutputArgs{
 //				Type: pulumi.String("ipv4"),
 //				Resource: &ipam.GetIpsResourceArgs{
-//					Id:   redis01.ID(),
+//					Id:   redis01.ID().ToIDOutput().ToStringOutput(),
 //					Type: pulumi.String("redis_cluster"),
 //				},
 //			}, nil)
@@ -152,7 +152,7 @@ type GetIpamIpsResult struct {
 	// The ID of the Project the resource is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The region of the IP.
-	Region *string `pulumi:"region"`
+	Region string `pulumi:"region"`
 	// The list of public IPs attached to the resource.
 	Resource *GetIpamIpsResource `pulumi:"resource"`
 	// The tags associated with the IP.
@@ -163,12 +163,8 @@ type GetIpamIpsResult struct {
 }
 
 func GetIpamIpsOutput(ctx *pulumi.Context, args GetIpamIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpamIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetIpamIpsResultOutput, error) {
-			args := v.(GetIpamIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getIpamIps:getIpamIps", args, GetIpamIpsResultOutput{}, options).(GetIpamIpsResultOutput), nil
-		}).(GetIpamIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getIpamIps:getIpamIps", args, GetIpamIpsResultOutput{}, options).(GetIpamIpsResultOutput)
 }
 
 // A collection of arguments for invoking getIpamIps.
@@ -245,8 +241,8 @@ func (o GetIpamIpsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region of the IP.
-func (o GetIpamIpsResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIpamIpsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetIpamIpsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpamIpsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The list of public IPs attached to the resource.

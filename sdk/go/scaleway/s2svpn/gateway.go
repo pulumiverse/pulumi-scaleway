@@ -40,7 +40,7 @@ import (
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc.ID(),
+//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("10.0.1.0/24"),
 //				},
@@ -51,7 +51,7 @@ import (
 //			_, err = s2svpn.NewGateway(ctx, "gateway", &s2svpn.GatewayArgs{
 //				Name:             pulumi.String("my-vpn-gateway"),
 //				GatewayType:      pulumi.String("VGW-S"),
-//				PrivateNetworkId: pn.ID(),
+//				PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -93,7 +93,9 @@ type Gateway struct {
 	// The public endpoint configuration of the VPN gateway. See Public Config below.
 	PublicConfigs GatewayPublicConfigArrayOutput `pulumi:"publicConfigs"`
 	// `region`) The region in which the VPN gateway should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPN gateway.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the VPN gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The list of tags to apply to the VPN gateway.
@@ -101,7 +103,7 @@ type Gateway struct {
 	// The date and time of the last update of the VPN gateway (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the VPN gateway should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewGateway registers a new resource with the given unique name, arguments, and options.
@@ -162,6 +164,8 @@ type gatewayState struct {
 	PublicConfigs []GatewayPublicConfig `pulumi:"publicConfigs"`
 	// `region`) The region in which the VPN gateway should be created.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the VPN gateway.
+	Srn *string `pulumi:"srn"`
 	// The status of the VPN gateway.
 	Status *string `pulumi:"status"`
 	// The list of tags to apply to the VPN gateway.
@@ -195,6 +199,8 @@ type GatewayState struct {
 	PublicConfigs GatewayPublicConfigArrayInput
 	// `region`) The region in which the VPN gateway should be created.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the VPN gateway.
+	Srn pulumi.StringPtrInput
 	// The status of the VPN gateway.
 	Status pulumi.StringPtrInput
 	// The list of tags to apply to the VPN gateway.
@@ -394,8 +400,13 @@ func (o GatewayOutput) PublicConfigs() GatewayPublicConfigArrayOutput {
 }
 
 // `region`) The region in which the VPN gateway should be created.
-func (o GatewayOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o GatewayOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the VPN gateway.
+func (o GatewayOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the VPN gateway.
@@ -414,8 +425,8 @@ func (o GatewayOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the VPN gateway should be created.
-func (o GatewayOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GatewayOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type GatewayArrayOutput struct{ *pulumi.OutputState }

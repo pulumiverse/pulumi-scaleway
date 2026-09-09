@@ -88,12 +88,8 @@ type GetPartitionSchemaResult struct {
 }
 
 func GetPartitionSchemaOutput(ctx *pulumi.Context, args GetPartitionSchemaOutputArgs, opts ...pulumi.InvokeOption) GetPartitionSchemaResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPartitionSchemaResultOutput, error) {
-			args := v.(GetPartitionSchemaArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:elasticmetal/getPartitionSchema:getPartitionSchema", args, GetPartitionSchemaResultOutput{}, options).(GetPartitionSchemaResultOutput), nil
-		}).(GetPartitionSchemaResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:elasticmetal/getPartitionSchema:getPartitionSchema", args, GetPartitionSchemaResultOutput{}, options).(GetPartitionSchemaResultOutput)
 }
 
 // A collection of arguments for invoking getPartitionSchema.

@@ -117,12 +117,8 @@ type LookupRegistrationResult struct {
 }
 
 func LookupRegistrationOutput(ctx *pulumi.Context, args LookupRegistrationOutputArgs, opts ...pulumi.InvokeOption) LookupRegistrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRegistrationResultOutput, error) {
-			args := v.(LookupRegistrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:domain/getRegistration:getRegistration", args, LookupRegistrationResultOutput{}, options).(LookupRegistrationResultOutput), nil
-		}).(LookupRegistrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:domain/getRegistration:getRegistration", args, LookupRegistrationResultOutput{}, options).(LookupRegistrationResultOutput)
 }
 
 // A collection of arguments for invoking getRegistration.

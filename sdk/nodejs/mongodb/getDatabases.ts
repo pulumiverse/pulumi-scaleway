@@ -67,7 +67,7 @@ export interface GetDatabasesResult {
      */
     readonly id: string;
     readonly instanceId: string;
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets information about databases on a MongoDB® instance.

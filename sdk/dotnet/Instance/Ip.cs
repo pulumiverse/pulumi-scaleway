@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

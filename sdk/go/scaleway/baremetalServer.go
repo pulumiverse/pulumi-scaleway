@@ -50,20 +50,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
-//				"input": "userdata.yaml",
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "userdata.yaml",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewServer(ctx, "my_server_ci", &elasticmetal.ServerArgs{
 //				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(pulumi.String(myOffer.OfferId)),
-//				Os:    pulumi.String(pulumi.String(myOs.OsId)),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(pulumi.String(mySshKey.Id)),
+//					pulumi.String(mySshKey.Id),
 //				},
-//				CloudInit: invokeFile.Result,
+//				CloudInit: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err
@@ -161,7 +161,7 @@ type BaremetalServer struct {
 	// User used for the installation.
 	User pulumi.StringOutput `pulumi:"user"`
 	// `zone`) The zone in which the server should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewBaremetalServer registers a new resource with the given unique name, arguments, and options.
@@ -762,8 +762,8 @@ func (o BaremetalServerOutput) User() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the server should be created.
-func (o BaremetalServerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o BaremetalServerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type BaremetalServerArrayOutput struct{ *pulumi.OutputState }

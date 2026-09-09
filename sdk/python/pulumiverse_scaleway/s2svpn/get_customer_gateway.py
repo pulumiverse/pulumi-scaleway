@@ -26,7 +26,7 @@ class GetCustomerGatewayResult:
     """
     A collection of values returned by getCustomerGateway.
     """
-    def __init__(__self__, asn=None, created_at=None, customer_gateway_id=None, id=None, ipv4_public=None, ipv6_public=None, name=None, organization_id=None, project_id=None, region=None, tags=None, updated_at=None):
+    def __init__(__self__, asn=None, created_at=None, customer_gateway_id=None, id=None, ipv4_public=None, ipv6_public=None, name=None, organization_id=None, project_id=None, region=None, srn=None, tags=None, updated_at=None):
         if asn and not isinstance(asn, int):
             raise TypeError("Expected argument 'asn' to be a int")
         pulumi.set(__self__, "asn", asn)
@@ -57,6 +57,9 @@ class GetCustomerGatewayResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -134,6 +137,11 @@ class GetCustomerGatewayResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         The tags associated with the customer gateway.
@@ -165,6 +173,7 @@ class AwaitableGetCustomerGatewayResult(GetCustomerGatewayResult):
             organization_id=self.organization_id,
             project_id=self.project_id,
             region=self.region,
+            srn=self.srn,
             tags=self.tags,
             updated_at=self.updated_at)
 
@@ -222,6 +231,7 @@ def get_customer_gateway(customer_gateway_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_customer_gateway_output(customer_gateway_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -276,5 +286,6 @@ def get_customer_gateway_output(customer_gateway_id: pulumi.Input[Optional[Optio
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at')))

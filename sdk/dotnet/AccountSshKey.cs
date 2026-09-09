@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
     /// 
-    /// !&gt; **Important:** The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
+    /// &gt; **Important:** The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
     /// 
     /// ## Example Usage
     /// 
@@ -89,6 +89,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SSH key
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the last update of the iam SSH Key
@@ -216,6 +222,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the SSH key
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the iam SSH Key

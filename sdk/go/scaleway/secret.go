@@ -115,7 +115,7 @@ type Secret struct {
 	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the secret.
 	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the secret.
@@ -402,8 +402,8 @@ func (o SecretOutput) Protected() pulumi.BoolPtrOutput {
 
 // `region`) The region
 // in which the resource exists.
-func (o SecretOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SecretOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the secret.

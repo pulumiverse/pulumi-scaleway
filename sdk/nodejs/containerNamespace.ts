@@ -95,7 +95,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
     /**
      * `region`). The region in which the namespace is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * (Deprecated) The registry endpoint of the namespace.
      *

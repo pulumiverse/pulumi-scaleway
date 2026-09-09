@@ -292,7 +292,7 @@ class DomainValidation(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         """

@@ -35,7 +35,7 @@ class BucketPolicyArgs:
                like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
                
                > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
-        :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
+        :param pulumi.Input[_builtins.str] region: (Computed) The Scaleway region this bucket resides in.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "policy", policy)
@@ -90,7 +90,7 @@ class BucketPolicyArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Scaleway region this bucket resides in.
+        (Computed) The Scaleway region this bucket resides in.
         """
         return pulumi.get(self, "region")
 
@@ -118,7 +118,7 @@ class _BucketPolicyState:
                like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
                
                > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
-        :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
+        :param pulumi.Input[_builtins.str] region: (Computed) The Scaleway region this bucket resides in.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
@@ -175,7 +175,7 @@ class _BucketPolicyState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Scaleway region this bucket resides in.
+        (Computed) The Scaleway region this bucket resides in.
         """
         return pulumi.get(self, "region")
 
@@ -374,7 +374,7 @@ class BucketPolicy(pulumi.CustomResource):
                like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
                
                > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
-        :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
+        :param pulumi.Input[_builtins.str] region: (Computed) The Scaleway region this bucket resides in.
         """
         ...
     @overload
@@ -618,7 +618,7 @@ class BucketPolicy(pulumi.CustomResource):
                like bucket policies. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
                
                > **Important:** The aws_iam_policy_document data source may be used, as long as it specifies a principal.
-        :param pulumi.Input[_builtins.str] region: The Scaleway region this bucket resides in.
+        :param pulumi.Input[_builtins.str] region: (Computed) The Scaleway region this bucket resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -662,9 +662,9 @@ class BucketPolicy(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The Scaleway region this bucket resides in.
+        (Computed) The Scaleway region this bucket resides in.
         """
         return pulumi.get(self, "region")
 

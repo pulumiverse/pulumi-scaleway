@@ -44,14 +44,14 @@ import (
 //				return err
 //			}
 //			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = databases.NewDatabaseBackup(ctx, "main", &databases.DatabaseBackupArgs{
-//				InstanceId:   main.ID(),
+//				InstanceId:   main.ID().ToIDOutput().ToStringOutput(),
 //				DatabaseName: mainDatabase.Name,
 //			})
 //			if err != nil {
@@ -122,7 +122,7 @@ type DatabaseBackup struct {
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Whether the backup is stored in the same region as the source instance.
 	SameRegion pulumi.BoolOutput `pulumi:"sameRegion"`
 	// Size of the backup (in bytes).
@@ -411,8 +411,8 @@ func (o DatabaseBackupOutput) Name() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabaseBackupOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabaseBackupOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Whether the backup is stored in the same region as the source instance.

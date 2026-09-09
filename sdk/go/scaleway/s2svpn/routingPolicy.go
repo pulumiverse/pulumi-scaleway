@@ -109,7 +109,9 @@ type RoutingPolicy struct {
 	// `projectId`) The ID of the project the routing policy is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the routing policy should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the routing policy.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of tags to apply to the routing policy.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the routing policy (RFC 3339 format).
@@ -162,6 +164,8 @@ type routingPolicyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the routing policy should be created.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the routing policy.
+	Srn *string `pulumi:"srn"`
 	// The list of tags to apply to the routing policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the routing policy (RFC 3339 format).
@@ -185,6 +189,8 @@ type RoutingPolicyState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the routing policy should be created.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the routing policy.
+	Srn pulumi.StringPtrInput
 	// The list of tags to apply to the routing policy.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the routing policy (RFC 3339 format).
@@ -353,8 +359,13 @@ func (o RoutingPolicyOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the routing policy should be created.
-func (o RoutingPolicyOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RoutingPolicy) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o RoutingPolicyOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoutingPolicy) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the routing policy.
+func (o RoutingPolicyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoutingPolicy) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of tags to apply to the routing policy.

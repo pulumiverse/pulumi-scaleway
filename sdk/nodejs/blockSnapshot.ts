@@ -145,7 +145,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
     /**
      * ). The zone in which the snapshot should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a BlockSnapshot resource with the given unique name, arguments, and options.

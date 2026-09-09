@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewSecurityGroupRules(ctx, "sgrs01", &instance.SecurityGroupRulesArgs{
-//				SecurityGroupId: sg01.ID(),
+//				SecurityGroupId: sg01.ID().ToIDOutput().ToStringOutput(),
 //				InboundRules: instance.SecurityGroupRulesInboundRuleArray{
 //					&instance.SecurityGroupRulesInboundRuleArgs{
 //						Action:  pulumi.String("accept"),
@@ -65,8 +65,127 @@ import (
 // Let's suppose that your inbound default policy is to drop, but you want to build a list of exceptions to accept.
 // Create a local containing your exceptions (`locals.trusted`) and use the `forEach` syntax in a dynamic block:
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := instance.NewSecurityGroup(ctx, "main", &instance.SecurityGroupArgs{
+//				Description:           pulumi.String("test"),
+//				Name:                  pulumi.String("terraform test"),
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			trusted := []string{
+//				"1.2.3.4/32",
+//				"4.5.6.7/32",
+//				"7.8.9.10/24",
+//			}
+//			var forResult0 []map[string]interface{}
+//			for _, entry := range trusted {
+//				forResult0 = append(forResult0, map[string]interface{}{
+//					"action":  "accept",
+//					"ipRange": entry,
+//					"port":    80,
+//				})
+//			}
+//			_, err = instance.NewSecurityGroupRules(ctx, "main", &instance.SecurityGroupRulesArgs{
+//				InboundRules:    toPulumiMapArray(forResult0),
+//				SecurityGroupId: main.ID().ToIDOutput().ToStringOutput(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+//	func toPulumiMapArray(arr []Map) pulumi.MapArray {
+//		var pulumiArr pulumi.MapArray
+//		for _, v := range arr {
+//			pulumiArr = append(pulumiArr, pulumi.Map(v))
+//		}
+//		return pulumiArr
+//	}
+//
+// ```
+//
 // You can also use object to assign IP and port in the same time.
 // In your locals, you can use objects to encapsulate several values that will be used later on in the loop:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := instance.NewSecurityGroup(ctx, "main", &instance.SecurityGroupArgs{
+//				Description:           pulumi.String("test"),
+//				Name:                  pulumi.String("terraform test"),
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			trusted := []map[string]string{
+//				{
+//					"ipRange": "1.2.3.4/32",
+//					"port":    "80",
+//				},
+//				{
+//					"ipRange": "5.6.7.8/32",
+//					"port":    "81",
+//				},
+//				{
+//					"ipRange": "9.10.11.12/32",
+//					"port":    "81",
+//				},
+//			}
+//			var forResult0 []map[string]string
+//			for _, entry := range trusted {
+//				forResult0 = append(forResult0, map[string]string{
+//					"action":  "accept",
+//					"ipRange": entry["ipRange"],
+//					"port":    entry["port"],
+//				})
+//			}
+//			_, err = instance.NewSecurityGroupRules(ctx, "main", &instance.SecurityGroupRulesArgs{
+//				InboundRules:    toPulumiStringMapArray(forResult0),
+//				SecurityGroupId: main.ID().ToIDOutput().ToStringOutput(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+//	func toPulumiStringMapArray(arr []StringMap) pulumi.StringMapArray {
+//		var pulumiArr pulumi.StringMapArray
+//		for _, v := range arr {
+//			pulumiArr = append(pulumiArr, pulumi.StringMap(v))
+//		}
+//		return pulumiArr
+//	}
+//
+// ```
 //
 // ## Import
 //

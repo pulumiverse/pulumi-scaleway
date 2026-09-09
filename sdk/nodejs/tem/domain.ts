@@ -201,7 +201,7 @@ export class Domain extends pulumi.CustomResource {
      * `region`). The region in which the domain should be created.
      * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The domain's reputation.
      */

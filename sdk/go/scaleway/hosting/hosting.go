@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = hosting.NewHosting(ctx, "main", &hosting.HostingArgs{
-//				OfferId: pulumi.String(pulumi.String(byName.OfferId)),
+//				OfferId: pulumi.String(byName.OfferId),
 //				Email:   pulumi.String("your@email.com"),
 //				Domain:  pulumi.String("yourdomain.com"),
 //				Tags: pulumi.StringArray{
@@ -98,7 +98,7 @@ type Hosting struct {
 	// List of DNS records associated with the webhosting.
 	Records HostingRecordArrayOutput `pulumi:"records"`
 	// `region`) The region of the Hosting.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The hosting status.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the hosting.
@@ -447,8 +447,8 @@ func (o HostingOutput) Records() HostingRecordArrayOutput {
 }
 
 // `region`) The region of the Hosting.
-func (o HostingOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Hosting) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o HostingOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Hosting) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The hosting status.

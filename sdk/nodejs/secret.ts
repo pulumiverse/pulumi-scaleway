@@ -122,7 +122,7 @@ export class Secret extends pulumi.CustomResource {
      * `region`) The region
      * in which the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Scaleway Resource Name (SRN) of the secret.
      */

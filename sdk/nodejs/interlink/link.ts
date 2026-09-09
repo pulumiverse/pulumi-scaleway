@@ -152,7 +152,7 @@ export class Link extends pulumi.CustomResource {
     /**
      * `region`) The region in which the link should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
      */
@@ -165,6 +165,10 @@ export class Link extends pulumi.CustomResource {
      * BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
      */
     declare public /*out*/ readonly scwBgpConfigs: pulumi.Output<outputs.interlink.LinkScwBgpConfig[]>;
+    /**
+     * The Scaleway Resource Name (SRN) of the link.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * Status of the link.
      */
@@ -217,6 +221,7 @@ export class Link extends pulumi.CustomResource {
             resourceInputs["routingPolicyV4Id"] = state?.routingPolicyV4Id;
             resourceInputs["routingPolicyV6Id"] = state?.routingPolicyV6Id;
             resourceInputs["scwBgpConfigs"] = state?.scwBgpConfigs;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -251,6 +256,7 @@ export class Link extends pulumi.CustomResource {
             resourceInputs["pairingKey"] = undefined /*out*/;
             resourceInputs["peerBgpConfigs"] = undefined /*out*/;
             resourceInputs["scwBgpConfigs"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -337,6 +343,10 @@ export interface LinkState {
      * BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
      */
     scwBgpConfigs?: pulumi.Input<pulumi.Input<inputs.interlink.LinkScwBgpConfig>[] | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the link.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Status of the link.
      */

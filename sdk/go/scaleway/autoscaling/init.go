@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:autoscaling/group:Group":
+		r = &Group{}
 	case "scaleway:autoscaling/instanceGroup:InstanceGroup":
 		r = &InstanceGroup{}
 	case "scaleway:autoscaling/instancePolicy:InstancePolicy":
@@ -40,6 +42,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"autoscaling/group",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"autoscaling/instanceGroup",

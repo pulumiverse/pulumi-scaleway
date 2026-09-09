@@ -78,16 +78,12 @@ type GetOsResult struct {
 	Name    *string `pulumi:"name"`
 	OsId    *string `pulumi:"osId"`
 	Version string  `pulumi:"version"`
-	Zone    *string `pulumi:"zone"`
+	Zone    string  `pulumi:"zone"`
 }
 
 func GetOsOutput(ctx *pulumi.Context, args GetOsOutputArgs, opts ...pulumi.InvokeOption) GetOsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOsResultOutput, error) {
-			args := v.(GetOsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:applesilicon/getOs:getOs", args, GetOsResultOutput{}, options).(GetOsResultOutput), nil
-		}).(GetOsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:applesilicon/getOs:getOs", args, GetOsResultOutput{}, options).(GetOsResultOutput)
 }
 
 // A collection of arguments for invoking getOs.
@@ -138,8 +134,8 @@ func (o GetOsResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOsResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
-func (o GetOsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetOsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetOsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

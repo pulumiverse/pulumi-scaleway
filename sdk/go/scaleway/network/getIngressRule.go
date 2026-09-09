@@ -115,12 +115,8 @@ type LookupIngressRuleResult struct {
 }
 
 func LookupIngressRuleOutput(ctx *pulumi.Context, args LookupIngressRuleOutputArgs, opts ...pulumi.InvokeOption) LookupIngressRuleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIngressRuleResultOutput, error) {
-			args := v.(LookupIngressRuleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getIngressRule:getIngressRule", args, LookupIngressRuleResultOutput{}, options).(LookupIngressRuleResultOutput), nil
-		}).(LookupIngressRuleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getIngressRule:getIngressRule", args, LookupIngressRuleResultOutput{}, options).(LookupIngressRuleResultOutput)
 }
 
 // A collection of arguments for invoking getIngressRule.

@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// </summary>
         public readonly string Id;
         public readonly string InstanceId;
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetDatabasesResult(
@@ -209,7 +209,7 @@ namespace Pulumiverse.Scaleway.Mongodb
 
             string instanceId,
 
-            string? region)
+            string region)
         {
             Databases = databases;
             Id = id;

@@ -157,7 +157,7 @@ export class SqsQueue extends pulumi.CustomResource {
     /**
      * `region`). The region in which SQS is enabled.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The secret key of the SQS queue.
      */

@@ -45,14 +45,14 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("MyServer"),
-//				Offer:                  pulumi.String(pulumi.String(myOffer.OfferId)),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "first", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("first"),
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "second", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("second"),
@@ -73,7 +73,7 @@ import (
 //			}
 //			_ = elasticmetal.GetIpsOutput(ctx, elasticmetal.GetIpsOutputArgs{
 //				ServerIds: pulumi.StringArray{
-//					base.ID(),
+//					base.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			}, nil)
 //			return nil
@@ -118,17 +118,13 @@ type GetFlexibleIpsResult struct {
 	ServerIds []string `pulumi:"serverIds"`
 	// The list of tags which are attached to the flexible IP.
 	Tags []string `pulumi:"tags"`
-	// (Defaults to provider `zone`) The zone in which the MAC address exist.
-	Zone *string `pulumi:"zone"`
+	// (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
+	Zone string `pulumi:"zone"`
 }
 
 func GetFlexibleIpsOutput(ctx *pulumi.Context, args GetFlexibleIpsOutputArgs, opts ...pulumi.InvokeOption) GetFlexibleIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetFlexibleIpsResultOutput, error) {
-			args := v.(GetFlexibleIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getFlexibleIps:getFlexibleIps", args, GetFlexibleIpsResultOutput{}, options).(GetFlexibleIpsResultOutput), nil
-		}).(GetFlexibleIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getFlexibleIps:getFlexibleIps", args, GetFlexibleIpsResultOutput{}, options).(GetFlexibleIpsResultOutput)
 }
 
 // A collection of arguments for invoking getFlexibleIps.
@@ -191,9 +187,9 @@ func (o GetFlexibleIpsResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFlexibleIpsResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// (Defaults to provider `zone`) The zone in which the MAC address exist.
-func (o GetFlexibleIpsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetFlexibleIpsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+// (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
+func (o GetFlexibleIpsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

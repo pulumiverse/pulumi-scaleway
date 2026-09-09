@@ -28,7 +28,7 @@ class GetIamUserResult:
     """
     A collection of values returned by getIamUser.
     """
-    def __init__(__self__, account_root_user_id=None, created_at=None, deletable=None, email=None, first_name=None, id=None, last_login_at=None, last_name=None, locale=None, locked=None, mfa=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, phone_number=None, send_password_email=None, send_welcome_email=None, status=None, tags=None, type=None, updated_at=None, user_id=None, username=None):
+    def __init__(__self__, account_root_user_id=None, created_at=None, deletable=None, email=None, first_name=None, id=None, last_login_at=None, last_name=None, locale=None, locked=None, mfa=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, phone_number=None, send_password_email=None, send_welcome_email=None, srn=None, status=None, tags=None, type=None, updated_at=None, user_id=None, username=None):
         if account_root_user_id and not isinstance(account_root_user_id, str):
             raise TypeError("Expected argument 'account_root_user_id' to be a str")
         pulumi.set(__self__, "account_root_user_id", account_root_user_id)
@@ -83,6 +83,9 @@ class GetIamUserResult:
         if send_welcome_email and not isinstance(send_welcome_email, bool):
             raise TypeError("Expected argument 'send_welcome_email' to be a bool")
         pulumi.set(__self__, "send_welcome_email", send_welcome_email)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -197,6 +200,11 @@ class GetIamUserResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         return pulumi.get(self, "status")
 
@@ -253,6 +261,7 @@ class AwaitableGetIamUserResult(GetIamUserResult):
             phone_number=self.phone_number,
             send_password_email=self.send_password_email,
             send_welcome_email=self.send_welcome_email,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             type=self.type,
@@ -318,6 +327,7 @@ def get_iam_user(email: Optional[_builtins.str] = None,
         phone_number=pulumi.get(__ret__, 'phone_number'),
         send_password_email=pulumi.get(__ret__, 'send_password_email'),
         send_welcome_email=pulumi.get(__ret__, 'send_welcome_email'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
@@ -380,6 +390,7 @@ def get_iam_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] =
         phone_number=pulumi.get(__response__, 'phone_number'),
         send_password_email=pulumi.get(__response__, 'send_password_email'),
         send_welcome_email=pulumi.get(__response__, 'send_welcome_email'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),

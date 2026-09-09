@@ -118,6 +118,8 @@ export class InstancePrivateNic extends pulumi.CustomResource {
 
     /**
      * IPAM ip list, should be for internal use only
+     *
+     * @deprecated Setting this attribute won't have any effect, please use ipamIpIds instead.
      */
     declare public readonly ipIds: pulumi.Output<string[] | undefined>;
     /**
@@ -137,6 +139,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     declare public readonly privateNetworkId: pulumi.Output<string>;
     /**
+     * The projectId you want to attach the resource to
+     */
+    declare public readonly projectId: pulumi.Output<string>;
+    /**
      * The ID of the server associated with.
      */
     declare public readonly serverId: pulumi.Output<string>;
@@ -147,7 +153,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the server must be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstancePrivateNic resource with the given unique name, arguments, and options.
@@ -170,6 +176,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             resourceInputs["macAddress"] = state?.macAddress;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["projectId"] = state?.projectId;
             resourceInputs["serverId"] = state?.serverId;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
@@ -185,6 +192,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             resourceInputs["ipamIpIds"] = args?.ipamIpIds;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetworkId"] = args?.privateNetworkId;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["serverId"] = args?.serverId;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
@@ -201,6 +209,8 @@ export class InstancePrivateNic extends pulumi.CustomResource {
 export interface InstancePrivateNicState {
     /**
      * IPAM ip list, should be for internal use only
+     *
+     * @deprecated Setting this attribute won't have any effect, please use ipamIpIds instead.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -219,6 +229,10 @@ export interface InstancePrivateNicState {
      * The ID of the private network attached to.
      */
     privateNetworkId?: pulumi.Input<string | undefined>;
+    /**
+     * The projectId you want to attach the resource to
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server associated with.
      */
@@ -239,6 +253,8 @@ export interface InstancePrivateNicState {
 export interface InstancePrivateNicArgs {
     /**
      * IPAM ip list, should be for internal use only
+     *
+     * @deprecated Setting this attribute won't have any effect, please use ipamIpIds instead.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -253,6 +269,10 @@ export interface InstancePrivateNicArgs {
      * The ID of the private network attached to.
      */
     privateNetworkId: pulumi.Input<string>;
+    /**
+     * The projectId you want to attach the resource to
+     */
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server associated with.
      */

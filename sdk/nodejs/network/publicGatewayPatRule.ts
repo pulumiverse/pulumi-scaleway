@@ -128,13 +128,17 @@ export class PublicGatewayPatRule extends pulumi.CustomResource {
      */
     declare public readonly publicPort: pulumi.Output<number>;
     /**
+     * The Scaleway Resource Name (SRN) of the PAT rule.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The date and time of the last update of the PAT rule configuration.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a PublicGatewayPatRule resource with the given unique name, arguments, and options.
@@ -156,6 +160,7 @@ export class PublicGatewayPatRule extends pulumi.CustomResource {
             resourceInputs["privatePort"] = state?.privatePort;
             resourceInputs["protocol"] = state?.protocol;
             resourceInputs["publicPort"] = state?.publicPort;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -180,6 +185,7 @@ export class PublicGatewayPatRule extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -221,6 +227,10 @@ export interface PublicGatewayPatRuleState {
      * The public port to listen on.
      */
     publicPort?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the PAT rule.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The date and time of the last update of the PAT rule configuration.
      */

@@ -258,10 +258,6 @@ namespace Pulumiverse.Scaleway.Datalab
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatalabsDatalabResult> Datalabs;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The name of the Datalab instance.
         /// </summary>
         public readonly string? Name;
@@ -283,8 +279,6 @@ namespace Pulumiverse.Scaleway.Datalab
         private GetDatalabsResult(
             ImmutableArray<Outputs.GetDatalabsDatalabResult> datalabs,
 
-            string id,
-
             string? name,
 
             string? organizationId,
@@ -296,7 +290,6 @@ namespace Pulumiverse.Scaleway.Datalab
             ImmutableArray<string> tags)
         {
             Datalabs = datalabs;
-            Id = id;
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;

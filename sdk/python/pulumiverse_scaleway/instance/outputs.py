@@ -29,6 +29,7 @@ __all__ = [
     'ServerPublicIp',
     'ServerRootVolume',
     'SnapshotImport',
+    'TemplateVolume',
     'GetPrivateNicPrivateIpResult',
     'GetSecurityGroupInboundRuleResult',
     'GetSecurityGroupOutboundRuleResult',
@@ -1077,6 +1078,124 @@ class SnapshotImport(dict):
 
 
 @pulumi.output_type
+class TemplateVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sizeInGb":
+            suggest = "size_in_gb"
+        elif key == "volumeType":
+            suggest = "volume_type"
+        elif key == "baseSnapshotId":
+            suggest = "base_snapshot_id"
+        elif key == "imageLabel":
+            suggest = "image_label"
+        elif key == "perfIops":
+            suggest = "perf_iops"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TemplateVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TemplateVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TemplateVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 size_in_gb: _builtins.int,
+                 volume_type: _builtins.str,
+                 base_snapshot_id: Optional[_builtins.str] = None,
+                 image_label: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 perf_iops: Optional[_builtins.int] = None,
+                 tags: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.int size_in_gb: The size of the volume in gigabytes.
+        :param _builtins.str volume_type: The type of the volume.
+        :param _builtins.str base_snapshot_id: The ID of the base snapshot for the volume.
+               
+               > **Important:** Only one of `base_snapshot_id` and `image_label` can be set.
+        :param _builtins.str image_label: The label of the image used as base for the volume.
+        :param _builtins.str name: The name of volume.
+        :param _builtins.int perf_iops: The performance IOPS of the volume, required for `sbs` type volumes.
+        :param Sequence[_builtins.str] tags: The tags associated with the volume.
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "volume_type", volume_type)
+        if base_snapshot_id is not None:
+            pulumi.set(__self__, "base_snapshot_id", base_snapshot_id)
+        if image_label is not None:
+            pulumi.set(__self__, "image_label", image_label)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if perf_iops is not None:
+            pulumi.set(__self__, "perf_iops", perf_iops)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> _builtins.int:
+        """
+        The size of the volume in gigabytes.
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> _builtins.str:
+        """
+        The type of the volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="baseSnapshotId")
+    def base_snapshot_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the base snapshot for the volume.
+
+        > **Important:** Only one of `base_snapshot_id` and `image_label` can be set.
+        """
+        return pulumi.get(self, "base_snapshot_id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageLabel")
+    def image_label(self) -> Optional[_builtins.str]:
+        """
+        The label of the image used as base for the volume.
+        """
+        return pulumi.get(self, "image_label")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        The name of volume.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="perfIops")
+    def perf_iops(self) -> Optional[_builtins.int]:
+        """
+        The performance IOPS of the volume, required for `sbs` type volumes.
+        """
+        return pulumi.get(self, "perf_iops")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The tags associated with the volume.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
 class GetPrivateNicPrivateIpResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
@@ -1708,7 +1827,7 @@ class GetServersServerResult(dict):
                  state: _builtins.str,
                  tags: Sequence[_builtins.str],
                  type: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param _builtins.str bootscript_id: UUID of the bootscript
@@ -1744,8 +1863,7 @@ class GetServersServerResult(dict):
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="bootType")
@@ -1878,7 +1996,7 @@ class GetServersServerResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which servers exist.
         """

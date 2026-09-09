@@ -75,7 +75,7 @@ import (
 //				__res, err := account.NewSshKey(ctx, fmt.Sprintf("main-%v", key0), &account.SshKeyArgs{
 //					Name:      pulumi.String("main"),
 //					PublicKey: pulumi.Any(publicKey),
-//					ProjectId: all.Projects[val0].Id,
+//					ProjectId: pulumi.String(all.Projects[val0].Id),
 //				})
 //				if err != nil {
 //					return err
@@ -123,12 +123,8 @@ type GetProjectsResult struct {
 }
 
 func GetProjectsOutput(ctx *pulumi.Context, args GetProjectsOutputArgs, opts ...pulumi.InvokeOption) GetProjectsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetProjectsResultOutput, error) {
-			args := v.(GetProjectsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:account/getProjects:getProjects", args, GetProjectsResultOutput{}, options).(GetProjectsResultOutput), nil
-		}).(GetProjectsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:account/getProjects:getProjects", args, GetProjectsResultOutput{}, options).(GetProjectsResultOutput)
 }
 
 // A collection of arguments for invoking getProjects.

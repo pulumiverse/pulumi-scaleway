@@ -164,7 +164,7 @@ export class IpamIp extends pulumi.CustomResource {
     /**
      * `region`) The region of the IP.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The IP resource.
      */
@@ -177,6 +177,10 @@ export class IpamIp extends pulumi.CustomResource {
      * The source in which to book the IP.
      */
     declare public readonly sources: pulumi.Output<outputs.IpamIpSource[]>;
+    /**
+     * The Scaleway Resource Name (SRN) of the IP.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * The tags associated with the IP.
      */
@@ -216,6 +220,7 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["resources"] = state?.resources;
             resourceInputs["reverses"] = state?.reverses;
             resourceInputs["sources"] = state?.sources;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["zone"] = state?.zone;
@@ -235,6 +240,7 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["resources"] = undefined /*out*/;
             resourceInputs["reverses"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["zone"] = undefined /*out*/;
         }
@@ -288,6 +294,10 @@ export interface IpamIpState {
      * The source in which to book the IP.
      */
     sources?: pulumi.Input<pulumi.Input<inputs.IpamIpSource>[] | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the IP.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the IP.
      */

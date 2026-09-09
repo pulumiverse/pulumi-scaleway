@@ -169,10 +169,10 @@ namespace Pulumiverse.Scaleway
         public Output<bool> Protected { get; private set; } = null!;
 
         /// <summary>
-        /// The region in which to create the key (e.g., `fr-par`).
+        /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The date and time when the key was last rotated.
@@ -309,7 +309,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region in which to create the key (e.g., `fr-par`).
+        /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -404,7 +404,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Protected { get; set; }
 
         /// <summary>
-        /// The region in which to create the key (e.g., `fr-par`).
+        /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

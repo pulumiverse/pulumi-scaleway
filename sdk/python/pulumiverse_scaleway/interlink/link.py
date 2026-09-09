@@ -270,6 +270,7 @@ class _LinkState:
                  routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
                  routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scw_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -296,6 +297,7 @@ class _LinkState:
         :param pulumi.Input[_builtins.str] routing_policy_v4_id: If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
         :param pulumi.Input[_builtins.str] routing_policy_v6_id: If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         :param pulumi.Input[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]] scw_bgp_configs: BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the link.
         :param pulumi.Input[_builtins.str] status: Status of the link.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.str] updated_at: Last modification date of the link (RFC 3339 format).
@@ -338,6 +340,8 @@ class _LinkState:
             pulumi.set(__self__, "routing_policy_v6_id", routing_policy_v6_id)
         if scw_bgp_configs is not None:
             pulumi.set(__self__, "scw_bgp_configs", scw_bgp_configs)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -564,6 +568,18 @@ class _LinkState:
     @scw_bgp_configs.setter
     def scw_bgp_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LinkScwBgpConfigArgs']]]]):
         pulumi.set(self, "scw_bgp_configs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the link.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -837,6 +853,7 @@ class Link(pulumi.CustomResource):
             __props__.__dict__["pairing_key"] = None
             __props__.__dict__["peer_bgp_configs"] = None
             __props__.__dict__["scw_bgp_configs"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["pairingKey"])
@@ -869,6 +886,7 @@ class Link(pulumi.CustomResource):
             routing_policy_v4_id: pulumi.Input[Optional[_builtins.str]] = None,
             routing_policy_v6_id: pulumi.Input[Optional[_builtins.str]] = None,
             scw_bgp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LinkScwBgpConfigArgs', 'LinkScwBgpConfigArgsDict']]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -899,6 +917,7 @@ class Link(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] routing_policy_v4_id: If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
         :param pulumi.Input[_builtins.str] routing_policy_v6_id: If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LinkScwBgpConfigArgs', 'LinkScwBgpConfigArgsDict']]]] scw_bgp_configs: BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the link.
         :param pulumi.Input[_builtins.str] status: Status of the link.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the link.
         :param pulumi.Input[_builtins.str] updated_at: Last modification date of the link (RFC 3339 format).
@@ -927,6 +946,7 @@ class Link(pulumi.CustomResource):
         __props__.__dict__["routing_policy_v4_id"] = routing_policy_v4_id
         __props__.__dict__["routing_policy_v6_id"] = routing_policy_v6_id
         __props__.__dict__["scw_bgp_configs"] = scw_bgp_configs
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -1048,7 +1068,7 @@ class Link(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the link should be created.
         """
@@ -1077,6 +1097,14 @@ class Link(pulumi.CustomResource):
         BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "scw_bgp_configs")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the link.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

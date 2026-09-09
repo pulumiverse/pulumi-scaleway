@@ -82,16 +82,12 @@ type GetLbBackendsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           *string `pulumi:"zone"`
+	Zone           string  `pulumi:"zone"`
 }
 
 func GetLbBackendsOutput(ctx *pulumi.Context, args GetLbBackendsOutputArgs, opts ...pulumi.InvokeOption) GetLbBackendsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbBackendsResultOutput, error) {
-			args := v.(GetLbBackendsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbBackends:getLbBackends", args, GetLbBackendsResultOutput{}, options).(GetLbBackendsResultOutput), nil
-		}).(GetLbBackendsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbBackends:getLbBackends", args, GetLbBackendsResultOutput{}, options).(GetLbBackendsResultOutput)
 }
 
 // A collection of arguments for invoking getLbBackends.
@@ -150,8 +146,8 @@ func (o GetLbBackendsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetLbBackendsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLbBackendsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetLbBackendsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

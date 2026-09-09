@@ -38,11 +38,11 @@ import * as utilities from "../utilities";
  * const all = scaleway.account.getProjects({});
  * const main: scaleway.account.SshKey[] = [];
  * all.then(all => all.projects).length.apply(rangeBody => {
- *     for (const range = {value: 0}; range.value < rangeBody; range.value++) {
- *         main.push(new scaleway.account.SshKey(`main-${range.value}`, {
+ *     for (let range = 0; range < rangeBody; range++) {
+ *         main.push(new scaleway.account.SshKey(`main-${range}`, {
  *             name: "main",
  *             publicKey: publicKey,
- *             projectId: all.then(all => all.projects[range.value].id),
+ *             projectId: all.then(all => all.projects[range].id),
  *         }));
  *     }
  * });
@@ -132,11 +132,11 @@ export interface GetProjectsResult {
  * const all = scaleway.account.getProjects({});
  * const main: scaleway.account.SshKey[] = [];
  * all.then(all => all.projects).length.apply(rangeBody => {
- *     for (const range = {value: 0}; range.value < rangeBody; range.value++) {
- *         main.push(new scaleway.account.SshKey(`main-${range.value}`, {
+ *     for (let range = 0; range < rangeBody; range++) {
+ *         main.push(new scaleway.account.SshKey(`main-${range}`, {
  *             name: "main",
  *             publicKey: publicKey,
- *             projectId: all.then(all => all.projects[range.value].id),
+ *             projectId: all.then(all => all.projects[range].id),
  *         }));
  *     }
  * });

@@ -42,7 +42,7 @@ import (
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
 //				Name:        pulumi.String("test-cron"),
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Runtime:     pulumi.String("node14"),
 //				Privacy:     pulumi.String("private"),
 //				Handler:     pulumi.String("handler.handle"),
@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]string{
 //				"test": "scw",
 //			})
 //			if err != nil {
@@ -59,14 +59,14 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = functions.NewCron(ctx, "main", &functions.CronArgs{
 //				Name:       pulumi.String("test-cron"),
-//				FunctionId: mainFunction.ID(),
+//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
 //				Schedule:   pulumi.String("0 0 * * *"),
-//				Args:       pulumi.String(pulumi.String(json0)),
+//				Args:       pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//			tmpJSON1, err := json.Marshal(map[string]string{
 //				"my_var": "terraform",
 //			})
 //			if err != nil {
@@ -74,9 +74,9 @@ import (
 //			}
 //			json1 := string(tmpJSON1)
 //			_, err = functions.NewCron(ctx, "func", &functions.CronArgs{
-//				FunctionId: mainFunction.ID(),
+//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
 //				Schedule:   pulumi.String("0 1 * * *"),
-//				Args:       pulumi.String(pulumi.String(json1)),
+//				Args:       pulumi.String(json1),
 //			})
 //			if err != nil {
 //				return err
@@ -105,7 +105,7 @@ type Cron struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region
 	// in which the function was created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
 	// The CRON status.
@@ -325,8 +325,8 @@ func (o CronOutput) Name() pulumi.StringOutput {
 
 // `region`) The region
 // in which the function was created.
-func (o CronOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cron) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o CronOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cron) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).

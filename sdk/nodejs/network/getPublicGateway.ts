@@ -78,6 +78,7 @@ export interface GetPublicGatewayResult {
     readonly projectId?: string;
     readonly publicGatewayId?: string;
     readonly refreshSshKeys: string;
+    readonly srn: string;
     readonly status: string;
     readonly tags: string[];
     readonly type: string;

@@ -97,9 +97,9 @@ class GetIpsResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
-        (Defaults to provider `zone`) The zone in which the MAC address exist.
+        (Optional, Computed, Defaults to provider `zone`) The zone in which the MAC address exist.
         """
         return pulumi.get(self, "zone")
 

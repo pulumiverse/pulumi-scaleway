@@ -48,12 +48,8 @@ type GetBillingInvoicesResult struct {
 }
 
 func GetBillingInvoicesOutput(ctx *pulumi.Context, args GetBillingInvoicesOutputArgs, opts ...pulumi.InvokeOption) GetBillingInvoicesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBillingInvoicesResultOutput, error) {
-			args := v.(GetBillingInvoicesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBillingInvoices:getBillingInvoices", args, GetBillingInvoicesResultOutput{}, options).(GetBillingInvoicesResultOutput), nil
-		}).(GetBillingInvoicesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBillingInvoices:getBillingInvoices", args, GetBillingInvoicesResultOutput{}, options).(GetBillingInvoicesResultOutput)
 }
 
 // A collection of arguments for invoking getBillingInvoices.

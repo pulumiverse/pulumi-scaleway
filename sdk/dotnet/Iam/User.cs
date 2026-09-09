@@ -194,6 +194,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<bool?> SendWelcomeEmail { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the user.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         /// </summary>
         [Output("status")]
@@ -514,6 +520,12 @@ namespace Pulumiverse.Scaleway.Iam
         /// </summary>
         [Input("sendWelcomeEmail")]
         public Input<bool>? SendWelcomeEmail { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the user.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).

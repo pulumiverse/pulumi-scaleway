@@ -102,7 +102,7 @@ export class Token extends pulumi.CustomResource {
     /**
      * ) The region where the Cockpit token is located.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Scopes allowed, each with default values:
      */

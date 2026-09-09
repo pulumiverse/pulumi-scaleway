@@ -62,6 +62,8 @@ type IamApplication struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the application.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the application.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the application.
@@ -108,6 +110,8 @@ type iamApplicationState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the application.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the application.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the application.
@@ -125,6 +129,8 @@ type IamApplicationState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the application is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the application.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the application.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the application.
@@ -268,6 +274,11 @@ func (o IamApplicationOutput) Name() pulumi.StringOutput {
 // `organizationId`) The ID of the organization the application is associated with.
 func (o IamApplicationOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the application.
+func (o IamApplicationOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IamApplication) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the application.

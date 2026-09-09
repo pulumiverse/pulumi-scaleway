@@ -547,7 +547,7 @@ class ObjectItem(pulumi.CustomResource):
             bucket=some_bucket.id,
             key="object_path",
             file="myfile",
-            hash=std.filemd5(input="myfile")["result"])
+            hash=std.filemd5(input="myfile").result)
         ```
 
         ## Import
@@ -612,7 +612,7 @@ class ObjectItem(pulumi.CustomResource):
             bucket=some_bucket.id,
             key="object_path",
             file="myfile",
-            hash=std.filemd5(input="myfile")["result"])
+            hash=std.filemd5(input="myfile").result)
         ```
 
         ## Import
@@ -842,7 +842,7 @@ class ObjectItem(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         The Scaleway region the bucket resides in.
         """

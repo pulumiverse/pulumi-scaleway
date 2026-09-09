@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupPublicGatewayDhcpOutput(ctx, network.GetPublicGatewayDhcpOutputArgs{
-//				DhcpId: main.ID(),
+//				DhcpId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -86,12 +86,8 @@ type LookupPublicGatewayDhcpResult struct {
 }
 
 func LookupPublicGatewayDhcpOutput(ctx *pulumi.Context, args LookupPublicGatewayDhcpOutputArgs, opts ...pulumi.InvokeOption) LookupPublicGatewayDhcpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPublicGatewayDhcpResultOutput, error) {
-			args := v.(LookupPublicGatewayDhcpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getPublicGatewayDhcp:getPublicGatewayDhcp", args, LookupPublicGatewayDhcpResultOutput{}, options).(LookupPublicGatewayDhcpResultOutput), nil
-		}).(LookupPublicGatewayDhcpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getPublicGatewayDhcp:getPublicGatewayDhcp", args, LookupPublicGatewayDhcpResultOutput{}, options).(LookupPublicGatewayDhcpResultOutput)
 }
 
 // A collection of arguments for invoking getPublicGatewayDhcp.

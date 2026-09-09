@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID(),
+//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})

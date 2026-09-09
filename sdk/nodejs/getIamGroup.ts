@@ -73,6 +73,7 @@ export interface GetIamGroupResult {
     readonly id: string;
     readonly name?: string;
     readonly organizationId?: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly updatedAt: string;
     readonly userIds: string[];

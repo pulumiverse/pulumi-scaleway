@@ -276,9 +276,9 @@ class ServerlessDatabase(pulumi.CustomResource):
             args=[
                 app.id,
                 api_key.secret_key,
-                std.trimprefix(input=database.endpoint,
-                    prefix="postgres://")["result"],
-            ])["result"])
+                std.trimprefix_output(input=database.endpoint,
+                    prefix="postgres://").result,
+            ]).result)
         ```
 
         ## Import
@@ -355,9 +355,9 @@ class ServerlessDatabase(pulumi.CustomResource):
             args=[
                 app.id,
                 api_key.secret_key,
-                std.trimprefix(input=database.endpoint,
-                    prefix="postgres://")["result"],
-            ])["result"])
+                std.trimprefix_output(input=database.endpoint,
+                    prefix="postgres://").result,
+            ]).result)
         ```
 
         ## Import
@@ -492,7 +492,7 @@ class ServerlessDatabase(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the resource exists.
         """

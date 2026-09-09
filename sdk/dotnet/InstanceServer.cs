@@ -328,7 +328,7 @@ namespace Pulumiverse.Scaleway
     /// - `PnId` - (Required) The private network ID where to connect.
     /// - `MacAddress` The private NIC MAC address.
     /// - `Status` The private NIC state.
-    /// - `Zone` - (Defaults to provider `Zone`) The zone in which the server must be created.
+    /// - `Zone` - (Optional, Computed, Defaults to provider `Zone`) The zone in which the server must be created.
     /// 
     /// &gt; **Important:** You can only attach an instance in the same zone as a private network.
     /// **Important:** Instance supports a maximum of 8 different private networks.
@@ -536,7 +536,7 @@ namespace Pulumiverse.Scaleway
         /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

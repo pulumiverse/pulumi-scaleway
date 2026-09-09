@@ -38,7 +38,7 @@ class DeploymentPrivateNetworkArgsDict(TypedDict):
     """
     The ID of the private endpoint.
     """
-    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgs']]]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPrivateNetworkServiceArgsDict']]]]]
     """
     List of services exposed on the private endpoint.
     """
@@ -171,7 +171,7 @@ class DeploymentPublicNetworkArgsDict(TypedDict):
     """
     The ID of the private endpoint.
     """
-    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgs']]]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkServiceArgsDict']]]]]
     """
     List of services exposed on the private endpoint.
     """

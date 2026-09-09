@@ -101,12 +101,8 @@ type LookupRouteStageResult struct {
 }
 
 func LookupRouteStageOutput(ctx *pulumi.Context, args LookupRouteStageOutputArgs, opts ...pulumi.InvokeOption) LookupRouteStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRouteStageResultOutput, error) {
-			args := v.(LookupRouteStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getRouteStage:getRouteStage", args, LookupRouteStageResultOutput{}, options).(LookupRouteStageResultOutput), nil
-		}).(LookupRouteStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getRouteStage:getRouteStage", args, LookupRouteStageResultOutput{}, options).(LookupRouteStageResultOutput)
 }
 
 // A collection of arguments for invoking getRouteStage.

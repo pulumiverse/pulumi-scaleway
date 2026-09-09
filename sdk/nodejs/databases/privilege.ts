@@ -126,7 +126,7 @@ export class Privilege extends pulumi.CustomResource {
     /**
      * `region`) The region in which the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */

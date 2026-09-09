@@ -53,7 +53,7 @@ import (
 //			}
 //			_, err = databases.NewSnapshot(ctx, "test", &databases.SnapshotArgs{
 //				Name:       pulumi.String("initial-snapshot"),
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				main,
 //			}))
@@ -159,8 +159,8 @@ type Snapshot struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of the database instance for which the snapshot was created.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
-	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the snapshot in bytes.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The current status of the snapshot (e.g., `ready`, `creating`, `error`).
@@ -220,7 +220,7 @@ type snapshotState struct {
 	Name *string `pulumi:"name"`
 	// The type of the database instance for which the snapshot was created.
 	NodeType *string `pulumi:"nodeType"`
-	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+	// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
 	Region *string `pulumi:"region"`
 	// The size of the snapshot in bytes.
 	Size *int `pulumi:"size"`
@@ -243,7 +243,7 @@ type SnapshotState struct {
 	Name pulumi.StringPtrInput
 	// The type of the database instance for which the snapshot was created.
 	NodeType pulumi.StringPtrInput
-	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+	// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
 	Region pulumi.StringPtrInput
 	// The size of the snapshot in bytes.
 	Size pulumi.IntPtrInput
@@ -266,7 +266,7 @@ type snapshotArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// The name of the snapshot.
 	Name *string `pulumi:"name"`
-	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+	// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
 	Region *string `pulumi:"region"`
 }
 
@@ -278,7 +278,7 @@ type SnapshotArgs struct {
 	InstanceId pulumi.StringInput
 	// The name of the snapshot.
 	Name pulumi.StringPtrInput
-	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+	// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
 	Region pulumi.StringPtrInput
 }
 
@@ -394,9 +394,9 @@ func (o SnapshotOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
-// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
-func (o SnapshotOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+func (o SnapshotOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the snapshot in bytes.

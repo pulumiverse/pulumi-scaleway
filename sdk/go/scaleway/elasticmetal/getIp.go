@@ -81,6 +81,7 @@ type LookupIpResult struct {
 	ProjectId      string   `pulumi:"projectId"`
 	Reverse        string   `pulumi:"reverse"`
 	ServerId       string   `pulumi:"serverId"`
+	Srn            string   `pulumi:"srn"`
 	Status         string   `pulumi:"status"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
@@ -88,12 +89,8 @@ type LookupIpResult struct {
 }
 
 func LookupIpOutput(ctx *pulumi.Context, args LookupIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIpResultOutput, error) {
-			args := v.(LookupIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:elasticmetal/getIp:getIp", args, LookupIpResultOutput{}, options).(LookupIpResultOutput), nil
-		}).(LookupIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:elasticmetal/getIp:getIp", args, LookupIpResultOutput{}, options).(LookupIpResultOutput)
 }
 
 // A collection of arguments for invoking getIp.
@@ -166,6 +163,10 @@ func (o LookupIpResultOutput) Reverse() pulumi.StringOutput {
 
 func (o LookupIpResultOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpResult) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupIpResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupIpResultOutput) Status() pulumi.StringOutput {

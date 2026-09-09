@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_ = object.LookupBucketOutput(ctx, object.GetBucketOutputArgs{
-//				Name: main.ID(),
+//				Name: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -120,12 +120,8 @@ type LookupObjectBucketResult struct {
 }
 
 func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupObjectBucketResultOutput, error) {
-			args := v.(LookupObjectBucketArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getObjectBucket:getObjectBucket", args, LookupObjectBucketResultOutput{}, options).(LookupObjectBucketResultOutput), nil
-		}).(LookupObjectBucketResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getObjectBucket:getObjectBucket", args, LookupObjectBucketResultOutput{}, options).(LookupObjectBucketResultOutput)
 }
 
 // A collection of arguments for invoking getObjectBucket.

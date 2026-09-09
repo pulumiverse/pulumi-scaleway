@@ -43,7 +43,7 @@ import (
 //			}
 //			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
-//				VolumeId: blockVolume.ID(),
+//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -86,8 +86,8 @@ import (
 //			_, err = block.NewVolume(ctx, "imported", &block.VolumeArgs{
 //				Iops: pulumi.Int(5000),
 //				Name: pulumi.String("imported-from-qcow"),
-//				Import: []map[string]interface{}{
-//					map[string]interface{}{
+//				Import: []map[string]string{
+//					{
 //						"bucket": "my-import-bucket",
 //						"key":    "imported-snapshot/snapshot.qcow2",
 //					},
@@ -133,8 +133,8 @@ import (
 //			_, err = block.NewVolume(ctx, "to_export", &block.VolumeArgs{
 //				Iops: pulumi.Int(5000),
 //				Name: pulumi.String("to-export"),
-//				Export: []map[string]interface{}{
-//					map[string]interface{}{
+//				Export: []map[string]string{
+//					{
 //						"bucket": "snapshot-bucket-to-import",
 //						"key":    "exports/my-snapshot.qcow2",
 //					},
@@ -174,7 +174,7 @@ type Snapshot struct {
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -412,8 +412,8 @@ func (o SnapshotOutput) VolumeId() pulumi.StringPtrOutput {
 }
 
 // ). The zone in which the snapshot should be created.
-func (o SnapshotOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o SnapshotOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type SnapshotArrayOutput struct{ *pulumi.OutputState }

@@ -141,9 +141,9 @@ export class RdbSnapshot extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly nodeType: pulumi.Output<string>;
     /**
-     * The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+     * (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The size of the snapshot in bytes.
      */
@@ -233,7 +233,7 @@ export interface RdbSnapshotState {
      */
     nodeType?: pulumi.Input<string | undefined>;
     /**
-     * The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+     * (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -271,7 +271,7 @@ export interface RdbSnapshotArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+     * (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
      */
     region?: pulumi.Input<string | undefined>;
 }

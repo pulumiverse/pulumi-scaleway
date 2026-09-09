@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// Retention limits and default for Scaleway product metrics data sources.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetConfigProductMetricsRetentionResult> ProductMetricsRetentions;
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetConfigResult(
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Observability
 
             ImmutableArray<Outputs.GetConfigProductMetricsRetentionResult> productMetricsRetentions,
 
-            string? region)
+            string region)
         {
             CustomLogsRetentions = customLogsRetentions;
             CustomMetricsRetentions = customMetricsRetentions;

@@ -635,7 +635,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         """

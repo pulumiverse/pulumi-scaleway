@@ -51,16 +51,12 @@ type GetServersResult struct {
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
 	// The zone in which the server is.
-	Zone *string `pulumi:"zone"`
+	Zone string `pulumi:"zone"`
 }
 
 func GetServersOutput(ctx *pulumi.Context, args GetServersOutputArgs, opts ...pulumi.InvokeOption) GetServersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetServersResultOutput, error) {
-			args := v.(GetServersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getServers:getServers", args, GetServersResultOutput{}, options).(GetServersResultOutput), nil
-		}).(GetServersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getServers:getServers", args, GetServersResultOutput{}, options).(GetServersResultOutput)
 }
 
 // A collection of arguments for invoking getServers.
@@ -125,8 +121,8 @@ func (o GetServersResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone in which the server is.
-func (o GetServersResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServersResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetServersResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

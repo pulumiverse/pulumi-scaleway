@@ -199,15 +199,15 @@ class IpReverseDns(pulumi.CustomResource):
             dns_zone="example.com",
             name="",
             type="AAAA",
-            data=std.cidrhost(input=ipam01.address_cidr,
-                host=42)["result"],
+            data=std.cidrhost_output(input=ipam01.address_cidr,
+                host=42).result,
             ttl=3600,
             priority=1)
         base = scaleway.ipam.IpReverseDns("base",
             ipam_ip_id=ipam01.id,
             hostname="example.com",
-            address=std.cidrhost(input=ipam01.address_cidr,
-                host=42)["result"])
+            address=std.cidrhost_output(input=ipam01.address_cidr,
+                host=42).result)
         ```
 
         ## Import
@@ -261,15 +261,15 @@ class IpReverseDns(pulumi.CustomResource):
             dns_zone="example.com",
             name="",
             type="AAAA",
-            data=std.cidrhost(input=ipam01.address_cidr,
-                host=42)["result"],
+            data=std.cidrhost_output(input=ipam01.address_cidr,
+                host=42).result,
             ttl=3600,
             priority=1)
         base = scaleway.ipam.IpReverseDns("base",
             ipam_ip_id=ipam01.id,
             hostname="example.com",
-            address=std.cidrhost(input=ipam01.address_cidr,
-                host=42)["result"])
+            address=std.cidrhost_output(input=ipam01.address_cidr,
+                host=42).result)
         ```
 
         ## Import
@@ -383,7 +383,7 @@ class IpReverseDns(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region of the IP reverse DNS.
         """

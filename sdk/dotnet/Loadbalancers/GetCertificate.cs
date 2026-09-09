@@ -47,16 +47,16 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///         Name = "data-test-lb-cert",
         ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
         ///         {
-        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             CommonName = Output.Tuple(Std.Replace.Invoke(new()
         ///             {
-        ///                 var ipAddress = values.Item1;
+        ///                 Text = mainLoadBalancer.IpAddress,
+        ///                 Search = ".",
+        ///                 Replace = "-",
+        ///             }), mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var invoke = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Replace.Invoke(new()
-        ///                 {
-        ///                     Text = ipAddress,
-        ///                     Search = ".",
-        ///                     Replace = "-",
-        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///                 return $"{invoke.Result}.lb.{region}.scw.cloud";
         ///             }),
         ///         },
         ///     });
@@ -113,16 +113,16 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///         Name = "data-test-lb-cert",
         ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
         ///         {
-        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             CommonName = Output.Tuple(Std.Replace.Invoke(new()
         ///             {
-        ///                 var ipAddress = values.Item1;
+        ///                 Text = mainLoadBalancer.IpAddress,
+        ///                 Search = ".",
+        ///                 Replace = "-",
+        ///             }), mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var invoke = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Replace.Invoke(new()
-        ///                 {
-        ///                     Text = ipAddress,
-        ///                     Search = ".",
-        ///                     Replace = "-",
-        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///                 return $"{invoke.Result}.lb.{region}.scw.cloud";
         ///             }),
         ///         },
         ///     });
@@ -179,16 +179,16 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         ///         Name = "data-test-lb-cert",
         ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
         ///         {
-        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             CommonName = Output.Tuple(Std.Replace.Invoke(new()
         ///             {
-        ///                 var ipAddress = values.Item1;
+        ///                 Text = mainLoadBalancer.IpAddress,
+        ///                 Search = ".",
+        ///                 Replace = "-",
+        ///             }), mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var invoke = values.Item1;
         ///                 var region = values.Item2;
-        ///                 return $"{Std.Replace.Invoke(new()
-        ///                 {
-        ///                     Text = ipAddress,
-        ///                     Search = ".",
-        ///                     Replace = "-",
-        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///                 return $"{invoke.Result}.lb.{region}.scw.cloud";
         ///             }),
         ///         },
         ///     });

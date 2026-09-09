@@ -72,7 +72,7 @@ import (
 //			}
 //			main, err := block.NewSnapshot(ctx, "main", &block.SnapshotArgs{
 //				Name:     pulumi.String("block-volume-from-snapshot"),
-//				VolumeId: base.ID(),
+//				VolumeId: base.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +80,7 @@ import (
 //			_, err = block.NewVolume(ctx, "main", &block.VolumeArgs{
 //				Name:       pulumi.String("block-volume-from-snapshot"),
 //				Iops:       pulumi.Int(5000),
-//				SnapshotId: main.ID(),
+//				SnapshotId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -118,7 +118,7 @@ type Volume struct {
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// ). The zone in which the volume should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVolume registers a new resource with the given unique name, arguments, and options.
@@ -372,8 +372,8 @@ func (o VolumeOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // ). The zone in which the volume should be created.
-func (o VolumeOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o VolumeOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }

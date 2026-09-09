@@ -48,7 +48,7 @@ import (
 //				Name:            pulumi.String("my-server"),
 //				Type:            pulumi.String("PLAY2-NANO"),
 //				Image:           pulumi.String("ubuntu_jammy"),
-//				SecurityGroupId: sg01.ID(),
+//				SecurityGroupId: sg01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -60,8 +60,8 @@ import (
 //				return err
 //			}
 //			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				ServerId:         srv01.ID(),
-//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         srv01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,15 +79,15 @@ import (
 //			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("my-pg"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			gn01, err := network.NewGatewayNetwork(ctx, "gn01", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID(),
-//				PrivateNetworkId: pn01.ID(),
-//				DhcpId:           dhcp01.ID(),
+//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				DhcpId:           dhcp01.ID().ToIDOutput().ToStringOutput(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			})
@@ -95,7 +95,7 @@ import (
 //				return err
 //			}
 //			rsv01, err := network.NewPublicGatewayDhcpReservation(ctx, "rsv01", &network.PublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: gn01.ID(),
+//				GatewayNetworkId: gn01.ID().ToIDOutput().ToStringOutput(),
 //				MacAddress:       pnic01.MacAddress,
 //				IpAddress:        pulumi.String("192.168.0.7"),
 //			})
@@ -104,7 +104,7 @@ import (
 //			}
 //			// PAT rule for SSH traffic
 //			_, err = network.NewPublicGatewayPatRule(ctx, "pat01", &network.PublicGatewayPatRuleArgs{
-//				GatewayId:   pg01.ID(),
+//				GatewayId:   pg01.ID().ToIDOutput().ToStringOutput(),
 //				PrivateIp:   rsv01.IpAddress,
 //				PrivatePort: pulumi.Int(22),
 //				PublicPort:  pulumi.Int(2202),
@@ -145,10 +145,12 @@ type VpcPublicGatewayPatRule struct {
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// The public port to listen on.
 	PublicPort pulumi.IntOutput `pulumi:"publicPort"`
+	// The Scaleway Resource Name (SRN) of the PAT rule.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVpcPublicGatewayPatRule registers a new resource with the given unique name, arguments, and options.
@@ -207,6 +209,8 @@ type vpcPublicGatewayPatRuleState struct {
 	Protocol *string `pulumi:"protocol"`
 	// The public port to listen on.
 	PublicPort *int `pulumi:"publicPort"`
+	// The Scaleway Resource Name (SRN) of the PAT rule.
+	Srn *string `pulumi:"srn"`
 	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
@@ -228,6 +232,8 @@ type VpcPublicGatewayPatRuleState struct {
 	Protocol pulumi.StringPtrInput
 	// The public port to listen on.
 	PublicPort pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the PAT rule.
+	Srn pulumi.StringPtrInput
 	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt pulumi.StringPtrInput
 	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
@@ -391,14 +397,19 @@ func (o VpcPublicGatewayPatRuleOutput) PublicPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.IntOutput { return v.PublicPort }).(pulumi.IntOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the PAT rule.
+func (o VpcPublicGatewayPatRuleOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The date and time of the last update of the PAT rule configuration.
 func (o VpcPublicGatewayPatRuleOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type VpcPublicGatewayPatRuleArrayOutput struct{ *pulumi.OutputState }

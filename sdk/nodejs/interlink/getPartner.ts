@@ -85,7 +85,7 @@ export interface GetPartnerResult {
      * URL of the partner's portal.
      */
     readonly portalUrl: string;
-    readonly region?: string;
+    readonly region: string;
     /**
      * Last update date of the partner.
      */

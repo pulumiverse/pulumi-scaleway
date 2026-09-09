@@ -42,7 +42,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			userData := map[string]interface{}{
+//			userData := map[string]string{
 //				"cloud-init": "#cloud-config\napt-update: true\napt-upgrade: true\n",
 //				"foo":        "bar",
 //			}
@@ -58,7 +58,7 @@ import (
 //			}
 //			// User data with a single value
 //			_, err = instance.NewUserData(ctx, "main", &instance.UserDataArgs{
-//				ServerId: mainServer.ID(),
+//				ServerId: mainServer.ID().ToIDOutput().ToStringOutput(),
 //				Key:      pulumi.String("foo"),
 //				Value:    pulumi.String("bar"),
 //			})
@@ -69,8 +69,8 @@ import (
 //			var data []*instance.UserData
 //			for key0, val0 := range userData {
 //				__res, err := instance.NewUserData(ctx, fmt.Sprintf("data-%v", key0), &instance.UserDataArgs{
-//					ServerId: mainServer.ID(),
-//					Key:      pulumi.String(pulumi.String(key0)),
+//					ServerId: mainServer.ID().ToIDOutput().ToStringOutput(),
+//					Key:      pulumi.String(key0),
 //					Value:    pulumi.Any(val0),
 //				})
 //				if err != nil {
@@ -106,7 +106,7 @@ type UserData struct {
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewUserData registers a new resource with the given unique name, arguments, and options.
@@ -330,8 +330,8 @@ func (o UserDataOutput) Value() pulumi.StringOutput {
 // You can define values using:
 // - string
 // - UTF-8 encoded file content using file
-func (o UserDataOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *UserData) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o UserDataOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserData) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type UserDataArrayOutput struct{ *pulumi.OutputState }

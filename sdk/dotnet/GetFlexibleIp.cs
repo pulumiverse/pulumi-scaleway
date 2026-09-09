@@ -181,6 +181,7 @@ namespace Pulumiverse.Scaleway
         public readonly string ProjectId;
         public readonly string Reverse;
         public readonly string ServerId;
+        public readonly string Srn;
         public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
@@ -208,6 +209,8 @@ namespace Pulumiverse.Scaleway
 
             string serverId,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -226,6 +229,7 @@ namespace Pulumiverse.Scaleway
             ProjectId = projectId;
             Reverse = reverse;
             ServerId = serverId;
+            Srn = srn;
             Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;

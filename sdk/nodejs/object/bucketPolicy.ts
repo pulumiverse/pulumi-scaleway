@@ -229,9 +229,9 @@ export class BucketPolicy extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a BucketPolicy resource with the given unique name, arguments, and options.
@@ -293,7 +293,7 @@ export interface BucketPolicyState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
     region?: pulumi.Input<string | undefined>;
 }
@@ -321,7 +321,7 @@ export interface BucketPolicyArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The Scaleway region this bucket resides in.
+     * (Computed) The Scaleway region this bucket resides in.
      */
     region?: pulumi.Input<string | undefined>;
 }

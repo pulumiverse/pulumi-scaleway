@@ -39,18 +39,14 @@ type GetDatabasesResult struct {
 	// List of databases on the MongoDB® instance.
 	Databases []GetDatabasesDatabase `pulumi:"databases"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	InstanceId string  `pulumi:"instanceId"`
-	Region     *string `pulumi:"region"`
+	Id         string `pulumi:"id"`
+	InstanceId string `pulumi:"instanceId"`
+	Region     string `pulumi:"region"`
 }
 
 func GetDatabasesOutput(ctx *pulumi.Context, args GetDatabasesOutputArgs, opts ...pulumi.InvokeOption) GetDatabasesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDatabasesResultOutput, error) {
-			args := v.(GetDatabasesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:mongodb/getDatabases:getDatabases", args, GetDatabasesResultOutput{}, options).(GetDatabasesResultOutput), nil
-		}).(GetDatabasesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:mongodb/getDatabases:getDatabases", args, GetDatabasesResultOutput{}, options).(GetDatabasesResultOutput)
 }
 
 // A collection of arguments for invoking getDatabases.
@@ -94,8 +90,8 @@ func (o GetDatabasesResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabasesResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-func (o GetDatabasesResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetDatabasesResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetDatabasesResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabasesResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

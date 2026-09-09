@@ -95,21 +95,17 @@ type GetVersionResult struct {
 	// The list of supported feature gates for this version.
 	AvailableFeatureGates []string `pulumi:"availableFeatureGates"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	MajorMinorOnly string  `pulumi:"majorMinorOnly"`
-	Name           string  `pulumi:"name"`
-	Region         *string `pulumi:"region"`
+	Id             string `pulumi:"id"`
+	MajorMinorOnly string `pulumi:"majorMinorOnly"`
+	Name           string `pulumi:"name"`
+	Region         string `pulumi:"region"`
 	// The Scaleway Resource Name (SRN) of the version.
 	Srn string `pulumi:"srn"`
 }
 
 func GetVersionOutput(ctx *pulumi.Context, args GetVersionOutputArgs, opts ...pulumi.InvokeOption) GetVersionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetVersionResultOutput, error) {
-			args := v.(GetVersionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:kubernetes/getVersion:getVersion", args, GetVersionResultOutput{}, options).(GetVersionResultOutput), nil
-		}).(GetVersionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:kubernetes/getVersion:getVersion", args, GetVersionResultOutput{}, options).(GetVersionResultOutput)
 }
 
 // A collection of arguments for invoking getVersion.
@@ -167,8 +163,8 @@ func (o GetVersionResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVersionResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetVersionResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetVersionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetVersionResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Scaleway Resource Name (SRN) of the version.

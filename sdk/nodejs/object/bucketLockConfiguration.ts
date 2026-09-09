@@ -99,7 +99,7 @@ export class BucketLockConfiguration extends pulumi.CustomResource {
     /**
      * The region you want to attach the resource to
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Specifies the object lock rule for the specified object.
      */

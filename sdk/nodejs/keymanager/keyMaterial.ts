@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     keyId: main.id,
  *     keyMaterialWo: std.base64encode({
  *         input: keyMaterial.base64,
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     keyMaterialWoVersion: 1,
  * });
  * ```
@@ -58,11 +58,11 @@ import * as utilities from "../utilities";
  *     keyId: main.id,
  *     keyMaterialWo: std.base64encode({
  *         input: keyMaterial.base64,
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     keyMaterialWoVersion: 1,
  *     saltWo: std.base64encode({
  *         input: salt.base64,
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     saltWoVersion: 1,
  * });
  * ```

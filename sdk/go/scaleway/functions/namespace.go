@@ -70,7 +70,7 @@ type Namespace struct {
 	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace is created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
@@ -331,8 +331,8 @@ func (o NamespaceOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the namespace is created.
-func (o NamespaceOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o NamespaceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The registry endpoint of the namespace.

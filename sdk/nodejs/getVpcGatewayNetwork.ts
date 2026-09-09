@@ -78,6 +78,7 @@ export interface GetVpcGatewayNetworkResult {
     readonly macAddress: string;
     readonly privateIps: outputs.GetVpcGatewayNetworkPrivateIp[];
     readonly privateNetworkId?: string;
+    readonly srn: string;
     readonly staticAddress: string;
     readonly status: string;
     readonly updatedAt: string;

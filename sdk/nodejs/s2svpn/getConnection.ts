@@ -146,6 +146,7 @@ export interface GetConnectionResult {
      * The version of the secret containing the PSK.
      */
     readonly secretVersion: number;
+    readonly srn: string;
     /**
      * The status of the connection.
      */

@@ -27,7 +27,7 @@ class GetLinkResult:
     """
     A collection of values returned by getLink.
     """
-    def __init__(__self__, bandwidth_mbps=None, bgp_v4_status=None, bgp_v6_status=None, connection_id=None, created_at=None, enable_route_propagation=None, id=None, link_id=None, name=None, organization_id=None, pairing_key=None, partner_id=None, peer_asn=None, peer_bgp_configs=None, pop_id=None, project_id=None, region=None, routing_policy_v4_id=None, routing_policy_v6_id=None, scw_bgp_configs=None, status=None, tags=None, updated_at=None, vlan=None, vpc_id=None):
+    def __init__(__self__, bandwidth_mbps=None, bgp_v4_status=None, bgp_v6_status=None, connection_id=None, created_at=None, enable_route_propagation=None, id=None, link_id=None, name=None, organization_id=None, pairing_key=None, partner_id=None, peer_asn=None, peer_bgp_configs=None, pop_id=None, project_id=None, region=None, routing_policy_v4_id=None, routing_policy_v6_id=None, scw_bgp_configs=None, srn=None, status=None, tags=None, updated_at=None, vlan=None, vpc_id=None):
         if bandwidth_mbps and not isinstance(bandwidth_mbps, int):
             raise TypeError("Expected argument 'bandwidth_mbps' to be a int")
         pulumi.set(__self__, "bandwidth_mbps", bandwidth_mbps)
@@ -88,6 +88,9 @@ class GetLinkResult:
         if scw_bgp_configs and not isinstance(scw_bgp_configs, list):
             raise TypeError("Expected argument 'scw_bgp_configs' to be a list")
         pulumi.set(__self__, "scw_bgp_configs", scw_bgp_configs)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -254,6 +257,11 @@ class GetLinkResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         Status of the link.
@@ -319,6 +327,7 @@ class AwaitableGetLinkResult(GetLinkResult):
             routing_policy_v4_id=self.routing_policy_v4_id,
             routing_policy_v6_id=self.routing_policy_v6_id,
             scw_bgp_configs=self.scw_bgp_configs,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             updated_at=self.updated_at,
@@ -393,6 +402,7 @@ def get_link(link_id: Optional[_builtins.str] = None,
         routing_policy_v4_id=pulumi.get(__ret__, 'routing_policy_v4_id'),
         routing_policy_v6_id=pulumi.get(__ret__, 'routing_policy_v6_id'),
         scw_bgp_configs=pulumi.get(__ret__, 'scw_bgp_configs'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -464,6 +474,7 @@ def get_link_output(link_id: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         routing_policy_v4_id=pulumi.get(__response__, 'routing_policy_v4_id'),
         routing_policy_v6_id=pulumi.get(__response__, 'routing_policy_v6_id'),
         scw_bgp_configs=pulumi.get(__response__, 'scw_bgp_configs'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),

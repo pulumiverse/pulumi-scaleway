@@ -35,12 +35,12 @@ import * as utilities from "./utilities";
  * import * as std from "@pulumi/std";
  *
  * export = async () => {
- *     const users = std.toset({
+ *     const users = (await std.toset({
  *         input: [
  *             "user1@mail.com",
  *             "user2@mail.com",
  *         ],
- *     }).result;
+ *     })).result;
  *     const usersGetUser = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: await scaleway.iam.getUser({
  *         email: __value,
  *     }) }), {});
@@ -48,12 +48,12 @@ import * as utilities from "./utilities";
  *         name: "my_group",
  *         externalMembership: true,
  *     });
- *     const members: scaleway.iam.GroupMembership[] = [];
+ *     const members: {[key: string]: scaleway.iam.GroupMembership} = {};
  *     for (const range of Object.entries(usersGetUser).sort().map(([k, v]) => ({key: k, value: v}))) {
- *         members.push(new scaleway.iam.GroupMembership(`members-${range.key}`, {
+ *         members[range.key] = new scaleway.iam.GroupMembership(`members-${range.key}`, {
  *             groupId: group.id,
  *             userId: range.value.id,
- *         }));
+ *         });
  *     }
  * }
  * ```

@@ -105,8 +105,8 @@ type GetDedicatedConnectionResult struct {
 	// ID of the PoP where the dedicated connection is located.
 	PopId string `pulumi:"popId"`
 	// The ID of the project the dedicated connection belongs to.
-	ProjectId string  `pulumi:"projectId"`
-	Region    *string `pulumi:"region"`
+	ProjectId string `pulumi:"projectId"`
+	Region    string `pulumi:"region"`
 	// Status of the dedicated connection.
 	Status string `pulumi:"status"`
 	// List of tags associated with the dedicated connection.
@@ -118,12 +118,8 @@ type GetDedicatedConnectionResult struct {
 }
 
 func GetDedicatedConnectionOutput(ctx *pulumi.Context, args GetDedicatedConnectionOutputArgs, opts ...pulumi.InvokeOption) GetDedicatedConnectionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDedicatedConnectionResultOutput, error) {
-			args := v.(GetDedicatedConnectionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getDedicatedConnection:getDedicatedConnection", args, GetDedicatedConnectionResultOutput{}, options).(GetDedicatedConnectionResultOutput), nil
-		}).(GetDedicatedConnectionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getDedicatedConnection:getDedicatedConnection", args, GetDedicatedConnectionResultOutput{}, options).(GetDedicatedConnectionResultOutput)
 }
 
 // A collection of arguments for invoking getDedicatedConnection.
@@ -203,8 +199,8 @@ func (o GetDedicatedConnectionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDedicatedConnectionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetDedicatedConnectionResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetDedicatedConnectionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetDedicatedConnectionResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDedicatedConnectionResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Status of the dedicated connection.

@@ -58,25 +58,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(async() =&gt; 
     /// {
-    ///     var users = Std.Toset.Invoke(new()
+    ///     var users = (await Std.Toset.InvokeAsync(new()
     ///     {
     ///         Input = new[]
     ///         {
     ///             "user1@mail.com",
     ///             "user2@mail.com",
     ///         },
-    ///     }).Result;
+    ///     })).Result;
     /// 
-    ///     var usersGetUser = .ToDictionary(item =&gt; {
-    ///         var __key = item.Key;
-    ///         return __key;
-    ///     }, item =&gt; {
-    ///         var __value = item.Value;
-    ///         return await Scaleway.Iam.GetUser.InvokeAsync(new()
-    ///         {
-    ///             Email = __value,
-    ///         });
-    ///     });
+    ///     var usersGetUser = ;
     /// 
     ///     var @group = new Scaleway.Iam.Group("group", new()
     ///     {

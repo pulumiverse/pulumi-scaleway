@@ -129,7 +129,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
     /**
      * `region`) The region of the Private Network.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The Scaleway Resource Name (SRN) of the subnet.
      */

@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			mainBackendStage, err := edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   pulumi.String("my-bucket-name"),
 //					BucketRegion: pulumi.String("fr-par"),
@@ -74,8 +74,8 @@ import (
 //				return err
 //			}
 //			mainWafStage, err := edgeservices.NewWafStage(ctx, "main", &edgeservices.WafStageArgs{
-//				PipelineId:     main.ID(),
-//				BackendStageId: mainBackendStage.ID(),
+//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
+//				BackendStageId: mainBackendStage.ID().ToIDOutput().ToStringOutput(),
 //				Mode:           pulumi.String("enable"),
 //				ParanoiaLevel:  pulumi.Int(3),
 //			})
@@ -83,11 +83,11 @@ import (
 //				return err
 //			}
 //			mainRouteStage, err := edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
-//				PipelineId: main.ID(),
-//				WafStageId: mainWafStage.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				WafStageId: mainWafStage.ID().ToIDOutput().ToStringOutput(),
 //				Rules: edgeservices.RouteStageRuleArray{
 //					&edgeservices.RouteStageRuleArgs{
-//						BackendStageId: mainBackendStage.ID(),
+//						BackendStageId: mainBackendStage.ID().ToIDOutput().ToStringOutput(),
 //						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							MethodFilters: pulumi.StringArray{
 //								pulumi.String("get"),
@@ -105,23 +105,23 @@ import (
 //				return err
 //			}
 //			mainCacheStage, err := edgeservices.NewCacheStage(ctx, "main", &edgeservices.CacheStageArgs{
-//				PipelineId:   main.ID(),
-//				RouteStageId: mainRouteStage.ID(),
+//				PipelineId:   main.ID().ToIDOutput().ToStringOutput(),
+//				RouteStageId: mainRouteStage.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainTlsStage, err := edgeservices.NewTlsStage(ctx, "main", &edgeservices.TlsStageArgs{
-//				PipelineId:         main.ID(),
-//				CacheStageId:       mainCacheStage.ID(),
+//				PipelineId:         main.ID().ToIDOutput().ToStringOutput(),
+//				CacheStageId:       mainCacheStage.ID().ToIDOutput().ToStringOutput(),
 //				ManagedCertificate: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainDnsStage, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
-//				PipelineId: main.ID(),
-//				TlsStageId: mainTlsStage.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				TlsStageId: mainTlsStage.ID().ToIDOutput().ToStringOutput(),
 //				Fqdns: pulumi.StringArray{
 //					pulumi.String("subdomain.example.com"),
 //				},
@@ -130,8 +130,8 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewHeadStage(ctx, "main", &edgeservices.HeadStageArgs{
-//				PipelineId:  main.ID(),
-//				HeadStageId: mainDnsStage.ID(),
+//				PipelineId:  main.ID().ToIDOutput().ToStringOutput(),
+//				HeadStageId: mainDnsStage.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

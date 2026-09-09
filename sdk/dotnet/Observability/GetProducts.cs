@@ -319,7 +319,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// List of available Cockpit products. (see below)
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProductsProductResult> Products;
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetProductsResult(
@@ -329,7 +329,7 @@ namespace Pulumiverse.Scaleway.Observability
 
             ImmutableArray<Outputs.GetProductsProductResult> products,
 
-            string? region)
+            string region)
         {
             Id = id;
             Names = names;

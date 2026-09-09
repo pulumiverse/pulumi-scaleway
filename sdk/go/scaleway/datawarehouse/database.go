@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = datawarehouse.NewDatabase(ctx, "main", &datawarehouse.DatabaseArgs{
-//				DeploymentId: main.ID(),
+//				DeploymentId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:         pulumi.String("my_database"),
 //			})
 //			if err != nil {
@@ -71,9 +71,11 @@ type Database struct {
 	// Name of the database.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region in which the database should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Size of the database in GB.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewDatabase registers a new resource with the given unique name, arguments, and options.
@@ -117,6 +119,8 @@ type databaseState struct {
 	Region *string `pulumi:"region"`
 	// Size of the database in GB.
 	Size *int `pulumi:"size"`
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn *string `pulumi:"srn"`
 }
 
 type DatabaseState struct {
@@ -128,6 +132,8 @@ type DatabaseState struct {
 	Region pulumi.StringPtrInput
 	// Size of the database in GB.
 	Size pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn pulumi.StringPtrInput
 }
 
 func (DatabaseState) ElementType() reflect.Type {
@@ -251,13 +257,18 @@ func (o DatabaseOutput) Name() pulumi.StringOutput {
 }
 
 // `region`) The region in which the database should be created.
-func (o DatabaseOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabaseOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Size of the database in GB.
 func (o DatabaseOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Database) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the database.
+func (o DatabaseOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type DatabaseArrayOutput struct{ *pulumi.OutputState }

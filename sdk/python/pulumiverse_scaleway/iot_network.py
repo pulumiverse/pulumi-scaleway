@@ -30,7 +30,7 @@ class IotNetworkArgs:
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Network is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[_builtins.str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         """
         pulumi.set(__self__, "hub_id", hub_id)
@@ -82,7 +82,7 @@ class IotNetworkArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the Network is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -121,7 +121,7 @@ class _IotNetworkState:
         :param pulumi.Input[_builtins.str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Network is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[_builtins.str] secret: The endpoint key to keep secret.
         :param pulumi.Input[_builtins.str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
@@ -195,7 +195,7 @@ class _IotNetworkState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the Network is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         """
         return pulumi.get(self, "region")
 
@@ -298,7 +298,7 @@ class IotNetwork(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Network is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[_builtins.str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
         """
@@ -418,7 +418,7 @@ class IotNetwork(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[_builtins.str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[_builtins.str] name: The name of the IoT Network you want to create (e.g. `my-net`).
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the Network is attached to.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[_builtins.str] secret: The endpoint key to keep secret.
         :param pulumi.Input[_builtins.str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[_builtins.str] type: The network type to create (e.g. `sigfox`).
@@ -471,9 +471,9 @@ class IotNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        (Defaults to provider `region`) The region in which the Network is attached to.
+        (Optional, Computed, Defaults to provider `region`) The region in which the Network is attached to.
         """
         return pulumi.get(self, "region")
 

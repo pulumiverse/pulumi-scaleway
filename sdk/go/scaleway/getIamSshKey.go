@@ -51,18 +51,15 @@ type LookupIamSshKeyResult struct {
 	ProjectId      *string `pulumi:"projectId"`
 	// The SSH public key string
 	PublicKey string  `pulumi:"publicKey"`
+	Srn       string  `pulumi:"srn"`
 	SshKeyId  *string `pulumi:"sshKeyId"`
 	// The date and time of the last update of the SSH key.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func LookupIamSshKeyOutput(ctx *pulumi.Context, args LookupIamSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupIamSshKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIamSshKeyResultOutput, error) {
-			args := v.(LookupIamSshKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getIamSshKey:getIamSshKey", args, LookupIamSshKeyResultOutput{}, options).(LookupIamSshKeyResultOutput), nil
-		}).(LookupIamSshKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getIamSshKey:getIamSshKey", args, LookupIamSshKeyResultOutput{}, options).(LookupIamSshKeyResultOutput)
 }
 
 // A collection of arguments for invoking getIamSshKey.
@@ -131,6 +128,10 @@ func (o LookupIamSshKeyResultOutput) ProjectId() pulumi.StringPtrOutput {
 // The SSH public key string
 func (o LookupIamSshKeyResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamSshKeyResult) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+func (o LookupIamSshKeyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIamSshKeyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupIamSshKeyResultOutput) SshKeyId() pulumi.StringPtrOutput {

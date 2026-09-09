@@ -77,16 +77,12 @@ type GetRoutesResult struct {
 	ProjectId      string `pulumi:"projectId"`
 	// List of retrieved routes
 	Routes []GetRoutesRoute `pulumi:"routes"`
-	Zone   *string          `pulumi:"zone"`
+	Zone   string           `pulumi:"zone"`
 }
 
 func GetRoutesOutput(ctx *pulumi.Context, args GetRoutesOutputArgs, opts ...pulumi.InvokeOption) GetRoutesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetRoutesResultOutput, error) {
-			args := v.(GetRoutesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getRoutes:getRoutes", args, GetRoutesResultOutput{}, options).(GetRoutesResultOutput), nil
-		}).(GetRoutesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getRoutes:getRoutes", args, GetRoutesResultOutput{}, options).(GetRoutesResultOutput)
 }
 
 // A collection of arguments for invoking getRoutes.
@@ -139,8 +135,8 @@ func (o GetRoutesResultOutput) Routes() GetRoutesRouteArrayOutput {
 	return o.ApplyT(func(v GetRoutesResult) []GetRoutesRoute { return v.Routes }).(GetRoutesRouteArrayOutput)
 }
 
-func (o GetRoutesResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRoutesResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetRoutesResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRoutesResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

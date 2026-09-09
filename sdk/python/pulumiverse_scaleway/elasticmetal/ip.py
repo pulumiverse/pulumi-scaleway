@@ -148,6 +148,7 @@ class _IpState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  reverse: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -163,6 +164,7 @@ class _IpState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Flexible IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[_builtins.str] server_id: The ID of the associated server.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the flexible IP.
         :param pulumi.Input[_builtins.str] status: The status of the flexible IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601).
@@ -184,6 +186,8 @@ class _IpState:
             pulumi.set(__self__, "reverse", reverse)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -288,6 +292,18 @@ class _IpState:
     @server_id.setter
     def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the flexible IP.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -549,6 +565,7 @@ class Ip(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["ip_address"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/flexibleIp:FlexibleIp")])
@@ -571,6 +588,7 @@ class Ip(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             reverse: pulumi.Input[Optional[_builtins.str]] = None,
             server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -590,6 +608,7 @@ class Ip(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Flexible IP is associated with.
         :param pulumi.Input[_builtins.str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[_builtins.str] server_id: The ID of the associated server.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the flexible IP.
         :param pulumi.Input[_builtins.str] status: The status of the flexible IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601).
@@ -607,6 +626,7 @@ class Ip(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reverse"] = reverse
         __props__.__dict__["server_id"] = server_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -679,6 +699,14 @@ class Ip(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the flexible IP.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
         The status of the flexible IP.
@@ -703,7 +731,7 @@ class Ip(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone of the Flexible IP.
         """

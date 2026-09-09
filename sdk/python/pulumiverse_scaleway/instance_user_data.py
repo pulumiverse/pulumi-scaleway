@@ -234,12 +234,12 @@ class InstanceUserData(pulumi.CustomResource):
             key="foo",
             value="bar")
         # User Data with many keys.
-        data: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
-            data.append(scaleway.instance.UserData(f"data-{range['key']}",
+        data: dict[str, scaleway.instance.UserData] = {}
+        for data_range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
+            data[data_range['key']] = scaleway.instance.UserData(f"data-{data_range['key']}",
                 server_id=main_server.id,
-                key=range["key"],
-                value=range["value"]))
+                key=data_range["key"],
+                value=data_range["value"])
         ```
 
         ## Import
@@ -308,12 +308,12 @@ class InstanceUserData(pulumi.CustomResource):
             key="foo",
             value="bar")
         # User Data with many keys.
-        data: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
-            data.append(scaleway.instance.UserData(f"data-{range['key']}",
+        data: dict[str, scaleway.instance.UserData] = {}
+        for data_range in [{"key": k, "value": v} for [k, v] in sorted((user_data).items())]:
+            data[data_range['key']] = scaleway.instance.UserData(f"data-{data_range['key']}",
                 server_id=main_server.id,
-                key=range["key"],
-                value=range["value"]))
+                key=data_range["key"],
+                value=data_range["value"])
         ```
 
         ## Import
@@ -431,7 +431,7 @@ class InstanceUserData(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the server should be created.
 

@@ -53,7 +53,7 @@ import (
 //			}
 //			_, err = secrets.NewVersion(ctx, "v1", &secrets.VersionArgs{
 //				Description: pulumi.String("version1"),
-//				SecretId:    main.ID(),
+//				SecretId:    main.ID().ToIDOutput().ToStringOutput(),
 //				Data:        pulumi.String("my_new_secret"),
 //			})
 //			if err != nil {
@@ -89,7 +89,7 @@ type Version struct {
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// ). The region where the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The revision number of the secret version.
 	Revision pulumi.StringOutput `pulumi:"revision"`
 	// The ID of the secret associated with the version.
@@ -354,8 +354,8 @@ func (o VersionOutput) Description() pulumi.StringPtrOutput {
 }
 
 // ). The region where the resource exists.
-func (o VersionOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Version) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o VersionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Version) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The revision number of the secret version.

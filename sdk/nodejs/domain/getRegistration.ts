@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * const example = scaleway.domain.getRegistration({
  *     domainName: "example.com",
  * });
- * export const importCommand = Promise.all([example, example]).then(([example, example1]) => `terraform import scaleway_domain_registration.example ${example.projectId}/${example1.taskId}`);
+ * export const importCommand = example.then(example => `terraform import scaleway_domain_registration.example ${example.projectId}/${example.taskId}`);
  * ```
  *
  * ### With projectId filter
@@ -126,7 +126,7 @@ export interface GetRegistrationResult {
  * const example = scaleway.domain.getRegistration({
  *     domainName: "example.com",
  * });
- * export const importCommand = Promise.all([example, example]).then(([example, example1]) => `terraform import scaleway_domain_registration.example ${example.projectId}/${example1.taskId}`);
+ * export const importCommand = example.then(example => `terraform import scaleway_domain_registration.example ${example.projectId}/${example.taskId}`);
  * ```
  *
  * ### With projectId filter

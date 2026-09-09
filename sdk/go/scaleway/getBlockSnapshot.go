@@ -56,12 +56,8 @@ type LookupBlockSnapshotResult struct {
 }
 
 func LookupBlockSnapshotOutput(ctx *pulumi.Context, args LookupBlockSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupBlockSnapshotResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBlockSnapshotResultOutput, error) {
-			args := v.(LookupBlockSnapshotArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBlockSnapshot:getBlockSnapshot", args, LookupBlockSnapshotResultOutput{}, options).(LookupBlockSnapshotResultOutput), nil
-		}).(LookupBlockSnapshotResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBlockSnapshot:getBlockSnapshot", args, LookupBlockSnapshotResultOutput{}, options).(LookupBlockSnapshotResultOutput)
 }
 
 // A collection of arguments for invoking getBlockSnapshot.

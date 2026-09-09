@@ -210,7 +210,7 @@ class GetLoadbalancerResult:
     @pulumi.getter
     def zone(self) -> Optional[_builtins.str]:
         """
-        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -270,7 +270,7 @@ def get_loadbalancer(lb_id: Optional[_builtins.str] = None,
 
     :param _builtins.str name: The Load Balancer name.
     :param _builtins.str project_id: The ID of the Project the Load Balancer is associated with.
-    :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+    :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     pulumi.log.warn("""get_loadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer""")
     __args__ = dict()
@@ -330,7 +330,7 @@ def get_loadbalancer_output(lb_id: pulumi.Input[Optional[Optional[_builtins.str]
 
     :param _builtins.str name: The Load Balancer name.
     :param _builtins.str project_id: The ID of the Project the Load Balancer is associated with.
-    :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+    :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
     pulumi.log.warn("""get_loadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer""")
     __args__ = dict()

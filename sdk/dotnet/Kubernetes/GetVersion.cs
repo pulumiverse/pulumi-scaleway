@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public readonly string Id;
         public readonly string MajorMinorOnly;
         public readonly string Name;
-        public readonly string? Region;
+        public readonly string Region;
         /// <summary>
         /// The Scaleway Resource Name (SRN) of the version.
         /// </summary>
@@ -240,7 +240,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             string name,
 
-            string? region,
+            string region,
 
             string srn)
         {

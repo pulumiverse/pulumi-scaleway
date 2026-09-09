@@ -202,6 +202,7 @@ namespace Pulumiverse.Scaleway.Network
         public readonly string MacAddress;
         public readonly ImmutableArray<Outputs.GetGatewayNetworkPrivateIpResult> PrivateIps;
         public readonly string? PrivateNetworkId;
+        public readonly string Srn;
         public readonly string StaticAddress;
         public readonly string Status;
         public readonly string UpdatedAt;
@@ -233,6 +234,8 @@ namespace Pulumiverse.Scaleway.Network
 
             string? privateNetworkId,
 
+            string srn,
+
             string staticAddress,
 
             string status,
@@ -253,6 +256,7 @@ namespace Pulumiverse.Scaleway.Network
             MacAddress = macAddress;
             PrivateIps = privateIps;
             PrivateNetworkId = privateNetworkId;
+            Srn = srn;
             StaticAddress = staticAddress;
             Status = status;
             UpdatedAt = updatedAt;

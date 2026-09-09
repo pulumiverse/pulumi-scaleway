@@ -202,7 +202,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     /**
      * `region`) The region in which the pool should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The size of the system volume of the nodes in gigabyte
      *
@@ -269,7 +269,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a KubernetesNodePool resource with the given unique name, arguments, and options.

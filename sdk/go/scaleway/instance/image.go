@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
-//				VolumeId: volume.ID(),
+//				VolumeId: volume.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = instance.NewImage(ctx, "volume_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_volume"),
-//				RootVolumeId: volumeSnapshot.ID(),
+//				RootVolumeId: volumeSnapshot.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -86,7 +86,7 @@ import (
 //			}
 //			_, err = instance.NewImage(ctx, "server_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_server"),
-//				RootVolumeId: serverSnapshot.ID(),
+//				RootVolumeId: serverSnapshot.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -126,7 +126,7 @@ import (
 //				return err
 //			}
 //			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
-//				VolumeId: volume.ID(),
+//				VolumeId: volume.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -139,9 +139,9 @@ import (
 //			}
 //			_, err = instance.NewImage(ctx, "image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_with_extra_volumes"),
-//				RootVolumeId: serverSnapshot.ID(),
+//				RootVolumeId: serverSnapshot.ID().ToIDOutput().ToStringOutput(),
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					volumeSnapshot.ID(),
+//					volumeSnapshot.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -192,7 +192,7 @@ type Image struct {
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The zone in which the image should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewImage registers a new resource with the given unique name, arguments, and options.
@@ -500,8 +500,8 @@ func (o ImageOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone in which the image should be created.
-func (o ImageOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Image) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o ImageOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type ImageArrayOutput struct{ *pulumi.OutputState }

@@ -57,12 +57,8 @@ type LookupInstanceVolumeResult struct {
 }
 
 func LookupInstanceVolumeOutput(ctx *pulumi.Context, args LookupInstanceVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceVolumeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInstanceVolumeResultOutput, error) {
-			args := v.(LookupInstanceVolumeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getInstanceVolume:getInstanceVolume", args, LookupInstanceVolumeResultOutput{}, options).(LookupInstanceVolumeResultOutput), nil
-		}).(LookupInstanceVolumeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getInstanceVolume:getInstanceVolume", args, LookupInstanceVolumeResultOutput{}, options).(LookupInstanceVolumeResultOutput)
 }
 
 // A collection of arguments for invoking getInstanceVolume.

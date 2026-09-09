@@ -153,9 +153,9 @@ export class KeyManagerKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly protected: pulumi.Output<boolean>;
     /**
-     * The region in which to create the key (e.g., `fr-par`).
+     * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The date and time when the key was last rotated.
      */
@@ -299,7 +299,7 @@ export interface KeyManagerKeyState {
      */
     protected?: pulumi.Input<boolean | undefined>;
     /**
-     * The region in which to create the key (e.g., `fr-par`).
+     * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -368,7 +368,7 @@ export interface KeyManagerKeyArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The region in which to create the key (e.g., `fr-par`).
+     * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */
     region?: pulumi.Input<string | undefined>;
     /**

@@ -143,6 +143,7 @@ from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
 from .iam_user import *
+from .id_from_regional_id import *
 from .inference_deployment import *
 from .instance_image import *
 from .instance_ip import *
@@ -192,6 +193,7 @@ from .object_item import *
 from .provider import *
 from .rdb_snapshot import *
 from .redis_cluster import *
+from .region_from_id import *
 from .registry_namespace import *
 from .sdb_database import *
 from .secret import *
@@ -391,6 +393,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.applesilicon",
   "classes": {
    "scaleway:applesilicon/server:Server": "Server"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "autoscaling/group",
+  "fqn": "pulumiverse_scaleway.autoscaling",
+  "classes": {
+   "scaleway:autoscaling/group:Group": "Group"
   }
  },
  {
@@ -1895,6 +1905,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.instance",
   "classes": {
    "scaleway:instance/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/template",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/template:Template": "Template"
   }
  },
  {

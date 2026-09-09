@@ -41,7 +41,7 @@ import (
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc.ID(),
+//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("10.0.1.0/24"),
 //				},
@@ -52,7 +52,7 @@ import (
 //			gateway, err := s2svpn.NewGateway(ctx, "gateway", &s2svpn.GatewayArgs{
 //				Name:             pulumi.String("my-vpn-gateway"),
 //				GatewayType:      pulumi.String("VGW-S"),
-//				PrivateNetworkId: pn.ID(),
+//				PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,13 +79,13 @@ import (
 //			}
 //			_, err = s2svpn.NewConnection(ctx, "main", &s2svpn.ConnectionArgs{
 //				Name:                   pulumi.String("my-vpn-connection"),
-//				VpnGatewayId:           gateway.ID(),
-//				CustomerGatewayId:      customerGw.ID(),
+//				VpnGatewayId:           gateway.ID().ToIDOutput().ToStringOutput(),
+//				CustomerGatewayId:      customerGw.ID().ToIDOutput().ToStringOutput(),
 //				InitiationPolicy:       pulumi.String("customer_gateway"),
 //				EnableRoutePropagation: pulumi.Bool(true),
 //				BgpConfigIpv4s: s2svpn.ConnectionBgpConfigIpv4Array{
 //					&s2svpn.ConnectionBgpConfigIpv4Args{
-//						RoutingPolicyId: policy.ID(),
+//						RoutingPolicyId: policy.ID().ToIDOutput().ToStringOutput(),
 //						PrivateIp:       pulumi.String("169.254.0.1/30"),
 //						PeerPrivateIp:   pulumi.String("169.254.0.2/30"),
 //					},
@@ -157,13 +157,15 @@ type Connection struct {
 	// `projectId`) The ID of the project the connection is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the connection should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Whether route propagation is enabled.
 	RoutePropagationEnabled pulumi.BoolOutput `pulumi:"routePropagationEnabled"`
 	// The ID of the secret containing the pre-shared key (PSK) for the connection.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
 	// The version of the secret containing the PSK.
 	SecretVersion pulumi.IntOutput `pulumi:"secretVersion"`
+	// The Scaleway Resource Name (SRN) of the connection.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the connection.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The list of tags to apply to the connection.
@@ -246,6 +248,8 @@ type connectionState struct {
 	SecretId *string `pulumi:"secretId"`
 	// The version of the secret containing the PSK.
 	SecretVersion *int `pulumi:"secretVersion"`
+	// The Scaleway Resource Name (SRN) of the connection.
+	Srn *string `pulumi:"srn"`
 	// The status of the connection.
 	Status *string `pulumi:"status"`
 	// The list of tags to apply to the connection.
@@ -299,6 +303,8 @@ type ConnectionState struct {
 	SecretId pulumi.StringPtrInput
 	// The version of the secret containing the PSK.
 	SecretVersion pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the connection.
+	Srn pulumi.StringPtrInput
 	// The status of the connection.
 	Status pulumi.StringPtrInput
 	// The list of tags to apply to the connection.
@@ -542,8 +548,8 @@ func (o ConnectionOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the connection should be created.
-func (o ConnectionOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ConnectionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Whether route propagation is enabled.
@@ -559,6 +565,11 @@ func (o ConnectionOutput) SecretId() pulumi.StringOutput {
 // The version of the secret containing the PSK.
 func (o ConnectionOutput) SecretVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *Connection) pulumi.IntOutput { return v.SecretVersion }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the connection.
+func (o ConnectionOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the connection.

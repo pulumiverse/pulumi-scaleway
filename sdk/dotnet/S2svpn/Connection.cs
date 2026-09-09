@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// `Region`) The region in which the connection should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Whether route propagation is enabled.
@@ -239,6 +239,12 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// </summary>
         [Output("secretVersion")]
         public Output<int> SecretVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the connection.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The status of the connection.
@@ -588,6 +594,12 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// </summary>
         [Input("secretVersion")]
         public Input<int>? SecretVersion { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the connection.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the connection.

@@ -136,7 +136,7 @@ export class Webhosting extends pulumi.CustomResource {
     /**
      * `region`) The region of the Hosting.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The hosting status.
      */

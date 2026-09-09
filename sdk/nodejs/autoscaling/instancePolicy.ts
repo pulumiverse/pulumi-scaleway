@@ -122,7 +122,7 @@ export class InstancePolicy extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the Instance policy exists.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstancePolicy resource with the given unique name, arguments, and options.

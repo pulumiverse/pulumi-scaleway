@@ -108,7 +108,7 @@ import (
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: main.ID(),
+//				VpcId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -122,7 +122,7 @@ import (
 //				RamPerCpu:    pulumi.Int(4),
 //				Password:     pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &datawarehouse.DeploymentPrivateNetworkArgs{
-//					PnId: pn.ID(),
+//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -170,11 +170,13 @@ type Deployment struct {
 	// RAM per CPU in GB.
 	RamPerCpu pulumi.IntOutput `pulumi:"ramPerCpu"`
 	// `region`) The region in which the deployment should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount pulumi.IntOutput `pulumi:"replicaCount"`
 	// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
 	ShardCount pulumi.IntOutput `pulumi:"shardCount"`
+	// The Scaleway Resource Name (SRN) of the deployment.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
 	Started pulumi.BoolPtrOutput `pulumi:"started"`
 	// The status of the deployment (e.g., "ready", "provisioning").
@@ -274,6 +276,8 @@ type deploymentState struct {
 	ReplicaCount *int `pulumi:"replicaCount"`
 	// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
 	ShardCount *int `pulumi:"shardCount"`
+	// The Scaleway Resource Name (SRN) of the deployment.
+	Srn *string `pulumi:"srn"`
 	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
 	Started *bool `pulumi:"started"`
 	// The status of the deployment (e.g., "ready", "provisioning").
@@ -318,6 +322,8 @@ type DeploymentState struct {
 	ReplicaCount pulumi.IntPtrInput
 	// Number of shards for the deployment. This value is immutable and cannot be changed after creation.
 	ShardCount pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the deployment.
+	Srn pulumi.StringPtrInput
 	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
 	Started pulumi.BoolPtrInput
 	// The status of the deployment (e.g., "ready", "provisioning").
@@ -553,8 +559,8 @@ func (o DeploymentOutput) RamPerCpu() pulumi.IntOutput {
 }
 
 // `region`) The region in which the deployment should be created.
-func (o DeploymentOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DeploymentOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Number of replicas. Can be updated in place via the deployment configuration API.
@@ -565,6 +571,11 @@ func (o DeploymentOutput) ReplicaCount() pulumi.IntOutput {
 // Number of shards for the deployment. This value is immutable and cannot be changed after creation.
 func (o DeploymentOutput) ShardCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.ShardCount }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the deployment.
+func (o DeploymentOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.

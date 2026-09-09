@@ -38,7 +38,7 @@ class DeploymentEndpointArgsDict(TypedDict):
     """
     Whether the endpoint is public (true) or private (false).
     """
-    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgs']]]]]
+    services: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentEndpointServiceArgsDict']]]]]
     """
     List of services exposed on the endpoint.
     """

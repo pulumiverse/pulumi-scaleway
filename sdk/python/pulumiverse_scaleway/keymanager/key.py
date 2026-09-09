@@ -43,7 +43,7 @@ class KeyArgs:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
                
                **Key Usage and Algorithm (both required):**
-        :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
+        :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input['KeyRotationPolicyArgs'] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
@@ -146,7 +146,7 @@ class KeyArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The region in which to create the key (e.g., `fr-par`).
+        – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         """
         return pulumi.get(self, "region")
 
@@ -226,7 +226,7 @@ class _KeyState:
                
                **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
+        :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
         :param pulumi.Input['KeyRotationPolicyArgs'] rotation_policy: – Rotation policy for the key:
@@ -377,7 +377,7 @@ class _KeyState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The region in which to create the key (e.g., `fr-par`).
+        – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         """
         return pulumi.get(self, "region")
 
@@ -599,7 +599,7 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
                
                **Key Usage and Algorithm (both required):**
-        :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
+        :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[Union['KeyRotationPolicyArgs', 'KeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
@@ -793,7 +793,7 @@ class Key(pulumi.CustomResource):
                
                **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
-        :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
+        :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
         :param pulumi.Input[Union['KeyRotationPolicyArgs', 'KeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
@@ -897,9 +897,9 @@ class Key(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The region in which to create the key (e.g., `fr-par`).
+        – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         """
         return pulumi.get(self, "region")
 

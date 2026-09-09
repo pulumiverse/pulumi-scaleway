@@ -29,7 +29,7 @@ class RdbSnapshotArgs:
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the snapshot in ISO 8601 format (e.g., `2025-01-31T00:00:00Z`). If not set, the snapshot will not expire automatically.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot.
-        :param pulumi.Input[_builtins.str] region: The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if expires_at is not None:
@@ -79,7 +79,7 @@ class RdbSnapshotArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         """
         return pulumi.get(self, "region")
 
@@ -109,7 +109,7 @@ class _RdbSnapshotState:
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot.
         :param pulumi.Input[_builtins.str] node_type: The type of the database instance for which the snapshot was created.
-        :param pulumi.Input[_builtins.str] region: The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         :param pulumi.Input[_builtins.int] size: The size of the snapshot in bytes.
         :param pulumi.Input[_builtins.str] status: The current status of the snapshot (e.g., `ready`, `creating`, `error`).
         :param pulumi.Input[_builtins.str] updated_at: The timestamp when the snapshot was last updated, in ISO 8601 format.
@@ -200,7 +200,7 @@ class _RdbSnapshotState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         """
         return pulumi.get(self, "region")
 
@@ -356,7 +356,7 @@ class RdbSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] expires_at: Expiration date of the snapshot in ISO 8601 format (e.g., `2025-01-31T00:00:00Z`). If not set, the snapshot will not expire automatically.
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot.
-        :param pulumi.Input[_builtins.str] region: The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         """
         ...
     @overload
@@ -515,7 +515,7 @@ class RdbSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] instance_id: The UUID of the database instance for which the snapshot is created.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot.
         :param pulumi.Input[_builtins.str] node_type: The type of the database instance for which the snapshot was created.
-        :param pulumi.Input[_builtins.str] region: The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         :param pulumi.Input[_builtins.int] size: The size of the snapshot in bytes.
         :param pulumi.Input[_builtins.str] status: The current status of the snapshot (e.g., `ready`, `creating`, `error`).
         :param pulumi.Input[_builtins.str] updated_at: The timestamp when the snapshot was last updated, in ISO 8601 format.
@@ -579,9 +579,9 @@ class RdbSnapshot(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The region where the snapshot is stored. Defaults to the region set in the provider configuration.
+        (Optional, Computed) The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         """
         return pulumi.get(self, "region")
 

@@ -126,12 +126,8 @@ type LookupCockpitSourceResult struct {
 }
 
 func LookupCockpitSourceOutput(ctx *pulumi.Context, args LookupCockpitSourceOutputArgs, opts ...pulumi.InvokeOption) LookupCockpitSourceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCockpitSourceResultOutput, error) {
-			args := v.(LookupCockpitSourceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getCockpitSource:getCockpitSource", args, LookupCockpitSourceResultOutput{}, options).(LookupCockpitSourceResultOutput), nil
-		}).(LookupCockpitSourceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getCockpitSource:getCockpitSource", args, LookupCockpitSourceResultOutput{}, options).(LookupCockpitSourceResultOutput)
 }
 
 // A collection of arguments for invoking getCockpitSource.

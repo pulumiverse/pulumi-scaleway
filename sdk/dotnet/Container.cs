@@ -131,15 +131,14 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "my-container",
     ///         NamespaceId = mainNamespace.Id,
-    ///         Image = Output.Tuple(main, mainGetImage, mainGetImage).Apply(values =&gt;
+    ///         Image = Output.Tuple(main, mainGetImage).Apply(values =&gt;
     ///         {
     ///             var main = values.Item1;
     ///             var mainGetImage = values.Item2;
-    ///             var mainGetImage1 = values.Item3;
-    ///             return $"{main.Apply(getNamespaceResult =&gt; getNamespaceResult.Endpoint)}/{mainGetImage.Apply(getImageResult =&gt; getImageResult.Name)}:{mainGetImage1.Tags[0]}";
+    ///             return $"{main.Apply(getNamespaceResult =&gt; getNamespaceResult.Endpoint)}/{mainGetImage.Apply(getImageResult =&gt; getImageResult.Name)}:{mainGetImage.Apply(getImageResult =&gt; getImageResult.Tags[0])}";
     ///         }),
     ///         Port = 80,
-    ///         RegistrySha256 = Std.Timestamp.Invoke().Result,
+    ///         RegistrySha256 = Std.Timestamp.Invoke().Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });
@@ -568,10 +567,10 @@ namespace Pulumiverse.Scaleway
         public Output<string> PublicEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the container was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
@@ -856,7 +855,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the container was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -1141,7 +1140,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PublicEndpoint { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `Region`) The region in which the container was created.
+        /// (Optional, Computed, Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

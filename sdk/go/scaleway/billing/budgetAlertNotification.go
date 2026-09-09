@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			mainBudgetAlert, err := billing.NewBudgetAlert(ctx, "main", &billing.BudgetAlertArgs{
-//				BudgetId:  main.ID(),
+//				BudgetId:  main.ID().ToIDOutput().ToStringOutput(),
 //				Threshold: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "email", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID(),
+//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
 //				EmailAddresses: pulumi.StringArray{
 //					pulumi.String("alerts@example.com"),
 //					pulumi.String("billing@example.com"),
@@ -56,7 +56,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "sms", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID(),
+//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
 //				SmsPhoneNumbers: pulumi.StringArray{
 //					pulumi.String("+33612345678"),
 //				},
@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "webhook", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID(),
+//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
 //				WebhookUrls: pulumi.StringArray{
 //					pulumi.String("https://example.com/webhook"),
 //				},

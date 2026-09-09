@@ -15,6 +15,11 @@ export const getInstancePolicy: typeof import("./getInstancePolicy").getInstance
 export const getInstancePolicyOutput: typeof import("./getInstancePolicy").getInstancePolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getInstancePolicy","getInstancePolicyOutput"], () => require("./getInstancePolicy"));
 
+export { GroupArgs, GroupState } from "./group";
+export type Group = import("./group").Group;
+export const Group: typeof import("./group").Group = null as any;
+utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+
 export { InstanceGroupArgs, InstanceGroupState } from "./instanceGroup";
 export type InstanceGroup = import("./instanceGroup").InstanceGroup;
 export const InstanceGroup: typeof import("./instanceGroup").InstanceGroup = null as any;
@@ -35,6 +40,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:autoscaling/group:Group":
+                return new Group(name, <any>undefined, { urn })
             case "scaleway:autoscaling/instanceGroup:InstanceGroup":
                 return new InstanceGroup(name, <any>undefined, { urn })
             case "scaleway:autoscaling/instancePolicy:InstancePolicy":
@@ -46,6 +53,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "autoscaling/group", _module)
 pulumi.runtime.registerResourceModule("scaleway", "autoscaling/instanceGroup", _module)
 pulumi.runtime.registerResourceModule("scaleway", "autoscaling/instancePolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "autoscaling/instanceTemplate", _module)

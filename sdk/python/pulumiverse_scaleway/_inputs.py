@@ -1493,7 +1493,7 @@ class ContainerHealthCheckArgsDict(TypedDict):
     """
     Number of consecutive health check failures before considering the container unhealthy.
     """
-    https: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgs']]]]]
+    https: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckHttpArgsDict']]]]]
     """
     HTTP health check configuration.
     """
@@ -1625,7 +1625,7 @@ class ContainerLivenessProbeArgsDict(TypedDict):
     """
     Duration before the check times out (in duration notation, e.g. "30s").
     """
-    http: NotRequired[pulumi.Input[Optional['ContainerLivenessProbeHttpArgs']]]
+    http: NotRequired[pulumi.Input[Optional['ContainerLivenessProbeHttpArgsDict']]]
     """
     Perform HTTP check on the container with the specified path.
     """
@@ -1828,7 +1828,7 @@ class ContainerStartupProbeArgsDict(TypedDict):
     """
     Duration before the check times out (in duration notation, e.g. "30s").
     """
-    http: NotRequired[pulumi.Input[Optional['ContainerStartupProbeHttpArgs']]]
+    http: NotRequired[pulumi.Input[Optional['ContainerStartupProbeHttpArgsDict']]]
     """
     Perform HTTP check on the container with the specified path.
     """
@@ -3803,7 +3803,7 @@ class EdgeServicesBackendStageFunctionBackendConfigArgs:
 
 
 class EdgeServicesBackendStageLbBackendConfigArgsDict(TypedDict):
-    lb_config: NotRequired[pulumi.Input[Optional['EdgeServicesBackendStageLbBackendConfigLbConfigArgs']]]
+    lb_config: NotRequired[pulumi.Input[Optional['EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict']]]
     """
     The Load Balancer config.
     """
@@ -4103,7 +4103,7 @@ class EdgeServicesRouteStageRuleArgsDict(TypedDict):
     """
     The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
     """
-    rule_http_match: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchArgs']]]
+    rule_http_match: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchArgsDict']]]
     """
     The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
     """
@@ -4168,7 +4168,7 @@ class EdgeServicesRouteStageRuleArgs:
 
 
 class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
-    host_filter: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgs']]]
+    host_filter: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchHostFilterArgsDict']]]
     """
     Host to filter for. A request whose host matches the given filter will be considered to match the rule. All hosts will match if none is provided.
     """
@@ -4176,7 +4176,7 @@ class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
     """
     HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
     """
-    path_filter: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']]]
+    path_filter: NotRequired[pulumi.Input[Optional['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict']]]
     """
     HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
     """
@@ -6324,11 +6324,11 @@ class IotDeviceCertificateArgs:
 
 
 class IotDeviceMessageFiltersArgsDict(TypedDict):
-    publish: NotRequired[pulumi.Input[Optional['IotDeviceMessageFiltersPublishArgs']]]
+    publish: NotRequired[pulumi.Input[Optional['IotDeviceMessageFiltersPublishArgsDict']]]
     """
     Rules used to restrict topics the device can publish to.
     """
-    subscribe: NotRequired[pulumi.Input[Optional['IotDeviceMessageFiltersSubscribeArgs']]]
+    subscribe: NotRequired[pulumi.Input[Optional['IotDeviceMessageFiltersSubscribeArgsDict']]]
     """
     Rules used to restrict topics the device can subscribe to.
     """
@@ -7823,7 +7823,7 @@ class KubernetesNodePoolNodeArgsDict(TypedDict):
 
     > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
     """
-    private_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolNodePrivateIpArgs']]]]]
+    private_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolNodePrivateIpArgsDict']]]]]
     """
     The list of private IPv4 and IPv6 addresses associated with the node.
     """
@@ -8214,7 +8214,7 @@ class LoadbalancerAclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerAclActionRedirectArgs']]]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerAclActionRedirectArgsDict']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """
@@ -8877,7 +8877,7 @@ class LoadbalancerFrontendAclActionArgsDict(TypedDict):
     """
     The action type. Possible values are: `allow` or `deny` or `redirect`.
     """
-    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgs']]]]]
+    redirects: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['LoadbalancerFrontendAclActionRedirectArgsDict']]]]]
     """
     Redirect parameters when using an ACL with `redirect` action.
     """
@@ -9731,7 +9731,7 @@ class ObjectBucketAclAccessControlPolicyArgsDict(TypedDict):
     """
     Configuration block of the bucket project owner's display organization ID.
     """
-    grants: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]]]
+    grants: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgsDict']]]]]
     """
     Grant
     """
@@ -9779,7 +9779,7 @@ class ObjectBucketAclAccessControlPolicyGrantArgsDict(TypedDict):
     """
     Logging permissions assigned to the grantee for the bucket.
     """
-    grantee: NotRequired[pulumi.Input[Optional['ObjectBucketAclAccessControlPolicyGrantGranteeArgs']]]
+    grantee: NotRequired[pulumi.Input[Optional['ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict']]]
     """
     Configuration block for the project being granted permissions.
     """
@@ -10082,7 +10082,7 @@ class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
     as any incomplete multipart upload will be billed.
     """
-    expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleExpirationArgs']]]
+    expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleExpirationArgsDict']]]
     """
     Specifies a period of expiration for the object.
     """
@@ -10091,12 +10091,12 @@ class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     Unique identifier for the rule. Must be less than or
     equal to 255 characters in length.
     """
-    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgs']]]
+    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['ObjectBucketLifecycleRuleNoncurrentVersionExpirationArgsDict']]]
     """
     Configuration block that
     specifies when noncurrent object versions expire. Supports the following:
     """
-    noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]]
+    noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleNoncurrentVersionTransitionArgsDict']]]]]
     """
     Set of configuration blocks
     that specify the transition rule for the lifecycle rule that describes when
@@ -10122,7 +10122,7 @@ class ObjectBucketLifecycleRuleArgsDict(TypedDict):
     """
     Specifies object tags key and value.
     """
-    transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgs']]]]]
+    transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ObjectBucketLifecycleRuleTransitionArgsDict']]]]]
     """
     Specifies a period in the object's transitions.
     """

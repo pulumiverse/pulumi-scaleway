@@ -500,7 +500,7 @@ class Cluster(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Kafka clusters.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-services/kafka/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).
 
         > **Important:** The Kafka product is currently in Public Beta.
 
@@ -596,7 +596,7 @@ class Cluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Kafka clusters.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-services/kafka/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).
 
         > **Important:** The Kafka product is currently in Public Beta.
 
@@ -871,7 +871,7 @@ class Cluster(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the cluster should be created.
         """

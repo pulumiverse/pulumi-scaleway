@@ -105,12 +105,8 @@ type LookupCacheStageResult struct {
 }
 
 func LookupCacheStageOutput(ctx *pulumi.Context, args LookupCacheStageOutputArgs, opts ...pulumi.InvokeOption) LookupCacheStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCacheStageResultOutput, error) {
-			args := v.(LookupCacheStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getCacheStage:getCacheStage", args, LookupCacheStageResultOutput{}, options).(LookupCacheStageResultOutput), nil
-		}).(LookupCacheStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getCacheStage:getCacheStage", args, LookupCacheStageResultOutput{}, options).(LookupCacheStageResultOutput)
 }
 
 // A collection of arguments for invoking getCacheStage.

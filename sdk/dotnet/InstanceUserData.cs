@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway
         /// - UTF-8 encoded file content using file
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

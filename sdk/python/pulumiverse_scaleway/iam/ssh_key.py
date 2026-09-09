@@ -100,6 +100,7 @@ class _SshKeyState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SshKey resources.
@@ -112,6 +113,7 @@ class _SshKeyState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the SSH key is
                associated with.
         :param pulumi.Input[_builtins.str] public_key: The public SSH key to be added.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the SSH key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the SSH key.
         """
         if created_at is not None:
@@ -128,6 +130,8 @@ class _SshKeyState:
             pulumi.set(__self__, "project_id", project_id)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
@@ -215,6 +219,18 @@ class _SshKeyState:
     @public_key.setter
     def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the SSH key.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -339,6 +355,7 @@ class SshKey(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["fingerprint"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/iamSshKey:IamSshKey")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -359,6 +376,7 @@ class SshKey(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'SshKey':
         """
         Get an existing SshKey resource's state with the given name, id, and optional extra
@@ -375,6 +393,7 @@ class SshKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the SSH key is
                associated with.
         :param pulumi.Input[_builtins.str] public_key: The public SSH key to be added.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the SSH key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the SSH key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -388,6 +407,7 @@ class SshKey(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_key"] = public_key
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["updated_at"] = updated_at
         return SshKey(resource_name, opts=opts, __props__=__props__)
 
@@ -447,6 +467,14 @@ class SshKey(pulumi.CustomResource):
         The public SSH key to be added.
         """
         return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the SSH key.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

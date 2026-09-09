@@ -50,9 +50,9 @@ type GetRegistryImageResult struct {
 	Name        *string `pulumi:"name"`
 	NamespaceId string  `pulumi:"namespaceId"`
 	// The organization ID the image is associated with.
-	OrganizationId string  `pulumi:"organizationId"`
-	ProjectId      string  `pulumi:"projectId"`
-	Region         *string `pulumi:"region"`
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
 	// The size of the registry image.
 	Size int `pulumi:"size"`
 	// The tags associated with the registry image
@@ -64,12 +64,8 @@ type GetRegistryImageResult struct {
 }
 
 func GetRegistryImageOutput(ctx *pulumi.Context, args GetRegistryImageOutputArgs, opts ...pulumi.InvokeOption) GetRegistryImageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetRegistryImageResultOutput, error) {
-			args := v.(GetRegistryImageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getRegistryImage:getRegistryImage", args, GetRegistryImageResultOutput{}, options).(GetRegistryImageResultOutput), nil
-		}).(GetRegistryImageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getRegistryImage:getRegistryImage", args, GetRegistryImageResultOutput{}, options).(GetRegistryImageResultOutput)
 }
 
 // A collection of arguments for invoking getRegistryImage.
@@ -135,8 +131,8 @@ func (o GetRegistryImageResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryImageResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetRegistryImageResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistryImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetRegistryImageResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryImageResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the registry image.

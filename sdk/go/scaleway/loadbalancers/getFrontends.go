@@ -80,16 +80,12 @@ type GetFrontendsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           *string `pulumi:"zone"`
+	Zone           string  `pulumi:"zone"`
 }
 
 func GetFrontendsOutput(ctx *pulumi.Context, args GetFrontendsOutputArgs, opts ...pulumi.InvokeOption) GetFrontendsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetFrontendsResultOutput, error) {
-			args := v.(GetFrontendsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:loadbalancers/getFrontends:getFrontends", args, GetFrontendsResultOutput{}, options).(GetFrontendsResultOutput), nil
-		}).(GetFrontendsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:loadbalancers/getFrontends:getFrontends", args, GetFrontendsResultOutput{}, options).(GetFrontendsResultOutput)
 }
 
 // A collection of arguments for invoking getFrontends.
@@ -148,8 +144,8 @@ func (o GetFrontendsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFrontendsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetFrontendsResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetFrontendsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetFrontendsResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFrontendsResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

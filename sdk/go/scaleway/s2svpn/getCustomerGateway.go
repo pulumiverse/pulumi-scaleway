@@ -106,6 +106,7 @@ type LookupCustomerGatewayResult struct {
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
+	Srn            string  `pulumi:"srn"`
 	// The tags associated with the customer gateway.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the customer gateway.
@@ -113,12 +114,8 @@ type LookupCustomerGatewayResult struct {
 }
 
 func LookupCustomerGatewayOutput(ctx *pulumi.Context, args LookupCustomerGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupCustomerGatewayResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCustomerGatewayResultOutput, error) {
-			args := v.(LookupCustomerGatewayArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:s2svpn/getCustomerGateway:getCustomerGateway", args, LookupCustomerGatewayResultOutput{}, options).(LookupCustomerGatewayResultOutput), nil
-		}).(LookupCustomerGatewayResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:s2svpn/getCustomerGateway:getCustomerGateway", args, LookupCustomerGatewayResultOutput{}, options).(LookupCustomerGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getCustomerGateway.
@@ -198,6 +195,10 @@ func (o LookupCustomerGatewayResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupCustomerGatewayResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCustomerGatewayResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCustomerGatewayResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomerGatewayResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the customer gateway.

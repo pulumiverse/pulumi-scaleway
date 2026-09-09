@@ -164,7 +164,7 @@ export class Image extends pulumi.CustomResource {
     /**
      * The zone in which the image should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Image resource with the given unique name, arguments, and options.

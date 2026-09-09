@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// `Region`) The region in which the link should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
@@ -205,6 +205,12 @@ namespace Pulumiverse.Scaleway.Interlink
         /// </summary>
         [Output("scwBgpConfigs")]
         public Output<ImmutableArray<Outputs.LinkScwBgpConfig>> ScwBgpConfigs { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the link.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// Status of the link.
@@ -514,6 +520,12 @@ namespace Pulumiverse.Scaleway.Interlink
             get => _scwBgpConfigs ?? (_scwBgpConfigs = new InputList<Inputs.LinkScwBgpConfigGetArgs>());
             set => _scwBgpConfigs = value;
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the link.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// Status of the link.

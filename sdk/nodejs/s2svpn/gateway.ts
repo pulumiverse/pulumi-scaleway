@@ -112,7 +112,11 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * `region`) The region in which the VPN gateway should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the VPN gateway.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * The status of the VPN gateway.
      */
@@ -128,7 +132,7 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the VPN gateway should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Gateway resource with the given unique name, arguments, and options.
@@ -154,6 +158,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicConfigs"] = state?.publicConfigs;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -179,6 +184,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["asn"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -235,6 +241,10 @@ export interface GatewayState {
      * `region`) The region in which the VPN gateway should be created.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the VPN gateway.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the VPN gateway.
      */

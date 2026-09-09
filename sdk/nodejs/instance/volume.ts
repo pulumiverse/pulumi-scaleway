@@ -98,7 +98,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Volume resource with the given unique name, arguments, and options.

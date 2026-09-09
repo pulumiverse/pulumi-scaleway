@@ -105,7 +105,7 @@ export class SecretVersion extends pulumi.CustomResource {
     /**
      * ). The region where the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The revision number of the secret version.
      */

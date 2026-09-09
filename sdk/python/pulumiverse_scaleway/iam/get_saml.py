@@ -27,7 +27,7 @@ class GetSamlResult:
     """
     A collection of values returned by getSaml.
     """
-    def __init__(__self__, entity_id=None, id=None, organization_id=None, service_provider=None, single_sign_on_url=None, status=None):
+    def __init__(__self__, entity_id=None, id=None, organization_id=None, service_provider=None, single_sign_on_url=None, srn=None, status=None):
         if entity_id and not isinstance(entity_id, str):
             raise TypeError("Expected argument 'entity_id' to be a str")
         pulumi.set(__self__, "entity_id", entity_id)
@@ -43,6 +43,9 @@ class GetSamlResult:
         if single_sign_on_url and not isinstance(single_sign_on_url, str):
             raise TypeError("Expected argument 'single_sign_on_url' to be a str")
         pulumi.set(__self__, "single_sign_on_url", single_sign_on_url)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -89,6 +92,14 @@ class GetSamlResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the SAML configuration
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         The status of the SAML configuration
@@ -107,6 +118,7 @@ class AwaitableGetSamlResult(GetSamlResult):
             organization_id=self.organization_id,
             service_provider=self.service_provider,
             single_sign_on_url=self.single_sign_on_url,
+            srn=self.srn,
             status=self.status)
 
 
@@ -141,6 +153,7 @@ def get_saml(organization_id: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         service_provider=pulumi.get(__ret__, 'service_provider'),
         single_sign_on_url=pulumi.get(__ret__, 'single_sign_on_url'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'))
 def get_saml_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSamlResult]:
@@ -172,4 +185,5 @@ def get_saml_output(organization_id: pulumi.Input[Optional[Optional[_builtins.st
         organization_id=pulumi.get(__response__, 'organization_id'),
         service_provider=pulumi.get(__response__, 'service_provider'),
         single_sign_on_url=pulumi.get(__response__, 'single_sign_on_url'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status')))

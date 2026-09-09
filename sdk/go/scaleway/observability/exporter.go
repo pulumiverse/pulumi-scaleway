@@ -48,8 +48,8 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewExporter(ctx, "main", &observability.ExporterArgs{
-//				ProjectId:    pulumi.String(pulumi.String(project.Id)),
-//				DatasourceId: pulumi.String(pulumi.String(scalewayMetrics.Sources[0].Id)),
+//				ProjectId:    pulumi.String(project.Id),
+//				DatasourceId: pulumi.String(scalewayMetrics.Sources[0].Id),
 //				Name:         pulumi.String("my-datadog-exporter"),
 //				ExportedProducts: pulumi.StringArray{
 //					pulumi.String("all"),
@@ -98,7 +98,7 @@ import (
 //				return err
 //			}
 //			otlpTarget, err := observability.NewSource(ctx, "otlp_target", &observability.SourceArgs{
-//				ProjectId:     pulumi.String(pulumi.String(project.Id)),
+//				ProjectId:     pulumi.String(project.Id),
 //				Name:          pulumi.String("otlp-target"),
 //				Type:          pulumi.String("metrics"),
 //				RetentionDays: pulumi.Int(31),
@@ -107,8 +107,8 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewExporter(ctx, "main", &observability.ExporterArgs{
-//				ProjectId:    pulumi.String(pulumi.String(project.Id)),
-//				DatasourceId: pulumi.String(pulumi.String(scalewayMetrics.Sources[0].Id)),
+//				ProjectId:    pulumi.String(project.Id),
+//				DatasourceId: pulumi.String(scalewayMetrics.Sources[0].Id),
 //				Name:         pulumi.String("my-otlp-exporter"),
 //				ExportedProducts: pulumi.StringArray{
 //					pulumi.String("lb"),
@@ -155,7 +155,7 @@ type Exporter struct {
 	// ) The ID of the Project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the exporter is located.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Status of the data export (`creating`, `ready`, `error`).
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Date and time of last update (RFC 3339 format).
@@ -415,8 +415,8 @@ func (o ExporterOutput) ProjectId() pulumi.StringOutput {
 }
 
 // ) The region where the exporter is located.
-func (o ExporterOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Exporter) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ExporterOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Exporter) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Status of the data export (`creating`, `ready`, `error`).

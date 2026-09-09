@@ -39,7 +39,7 @@ import (
 //			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
-//				IpId:  publicIp.ID(),
+//				IpId:  publicIp.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -83,7 +83,7 @@ import (
 //					DeleteOnTermination: pulumi.Bool(false),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					data.ID(),
+//					data.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -135,11 +135,11 @@ import (
 //				},
 //				RootVolume: &instance.ServerRootVolumeArgs{
 //					VolumeType: pulumi.String("sbs_volume"),
-//					VolumeId:   volume.ID(),
+//					VolumeId:   volume.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Filesystems: instance.ServerFilesystemArray{
 //					&instance.ServerFilesystemArgs{
-//						FilesystemId: terraformInstanceFilesystem.ID(),
+//						FilesystemId: terraformInstanceFilesystem.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -177,7 +177,7 @@ import (
 //					pulumi.String("hello"),
 //					pulumi.String("public"),
 //				},
-//				IpId: ip.ID(),
+//				IpId: ip.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -233,7 +233,7 @@ import (
 //			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:            pulumi.String("DEV1-S"),
 //				Image:           pulumi.String("ubuntu_jammy"),
-//				SecurityGroupId: www.ID(),
+//				SecurityGroupId: www.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -270,7 +270,7 @@ import (
 //				Type:  pulumi.String("DEV1-S"),
 //				PrivateNetworks: instance.ServerPrivateNetworkArray{
 //					&instance.ServerPrivateNetworkArgs{
-//						PnId: pn01.ID(),
+//						PnId: pn01.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -337,7 +337,7 @@ import (
 //				return err
 //			}
 //			fromSnapshot, err := block.NewVolume(ctx, "from_snapshot", &block.VolumeArgs{
-//				SnapshotId: pulumi.String(pulumi.String(snapshot.Id)),
+//				SnapshotId: pulumi.String(snapshot.Id),
 //				Iops:       pulumi.Int(5000),
 //			})
 //			if err != nil {
@@ -346,7 +346,7 @@ import (
 //			_, err = instance.NewServer(ctx, "from_snapshot", &instance.ServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
 //				RootVolume: &instance.ServerRootVolumeArgs{
-//					VolumeId:   fromSnapshot.ID(),
+//					VolumeId:   fromSnapshot.ID().ToIDOutput().ToStringOutput(),
 //					VolumeType: pulumi.String("sbs_volume"),
 //				},
 //			})
@@ -398,7 +398,7 @@ import (
 // - `pnId` - (Required) The private network ID where to connect.
 // - `macAddress` The private NIC MAC address.
 // - `status` The private NIC state.
-// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+// - `zone` - (Optional, Computed, Defaults to provider `zone`) The zone in which the server must be created.
 //
 // > **Important:** You can only attach an instance in the same zone as a private network.
 // **Important:** Instance supports a maximum of 8 different private networks.
@@ -499,7 +499,7 @@ type Server struct {
 	// - Binary files using filebase64.
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// `zone`) The zone in which the server should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewServer registers a new resource with the given unique name, arguments, and options.
@@ -1148,8 +1148,8 @@ func (o ServerOutput) UserData() pulumi.StringMapOutput {
 }
 
 // `zone`) The zone in which the server should be created.
-func (o ServerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o ServerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type ServerArrayOutput struct{ *pulumi.OutputState }

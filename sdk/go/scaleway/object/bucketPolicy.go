@@ -59,7 +59,7 @@ import (
 //			}
 //			_, err = iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
 //				Name:   pulumi.String("object-storage-policy"),
-//				UserId: pulumi.String(pulumi.String(user.Id)),
+//				UserId: pulumi.String(user.Id),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -83,10 +83,8 @@ import (
 //			}
 //			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
 //				Bucket: bucket.Name,
-//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
-//					bucketName := _args[0].(string)
-//					bucketName1 := _args[1].(string)
-//					var _zero string
+//				Policy: bucket.Name.ApplyT(func(name string) (pulumi.String, error) {
+//					var _zero pulumi.String
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"Version": "2023-04-17",
 //						"Id":      "MyBucketPolicy",
@@ -96,12 +94,12 @@ import (
 //								"Action": []string{
 //									"s3:*",
 //								},
-//								"Principal": map[string]interface{}{
+//								"Principal": map[string]string{
 //									"SCW": fmt.Sprintf("user_id:%v", user.Id),
 //								},
 //								"Resource": []string{
-//									bucketName,
-//									fmt.Sprintf("%v/*", bucketName1),
+//									name,
+//									fmt.Sprintf("%v/*", name),
 //								},
 //							},
 //						},
@@ -110,7 +108,7 @@ import (
 //						return _zero, err
 //					}
 //					json0 := string(tmpJSON0)
-//					return json0, nil
+//					return pulumi.String(json0), nil
 //				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
@@ -159,7 +157,7 @@ import (
 //			}
 //			_, err = iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
 //				Name:          pulumi.String("object-storage-policy"),
-//				ApplicationId: reading_app.ID(),
+//				ApplicationId: reading_app.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -182,11 +180,10 @@ import (
 //				return err
 //			}
 //			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
-//				Bucket: bucket.ID(),
-//				Policy: pulumi.All(reading_app.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
-//					id := _args[0].(string)
-//					bucketName := _args[1].(string)
-//					bucketName1 := _args[2].(string)
+//				Bucket: bucket.ID().ToIDOutput().ToStringOutput(),
+//				Policy: pulumi.All(reading_app.ID(), bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					id := _args[0].(pulumi.ID)
+//					name := _args[1].(string)
 //					var _zero string
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"Version": "2023-04-17",
@@ -194,7 +191,7 @@ import (
 //							map[string]interface{}{
 //								"Sid":    "Delegate read access",
 //								"Effect": "Allow",
-//								"Principal": map[string]interface{}{
+//								"Principal": map[string]string{
 //									"SCW": fmt.Sprintf("application_id:%v", id),
 //								},
 //								"Action": []string{
@@ -202,8 +199,8 @@ import (
 //									"s3:GetObject",
 //								},
 //								"Resource": []string{
-//									bucketName,
-//									fmt.Sprintf("%v/*", bucketName1),
+//									name,
+//									fmt.Sprintf("%v/*", name),
 //								},
 //							},
 //						},
@@ -246,7 +243,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewApiKey(ctx, "reading-api-key", &iam.ApiKeyArgs{
-//				ApplicationId: pulumi.String(pulumi.String(reading_app.Id)),
+//				ApplicationId: pulumi.String(reading_app.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -298,10 +295,8 @@ import (
 //			}
 //			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
 //				Bucket: bucket.Name,
-//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
-//					bucketName := _args[0].(string)
-//					bucketName1 := _args[1].(string)
-//					var _zero string
+//				Policy: bucket.Name.ApplyT(func(name string) (pulumi.String, error) {
+//					var _zero pulumi.String
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"Version": "2012-10-17",
 //						"Statement": []map[string]interface{}{
@@ -311,12 +306,12 @@ import (
 //									"s3:ListBucket",
 //									"s3:GetObjectTagging",
 //								},
-//								"Principal": map[string]interface{}{
+//								"Principal": map[string]string{
 //									"SCW": fmt.Sprintf("project_id:%v", _default.Id),
 //								},
 //								"Resource": []string{
-//									bucketName,
-//									fmt.Sprintf("%v/*", bucketName1),
+//									name,
+//									fmt.Sprintf("%v/*", name),
 //								},
 //							},
 //						},
@@ -325,7 +320,7 @@ import (
 //						return _zero, err
 //					}
 //					json0 := string(tmpJSON0)
-//					return json0, nil
+//					return pulumi.String(json0), nil
 //				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
@@ -373,8 +368,8 @@ type BucketPolicy struct {
 	//
 	// > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// (Computed) The Scaleway region this bucket resides in.
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewBucketPolicy registers a new resource with the given unique name, arguments, and options.
@@ -431,7 +426,7 @@ type bucketPolicyState struct {
 	//
 	// > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
+	// (Computed) The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 }
 
@@ -448,7 +443,7 @@ type BucketPolicyState struct {
 	//
 	// > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
-	// The Scaleway region this bucket resides in.
+	// (Computed) The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -469,7 +464,7 @@ type bucketPolicyArgs struct {
 	//
 	// > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
-	// The Scaleway region this bucket resides in.
+	// (Computed) The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
 }
 
@@ -487,7 +482,7 @@ type BucketPolicyArgs struct {
 	//
 	// > **Important:** The awsIamPolicyDocument data source may be used, as long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
-	// The Scaleway region this bucket resides in.
+	// (Computed) The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -599,9 +594,9 @@ func (o BucketPolicyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The Scaleway region this bucket resides in.
-func (o BucketPolicyOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BucketPolicy) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+// (Computed) The Scaleway region this bucket resides in.
+func (o BucketPolicyOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketPolicy) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type BucketPolicyArrayOutput struct{ *pulumi.OutputState }

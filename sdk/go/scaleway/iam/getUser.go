@@ -92,6 +92,7 @@ type LookupUserResult struct {
 	PhoneNumber       string  `pulumi:"phoneNumber"`
 	SendPasswordEmail bool    `pulumi:"sendPasswordEmail"`
 	SendWelcomeEmail  bool    `pulumi:"sendWelcomeEmail"`
+	Srn               string  `pulumi:"srn"`
 	Status            string  `pulumi:"status"`
 	// The tags associated with the user.
 	Tags      []string `pulumi:"tags"`
@@ -102,12 +103,8 @@ type LookupUserResult struct {
 }
 
 func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pulumi.InvokeOption) LookupUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupUserResultOutput, error) {
-			args := v.(LookupUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getUser:getUser", args, LookupUserResultOutput{}, options).(LookupUserResultOutput), nil
-		}).(LookupUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getUser:getUser", args, LookupUserResultOutput{}, options).(LookupUserResultOutput)
 }
 
 // A collection of arguments for invoking getUser.
@@ -214,6 +211,10 @@ func (o LookupUserResultOutput) SendPasswordEmail() pulumi.BoolOutput {
 
 func (o LookupUserResultOutput) SendWelcomeEmail() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupUserResult) bool { return v.SendWelcomeEmail }).(pulumi.BoolOutput)
+}
+
+func (o LookupUserResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupUserResultOutput) Status() pulumi.StringOutput {

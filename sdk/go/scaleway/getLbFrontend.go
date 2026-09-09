@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			lb01, err := loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
-//				IpId: ip01.ID(),
+//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //			})
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			bkd01, err := loadbalancers.NewBackend(ctx, "bkd01", &loadbalancers.BackendArgs{
-//				LbId:            lb01.ID(),
+//				LbId:            lb01.ID().ToIDOutput().ToStringOutput(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -51,19 +51,19 @@ import (
 //				return err
 //			}
 //			frt01, err := loadbalancers.NewFrontend(ctx, "frt01", &loadbalancers.FrontendArgs{
-//				LbId:        lb01.ID(),
-//				BackendId:   bkd01.ID(),
+//				LbId:        lb01.ID().ToIDOutput().ToStringOutput(),
+//				BackendId:   bkd01.ID().ToIDOutput().ToStringOutput(),
 //				InboundPort: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = loadbalancers.LookupFrontendOutput(ctx, loadbalancers.GetFrontendOutputArgs{
-//				FrontendId: frt01.ID(),
+//				FrontendId: frt01.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_ = loadbalancers.LookupFrontendOutput(ctx, loadbalancers.GetFrontendOutputArgs{
 //				Name: frt01.Name,
-//				LbId: lb01.ID(),
+//				LbId: lb01.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -116,12 +116,8 @@ type GetLbFrontendResult struct {
 }
 
 func GetLbFrontendOutput(ctx *pulumi.Context, args GetLbFrontendOutputArgs, opts ...pulumi.InvokeOption) GetLbFrontendResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetLbFrontendResultOutput, error) {
-			args := v.(GetLbFrontendArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getLbFrontend:getLbFrontend", args, GetLbFrontendResultOutput{}, options).(GetLbFrontendResultOutput), nil
-		}).(GetLbFrontendResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getLbFrontend:getLbFrontend", args, GetLbFrontendResultOutput{}, options).(GetLbFrontendResultOutput)
 }
 
 // A collection of arguments for invoking getLbFrontend.

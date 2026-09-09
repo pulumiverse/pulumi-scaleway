@@ -121,7 +121,7 @@ export class FlexibleIpMacAddress extends pulumi.CustomResource {
     /**
      * The zone of the Virtual Mac Address.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a FlexibleIpMacAddress resource with the given unique name, arguments, and options.

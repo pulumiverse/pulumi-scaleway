@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID(),
+//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   main.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -88,7 +88,7 @@ import (
 //				return err
 //			}
 //			_, err = loadbalancers.NewFrontend(ctx, "main", &loadbalancers.FrontendArgs{
-//				LbId:        main.ID(),
+//				LbId:        main.ID().ToIDOutput().ToStringOutput(),
 //				BackendId:   pulumi.Any(mainScalewayLbBackend.Id),
 //				Name:        pulumi.String("frontend01"),
 //				InboundPort: pulumi.Int(443),
@@ -106,11 +106,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID(),
+//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
 //				LbBackendConfigs: edgeservices.BackendStageLbBackendConfigArray{
 //					&edgeservices.BackendStageLbBackendConfigArgs{
 //						LbConfig: &edgeservices.BackendStageLbBackendConfigLbConfigArgs{
-//							Id:         main.ID(),
+//							Id:         main.ID().ToIDOutput().ToStringOutput(),
 //							FrontendId: pulumi.Any(id),
 //							IsSsl:      pulumi.Bool(true),
 //							Zone:       pulumi.String("fr-par-1"),
@@ -149,7 +149,7 @@ import (
 //				return err
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-container"),
 //				Image:       pulumi.String("nginx:1.29.4-alpine"),
 //				Port:        pulumi.Int(80),
@@ -164,9 +164,9 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID(),
+//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
 //				ContainerBackendConfig: &edgeservices.BackendStageContainerBackendConfigArgs{
-//					ContainerId: mainContainer.ID(),
+//					ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
 //					Region:      pulumi.String("fr-par"),
 //				},
 //			})
@@ -201,7 +201,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-function"),
 //				Runtime:     pulumi.String("node20"),
 //				Privacy:     pulumi.String("private"),
@@ -217,9 +217,9 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID(),
+//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
 //				FunctionBackendConfig: &edgeservices.BackendStageFunctionBackendConfigArgs{
-//					FunctionId: mainFunction.ID(),
+//					FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
 //					Region:     pulumi.String("fr-par"),
 //				},
 //			})

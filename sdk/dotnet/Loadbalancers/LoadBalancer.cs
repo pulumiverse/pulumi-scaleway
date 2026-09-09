@@ -292,7 +292,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

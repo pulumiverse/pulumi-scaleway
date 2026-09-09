@@ -325,10 +325,10 @@ namespace Pulumiverse.Scaleway.Object
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// (Computed) The Scaleway region this bucket resides in.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
 
         /// <summary>
@@ -406,7 +406,7 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// (Computed) The Scaleway region this bucket resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -444,7 +444,7 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The Scaleway region this bucket resides in.
+        /// (Computed) The Scaleway region this bucket resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

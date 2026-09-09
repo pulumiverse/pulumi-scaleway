@@ -136,15 +136,15 @@ import (
 //			}
 //			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
-//				Offer:     pulumi.String(pulumi.String(myOffer.OfferId)),
-//				Os:        pulumi.String(pulumi.String(byId.OsId)),
+//				Offer:     pulumi.String(myOffer.OfferId),
+//				Os:        pulumi.String(byId.OsId),
 //				SshKeyIds: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
-//				ServerId: base.ID(),
+//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
 //				Zone:     pulumi.String("fr-par-2"),
 //			})
 //			if err != nil {
@@ -184,6 +184,8 @@ type FlexibleIp struct {
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// The ID of the associated server.
 	ServerId pulumi.StringPtrOutput `pulumi:"serverId"`
+	// The Scaleway Resource Name (SRN) of the flexible IP.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the flexible IP.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A list of tags to apply to the flexible IP.
@@ -191,7 +193,7 @@ type FlexibleIp struct {
 	// The date and time of the last update of the Flexible IP (Format ISO 8601).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone of the Flexible IP.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewFlexibleIp registers a new resource with the given unique name, arguments, and options.
@@ -240,6 +242,8 @@ type flexibleIpState struct {
 	Reverse *string `pulumi:"reverse"`
 	// The ID of the associated server.
 	ServerId *string `pulumi:"serverId"`
+	// The Scaleway Resource Name (SRN) of the flexible IP.
+	Srn *string `pulumi:"srn"`
 	// The status of the flexible IP.
 	Status *string `pulumi:"status"`
 	// A list of tags to apply to the flexible IP.
@@ -267,6 +271,8 @@ type FlexibleIpState struct {
 	Reverse pulumi.StringPtrInput
 	// The ID of the associated server.
 	ServerId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the flexible IP.
+	Srn pulumi.StringPtrInput
 	// The status of the flexible IP.
 	Status pulumi.StringPtrInput
 	// A list of tags to apply to the flexible IP.
@@ -443,6 +449,11 @@ func (o FlexibleIpOutput) ServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.ServerId }).(pulumi.StringPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the flexible IP.
+func (o FlexibleIpOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
 // The status of the flexible IP.
 func (o FlexibleIpOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
@@ -459,8 +470,8 @@ func (o FlexibleIpOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone of the Flexible IP.
-func (o FlexibleIpOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o FlexibleIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type FlexibleIpArrayOutput struct{ *pulumi.OutputState }

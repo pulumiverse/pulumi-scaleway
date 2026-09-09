@@ -50,6 +50,7 @@ class _SamlState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  service_provider: pulumi.Input[Optional['SamlServiceProviderArgs']] = None,
                  single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Saml resources.
@@ -58,6 +59,7 @@ class _SamlState:
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
         :param pulumi.Input['SamlServiceProviderArgs'] service_provider: (Computed) The Service Provider information. It contains:
         :param pulumi.Input[_builtins.str] single_sign_on_url: (Computed) The single sign-on URL of the SAML Identity Provider.
+        :param pulumi.Input[_builtins.str] srn: (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
         :param pulumi.Input[_builtins.str] status: (Computed) The status of the SAML configuration.
         """
         if entity_id is not None:
@@ -68,6 +70,8 @@ class _SamlState:
             pulumi.set(__self__, "service_provider", service_provider)
         if single_sign_on_url is not None:
             pulumi.set(__self__, "single_sign_on_url", single_sign_on_url)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -118,6 +122,18 @@ class _SamlState:
     @single_sign_on_url.setter
     def single_sign_on_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "single_sign_on_url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -211,6 +227,7 @@ class Saml(pulumi.CustomResource):
             __props__.__dict__["entity_id"] = None
             __props__.__dict__["service_provider"] = None
             __props__.__dict__["single_sign_on_url"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
         super(Saml, __self__).__init__(
             'scaleway:iam/saml:Saml',
@@ -226,6 +243,7 @@ class Saml(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             service_provider: pulumi.Input[Optional[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']]] = None,
             single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Saml':
         """
         Get an existing Saml resource's state with the given name, id, and optional extra
@@ -238,6 +256,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
         :param pulumi.Input[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']] service_provider: (Computed) The Service Provider information. It contains:
         :param pulumi.Input[_builtins.str] single_sign_on_url: (Computed) The single sign-on URL of the SAML Identity Provider.
+        :param pulumi.Input[_builtins.str] srn: (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
         :param pulumi.Input[_builtins.str] status: (Computed) The status of the SAML configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -248,6 +267,7 @@ class Saml(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["service_provider"] = service_provider
         __props__.__dict__["single_sign_on_url"] = single_sign_on_url
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         return Saml(resource_name, opts=opts, __props__=__props__)
 
@@ -282,6 +302,14 @@ class Saml(pulumi.CustomResource):
         (Computed) The single sign-on URL of the SAML Identity Provider.
         """
         return pulumi.get(self, "single_sign_on_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

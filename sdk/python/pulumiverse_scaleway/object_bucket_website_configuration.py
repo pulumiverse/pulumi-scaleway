@@ -557,7 +557,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         The region you want to attach the resource to
         """

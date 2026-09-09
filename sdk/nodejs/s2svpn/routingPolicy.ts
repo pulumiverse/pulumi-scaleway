@@ -111,7 +111,11 @@ export class RoutingPolicy extends pulumi.CustomResource {
     /**
      * `region`) The region in which the routing policy should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the routing policy.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * The list of tags to apply to the routing policy.
      */
@@ -142,6 +146,7 @@ export class RoutingPolicy extends pulumi.CustomResource {
             resourceInputs["prefixFilterOuts"] = state?.prefixFilterOuts;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
@@ -155,6 +160,7 @@ export class RoutingPolicy extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -198,6 +204,10 @@ export interface RoutingPolicyState {
      * `region`) The region in which the routing policy should be created.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the routing policy.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The list of tags to apply to the routing policy.
      */

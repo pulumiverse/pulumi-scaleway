@@ -259,7 +259,7 @@ class ModelNodesSupportArgsDict(TypedDict):
     """
     The type of node supported.
     """
-    quantizations: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]]
+    quantizations: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgsDict']]]]]
     """
     A list of supported quantization options, including:
     """

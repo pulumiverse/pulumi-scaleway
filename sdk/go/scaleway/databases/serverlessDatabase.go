@@ -81,7 +81,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "db_access", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app access to serverless database in project"),
-//				ApplicationId: app.ID(),
+//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -97,7 +97,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: app.ID(),
+//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -110,15 +110,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("databaseConnectionString", pulumi.Any(std.Format(ctx, map[string]interface{}{
-//				"input": "postgres://%s:%s@%s",
-//				"args": []interface{}{
+//			ctx.Export("databaseConnectionString", pulumi.String(std.Format(ctx, &std.FormatArgs{
+//				Input: "postgres://%s:%s@%s",
+//				Args: []interface{}{
 //					app.ID(),
 //					apiKey.SecretKey,
-//					std.Trimprefix(ctx, map[string]interface{}{
-//						"input":  database.Endpoint,
-//						"prefix": "postgres://",
-//					}, nil).Result,
+//					std.Trimprefix(ctx, std.TrimprefixArgs{
+//						Input:  database.Endpoint,
+//						Prefix: "postgres://",
+//					}, nil).Result(),
 //				},
 //			}, nil).Result))
 //			return nil
@@ -149,7 +149,7 @@ type ServerlessDatabase struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewServerlessDatabase registers a new resource with the given unique name, arguments, and options.
@@ -366,8 +366,8 @@ func (o ServerlessDatabaseOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o ServerlessDatabaseOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerlessDatabase) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ServerlessDatabaseOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type ServerlessDatabaseArrayOutput struct{ *pulumi.OutputState }

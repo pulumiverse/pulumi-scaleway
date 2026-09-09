@@ -91,9 +91,9 @@ import * as utilities from "../utilities";
  * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "my-container",
  *     namespaceId: mainNamespace.id,
- *     image: Promise.all([main, mainGetImage, mainGetImage]).then(([main, mainGetImage, mainGetImage1]) => `${main.endpoint}/${mainGetImage.name}:${mainGetImage1.tags?.[0]}`),
+ *     image: Promise.all([main, mainGetImage]).then(([main, mainGetImage]) => `${main.endpoint}/${mainGetImage.name}:${mainGetImage.tags?.[0]}`),
  *     port: 80,
- *     registrySha256: std.timestamp({}).result,
+ *     registrySha256: std.timestamp({}).then(invoke => invoke.result),
  * });
  * ```
  *
@@ -113,17 +113,17 @@ import * as utilities from "../utilities";
  *     namespaceId: main.id,
  *     name: "nginx",
  * });
- * const nginxLatest = nginx.apply(nginx => scaleway.registry.getImageTagOutput({
+ * const nginxLatest = scaleway.registry.getImageTagOutput({
  *     imageId: nginx.id,
  *     name: "latest",
- * }));
+ * });
  * const mainNamespace = new scaleway.containers.Namespace("main", {name: "my-container-namespace"});
  * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "nginx-latest",
  *     namespaceId: mainNamespace.id,
- *     image: pulumi.all([nginx, nginxLatest]).apply(([nginx, nginxLatest]) => `${mainScalewayRegistryNamespace.endpoint}/${nginx.name}:${nginxLatest.name}`),
+ *     image: pulumi.interpolate`${mainScalewayRegistryNamespace.endpoint}/${nginx.name}:${nginxLatest.name}`,
  *     port: 80,
- *     registrySha256: nginxLatest.apply(nginxLatest => nginxLatest.digest),
+ *     registrySha256: nginxLatest.digest,
  * });
  * ```
  *
@@ -424,9 +424,9 @@ export class Container extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly publicEndpoint: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region in which the container was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
      *
@@ -709,7 +709,7 @@ export interface ContainerState {
      */
     publicEndpoint?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the container was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -873,7 +873,7 @@ export interface ContainerArgs {
      */
     protocol?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the container was created.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
      */
     region?: pulumi.Input<string | undefined>;
     /**

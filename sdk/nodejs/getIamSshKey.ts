@@ -66,6 +66,7 @@ export interface GetIamSshKeyResult {
      * The SSH public key string
      */
     readonly publicKey: string;
+    readonly srn: string;
     readonly sshKeyId?: string;
     /**
      * The date and time of the last update of the SSH key.

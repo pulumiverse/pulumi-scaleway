@@ -111,12 +111,8 @@ type LookupKeyManagerKeyResult struct {
 }
 
 func LookupKeyManagerKeyOutput(ctx *pulumi.Context, args LookupKeyManagerKeyOutputArgs, opts ...pulumi.InvokeOption) LookupKeyManagerKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupKeyManagerKeyResultOutput, error) {
-			args := v.(LookupKeyManagerKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getKeyManagerKey:getKeyManagerKey", args, LookupKeyManagerKeyResultOutput{}, options).(LookupKeyManagerKeyResultOutput), nil
-		}).(LookupKeyManagerKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getKeyManagerKey:getKeyManagerKey", args, LookupKeyManagerKeyResultOutput{}, options).(LookupKeyManagerKeyResultOutput)
 }
 
 // A collection of arguments for invoking getKeyManagerKey.

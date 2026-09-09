@@ -83,7 +83,7 @@ export class FileFilesystem extends pulumi.CustomResource {
     /**
      * `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The size of the filesystem in gigabytes (10⁹ bytes), with a granularity of 1 GB.
      * - Minimum: 25 GB

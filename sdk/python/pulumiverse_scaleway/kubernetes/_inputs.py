@@ -737,7 +737,7 @@ class PoolNodeArgsDict(TypedDict):
 
     > Note: In order to use the `create_before_destroy` option of the `lifecycle` field, `name` has to be generated, otherwise Terraform will try to create the new pool with the same name and the API does not allow that.
     """
-    private_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]]
+    private_ips: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['PoolNodePrivateIpArgsDict']]]]]
     """
     The list of private IPv4 and IPv6 addresses associated with the node.
     """

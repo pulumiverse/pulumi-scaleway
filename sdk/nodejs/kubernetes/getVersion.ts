@@ -77,7 +77,7 @@ export interface GetVersionResult {
     readonly id: string;
     readonly majorMinorOnly: string;
     readonly name: string;
-    readonly region?: string;
+    readonly region: string;
     /**
      * The Scaleway Resource Name (SRN) of the version.
      */

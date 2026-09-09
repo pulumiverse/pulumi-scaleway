@@ -74,7 +74,7 @@ type Volume struct {
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVolume registers a new resource with the given unique name, arguments, and options.
@@ -347,8 +347,8 @@ func (o VolumeOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the volume should be created.
-func (o VolumeOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o VolumeOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }

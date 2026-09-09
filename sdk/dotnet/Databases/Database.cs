@@ -87,7 +87,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// Size of the database (in bytes).

@@ -166,7 +166,7 @@ type DatabaseInstance struct {
 	ReadReplicas DatabaseInstanceReadReplicaArrayOutput `pulumi:"readReplicas"`
 	// `region`) The region
 	// in which the Database Instance should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
@@ -791,8 +791,8 @@ func (o DatabaseInstanceOutput) ReadReplicas() DatabaseInstanceReadReplicaArrayO
 
 // `region`) The region
 // in which the Database Instance should be created.
-func (o DatabaseInstanceOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DatabaseInstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Map of engine settings to be set on a running instance.

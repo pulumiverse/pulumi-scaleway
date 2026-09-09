@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway
     ///         CloudInit = Std.File.Invoke(new()
     ///         {
     ///             Input = "userdata.yaml",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });
@@ -277,7 +277,7 @@ namespace Pulumiverse.Scaleway
         /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>

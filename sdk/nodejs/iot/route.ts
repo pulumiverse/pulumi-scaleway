@@ -165,9 +165,9 @@ export class Route extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region in which the Route is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
@@ -247,7 +247,7 @@ export interface RouteState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the Route is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -281,7 +281,7 @@ export interface RouteArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region in which the Route is attached to.
+     * (Optional, Computed, Defaults to provider `region`) The region in which the Route is attached to.
      */
     region?: pulumi.Input<string | undefined>;
     /**

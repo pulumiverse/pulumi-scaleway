@@ -224,7 +224,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// URL of the partner's portal.
         /// </summary>
         public readonly string PortalUrl;
-        public readonly string? Region;
+        public readonly string Region;
         /// <summary>
         /// Last update date of the partner.
         /// </summary>
@@ -246,7 +246,7 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string portalUrl,
 
-            string? region,
+            string region,
 
             string updatedAt)
         {

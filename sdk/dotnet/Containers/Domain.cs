@@ -77,9 +77,9 @@ namespace Pulumiverse.Scaleway.Containers
     ///                 {
     ///                     Input = app.PublicEndpoint,
     ///                     Prefix = "https://",
-    ///                 }).Result,
+    ///                 }).Apply(invoke =&gt; invoke.Result),
     ///             },
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         Ttl = 3600,
     ///     });
     /// 
@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway.Containers
         /// `Region`) The region in which the container exists.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// (Deprecated) The URL used to query the container.

@@ -199,6 +199,7 @@ class _GatewayState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_configs: pulumi.Input[Optional[Sequence[pulumi.Input['GatewayPublicConfigArgs']]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -217,6 +218,7 @@ class _GatewayState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the VPN gateway is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayPublicConfigArgs']]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the VPN gateway should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the VPN gateway.
         :param pulumi.Input[_builtins.str] status: The status of the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the VPN gateway.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the VPN gateway (RFC 3339 format).
@@ -244,6 +246,8 @@ class _GatewayState:
             pulumi.set(__self__, "public_configs", public_configs)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -384,6 +388,18 @@ class _GatewayState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the VPN gateway.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -589,6 +605,7 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["asn"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Gateway, __self__).__init__(
@@ -612,6 +629,7 @@ class Gateway(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -634,6 +652,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the VPN gateway is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the VPN gateway should be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the VPN gateway.
         :param pulumi.Input[_builtins.str] status: The status of the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the VPN gateway.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the VPN gateway (RFC 3339 format).
@@ -654,6 +673,7 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_configs"] = public_configs
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -742,11 +762,19 @@ class Gateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the VPN gateway should be created.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the VPN gateway.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter
@@ -774,7 +802,7 @@ class Gateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def zone(self) -> pulumi.Output[_builtins.str]:
         """
         `zone`) The zone in which the VPN gateway should be created.
         """

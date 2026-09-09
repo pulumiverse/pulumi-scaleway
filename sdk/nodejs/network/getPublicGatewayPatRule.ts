@@ -119,6 +119,7 @@ export interface GetPublicGatewayPatRuleResult {
      * The public port to listen on.
      */
     readonly publicPort: number;
+    readonly srn: string;
     readonly updatedAt: string;
     readonly zone?: string;
 }

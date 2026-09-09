@@ -1047,19 +1047,19 @@ class KubernetesCluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = kubernetes.helm_sh.v3.Release("nginx_ingress",
-            name=nginx-ingress,
-            namespace=kube-system,
+        nginx_ingress = kubernetes.helm.v3.Release("nginx_ingress",
+            name="nginx-ingress",
+            namespace="kube-system",
             repository_opts={
-                repo: https://kubernetes.github.io/ingress-nginx,
+                "repo": "https://kubernetes.github.io/ingress-nginx",
             },
-            chart=ingress-nginx,
+            chart="ingress-nginx",
             values={
-                controller.service.loadBalancerIP: nginx_ip.ip_address,
-                controller.config.use-proxy-protocol: true,
-                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2: true,
-                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone: nginx_ip.zone,
-                controller.service.externalTrafficPolicy: Local,
+                "controller.service.loadBalancerIP": nginx_ip.ip_address,
+                "controller.config.use-proxy-protocol": "true",
+                "controller.service.annotations.service\\\\.beta\\\\.kubernetes\\\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
+                "controller.service.annotations.service\\\\.beta\\\\.kubernetes\\\\.io/scw-loadbalancer-zone": nginx_ip.zone,
+                "controller.service.externalTrafficPolicy": "Local",
             })
         ```
 
@@ -1314,19 +1314,19 @@ class KubernetesCluster(pulumi.CustomResource):
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
-        nginx_ingress = kubernetes.helm_sh.v3.Release("nginx_ingress",
-            name=nginx-ingress,
-            namespace=kube-system,
+        nginx_ingress = kubernetes.helm.v3.Release("nginx_ingress",
+            name="nginx-ingress",
+            namespace="kube-system",
             repository_opts={
-                repo: https://kubernetes.github.io/ingress-nginx,
+                "repo": "https://kubernetes.github.io/ingress-nginx",
             },
-            chart=ingress-nginx,
+            chart="ingress-nginx",
             values={
-                controller.service.loadBalancerIP: nginx_ip.ip_address,
-                controller.config.use-proxy-protocol: true,
-                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-proxy-protocol-v2: true,
-                controller.service.annotations.service\\.beta\\.kubernetes\\.io/scw-loadbalancer-zone: nginx_ip.zone,
-                controller.service.externalTrafficPolicy: Local,
+                "controller.service.loadBalancerIP": nginx_ip.ip_address,
+                "controller.config.use-proxy-protocol": "true",
+                "controller.service.annotations.service\\\\.beta\\\\.kubernetes\\\\.io/scw-loadbalancer-proxy-protocol-v2": "true",
+                "controller.service.annotations.service\\\\.beta\\\\.kubernetes\\\\.io/scw-loadbalancer-zone": nginx_ip.zone,
+                "controller.service.externalTrafficPolicy": "Local",
             })
         ```
 
@@ -1800,7 +1800,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the cluster should be created.
         """

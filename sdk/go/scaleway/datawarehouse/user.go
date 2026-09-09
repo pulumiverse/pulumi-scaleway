@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = datawarehouse.NewUser(ctx, "main", &datawarehouse.UserArgs{
-//				DeploymentId: main.ID(),
+//				DeploymentId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:         pulumi.String("my_user"),
 //				Password:     pulumi.String("user_password_123"),
 //			})
@@ -84,7 +84,7 @@ import (
 //				return err
 //			}
 //			_, err = datawarehouse.NewUser(ctx, "admin", &datawarehouse.UserArgs{
-//				DeploymentId: main.ID(),
+//				DeploymentId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:         pulumi.String("admin_user"),
 //				Password:     pulumi.String("admin_password_456"),
 //				IsAdmin:      pulumi.Bool(true),
@@ -117,7 +117,9 @@ type User struct {
 	// Password for the ClickHouse user.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// `region`) The region in which the user should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -173,6 +175,8 @@ type userState struct {
 	Password *string `pulumi:"password"`
 	// `region`) The region in which the user should be created.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn *string `pulumi:"srn"`
 }
 
 type UserState struct {
@@ -186,6 +190,8 @@ type UserState struct {
 	Password pulumi.StringPtrInput
 	// `region`) The region in which the user should be created.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the user.
+	Srn pulumi.StringPtrInput
 }
 
 func (UserState) ElementType() reflect.Type {
@@ -327,8 +333,13 @@ func (o UserOutput) Password() pulumi.StringOutput {
 }
 
 // `region`) The region in which the user should be created.
-func (o UserOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o UserOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the user.
+func (o UserOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type UserArrayOutput struct{ *pulumi.OutputState }

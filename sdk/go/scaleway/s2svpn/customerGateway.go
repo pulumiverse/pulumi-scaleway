@@ -100,7 +100,7 @@ import (
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				IpIds: pulumi.StringArray{
-//					vpnEndpointIp.ID(),
+//					vpnEndpointIp.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -145,7 +145,9 @@ type CustomerGateway struct {
 	// `projectId`) The ID of the project the customer gateway is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the customer gateway should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the customer gateway.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of tags to apply to the customer gateway.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the customer gateway (RFC 3339 format).
@@ -201,6 +203,8 @@ type customerGatewayState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the customer gateway should be created.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the customer gateway.
+	Srn *string `pulumi:"srn"`
 	// The list of tags to apply to the customer gateway.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the customer gateway (RFC 3339 format).
@@ -224,6 +228,8 @@ type CustomerGatewayState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the customer gateway should be created.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the customer gateway.
+	Srn pulumi.StringPtrInput
 	// The list of tags to apply to the customer gateway.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the customer gateway (RFC 3339 format).
@@ -392,8 +398,13 @@ func (o CustomerGatewayOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the customer gateway should be created.
-func (o CustomerGatewayOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomerGateway) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o CustomerGatewayOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the customer gateway.
+func (o CustomerGatewayOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of tags to apply to the customer gateway.

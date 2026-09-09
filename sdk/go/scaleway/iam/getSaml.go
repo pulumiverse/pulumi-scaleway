@@ -69,17 +69,15 @@ type LookupSamlResult struct {
 	ServiceProvider GetSamlServiceProvider `pulumi:"serviceProvider"`
 	// The single sign-on URL of the SAML Identity Provider
 	SingleSignOnUrl string `pulumi:"singleSignOnUrl"`
+	// The Scaleway Resource Name (SRN) of the SAML configuration
+	Srn string `pulumi:"srn"`
 	// The status of the SAML configuration
 	Status string `pulumi:"status"`
 }
 
 func LookupSamlOutput(ctx *pulumi.Context, args LookupSamlOutputArgs, opts ...pulumi.InvokeOption) LookupSamlResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSamlResultOutput, error) {
-			args := v.(LookupSamlArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getSaml:getSaml", args, LookupSamlResultOutput{}, options).(LookupSamlResultOutput), nil
-		}).(LookupSamlResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getSaml:getSaml", args, LookupSamlResultOutput{}, options).(LookupSamlResultOutput)
 }
 
 // A collection of arguments for invoking getSaml.
@@ -130,6 +128,11 @@ func (o LookupSamlResultOutput) ServiceProvider() GetSamlServiceProviderOutput {
 // The single sign-on URL of the SAML Identity Provider
 func (o LookupSamlResultOutput) SingleSignOnUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSamlResult) string { return v.SingleSignOnUrl }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the SAML configuration
+func (o LookupSamlResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSamlResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the SAML configuration

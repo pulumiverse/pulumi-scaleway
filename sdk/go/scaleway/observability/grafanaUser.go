@@ -118,7 +118,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewGrafanaUser(ctx, "main", &observability.GrafanaUserArgs{
-//				ProjectId: project.ID(),
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //				Login:     pulumi.String("my-awesome-user"),
 //				Role:      pulumi.String("editor"),
 //			})

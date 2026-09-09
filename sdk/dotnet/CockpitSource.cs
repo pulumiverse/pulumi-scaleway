@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway
         /// ) The region where the data source is located.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.

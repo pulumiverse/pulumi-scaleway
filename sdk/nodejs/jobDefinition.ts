@@ -153,7 +153,7 @@ export class JobDefinition extends pulumi.CustomResource {
     /**
      * `region`) The region of the Job.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Defines a retry policy for the job.
      */

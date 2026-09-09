@@ -161,7 +161,7 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * `region`) The region in which the deployment should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Number of replicas. Can be updated in place via the deployment configuration API.
      */
@@ -170,6 +170,10 @@ export class Deployment extends pulumi.CustomResource {
      * Number of shards for the deployment. This value is immutable and cannot be changed after creation.
      */
     declare public readonly shardCount: pulumi.Output<number>;
+    /**
+     * The Scaleway Resource Name (SRN) of the deployment.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
     /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */
@@ -218,6 +222,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["region"] = state?.region;
             resourceInputs["replicaCount"] = state?.replicaCount;
             resourceInputs["shardCount"] = state?.shardCount;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["started"] = state?.started;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -257,6 +262,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["version"] = args?.version;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["publicNetworks"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -330,6 +336,10 @@ export interface DeploymentState {
      * Number of shards for the deployment. This value is immutable and cannot be changed after creation.
      */
     shardCount?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the deployment.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
      */

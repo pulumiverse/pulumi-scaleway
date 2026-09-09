@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupGatewayNetworkOutput(ctx, network.GetGatewayNetworkOutputArgs{
-//				GatewayNetworkId: main.ID(),
+//				GatewayNetworkId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_, err = network.LookupGatewayNetwork(ctx, &network.LookupGatewayNetworkArgs{
 //				GatewayId:        pulumi.StringRef(pg01.Id),
@@ -87,6 +87,7 @@ type LookupGatewayNetworkResult struct {
 	MacAddress       string                        `pulumi:"macAddress"`
 	PrivateIps       []GetGatewayNetworkPrivateIp  `pulumi:"privateIps"`
 	PrivateNetworkId *string                       `pulumi:"privateNetworkId"`
+	Srn              string                        `pulumi:"srn"`
 	StaticAddress    string                        `pulumi:"staticAddress"`
 	Status           string                        `pulumi:"status"`
 	UpdatedAt        string                        `pulumi:"updatedAt"`
@@ -94,12 +95,8 @@ type LookupGatewayNetworkResult struct {
 }
 
 func LookupGatewayNetworkOutput(ctx *pulumi.Context, args LookupGatewayNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupGatewayNetworkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGatewayNetworkResultOutput, error) {
-			args := v.(LookupGatewayNetworkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getGatewayNetwork:getGatewayNetwork", args, LookupGatewayNetworkResultOutput{}, options).(LookupGatewayNetworkResultOutput), nil
-		}).(LookupGatewayNetworkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getGatewayNetwork:getGatewayNetwork", args, LookupGatewayNetworkResultOutput{}, options).(LookupGatewayNetworkResultOutput)
 }
 
 // A collection of arguments for invoking getGatewayNetwork.
@@ -178,6 +175,10 @@ func (o LookupGatewayNetworkResultOutput) PrivateIps() GetGatewayNetworkPrivateI
 
 func (o LookupGatewayNetworkResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupGatewayNetworkResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupGatewayNetworkResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGatewayNetworkResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupGatewayNetworkResultOutput) StaticAddress() pulumi.StringOutput {

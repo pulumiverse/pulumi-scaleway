@@ -42,20 +42,20 @@ import (
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("test-container-data"),
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by container name
 //			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
-//				NamespaceId: main.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:        mainContainer.Name,
 //			}, nil)
 //			// Get info by container ID
 //			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
-//				NamespaceId: main.ID(),
-//				ContainerId: mainContainer.ID(),
+//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -175,12 +175,8 @@ type LookupContainerResult struct {
 }
 
 func LookupContainerOutput(ctx *pulumi.Context, args LookupContainerOutputArgs, opts ...pulumi.InvokeOption) LookupContainerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupContainerResultOutput, error) {
-			args := v.(LookupContainerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getContainer:getContainer", args, LookupContainerResultOutput{}, options).(LookupContainerResultOutput), nil
-		}).(LookupContainerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getContainer:getContainer", args, LookupContainerResultOutput{}, options).(LookupContainerResultOutput)
 }
 
 // A collection of arguments for invoking getContainer.

@@ -48,12 +48,8 @@ type GetVerifyResult struct {
 }
 
 func GetVerifyOutput(ctx *pulumi.Context, args GetVerifyOutputArgs, opts ...pulumi.InvokeOption) GetVerifyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetVerifyResultOutput, error) {
-			args := v.(GetVerifyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:keymanager/getVerify:getVerify", args, GetVerifyResultOutput{}, options).(GetVerifyResultOutput), nil
-		}).(GetVerifyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:keymanager/getVerify:getVerify", args, GetVerifyResultOutput{}, options).(GetVerifyResultOutput)
 }
 
 // A collection of arguments for invoking getVerify.

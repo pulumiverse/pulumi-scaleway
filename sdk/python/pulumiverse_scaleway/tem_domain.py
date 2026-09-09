@@ -1065,7 +1065,7 @@ class TemDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`). The region in which the domain should be created.
         > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.

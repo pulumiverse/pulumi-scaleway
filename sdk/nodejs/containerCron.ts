@@ -94,10 +94,10 @@ export class ContainerCron extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * (Defaults to provider `region`) The region
+     * (Optional, Computed, Defaults to provider `region`) The region
      * in which the CRON trigger is created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
      */
@@ -169,7 +169,7 @@ export interface ContainerCronState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region
+     * (Optional, Computed, Defaults to provider `region`) The region
      * in which the CRON trigger is created.
      */
     region?: pulumi.Input<string | undefined>;
@@ -200,7 +200,7 @@ export interface ContainerCronArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * (Defaults to provider `region`) The region
+     * (Optional, Computed, Defaults to provider `region`) The region
      * in which the CRON trigger is created.
      */
     region?: pulumi.Input<string | undefined>;

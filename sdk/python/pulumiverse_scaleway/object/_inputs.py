@@ -56,7 +56,7 @@ class BucketAclAccessControlPolicyArgsDict(TypedDict):
     """
     Configuration block of the bucket project owner's display organization ID.
     """
-    grants: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]]
+    grants: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgsDict']]]]]
     """
     Grant
     """
@@ -104,7 +104,7 @@ class BucketAclAccessControlPolicyGrantArgsDict(TypedDict):
     """
     Logging permissions assigned to the grantee for the bucket.
     """
-    grantee: NotRequired[pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgs']]]
+    grantee: NotRequired[pulumi.Input[Optional['BucketAclAccessControlPolicyGrantGranteeArgsDict']]]
     """
     Configuration block for the project being granted permissions.
     """
@@ -407,7 +407,7 @@ class BucketLifecycleRuleArgsDict(TypedDict):
     > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`,
     as any incomplete multipart upload will be billed.
     """
-    expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleRuleExpirationArgs']]]
+    expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleRuleExpirationArgsDict']]]
     """
     Specifies a period of expiration for the object.
     """
@@ -416,12 +416,12 @@ class BucketLifecycleRuleArgsDict(TypedDict):
     Unique identifier for the rule. Must be less than or
     equal to 255 characters in length.
     """
-    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleRuleNoncurrentVersionExpirationArgs']]]
+    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleRuleNoncurrentVersionExpirationArgsDict']]]
     """
     Configuration block that
     specifies when noncurrent object versions expire. Supports the following:
     """
-    noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]]
+    noncurrent_version_transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleNoncurrentVersionTransitionArgsDict']]]]]
     """
     Set of configuration blocks
     that specify the transition rule for the lifecycle rule that describes when
@@ -447,7 +447,7 @@ class BucketLifecycleRuleArgsDict(TypedDict):
     """
     Specifies object tags key and value.
     """
-    transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]]
+    transitions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['BucketLifecycleRuleTransitionArgsDict']]]]]
     """
     Specifies a period in the object's transitions.
     """
@@ -1095,7 +1095,7 @@ class BucketLockConfigurationRuleDefaultRetentionArgs:
 
 
 class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
-    apply_server_side_encryption_by_default: NotRequired[pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]]
+    apply_server_side_encryption_by_default: NotRequired[pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]]
     """
     Single object for setting server-side encryption by default.
     """

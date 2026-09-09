@@ -157,6 +157,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> SecretKey { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the API key.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the last update of the IAM API key.
         /// </summary>
         [Output("updatedAt")]
@@ -328,6 +334,12 @@ namespace Pulumiverse.Scaleway.Iam
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the API key.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the IAM API key.

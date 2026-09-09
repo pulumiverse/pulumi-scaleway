@@ -85,6 +85,7 @@ export interface GetInstancePrivateNicResult {
     readonly privateIps: outputs.GetInstancePrivateNicPrivateIp[];
     readonly privateNetworkId?: string;
     readonly privateNicId?: string;
+    readonly projectId: string;
     readonly serverId: string;
     readonly tags?: string[];
     readonly zone?: string;

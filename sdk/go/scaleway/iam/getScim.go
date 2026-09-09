@@ -68,12 +68,8 @@ type LookupScimResult struct {
 }
 
 func LookupScimOutput(ctx *pulumi.Context, args LookupScimOutputArgs, opts ...pulumi.InvokeOption) LookupScimResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupScimResultOutput, error) {
-			args := v.(LookupScimArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getScim:getScim", args, LookupScimResultOutput{}, options).(LookupScimResultOutput), nil
-		}).(LookupScimResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getScim:getScim", args, LookupScimResultOutput{}, options).(LookupScimResultOutput)
 }
 
 // A collection of arguments for invoking getScim.

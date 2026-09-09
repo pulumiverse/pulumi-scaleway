@@ -51,7 +51,7 @@ import (
 //			// Create a version of fooii containing data
 //			_, err = secrets.NewVersion(ctx, "main", &secrets.VersionArgs{
 //				Description: pulumi.String("your description"),
-//				SecretId:    main.ID(),
+//				SecretId:    main.ID().ToIDOutput().ToStringOutput(),
 //				Data:        pulumi.String("your_secret"),
 //			})
 //			if err != nil {
@@ -59,7 +59,7 @@ import (
 //			}
 //			// Retrieve the secret version specified by the secret ID and the desired version
 //			dataBySecretId := secrets.LookupVersionOutput(ctx, secrets.GetVersionOutputArgs{
-//				SecretId: main.ID(),
+//				SecretId: main.ID().ToIDOutput().ToStringOutput(),
 //				Revision: pulumi.String("1"),
 //			}, nil)
 //			// Retrieve the secret version specified by the secret name and the desired version
@@ -67,12 +67,8 @@ import (
 //				SecretName: main.Name,
 //				Revision:   pulumi.String("1"),
 //			}, nil)
-//			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.ApplyT(func(dataBySecretName secrets.GetVersionResult) (*string, error) {
-//				return &dataBySecretName.Data, nil
-//			}).(pulumi.StringPtrOutput))
-//			ctx.Export("scalewaySecretAccessPayloadById", dataBySecretId.ApplyT(func(dataBySecretId secrets.GetVersionResult) (*string, error) {
-//				return &dataBySecretId.Data, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.Data())
+//			ctx.Export("scalewaySecretAccessPayloadById", dataBySecretId.Data())
 //			return nil
 //		})
 //	}
@@ -139,12 +135,8 @@ type LookupVersionResult struct {
 }
 
 func LookupVersionOutput(ctx *pulumi.Context, args LookupVersionOutputArgs, opts ...pulumi.InvokeOption) LookupVersionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupVersionResultOutput, error) {
-			args := v.(LookupVersionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:secrets/getVersion:getVersion", args, LookupVersionResultOutput{}, options).(LookupVersionResultOutput), nil
-		}).(LookupVersionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:secrets/getVersion:getVersion", args, LookupVersionResultOutput{}, options).(LookupVersionResultOutput)
 }
 
 // A collection of arguments for invoking getVersion.

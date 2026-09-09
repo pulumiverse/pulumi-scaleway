@@ -66,7 +66,7 @@ type InstancePlacementGroup struct {
 	// A list of tags to apply to the placement group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the placement group should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewInstancePlacementGroup registers a new resource with the given unique name, arguments, and options.
@@ -301,8 +301,8 @@ func (o InstancePlacementGroupOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the placement group should be created.
-func (o InstancePlacementGroupOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o InstancePlacementGroupOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type InstancePlacementGroupArrayOutput struct{ *pulumi.OutputState }

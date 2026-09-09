@@ -16,6 +16,10 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'GroupLoadBalancerConfiguration',
+    'GroupLoadBalancerConfigurationAutoHealing',
+    'GroupLoadBalancerConfigurationBackend',
+    'GroupScalingPolicy',
     'InstanceGroupCapacity',
     'InstanceGroupLoadBalancer',
     'InstancePolicyMetric',
@@ -26,6 +30,334 @@ __all__ = [
     'GetInstanceGroupLoadBalancerResult',
     'GetInstancePolicyMetricResult',
 ]
+
+@pulumi.output_type
+class GroupLoadBalancerConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "loadBalancerId":
+            suggest = "load_balancer_id"
+        elif key == "autoHealing":
+            suggest = "auto_healing"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupLoadBalancerConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupLoadBalancerConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupLoadBalancerConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backends: Sequence['outputs.GroupLoadBalancerConfigurationBackend'],
+                 load_balancer_id: _builtins.str,
+                 auto_healing: Optional['outputs.GroupLoadBalancerConfigurationAutoHealing'] = None):
+        """
+        :param Sequence['GroupLoadBalancerConfigurationBackendArgs'] backends: The list of load balancer backend configurations.
+               
+               > The `backends` block contains:
+        :param _builtins.str load_balancer_id: The ID of the load balancer.
+        :param 'GroupLoadBalancerConfigurationAutoHealingArgs' auto_healing: The auto-healing configuration.
+               
+               > The `auto_healing` block contains:
+        """
+        pulumi.set(__self__, "backends", backends)
+        pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if auto_healing is not None:
+            pulumi.set(__self__, "auto_healing", auto_healing)
+
+    @_builtins.property
+    @pulumi.getter
+    def backends(self) -> Sequence['outputs.GroupLoadBalancerConfigurationBackend']:
+        """
+        The list of load balancer backend configurations.
+
+        > The `backends` block contains:
+        """
+        return pulumi.get(self, "backends")
+
+    @_builtins.property
+    @pulumi.getter(name="loadBalancerId")
+    def load_balancer_id(self) -> _builtins.str:
+        """
+        The ID of the load balancer.
+        """
+        return pulumi.get(self, "load_balancer_id")
+
+    @_builtins.property
+    @pulumi.getter(name="autoHealing")
+    def auto_healing(self) -> Optional['outputs.GroupLoadBalancerConfigurationAutoHealing']:
+        """
+        The auto-healing configuration.
+
+        > The `auto_healing` block contains:
+        """
+        return pulumi.get(self, "auto_healing")
+
+
+@pulumi.output_type
+class GroupLoadBalancerConfigurationAutoHealing(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gracePeriod":
+            suggest = "grace_period"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupLoadBalancerConfigurationAutoHealing. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupLoadBalancerConfigurationAutoHealing.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupLoadBalancerConfigurationAutoHealing.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[_builtins.bool] = None,
+                 grace_period: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enabled: Whether auto-healing is enabled.
+        :param _builtins.str grace_period: The grace period for health checks.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if grace_period is not None:
+            pulumi.set(__self__, "grace_period", grace_period)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        Whether auto-healing is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="gracePeriod")
+    def grace_period(self) -> Optional[_builtins.str]:
+        """
+        The grace period for health checks.
+        """
+        return pulumi.get(self, "grace_period")
+
+
+@pulumi.output_type
+class GroupLoadBalancerConfigurationBackend(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addressFamily":
+            suggest = "address_family"
+        elif key == "backendId":
+            suggest = "backend_id"
+        elif key == "privateNetworkId":
+            suggest = "private_network_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupLoadBalancerConfigurationBackend. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupLoadBalancerConfigurationBackend.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupLoadBalancerConfigurationBackend.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address_family: _builtins.str,
+                 backend_id: _builtins.str,
+                 private_network_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str address_family: The IP address family (IPv4 or IPv6).
+        :param _builtins.str backend_id: The ID of the load balancer backend.
+        :param _builtins.str private_network_id: The ID of the private network.
+        """
+        pulumi.set(__self__, "address_family", address_family)
+        pulumi.set(__self__, "backend_id", backend_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> _builtins.str:
+        """
+        The IP address family (IPv4 or IPv6).
+        """
+        return pulumi.get(self, "address_family")
+
+    @_builtins.property
+    @pulumi.getter(name="backendId")
+    def backend_id(self) -> _builtins.str:
+        """
+        The ID of the load balancer backend.
+        """
+        return pulumi.get(self, "backend_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "private_network_id")
+
+
+@pulumi.output_type
+class GroupScalingPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maximumSize":
+            suggest = "maximum_size"
+        elif key == "minimumSize":
+            suggest = "minimum_size"
+        elif key == "cpuTarget":
+            suggest = "cpu_target"
+        elif key == "fixedSize":
+            suggest = "fixed_size"
+        elif key == "memoryTarget":
+            suggest = "memory_target"
+        elif key == "scaleInCooldown":
+            suggest = "scale_in_cooldown"
+        elif key == "scaleInStep":
+            suggest = "scale_in_step"
+        elif key == "scaleOutCooldown":
+            suggest = "scale_out_cooldown"
+        elif key == "scaleOutStep":
+            suggest = "scale_out_step"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupScalingPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupScalingPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupScalingPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 maximum_size: _builtins.int,
+                 minimum_size: _builtins.int,
+                 cpu_target: Optional[_builtins.int] = None,
+                 fixed_size: Optional[_builtins.int] = None,
+                 memory_target: Optional[_builtins.int] = None,
+                 scale_in_cooldown: Optional[_builtins.str] = None,
+                 scale_in_step: Optional[_builtins.int] = None,
+                 scale_out_cooldown: Optional[_builtins.str] = None,
+                 scale_out_step: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int maximum_size: The maximum number of instances in the group.
+        :param _builtins.int minimum_size: The minimum number of instances in the group.
+        :param _builtins.int cpu_target: The target CPU utilization percentage to trigger scaling events.
+        :param _builtins.int fixed_size: The fixed number of instances for the group.
+        :param _builtins.int memory_target: The target memory utilization percentage to trigger scaling events.
+               
+               > **Important:** Exactly one of `fixed_size`, `cpu_target` and `memory_target` must be defined.
+        :param _builtins.str scale_in_cooldown: The cooldown duration after a scale-in event.
+        :param _builtins.int scale_in_step: The number of instances to remove during scale-in event.
+        :param _builtins.str scale_out_cooldown: The cooldown duration after a scale-out event.
+        :param _builtins.int scale_out_step: The number of instances to add during scale-out event.
+        """
+        pulumi.set(__self__, "maximum_size", maximum_size)
+        pulumi.set(__self__, "minimum_size", minimum_size)
+        if cpu_target is not None:
+            pulumi.set(__self__, "cpu_target", cpu_target)
+        if fixed_size is not None:
+            pulumi.set(__self__, "fixed_size", fixed_size)
+        if memory_target is not None:
+            pulumi.set(__self__, "memory_target", memory_target)
+        if scale_in_cooldown is not None:
+            pulumi.set(__self__, "scale_in_cooldown", scale_in_cooldown)
+        if scale_in_step is not None:
+            pulumi.set(__self__, "scale_in_step", scale_in_step)
+        if scale_out_cooldown is not None:
+            pulumi.set(__self__, "scale_out_cooldown", scale_out_cooldown)
+        if scale_out_step is not None:
+            pulumi.set(__self__, "scale_out_step", scale_out_step)
+
+    @_builtins.property
+    @pulumi.getter(name="maximumSize")
+    def maximum_size(self) -> _builtins.int:
+        """
+        The maximum number of instances in the group.
+        """
+        return pulumi.get(self, "maximum_size")
+
+    @_builtins.property
+    @pulumi.getter(name="minimumSize")
+    def minimum_size(self) -> _builtins.int:
+        """
+        The minimum number of instances in the group.
+        """
+        return pulumi.get(self, "minimum_size")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuTarget")
+    def cpu_target(self) -> Optional[_builtins.int]:
+        """
+        The target CPU utilization percentage to trigger scaling events.
+        """
+        return pulumi.get(self, "cpu_target")
+
+    @_builtins.property
+    @pulumi.getter(name="fixedSize")
+    def fixed_size(self) -> Optional[_builtins.int]:
+        """
+        The fixed number of instances for the group.
+        """
+        return pulumi.get(self, "fixed_size")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryTarget")
+    def memory_target(self) -> Optional[_builtins.int]:
+        """
+        The target memory utilization percentage to trigger scaling events.
+
+        > **Important:** Exactly one of `fixed_size`, `cpu_target` and `memory_target` must be defined.
+        """
+        return pulumi.get(self, "memory_target")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleInCooldown")
+    def scale_in_cooldown(self) -> Optional[_builtins.str]:
+        """
+        The cooldown duration after a scale-in event.
+        """
+        return pulumi.get(self, "scale_in_cooldown")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleInStep")
+    def scale_in_step(self) -> Optional[_builtins.int]:
+        """
+        The number of instances to remove during scale-in event.
+        """
+        return pulumi.get(self, "scale_in_step")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleOutCooldown")
+    def scale_out_cooldown(self) -> Optional[_builtins.str]:
+        """
+        The cooldown duration after a scale-out event.
+        """
+        return pulumi.get(self, "scale_out_cooldown")
+
+    @_builtins.property
+    @pulumi.getter(name="scaleOutStep")
+    def scale_out_step(self) -> Optional[_builtins.int]:
+        """
+        The number of instances to add during scale-out event.
+        """
+        return pulumi.get(self, "scale_out_step")
+
 
 @pulumi.output_type
 class InstanceGroupCapacity(dict):

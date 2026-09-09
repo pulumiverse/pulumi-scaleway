@@ -130,7 +130,7 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the public gateway DHCP config should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a VpcPublicGatewayDhcpReservation resource with the given unique name, arguments, and options.

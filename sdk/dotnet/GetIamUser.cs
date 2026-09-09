@@ -216,6 +216,7 @@ namespace Pulumiverse.Scaleway
         public readonly string PhoneNumber;
         public readonly bool SendPasswordEmail;
         public readonly bool SendWelcomeEmail;
+        public readonly string Srn;
         public readonly string Status;
         /// <summary>
         /// The tags associated with the user.
@@ -264,6 +265,8 @@ namespace Pulumiverse.Scaleway
 
             bool sendWelcomeEmail,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -294,6 +297,7 @@ namespace Pulumiverse.Scaleway
             PhoneNumber = phoneNumber;
             SendPasswordEmail = sendPasswordEmail;
             SendWelcomeEmail = sendWelcomeEmail;
+            Srn = srn;
             Status = status;
             Tags = tags;
             Type = type;

@@ -65,17 +65,13 @@ type LookupImageResult struct {
 	// ID of the root volume in this image.
 	RootVolumeId string `pulumi:"rootVolumeId"`
 	// State of the image. Possible values are: `available`, `creating` or `error`.
-	State string  `pulumi:"state"`
-	Zone  *string `pulumi:"zone"`
+	State string `pulumi:"state"`
+	Zone  string `pulumi:"zone"`
 }
 
 func LookupImageOutput(ctx *pulumi.Context, args LookupImageOutputArgs, opts ...pulumi.InvokeOption) LookupImageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupImageResultOutput, error) {
-			args := v.(LookupImageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getImage:getImage", args, LookupImageResultOutput{}, options).(LookupImageResultOutput), nil
-		}).(LookupImageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getImage:getImage", args, LookupImageResultOutput{}, options).(LookupImageResultOutput)
 }
 
 // A collection of arguments for invoking getImage.
@@ -184,8 +180,8 @@ func (o LookupImageResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupImageResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-func (o LookupImageResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupImageResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o LookupImageResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupImageResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

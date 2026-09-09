@@ -97,7 +97,7 @@ export class FunctionCron extends pulumi.CustomResource {
      * `region`) The region
      * in which the function was created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */

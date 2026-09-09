@@ -89,7 +89,7 @@ export class MongoDbSnapshot extends pulumi.CustomResource {
     /**
      * `region`) The region in which the MongoDB® snapshot should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The size of the MongoDB® snapshot in bytes.
      */

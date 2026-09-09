@@ -110,7 +110,11 @@ export class User extends pulumi.CustomResource {
     /**
      * `region`) The region in which the user should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the user.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -130,6 +134,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
         } else {
             const args = argsOrState as UserArgs | undefined;
             if (args?.deploymentId === undefined && !opts.urn) {
@@ -143,6 +148,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["region"] = args?.region;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
@@ -175,6 +181,10 @@ export interface UserState {
      * `region`) The region in which the user should be created.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the user.
+     */
+    srn?: pulumi.Input<string | undefined>;
 }
 
 /**

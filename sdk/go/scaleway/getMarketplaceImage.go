@@ -69,16 +69,12 @@ type GetMarketplaceImageResult struct {
 	ImageType    *string `pulumi:"imageType"`
 	InstanceType *string `pulumi:"instanceType"`
 	Label        string  `pulumi:"label"`
-	Zone         *string `pulumi:"zone"`
+	Zone         string  `pulumi:"zone"`
 }
 
 func GetMarketplaceImageOutput(ctx *pulumi.Context, args GetMarketplaceImageOutputArgs, opts ...pulumi.InvokeOption) GetMarketplaceImageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMarketplaceImageResultOutput, error) {
-			args := v.(GetMarketplaceImageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, GetMarketplaceImageResultOutput{}, options).(GetMarketplaceImageResultOutput), nil
-		}).(GetMarketplaceImageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, GetMarketplaceImageResultOutput{}, options).(GetMarketplaceImageResultOutput)
 }
 
 // A collection of arguments for invoking getMarketplaceImage.
@@ -131,8 +127,8 @@ func (o GetMarketplaceImageResultOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMarketplaceImageResult) string { return v.Label }).(pulumi.StringOutput)
 }
 
-func (o GetMarketplaceImageResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetMarketplaceImageResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetMarketplaceImageResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMarketplaceImageResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -83,16 +83,12 @@ type GetServerTypeResult struct {
 	Ram int `pulumi:"ram"`
 	// The specifications of volumes allowed for the server type.
 	Volumes []GetServerTypeVolume `pulumi:"volumes"`
-	Zone    *string               `pulumi:"zone"`
+	Zone    string                `pulumi:"zone"`
 }
 
 func GetServerTypeOutput(ctx *pulumi.Context, args GetServerTypeOutputArgs, opts ...pulumi.InvokeOption) GetServerTypeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetServerTypeResultOutput, error) {
-			args := v.(GetServerTypeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:instance/getServerType:getServerType", args, GetServerTypeResultOutput{}, options).(GetServerTypeResultOutput), nil
-		}).(GetServerTypeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:instance/getServerType:getServerType", args, GetServerTypeResultOutput{}, options).(GetServerTypeResultOutput)
 }
 
 // A collection of arguments for invoking getServerType.
@@ -182,8 +178,8 @@ func (o GetServerTypeResultOutput) Volumes() GetServerTypeVolumeArrayOutput {
 	return o.ApplyT(func(v GetServerTypeResult) []GetServerTypeVolume { return v.Volumes }).(GetServerTypeVolumeArrayOutput)
 }
 
-func (o GetServerTypeResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServerTypeResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetServerTypeResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerTypeResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

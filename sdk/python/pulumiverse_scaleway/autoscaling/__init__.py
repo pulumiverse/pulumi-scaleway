@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .get_instance_group import *
 from .get_instance_policy import *
+from .group import *
 from .instance_group import *
 from .instance_policy import *
 from .instance_template import *

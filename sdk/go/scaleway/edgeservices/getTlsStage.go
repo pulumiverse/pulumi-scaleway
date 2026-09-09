@@ -111,12 +111,8 @@ type LookupTlsStageResult struct {
 }
 
 func LookupTlsStageOutput(ctx *pulumi.Context, args LookupTlsStageOutputArgs, opts ...pulumi.InvokeOption) LookupTlsStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTlsStageResultOutput, error) {
-			args := v.(LookupTlsStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getTlsStage:getTlsStage", args, LookupTlsStageResultOutput{}, options).(LookupTlsStageResultOutput), nil
-		}).(LookupTlsStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getTlsStage:getTlsStage", args, LookupTlsStageResultOutput{}, options).(LookupTlsStageResultOutput)
 }
 
 // A collection of arguments for invoking getTlsStage.

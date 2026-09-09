@@ -1916,6 +1916,163 @@ func (o SnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type TemplateVolume struct {
+	// The ID of the base snapshot for the volume.
+	//
+	// > **Important:** Only one of `baseSnapshotId` and `imageLabel` can be set.
+	BaseSnapshotId *string `pulumi:"baseSnapshotId"`
+	// The label of the image used as base for the volume.
+	ImageLabel *string `pulumi:"imageLabel"`
+	// The name of volume.
+	Name *string `pulumi:"name"`
+	// The performance IOPS of the volume, required for `sbs` type volumes.
+	PerfIops *int `pulumi:"perfIops"`
+	// The size of the volume in gigabytes.
+	SizeInGb int `pulumi:"sizeInGb"`
+	// The tags associated with the volume.
+	Tags []string `pulumi:"tags"`
+	// The type of the volume.
+	VolumeType string `pulumi:"volumeType"`
+}
+
+// TemplateVolumeInput is an input type that accepts TemplateVolumeArgs and TemplateVolumeOutput values.
+// You can construct a concrete instance of `TemplateVolumeInput` via:
+//
+//	TemplateVolumeArgs{...}
+type TemplateVolumeInput interface {
+	pulumi.Input
+
+	ToTemplateVolumeOutput() TemplateVolumeOutput
+	ToTemplateVolumeOutputWithContext(context.Context) TemplateVolumeOutput
+}
+
+type TemplateVolumeArgs struct {
+	// The ID of the base snapshot for the volume.
+	//
+	// > **Important:** Only one of `baseSnapshotId` and `imageLabel` can be set.
+	BaseSnapshotId pulumi.StringPtrInput `pulumi:"baseSnapshotId"`
+	// The label of the image used as base for the volume.
+	ImageLabel pulumi.StringPtrInput `pulumi:"imageLabel"`
+	// The name of volume.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The performance IOPS of the volume, required for `sbs` type volumes.
+	PerfIops pulumi.IntPtrInput `pulumi:"perfIops"`
+	// The size of the volume in gigabytes.
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// The tags associated with the volume.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The type of the volume.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+}
+
+func (TemplateVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TemplateVolume)(nil)).Elem()
+}
+
+func (i TemplateVolumeArgs) ToTemplateVolumeOutput() TemplateVolumeOutput {
+	return i.ToTemplateVolumeOutputWithContext(context.Background())
+}
+
+func (i TemplateVolumeArgs) ToTemplateVolumeOutputWithContext(ctx context.Context) TemplateVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TemplateVolumeOutput)
+}
+
+// TemplateVolumeArrayInput is an input type that accepts TemplateVolumeArray and TemplateVolumeArrayOutput values.
+// You can construct a concrete instance of `TemplateVolumeArrayInput` via:
+//
+//	TemplateVolumeArray{ TemplateVolumeArgs{...} }
+type TemplateVolumeArrayInput interface {
+	pulumi.Input
+
+	ToTemplateVolumeArrayOutput() TemplateVolumeArrayOutput
+	ToTemplateVolumeArrayOutputWithContext(context.Context) TemplateVolumeArrayOutput
+}
+
+type TemplateVolumeArray []TemplateVolumeInput
+
+func (TemplateVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TemplateVolume)(nil)).Elem()
+}
+
+func (i TemplateVolumeArray) ToTemplateVolumeArrayOutput() TemplateVolumeArrayOutput {
+	return i.ToTemplateVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i TemplateVolumeArray) ToTemplateVolumeArrayOutputWithContext(ctx context.Context) TemplateVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TemplateVolumeArrayOutput)
+}
+
+type TemplateVolumeOutput struct{ *pulumi.OutputState }
+
+func (TemplateVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TemplateVolume)(nil)).Elem()
+}
+
+func (o TemplateVolumeOutput) ToTemplateVolumeOutput() TemplateVolumeOutput {
+	return o
+}
+
+func (o TemplateVolumeOutput) ToTemplateVolumeOutputWithContext(ctx context.Context) TemplateVolumeOutput {
+	return o
+}
+
+// The ID of the base snapshot for the volume.
+//
+// > **Important:** Only one of `baseSnapshotId` and `imageLabel` can be set.
+func (o TemplateVolumeOutput) BaseSnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TemplateVolume) *string { return v.BaseSnapshotId }).(pulumi.StringPtrOutput)
+}
+
+// The label of the image used as base for the volume.
+func (o TemplateVolumeOutput) ImageLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TemplateVolume) *string { return v.ImageLabel }).(pulumi.StringPtrOutput)
+}
+
+// The name of volume.
+func (o TemplateVolumeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TemplateVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The performance IOPS of the volume, required for `sbs` type volumes.
+func (o TemplateVolumeOutput) PerfIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TemplateVolume) *int { return v.PerfIops }).(pulumi.IntPtrOutput)
+}
+
+// The size of the volume in gigabytes.
+func (o TemplateVolumeOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v TemplateVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// The tags associated with the volume.
+func (o TemplateVolumeOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TemplateVolume) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The type of the volume.
+func (o TemplateVolumeOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v TemplateVolume) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+type TemplateVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (TemplateVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TemplateVolume)(nil)).Elem()
+}
+
+func (o TemplateVolumeArrayOutput) ToTemplateVolumeArrayOutput() TemplateVolumeArrayOutput {
+	return o
+}
+
+func (o TemplateVolumeArrayOutput) ToTemplateVolumeArrayOutputWithContext(ctx context.Context) TemplateVolumeArrayOutput {
+	return o
+}
+
+func (o TemplateVolumeArrayOutput) Index(i pulumi.IntInput) TemplateVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TemplateVolume {
+		return vs[0].([]TemplateVolume)[vs[1].(int)]
+	}).(TemplateVolumeOutput)
+}
+
 type GetPrivateNicPrivateIp struct {
 	// The private IP address
 	Address string `pulumi:"address"`
@@ -3364,7 +3521,7 @@ type GetServersServer struct {
 	// The commercial type of the server.
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone *string `pulumi:"zone"`
+	Zone string `pulumi:"zone"`
 }
 
 // GetServersServerInput is an input type that accepts GetServersServerArgs and GetServersServerOutput values.
@@ -3414,7 +3571,7 @@ type GetServersServerArgs struct {
 	// The commercial type of the server.
 	Type pulumi.StringInput `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
 func (GetServersServerArgs) ElementType() reflect.Type {
@@ -3551,8 +3708,8 @@ func (o GetServersServerOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which servers exist.
-func (o GetServersServerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServersServer) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o GetServersServerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 type GetServersServerArrayOutput struct{ *pulumi.OutputState }
@@ -3965,6 +4122,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerRootVolumePtrInput)(nil)).Elem(), ServerRootVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportInput)(nil)).Elem(), SnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportPtrInput)(nil)).Elem(), SnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TemplateVolumeInput)(nil)).Elem(), TemplateVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TemplateVolumeArrayInput)(nil)).Elem(), TemplateVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateNicPrivateIpInput)(nil)).Elem(), GetPrivateNicPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateNicPrivateIpArrayInput)(nil)).Elem(), GetPrivateNicPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityGroupInboundRuleInput)(nil)).Elem(), GetSecurityGroupInboundRuleArgs{})
@@ -4021,6 +4180,8 @@ func init() {
 	pulumi.RegisterOutputType(ServerRootVolumePtrOutput{})
 	pulumi.RegisterOutputType(SnapshotImportOutput{})
 	pulumi.RegisterOutputType(SnapshotImportPtrOutput{})
+	pulumi.RegisterOutputType(TemplateVolumeOutput{})
+	pulumi.RegisterOutputType(TemplateVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateNicPrivateIpOutput{})
 	pulumi.RegisterOutputType(GetPrivateNicPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetSecurityGroupInboundRuleOutput{})

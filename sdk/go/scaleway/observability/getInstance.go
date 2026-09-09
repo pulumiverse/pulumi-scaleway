@@ -106,12 +106,8 @@ type GetInstanceResult struct {
 }
 
 func GetInstanceOutput(ctx *pulumi.Context, args GetInstanceOutputArgs, opts ...pulumi.InvokeOption) GetInstanceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInstanceResultOutput, error) {
-			args := v.(GetInstanceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getInstance:getInstance", args, GetInstanceResultOutput{}, options).(GetInstanceResultOutput), nil
-		}).(GetInstanceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getInstance:getInstance", args, GetInstanceResultOutput{}, options).(GetInstanceResultOutput)
 }
 
 // A collection of arguments for invoking getInstance.

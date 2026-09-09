@@ -130,6 +130,7 @@ type LookupLinkResult struct {
 	RoutingPolicyV6Id string `pulumi:"routingPolicyV6Id"`
 	// BGP configuration on Scaleway's side.
 	ScwBgpConfigs []GetLinkScwBgpConfig `pulumi:"scwBgpConfigs"`
+	Srn           string                `pulumi:"srn"`
 	// Status of the link.
 	Status string `pulumi:"status"`
 	// List of tags associated with the link.
@@ -143,12 +144,8 @@ type LookupLinkResult struct {
 }
 
 func LookupLinkOutput(ctx *pulumi.Context, args LookupLinkOutputArgs, opts ...pulumi.InvokeOption) LookupLinkResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLinkResultOutput, error) {
-			args := v.(LookupLinkArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:interlink/getLink:getLink", args, LookupLinkResultOutput{}, options).(LookupLinkResultOutput), nil
-		}).(LookupLinkResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:interlink/getLink:getLink", args, LookupLinkResultOutput{}, options).(LookupLinkResultOutput)
 }
 
 // A collection of arguments for invoking getLink.
@@ -278,6 +275,10 @@ func (o LookupLinkResultOutput) RoutingPolicyV6Id() pulumi.StringOutput {
 // BGP configuration on Scaleway's side.
 func (o LookupLinkResultOutput) ScwBgpConfigs() GetLinkScwBgpConfigArrayOutput {
 	return o.ApplyT(func(v LookupLinkResult) []GetLinkScwBgpConfig { return v.ScwBgpConfigs }).(GetLinkScwBgpConfigArrayOutput)
+}
+
+func (o LookupLinkResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLinkResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Status of the link.

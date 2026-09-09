@@ -142,6 +142,7 @@ export interface GetLinkResult {
      * BGP configuration on Scaleway's side.
      */
     readonly scwBgpConfigs: outputs.interlink.GetLinkScwBgpConfig[];
+    readonly srn: string;
     /**
      * Status of the link.
      */

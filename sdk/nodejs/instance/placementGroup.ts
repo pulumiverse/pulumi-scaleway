@@ -83,7 +83,7 @@ export class PlacementGroup extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the placement group should be created.
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a PlacementGroup resource with the given unique name, arguments, and options.

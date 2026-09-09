@@ -185,16 +185,16 @@ class IamGroupMembership(pulumi.CustomResource):
         users = std.toset(input=[
             "user1@mail.com",
             "user2@mail.com",
-        ])["result"]
+        ]).result
         users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        members: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted((users_get_user).items())]:
-            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+        members: list[scaleway.iam.GroupMembership] = []
+        for members_range in [{"key": k, "value": v} for [k, v] in enumerate(users_get_user)]:
+            members.append(scaleway.iam.GroupMembership(f"members-{members_range['key']}",
                 group_id=group.id,
-                user_id=range["value"].id))
+                user_id=members_range["value"].id))
         ```
 
         ## Import
@@ -256,16 +256,16 @@ class IamGroupMembership(pulumi.CustomResource):
         users = std.toset(input=[
             "user1@mail.com",
             "user2@mail.com",
-        ])["result"]
+        ]).result
         users_get_user = {str(__key): scaleway.iam.get_user(email=__value) for __key, __value in enumerate(users)}
         group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        members: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted((users_get_user).items())]:
-            members.append(scaleway.iam.GroupMembership(f"members-{range['key']}",
+        members: list[scaleway.iam.GroupMembership] = []
+        for members_range in [{"key": k, "value": v} for [k, v] in enumerate(users_get_user)]:
+            members.append(scaleway.iam.GroupMembership(f"members-{members_range['key']}",
                 group_id=group.id,
-                user_id=range["value"].id))
+                user_id=members_range["value"].id))
         ```
 
         ## Import

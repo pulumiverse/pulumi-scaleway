@@ -91,7 +91,7 @@ export class Database extends pulumi.CustomResource {
     /**
      * `region`) The region in which the resource exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Size of the database (in bytes).
      */

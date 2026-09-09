@@ -65,7 +65,7 @@ type MnqNatsAccount struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which the account should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewMnqNatsAccount registers a new resource with the given unique name, arguments, and options.
@@ -255,8 +255,8 @@ func (o MnqNatsAccountOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which the account should be created.
-func (o MnqNatsAccountOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MnqNatsAccount) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o MnqNatsAccountOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *MnqNatsAccount) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type MnqNatsAccountArrayOutput struct{ *pulumi.OutputState }

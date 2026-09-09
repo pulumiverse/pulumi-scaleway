@@ -249,7 +249,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The domain's reputation.

@@ -840,7 +840,7 @@ class Function(pulumi.CustomResource):
             privacy="private",
             timeout=10,
             zip_file="function.zip",
-            zip_hash=std.filesha256(input="function.zip")["result"],
+            zip_hash=std.filesha256(input="function.zip").result,
             deploy=True)
         ```
 
@@ -871,7 +871,7 @@ class Function(pulumi.CustomResource):
             handler="Handle",
             privacy="private",
             zip_file="function.zip",
-            zip_hash=std.filesha256(input="function.zip")["result"],
+            zip_hash=std.filesha256(input="function.zip").result,
             deploy=True)
         pulumi.export("secretKey", api_key.secret_key)
         pulumi.export("functionEndpoint", private_function.domain_name)
@@ -971,7 +971,7 @@ class Function(pulumi.CustomResource):
             privacy="private",
             timeout=10,
             zip_file="function.zip",
-            zip_hash=std.filesha256(input="function.zip")["result"],
+            zip_hash=std.filesha256(input="function.zip").result,
             deploy=True)
         ```
 
@@ -1002,7 +1002,7 @@ class Function(pulumi.CustomResource):
             handler="Handle",
             privacy="private",
             zip_file="function.zip",
-            zip_hash=std.filesha256(input="function.zip")["result"],
+            zip_hash=std.filesha256(input="function.zip").result,
             deploy=True)
         pulumi.export("secretKey", api_key.secret_key)
         pulumi.export("functionEndpoint", private_function.domain_name)
@@ -1331,7 +1331,7 @@ class Function(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`). The region in which the namespace should be created.
         """

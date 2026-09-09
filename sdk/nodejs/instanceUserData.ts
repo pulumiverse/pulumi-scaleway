@@ -42,13 +42,13 @@ import * as utilities from "./utilities";
  *     value: "bar",
  * });
  * // User Data with many keys.
- * const data: scaleway.instance.UserData[] = [];
+ * const data: {[key: string]: scaleway.instance.UserData} = {};
  * for (const range of Object.entries(userData).sort().map(([k, v]) => ({key: k, value: v}))) {
- *     data.push(new scaleway.instance.UserData(`data-${range.key}`, {
+ *     data[range.key] = new scaleway.instance.UserData(`data-${range.key}`, {
  *         serverId: mainServer.id,
  *         key: range.key,
  *         value: range.value,
- *     }));
+ *     });
  * }
  * ```
  *
@@ -111,7 +111,7 @@ export class InstanceUserData extends pulumi.CustomResource {
      * - string
      * - UTF-8 encoded file content using file
      */
-    declare public readonly zone: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a InstanceUserData resource with the given unique name, arguments, and options.

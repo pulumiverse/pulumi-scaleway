@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     file: "myfile",
  *     hash: std.filemd5({
  *         input: "myfile",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  * });
  * ```
  *
@@ -118,7 +118,7 @@ export class ObjectItem extends pulumi.CustomResource {
     /**
      * The Scaleway region the bucket resides in.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Customer's encryption keys to encrypt data (SSE-C)
      */

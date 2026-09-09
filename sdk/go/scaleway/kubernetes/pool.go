@@ -59,10 +59,10 @@ import (
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				Name:             pulumi.String("placement_group"),
-//				ClusterId:        cluster.ID(),
+//				ClusterId:        cluster.ID().ToIDOutput().ToStringOutput(),
 //				Version:          cluster.Version,
 //				NodeType:         pulumi.String("gp1_xs"),
-//				PlacementGroupId: placementGroup.ID(),
+//				PlacementGroupId: placementGroup.ID().ToIDOutput().ToStringOutput(),
 //				Size:             pulumi.Int(1),
 //				Region:           cluster.Region,
 //				Zone:             placementGroup.Zone,
@@ -183,7 +183,7 @@ type Pool struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	PublicIpDisabled pulumi.BoolPtrOutput `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
 	//
 	// > Note: The minimal volume size of a node is 20GB.
@@ -222,7 +222,7 @@ type Pool struct {
 	// `zone`) The zone in which the pool should be created.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewPool registers a new resource with the given unique name, arguments, and options.
@@ -779,8 +779,8 @@ func (o PoolOutput) PublicIpDisabled() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region in which the pool should be created.
-func (o PoolOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o PoolOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the system volume of the nodes in gigabyte
@@ -860,8 +860,8 @@ func (o PoolOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
 // `zone`) The zone in which the pool should be created.
 //
 // > **Important:** Updates to this field will recreate a new resource.
-func (o PoolOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o PoolOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type PoolArrayOutput struct{ *pulumi.OutputState }

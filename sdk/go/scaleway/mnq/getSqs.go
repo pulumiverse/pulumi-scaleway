@@ -75,12 +75,8 @@ type LookupSqsResult struct {
 }
 
 func LookupSqsOutput(ctx *pulumi.Context, args LookupSqsOutputArgs, opts ...pulumi.InvokeOption) LookupSqsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSqsResultOutput, error) {
-			args := v.(LookupSqsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:mnq/getSqs:getSqs", args, LookupSqsResultOutput{}, options).(LookupSqsResultOutput), nil
-		}).(LookupSqsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:mnq/getSqs:getSqs", args, LookupSqsResultOutput{}, options).(LookupSqsResultOutput)
 }
 
 // A collection of arguments for invoking getSqs.

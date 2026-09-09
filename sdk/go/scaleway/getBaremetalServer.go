@@ -112,12 +112,8 @@ type LookupBaremetalServerResult struct {
 }
 
 func LookupBaremetalServerOutput(ctx *pulumi.Context, args LookupBaremetalServerOutputArgs, opts ...pulumi.InvokeOption) LookupBaremetalServerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBaremetalServerResultOutput, error) {
-			args := v.(LookupBaremetalServerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBaremetalServer:getBaremetalServer", args, LookupBaremetalServerResultOutput{}, options).(LookupBaremetalServerResultOutput), nil
-		}).(LookupBaremetalServerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBaremetalServer:getBaremetalServer", args, LookupBaremetalServerResultOutput{}, options).(LookupBaremetalServerResultOutput)
 }
 
 // A collection of arguments for invoking getBaremetalServer.

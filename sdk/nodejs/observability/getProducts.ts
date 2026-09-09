@@ -91,7 +91,7 @@ export interface GetProductsResult {
      * List of available Cockpit products. (see below)
      */
     readonly products: outputs.observability.GetProductsProduct[];
-    readonly region?: string;
+    readonly region: string;
 }
 /**
  * Gets the list of Cockpit products available for a specific region.

@@ -134,6 +134,7 @@ namespace Pulumiverse.Scaleway.Network
         public readonly string OrganizationId;
         public readonly string ProjectId;
         public readonly string Reverse;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string Zone;
@@ -154,6 +155,8 @@ namespace Pulumiverse.Scaleway.Network
 
             string reverse,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
@@ -167,6 +170,7 @@ namespace Pulumiverse.Scaleway.Network
             OrganizationId = organizationId;
             ProjectId = projectId;
             Reverse = reverse;
+            Srn = srn;
             Tags = tags;
             UpdatedAt = updatedAt;
             Zone = zone;

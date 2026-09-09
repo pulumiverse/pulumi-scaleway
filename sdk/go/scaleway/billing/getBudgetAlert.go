@@ -76,12 +76,8 @@ type LookupBudgetAlertResult struct {
 }
 
 func LookupBudgetAlertOutput(ctx *pulumi.Context, args LookupBudgetAlertOutputArgs, opts ...pulumi.InvokeOption) LookupBudgetAlertResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBudgetAlertResultOutput, error) {
-			args := v.(LookupBudgetAlertArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:billing/getBudgetAlert:getBudgetAlert", args, LookupBudgetAlertResultOutput{}, options).(LookupBudgetAlertResultOutput), nil
-		}).(LookupBudgetAlertResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:billing/getBudgetAlert:getBudgetAlert", args, LookupBudgetAlertResultOutput{}, options).(LookupBudgetAlertResultOutput)
 }
 
 // A collection of arguments for invoking getBudgetAlert.

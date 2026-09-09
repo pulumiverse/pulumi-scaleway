@@ -97,7 +97,7 @@ import (
 //				return err
 //			}
 //			apiBackendStage, err := edgeservices.NewBackendStage(ctx, "api", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   api.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -107,7 +107,7 @@ import (
 //				return err
 //			}
 //			staticBackendStage, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   static.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -117,11 +117,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
-//				PipelineId:     main.ID(),
-//				BackendStageId: staticBackendStage.ID(),
+//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
+//				BackendStageId: staticBackendStage.ID().ToIDOutput().ToStringOutput(),
 //				Rules: edgeservices.RouteStageRuleArray{
 //					&edgeservices.RouteStageRuleArgs{
-//						BackendStageId: apiBackendStage.ID(),
+//						BackendStageId: apiBackendStage.ID().ToIDOutput().ToStringOutput(),
 //						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							HostFilter: &edgeservices.RouteStageRuleRuleHttpMatchHostFilterArgs{
 //								HostFilterType: pulumi.String("regex"),
@@ -171,7 +171,7 @@ import (
 //				return err
 //			}
 //			static, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID(),
+//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   mainBucket.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -181,8 +181,8 @@ import (
 //				return err
 //			}
 //			api, err := edgeservices.NewWafStage(ctx, "api", &edgeservices.WafStageArgs{
-//				PipelineId:     main.ID(),
-//				BackendStageId: static.ID(),
+//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
+//				BackendStageId: static.ID().ToIDOutput().ToStringOutput(),
 //				Mode:           pulumi.String("enable"),
 //				ParanoiaLevel:  pulumi.Int(2),
 //			})
@@ -190,11 +190,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
-//				PipelineId:     main.ID(),
-//				BackendStageId: static.ID(),
+//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
+//				BackendStageId: static.ID().ToIDOutput().ToStringOutput(),
 //				Rules: edgeservices.RouteStageRuleArray{
 //					&edgeservices.RouteStageRuleArgs{
-//						WafStageId: api.ID(),
+//						WafStageId: api.ID().ToIDOutput().ToStringOutput(),
 //						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							MethodFilters: pulumi.StringArray{
 //								pulumi.String("get"),

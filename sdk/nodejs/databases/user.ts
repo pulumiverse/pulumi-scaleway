@@ -124,7 +124,7 @@ export class User extends pulumi.CustomResource {
     /**
      * The Scaleway region this resource resides in.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.

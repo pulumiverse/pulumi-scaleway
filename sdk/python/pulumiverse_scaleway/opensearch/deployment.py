@@ -543,7 +543,7 @@ class Deployment(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway OpenSearch deployments.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/cloud-essentials-for-opensearch).
 
         ## Example Usage
 
@@ -683,7 +683,7 @@ class Deployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway OpenSearch deployments.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-opensearch/).
+        For more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/cloud-essentials-for-opensearch).
 
         ## Example Usage
 
@@ -1021,7 +1021,7 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the deployment should be created.
         """

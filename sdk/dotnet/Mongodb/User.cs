@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Mongodb
 {
     /// <summary>
-    /// Manages MongoDB users. For more information, see the [API documentation](https://developers.scaleway.com/products/mongodb/api/).
+    /// Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
     /// 
     /// &gt; **Security Best Practice:**
     /// For enhanced security, we recommend using the `PasswordWo` write-only argument instead of the regular `Password` argument. This ensures your sensitive credentials are never stored in Terraform state files, providing superior protection against accidental exposure. Write-Only arguments are supported in Terraform 1.11.0 and later.
@@ -165,7 +165,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// `Region`) The region in which the MongoDB® user should be created.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// List of roles assigned to the user. Each role block supports:

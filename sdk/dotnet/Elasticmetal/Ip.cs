@@ -179,6 +179,12 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Output<string?> ServerId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the flexible IP.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the flexible IP.
         /// </summary>
         [Output("status")]
@@ -200,7 +206,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// `Zone`) The zone of the Flexible IP.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -356,6 +362,12 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the flexible IP.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the flexible IP.

@@ -147,7 +147,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         public readonly string Stock;
         public readonly string? SubscriptionPeriod;
-        public readonly string? Zone;
+        public readonly string Zone;
 
         [OutputConstructor]
         private GetOfferResult(
@@ -173,7 +173,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string? subscriptionPeriod,
 
-            string? zone)
+            string zone)
         {
             Bandwidth = bandwidth;
             CommercialRange = commercialRange;

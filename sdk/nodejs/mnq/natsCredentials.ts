@@ -73,7 +73,7 @@ export class NatsCredentials extends pulumi.CustomResource {
      * `region`). The region
      * in which the account exists.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
 
     /**
      * Create a NatsCredentials resource with the given unique name, arguments, and options.

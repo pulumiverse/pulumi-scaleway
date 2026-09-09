@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupPublicGatewayIpOutput(ctx, network.GetPublicGatewayIpOutputArgs{
-//				IpId: main.ID(),
+//				IpId: main.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -66,18 +66,15 @@ type LookupPublicGatewayIpResult struct {
 	OrganizationId string   `pulumi:"organizationId"`
 	ProjectId      string   `pulumi:"projectId"`
 	Reverse        string   `pulumi:"reverse"`
+	Srn            string   `pulumi:"srn"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 	Zone           string   `pulumi:"zone"`
 }
 
 func LookupPublicGatewayIpOutput(ctx *pulumi.Context, args LookupPublicGatewayIpOutputArgs, opts ...pulumi.InvokeOption) LookupPublicGatewayIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPublicGatewayIpResultOutput, error) {
-			args := v.(LookupPublicGatewayIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:network/getPublicGatewayIp:getPublicGatewayIp", args, LookupPublicGatewayIpResultOutput{}, options).(LookupPublicGatewayIpResultOutput), nil
-		}).(LookupPublicGatewayIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:network/getPublicGatewayIp:getPublicGatewayIp", args, LookupPublicGatewayIpResultOutput{}, options).(LookupPublicGatewayIpResultOutput)
 }
 
 // A collection of arguments for invoking getPublicGatewayIp.
@@ -131,6 +128,10 @@ func (o LookupPublicGatewayIpResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o LookupPublicGatewayIpResultOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPublicGatewayIpResult) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+func (o LookupPublicGatewayIpResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPublicGatewayIpResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupPublicGatewayIpResultOutput) Tags() pulumi.StringArrayOutput {

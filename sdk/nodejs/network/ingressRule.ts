@@ -134,7 +134,7 @@ export class IngressRule extends pulumi.CustomResource {
     /**
      * `region`) The region of the ingress rule.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Source IP range (in CIDR notation) to which the ingress rule applies.
      */

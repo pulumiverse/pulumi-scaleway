@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewUser(ctx, "db_admin", &databases.UserArgs{
-//				InstanceId: main.ID(),
+//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("devtools"),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
@@ -112,7 +112,7 @@ type User struct {
 	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The Scaleway region this resource resides in.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -420,8 +420,8 @@ func (o UserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 }
 
 // The Scaleway region this resource resides in.
-func (o UserOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o UserOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type UserArrayOutput struct{ *pulumi.OutputState }

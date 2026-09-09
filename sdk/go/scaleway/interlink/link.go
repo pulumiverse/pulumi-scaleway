@@ -48,8 +48,8 @@ import (
 //			}
 //			_, err = interlink.NewLink(ctx, "main", &interlink.LinkArgs{
 //				Name:          pulumi.String("my-hosted-link"),
-//				PopId:         pulumi.String(pulumi.String(pop.Id)),
-//				PartnerId:     pulumi.String(pulumi.String(partner.Id)),
+//				PopId:         pulumi.String(pop.Id),
+//				PartnerId:     pulumi.String(partner.Id),
 //				BandwidthMbps: pulumi.Int(50),
 //			})
 //			if err != nil {
@@ -96,10 +96,10 @@ import (
 //			}
 //			_, err = interlink.NewLink(ctx, "main", &interlink.LinkArgs{
 //				Name:          pulumi.String("my-hosted-link"),
-//				PopId:         pulumi.String(pulumi.String(pop.Id)),
-//				PartnerId:     pulumi.String(pulumi.String(partner.Id)),
+//				PopId:         pulumi.String(pop.Id),
+//				PartnerId:     pulumi.String(partner.Id),
 //				BandwidthMbps: pulumi.Int(50),
-//				VpcId:         vpc.ID(),
+//				VpcId:         vpc.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -149,13 +149,15 @@ type Link struct {
 	// `projectId`) The ID of the project the link is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the link should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
 	RoutingPolicyV4Id pulumi.StringOutput `pulumi:"routingPolicyV4Id"`
 	// If set, attaches this routing policy containing IPv6 prefixes to the link. A BGP IPv6 session will be created.
 	RoutingPolicyV6Id pulumi.StringOutput `pulumi:"routingPolicyV6Id"`
 	// BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
 	ScwBgpConfigs LinkScwBgpConfigArrayOutput `pulumi:"scwBgpConfigs"`
+	// The Scaleway Resource Name (SRN) of the link.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Status of the link.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// List of tags to apply to the link.
@@ -244,6 +246,8 @@ type linkState struct {
 	RoutingPolicyV6Id *string `pulumi:"routingPolicyV6Id"`
 	// BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
 	ScwBgpConfigs []LinkScwBgpConfig `pulumi:"scwBgpConfigs"`
+	// The Scaleway Resource Name (SRN) of the link.
+	Srn *string `pulumi:"srn"`
 	// Status of the link.
 	Status *string `pulumi:"status"`
 	// List of tags to apply to the link.
@@ -293,6 +297,8 @@ type LinkState struct {
 	RoutingPolicyV6Id pulumi.StringPtrInput
 	// BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
 	ScwBgpConfigs LinkScwBgpConfigArrayInput
+	// The Scaleway Resource Name (SRN) of the link.
+	Srn pulumi.StringPtrInput
 	// Status of the link.
 	Status pulumi.StringPtrInput
 	// List of tags to apply to the link.
@@ -530,8 +536,8 @@ func (o LinkOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the link should be created.
-func (o LinkOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Link) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o LinkOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Link) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // If set, attaches this routing policy containing IPv4 prefixes to the link. A BGP IPv4 session will be created.
@@ -547,6 +553,11 @@ func (o LinkOutput) RoutingPolicyV6Id() pulumi.StringOutput {
 // BGP configuration on Scaleway's side. Contains `asn`, `ipv4`, `ipv6`.
 func (o LinkOutput) ScwBgpConfigs() LinkScwBgpConfigArrayOutput {
 	return o.ApplyT(func(v *Link) LinkScwBgpConfigArrayOutput { return v.ScwBgpConfigs }).(LinkScwBgpConfigArrayOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the link.
+func (o LinkOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Link) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Status of the link.

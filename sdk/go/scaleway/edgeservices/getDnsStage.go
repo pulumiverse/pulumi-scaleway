@@ -109,12 +109,8 @@ type LookupDnsStageResult struct {
 }
 
 func LookupDnsStageOutput(ctx *pulumi.Context, args LookupDnsStageOutputArgs, opts ...pulumi.InvokeOption) LookupDnsStageResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDnsStageResultOutput, error) {
-			args := v.(LookupDnsStageArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:edgeservices/getDnsStage:getDnsStage", args, LookupDnsStageResultOutput{}, options).(LookupDnsStageResultOutput), nil
-		}).(LookupDnsStageResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:edgeservices/getDnsStage:getDnsStage", args, LookupDnsStageResultOutput{}, options).(LookupDnsStageResultOutput)
 }
 
 // A collection of arguments for invoking getDnsStage.

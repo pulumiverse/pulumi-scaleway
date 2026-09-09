@@ -556,8 +556,6 @@ class Deployment(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -567,7 +565,7 @@ class Deployment(pulumi.CustomResource):
         deployment = scaleway.inference.Deployment("deployment",
             name="tf-inference-deployment",
             node_type="L4",
-            model_name=my_model.id,
+            model_id=my_model.id,
             public_endpoint={
                 "is_enabled": True,
             },
@@ -611,8 +609,6 @@ class Deployment(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
@@ -622,7 +618,7 @@ class Deployment(pulumi.CustomResource):
         deployment = scaleway.inference.Deployment("deployment",
             name="tf-inference-deployment",
             node_type="L4",
-            model_name=my_model.id,
+            model_id=my_model.id,
             public_endpoint={
                 "is_enabled": True,
             },
@@ -883,7 +879,7 @@ class Deployment(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         `region`) The region in which the deployment is created.
         """

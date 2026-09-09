@@ -80,7 +80,7 @@ export class BlockedList extends pulumi.CustomResource {
     /**
      * The region in which the blocklist is created. Defaults to the provider's region.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Type of the blocklist. Possible values are:
      */

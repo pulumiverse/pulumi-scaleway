@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway.Network
     ///         PublicKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "~/.ssh/id_rsa.pub",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     ///     var key2 = new Scaleway.Iam.SshKey("key2", new()
@@ -66,7 +66,7 @@ namespace Pulumiverse.Scaleway.Network
     ///         PublicKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "~/.ssh/another_key.pub",
-    ///         }).Result,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     ///     var sshKeysHash = Std.Sha256.Invoke(new()
@@ -79,8 +79,8 @@ namespace Pulumiverse.Scaleway.Network
     ///                 key1.PublicKey,
     ///                 key2.PublicKey,
     ///             },
-    ///         }).Result,
-    ///     }).Result;
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     }).Apply(invoke =&gt; invoke.Result);
     /// 
     ///     var main = new Scaleway.Network.PublicGateway("main", new()
     ///     {
@@ -183,6 +183,12 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string?> RefreshSshKeys { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the public gateway.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the public gateway.
         /// </summary>
         [Output("status")]
@@ -216,7 +222,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `Zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string?> Zone { get; private set; } = null!;
+        public Output<string> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -438,6 +444,12 @@ namespace Pulumiverse.Scaleway.Network
         /// </summary>
         [Input("refreshSshKeys")]
         public Input<string>? RefreshSshKeys { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the public gateway.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the public gateway.

@@ -31,7 +31,7 @@ class DomainArgs:
                We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         pulumi.set(__self__, "function_id", function_id)
         pulumi.set(__self__, "hostname", hostname)
@@ -70,7 +70,7 @@ class DomainArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the domain was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -95,7 +95,7 @@ class _DomainState:
                We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         :param pulumi.Input[_builtins.str] url: The URL used to query the function.
         """
         if function_id is not None:
@@ -139,7 +139,7 @@ class _DomainState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (Defaults to provider `region`) The region in which the domain was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -214,7 +214,7 @@ class Domain(pulumi.CustomResource):
                We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         ...
     @overload
@@ -322,7 +322,7 @@ class Domain(pulumi.CustomResource):
                We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
-        :param pulumi.Input[_builtins.str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         :param pulumi.Input[_builtins.str] url: The URL used to query the function.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -357,9 +357,9 @@ class Domain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
-        (Defaults to provider `region`) The region in which the domain was created.
+        (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 

@@ -238,7 +238,7 @@ namespace Pulumiverse.Scaleway.Interlink
         public readonly string LogoUrl;
         public readonly string Name;
         public readonly string? PopId;
-        public readonly string? Region;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetPopResult(
@@ -260,7 +260,7 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string? popId,
 
-            string? region)
+            string region)
         {
             Address = address;
             AvailableLinkBandwidthsMbps = availableLinkBandwidthsMbps;

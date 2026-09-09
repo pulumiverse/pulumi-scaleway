@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  *     zipFile: "function.zip",
  *     zipHash: std.filesha256({
  *         input: "function.zip",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     deploy: true,
  * });
  * ```
@@ -94,7 +94,7 @@ import * as utilities from "./utilities";
  *     zipFile: "function.zip",
  *     zipHash: std.filesha256({
  *         input: "function.zip",
- *     }).result,
+ *     }).then(invoke => invoke.result),
  *     deploy: true,
  * });
  * export const secretKey = apiKey.secretKey;
@@ -213,7 +213,7 @@ export class Function extends pulumi.CustomResource {
     /**
      * `region`). The region in which the namespace should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
      */

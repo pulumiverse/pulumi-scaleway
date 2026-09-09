@@ -67,17 +67,14 @@ type LookupApiKeyResult struct {
 	ExpiresAt        string `pulumi:"expiresAt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
+	Srn       string `pulumi:"srn"`
 	UpdatedAt string `pulumi:"updatedAt"`
 	UserId    string `pulumi:"userId"`
 }
 
 func LookupApiKeyOutput(ctx *pulumi.Context, args LookupApiKeyOutputArgs, opts ...pulumi.InvokeOption) LookupApiKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupApiKeyResultOutput, error) {
-			args := v.(LookupApiKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getApiKey:getApiKey", args, LookupApiKeyResultOutput{}, options).(LookupApiKeyResultOutput), nil
-		}).(LookupApiKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getApiKey:getApiKey", args, LookupApiKeyResultOutput{}, options).(LookupApiKeyResultOutput)
 }
 
 // A collection of arguments for invoking getApiKey.
@@ -140,6 +137,10 @@ func (o LookupApiKeyResultOutput) ExpiresAt() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupApiKeyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupApiKeyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupApiKeyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupApiKeyResultOutput) UpdatedAt() pulumi.StringOutput {

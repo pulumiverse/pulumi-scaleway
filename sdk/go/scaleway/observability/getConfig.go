@@ -40,7 +40,7 @@ import (
 //			_, err = observability.NewSource(ctx, "metrics", &observability.SourceArgs{
 //				Name:          pulumi.String("my-metrics"),
 //				Type:          pulumi.String("metrics"),
-//				RetentionDays: pulumi.Int(pulumi.Int(main.CustomMetricsRetentions[0].DefaultDays)),
+//				RetentionDays: pulumi.Int(main.CustomMetricsRetentions[0].DefaultDays),
 //			})
 //			if err != nil {
 //				return err
@@ -81,16 +81,12 @@ type GetConfigResult struct {
 	ProductLogsRetentions []GetConfigProductLogsRetention `pulumi:"productLogsRetentions"`
 	// Retention limits and default for Scaleway product metrics data sources.
 	ProductMetricsRetentions []GetConfigProductMetricsRetention `pulumi:"productMetricsRetentions"`
-	Region                   *string                            `pulumi:"region"`
+	Region                   string                             `pulumi:"region"`
 }
 
 func GetConfigOutput(ctx *pulumi.Context, args GetConfigOutputArgs, opts ...pulumi.InvokeOption) GetConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetConfigResultOutput, error) {
-			args := v.(GetConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:observability/getConfig:getConfig", args, GetConfigResultOutput{}, options).(GetConfigResultOutput), nil
-		}).(GetConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:observability/getConfig:getConfig", args, GetConfigResultOutput{}, options).(GetConfigResultOutput)
 }
 
 // A collection of arguments for invoking getConfig.
@@ -148,8 +144,8 @@ func (o GetConfigResultOutput) ProductMetricsRetentions() GetConfigProductMetric
 	return o.ApplyT(func(v GetConfigResult) []GetConfigProductMetricsRetention { return v.ProductMetricsRetentions }).(GetConfigProductMetricsRetentionArrayOutput)
 }
 
-func (o GetConfigResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetConfigResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o GetConfigResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

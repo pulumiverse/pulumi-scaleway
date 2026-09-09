@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = network.NewAcl(ctx, "acl01", &network.AclArgs{
-//				VpcId:  vpc01.ID(),
+//				VpcId:  vpc01.ID().ToIDOutput().ToStringOutput(),
 //				IsIpv6: pulumi.Bool(false),
 //				Rules: network.AclRuleArray{
 //					&network.AclRuleArgs{
@@ -78,7 +78,7 @@ type Acl struct {
 	// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
 	// `region`) The region of the ACL.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The list of Network ACL rules.
 	Rules AclRuleArrayOutput `pulumi:"rules"`
 	// The VPC ID the ACL belongs to.
@@ -272,8 +272,8 @@ func (o AclOutput) IsIpv6() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region of the ACL.
-func (o AclOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o AclOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The list of Network ACL rules.

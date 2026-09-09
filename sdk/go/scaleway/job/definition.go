@@ -135,7 +135,7 @@ type Definition struct {
 	// `projectId`) The ID of the project the Job is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Job.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// Defines a retry policy for the job.
 	RetryPolicy DefinitionRetryPolicyPtrOutput `pulumi:"retryPolicy"`
 	// A reference to a secret stored in Secret Manager.
@@ -491,8 +491,8 @@ func (o DefinitionOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the Job.
-func (o DefinitionOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Definition) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o DefinitionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Definition) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Defines a retry policy for the job.

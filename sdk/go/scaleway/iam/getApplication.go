@@ -79,17 +79,14 @@ type LookupApplicationResult struct {
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
 	OrganizationId *string  `pulumi:"organizationId"`
+	Srn            string   `pulumi:"srn"`
 	Tags           []string `pulumi:"tags"`
 	UpdatedAt      string   `pulumi:"updatedAt"`
 }
 
 func LookupApplicationOutput(ctx *pulumi.Context, args LookupApplicationOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupApplicationResultOutput, error) {
-			args := v.(LookupApplicationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:iam/getApplication:getApplication", args, LookupApplicationResultOutput{}, options).(LookupApplicationResultOutput), nil
-		}).(LookupApplicationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:iam/getApplication:getApplication", args, LookupApplicationResultOutput{}, options).(LookupApplicationResultOutput)
 }
 
 // A collection of arguments for invoking getApplication.
@@ -151,6 +148,10 @@ func (o LookupApplicationResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupApplicationResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupApplicationResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupApplicationResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupApplicationResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupApplicationResultOutput) Tags() pulumi.StringArrayOutput {

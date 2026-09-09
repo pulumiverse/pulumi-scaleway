@@ -551,7 +551,7 @@ class GetIpsIpMacAddressResult(dict):
                  mac_type: _builtins.str,
                  status: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str created_at: The date on which the flexible IP was created (RFC 3339 format).
         :param _builtins.str id: The MAC address ID.
@@ -567,8 +567,7 @@ class GetIpsIpMacAddressResult(dict):
         pulumi.set(__self__, "mac_type", mac_type)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -620,7 +619,7 @@ class GetIpsIpMacAddressResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which IPs exist.
         """

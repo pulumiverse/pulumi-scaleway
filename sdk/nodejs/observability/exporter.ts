@@ -145,7 +145,7 @@ export class Exporter extends pulumi.CustomResource {
     /**
      * ) The region where the exporter is located.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * Status of the data export (`creating`, `ready`, `error`).
      */

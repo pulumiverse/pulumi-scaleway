@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = mnq.NewSqs(ctx, "for_project", &mnq.SqsArgs{
-//				ProjectId: pulumi.String(pulumi.String(project.Id)),
+//				ProjectId: pulumi.String(project.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -92,7 +92,7 @@ type Sqs struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which SQS will be enabled.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewSqs registers a new resource with the given unique name, arguments, and options.
@@ -270,8 +270,8 @@ func (o SqsOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which SQS will be enabled.
-func (o SqsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sqs) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o SqsOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sqs) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type SqsArrayOutput struct{ *pulumi.OutputState }

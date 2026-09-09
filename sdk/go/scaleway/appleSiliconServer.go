@@ -68,7 +68,7 @@ import (
 //			}
 //			pn_apple_silicon, err := network.NewPrivateNetwork(ctx, "pn-apple-silicon", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("pn-apple-silicon"),
-//				VpcId: vpc_apple_silicon.ID(),
+//				VpcId: vpc_apple_silicon.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,7 +79,7 @@ import (
 //				EnableVpc: pulumi.Bool(true),
 //				PrivateNetworks: applesilicon.ServerPrivateNetworkArray{
 //					&applesilicon.ServerPrivateNetworkArgs{
-//						Id: pn_apple_silicon.ID(),
+//						Id: pn_apple_silicon.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //			})
@@ -125,9 +125,9 @@ import (
 //				Name:            pulumi.String("TestAccServerRunner"),
 //				Type:            pulumi.String("M2-L"),
 //				PublicBandwidth: pulumi.Int(1000000000),
-//				OsId:            pulumi.String(pulumi.String(byName.Id)),
+//				OsId:            pulumi.String(byName.Id),
 //				RunnerIds: pulumi.StringArray{
-//					main.ID(),
+//					main.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -196,7 +196,7 @@ type AppleSiliconServer struct {
 	VpcStatus pulumi.StringOutput `pulumi:"vpcStatus"`
 	// `zone`) The zone in which
 	// the server should be created.
-	Zone pulumi.StringPtrOutput `pulumi:"zone"`
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewAppleSiliconServer registers a new resource with the given unique name, arguments, and options.
@@ -588,8 +588,8 @@ func (o AppleSiliconServerOutput) VpcStatus() pulumi.StringOutput {
 
 // `zone`) The zone in which
 // the server should be created.
-func (o AppleSiliconServerOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
+func (o AppleSiliconServerOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
 type AppleSiliconServerArrayOutput struct{ *pulumi.OutputState }

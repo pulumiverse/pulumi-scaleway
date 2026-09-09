@@ -277,7 +277,7 @@ export class Bucket extends pulumi.CustomResource {
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * A list of tags (key/value) for the bucket.
      *

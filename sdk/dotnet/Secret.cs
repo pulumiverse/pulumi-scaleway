@@ -133,7 +133,7 @@ namespace Pulumiverse.Scaleway
         /// in which the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway Resource Name (SRN) of the secret.

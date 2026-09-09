@@ -91,14 +91,14 @@ import (
 //				return err
 //			}
 //			cr01, err := tem.NewDomain(ctx, "cr01", &tem.DomainArgs{
-//				Name:      pulumi.String(pulumi.String(domainName)),
+//				Name:      pulumi.String(domainName),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("TXT"),
 //				Data: cr01.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
 //					return fmt.Sprintf("v=spf1 %v -all", spfConfig), nil
@@ -108,7 +108,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Name: cr01.ProjectId.ApplyT(func(projectId string) (string, error) {
 //					return fmt.Sprintf("%v._domainkey", projectId), nil
 //				}).(pulumi.StringOutput),
@@ -119,7 +119,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("MX"),
 //				Data:    pulumi.String("."),
 //			})
@@ -127,7 +127,7 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dmarc", &domain.RecordArgs{
-//				DnsZone: pulumi.String(pulumi.String(domainName)),
+//				DnsZone: pulumi.String(domainName),
 //				Name:    cr01.DmarcName,
 //				Type:    pulumi.String("TXT"),
 //				Data:    cr01.DmarcConfig,
@@ -136,7 +136,7 @@ import (
 //				return err
 //			}
 //			valid, err := tem.NewDomainValidation(ctx, "valid", &tem.DomainValidationArgs{
-//				DomainId: cr01.ID(),
+//				DomainId: cr01.ID().ToIDOutput().ToStringOutput(),
 //				Region:   cr01.Region,
 //				Timeout:  pulumi.Int(3600),
 //			})
@@ -145,7 +145,7 @@ import (
 //			}
 //			_, err = tem.NewWebhook(ctx, "webhook", &tem.WebhookArgs{
 //				Name:     pulumi.String("example-webhook"),
-//				DomainId: cr01.ID(),
+//				DomainId: cr01.ID().ToIDOutput().ToStringOutput(),
 //				EventTypes: pulumi.StringArray{
 //					pulumi.String("email_delivered"),
 //					pulumi.String("email_bounced"),
@@ -187,7 +187,7 @@ type Webhook struct {
 	// The ID of the project the webhook is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// . The region in which the webhook should be created.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The Amazon Resource Name (ARN) of the SNS topic.
 	SnsArn pulumi.StringOutput `pulumi:"snsArn"`
 	// The date and time of the webhook's last update (RFC 3339 format).
@@ -433,8 +433,8 @@ func (o WebhookOutput) ProjectId() pulumi.StringOutput {
 }
 
 // . The region in which the webhook should be created.
-func (o WebhookOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o WebhookOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The Amazon Resource Name (ARN) of the SNS topic.

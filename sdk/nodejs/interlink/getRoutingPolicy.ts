@@ -100,6 +100,7 @@ export interface GetRoutingPolicyResult {
     readonly projectId?: string;
     readonly region?: string;
     readonly routingPolicyId?: string;
+    readonly srn: string;
     /**
      * The tags associated with the routing policy.
      */

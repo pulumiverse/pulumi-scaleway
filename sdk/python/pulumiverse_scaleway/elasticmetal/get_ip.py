@@ -26,7 +26,7 @@ class GetIpResult:
     """
     A collection of values returned by getIp.
     """
-    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, is_ipv6=None, organization_id=None, project_id=None, reverse=None, server_id=None, status=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, is_ipv6=None, organization_id=None, project_id=None, reverse=None, server_id=None, srn=None, status=None, tags=None, updated_at=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -57,6 +57,9 @@ class GetIpResult:
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -125,6 +128,11 @@ class GetIpResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         return pulumi.get(self, "status")
 
@@ -160,6 +168,7 @@ class AwaitableGetIpResult(GetIpResult):
             project_id=self.project_id,
             reverse=self.reverse,
             server_id=self.server_id,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             updated_at=self.updated_at,
@@ -210,6 +219,7 @@ def get_ip(flexible_ip_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         reverse=pulumi.get(__ret__, 'reverse'),
         server_id=pulumi.get(__ret__, 'server_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -257,6 +267,7 @@ def get_ip_output(flexible_ip_id: pulumi.Input[Optional[Optional[_builtins.str]]
         project_id=pulumi.get(__response__, 'project_id'),
         reverse=pulumi.get(__response__, 'reverse'),
         server_id=pulumi.get(__response__, 'server_id'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),

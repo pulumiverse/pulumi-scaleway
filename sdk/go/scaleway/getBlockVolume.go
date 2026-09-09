@@ -54,12 +54,8 @@ type LookupBlockVolumeResult struct {
 }
 
 func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupBlockVolumeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBlockVolumeResultOutput, error) {
-			args := v.(LookupBlockVolumeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getBlockVolume:getBlockVolume", args, LookupBlockVolumeResultOutput{}, options).(LookupBlockVolumeResultOutput), nil
-		}).(LookupBlockVolumeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getBlockVolume:getBlockVolume", args, LookupBlockVolumeResultOutput{}, options).(LookupBlockVolumeResultOutput)
 }
 
 // A collection of arguments for invoking getBlockVolume.

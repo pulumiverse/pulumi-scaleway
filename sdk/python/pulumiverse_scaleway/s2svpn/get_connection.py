@@ -27,7 +27,7 @@ class GetConnectionResult:
     """
     A collection of values returned by getConnection.
     """
-    def __init__(__self__, bgp_config_ipv4s=None, bgp_config_ipv6s=None, bgp_session_ipv4s=None, bgp_session_ipv6s=None, bgp_status_ipv4=None, bgp_status_ipv6=None, connection_id=None, created_at=None, customer_gateway_id=None, enable_route_propagation=None, esp_ciphers=None, id=None, ikev2_ciphers=None, initiation_policy=None, is_ipv6=None, name=None, organization_id=None, project_id=None, region=None, route_propagation_enabled=None, secret_id=None, secret_version=None, status=None, tags=None, tunnel_status=None, updated_at=None, vpn_gateway_id=None):
+    def __init__(__self__, bgp_config_ipv4s=None, bgp_config_ipv6s=None, bgp_session_ipv4s=None, bgp_session_ipv6s=None, bgp_status_ipv4=None, bgp_status_ipv6=None, connection_id=None, created_at=None, customer_gateway_id=None, enable_route_propagation=None, esp_ciphers=None, id=None, ikev2_ciphers=None, initiation_policy=None, is_ipv6=None, name=None, organization_id=None, project_id=None, region=None, route_propagation_enabled=None, secret_id=None, secret_version=None, srn=None, status=None, tags=None, tunnel_status=None, updated_at=None, vpn_gateway_id=None):
         if bgp_config_ipv4s and not isinstance(bgp_config_ipv4s, list):
             raise TypeError("Expected argument 'bgp_config_ipv4s' to be a list")
         pulumi.set(__self__, "bgp_config_ipv4s", bgp_config_ipv4s)
@@ -94,6 +94,9 @@ class GetConnectionResult:
         if secret_version and not isinstance(secret_version, int):
             raise TypeError("Expected argument 'secret_version' to be a int")
         pulumi.set(__self__, "secret_version", secret_version)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -276,6 +279,11 @@ class GetConnectionResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         The status of the connection.
@@ -343,6 +351,7 @@ class AwaitableGetConnectionResult(GetConnectionResult):
             route_propagation_enabled=self.route_propagation_enabled,
             secret_id=self.secret_id,
             secret_version=self.secret_version,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             tunnel_status=self.tunnel_status,
@@ -415,6 +424,7 @@ def get_connection(connection_id: Optional[_builtins.str] = None,
         route_propagation_enabled=pulumi.get(__ret__, 'route_propagation_enabled'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
         secret_version=pulumi.get(__ret__, 'secret_version'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         tunnel_status=pulumi.get(__ret__, 'tunnel_status'),
@@ -484,6 +494,7 @@ def get_connection_output(connection_id: pulumi.Input[Optional[Optional[_builtin
         route_propagation_enabled=pulumi.get(__response__, 'route_propagation_enabled'),
         secret_id=pulumi.get(__response__, 'secret_id'),
         secret_version=pulumi.get(__response__, 'secret_version'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         tunnel_status=pulumi.get(__response__, 'tunnel_status'),

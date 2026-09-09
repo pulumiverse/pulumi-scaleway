@@ -77,7 +77,7 @@ import (
 //			// Find server private IPv4 using private-nic id
 //			_ = ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
 //				Resource: &ipam.GetIpResourceArgs{
-//					Id:   nic.ID(),
+//					Id:   nic.ID().ToIDOutput().ToStringOutput(),
 //					Type: pulumi.String("instance_private_nic"),
 //				},
 //				Type: pulumi.String("ipv4"),
@@ -118,7 +118,7 @@ import (
 //				UserName:      pulumi.String("my_initial_user"),
 //				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
-//					PnId: pn.ID(),
+//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -188,20 +188,17 @@ type LookupIpamIpResult struct {
 	OrganizationId   string             `pulumi:"organizationId"`
 	PrivateNetworkId *string            `pulumi:"privateNetworkId"`
 	ProjectId        string             `pulumi:"projectId"`
-	Region           *string            `pulumi:"region"`
+	Region           string             `pulumi:"region"`
 	Resource         *GetIpamIpResource `pulumi:"resource"`
+	Srn              string             `pulumi:"srn"`
 	Tags             []string           `pulumi:"tags"`
 	Type             *string            `pulumi:"type"`
-	Zonal            *string            `pulumi:"zonal"`
+	Zonal            string             `pulumi:"zonal"`
 }
 
 func LookupIpamIpOutput(ctx *pulumi.Context, args LookupIpamIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpamIpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIpamIpResultOutput, error) {
-			args := v.(LookupIpamIpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:index/getIpamIp:getIpamIp", args, LookupIpamIpResultOutput{}, options).(LookupIpamIpResultOutput), nil
-		}).(LookupIpamIpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:index/getIpamIp:getIpamIp", args, LookupIpamIpResultOutput{}, options).(LookupIpamIpResultOutput)
 }
 
 // A collection of arguments for invoking getIpamIp.
@@ -288,12 +285,16 @@ func (o LookupIpamIpResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o LookupIpamIpResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o LookupIpamIpResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func (o LookupIpamIpResultOutput) Resource() GetIpamIpResourcePtrOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) *GetIpamIpResource { return v.Resource }).(GetIpamIpResourcePtrOutput)
+}
+
+func (o LookupIpamIpResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupIpamIpResultOutput) Tags() pulumi.StringArrayOutput {
@@ -304,8 +305,8 @@ func (o LookupIpamIpResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupIpamIpResultOutput) Zonal() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Zonal }).(pulumi.StringPtrOutput)
+func (o LookupIpamIpResultOutput) Zonal() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Zonal }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID(),
+//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -56,13 +56,13 @@ import (
 //			}
 //			mainBinding, err := annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
 //				Srn:     mainKey.Srn,
-//				ValueId: production.ID(),
+//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = annotations.LookupBindingOutput(ctx, annotations.GetBindingOutputArgs{
-//				BindingId: mainBinding.ID(),
+//				BindingId: mainBinding.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -99,12 +99,8 @@ type LookupBindingResult struct {
 }
 
 func LookupBindingOutput(ctx *pulumi.Context, args LookupBindingOutputArgs, opts ...pulumi.InvokeOption) LookupBindingResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBindingResultOutput, error) {
-			args := v.(LookupBindingArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("scaleway:annotations/getBinding:getBinding", args, LookupBindingResultOutput{}, options).(LookupBindingResultOutput), nil
-		}).(LookupBindingResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("scaleway:annotations/getBinding:getBinding", args, LookupBindingResultOutput{}, options).(LookupBindingResultOutput)
 }
 
 // A collection of arguments for invoking getBinding.

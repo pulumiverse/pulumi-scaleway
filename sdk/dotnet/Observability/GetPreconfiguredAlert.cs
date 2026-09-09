@@ -407,7 +407,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         public readonly string Id;
         public readonly string ProjectId;
-        public readonly string? Region;
+        public readonly string Region;
         /// <summary>
         /// Status of the alert rule (`Enabled`, `Disabled`, `Enabling`, `Disabling`).
         /// </summary>
@@ -423,7 +423,7 @@ namespace Pulumiverse.Scaleway.Observability
 
             string projectId,
 
-            string? region,
+            string region,
 
             string? ruleStatus)
         {

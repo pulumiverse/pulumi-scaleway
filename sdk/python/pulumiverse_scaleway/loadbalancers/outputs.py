@@ -1995,7 +1995,7 @@ class GetIpsIpResult(dict):
                  project_id: _builtins.str,
                  reverse: _builtins.str,
                  tags: Sequence[_builtins.str],
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str id: The ID of the associated IP.
         :param _builtins.str ip_address: The IP address
@@ -2013,8 +2013,7 @@ class GetIpsIpResult(dict):
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "reverse", reverse)
         pulumi.set(__self__, "tags", tags)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter
@@ -2074,7 +2073,7 @@ class GetIpsIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the IPs exist.
         """
@@ -2125,7 +2124,7 @@ class GetLoadBalancerPrivateNetworkResult(dict):
         :param _builtins.str private_network_id: The Private Network ID
         :param Sequence[_builtins.str] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param _builtins.str status: The status of private network connection
-        :param _builtins.str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        :param _builtins.str zone: (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         pulumi.set(__self__, "dhcp_config", dhcp_config)
         pulumi.set(__self__, "ipam_ids", ipam_ids)
@@ -2178,7 +2177,7 @@ class GetLoadBalancerPrivateNetworkResult(dict):
     @pulumi.getter
     def zone(self) -> _builtins.str:
         """
-        (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
 
@@ -2204,7 +2203,7 @@ class GetLoadBalancersLbResult(dict):
                  tags: Sequence[_builtins.str],
                  type: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.int backend_count: Number of backends the Load Balancer has.
         :param _builtins.str created_at: Date on which the Load Balancer was created.
@@ -2244,8 +2243,7 @@ class GetLoadBalancersLbResult(dict):
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="backendCount")
@@ -2393,7 +2391,7 @@ class GetLoadBalancersLbResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """
@@ -2408,7 +2406,7 @@ class GetLoadBalancersLbInstanceResult(dict):
                  ip_address: _builtins.str,
                  status: _builtins.str,
                  updated_at: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str created_at: Date on which the Load Balancer was created.
         :param _builtins.str id: The ID of the Load Balancer.
@@ -2422,8 +2420,7 @@ class GetLoadBalancersLbInstanceResult(dict):
         pulumi.set(__self__, "ip_address", ip_address)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -2467,7 +2464,7 @@ class GetLoadBalancersLbInstanceResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """
@@ -2483,7 +2480,7 @@ class GetLoadBalancersLbIpResult(dict):
                  organization_id: _builtins.str,
                  project_id: _builtins.str,
                  reverse: _builtins.str,
-                 zone: Optional[_builtins.str] = None):
+                 zone: _builtins.str):
         """
         :param _builtins.str id: The ID of the Load Balancer.
         :param _builtins.str ip_address: IP address
@@ -2499,8 +2496,7 @@ class GetLoadBalancersLbIpResult(dict):
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "reverse", reverse)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+        pulumi.set(__self__, "zone", zone)
 
     @_builtins.property
     @pulumi.getter
@@ -2552,7 +2548,7 @@ class GetLoadBalancersLbIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         """
         `zone`) The zone in which the Load Balancers exist.
         """

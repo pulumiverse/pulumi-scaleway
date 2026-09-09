@@ -98,9 +98,9 @@ import * as utilities from "../utilities";
  *     size: 1,
  * });
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
- *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
- *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     host: cluster.kubeconfigs[0].host,
+ *     token: cluster.kubeconfigs[0].token,
+ *     clusterCaCertificate: cluster.kubeconfigs[0].clusterCaCertificate,
  * }}, {
  *     dependsOn: [pool],
  * });
@@ -108,7 +108,7 @@ import * as utilities from "../utilities";
  *     zone: "fr-par-1",
  *     projectId: cluster.projectId,
  * });
- * const nginxIngress = new kubernetes.helm.sh/v3.Release("nginx_ingress", {
+ * const nginxIngress = new kubernetes.helm.v3.Release("nginx_ingress", {
  *     name: "nginx-ingress",
  *     namespace: "kube-system",
  *     repositoryOpts: {
@@ -150,9 +150,9 @@ import * as utilities from "../utilities";
  * // The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
  * // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
- *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
- *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     host: cluster.kubeconfigs[0].host,
+ *     token: cluster.kubeconfigs[0].token,
+ *     clusterCaCertificate: cluster.kubeconfigs[0].clusterCaCertificate,
  * }}, {
  *     dependsOn: [pool],
  * });
@@ -344,7 +344,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * `region`) The region in which the cluster should be created.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
     /**
      * The subnet used for the Service CIDR.
      *
