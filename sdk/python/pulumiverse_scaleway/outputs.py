@@ -13478,6 +13478,7 @@ class GetLbBackendsBackendResult(dict):
                  health_check_port: _builtins.int,
                  health_check_tcps: Sequence['outputs.GetLbBackendsBackendHealthCheckTcpResult'],
                  health_check_timeout: _builtins.str,
+                 host: _builtins.str,
                  id: _builtins.str,
                  ignore_ssl_server_verify: _builtins.bool,
                  lb_id: _builtins.str,
@@ -13505,6 +13506,7 @@ class GetLbBackendsBackendResult(dict):
         :param _builtins.int health_check_port: Port the health check requests will be sent to.
         :param Sequence['GetLbBackendsBackendHealthCheckTcpArgs'] health_check_tcps: This block enables TCP health checks.
         :param _builtins.str health_check_timeout: Timeout before a health check request is considered failed.
+        :param _builtins.str host: Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
         :param _builtins.str id: The associated backend ID.
         :param _builtins.bool ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param _builtins.str lb_id: The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
@@ -13532,6 +13534,7 @@ class GetLbBackendsBackendResult(dict):
         pulumi.set(__self__, "health_check_port", health_check_port)
         pulumi.set(__self__, "health_check_tcps", health_check_tcps)
         pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         pulumi.set(__self__, "lb_id", lb_id)
@@ -13642,6 +13645,14 @@ class GetLbBackendsBackendResult(dict):
         Timeout before a health check request is considered failed.
         """
         return pulumi.get(self, "health_check_timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+        """
+        return pulumi.get(self, "host")
 
     @_builtins.property
     @pulumi.getter

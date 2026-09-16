@@ -39,13 +39,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Old approach (deprecated)
-//			//
-//			//	resource "scaleway_cockpit_grafana_user" "main" {
-//			//	  project_id = scaleway_account_project.project.id
-//			//	  login      = "my-awesome-user"
-//			//	  role       = "editor"
-//			//	}
-//			//
+//			// resource "scaleway_cockpit_grafana_user" "main" {
+//			//   project_id = scaleway_account_project.project.id
+//			//   login      = "my-awesome-user"
+//			//   role       = "editor"
+//			// }
 //			// New approach - Use IAM authentication
 //			main, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
 //				ProjectId: pulumi.StringRef(project.Id),

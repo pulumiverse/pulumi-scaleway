@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## With cloud-init
+//			//## With cloud-init
 //			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)

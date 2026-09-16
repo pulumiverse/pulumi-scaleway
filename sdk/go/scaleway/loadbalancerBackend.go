@@ -120,6 +120,8 @@ type LoadbalancerBackend struct {
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 	HealthCheckTransientDelay pulumi.StringPtrOutput `pulumi:"healthCheckTransientDelay"`
+	// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+	Host pulumi.StringPtrOutput `pulumi:"host"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
 	IgnoreSslServerVerify pulumi.BoolPtrOutput `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID
@@ -226,6 +228,8 @@ type loadbalancerBackendState struct {
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
+	// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+	Host *string `pulumi:"host"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID
@@ -294,6 +298,8 @@ type LoadbalancerBackendState struct {
 	HealthCheckTimeout pulumi.StringPtrInput
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 	HealthCheckTransientDelay pulumi.StringPtrInput
+	// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+	Host pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID
@@ -366,6 +372,8 @@ type loadbalancerBackendArgs struct {
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
+	// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+	Host *string `pulumi:"host"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID
@@ -435,6 +443,8 @@ type LoadbalancerBackendArgs struct {
 	HealthCheckTimeout pulumi.StringPtrInput
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 	HealthCheckTransientDelay pulumi.StringPtrInput
+	// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+	Host pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID
@@ -626,6 +636,11 @@ func (o LoadbalancerBackendOutput) HealthCheckTimeout() pulumi.StringPtrOutput {
 // Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
 func (o LoadbalancerBackendOutput) HealthCheckTransientDelay() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.HealthCheckTransientDelay }).(pulumi.StringPtrOutput)
+}
+
+// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+func (o LoadbalancerBackendOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.Host }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection

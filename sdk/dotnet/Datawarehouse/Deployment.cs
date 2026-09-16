@@ -170,14 +170,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
-        /// 
-        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Public endpoint information (always created automatically).
+        /// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         /// </summary>
         [Output("publicNetworks")]
         public Output<ImmutableArray<Outputs.DeploymentPublicNetwork>> PublicNetworks { get; private set; } = null!;
@@ -359,11 +357,21 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
-        /// 
-        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("publicNetworks")]
+        private InputList<Inputs.DeploymentPublicNetworkArgs>? _publicNetworks;
+
+        /// <summary>
+        /// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+        /// </summary>
+        public InputList<Inputs.DeploymentPublicNetworkArgs> PublicNetworks
+        {
+            get => _publicNetworks ?? (_publicNetworks = new InputList<Inputs.DeploymentPublicNetworkArgs>());
+            set => _publicNetworks = value;
+        }
 
         /// <summary>
         /// RAM per CPU in GB.
@@ -492,8 +500,6 @@ namespace Pulumiverse.Scaleway.Datawarehouse
 
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
-        /// 
-        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -502,7 +508,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         private InputList<Inputs.DeploymentPublicNetworkGetArgs>? _publicNetworks;
 
         /// <summary>
-        /// Public endpoint information (always created automatically).
+        /// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         /// </summary>
         public InputList<Inputs.DeploymentPublicNetworkGetArgs> PublicNetworks
         {

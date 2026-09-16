@@ -157,6 +157,12 @@ namespace Pulumiverse.Scaleway
         public Output<string?> HealthCheckTransientDelay { get; private set; } = null!;
 
         /// <summary>
+        /// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        /// </summary>
+        [Output("host")]
+        public Output<string?> Host { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         /// </summary>
         [Output("ignoreSslServerVerify")]
@@ -387,6 +393,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? HealthCheckTransientDelay { get; set; }
 
         /// <summary>
+        /// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
+
+        /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         /// </summary>
         [Input("ignoreSslServerVerify")]
@@ -582,6 +594,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("healthCheckTransientDelay")]
         public Input<string>? HealthCheckTransientDelay { get; set; }
+
+        /// <summary>
+        /// When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        /// </summary>
+        [Input("host")]
+        public Input<string>? Host { get; set; }
 
         /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection

@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic SCIM Token creation
+//			//## Basic SCIM Token creation
 //			// Enable SCIM for your organization
 //			main, err := iam.NewScim(ctx, "main", &iam.ScimArgs{
 //				OrganizationId: pulumi.String("your-organization-id"),

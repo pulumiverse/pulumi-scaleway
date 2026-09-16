@@ -561,6 +561,428 @@ func (o GetClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetClusterP
 	}).(GetClusterPublicNetworkOutput)
 }
 
+type GetVersionAvailableSetting struct {
+	// Boolean property, if the setting is a boolean.
+	BoolProperty GetVersionAvailableSettingBoolProperty `pulumi:"boolProperty"`
+	// The setting description.
+	Description string `pulumi:"description"`
+	// Float property, if the setting is a float.
+	FloatProperty GetVersionAvailableSettingFloatProperty `pulumi:"floatProperty"`
+	// Whether the setting can be applied without a restart.
+	HotConfigurable bool `pulumi:"hotConfigurable"`
+	// Integer property, if the setting is an integer.
+	IntProperty GetVersionAvailableSettingIntProperty `pulumi:"intProperty"`
+	// The setting name.
+	Name string `pulumi:"name"`
+	// String property, if the setting is a string.
+	StringProperty GetVersionAvailableSettingStringProperty `pulumi:"stringProperty"`
+}
+
+// GetVersionAvailableSettingInput is an input type that accepts GetVersionAvailableSettingArgs and GetVersionAvailableSettingOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingInput` via:
+//
+//	GetVersionAvailableSettingArgs{...}
+type GetVersionAvailableSettingInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingOutput() GetVersionAvailableSettingOutput
+	ToGetVersionAvailableSettingOutputWithContext(context.Context) GetVersionAvailableSettingOutput
+}
+
+type GetVersionAvailableSettingArgs struct {
+	// Boolean property, if the setting is a boolean.
+	BoolProperty GetVersionAvailableSettingBoolPropertyInput `pulumi:"boolProperty"`
+	// The setting description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Float property, if the setting is a float.
+	FloatProperty GetVersionAvailableSettingFloatPropertyInput `pulumi:"floatProperty"`
+	// Whether the setting can be applied without a restart.
+	HotConfigurable pulumi.BoolInput `pulumi:"hotConfigurable"`
+	// Integer property, if the setting is an integer.
+	IntProperty GetVersionAvailableSettingIntPropertyInput `pulumi:"intProperty"`
+	// The setting name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// String property, if the setting is a string.
+	StringProperty GetVersionAvailableSettingStringPropertyInput `pulumi:"stringProperty"`
+}
+
+func (GetVersionAvailableSettingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSetting)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingArgs) ToGetVersionAvailableSettingOutput() GetVersionAvailableSettingOutput {
+	return i.ToGetVersionAvailableSettingOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingArgs) ToGetVersionAvailableSettingOutputWithContext(ctx context.Context) GetVersionAvailableSettingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingOutput)
+}
+
+// GetVersionAvailableSettingArrayInput is an input type that accepts GetVersionAvailableSettingArray and GetVersionAvailableSettingArrayOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingArrayInput` via:
+//
+//	GetVersionAvailableSettingArray{ GetVersionAvailableSettingArgs{...} }
+type GetVersionAvailableSettingArrayInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingArrayOutput() GetVersionAvailableSettingArrayOutput
+	ToGetVersionAvailableSettingArrayOutputWithContext(context.Context) GetVersionAvailableSettingArrayOutput
+}
+
+type GetVersionAvailableSettingArray []GetVersionAvailableSettingInput
+
+func (GetVersionAvailableSettingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVersionAvailableSetting)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingArray) ToGetVersionAvailableSettingArrayOutput() GetVersionAvailableSettingArrayOutput {
+	return i.ToGetVersionAvailableSettingArrayOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingArray) ToGetVersionAvailableSettingArrayOutputWithContext(ctx context.Context) GetVersionAvailableSettingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingArrayOutput)
+}
+
+type GetVersionAvailableSettingOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSetting)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingOutput) ToGetVersionAvailableSettingOutput() GetVersionAvailableSettingOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingOutput) ToGetVersionAvailableSettingOutputWithContext(ctx context.Context) GetVersionAvailableSettingOutput {
+	return o
+}
+
+// Boolean property, if the setting is a boolean.
+func (o GetVersionAvailableSettingOutput) BoolProperty() GetVersionAvailableSettingBoolPropertyOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) GetVersionAvailableSettingBoolProperty { return v.BoolProperty }).(GetVersionAvailableSettingBoolPropertyOutput)
+}
+
+// The setting description.
+func (o GetVersionAvailableSettingOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Float property, if the setting is a float.
+func (o GetVersionAvailableSettingOutput) FloatProperty() GetVersionAvailableSettingFloatPropertyOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) GetVersionAvailableSettingFloatProperty { return v.FloatProperty }).(GetVersionAvailableSettingFloatPropertyOutput)
+}
+
+// Whether the setting can be applied without a restart.
+func (o GetVersionAvailableSettingOutput) HotConfigurable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) bool { return v.HotConfigurable }).(pulumi.BoolOutput)
+}
+
+// Integer property, if the setting is an integer.
+func (o GetVersionAvailableSettingOutput) IntProperty() GetVersionAvailableSettingIntPropertyOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) GetVersionAvailableSettingIntProperty { return v.IntProperty }).(GetVersionAvailableSettingIntPropertyOutput)
+}
+
+// The setting name.
+func (o GetVersionAvailableSettingOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// String property, if the setting is a string.
+func (o GetVersionAvailableSettingOutput) StringProperty() GetVersionAvailableSettingStringPropertyOutput {
+	return o.ApplyT(func(v GetVersionAvailableSetting) GetVersionAvailableSettingStringProperty { return v.StringProperty }).(GetVersionAvailableSettingStringPropertyOutput)
+}
+
+type GetVersionAvailableSettingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVersionAvailableSetting)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingArrayOutput) ToGetVersionAvailableSettingArrayOutput() GetVersionAvailableSettingArrayOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingArrayOutput) ToGetVersionAvailableSettingArrayOutputWithContext(ctx context.Context) GetVersionAvailableSettingArrayOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingArrayOutput) Index(i pulumi.IntInput) GetVersionAvailableSettingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVersionAvailableSetting {
+		return vs[0].([]GetVersionAvailableSetting)[vs[1].(int)]
+	}).(GetVersionAvailableSettingOutput)
+}
+
+type GetVersionAvailableSettingBoolProperty struct {
+	// The default value of the setting.
+	DefaultValue bool `pulumi:"defaultValue"`
+}
+
+// GetVersionAvailableSettingBoolPropertyInput is an input type that accepts GetVersionAvailableSettingBoolPropertyArgs and GetVersionAvailableSettingBoolPropertyOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingBoolPropertyInput` via:
+//
+//	GetVersionAvailableSettingBoolPropertyArgs{...}
+type GetVersionAvailableSettingBoolPropertyInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingBoolPropertyOutput() GetVersionAvailableSettingBoolPropertyOutput
+	ToGetVersionAvailableSettingBoolPropertyOutputWithContext(context.Context) GetVersionAvailableSettingBoolPropertyOutput
+}
+
+type GetVersionAvailableSettingBoolPropertyArgs struct {
+	// The default value of the setting.
+	DefaultValue pulumi.BoolInput `pulumi:"defaultValue"`
+}
+
+func (GetVersionAvailableSettingBoolPropertyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingBoolProperty)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingBoolPropertyArgs) ToGetVersionAvailableSettingBoolPropertyOutput() GetVersionAvailableSettingBoolPropertyOutput {
+	return i.ToGetVersionAvailableSettingBoolPropertyOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingBoolPropertyArgs) ToGetVersionAvailableSettingBoolPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingBoolPropertyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingBoolPropertyOutput)
+}
+
+type GetVersionAvailableSettingBoolPropertyOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingBoolPropertyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingBoolProperty)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingBoolPropertyOutput) ToGetVersionAvailableSettingBoolPropertyOutput() GetVersionAvailableSettingBoolPropertyOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingBoolPropertyOutput) ToGetVersionAvailableSettingBoolPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingBoolPropertyOutput {
+	return o
+}
+
+// The default value of the setting.
+func (o GetVersionAvailableSettingBoolPropertyOutput) DefaultValue() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingBoolProperty) bool { return v.DefaultValue }).(pulumi.BoolOutput)
+}
+
+type GetVersionAvailableSettingFloatProperty struct {
+	// The default value of the setting.
+	DefaultValue float64 `pulumi:"defaultValue"`
+	// The maximum value of the setting.
+	Max float64 `pulumi:"max"`
+	// The minimum value of the setting.
+	Min float64 `pulumi:"min"`
+	// The unit of the setting.
+	Unit string `pulumi:"unit"`
+}
+
+// GetVersionAvailableSettingFloatPropertyInput is an input type that accepts GetVersionAvailableSettingFloatPropertyArgs and GetVersionAvailableSettingFloatPropertyOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingFloatPropertyInput` via:
+//
+//	GetVersionAvailableSettingFloatPropertyArgs{...}
+type GetVersionAvailableSettingFloatPropertyInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingFloatPropertyOutput() GetVersionAvailableSettingFloatPropertyOutput
+	ToGetVersionAvailableSettingFloatPropertyOutputWithContext(context.Context) GetVersionAvailableSettingFloatPropertyOutput
+}
+
+type GetVersionAvailableSettingFloatPropertyArgs struct {
+	// The default value of the setting.
+	DefaultValue pulumi.Float64Input `pulumi:"defaultValue"`
+	// The maximum value of the setting.
+	Max pulumi.Float64Input `pulumi:"max"`
+	// The minimum value of the setting.
+	Min pulumi.Float64Input `pulumi:"min"`
+	// The unit of the setting.
+	Unit pulumi.StringInput `pulumi:"unit"`
+}
+
+func (GetVersionAvailableSettingFloatPropertyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingFloatProperty)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingFloatPropertyArgs) ToGetVersionAvailableSettingFloatPropertyOutput() GetVersionAvailableSettingFloatPropertyOutput {
+	return i.ToGetVersionAvailableSettingFloatPropertyOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingFloatPropertyArgs) ToGetVersionAvailableSettingFloatPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingFloatPropertyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingFloatPropertyOutput)
+}
+
+type GetVersionAvailableSettingFloatPropertyOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingFloatPropertyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingFloatProperty)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingFloatPropertyOutput) ToGetVersionAvailableSettingFloatPropertyOutput() GetVersionAvailableSettingFloatPropertyOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingFloatPropertyOutput) ToGetVersionAvailableSettingFloatPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingFloatPropertyOutput {
+	return o
+}
+
+// The default value of the setting.
+func (o GetVersionAvailableSettingFloatPropertyOutput) DefaultValue() pulumi.Float64Output {
+	return o.ApplyT(func(v GetVersionAvailableSettingFloatProperty) float64 { return v.DefaultValue }).(pulumi.Float64Output)
+}
+
+// The maximum value of the setting.
+func (o GetVersionAvailableSettingFloatPropertyOutput) Max() pulumi.Float64Output {
+	return o.ApplyT(func(v GetVersionAvailableSettingFloatProperty) float64 { return v.Max }).(pulumi.Float64Output)
+}
+
+// The minimum value of the setting.
+func (o GetVersionAvailableSettingFloatPropertyOutput) Min() pulumi.Float64Output {
+	return o.ApplyT(func(v GetVersionAvailableSettingFloatProperty) float64 { return v.Min }).(pulumi.Float64Output)
+}
+
+// The unit of the setting.
+func (o GetVersionAvailableSettingFloatPropertyOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingFloatProperty) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+type GetVersionAvailableSettingIntProperty struct {
+	// The default value of the setting.
+	DefaultValue int `pulumi:"defaultValue"`
+	// The maximum value of the setting.
+	Max int `pulumi:"max"`
+	// The minimum value of the setting.
+	Min int `pulumi:"min"`
+	// The unit of the setting.
+	Unit string `pulumi:"unit"`
+}
+
+// GetVersionAvailableSettingIntPropertyInput is an input type that accepts GetVersionAvailableSettingIntPropertyArgs and GetVersionAvailableSettingIntPropertyOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingIntPropertyInput` via:
+//
+//	GetVersionAvailableSettingIntPropertyArgs{...}
+type GetVersionAvailableSettingIntPropertyInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingIntPropertyOutput() GetVersionAvailableSettingIntPropertyOutput
+	ToGetVersionAvailableSettingIntPropertyOutputWithContext(context.Context) GetVersionAvailableSettingIntPropertyOutput
+}
+
+type GetVersionAvailableSettingIntPropertyArgs struct {
+	// The default value of the setting.
+	DefaultValue pulumi.IntInput `pulumi:"defaultValue"`
+	// The maximum value of the setting.
+	Max pulumi.IntInput `pulumi:"max"`
+	// The minimum value of the setting.
+	Min pulumi.IntInput `pulumi:"min"`
+	// The unit of the setting.
+	Unit pulumi.StringInput `pulumi:"unit"`
+}
+
+func (GetVersionAvailableSettingIntPropertyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingIntProperty)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingIntPropertyArgs) ToGetVersionAvailableSettingIntPropertyOutput() GetVersionAvailableSettingIntPropertyOutput {
+	return i.ToGetVersionAvailableSettingIntPropertyOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingIntPropertyArgs) ToGetVersionAvailableSettingIntPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingIntPropertyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingIntPropertyOutput)
+}
+
+type GetVersionAvailableSettingIntPropertyOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingIntPropertyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingIntProperty)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingIntPropertyOutput) ToGetVersionAvailableSettingIntPropertyOutput() GetVersionAvailableSettingIntPropertyOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingIntPropertyOutput) ToGetVersionAvailableSettingIntPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingIntPropertyOutput {
+	return o
+}
+
+// The default value of the setting.
+func (o GetVersionAvailableSettingIntPropertyOutput) DefaultValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingIntProperty) int { return v.DefaultValue }).(pulumi.IntOutput)
+}
+
+// The maximum value of the setting.
+func (o GetVersionAvailableSettingIntPropertyOutput) Max() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingIntProperty) int { return v.Max }).(pulumi.IntOutput)
+}
+
+// The minimum value of the setting.
+func (o GetVersionAvailableSettingIntPropertyOutput) Min() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingIntProperty) int { return v.Min }).(pulumi.IntOutput)
+}
+
+// The unit of the setting.
+func (o GetVersionAvailableSettingIntPropertyOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingIntProperty) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+type GetVersionAvailableSettingStringProperty struct {
+	// The default value of the setting.
+	DefaultValue string `pulumi:"defaultValue"`
+	// The string constraint of the setting (e.g. a regex).
+	StringConstraint string `pulumi:"stringConstraint"`
+}
+
+// GetVersionAvailableSettingStringPropertyInput is an input type that accepts GetVersionAvailableSettingStringPropertyArgs and GetVersionAvailableSettingStringPropertyOutput values.
+// You can construct a concrete instance of `GetVersionAvailableSettingStringPropertyInput` via:
+//
+//	GetVersionAvailableSettingStringPropertyArgs{...}
+type GetVersionAvailableSettingStringPropertyInput interface {
+	pulumi.Input
+
+	ToGetVersionAvailableSettingStringPropertyOutput() GetVersionAvailableSettingStringPropertyOutput
+	ToGetVersionAvailableSettingStringPropertyOutputWithContext(context.Context) GetVersionAvailableSettingStringPropertyOutput
+}
+
+type GetVersionAvailableSettingStringPropertyArgs struct {
+	// The default value of the setting.
+	DefaultValue pulumi.StringInput `pulumi:"defaultValue"`
+	// The string constraint of the setting (e.g. a regex).
+	StringConstraint pulumi.StringInput `pulumi:"stringConstraint"`
+}
+
+func (GetVersionAvailableSettingStringPropertyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingStringProperty)(nil)).Elem()
+}
+
+func (i GetVersionAvailableSettingStringPropertyArgs) ToGetVersionAvailableSettingStringPropertyOutput() GetVersionAvailableSettingStringPropertyOutput {
+	return i.ToGetVersionAvailableSettingStringPropertyOutputWithContext(context.Background())
+}
+
+func (i GetVersionAvailableSettingStringPropertyArgs) ToGetVersionAvailableSettingStringPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingStringPropertyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVersionAvailableSettingStringPropertyOutput)
+}
+
+type GetVersionAvailableSettingStringPropertyOutput struct{ *pulumi.OutputState }
+
+func (GetVersionAvailableSettingStringPropertyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVersionAvailableSettingStringProperty)(nil)).Elem()
+}
+
+func (o GetVersionAvailableSettingStringPropertyOutput) ToGetVersionAvailableSettingStringPropertyOutput() GetVersionAvailableSettingStringPropertyOutput {
+	return o
+}
+
+func (o GetVersionAvailableSettingStringPropertyOutput) ToGetVersionAvailableSettingStringPropertyOutputWithContext(ctx context.Context) GetVersionAvailableSettingStringPropertyOutput {
+	return o
+}
+
+// The default value of the setting.
+func (o GetVersionAvailableSettingStringPropertyOutput) DefaultValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingStringProperty) string { return v.DefaultValue }).(pulumi.StringOutput)
+}
+
+// The string constraint of the setting (e.g. a regex).
+func (o GetVersionAvailableSettingStringPropertyOutput) StringConstraint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionAvailableSettingStringProperty) string { return v.StringConstraint }).(pulumi.StringOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateNetworkInput)(nil)).Elem(), ClusterPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateNetworkPtrInput)(nil)).Elem(), ClusterPrivateNetworkArgs{})
@@ -570,6 +992,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateNetworkArrayInput)(nil)).Elem(), GetClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkInput)(nil)).Elem(), GetClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkArrayInput)(nil)).Elem(), GetClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingInput)(nil)).Elem(), GetVersionAvailableSettingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingArrayInput)(nil)).Elem(), GetVersionAvailableSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingBoolPropertyInput)(nil)).Elem(), GetVersionAvailableSettingBoolPropertyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingFloatPropertyInput)(nil)).Elem(), GetVersionAvailableSettingFloatPropertyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingIntPropertyInput)(nil)).Elem(), GetVersionAvailableSettingIntPropertyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVersionAvailableSettingStringPropertyInput)(nil)).Elem(), GetVersionAvailableSettingStringPropertyArgs{})
 	pulumi.RegisterOutputType(ClusterPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(ClusterPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(ClusterPublicNetworkOutput{})
@@ -578,4 +1006,10 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingArrayOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingBoolPropertyOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingFloatPropertyOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingIntPropertyOutput{})
+	pulumi.RegisterOutputType(GetVersionAvailableSettingStringPropertyOutput{})
 }

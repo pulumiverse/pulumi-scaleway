@@ -31595,6 +31595,8 @@ type GetLbBackendsBackend struct {
 	HealthCheckTcps []GetLbBackendsBackendHealthCheckTcp `pulumi:"healthCheckTcps"`
 	// Timeout before a health check request is considered failed.
 	HealthCheckTimeout string `pulumi:"healthCheckTimeout"`
+	// Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+	Host string `pulumi:"host"`
 	// The associated backend ID.
 	Id string `pulumi:"id"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -31661,6 +31663,8 @@ type GetLbBackendsBackendArgs struct {
 	HealthCheckTcps GetLbBackendsBackendHealthCheckTcpArrayInput `pulumi:"healthCheckTcps"`
 	// Timeout before a health check request is considered failed.
 	HealthCheckTimeout pulumi.StringInput `pulumi:"healthCheckTimeout"`
+	// Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+	Host pulumi.StringInput `pulumi:"host"`
 	// The associated backend ID.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
@@ -31800,6 +31804,11 @@ func (o GetLbBackendsBackendOutput) HealthCheckTcps() GetLbBackendsBackendHealth
 // Timeout before a health check request is considered failed.
 func (o GetLbBackendsBackendOutput) HealthCheckTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.HealthCheckTimeout }).(pulumi.StringOutput)
+}
+
+// Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+func (o GetLbBackendsBackendOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.Host }).(pulumi.StringOutput)
 }
 
 // The associated backend ID.

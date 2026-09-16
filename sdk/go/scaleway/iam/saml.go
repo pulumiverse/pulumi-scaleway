@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Enable IAM SAML for an organization
+//			//## Enable IAM SAML for an organization
 //			_, err := iam.NewSaml(ctx, "main", &iam.SamlArgs{
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})

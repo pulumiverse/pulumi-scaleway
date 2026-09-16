@@ -13,12 +13,18 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ClusterPrivateNetwork',
     'ClusterPublicNetwork',
     'GetClusterPrivateNetworkResult',
     'GetClusterPublicNetworkResult',
+    'GetVersionAvailableSettingResult',
+    'GetVersionAvailableSettingBoolPropertyResult',
+    'GetVersionAvailableSettingFloatPropertyResult',
+    'GetVersionAvailableSettingIntPropertyResult',
+    'GetVersionAvailableSettingStringPropertyResult',
 ]
 
 @pulumi.output_type
@@ -243,5 +249,238 @@ class GetClusterPublicNetworkResult(dict):
         TCP port number
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetVersionAvailableSettingResult(dict):
+    def __init__(__self__, *,
+                 bool_property: 'outputs.GetVersionAvailableSettingBoolPropertyResult',
+                 description: _builtins.str,
+                 float_property: 'outputs.GetVersionAvailableSettingFloatPropertyResult',
+                 hot_configurable: _builtins.bool,
+                 int_property: 'outputs.GetVersionAvailableSettingIntPropertyResult',
+                 name: _builtins.str,
+                 string_property: 'outputs.GetVersionAvailableSettingStringPropertyResult'):
+        """
+        :param 'GetVersionAvailableSettingBoolPropertyArgs' bool_property: Boolean property, if the setting is a boolean.
+        :param _builtins.str description: The setting description.
+        :param 'GetVersionAvailableSettingFloatPropertyArgs' float_property: Float property, if the setting is a float.
+        :param _builtins.bool hot_configurable: Whether the setting can be applied without a restart.
+        :param 'GetVersionAvailableSettingIntPropertyArgs' int_property: Integer property, if the setting is an integer.
+        :param _builtins.str name: The setting name.
+        :param 'GetVersionAvailableSettingStringPropertyArgs' string_property: String property, if the setting is a string.
+        """
+        pulumi.set(__self__, "bool_property", bool_property)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "float_property", float_property)
+        pulumi.set(__self__, "hot_configurable", hot_configurable)
+        pulumi.set(__self__, "int_property", int_property)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "string_property", string_property)
+
+    @_builtins.property
+    @pulumi.getter(name="boolProperty")
+    def bool_property(self) -> 'outputs.GetVersionAvailableSettingBoolPropertyResult':
+        """
+        Boolean property, if the setting is a boolean.
+        """
+        return pulumi.get(self, "bool_property")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The setting description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="floatProperty")
+    def float_property(self) -> 'outputs.GetVersionAvailableSettingFloatPropertyResult':
+        """
+        Float property, if the setting is a float.
+        """
+        return pulumi.get(self, "float_property")
+
+    @_builtins.property
+    @pulumi.getter(name="hotConfigurable")
+    def hot_configurable(self) -> _builtins.bool:
+        """
+        Whether the setting can be applied without a restart.
+        """
+        return pulumi.get(self, "hot_configurable")
+
+    @_builtins.property
+    @pulumi.getter(name="intProperty")
+    def int_property(self) -> 'outputs.GetVersionAvailableSettingIntPropertyResult':
+        """
+        Integer property, if the setting is an integer.
+        """
+        return pulumi.get(self, "int_property")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The setting name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="stringProperty")
+    def string_property(self) -> 'outputs.GetVersionAvailableSettingStringPropertyResult':
+        """
+        String property, if the setting is a string.
+        """
+        return pulumi.get(self, "string_property")
+
+
+@pulumi.output_type
+class GetVersionAvailableSettingBoolPropertyResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.bool):
+        """
+        :param _builtins.bool default_value: The default value of the setting.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.bool:
+        """
+        The default value of the setting.
+        """
+        return pulumi.get(self, "default_value")
+
+
+@pulumi.output_type
+class GetVersionAvailableSettingFloatPropertyResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.float,
+                 max: _builtins.float,
+                 min: _builtins.float,
+                 unit: _builtins.str):
+        """
+        :param _builtins.float default_value: The default value of the setting.
+        :param _builtins.float max: The maximum value of the setting.
+        :param _builtins.float min: The minimum value of the setting.
+        :param _builtins.str unit: The unit of the setting.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "unit", unit)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.float:
+        """
+        The default value of the setting.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.float:
+        """
+        The maximum value of the setting.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.float:
+        """
+        The minimum value of the setting.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The unit of the setting.
+        """
+        return pulumi.get(self, "unit")
+
+
+@pulumi.output_type
+class GetVersionAvailableSettingIntPropertyResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.int,
+                 max: _builtins.int,
+                 min: _builtins.int,
+                 unit: _builtins.str):
+        """
+        :param _builtins.int default_value: The default value of the setting.
+        :param _builtins.int max: The maximum value of the setting.
+        :param _builtins.int min: The minimum value of the setting.
+        :param _builtins.str unit: The unit of the setting.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "unit", unit)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.int:
+        """
+        The default value of the setting.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> _builtins.int:
+        """
+        The maximum value of the setting.
+        """
+        return pulumi.get(self, "max")
+
+    @_builtins.property
+    @pulumi.getter
+    def min(self) -> _builtins.int:
+        """
+        The minimum value of the setting.
+        """
+        return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter
+    def unit(self) -> _builtins.str:
+        """
+        The unit of the setting.
+        """
+        return pulumi.get(self, "unit")
+
+
+@pulumi.output_type
+class GetVersionAvailableSettingStringPropertyResult(dict):
+    def __init__(__self__, *,
+                 default_value: _builtins.str,
+                 string_constraint: _builtins.str):
+        """
+        :param _builtins.str default_value: The default value of the setting.
+        :param _builtins.str string_constraint: The string constraint of the setting (e.g. a regex).
+        """
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "string_constraint", string_constraint)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> _builtins.str:
+        """
+        The default value of the setting.
+        """
+        return pulumi.get(self, "default_value")
+
+    @_builtins.property
+    @pulumi.getter(name="stringConstraint")
+    def string_constraint(self) -> _builtins.str:
+        """
+        The string constraint of the setting (e.g. a regex).
+        """
+        return pulumi.get(self, "string_constraint")
 
 

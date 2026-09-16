@@ -86,6 +86,7 @@ export interface GetBackendResult {
     readonly healthCheckTcps: outputs.loadbalancers.GetBackendHealthCheckTcp[];
     readonly healthCheckTimeout: string;
     readonly healthCheckTransientDelay: string;
+    readonly host: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic user creation
+//			//## Basic user creation
 //			main, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-user"),
 //				Version:        pulumi.String("7.0.12"),
@@ -76,7 +76,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Multiple user creation
+//			//## Multiple user creation
 //			main, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-multi-user"),
 //				Version:        pulumi.String("7.0.12"),

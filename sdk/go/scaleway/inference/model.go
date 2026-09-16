@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic creation of an inference model
+//			//## Basic creation of an inference model
 //			_, err := inference.NewModel(ctx, "test", &inference.ModelArgs{
 //				Name:   pulumi.String("my-awesome-model"),
 //				Url:    pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),
@@ -58,7 +58,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Deploy your own model on your managed inference
+//			//## Deploy your own model on your managed inference
 //			myModel, err := inference.NewModel(ctx, "my_model", &inference.ModelArgs{
 //				Name:   pulumi.String("my-awesome-model"),
 //				Url:    pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),
@@ -97,7 +97,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Create a model using your model's secret token without storing it in the state
+//			//## Create a model using your model's secret token without storing it in the state
 //			_, err := inference.NewModel(ctx, "my_model_wo", &inference.ModelArgs{
 //				Name:            pulumi.String("my-awesome-model-wo"),
 //				Url:             pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),

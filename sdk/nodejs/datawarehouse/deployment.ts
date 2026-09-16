@@ -146,14 +146,12 @@ export class Deployment extends pulumi.CustomResource {
     declare public readonly privateNetwork: pulumi.Output<outputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
-     *
-     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Public endpoint information (always created automatically).
+     * Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
      */
-    declare public /*out*/ readonly publicNetworks: pulumi.Output<outputs.datawarehouse.DeploymentPublicNetwork[]>;
+    declare public readonly publicNetworks: pulumi.Output<outputs.datawarehouse.DeploymentPublicNetwork[]>;
     /**
      * RAM per CPU in GB.
      */
@@ -253,6 +251,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateNetwork"] = args?.privateNetwork;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicNetworks"] = args?.publicNetworks;
             resourceInputs["ramPerCpu"] = args?.ramPerCpu;
             resourceInputs["region"] = args?.region;
             resourceInputs["replicaCount"] = args?.replicaCount;
@@ -261,7 +260,6 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["version"] = args?.version;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["publicNetworks"] = undefined /*out*/;
             resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -312,12 +310,10 @@ export interface DeploymentState {
     privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
-     *
-     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * Public endpoint information (always created automatically).
+     * Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
      */
     publicNetworks?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPublicNetwork>[] | undefined>;
     /**
@@ -397,10 +393,12 @@ export interface DeploymentArgs {
     privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
-     *
-     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+     */
+    publicNetworks?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPublicNetwork>[] | undefined>;
     /**
      * RAM per CPU in GB.
      */
