@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Get information about a SAML certificate
+//			//## Get information about a SAML certificate
 //			_, err := iam.LookupSamlCertificate(ctx, &iam.LookupSamlCertificateArgs{
 //				CertificateId: "22222222-2222-2222-2222-222222222222",
 //			}, nil)

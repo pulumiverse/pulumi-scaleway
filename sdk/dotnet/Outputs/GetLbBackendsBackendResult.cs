@@ -63,6 +63,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string HealthCheckTimeout;
         /// <summary>
+        /// Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+        /// </summary>
+        public readonly string Host;
+        /// <summary>
         /// The associated backend ID.
         /// </summary>
         public readonly string Id;
@@ -145,6 +149,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string healthCheckTimeout,
 
+            string host,
+
             string id,
 
             bool ignoreSslServerVerify,
@@ -185,6 +191,7 @@ namespace Pulumiverse.Scaleway.Outputs
             HealthCheckPort = healthCheckPort;
             HealthCheckTcps = healthCheckTcps;
             HealthCheckTimeout = healthCheckTimeout;
+            Host = host;
             Id = id;
             IgnoreSslServerVerify = ignoreSslServerVerify;
             LbId = lbId;

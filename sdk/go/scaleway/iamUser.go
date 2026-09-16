@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic IAM user creation
+//			//## Basic IAM user creation
 //			_, err := iam.NewUser(ctx, "user", &iam.UserArgs{
 //				Email: pulumi.String("foo@test.com"),
 //				Tags: pulumi.StringArray{

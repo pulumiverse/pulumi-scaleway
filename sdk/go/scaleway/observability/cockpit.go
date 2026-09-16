@@ -130,18 +130,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Old approach (deprecated) - Using scaleway_cockpit_grafana_user
+//			// resource "scaleway_cockpit_grafana_user" "main" {
+//			//   project_id = scaleway_cockpit.main.project_id
+//			//   login      = "example"
+//			//   role       = "editor"
+//			// }
 //			//
-//			//	resource "scaleway_cockpit_grafana_user" "main" {
-//			//	  project_id = scaleway_cockpit.main.project_id
-//			//	  login      = "example"
-//			//	  role       = "editor"
-//			//	}
-//			//
-//			//	provider "grafana" {
-//			//	  url  = scaleway_cockpit.main.endpoints.0.grafana_url
-//			//	  auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
-//			//	}
-//			//
+//			// provider "grafana" {
+//			//   url  = scaleway_cockpit.main.endpoints.0.grafana_url
+//			//   auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
+//			// }
 //			// New approach - Use scaleway_cockpit_grafana data source with IAM auth
 //			_, err := observability.GetGrafana(ctx, &observability.GetGrafanaArgs{
 //				ProjectId: pulumi.StringRef(mainScalewayCockpit.ProjectId),

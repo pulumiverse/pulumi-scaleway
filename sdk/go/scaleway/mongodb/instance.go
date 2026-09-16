@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic MongoDB instance creation
+//			//## Basic MongoDB instance creation
 //			_, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-basic1"),
 //				Version:        pulumi.String("7.0.12"),
@@ -105,6 +105,10 @@ type Instance struct {
 	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
 	// MongoDB® version of the instance.
+	//
+	// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+	//
+	// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Volume size in GB.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
@@ -209,6 +213,10 @@ type instanceState struct {
 	// Name of the user created when the instance is created.
 	UserName *string `pulumi:"userName"`
 	// MongoDB® version of the instance.
+	//
+	// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+	//
+	// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Version *string `pulumi:"version"`
 	// Volume size in GB.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
@@ -261,6 +269,10 @@ type InstanceState struct {
 	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrInput
 	// MongoDB® version of the instance.
+	//
+	// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+	//
+	// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Version pulumi.StringPtrInput
 	// Volume size in GB.
 	VolumeSizeInGb pulumi.IntPtrInput
@@ -311,6 +323,10 @@ type instanceArgs struct {
 	// Name of the user created when the instance is created.
 	UserName *string `pulumi:"userName"`
 	// MongoDB® version of the instance.
+	//
+	// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+	//
+	// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Version *string `pulumi:"version"`
 	// Volume size in GB.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
@@ -358,6 +374,10 @@ type InstanceArgs struct {
 	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrInput
 	// MongoDB® version of the instance.
+	//
+	// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+	//
+	// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Version pulumi.StringPtrInput
 	// Volume size in GB.
 	VolumeSizeInGb pulumi.IntPtrInput
@@ -559,6 +579,10 @@ func (o InstanceOutput) UserName() pulumi.StringPtrOutput {
 }
 
 // MongoDB® version of the instance.
+//
+// > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+//
+// > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 func (o InstanceOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

@@ -157,6 +157,10 @@ export class MongoDbInstance extends pulumi.CustomResource {
     declare public readonly userName: pulumi.Output<string | undefined>;
     /**
      * MongoDB® version of the instance.
+     *
+     * > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+     *
+     * > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     declare public readonly version: pulumi.Output<string>;
     /**
@@ -339,6 +343,10 @@ export interface MongoDbInstanceState {
     userName?: pulumi.Input<string | undefined>;
     /**
      * MongoDB® version of the instance.
+     *
+     * > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+     *
+     * > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     version?: pulumi.Input<string | undefined>;
     /**
@@ -430,6 +438,10 @@ export interface MongoDbInstanceArgs {
     userName?: pulumi.Input<string | undefined>;
     /**
      * MongoDB® version of the instance.
+     *
+     * > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+     *
+     * > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
      */
     version?: pulumi.Input<string | undefined>;
     /**

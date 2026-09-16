@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Get information about an organization's SAML configuration
+//			//## Get information about an organization's SAML configuration
 //			_, err := iam.LookupSaml(ctx, &iam.LookupSamlArgs{
 //				OrganizationId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

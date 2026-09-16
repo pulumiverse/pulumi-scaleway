@@ -32,6 +32,7 @@ class DeploymentArgs:
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  private_network: pulumi.Input[Optional['DeploymentPrivateNetworkArgs']] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  shard_count: pulumi.Input[Optional[_builtins.int]] = None,
                  started: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -51,8 +52,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-               
-               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] shard_count: Number of shards for the deployment. This value is immutable and cannot be changed after creation.
         :param pulumi.Input[_builtins.bool] started: Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replica_count`, `cpu_min`, `cpu_max`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
@@ -75,6 +75,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_networks is not None:
+            pulumi.set(__self__, "public_networks", public_networks)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if shard_count is not None:
@@ -210,14 +212,24 @@ class DeploymentArgs:
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
-
-        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
     def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicNetworks")
+    def public_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]:
+        """
+        Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+        """
+        return pulumi.get(self, "public_networks")
+
+    @public_networks.setter
+    def public_networks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]):
+        pulumi.set(self, "public_networks", value)
 
     @_builtins.property
     @pulumi.getter
@@ -304,9 +316,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-               
-               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-        :param pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]] public_networks: Public endpoint information (always created automatically).
+        :param pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
@@ -461,8 +471,6 @@ class _DeploymentState:
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
-
-        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
         """
         return pulumi.get(self, "project_id")
 
@@ -474,7 +482,7 @@ class _DeploymentState:
     @pulumi.getter(name="publicNetworks")
     def public_networks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]]:
         """
-        Public endpoint information (always created automatically).
+        Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         """
         return pulumi.get(self, "public_networks")
 
@@ -617,6 +625,7 @@ class Deployment(pulumi.CustomResource):
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -710,8 +719,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-               
-               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
@@ -823,6 +831,7 @@ class Deployment(pulumi.CustomResource):
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -851,6 +860,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["public_networks"] = public_networks
             if ram_per_cpu is None and not opts.urn:
                 raise TypeError("Missing required property 'ram_per_cpu'")
             __props__.__dict__["ram_per_cpu"] = ram_per_cpu
@@ -865,7 +875,6 @@ class Deployment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["public_networks"] = None
             __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
@@ -918,9 +927,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-               
-               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint information (always created automatically).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
@@ -1028,8 +1035,6 @@ class Deployment(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
         `project_id`) The ID of the project the deployment is associated with.
-
-        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
         """
         return pulumi.get(self, "project_id")
 
@@ -1037,7 +1042,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="publicNetworks")
     def public_networks(self) -> pulumi.Output[Sequence['outputs.DeploymentPublicNetwork']]:
         """
-        Public endpoint information (always created automatically).
+        Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         """
         return pulumi.get(self, "public_networks")
 

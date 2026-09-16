@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Get information about a SCIM token
+//			//## Get information about a SCIM token
 //			// First, enable SCIM for your organization
 //			mainScim, err := iam.NewScim(ctx, "main", &iam.ScimArgs{
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),

@@ -35,6 +35,7 @@ class LoadbalancerBackendArgs:
                  health_check_tcp: pulumi.Input[Optional['LoadbalancerBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
                  ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_connections: pulumi.Input[Optional[_builtins.int]] = None,
                  max_retries: pulumi.Input[Optional[_builtins.int]] = None,
@@ -71,6 +72,7 @@ class LoadbalancerBackendArgs:
         :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
+        :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
         :param pulumi.Input[_builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         :param pulumi.Input[_builtins.int] max_connections: Maximum number of connections allowed per backend server
         :param pulumi.Input[_builtins.int] max_retries: Number of retries when a backend server connection failed
@@ -113,6 +115,8 @@ class LoadbalancerBackendArgs:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
         if health_check_transient_delay is not None:
             pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if ignore_ssl_server_verify is not None:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if max_connections is not None:
@@ -319,6 +323,18 @@ class LoadbalancerBackendArgs:
     @health_check_transient_delay.setter
     def health_check_transient_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_transient_delay", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreSslServerVerify")
@@ -530,6 +546,7 @@ class _LoadbalancerBackendState:
                  health_check_tcp: pulumi.Input[Optional['LoadbalancerBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
                  ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
                  lb_id: pulumi.Input[Optional[_builtins.str]] = None,
                  max_connections: pulumi.Input[Optional[_builtins.int]] = None,
@@ -566,6 +583,7 @@ class _LoadbalancerBackendState:
         :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
+        :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
         :param pulumi.Input[_builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
         :param pulumi.Input[_builtins.int] max_connections: Maximum number of connections allowed per backend server
@@ -610,6 +628,8 @@ class _LoadbalancerBackendState:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
         if health_check_transient_delay is not None:
             pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
         if ignore_ssl_server_verify is not None:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if lb_id is not None:
@@ -806,6 +826,18 @@ class _LoadbalancerBackendState:
     @health_check_transient_delay.setter
     def health_check_transient_delay(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_transient_delay", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreSslServerVerify")
@@ -1037,6 +1069,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  health_check_tcp: pulumi.Input[Optional[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
                  ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
                  lb_id: pulumi.Input[Optional[_builtins.str]] = None,
                  max_connections: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1118,6 +1151,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
+        :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
         :param pulumi.Input[_builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
         :param pulumi.Input[_builtins.int] max_connections: Maximum number of connections allowed per backend server
@@ -1215,6 +1249,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  health_check_tcp: pulumi.Input[Optional[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
                  ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
                  lb_id: pulumi.Input[Optional[_builtins.str]] = None,
                  max_connections: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1259,6 +1294,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             __props__.__dict__["health_check_tcp"] = health_check_tcp
             __props__.__dict__["health_check_timeout"] = health_check_timeout
             __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
+            __props__.__dict__["host"] = host
             __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
             if lb_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_id'")
@@ -1301,6 +1337,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             health_check_tcp: pulumi.Input[Optional[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']]] = None,
             health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
             health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
             ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
             lb_id: pulumi.Input[Optional[_builtins.str]] = None,
             max_connections: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1341,6 +1378,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
+        :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
         :param pulumi.Input[_builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
         :param pulumi.Input[_builtins.int] max_connections: Maximum number of connections allowed per backend server
@@ -1376,6 +1414,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         __props__.__dict__["health_check_tcp"] = health_check_tcp
         __props__.__dict__["health_check_timeout"] = health_check_timeout
         __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
+        __props__.__dict__["host"] = host
         __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["max_connections"] = max_connections
@@ -1501,6 +1540,14 @@ class LoadbalancerBackend(pulumi.CustomResource):
         Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         """
         return pulumi.get(self, "health_check_transient_delay")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+        """
+        return pulumi.get(self, "host")
 
     @_builtins.property
     @pulumi.getter(name="ignoreSslServerVerify")

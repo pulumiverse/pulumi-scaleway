@@ -136,6 +136,10 @@ export class Backend extends pulumi.CustomResource {
      */
     declare public readonly healthCheckTransientDelay: pulumi.Output<string | undefined>;
     /**
+     * When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+     */
+    declare public readonly host: pulumi.Output<string | undefined>;
+    /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
      */
     declare public readonly ignoreSslServerVerify: pulumi.Output<boolean | undefined>;
@@ -232,6 +236,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["healthCheckTcp"] = state?.healthCheckTcp;
             resourceInputs["healthCheckTimeout"] = state?.healthCheckTimeout;
             resourceInputs["healthCheckTransientDelay"] = state?.healthCheckTransientDelay;
+            resourceInputs["host"] = state?.host;
             resourceInputs["ignoreSslServerVerify"] = state?.ignoreSslServerVerify;
             resourceInputs["lbId"] = state?.lbId;
             resourceInputs["maxConnections"] = state?.maxConnections;
@@ -273,6 +278,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["healthCheckTcp"] = args?.healthCheckTcp;
             resourceInputs["healthCheckTimeout"] = args?.healthCheckTimeout;
             resourceInputs["healthCheckTransientDelay"] = args?.healthCheckTransientDelay;
+            resourceInputs["host"] = args?.host;
             resourceInputs["ignoreSslServerVerify"] = args?.ignoreSslServerVerify;
             resourceInputs["lbId"] = args?.lbId;
             resourceInputs["maxConnections"] = args?.maxConnections;
@@ -357,6 +363,10 @@ export interface BackendState {
      * Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
      */
     healthCheckTransientDelay?: pulumi.Input<string | undefined>;
+    /**
+     * When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+     */
+    host?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
      */
@@ -488,6 +498,10 @@ export interface BackendArgs {
      * Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
      */
     healthCheckTransientDelay?: pulumi.Input<string | undefined>;
+    /**
+     * When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
+     */
+    host?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
      */

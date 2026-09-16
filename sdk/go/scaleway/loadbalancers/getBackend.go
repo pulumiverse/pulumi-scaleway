@@ -100,6 +100,7 @@ type LookupBackendResult struct {
 	HealthCheckTcps           []GetBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
 	HealthCheckTimeout        string                      `pulumi:"healthCheckTimeout"`
 	HealthCheckTransientDelay string                      `pulumi:"healthCheckTransientDelay"`
+	Host                      string                      `pulumi:"host"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string   `pulumi:"id"`
 	IgnoreSslServerVerify    bool     `pulumi:"ignoreSslServerVerify"`
@@ -211,6 +212,10 @@ func (o LookupBackendResultOutput) HealthCheckTimeout() pulumi.StringOutput {
 
 func (o LookupBackendResultOutput) HealthCheckTransientDelay() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackendResult) string { return v.HealthCheckTransientDelay }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendResultOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackendResult) string { return v.Host }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -65,6 +65,10 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
+               
+               > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+               
+               > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
         """
@@ -331,6 +335,10 @@ class InstanceArgs:
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MongoDB® version of the instance.
+
+        > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+
+        > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "version")
 
@@ -416,6 +424,10 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
+               
+               > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+               
+               > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
         """
@@ -726,6 +738,10 @@ class _InstanceState:
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MongoDB® version of the instance.
+
+        > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+
+        > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "version")
 
@@ -841,6 +857,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
+               
+               > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+               
+               > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
         """
@@ -1024,6 +1044,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
+               
+               > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+               
+               > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
         """
@@ -1231,6 +1255,10 @@ class Instance(pulumi.CustomResource):
     def version(self) -> pulumi.Output[_builtins.str]:
         """
         MongoDB® version of the instance.
+
+        > **Important** Updates to `version` may perform a blue/green upgrade. This can create a new instance, update the Terraform state with the new instance ID, and delete the old instance. The upgrade ensures minimal downtime.
+
+        > **Note** Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `mongodb.User`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "version")
 

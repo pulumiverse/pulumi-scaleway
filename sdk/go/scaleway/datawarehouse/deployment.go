@@ -162,10 +162,8 @@ type Deployment struct {
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
-	//
-	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Public endpoint information (always created automatically).
+	// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
 	PublicNetworks DeploymentPublicNetworkArrayOutput `pulumi:"publicNetworks"`
 	// RAM per CPU in GB.
 	RamPerCpu pulumi.IntOutput `pulumi:"ramPerCpu"`
@@ -263,10 +261,8 @@ type deploymentState struct {
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
-	//
-	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	ProjectId *string `pulumi:"projectId"`
-	// Public endpoint information (always created automatically).
+	// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
 	PublicNetworks []DeploymentPublicNetwork `pulumi:"publicNetworks"`
 	// RAM per CPU in GB.
 	RamPerCpu *int `pulumi:"ramPerCpu"`
@@ -309,10 +305,8 @@ type DeploymentState struct {
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
-	//
-	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	ProjectId pulumi.StringPtrInput
-	// Public endpoint information (always created automatically).
+	// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
 	PublicNetworks DeploymentPublicNetworkArrayInput
 	// RAM per CPU in GB.
 	RamPerCpu pulumi.IntPtrInput
@@ -357,9 +351,9 @@ type deploymentArgs struct {
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
-	//
-	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	ProjectId *string `pulumi:"projectId"`
+	// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+	PublicNetworks []DeploymentPublicNetwork `pulumi:"publicNetworks"`
 	// RAM per CPU in GB.
 	RamPerCpu int `pulumi:"ramPerCpu"`
 	// `region`) The region in which the deployment should be created.
@@ -394,9 +388,9 @@ type DeploymentArgs struct {
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
-	//
-	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	ProjectId pulumi.StringPtrInput
+	// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+	PublicNetworks DeploymentPublicNetworkArrayInput
 	// RAM per CPU in GB.
 	RamPerCpu pulumi.IntInput
 	// `region`) The region in which the deployment should be created.
@@ -542,13 +536,11 @@ func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
 }
 
 // `projectId`) The ID of the project the deployment is associated with.
-//
-// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Public endpoint information (always created automatically).
+// Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
 func (o DeploymentOutput) PublicNetworks() DeploymentPublicNetworkArrayOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentPublicNetworkArrayOutput { return v.PublicNetworks }).(DeploymentPublicNetworkArrayOutput)
 }

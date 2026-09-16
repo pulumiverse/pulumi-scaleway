@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Enable IAM SAML for the default organization and add a signing certificate
+//			//## Enable IAM SAML for the default organization and add a signing certificate
 //			test, err := iam.NewSaml(ctx, "test", nil)
 //			if err != nil {
 //				return err

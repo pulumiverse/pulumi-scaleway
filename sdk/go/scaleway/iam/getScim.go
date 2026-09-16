@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Get information about an organization's SCIM configuration
+//			//## Get information about an organization's SCIM configuration
 //			_, err := iam.LookupScim(ctx, &iam.LookupScimArgs{
 //				OrganizationId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)

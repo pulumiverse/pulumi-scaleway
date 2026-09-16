@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Basic Redis cluster creation
+//			//## Basic Redis cluster creation
 //			_, err := redis.NewCluster(ctx, "main", &redis.ClusterArgs{
 //				Name:     pulumi.String("test_redis_basic"),
 //				Version:  pulumi.String("6.2.7"),

@@ -2473,6 +2473,10 @@ export interface GetLbBackendsBackend {
      */
     healthCheckTimeout: string;
     /**
+     * Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+     */
+    host: string;
+    /**
      * The associated backend ID.
      */
     id: string;
@@ -10438,6 +10442,93 @@ export namespace kafka {
         port: number;
     }
 
+    export interface GetVersionAvailableSetting {
+        /**
+         * Boolean property, if the setting is a boolean.
+         */
+        boolProperty: outputs.kafka.GetVersionAvailableSettingBoolProperty;
+        /**
+         * The setting description.
+         */
+        description: string;
+        /**
+         * Float property, if the setting is a float.
+         */
+        floatProperty: outputs.kafka.GetVersionAvailableSettingFloatProperty;
+        /**
+         * Whether the setting can be applied without a restart.
+         */
+        hotConfigurable: boolean;
+        /**
+         * Integer property, if the setting is an integer.
+         */
+        intProperty: outputs.kafka.GetVersionAvailableSettingIntProperty;
+        /**
+         * The setting name.
+         */
+        name: string;
+        /**
+         * String property, if the setting is a string.
+         */
+        stringProperty: outputs.kafka.GetVersionAvailableSettingStringProperty;
+    }
+
+    export interface GetVersionAvailableSettingBoolProperty {
+        /**
+         * The default value of the setting.
+         */
+        defaultValue: boolean;
+    }
+
+    export interface GetVersionAvailableSettingFloatProperty {
+        /**
+         * The default value of the setting.
+         */
+        defaultValue: number;
+        /**
+         * The maximum value of the setting.
+         */
+        max: number;
+        /**
+         * The minimum value of the setting.
+         */
+        min: number;
+        /**
+         * The unit of the setting.
+         */
+        unit: string;
+    }
+
+    export interface GetVersionAvailableSettingIntProperty {
+        /**
+         * The default value of the setting.
+         */
+        defaultValue: number;
+        /**
+         * The maximum value of the setting.
+         */
+        max: number;
+        /**
+         * The minimum value of the setting.
+         */
+        min: number;
+        /**
+         * The unit of the setting.
+         */
+        unit: string;
+    }
+
+    export interface GetVersionAvailableSettingStringProperty {
+        /**
+         * The default value of the setting.
+         */
+        defaultValue: string;
+        /**
+         * The string constraint of the setting (e.g. a regex).
+         */
+        stringConstraint: string;
+    }
+
 }
 
 export namespace keymanager {
@@ -11278,6 +11369,10 @@ export namespace loadbalancers {
          * Timeout before a health check request is considered failed.
          */
         healthCheckTimeout: string;
+        /**
+         * Value used as the HTTP `Host` header or TLS SNI when connecting to backend servers.
+         */
+        host: string;
         /**
          * The associated backend ID.
          */

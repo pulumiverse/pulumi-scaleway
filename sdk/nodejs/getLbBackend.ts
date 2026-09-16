@@ -88,6 +88,7 @@ export interface GetLbBackendResult {
     readonly healthCheckTcps: outputs.GetLbBackendHealthCheckTcp[];
     readonly healthCheckTimeout: string;
     readonly healthCheckTransientDelay: string;
+    readonly host: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

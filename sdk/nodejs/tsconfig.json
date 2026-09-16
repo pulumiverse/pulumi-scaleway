@@ -375,6 +375,7 @@
         "jobDefinition.ts",
         "kafka/cluster.ts",
         "kafka/getCluster.ts",
+        "kafka/getVersion.ts",
         "kafka/index.ts",
         "keyManagerKey.ts",
         "keymanager/getKey.ts",

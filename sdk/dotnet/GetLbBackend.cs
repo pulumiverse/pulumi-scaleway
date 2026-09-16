@@ -236,6 +236,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> HealthCheckTcps;
         public readonly string HealthCheckTimeout;
         public readonly string HealthCheckTransientDelay;
+        public readonly string Host;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -288,6 +289,8 @@ namespace Pulumiverse.Scaleway
 
             string healthCheckTransientDelay,
 
+            string host,
+
             string id,
 
             bool ignoreSslServerVerify,
@@ -338,6 +341,7 @@ namespace Pulumiverse.Scaleway
             HealthCheckTcps = healthCheckTcps;
             HealthCheckTimeout = healthCheckTimeout;
             HealthCheckTransientDelay = healthCheckTransientDelay;
+            Host = host;
             Id = id;
             IgnoreSslServerVerify = ignoreSslServerVerify;
             LbId = lbId;

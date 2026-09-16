@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Example Basic
+//			//## Example Basic
 //			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:             pulumi.String("test-rdb"),
 //				NodeType:         pulumi.String("DB-DEV-S"),
@@ -64,7 +64,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// ## Example Engine Upgrade
+//			//## Example Engine Upgrade
 //			// Initial creation with PostgreSQL 14
 //			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("my-database"),
