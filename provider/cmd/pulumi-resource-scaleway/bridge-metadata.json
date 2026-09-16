@@ -4460,6 +4460,15 @@
                     }
                 }
             },
+            "scaleway_kafka_version": {
+                "current": "scaleway:kafka/getVersion:getVersion",
+                "majorVersion": 1,
+                "fields": {
+                    "available_settings": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_key_manager_key": {
                 "current": "scaleway:keymanager/getKey:getKey",
                 "past": [
@@ -5655,6 +5664,11 @@
                 "aliases": [
                     "scaleway:index/containerTrigger:ContainerTrigger"
                 ]
+            },
+            "scaleway_datawarehouse_deployment": {
+                "maxItemsOneOverrides": {
+                    "public_network": false
+                }
             },
             "scaleway_domain_record": {
                 "aliases": [
@@ -7039,6 +7053,7 @@
             "scaleway:ipam/getIp:getIp": 0,
             "scaleway:ipam/getIps:getIps": 0,
             "scaleway:kafka/getCluster:getCluster": 0,
+            "scaleway:kafka/getVersion:getVersion": 1,
             "scaleway:keymanager/getKey:getKey": 0,
             "scaleway:keymanager/getVerify:getVerify": 0,
             "scaleway:kubernetes/getCluster:getCluster": 0,
