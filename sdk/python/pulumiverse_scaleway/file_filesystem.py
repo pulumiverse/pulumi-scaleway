@@ -21,6 +21,7 @@ class FileFilesystemArgs:
     def __init__(__self__, *,
                  size_in_gb: pulumi.Input[_builtins.int],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -31,6 +32,7 @@ class FileFilesystemArgs:
                - Minimum: 25 GB
                - Maximum: 50 TB (50000 GB)
         :param pulumi.Input[_builtins.str] name: The name of the filesystem. If not provided, a random name will be generated.
+        :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
@@ -39,6 +41,8 @@ class FileFilesystemArgs:
         pulumi.set(__self__, "size_in_gb", size_in_gb)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -71,6 +75,18 @@ class FileFilesystemArgs:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        `organization_id`) The ID of the organization the user is associated with.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -308,6 +324,7 @@ class FileFilesystem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -343,6 +360,7 @@ class FileFilesystem(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the filesystem. If not provided, a random name will be generated.
+        :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
@@ -400,6 +418,7 @@ class FileFilesystem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -414,6 +433,7 @@ class FileFilesystem(pulumi.CustomResource):
             __props__ = FileFilesystemArgs.__new__(FileFilesystemArgs)
 
             __props__.__dict__["name"] = name
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             if size_in_gb is None and not opts.urn:
@@ -422,7 +442,6 @@ class FileFilesystem(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["number_of_attachments"] = None
-            __props__.__dict__["organization_id"] = None
             __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None

@@ -335,7 +335,7 @@ func (o InstanceLoadBalancerPtrOutput) Port() pulumi.IntPtrOutput {
 type InstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention *int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention *int `pulumi:"totalDiskRetention"`
 }
 
@@ -353,7 +353,7 @@ type InstanceLogsPolicyInput interface {
 type InstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntPtrInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntPtrInput `pulumi:"totalDiskRetention"`
 }
 
@@ -439,7 +439,7 @@ func (o InstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceLogsPolicy) *int { return v.MaxAgeRetention }).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o InstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceLogsPolicy) *int { return v.TotalDiskRetention }).(pulumi.IntPtrOutput)
 }
@@ -478,7 +478,7 @@ func (o InstanceLogsPolicyPtrOutput) MaxAgeRetention() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o InstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceLogsPolicy) *int {
 		if v == nil {
@@ -1889,6 +1889,263 @@ func (o GetAclAclRuleArrayOutput) Index(i pulumi.IntInput) GetAclAclRuleOutput {
 	}).(GetAclAclRuleOutput)
 }
 
+type GetDatabaseEnginesEngine struct {
+	// URL of the database engine logo.
+	LogoUrl string `pulumi:"logoUrl"`
+	// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+	Name string `pulumi:"name"`
+	// `region`) The region in which to list database engines.
+	Region string `pulumi:"region"`
+	// Available versions for the database engine.
+	Versions []GetDatabaseEnginesEngineVersion `pulumi:"versions"`
+}
+
+// GetDatabaseEnginesEngineInput is an input type that accepts GetDatabaseEnginesEngineArgs and GetDatabaseEnginesEngineOutput values.
+// You can construct a concrete instance of `GetDatabaseEnginesEngineInput` via:
+//
+//	GetDatabaseEnginesEngineArgs{...}
+type GetDatabaseEnginesEngineInput interface {
+	pulumi.Input
+
+	ToGetDatabaseEnginesEngineOutput() GetDatabaseEnginesEngineOutput
+	ToGetDatabaseEnginesEngineOutputWithContext(context.Context) GetDatabaseEnginesEngineOutput
+}
+
+type GetDatabaseEnginesEngineArgs struct {
+	// URL of the database engine logo.
+	LogoUrl pulumi.StringInput `pulumi:"logoUrl"`
+	// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+	Name pulumi.StringInput `pulumi:"name"`
+	// `region`) The region in which to list database engines.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Available versions for the database engine.
+	Versions GetDatabaseEnginesEngineVersionArrayInput `pulumi:"versions"`
+}
+
+func (GetDatabaseEnginesEngineArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseEnginesEngine)(nil)).Elem()
+}
+
+func (i GetDatabaseEnginesEngineArgs) ToGetDatabaseEnginesEngineOutput() GetDatabaseEnginesEngineOutput {
+	return i.ToGetDatabaseEnginesEngineOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseEnginesEngineArgs) ToGetDatabaseEnginesEngineOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseEnginesEngineOutput)
+}
+
+// GetDatabaseEnginesEngineArrayInput is an input type that accepts GetDatabaseEnginesEngineArray and GetDatabaseEnginesEngineArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseEnginesEngineArrayInput` via:
+//
+//	GetDatabaseEnginesEngineArray{ GetDatabaseEnginesEngineArgs{...} }
+type GetDatabaseEnginesEngineArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseEnginesEngineArrayOutput() GetDatabaseEnginesEngineArrayOutput
+	ToGetDatabaseEnginesEngineArrayOutputWithContext(context.Context) GetDatabaseEnginesEngineArrayOutput
+}
+
+type GetDatabaseEnginesEngineArray []GetDatabaseEnginesEngineInput
+
+func (GetDatabaseEnginesEngineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseEnginesEngine)(nil)).Elem()
+}
+
+func (i GetDatabaseEnginesEngineArray) ToGetDatabaseEnginesEngineArrayOutput() GetDatabaseEnginesEngineArrayOutput {
+	return i.ToGetDatabaseEnginesEngineArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseEnginesEngineArray) ToGetDatabaseEnginesEngineArrayOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseEnginesEngineArrayOutput)
+}
+
+type GetDatabaseEnginesEngineOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseEnginesEngineOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseEnginesEngine)(nil)).Elem()
+}
+
+func (o GetDatabaseEnginesEngineOutput) ToGetDatabaseEnginesEngineOutput() GetDatabaseEnginesEngineOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineOutput) ToGetDatabaseEnginesEngineOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineOutput {
+	return o
+}
+
+// URL of the database engine logo.
+func (o GetDatabaseEnginesEngineOutput) LogoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngine) string { return v.LogoUrl }).(pulumi.StringOutput)
+}
+
+// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+func (o GetDatabaseEnginesEngineOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngine) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `region`) The region in which to list database engines.
+func (o GetDatabaseEnginesEngineOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngine) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Available versions for the database engine.
+func (o GetDatabaseEnginesEngineOutput) Versions() GetDatabaseEnginesEngineVersionArrayOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngine) []GetDatabaseEnginesEngineVersion { return v.Versions }).(GetDatabaseEnginesEngineVersionArrayOutput)
+}
+
+type GetDatabaseEnginesEngineArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseEnginesEngineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseEnginesEngine)(nil)).Elem()
+}
+
+func (o GetDatabaseEnginesEngineArrayOutput) ToGetDatabaseEnginesEngineArrayOutput() GetDatabaseEnginesEngineArrayOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineArrayOutput) ToGetDatabaseEnginesEngineArrayOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineArrayOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineArrayOutput) Index(i pulumi.IntInput) GetDatabaseEnginesEngineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseEnginesEngine {
+		return vs[0].([]GetDatabaseEnginesEngine)[vs[1].(int)]
+	}).(GetDatabaseEnginesEngineOutput)
+}
+
+type GetDatabaseEnginesEngineVersion struct {
+	// Whether the engine version is in beta.
+	Beta bool `pulumi:"beta"`
+	// Whether the engine version is disabled and cannot be created.
+	Disabled bool `pulumi:"disabled"`
+	// End of life date of the engine version (RFC3339).
+	EndOfLife string `pulumi:"endOfLife"`
+	// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+	Name string `pulumi:"name"`
+	// Filter by database engine version (e.g. `16`).
+	Version string `pulumi:"version"`
+}
+
+// GetDatabaseEnginesEngineVersionInput is an input type that accepts GetDatabaseEnginesEngineVersionArgs and GetDatabaseEnginesEngineVersionOutput values.
+// You can construct a concrete instance of `GetDatabaseEnginesEngineVersionInput` via:
+//
+//	GetDatabaseEnginesEngineVersionArgs{...}
+type GetDatabaseEnginesEngineVersionInput interface {
+	pulumi.Input
+
+	ToGetDatabaseEnginesEngineVersionOutput() GetDatabaseEnginesEngineVersionOutput
+	ToGetDatabaseEnginesEngineVersionOutputWithContext(context.Context) GetDatabaseEnginesEngineVersionOutput
+}
+
+type GetDatabaseEnginesEngineVersionArgs struct {
+	// Whether the engine version is in beta.
+	Beta pulumi.BoolInput `pulumi:"beta"`
+	// Whether the engine version is disabled and cannot be created.
+	Disabled pulumi.BoolInput `pulumi:"disabled"`
+	// End of life date of the engine version (RFC3339).
+	EndOfLife pulumi.StringInput `pulumi:"endOfLife"`
+	// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+	Name pulumi.StringInput `pulumi:"name"`
+	// Filter by database engine version (e.g. `16`).
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetDatabaseEnginesEngineVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseEnginesEngineVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseEnginesEngineVersionArgs) ToGetDatabaseEnginesEngineVersionOutput() GetDatabaseEnginesEngineVersionOutput {
+	return i.ToGetDatabaseEnginesEngineVersionOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseEnginesEngineVersionArgs) ToGetDatabaseEnginesEngineVersionOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseEnginesEngineVersionOutput)
+}
+
+// GetDatabaseEnginesEngineVersionArrayInput is an input type that accepts GetDatabaseEnginesEngineVersionArray and GetDatabaseEnginesEngineVersionArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseEnginesEngineVersionArrayInput` via:
+//
+//	GetDatabaseEnginesEngineVersionArray{ GetDatabaseEnginesEngineVersionArgs{...} }
+type GetDatabaseEnginesEngineVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseEnginesEngineVersionArrayOutput() GetDatabaseEnginesEngineVersionArrayOutput
+	ToGetDatabaseEnginesEngineVersionArrayOutputWithContext(context.Context) GetDatabaseEnginesEngineVersionArrayOutput
+}
+
+type GetDatabaseEnginesEngineVersionArray []GetDatabaseEnginesEngineVersionInput
+
+func (GetDatabaseEnginesEngineVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseEnginesEngineVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseEnginesEngineVersionArray) ToGetDatabaseEnginesEngineVersionArrayOutput() GetDatabaseEnginesEngineVersionArrayOutput {
+	return i.ToGetDatabaseEnginesEngineVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseEnginesEngineVersionArray) ToGetDatabaseEnginesEngineVersionArrayOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseEnginesEngineVersionArrayOutput)
+}
+
+type GetDatabaseEnginesEngineVersionOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseEnginesEngineVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseEnginesEngineVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseEnginesEngineVersionOutput) ToGetDatabaseEnginesEngineVersionOutput() GetDatabaseEnginesEngineVersionOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineVersionOutput) ToGetDatabaseEnginesEngineVersionOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineVersionOutput {
+	return o
+}
+
+// Whether the engine version is in beta.
+func (o GetDatabaseEnginesEngineVersionOutput) Beta() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngineVersion) bool { return v.Beta }).(pulumi.BoolOutput)
+}
+
+// Whether the engine version is disabled and cannot be created.
+func (o GetDatabaseEnginesEngineVersionOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngineVersion) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// End of life date of the engine version (RFC3339).
+func (o GetDatabaseEnginesEngineVersionOutput) EndOfLife() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngineVersion) string { return v.EndOfLife }).(pulumi.StringOutput)
+}
+
+// Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+func (o GetDatabaseEnginesEngineVersionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngineVersion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Filter by database engine version (e.g. `16`).
+func (o GetDatabaseEnginesEngineVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseEnginesEngineVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDatabaseEnginesEngineVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseEnginesEngineVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseEnginesEngineVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseEnginesEngineVersionArrayOutput) ToGetDatabaseEnginesEngineVersionArrayOutput() GetDatabaseEnginesEngineVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineVersionArrayOutput) ToGetDatabaseEnginesEngineVersionArrayOutputWithContext(ctx context.Context) GetDatabaseEnginesEngineVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseEnginesEngineVersionArrayOutput) Index(i pulumi.IntInput) GetDatabaseEnginesEngineVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseEnginesEngineVersion {
+		return vs[0].([]GetDatabaseEnginesEngineVersion)[vs[1].(int)]
+	}).(GetDatabaseEnginesEngineVersionOutput)
+}
+
 type GetInstanceLoadBalancer struct {
 	// The endpoint ID
 	EndpointId string `pulumi:"endpointId"`
@@ -2022,10 +2279,267 @@ func (o GetInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) GetInstance
 	}).(GetInstanceLoadBalancerOutput)
 }
 
+type GetInstanceLogsDetailsDetail struct {
+	// Name of the remote log.
+	LogName string `pulumi:"logName"`
+	// Size of the remote log in bytes.
+	SizeInBytes int `pulumi:"sizeInBytes"`
+}
+
+// GetInstanceLogsDetailsDetailInput is an input type that accepts GetInstanceLogsDetailsDetailArgs and GetInstanceLogsDetailsDetailOutput values.
+// You can construct a concrete instance of `GetInstanceLogsDetailsDetailInput` via:
+//
+//	GetInstanceLogsDetailsDetailArgs{...}
+type GetInstanceLogsDetailsDetailInput interface {
+	pulumi.Input
+
+	ToGetInstanceLogsDetailsDetailOutput() GetInstanceLogsDetailsDetailOutput
+	ToGetInstanceLogsDetailsDetailOutputWithContext(context.Context) GetInstanceLogsDetailsDetailOutput
+}
+
+type GetInstanceLogsDetailsDetailArgs struct {
+	// Name of the remote log.
+	LogName pulumi.StringInput `pulumi:"logName"`
+	// Size of the remote log in bytes.
+	SizeInBytes pulumi.IntInput `pulumi:"sizeInBytes"`
+}
+
+func (GetInstanceLogsDetailsDetailArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceLogsDetailsDetail)(nil)).Elem()
+}
+
+func (i GetInstanceLogsDetailsDetailArgs) ToGetInstanceLogsDetailsDetailOutput() GetInstanceLogsDetailsDetailOutput {
+	return i.ToGetInstanceLogsDetailsDetailOutputWithContext(context.Background())
+}
+
+func (i GetInstanceLogsDetailsDetailArgs) ToGetInstanceLogsDetailsDetailOutputWithContext(ctx context.Context) GetInstanceLogsDetailsDetailOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceLogsDetailsDetailOutput)
+}
+
+// GetInstanceLogsDetailsDetailArrayInput is an input type that accepts GetInstanceLogsDetailsDetailArray and GetInstanceLogsDetailsDetailArrayOutput values.
+// You can construct a concrete instance of `GetInstanceLogsDetailsDetailArrayInput` via:
+//
+//	GetInstanceLogsDetailsDetailArray{ GetInstanceLogsDetailsDetailArgs{...} }
+type GetInstanceLogsDetailsDetailArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceLogsDetailsDetailArrayOutput() GetInstanceLogsDetailsDetailArrayOutput
+	ToGetInstanceLogsDetailsDetailArrayOutputWithContext(context.Context) GetInstanceLogsDetailsDetailArrayOutput
+}
+
+type GetInstanceLogsDetailsDetailArray []GetInstanceLogsDetailsDetailInput
+
+func (GetInstanceLogsDetailsDetailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceLogsDetailsDetail)(nil)).Elem()
+}
+
+func (i GetInstanceLogsDetailsDetailArray) ToGetInstanceLogsDetailsDetailArrayOutput() GetInstanceLogsDetailsDetailArrayOutput {
+	return i.ToGetInstanceLogsDetailsDetailArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceLogsDetailsDetailArray) ToGetInstanceLogsDetailsDetailArrayOutputWithContext(ctx context.Context) GetInstanceLogsDetailsDetailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceLogsDetailsDetailArrayOutput)
+}
+
+type GetInstanceLogsDetailsDetailOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceLogsDetailsDetailOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceLogsDetailsDetail)(nil)).Elem()
+}
+
+func (o GetInstanceLogsDetailsDetailOutput) ToGetInstanceLogsDetailsDetailOutput() GetInstanceLogsDetailsDetailOutput {
+	return o
+}
+
+func (o GetInstanceLogsDetailsDetailOutput) ToGetInstanceLogsDetailsDetailOutputWithContext(ctx context.Context) GetInstanceLogsDetailsDetailOutput {
+	return o
+}
+
+// Name of the remote log.
+func (o GetInstanceLogsDetailsDetailOutput) LogName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsDetailsDetail) string { return v.LogName }).(pulumi.StringOutput)
+}
+
+// Size of the remote log in bytes.
+func (o GetInstanceLogsDetailsDetailOutput) SizeInBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceLogsDetailsDetail) int { return v.SizeInBytes }).(pulumi.IntOutput)
+}
+
+type GetInstanceLogsDetailsDetailArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceLogsDetailsDetailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceLogsDetailsDetail)(nil)).Elem()
+}
+
+func (o GetInstanceLogsDetailsDetailArrayOutput) ToGetInstanceLogsDetailsDetailArrayOutput() GetInstanceLogsDetailsDetailArrayOutput {
+	return o
+}
+
+func (o GetInstanceLogsDetailsDetailArrayOutput) ToGetInstanceLogsDetailsDetailArrayOutputWithContext(ctx context.Context) GetInstanceLogsDetailsDetailArrayOutput {
+	return o
+}
+
+func (o GetInstanceLogsDetailsDetailArrayOutput) Index(i pulumi.IntInput) GetInstanceLogsDetailsDetailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceLogsDetailsDetail {
+		return vs[0].([]GetInstanceLogsDetailsDetail)[vs[1].(int)]
+	}).(GetInstanceLogsDetailsDetailOutput)
+}
+
+type GetInstanceLogsInstanceLog struct {
+	// Creation date of the log (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// (Sensitive) Presigned Object Storage URL to download the log file.
+	DownloadUrl string `pulumi:"downloadUrl"`
+	// Expiration date of the log (RFC 3339 format).
+	ExpiresAt string `pulumi:"expiresAt"`
+	// UUID of the Database Instance log, in the `{region}/{id}` format.
+	Id string `pulumi:"id"`
+	// Name of the underlying node.
+	NodeName string `pulumi:"nodeName"`
+	// `region`) The region in which the Database Instance exists.
+	Region string `pulumi:"region"`
+	// Status of the log (`unknown`, `ready`, `creating`, `error`).
+	Status string `pulumi:"status"`
+}
+
+// GetInstanceLogsInstanceLogInput is an input type that accepts GetInstanceLogsInstanceLogArgs and GetInstanceLogsInstanceLogOutput values.
+// You can construct a concrete instance of `GetInstanceLogsInstanceLogInput` via:
+//
+//	GetInstanceLogsInstanceLogArgs{...}
+type GetInstanceLogsInstanceLogInput interface {
+	pulumi.Input
+
+	ToGetInstanceLogsInstanceLogOutput() GetInstanceLogsInstanceLogOutput
+	ToGetInstanceLogsInstanceLogOutputWithContext(context.Context) GetInstanceLogsInstanceLogOutput
+}
+
+type GetInstanceLogsInstanceLogArgs struct {
+	// Creation date of the log (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// (Sensitive) Presigned Object Storage URL to download the log file.
+	DownloadUrl pulumi.StringInput `pulumi:"downloadUrl"`
+	// Expiration date of the log (RFC 3339 format).
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// UUID of the Database Instance log, in the `{region}/{id}` format.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of the underlying node.
+	NodeName pulumi.StringInput `pulumi:"nodeName"`
+	// `region`) The region in which the Database Instance exists.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Status of the log (`unknown`, `ready`, `creating`, `error`).
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetInstanceLogsInstanceLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceLogsInstanceLog)(nil)).Elem()
+}
+
+func (i GetInstanceLogsInstanceLogArgs) ToGetInstanceLogsInstanceLogOutput() GetInstanceLogsInstanceLogOutput {
+	return i.ToGetInstanceLogsInstanceLogOutputWithContext(context.Background())
+}
+
+func (i GetInstanceLogsInstanceLogArgs) ToGetInstanceLogsInstanceLogOutputWithContext(ctx context.Context) GetInstanceLogsInstanceLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceLogsInstanceLogOutput)
+}
+
+// GetInstanceLogsInstanceLogArrayInput is an input type that accepts GetInstanceLogsInstanceLogArray and GetInstanceLogsInstanceLogArrayOutput values.
+// You can construct a concrete instance of `GetInstanceLogsInstanceLogArrayInput` via:
+//
+//	GetInstanceLogsInstanceLogArray{ GetInstanceLogsInstanceLogArgs{...} }
+type GetInstanceLogsInstanceLogArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceLogsInstanceLogArrayOutput() GetInstanceLogsInstanceLogArrayOutput
+	ToGetInstanceLogsInstanceLogArrayOutputWithContext(context.Context) GetInstanceLogsInstanceLogArrayOutput
+}
+
+type GetInstanceLogsInstanceLogArray []GetInstanceLogsInstanceLogInput
+
+func (GetInstanceLogsInstanceLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceLogsInstanceLog)(nil)).Elem()
+}
+
+func (i GetInstanceLogsInstanceLogArray) ToGetInstanceLogsInstanceLogArrayOutput() GetInstanceLogsInstanceLogArrayOutput {
+	return i.ToGetInstanceLogsInstanceLogArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceLogsInstanceLogArray) ToGetInstanceLogsInstanceLogArrayOutputWithContext(ctx context.Context) GetInstanceLogsInstanceLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceLogsInstanceLogArrayOutput)
+}
+
+type GetInstanceLogsInstanceLogOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceLogsInstanceLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceLogsInstanceLog)(nil)).Elem()
+}
+
+func (o GetInstanceLogsInstanceLogOutput) ToGetInstanceLogsInstanceLogOutput() GetInstanceLogsInstanceLogOutput {
+	return o
+}
+
+func (o GetInstanceLogsInstanceLogOutput) ToGetInstanceLogsInstanceLogOutputWithContext(ctx context.Context) GetInstanceLogsInstanceLogOutput {
+	return o
+}
+
+// Creation date of the log (RFC 3339 format).
+func (o GetInstanceLogsInstanceLogOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// (Sensitive) Presigned Object Storage URL to download the log file.
+func (o GetInstanceLogsInstanceLogOutput) DownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.DownloadUrl }).(pulumi.StringOutput)
+}
+
+// Expiration date of the log (RFC 3339 format).
+func (o GetInstanceLogsInstanceLogOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// UUID of the Database Instance log, in the `{region}/{id}` format.
+func (o GetInstanceLogsInstanceLogOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of the underlying node.
+func (o GetInstanceLogsInstanceLogOutput) NodeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.NodeName }).(pulumi.StringOutput)
+}
+
+// `region`) The region in which the Database Instance exists.
+func (o GetInstanceLogsInstanceLogOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Status of the log (`unknown`, `ready`, `creating`, `error`).
+func (o GetInstanceLogsInstanceLogOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceLogsInstanceLog) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetInstanceLogsInstanceLogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceLogsInstanceLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceLogsInstanceLog)(nil)).Elem()
+}
+
+func (o GetInstanceLogsInstanceLogArrayOutput) ToGetInstanceLogsInstanceLogArrayOutput() GetInstanceLogsInstanceLogArrayOutput {
+	return o
+}
+
+func (o GetInstanceLogsInstanceLogArrayOutput) ToGetInstanceLogsInstanceLogArrayOutputWithContext(ctx context.Context) GetInstanceLogsInstanceLogArrayOutput {
+	return o
+}
+
+func (o GetInstanceLogsInstanceLogArrayOutput) Index(i pulumi.IntInput) GetInstanceLogsInstanceLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceLogsInstanceLog {
+		return vs[0].([]GetInstanceLogsInstanceLog)[vs[1].(int)]
+	}).(GetInstanceLogsInstanceLogOutput)
+}
+
 type GetInstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention int `pulumi:"totalDiskRetention"`
 }
 
@@ -2043,7 +2557,7 @@ type GetInstanceLogsPolicyInput interface {
 type GetInstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntInput `pulumi:"totalDiskRetention"`
 }
 
@@ -2103,7 +2617,7 @@ func (o GetInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceLogsPolicy) int { return v.MaxAgeRetention }).(pulumi.IntOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o GetInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceLogsPolicy) int { return v.TotalDiskRetention }).(pulumi.IntOutput)
 }
@@ -2793,6 +3307,335 @@ func (o GetInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput) GetIns
 	}).(GetInstanceUpgradableVersionOutput)
 }
 
+type GetNodeTypesNodeType struct {
+	// Available storage options for the node type.
+	AvailableVolumeTypes []GetNodeTypesNodeTypeAvailableVolumeType `pulumi:"availableVolumeTypes"`
+	// Whether the node type is currently in beta.
+	Beta bool `pulumi:"beta"`
+	// Description of the volume type.
+	Description string `pulumi:"description"`
+	// Whether the node type is currently disabled.
+	Disabled bool `pulumi:"disabled"`
+	// Generation associated with the node type offer.
+	Generation string `pulumi:"generation"`
+	// Instance range associated with the node type offer.
+	InstanceRange string `pulumi:"instanceRange"`
+	// Whether the node type can only be used with high availability.
+	IsHaRequired bool `pulumi:"isHaRequired"`
+	// Amount of memory available in GB.
+	MemorySizeInGb int `pulumi:"memorySizeInGb"`
+	// Name identifier of the node type.
+	Name string `pulumi:"name"`
+	// Current stock status for the node type.
+	StockStatus string `pulumi:"stockStatus"`
+	// Number of virtual CPUs.
+	Vcpus int `pulumi:"vcpus"`
+}
+
+// GetNodeTypesNodeTypeInput is an input type that accepts GetNodeTypesNodeTypeArgs and GetNodeTypesNodeTypeOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeInput` via:
+//
+//	GetNodeTypesNodeTypeArgs{...}
+type GetNodeTypesNodeTypeInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput
+	ToGetNodeTypesNodeTypeOutputWithContext(context.Context) GetNodeTypesNodeTypeOutput
+}
+
+type GetNodeTypesNodeTypeArgs struct {
+	// Available storage options for the node type.
+	AvailableVolumeTypes GetNodeTypesNodeTypeAvailableVolumeTypeArrayInput `pulumi:"availableVolumeTypes"`
+	// Whether the node type is currently in beta.
+	Beta pulumi.BoolInput `pulumi:"beta"`
+	// Description of the volume type.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether the node type is currently disabled.
+	Disabled pulumi.BoolInput `pulumi:"disabled"`
+	// Generation associated with the node type offer.
+	Generation pulumi.StringInput `pulumi:"generation"`
+	// Instance range associated with the node type offer.
+	InstanceRange pulumi.StringInput `pulumi:"instanceRange"`
+	// Whether the node type can only be used with high availability.
+	IsHaRequired pulumi.BoolInput `pulumi:"isHaRequired"`
+	// Amount of memory available in GB.
+	MemorySizeInGb pulumi.IntInput `pulumi:"memorySizeInGb"`
+	// Name identifier of the node type.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Current stock status for the node type.
+	StockStatus pulumi.StringInput `pulumi:"stockStatus"`
+	// Number of virtual CPUs.
+	Vcpus pulumi.IntInput `pulumi:"vcpus"`
+}
+
+func (GetNodeTypesNodeTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeArgs) ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput {
+	return i.ToGetNodeTypesNodeTypeOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeArgs) ToGetNodeTypesNodeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeOutput)
+}
+
+// GetNodeTypesNodeTypeArrayInput is an input type that accepts GetNodeTypesNodeTypeArray and GetNodeTypesNodeTypeArrayOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeArrayInput` via:
+//
+//	GetNodeTypesNodeTypeArray{ GetNodeTypesNodeTypeArgs{...} }
+type GetNodeTypesNodeTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput
+	ToGetNodeTypesNodeTypeArrayOutputWithContext(context.Context) GetNodeTypesNodeTypeArrayOutput
+}
+
+type GetNodeTypesNodeTypeArray []GetNodeTypesNodeTypeInput
+
+func (GetNodeTypesNodeTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeArray) ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput {
+	return i.ToGetNodeTypesNodeTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeArray) ToGetNodeTypesNodeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeArrayOutput)
+}
+
+type GetNodeTypesNodeTypeOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeOutput) ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeOutput) ToGetNodeTypesNodeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeOutput {
+	return o
+}
+
+// Available storage options for the node type.
+func (o GetNodeTypesNodeTypeOutput) AvailableVolumeTypes() GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) []GetNodeTypesNodeTypeAvailableVolumeType { return v.AvailableVolumeTypes }).(GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput)
+}
+
+// Whether the node type is currently in beta.
+func (o GetNodeTypesNodeTypeOutput) Beta() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) bool { return v.Beta }).(pulumi.BoolOutput)
+}
+
+// Description of the volume type.
+func (o GetNodeTypesNodeTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether the node type is currently disabled.
+func (o GetNodeTypesNodeTypeOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// Generation associated with the node type offer.
+func (o GetNodeTypesNodeTypeOutput) Generation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.Generation }).(pulumi.StringOutput)
+}
+
+// Instance range associated with the node type offer.
+func (o GetNodeTypesNodeTypeOutput) InstanceRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.InstanceRange }).(pulumi.StringOutput)
+}
+
+// Whether the node type can only be used with high availability.
+func (o GetNodeTypesNodeTypeOutput) IsHaRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) bool { return v.IsHaRequired }).(pulumi.BoolOutput)
+}
+
+// Amount of memory available in GB.
+func (o GetNodeTypesNodeTypeOutput) MemorySizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) int { return v.MemorySizeInGb }).(pulumi.IntOutput)
+}
+
+// Name identifier of the node type.
+func (o GetNodeTypesNodeTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Current stock status for the node type.
+func (o GetNodeTypesNodeTypeOutput) StockStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.StockStatus }).(pulumi.StringOutput)
+}
+
+// Number of virtual CPUs.
+func (o GetNodeTypesNodeTypeOutput) Vcpus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) int { return v.Vcpus }).(pulumi.IntOutput)
+}
+
+type GetNodeTypesNodeTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) ToGetNodeTypesNodeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) Index(i pulumi.IntInput) GetNodeTypesNodeTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeTypesNodeType {
+		return vs[0].([]GetNodeTypesNodeType)[vs[1].(int)]
+	}).(GetNodeTypesNodeTypeOutput)
+}
+
+type GetNodeTypesNodeTypeAvailableVolumeType struct {
+	// Minimum increment level for a Block Storage volume size in GB.
+	ChunkSizeInGb int `pulumi:"chunkSizeInGb"`
+	// Storage class of the volume.
+	Class string `pulumi:"class"`
+	// Description of the volume type.
+	Description string `pulumi:"description"`
+	// Maximum volume size in GB.
+	MaxSizeInGb int `pulumi:"maxSizeInGb"`
+	// Minimum volume size in GB.
+	MinSizeInGb int `pulumi:"minSizeInGb"`
+	// Volume type.
+	Type string `pulumi:"type"`
+}
+
+// GetNodeTypesNodeTypeAvailableVolumeTypeInput is an input type that accepts GetNodeTypesNodeTypeAvailableVolumeTypeArgs and GetNodeTypesNodeTypeAvailableVolumeTypeOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeAvailableVolumeTypeInput` via:
+//
+//	GetNodeTypesNodeTypeAvailableVolumeTypeArgs{...}
+type GetNodeTypesNodeTypeAvailableVolumeTypeInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeAvailableVolumeTypeOutput() GetNodeTypesNodeTypeAvailableVolumeTypeOutput
+	ToGetNodeTypesNodeTypeAvailableVolumeTypeOutputWithContext(context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeOutput
+}
+
+type GetNodeTypesNodeTypeAvailableVolumeTypeArgs struct {
+	// Minimum increment level for a Block Storage volume size in GB.
+	ChunkSizeInGb pulumi.IntInput `pulumi:"chunkSizeInGb"`
+	// Storage class of the volume.
+	Class pulumi.StringInput `pulumi:"class"`
+	// Description of the volume type.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Maximum volume size in GB.
+	MaxSizeInGb pulumi.IntInput `pulumi:"maxSizeInGb"`
+	// Minimum volume size in GB.
+	MinSizeInGb pulumi.IntInput `pulumi:"minSizeInGb"`
+	// Volume type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetNodeTypesNodeTypeAvailableVolumeTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeAvailableVolumeTypeArgs) ToGetNodeTypesNodeTypeAvailableVolumeTypeOutput() GetNodeTypesNodeTypeAvailableVolumeTypeOutput {
+	return i.ToGetNodeTypesNodeTypeAvailableVolumeTypeOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeAvailableVolumeTypeArgs) ToGetNodeTypesNodeTypeAvailableVolumeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeAvailableVolumeTypeOutput)
+}
+
+// GetNodeTypesNodeTypeAvailableVolumeTypeArrayInput is an input type that accepts GetNodeTypesNodeTypeAvailableVolumeTypeArray and GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeAvailableVolumeTypeArrayInput` via:
+//
+//	GetNodeTypesNodeTypeAvailableVolumeTypeArray{ GetNodeTypesNodeTypeAvailableVolumeTypeArgs{...} }
+type GetNodeTypesNodeTypeAvailableVolumeTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput() GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput
+	ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutputWithContext(context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput
+}
+
+type GetNodeTypesNodeTypeAvailableVolumeTypeArray []GetNodeTypesNodeTypeAvailableVolumeTypeInput
+
+func (GetNodeTypesNodeTypeAvailableVolumeTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeAvailableVolumeTypeArray) ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput() GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput {
+	return i.ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeAvailableVolumeTypeArray) ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput)
+}
+
+type GetNodeTypesNodeTypeAvailableVolumeTypeOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeAvailableVolumeTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) ToGetNodeTypesNodeTypeAvailableVolumeTypeOutput() GetNodeTypesNodeTypeAvailableVolumeTypeOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) ToGetNodeTypesNodeTypeAvailableVolumeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeOutput {
+	return o
+}
+
+// Minimum increment level for a Block Storage volume size in GB.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) ChunkSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) int { return v.ChunkSizeInGb }).(pulumi.IntOutput)
+}
+
+// Storage class of the volume.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) Class() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) string { return v.Class }).(pulumi.StringOutput)
+}
+
+// Description of the volume type.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Maximum volume size in GB.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) MaxSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) int { return v.MaxSizeInGb }).(pulumi.IntOutput)
+}
+
+// Minimum volume size in GB.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) MinSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) int { return v.MinSizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type.
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeTypeAvailableVolumeType) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput) ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput() GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput) ToGetNodeTypesNodeTypeAvailableVolumeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput) Index(i pulumi.IntInput) GetNodeTypesNodeTypeAvailableVolumeTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeTypesNodeTypeAvailableVolumeType {
+		return vs[0].([]GetNodeTypesNodeTypeAvailableVolumeType)[vs[1].(int)]
+	}).(GetNodeTypesNodeTypeAvailableVolumeTypeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleInput)(nil)).Elem(), AclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleArrayInput)(nil)).Elem(), AclAclRuleArray{})
@@ -2816,8 +3659,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), ReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclAclRuleInput)(nil)).Elem(), GetAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclAclRuleArrayInput)(nil)).Elem(), GetAclAclRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseEnginesEngineInput)(nil)).Elem(), GetDatabaseEnginesEngineArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseEnginesEngineArrayInput)(nil)).Elem(), GetDatabaseEnginesEngineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseEnginesEngineVersionInput)(nil)).Elem(), GetDatabaseEnginesEngineVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseEnginesEngineVersionArrayInput)(nil)).Elem(), GetDatabaseEnginesEngineVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLoadBalancerInput)(nil)).Elem(), GetInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLoadBalancerArrayInput)(nil)).Elem(), GetInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsDetailsDetailInput)(nil)).Elem(), GetInstanceLogsDetailsDetailArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsDetailsDetailArrayInput)(nil)).Elem(), GetInstanceLogsDetailsDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsInstanceLogInput)(nil)).Elem(), GetInstanceLogsInstanceLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsInstanceLogArrayInput)(nil)).Elem(), GetInstanceLogsInstanceLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsPolicyInput)(nil)).Elem(), GetInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceLogsPolicyArrayInput)(nil)).Elem(), GetInstanceLogsPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceMaintenanceInput)(nil)).Elem(), GetInstanceMaintenanceArgs{})
@@ -2830,6 +3681,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceReadReplicaArrayInput)(nil)).Elem(), GetInstanceReadReplicaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceUpgradableVersionInput)(nil)).Elem(), GetInstanceUpgradableVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceUpgradableVersionArrayInput)(nil)).Elem(), GetInstanceUpgradableVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeInput)(nil)).Elem(), GetNodeTypesNodeTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeArrayInput)(nil)).Elem(), GetNodeTypesNodeTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeAvailableVolumeTypeInput)(nil)).Elem(), GetNodeTypesNodeTypeAvailableVolumeTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeAvailableVolumeTypeArrayInput)(nil)).Elem(), GetNodeTypesNodeTypeAvailableVolumeTypeArray{})
 	pulumi.RegisterOutputType(AclAclRuleOutput{})
 	pulumi.RegisterOutputType(AclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceLoadBalancerOutput{})
@@ -2852,8 +3707,16 @@ func init() {
 	pulumi.RegisterOutputType(ReadReplicaPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(GetAclAclRuleOutput{})
 	pulumi.RegisterOutputType(GetAclAclRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseEnginesEngineOutput{})
+	pulumi.RegisterOutputType(GetDatabaseEnginesEngineArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseEnginesEngineVersionOutput{})
+	pulumi.RegisterOutputType(GetDatabaseEnginesEngineVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(GetInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceLogsDetailsDetailOutput{})
+	pulumi.RegisterOutputType(GetInstanceLogsDetailsDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceLogsInstanceLogOutput{})
+	pulumi.RegisterOutputType(GetInstanceLogsInstanceLogArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(GetInstanceLogsPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceMaintenanceOutput{})
@@ -2866,4 +3729,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceUpgradableVersionOutput{})
 	pulumi.RegisterOutputType(GetInstanceUpgradableVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeAvailableVolumeTypeOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeAvailableVolumeTypeArrayOutput{})
 }

@@ -35,6 +35,16 @@ export const getGrafana: typeof import("./getGrafana").getGrafana = null as any;
 export const getGrafanaOutput: typeof import("./getGrafana").getGrafanaOutput = null as any;
 utilities.lazyLoad(exports, ["getGrafana","getGrafanaOutput"], () => require("./getGrafana"));
 
+export { GetGrafanaProductDashboardArgs, GetGrafanaProductDashboardResult, GetGrafanaProductDashboardOutputArgs } from "./getGrafanaProductDashboard";
+export const getGrafanaProductDashboard: typeof import("./getGrafanaProductDashboard").getGrafanaProductDashboard = null as any;
+export const getGrafanaProductDashboardOutput: typeof import("./getGrafanaProductDashboard").getGrafanaProductDashboardOutput = null as any;
+utilities.lazyLoad(exports, ["getGrafanaProductDashboard","getGrafanaProductDashboardOutput"], () => require("./getGrafanaProductDashboard"));
+
+export { GetGrafanaProductDashboardsArgs, GetGrafanaProductDashboardsResult, GetGrafanaProductDashboardsOutputArgs } from "./getGrafanaProductDashboards";
+export const getGrafanaProductDashboards: typeof import("./getGrafanaProductDashboards").getGrafanaProductDashboards = null as any;
+export const getGrafanaProductDashboardsOutput: typeof import("./getGrafanaProductDashboards").getGrafanaProductDashboardsOutput = null as any;
+utilities.lazyLoad(exports, ["getGrafanaProductDashboards","getGrafanaProductDashboardsOutput"], () => require("./getGrafanaProductDashboards"));
+
 export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
 export const getInstance: typeof import("./getInstance").getInstance = null as any;
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
@@ -60,11 +70,6 @@ export const getSources: typeof import("./getSources").getSources = null as any;
 export const getSourcesOutput: typeof import("./getSources").getSourcesOutput = null as any;
 utilities.lazyLoad(exports, ["getSources","getSourcesOutput"], () => require("./getSources"));
 
-export { GrafanaUserArgs, GrafanaUserState } from "./grafanaUser";
-export type GrafanaUser = import("./grafanaUser").GrafanaUser;
-export const GrafanaUser: typeof import("./grafanaUser").GrafanaUser = null as any;
-utilities.lazyLoad(exports, ["GrafanaUser"], () => require("./grafanaUser"));
-
 export { SourceArgs, SourceState } from "./source";
 export type Source = import("./source").Source;
 export const Source: typeof import("./source").Source = null as any;
@@ -86,8 +91,6 @@ const _module = {
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:observability/exporter:Exporter":
                 return new Exporter(name, <any>undefined, { urn })
-            case "scaleway:observability/grafanaUser:GrafanaUser":
-                return new GrafanaUser(name, <any>undefined, { urn })
             case "scaleway:observability/source:Source":
                 return new Source(name, <any>undefined, { urn })
             case "scaleway:observability/token:Token":
@@ -100,6 +103,5 @@ const _module = {
 pulumi.runtime.registerResourceModule("scaleway", "observability/alertManager", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/exporter", _module)
-pulumi.runtime.registerResourceModule("scaleway", "observability/grafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/source", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/token", _module)

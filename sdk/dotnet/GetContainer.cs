@@ -283,6 +283,8 @@ namespace Pulumiverse.Scaleway
         /// The native domain name of the container
         /// </summary>
         public readonly string DomainName;
+        public readonly bool EnableDefaultPublicEndpoint;
+        public readonly bool EnablePrivateEndpoint;
         /// <summary>
         /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
@@ -349,6 +351,7 @@ namespace Pulumiverse.Scaleway
         /// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         public readonly string Privacy;
+        public readonly string PrivateEndpoint;
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// </summary>
@@ -418,6 +421,10 @@ namespace Pulumiverse.Scaleway
 
             string domainName,
 
+            bool enableDefaultPublicEndpoint,
+
+            bool enablePrivateEndpoint,
+
             ImmutableDictionary<string, string> environmentVariables,
 
             string errorMessage,
@@ -453,6 +460,8 @@ namespace Pulumiverse.Scaleway
             int port,
 
             string privacy,
+
+            string privateEndpoint,
 
             string privateNetworkId,
 
@@ -490,6 +499,8 @@ namespace Pulumiverse.Scaleway
             Deploy = deploy;
             Description = description;
             DomainName = domainName;
+            EnableDefaultPublicEndpoint = enableDefaultPublicEndpoint;
+            EnablePrivateEndpoint = enablePrivateEndpoint;
             EnvironmentVariables = environmentVariables;
             ErrorMessage = errorMessage;
             HealthChecks = healthChecks;
@@ -508,6 +519,7 @@ namespace Pulumiverse.Scaleway
             NamespaceId = namespaceId;
             Port = port;
             Privacy = privacy;
+            PrivateEndpoint = privateEndpoint;
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
             Protocol = protocol;

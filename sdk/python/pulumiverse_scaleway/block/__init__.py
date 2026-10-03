@@ -7,6 +7,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .get_snapshot import *
+from .get_snapshots import *
 from .get_volume import *
 from .snapshot import *
 from .volume import *

@@ -32,7 +32,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := billing.NewBudget(ctx, "main", &billing.BudgetArgs{
 //				OrganizationId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				ConsumptionLimit: pulumi.Int(10000),
+//				ConsumptionLimit: pulumi.Int(100),
 //				Enabled:          pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -54,7 +54,7 @@ import (
 type Budget struct {
 	pulumi.CustomResourceState
 
-	// Cost limit for the budget in cents.
+	// Cost limit for the budget in euros.
 	ConsumptionLimit pulumi.IntOutput `pulumi:"consumptionLimit"`
 	// The date and time of budget creation
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -99,7 +99,7 @@ func GetBudget(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Budget resources.
 type budgetState struct {
-	// Cost limit for the budget in cents.
+	// Cost limit for the budget in euros.
 	ConsumptionLimit *int `pulumi:"consumptionLimit"`
 	// The date and time of budget creation
 	CreatedAt *string `pulumi:"createdAt"`
@@ -112,7 +112,7 @@ type budgetState struct {
 }
 
 type BudgetState struct {
-	// Cost limit for the budget in cents.
+	// Cost limit for the budget in euros.
 	ConsumptionLimit pulumi.IntPtrInput
 	// The date and time of budget creation
 	CreatedAt pulumi.StringPtrInput
@@ -129,7 +129,7 @@ func (BudgetState) ElementType() reflect.Type {
 }
 
 type budgetArgs struct {
-	// Cost limit for the budget in cents.
+	// Cost limit for the budget in euros.
 	ConsumptionLimit int `pulumi:"consumptionLimit"`
 	// Whether the budget is enabled or not. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -139,7 +139,7 @@ type budgetArgs struct {
 
 // The set of arguments for constructing a Budget resource.
 type BudgetArgs struct {
-	// Cost limit for the budget in cents.
+	// Cost limit for the budget in euros.
 	ConsumptionLimit pulumi.IntInput
 	// Whether the budget is enabled or not. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -234,7 +234,7 @@ func (o BudgetOutput) ToBudgetOutputWithContext(ctx context.Context) BudgetOutpu
 	return o
 }
 
-// Cost limit for the budget in cents.
+// Cost limit for the budget in euros.
 func (o BudgetOutput) ConsumptionLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Budget) pulumi.IntOutput { return v.ConsumptionLimit }).(pulumi.IntOutput)
 }

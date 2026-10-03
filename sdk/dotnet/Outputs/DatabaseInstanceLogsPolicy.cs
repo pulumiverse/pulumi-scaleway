@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? MaxAgeRetention;
         /// <summary>
-        /// The max disk size of remote logs to keep on the Database Instance.
+        /// The max disk size (in bytes) of remote logs to keep on the Database Instance
         /// </summary>
         public readonly int? TotalDiskRetention;
 

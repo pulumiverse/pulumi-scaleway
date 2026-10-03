@@ -52,6 +52,16 @@ namespace Pulumiverse.Scaleway
             set => _apiUrl.Set(value);
         }
 
+        private static readonly __Value<ImmutableArray<Pulumiverse.Scaleway.Config.Types.Endpoints>> _endpoints = new __Value<ImmutableArray<Pulumiverse.Scaleway.Config.Types.Endpoints>>(() => __config.GetObject<ImmutableArray<Pulumiverse.Scaleway.Config.Types.Endpoints>>("endpoints"));
+        /// <summary>
+        /// Configuration block for customizing service endpoints.
+        /// </summary>
+        public static ImmutableArray<Pulumiverse.Scaleway.Config.Types.Endpoints> Endpoints
+        {
+            get => _endpoints.Get();
+            set => _endpoints.Set(value);
+        }
+
         private static readonly __Value<string?> _organizationId = new __Value<string?>(() => __config.Get("organizationId") ?? Utilities.GetEnv("SCW_ORGANIZATION_ID"));
         /// <summary>
         /// The Scaleway organization ID.
@@ -92,6 +102,16 @@ namespace Pulumiverse.Scaleway
             set => _region.Set(value);
         }
 
+        private static readonly __Value<bool?> _s3UsePathStyle = new __Value<bool?>(() => __config.GetBoolean("s3UsePathStyle"));
+        /// <summary>
+        /// Whether to enable the request to use path-style addressing.
+        /// </summary>
+        public static bool? S3UsePathStyle
+        {
+            get => _s3UsePathStyle.Get();
+            set => _s3UsePathStyle.Set(value);
+        }
+
         private static readonly __Value<string?> _secretKey = new __Value<string?>(() => __config.Get("secretKey") ?? Utilities.GetEnv("SCW_SECRET_KEY"));
         /// <summary>
         /// The Scaleway secret Key.
@@ -112,5 +132,16 @@ namespace Pulumiverse.Scaleway
             set => _zone.Set(value);
         }
 
+        public static class Types
+        {
+
+             public class Endpoints
+             {
+            /// <summary>
+            /// Use this to override the default service endpoint URL.
+            /// </summary>
+                public string? S3 { get; set; } = null!;
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 accessKey: Optional[str]
 """
@@ -22,6 +23,11 @@ The Scaleway access key.
 apiUrl: Optional[str]
 """
 The Scaleway API URL to use.
+"""
+
+endpoints: Optional[str]
+"""
+Configuration block for customizing service endpoints.
 """
 
 organizationId: Optional[str]
@@ -42,6 +48,11 @@ The Scaleway project ID.
 region: Optional[str]
 """
 The region you want to attach the resource to
+"""
+
+s3UsePathStyle: Optional[bool]
+"""
+Whether to enable the request to use path-style addressing.
 """
 
 secretKey: Optional[str]

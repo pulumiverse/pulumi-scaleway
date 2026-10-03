@@ -25,7 +25,7 @@ class BudgetArgs:
         """
         The set of arguments for constructing a Budget resource.
 
-        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in cents.
+        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in euros.
         :param pulumi.Input[_builtins.bool] enabled: Whether the budget is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
         """
@@ -39,7 +39,7 @@ class BudgetArgs:
     @pulumi.getter(name="consumptionLimit")
     def consumption_limit(self) -> pulumi.Input[_builtins.int]:
         """
-        Cost limit for the budget in cents.
+        Cost limit for the budget in euros.
         """
         return pulumi.get(self, "consumption_limit")
 
@@ -83,7 +83,7 @@ class _BudgetState:
         """
         Input properties used for looking up and filtering Budget resources.
 
-        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in cents.
+        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in euros.
         :param pulumi.Input[_builtins.str] created_at: The date and time of budget creation
         :param pulumi.Input[_builtins.bool] enabled: Whether the budget is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
@@ -104,7 +104,7 @@ class _BudgetState:
     @pulumi.getter(name="consumptionLimit")
     def consumption_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Cost limit for the budget in cents.
+        Cost limit for the budget in euros.
         """
         return pulumi.get(self, "consumption_limit")
 
@@ -184,7 +184,7 @@ class Budget(pulumi.CustomResource):
 
         main = scaleway.billing.Budget("main",
             organization_id="11111111-1111-1111-1111-111111111111",
-            consumption_limit=10000,
+            consumption_limit=100,
             enabled=True)
         ```
 
@@ -199,7 +199,7 @@ class Budget(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in cents.
+        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in euros.
         :param pulumi.Input[_builtins.bool] enabled: Whether the budget is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
         """
@@ -222,7 +222,7 @@ class Budget(pulumi.CustomResource):
 
         main = scaleway.billing.Budget("main",
             organization_id="11111111-1111-1111-1111-111111111111",
-            consumption_limit=10000,
+            consumption_limit=100,
             enabled=True)
         ```
 
@@ -291,7 +291,7 @@ class Budget(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in cents.
+        :param pulumi.Input[_builtins.int] consumption_limit: Cost limit for the budget in euros.
         :param pulumi.Input[_builtins.str] created_at: The date and time of budget creation
         :param pulumi.Input[_builtins.bool] enabled: Whether the budget is enabled or not. Defaults to `true`.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization configured in the provider is used.
@@ -312,7 +312,7 @@ class Budget(pulumi.CustomResource):
     @pulumi.getter(name="consumptionLimit")
     def consumption_limit(self) -> pulumi.Output[_builtins.int]:
         """
-        Cost limit for the budget in cents.
+        Cost limit for the budget in euros.
         """
         return pulumi.get(self, "consumption_limit")
 

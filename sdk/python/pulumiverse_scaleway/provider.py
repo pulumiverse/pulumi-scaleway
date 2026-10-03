@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from ._inputs import *
 
 __all__ = ['ProviderArgs', 'Provider']
 
@@ -21,10 +22,12 @@ class ProviderArgs:
     def __init__(__self__, *,
                  access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  api_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['ProviderEndpointArgs']]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  profile: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_use_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_key: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -32,10 +35,12 @@ class ProviderArgs:
 
         :param pulumi.Input[_builtins.str] access_key: The Scaleway access key.
         :param pulumi.Input[_builtins.str] api_url: The Scaleway API URL to use.
+        :param pulumi.Input[Sequence[pulumi.Input['ProviderEndpointArgs']]] endpoints: Configuration block for customizing service endpoints.
         :param pulumi.Input[_builtins.str] organization_id: The Scaleway organization ID.
         :param pulumi.Input[_builtins.str] profile: The Scaleway profile to use.
         :param pulumi.Input[_builtins.str] project_id: The Scaleway project ID.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
+        :param pulumi.Input[_builtins.bool] s3_use_path_style: Whether to enable the request to use path-style addressing.
         :param pulumi.Input[_builtins.str] secret_key: The Scaleway secret Key.
         :param pulumi.Input[_builtins.str] zone: The zone you want to attach the resource to
         """
@@ -45,6 +50,8 @@ class ProviderArgs:
             pulumi.set(__self__, "access_key", access_key)
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
         if organization_id is None:
             organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
         if organization_id is not None:
@@ -59,6 +66,8 @@ class ProviderArgs:
             region = _utilities.get_env('SCW_DEFAULT_REGION')
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if s3_use_path_style is not None:
+            pulumi.set(__self__, "s3_use_path_style", s3_use_path_style)
         if secret_key is None:
             secret_key = _utilities.get_env('SCW_SECRET_KEY')
         if secret_key is not None:
@@ -91,6 +100,18 @@ class ProviderArgs:
     @api_url.setter
     def api_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_url", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProviderEndpointArgs']]]]:
+        """
+        Configuration block for customizing service endpoints.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @endpoints.setter
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProviderEndpointArgs']]]]):
+        pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
@@ -141,6 +162,18 @@ class ProviderArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="s3UsePathStyle")
+    def s3_use_path_style(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether to enable the request to use path-style addressing.
+        """
+        return pulumi.get(self, "s3_use_path_style")
+
+    @s3_use_path_style.setter
+    def s3_use_path_style(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "s3_use_path_style", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -173,10 +206,12 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  api_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProviderEndpointArgs', 'ProviderEndpointArgsDict']]]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  profile: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_use_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_key: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -191,10 +226,12 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The Scaleway access key.
         :param pulumi.Input[_builtins.str] api_url: The Scaleway API URL to use.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderEndpointArgs', 'ProviderEndpointArgsDict']]]] endpoints: Configuration block for customizing service endpoints.
         :param pulumi.Input[_builtins.str] organization_id: The Scaleway organization ID.
         :param pulumi.Input[_builtins.str] profile: The Scaleway profile to use.
         :param pulumi.Input[_builtins.str] project_id: The Scaleway project ID.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
+        :param pulumi.Input[_builtins.bool] s3_use_path_style: Whether to enable the request to use path-style addressing.
         :param pulumi.Input[_builtins.str] secret_key: The Scaleway secret Key.
         :param pulumi.Input[_builtins.str] zone: The zone you want to attach the resource to
         """
@@ -228,10 +265,12 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  api_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProviderEndpointArgs', 'ProviderEndpointArgsDict']]]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  profile: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_use_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_key: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -247,6 +286,7 @@ class Provider(pulumi.ProviderResource):
                 access_key = _utilities.get_env('SCW_ACCESS_KEY')
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["api_url"] = api_url
+            __props__.__dict__["endpoints"] = pulumi.Output.from_input(endpoints).apply(pulumi.runtime.to_json) if endpoints is not None else None
             if organization_id is None:
                 organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
             __props__.__dict__["organization_id"] = organization_id
@@ -257,6 +297,7 @@ class Provider(pulumi.ProviderResource):
             if region is None:
                 region = _utilities.get_env('SCW_DEFAULT_REGION')
             __props__.__dict__["region"] = region
+            __props__.__dict__["s3_use_path_style"] = pulumi.Output.from_input(s3_use_path_style).apply(pulumi.runtime.to_json) if s3_use_path_style is not None else None
             if secret_key is None:
                 secret_key = _utilities.get_env('SCW_SECRET_KEY')
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)

@@ -28,6 +28,7 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/s2svpn"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
 //
 // )
 //
@@ -77,12 +78,27 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			psk, err := secrets.NewSecret(ctx, "psk", &secrets.SecretArgs{
+//				Name: pulumi.String("my-s2s-vpn-psk"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pskVersion, err := secrets.NewVersion(ctx, "psk", &secrets.VersionArgs{
+//				SecretId: psk.ID().ToIDOutput().ToStringOutput(),
+//				Data:     pulumi.String("your_s2s_vpn.psk"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = s2svpn.NewConnection(ctx, "main", &s2svpn.ConnectionArgs{
 //				Name:                   pulumi.String("my-vpn-connection"),
 //				VpnGatewayId:           gateway.ID().ToIDOutput().ToStringOutput(),
 //				CustomerGatewayId:      customerGw.ID().ToIDOutput().ToStringOutput(),
 //				InitiationPolicy:       pulumi.String("customer_gateway"),
 //				EnableRoutePropagation: pulumi.Bool(true),
+//				SecretId:               psk.ID().ToIDOutput().ToStringOutput(),
+//				SecretVersion:          pskVersion.Revision,
 //				BgpConfigIpv4s: s2svpn.ConnectionBgpConfigIpv4Array{
 //					&s2svpn.ConnectionBgpConfigIpv4Args{
 //						RoutingPolicyId: policy.ID().ToIDOutput().ToStringOutput(),
@@ -160,9 +176,9 @@ type Connection struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Whether route propagation is enabled.
 	RoutePropagationEnabled pulumi.BoolOutput `pulumi:"routePropagationEnabled"`
-	// The ID of the secret containing the pre-shared key (PSK) for the connection.
+	// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
-	// The version of the secret containing the PSK.
+	// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
 	SecretVersion pulumi.IntOutput `pulumi:"secretVersion"`
 	// The Scaleway Resource Name (SRN) of the connection.
 	Srn pulumi.StringOutput `pulumi:"srn"`
@@ -244,9 +260,9 @@ type connectionState struct {
 	Region *string `pulumi:"region"`
 	// Whether route propagation is enabled.
 	RoutePropagationEnabled *bool `pulumi:"routePropagationEnabled"`
-	// The ID of the secret containing the pre-shared key (PSK) for the connection.
+	// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
 	SecretId *string `pulumi:"secretId"`
-	// The version of the secret containing the PSK.
+	// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
 	SecretVersion *int `pulumi:"secretVersion"`
 	// The Scaleway Resource Name (SRN) of the connection.
 	Srn *string `pulumi:"srn"`
@@ -299,9 +315,9 @@ type ConnectionState struct {
 	Region pulumi.StringPtrInput
 	// Whether route propagation is enabled.
 	RoutePropagationEnabled pulumi.BoolPtrInput
-	// The ID of the secret containing the pre-shared key (PSK) for the connection.
+	// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
 	SecretId pulumi.StringPtrInput
-	// The version of the secret containing the PSK.
+	// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
 	SecretVersion pulumi.IntPtrInput
 	// The Scaleway Resource Name (SRN) of the connection.
 	Srn pulumi.StringPtrInput
@@ -344,6 +360,10 @@ type connectionArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the connection should be created.
 	Region *string `pulumi:"region"`
+	// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+	SecretId *string `pulumi:"secretId"`
+	// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
+	SecretVersion *int `pulumi:"secretVersion"`
 	// The list of tags to apply to the connection.
 	Tags []string `pulumi:"tags"`
 	// The ID of the VPN gateway to attach to the connection.
@@ -374,6 +394,10 @@ type ConnectionArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the connection should be created.
 	Region pulumi.StringPtrInput
+	// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+	SecretId pulumi.StringPtrInput
+	// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
+	SecretVersion pulumi.IntPtrInput
 	// The list of tags to apply to the connection.
 	Tags pulumi.StringArrayInput
 	// The ID of the VPN gateway to attach to the connection.
@@ -557,12 +581,12 @@ func (o ConnectionOutput) RoutePropagationEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Connection) pulumi.BoolOutput { return v.RoutePropagationEnabled }).(pulumi.BoolOutput)
 }
 
-// The ID of the secret containing the pre-shared key (PSK) for the connection.
+// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
 func (o ConnectionOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
 }
 
-// The version of the secret containing the PSK.
+// The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
 func (o ConnectionOutput) SecretVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *Connection) pulumi.IntOutput { return v.SecretVersion }).(pulumi.IntOutput)
 }

@@ -29,7 +29,7 @@ class GetTemDomainResult:
     """
     A collection of values returned by getTemDomain.
     """
-    def __init__(__self__, accept_tos=None, autoconfig=None, created_at=None, dkim_config=None, dkim_name=None, dmarc_config=None, dmarc_name=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, mx_config=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_auth_user=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, spf_value=None, status=None):
+    def __init__(__self__, accept_tos=None, autoconfig=None, created_at=None, dkim_config=None, dkim_name=None, dmarc_config=None, dmarc_name=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, mx_config=None, mx_priority=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_auth_user=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, spf_value=None, status=None):
         if accept_tos and not isinstance(accept_tos, bool):
             raise TypeError("Expected argument 'accept_tos' to be a bool")
         pulumi.set(__self__, "accept_tos", accept_tos)
@@ -69,6 +69,9 @@ class GetTemDomainResult:
         if mx_config and not isinstance(mx_config, str):
             raise TypeError("Expected argument 'mx_config' to be a str")
         pulumi.set(__self__, "mx_config", mx_config)
+        if mx_priority and not isinstance(mx_priority, int):
+            raise TypeError("Expected argument 'mx_priority' to be a int")
+        pulumi.set(__self__, "mx_priority", mx_priority)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -187,6 +190,11 @@ class GetTemDomainResult:
         return pulumi.get(self, "mx_config")
 
     @_builtins.property
+    @pulumi.getter(name="mxPriority")
+    def mx_priority(self) -> _builtins.int:
+        return pulumi.get(self, "mx_priority")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "name")
@@ -286,6 +294,7 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
             last_valid_at=self.last_valid_at,
             mx_blackhole=self.mx_blackhole,
             mx_config=self.mx_config,
+            mx_priority=self.mx_priority,
             name=self.name,
             next_check_at=self.next_check_at,
             project_id=self.project_id,
@@ -343,6 +352,7 @@ def get_tem_domain(domain_id: Optional[_builtins.str] = None,
         last_valid_at=pulumi.get(__ret__, 'last_valid_at'),
         mx_blackhole=pulumi.get(__ret__, 'mx_blackhole'),
         mx_config=pulumi.get(__ret__, 'mx_config'),
+        mx_priority=pulumi.get(__ret__, 'mx_priority'),
         name=pulumi.get(__ret__, 'name'),
         next_check_at=pulumi.get(__ret__, 'next_check_at'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -397,6 +407,7 @@ def get_tem_domain_output(domain_id: pulumi.Input[Optional[Optional[_builtins.st
         last_valid_at=pulumi.get(__response__, 'last_valid_at'),
         mx_blackhole=pulumi.get(__response__, 'mx_blackhole'),
         mx_config=pulumi.get(__response__, 'mx_config'),
+        mx_priority=pulumi.get(__response__, 'mx_priority'),
         name=pulumi.get(__response__, 'name'),
         next_check_at=pulumi.get(__response__, 'next_check_at'),
         project_id=pulumi.get(__response__, 'project_id'),

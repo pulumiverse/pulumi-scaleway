@@ -64,6 +64,7 @@ class GetK8sVersionResult:
 
     @_builtins.property
     @pulumi.getter(name="availableContainerRuntimes")
+    @_utilities.deprecated("""deprecated""")
     def available_container_runtimes(self) -> Sequence[_builtins.str]:
         """
         The list of supported container runtimes for this version.

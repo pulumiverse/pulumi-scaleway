@@ -42,6 +42,7 @@ class KubernetesNodePoolArgs:
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
                  upgrade_policy: pulumi.Input[Optional['KubernetesNodePoolUpgradePolicyArgs']] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -89,6 +90,9 @@ class KubernetesNodePoolArgs:
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
                For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
                
@@ -137,6 +141,8 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "taints", taints)
         if upgrade_policy is not None:
             pulumi.set(__self__, "upgrade_policy", upgrade_policy)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
         if version is not None:
             pulumi.set(__self__, "version", version)
         if wait_for_pool_ready is not None:
@@ -417,6 +423,20 @@ class KubernetesNodePoolArgs:
         pulumi.set(self, "upgrade_policy", value)
 
     @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User data applied and reconciled with the pool, as a map of key to content.
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "user_data", value)
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -488,6 +508,7 @@ class _KubernetesNodePoolState:
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  upgrade_policy: pulumi.Input[Optional['KubernetesNodePoolUpgradePolicyArgs']] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -541,6 +562,9 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input['KubernetesNodePoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
                For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
                
@@ -604,6 +628,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "updated_at", updated_at)
         if upgrade_policy is not None:
             pulumi.set(__self__, "upgrade_policy", upgrade_policy)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
         if version is not None:
             pulumi.set(__self__, "version", version)
         if wait_for_pool_ready is not None:
@@ -956,6 +982,20 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "upgrade_policy", value)
 
     @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        User data applied and reconciled with the pool, as a map of key to content.
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "user_data", value)
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1029,6 +1069,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1161,6 +1202,9 @@ class KubernetesNodePool(pulumi.CustomResource):
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
                For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
                
@@ -1297,6 +1341,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+                 user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1337,6 +1382,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["taints"] = taints
             __props__.__dict__["upgrade_policy"] = upgrade_policy
+            __props__.__dict__["user_data"] = user_data
             __props__.__dict__["version"] = version
             __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
             __props__.__dict__["zone"] = zone
@@ -1383,6 +1429,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+            user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
             wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'KubernetesNodePool':
@@ -1440,6 +1487,9 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
                For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
                
@@ -1480,6 +1530,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["taints"] = taints
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["upgrade_policy"] = upgrade_policy
+        __props__.__dict__["user_data"] = user_data
         __props__.__dict__["version"] = version
         __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
         __props__.__dict__["zone"] = zone
@@ -1720,6 +1771,16 @@ class KubernetesNodePool(pulumi.CustomResource):
         The Pool upgrade policy
         """
         return pulumi.get(self, "upgrade_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        User data applied and reconciled with the pool, as a map of key to content.
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "user_data")
 
     @_builtins.property
     @pulumi.getter

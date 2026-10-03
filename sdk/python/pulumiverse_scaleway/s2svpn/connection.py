@@ -32,6 +32,8 @@ class ConnectionArgs:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_version: pulumi.Input[Optional[_builtins.int]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -48,6 +50,8 @@ class ConnectionArgs:
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the connection should be created.
+        :param pulumi.Input[_builtins.str] secret_id: The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
         :param pulumi.Input[_builtins.str] vpn_gateway_id: The ID of the VPN gateway to attach to the connection.
         """
@@ -73,6 +77,10 @@ class ConnectionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+        if secret_version is not None:
+            pulumi.set(__self__, "secret_version", secret_version)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if vpn_gateway_id is not None:
@@ -211,6 +219,30 @@ class ConnectionArgs:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretVersion")
+    def secret_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
+        """
+        return pulumi.get(self, "secret_version")
+
+    @secret_version.setter
+    def secret_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "secret_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -285,8 +317,8 @@ class _ConnectionState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the connection should be created.
         :param pulumi.Input[_builtins.bool] route_propagation_enabled: Whether route propagation is enabled.
-        :param pulumi.Input[_builtins.str] secret_id: The ID of the secret containing the pre-shared key (PSK) for the connection.
-        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK.
+        :param pulumi.Input[_builtins.str] secret_id: The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the connection.
         :param pulumi.Input[_builtins.str] status: The status of the connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
@@ -567,7 +599,7 @@ class _ConnectionState:
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of the secret containing the pre-shared key (PSK) for the connection.
+        The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
         """
         return pulumi.get(self, "secret_id")
 
@@ -579,7 +611,7 @@ class _ConnectionState:
     @pulumi.getter(name="secretVersion")
     def secret_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The version of the secret containing the PSK.
+        The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         """
         return pulumi.get(self, "secret_version")
 
@@ -677,6 +709,8 @@ class Connection(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_version: pulumi.Input[Optional[_builtins.int]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -713,12 +747,18 @@ class Connection(pulumi.CustomResource):
             name="my-routing-policy",
             prefix_filter_ins=["10.0.2.0/24"],
             prefix_filter_outs=["10.0.1.0/24"])
+        psk = scaleway.secrets.Secret("psk", name="my-s2s-vpn-psk")
+        psk_version = scaleway.secrets.Version("psk",
+            secret_id=psk.id,
+            data="your_s2s_vpn.psk")
         main = scaleway.s2svpn.Connection("main",
             name="my-vpn-connection",
             vpn_gateway_id=gateway.id,
             customer_gateway_id=customer_gw.id,
             initiation_policy="customer_gateway",
             enable_route_propagation=True,
+            secret_id=psk.id,
+            secret_version=psk_version.revision.apply(lambda x: int(x)),
             bgp_config_ipv4s=[{
                 "routing_policy_id": policy.id,
                 "private_ip": "169.254.0.1/30",
@@ -758,6 +798,8 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the connection.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the connection should be created.
+        :param pulumi.Input[_builtins.str] secret_id: The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
         :param pulumi.Input[_builtins.str] vpn_gateway_id: The ID of the VPN gateway to attach to the connection.
         """
@@ -800,12 +842,18 @@ class Connection(pulumi.CustomResource):
             name="my-routing-policy",
             prefix_filter_ins=["10.0.2.0/24"],
             prefix_filter_outs=["10.0.1.0/24"])
+        psk = scaleway.secrets.Secret("psk", name="my-s2s-vpn-psk")
+        psk_version = scaleway.secrets.Version("psk",
+            secret_id=psk.id,
+            data="your_s2s_vpn.psk")
         main = scaleway.s2svpn.Connection("main",
             name="my-vpn-connection",
             vpn_gateway_id=gateway.id,
             customer_gateway_id=customer_gw.id,
             initiation_policy="customer_gateway",
             enable_route_propagation=True,
+            secret_id=psk.id,
+            secret_version=psk_version.revision.apply(lambda x: int(x)),
             bgp_config_ipv4s=[{
                 "routing_policy_id": policy.id,
                 "private_ip": "169.254.0.1/30",
@@ -858,6 +906,8 @@ class Connection(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_version: pulumi.Input[Optional[_builtins.int]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vpn_gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -880,6 +930,8 @@ class Connection(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["secret_id"] = secret_id
+            __props__.__dict__["secret_version"] = secret_version
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vpn_gateway_id"] = vpn_gateway_id
             __props__.__dict__["bgp_session_ipv4s"] = None
@@ -889,8 +941,6 @@ class Connection(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["route_propagation_enabled"] = None
-            __props__.__dict__["secret_id"] = None
-            __props__.__dict__["secret_version"] = None
             __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["tunnel_status"] = None
@@ -956,8 +1006,8 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the connection is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the connection should be created.
         :param pulumi.Input[_builtins.bool] route_propagation_enabled: Whether route propagation is enabled.
-        :param pulumi.Input[_builtins.str] secret_id: The ID of the secret containing the pre-shared key (PSK) for the connection.
-        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK.
+        :param pulumi.Input[_builtins.str] secret_id: The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        :param pulumi.Input[_builtins.int] secret_version: The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the connection.
         :param pulumi.Input[_builtins.str] status: The status of the connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the connection.
@@ -1145,7 +1195,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the secret containing the pre-shared key (PSK) for the connection.
+        The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `secrets.Secret` and `secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
         """
         return pulumi.get(self, "secret_id")
 
@@ -1153,7 +1203,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="secretVersion")
     def secret_version(self) -> pulumi.Output[_builtins.int]:
         """
-        The version of the secret containing the PSK.
+        The version of the secret containing the PSK. Requires `secret_id`. If omitted, the latest version is used.
         """
         return pulumi.get(self, "secret_version")
 

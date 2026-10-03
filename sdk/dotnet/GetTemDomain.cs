@@ -121,6 +121,7 @@ namespace Pulumiverse.Scaleway
         public readonly string LastValidAt;
         public readonly string MxBlackhole;
         public readonly string MxConfig;
+        public readonly int MxPriority;
         public readonly string? Name;
         public readonly string NextCheckAt;
         public readonly string? ProjectId;
@@ -165,6 +166,8 @@ namespace Pulumiverse.Scaleway
             string mxBlackhole,
 
             string mxConfig,
+
+            int mxPriority,
 
             string? name,
 
@@ -211,6 +214,7 @@ namespace Pulumiverse.Scaleway
             LastValidAt = lastValidAt;
             MxBlackhole = mxBlackhole;
             MxConfig = mxConfig;
+            MxPriority = mxPriority;
             Name = name;
             NextCheckAt = nextCheckAt;
             ProjectId = projectId;

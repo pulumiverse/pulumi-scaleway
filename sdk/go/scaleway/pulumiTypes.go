@@ -4147,7 +4147,7 @@ func (o DatabaseInstanceLoadBalancerPtrOutput) Port() pulumi.IntPtrOutput {
 type DatabaseInstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention *int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention *int `pulumi:"totalDiskRetention"`
 }
 
@@ -4165,7 +4165,7 @@ type DatabaseInstanceLogsPolicyInput interface {
 type DatabaseInstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntPtrInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntPtrInput `pulumi:"totalDiskRetention"`
 }
 
@@ -4251,7 +4251,7 @@ func (o DatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.MaxAgeRetention }).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o DatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.TotalDiskRetention }).(pulumi.IntPtrOutput)
 }
@@ -4290,7 +4290,7 @@ func (o DatabaseInstanceLogsPolicyPtrOutput) MaxAgeRetention() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstanceLogsPolicy) *int {
 		if v == nil {
@@ -16722,6 +16722,680 @@ func (o LoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Loadbala
 	}).(LoadbalancerPrivateNetworkOutput)
 }
 
+type MailboxDomainDnsRecord struct {
+	// Fully qualified name for this record.
+	DnsName *string `pulumi:"dnsName"`
+	// Record type (TXT, MX, CNAME, SRV…).
+	DnsType *string `pulumi:"dnsType"`
+	// Value to set for this record.
+	DnsValue *string `pulumi:"dnsValue"`
+	// Error detail when the record is invalid or not found.
+	Error *string `pulumi:"error"`
+	// Requirement level (`required`, `recommended`, `optional`).
+	Level *string `pulumi:"level"`
+	// Validation status (`valid`, `invalid`, `notFound`, `validating`).
+	Status *string `pulumi:"status"`
+}
+
+// MailboxDomainDnsRecordInput is an input type that accepts MailboxDomainDnsRecordArgs and MailboxDomainDnsRecordOutput values.
+// You can construct a concrete instance of `MailboxDomainDnsRecordInput` via:
+//
+//	MailboxDomainDnsRecordArgs{...}
+type MailboxDomainDnsRecordInput interface {
+	pulumi.Input
+
+	ToMailboxDomainDnsRecordOutput() MailboxDomainDnsRecordOutput
+	ToMailboxDomainDnsRecordOutputWithContext(context.Context) MailboxDomainDnsRecordOutput
+}
+
+type MailboxDomainDnsRecordArgs struct {
+	// Fully qualified name for this record.
+	DnsName pulumi.StringPtrInput `pulumi:"dnsName"`
+	// Record type (TXT, MX, CNAME, SRV…).
+	DnsType pulumi.StringPtrInput `pulumi:"dnsType"`
+	// Value to set for this record.
+	DnsValue pulumi.StringPtrInput `pulumi:"dnsValue"`
+	// Error detail when the record is invalid or not found.
+	Error pulumi.StringPtrInput `pulumi:"error"`
+	// Requirement level (`required`, `recommended`, `optional`).
+	Level pulumi.StringPtrInput `pulumi:"level"`
+	// Validation status (`valid`, `invalid`, `notFound`, `validating`).
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (MailboxDomainDnsRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MailboxDomainDnsRecord)(nil)).Elem()
+}
+
+func (i MailboxDomainDnsRecordArgs) ToMailboxDomainDnsRecordOutput() MailboxDomainDnsRecordOutput {
+	return i.ToMailboxDomainDnsRecordOutputWithContext(context.Background())
+}
+
+func (i MailboxDomainDnsRecordArgs) ToMailboxDomainDnsRecordOutputWithContext(ctx context.Context) MailboxDomainDnsRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MailboxDomainDnsRecordOutput)
+}
+
+// MailboxDomainDnsRecordArrayInput is an input type that accepts MailboxDomainDnsRecordArray and MailboxDomainDnsRecordArrayOutput values.
+// You can construct a concrete instance of `MailboxDomainDnsRecordArrayInput` via:
+//
+//	MailboxDomainDnsRecordArray{ MailboxDomainDnsRecordArgs{...} }
+type MailboxDomainDnsRecordArrayInput interface {
+	pulumi.Input
+
+	ToMailboxDomainDnsRecordArrayOutput() MailboxDomainDnsRecordArrayOutput
+	ToMailboxDomainDnsRecordArrayOutputWithContext(context.Context) MailboxDomainDnsRecordArrayOutput
+}
+
+type MailboxDomainDnsRecordArray []MailboxDomainDnsRecordInput
+
+func (MailboxDomainDnsRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MailboxDomainDnsRecord)(nil)).Elem()
+}
+
+func (i MailboxDomainDnsRecordArray) ToMailboxDomainDnsRecordArrayOutput() MailboxDomainDnsRecordArrayOutput {
+	return i.ToMailboxDomainDnsRecordArrayOutputWithContext(context.Background())
+}
+
+func (i MailboxDomainDnsRecordArray) ToMailboxDomainDnsRecordArrayOutputWithContext(ctx context.Context) MailboxDomainDnsRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MailboxDomainDnsRecordArrayOutput)
+}
+
+type MailboxDomainDnsRecordOutput struct{ *pulumi.OutputState }
+
+func (MailboxDomainDnsRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MailboxDomainDnsRecord)(nil)).Elem()
+}
+
+func (o MailboxDomainDnsRecordOutput) ToMailboxDomainDnsRecordOutput() MailboxDomainDnsRecordOutput {
+	return o
+}
+
+func (o MailboxDomainDnsRecordOutput) ToMailboxDomainDnsRecordOutputWithContext(ctx context.Context) MailboxDomainDnsRecordOutput {
+	return o
+}
+
+// Fully qualified name for this record.
+func (o MailboxDomainDnsRecordOutput) DnsName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.DnsName }).(pulumi.StringPtrOutput)
+}
+
+// Record type (TXT, MX, CNAME, SRV…).
+func (o MailboxDomainDnsRecordOutput) DnsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.DnsType }).(pulumi.StringPtrOutput)
+}
+
+// Value to set for this record.
+func (o MailboxDomainDnsRecordOutput) DnsValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.DnsValue }).(pulumi.StringPtrOutput)
+}
+
+// Error detail when the record is invalid or not found.
+func (o MailboxDomainDnsRecordOutput) Error() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.Error }).(pulumi.StringPtrOutput)
+}
+
+// Requirement level (`required`, `recommended`, `optional`).
+func (o MailboxDomainDnsRecordOutput) Level() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.Level }).(pulumi.StringPtrOutput)
+}
+
+// Validation status (`valid`, `invalid`, `notFound`, `validating`).
+func (o MailboxDomainDnsRecordOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MailboxDomainDnsRecord) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type MailboxDomainDnsRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (MailboxDomainDnsRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MailboxDomainDnsRecord)(nil)).Elem()
+}
+
+func (o MailboxDomainDnsRecordArrayOutput) ToMailboxDomainDnsRecordArrayOutput() MailboxDomainDnsRecordArrayOutput {
+	return o
+}
+
+func (o MailboxDomainDnsRecordArrayOutput) ToMailboxDomainDnsRecordArrayOutputWithContext(ctx context.Context) MailboxDomainDnsRecordArrayOutput {
+	return o
+}
+
+func (o MailboxDomainDnsRecordArrayOutput) Index(i pulumi.IntInput) MailboxDomainDnsRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MailboxDomainDnsRecord {
+		return vs[0].([]MailboxDomainDnsRecord)[vs[1].(int)]
+	}).(MailboxDomainDnsRecordOutput)
+}
+
+type MessageqDeploymentEndpoint struct {
+	// The ID of the endpoint.
+	Id *string `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (`true`) or private (`false`).
+	Public *bool `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services []MessageqDeploymentEndpointService `pulumi:"services"`
+}
+
+// MessageqDeploymentEndpointInput is an input type that accepts MessageqDeploymentEndpointArgs and MessageqDeploymentEndpointOutput values.
+// You can construct a concrete instance of `MessageqDeploymentEndpointInput` via:
+//
+//	MessageqDeploymentEndpointArgs{...}
+type MessageqDeploymentEndpointInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentEndpointOutput() MessageqDeploymentEndpointOutput
+	ToMessageqDeploymentEndpointOutputWithContext(context.Context) MessageqDeploymentEndpointOutput
+}
+
+type MessageqDeploymentEndpointArgs struct {
+	// The ID of the endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (`true`) or private (`false`).
+	Public pulumi.BoolPtrInput `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services MessageqDeploymentEndpointServiceArrayInput `pulumi:"services"`
+}
+
+func (MessageqDeploymentEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i MessageqDeploymentEndpointArgs) ToMessageqDeploymentEndpointOutput() MessageqDeploymentEndpointOutput {
+	return i.ToMessageqDeploymentEndpointOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentEndpointArgs) ToMessageqDeploymentEndpointOutputWithContext(ctx context.Context) MessageqDeploymentEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentEndpointOutput)
+}
+
+// MessageqDeploymentEndpointArrayInput is an input type that accepts MessageqDeploymentEndpointArray and MessageqDeploymentEndpointArrayOutput values.
+// You can construct a concrete instance of `MessageqDeploymentEndpointArrayInput` via:
+//
+//	MessageqDeploymentEndpointArray{ MessageqDeploymentEndpointArgs{...} }
+type MessageqDeploymentEndpointArrayInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentEndpointArrayOutput() MessageqDeploymentEndpointArrayOutput
+	ToMessageqDeploymentEndpointArrayOutputWithContext(context.Context) MessageqDeploymentEndpointArrayOutput
+}
+
+type MessageqDeploymentEndpointArray []MessageqDeploymentEndpointInput
+
+func (MessageqDeploymentEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i MessageqDeploymentEndpointArray) ToMessageqDeploymentEndpointArrayOutput() MessageqDeploymentEndpointArrayOutput {
+	return i.ToMessageqDeploymentEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentEndpointArray) ToMessageqDeploymentEndpointArrayOutputWithContext(ctx context.Context) MessageqDeploymentEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentEndpointArrayOutput)
+}
+
+type MessageqDeploymentEndpointOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o MessageqDeploymentEndpointOutput) ToMessageqDeploymentEndpointOutput() MessageqDeploymentEndpointOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointOutput) ToMessageqDeploymentEndpointOutputWithContext(ctx context.Context) MessageqDeploymentEndpointOutput {
+	return o
+}
+
+// The ID of the endpoint.
+func (o MessageqDeploymentEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Private network ID if the endpoint is private.
+func (o MessageqDeploymentEndpointOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpoint) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+// Whether the endpoint is public (`true`) or private (`false`).
+func (o MessageqDeploymentEndpointOutput) Public() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpoint) *bool { return v.Public }).(pulumi.BoolPtrOutput)
+}
+
+// List of services exposed on the endpoint.
+func (o MessageqDeploymentEndpointOutput) Services() MessageqDeploymentEndpointServiceArrayOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpoint) []MessageqDeploymentEndpointService { return v.Services }).(MessageqDeploymentEndpointServiceArrayOutput)
+}
+
+type MessageqDeploymentEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o MessageqDeploymentEndpointArrayOutput) ToMessageqDeploymentEndpointArrayOutput() MessageqDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointArrayOutput) ToMessageqDeploymentEndpointArrayOutputWithContext(ctx context.Context) MessageqDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointArrayOutput) Index(i pulumi.IntInput) MessageqDeploymentEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MessageqDeploymentEndpoint {
+		return vs[0].([]MessageqDeploymentEndpoint)[vs[1].(int)]
+	}).(MessageqDeploymentEndpointOutput)
+}
+
+type MessageqDeploymentEndpointService struct {
+	// Name of the MessageQ deployment. If not specified, a random name will be generated.
+	Name *string `pulumi:"name"`
+	// Service port number.
+	Port *int `pulumi:"port"`
+	// Full URL to access the service.
+	Url *string `pulumi:"url"`
+}
+
+// MessageqDeploymentEndpointServiceInput is an input type that accepts MessageqDeploymentEndpointServiceArgs and MessageqDeploymentEndpointServiceOutput values.
+// You can construct a concrete instance of `MessageqDeploymentEndpointServiceInput` via:
+//
+//	MessageqDeploymentEndpointServiceArgs{...}
+type MessageqDeploymentEndpointServiceInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentEndpointServiceOutput() MessageqDeploymentEndpointServiceOutput
+	ToMessageqDeploymentEndpointServiceOutputWithContext(context.Context) MessageqDeploymentEndpointServiceOutput
+}
+
+type MessageqDeploymentEndpointServiceArgs struct {
+	// Name of the MessageQ deployment. If not specified, a random name will be generated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Service port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Full URL to access the service.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (MessageqDeploymentEndpointServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i MessageqDeploymentEndpointServiceArgs) ToMessageqDeploymentEndpointServiceOutput() MessageqDeploymentEndpointServiceOutput {
+	return i.ToMessageqDeploymentEndpointServiceOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentEndpointServiceArgs) ToMessageqDeploymentEndpointServiceOutputWithContext(ctx context.Context) MessageqDeploymentEndpointServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentEndpointServiceOutput)
+}
+
+// MessageqDeploymentEndpointServiceArrayInput is an input type that accepts MessageqDeploymentEndpointServiceArray and MessageqDeploymentEndpointServiceArrayOutput values.
+// You can construct a concrete instance of `MessageqDeploymentEndpointServiceArrayInput` via:
+//
+//	MessageqDeploymentEndpointServiceArray{ MessageqDeploymentEndpointServiceArgs{...} }
+type MessageqDeploymentEndpointServiceArrayInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentEndpointServiceArrayOutput() MessageqDeploymentEndpointServiceArrayOutput
+	ToMessageqDeploymentEndpointServiceArrayOutputWithContext(context.Context) MessageqDeploymentEndpointServiceArrayOutput
+}
+
+type MessageqDeploymentEndpointServiceArray []MessageqDeploymentEndpointServiceInput
+
+func (MessageqDeploymentEndpointServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i MessageqDeploymentEndpointServiceArray) ToMessageqDeploymentEndpointServiceArrayOutput() MessageqDeploymentEndpointServiceArrayOutput {
+	return i.ToMessageqDeploymentEndpointServiceArrayOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentEndpointServiceArray) ToMessageqDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) MessageqDeploymentEndpointServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentEndpointServiceArrayOutput)
+}
+
+type MessageqDeploymentEndpointServiceOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentEndpointServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o MessageqDeploymentEndpointServiceOutput) ToMessageqDeploymentEndpointServiceOutput() MessageqDeploymentEndpointServiceOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointServiceOutput) ToMessageqDeploymentEndpointServiceOutputWithContext(ctx context.Context) MessageqDeploymentEndpointServiceOutput {
+	return o
+}
+
+// Name of the MessageQ deployment. If not specified, a random name will be generated.
+func (o MessageqDeploymentEndpointServiceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpointService) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Service port number.
+func (o MessageqDeploymentEndpointServiceOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpointService) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Full URL to access the service.
+func (o MessageqDeploymentEndpointServiceOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MessageqDeploymentEndpointService) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type MessageqDeploymentEndpointServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentEndpointServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o MessageqDeploymentEndpointServiceArrayOutput) ToMessageqDeploymentEndpointServiceArrayOutput() MessageqDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointServiceArrayOutput) ToMessageqDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) MessageqDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o MessageqDeploymentEndpointServiceArrayOutput) Index(i pulumi.IntInput) MessageqDeploymentEndpointServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MessageqDeploymentEndpointService {
+		return vs[0].([]MessageqDeploymentEndpointService)[vs[1].(int)]
+	}).(MessageqDeploymentEndpointServiceOutput)
+}
+
+type MessageqDeploymentPrivateNetwork struct {
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+}
+
+// MessageqDeploymentPrivateNetworkInput is an input type that accepts MessageqDeploymentPrivateNetworkArgs and MessageqDeploymentPrivateNetworkOutput values.
+// You can construct a concrete instance of `MessageqDeploymentPrivateNetworkInput` via:
+//
+//	MessageqDeploymentPrivateNetworkArgs{...}
+type MessageqDeploymentPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentPrivateNetworkOutput() MessageqDeploymentPrivateNetworkOutput
+	ToMessageqDeploymentPrivateNetworkOutputWithContext(context.Context) MessageqDeploymentPrivateNetworkOutput
+}
+
+type MessageqDeploymentPrivateNetworkArgs struct {
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+}
+
+func (MessageqDeploymentPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i MessageqDeploymentPrivateNetworkArgs) ToMessageqDeploymentPrivateNetworkOutput() MessageqDeploymentPrivateNetworkOutput {
+	return i.ToMessageqDeploymentPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentPrivateNetworkArgs) ToMessageqDeploymentPrivateNetworkOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentPrivateNetworkOutput)
+}
+
+func (i MessageqDeploymentPrivateNetworkArgs) ToMessageqDeploymentPrivateNetworkPtrOutput() MessageqDeploymentPrivateNetworkPtrOutput {
+	return i.ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentPrivateNetworkArgs) ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentPrivateNetworkOutput).ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// MessageqDeploymentPrivateNetworkPtrInput is an input type that accepts MessageqDeploymentPrivateNetworkArgs, MessageqDeploymentPrivateNetworkPtr and MessageqDeploymentPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `MessageqDeploymentPrivateNetworkPtrInput` via:
+//
+//	        MessageqDeploymentPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type MessageqDeploymentPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentPrivateNetworkPtrOutput() MessageqDeploymentPrivateNetworkPtrOutput
+	ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(context.Context) MessageqDeploymentPrivateNetworkPtrOutput
+}
+
+type messageqDeploymentPrivateNetworkPtrType MessageqDeploymentPrivateNetworkArgs
+
+func MessageqDeploymentPrivateNetworkPtr(v *MessageqDeploymentPrivateNetworkArgs) MessageqDeploymentPrivateNetworkPtrInput {
+	return (*messageqDeploymentPrivateNetworkPtrType)(v)
+}
+
+func (*messageqDeploymentPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MessageqDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i *messageqDeploymentPrivateNetworkPtrType) ToMessageqDeploymentPrivateNetworkPtrOutput() MessageqDeploymentPrivateNetworkPtrOutput {
+	return i.ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *messageqDeploymentPrivateNetworkPtrType) ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentPrivateNetworkPtrOutput)
+}
+
+type MessageqDeploymentPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o MessageqDeploymentPrivateNetworkOutput) ToMessageqDeploymentPrivateNetworkOutput() MessageqDeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o MessageqDeploymentPrivateNetworkOutput) ToMessageqDeploymentPrivateNetworkOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o MessageqDeploymentPrivateNetworkOutput) ToMessageqDeploymentPrivateNetworkPtrOutput() MessageqDeploymentPrivateNetworkPtrOutput {
+	return o.ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o MessageqDeploymentPrivateNetworkOutput) ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MessageqDeploymentPrivateNetwork) *MessageqDeploymentPrivateNetwork {
+		return &v
+	}).(MessageqDeploymentPrivateNetworkPtrOutput)
+}
+
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+func (o MessageqDeploymentPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v MessageqDeploymentPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+type MessageqDeploymentPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MessageqDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o MessageqDeploymentPrivateNetworkPtrOutput) ToMessageqDeploymentPrivateNetworkPtrOutput() MessageqDeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o MessageqDeploymentPrivateNetworkPtrOutput) ToMessageqDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) MessageqDeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o MessageqDeploymentPrivateNetworkPtrOutput) Elem() MessageqDeploymentPrivateNetworkOutput {
+	return o.ApplyT(func(v *MessageqDeploymentPrivateNetwork) MessageqDeploymentPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret MessageqDeploymentPrivateNetwork
+		return ret
+	}).(MessageqDeploymentPrivateNetworkOutput)
+}
+
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+func (o MessageqDeploymentPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MessageqDeploymentPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateNetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
+type MessageqDeploymentVolume struct {
+	// Volume size in GB. Can be updated in-place via the Upgrade API.
+	SizeInGb int `pulumi:"sizeInGb"`
+	// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+	Type string `pulumi:"type"`
+}
+
+// MessageqDeploymentVolumeInput is an input type that accepts MessageqDeploymentVolumeArgs and MessageqDeploymentVolumeOutput values.
+// You can construct a concrete instance of `MessageqDeploymentVolumeInput` via:
+//
+//	MessageqDeploymentVolumeArgs{...}
+type MessageqDeploymentVolumeInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentVolumeOutput() MessageqDeploymentVolumeOutput
+	ToMessageqDeploymentVolumeOutputWithContext(context.Context) MessageqDeploymentVolumeOutput
+}
+
+type MessageqDeploymentVolumeArgs struct {
+	// Volume size in GB. Can be updated in-place via the Upgrade API.
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (MessageqDeploymentVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (i MessageqDeploymentVolumeArgs) ToMessageqDeploymentVolumeOutput() MessageqDeploymentVolumeOutput {
+	return i.ToMessageqDeploymentVolumeOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentVolumeArgs) ToMessageqDeploymentVolumeOutputWithContext(ctx context.Context) MessageqDeploymentVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentVolumeOutput)
+}
+
+func (i MessageqDeploymentVolumeArgs) ToMessageqDeploymentVolumePtrOutput() MessageqDeploymentVolumePtrOutput {
+	return i.ToMessageqDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (i MessageqDeploymentVolumeArgs) ToMessageqDeploymentVolumePtrOutputWithContext(ctx context.Context) MessageqDeploymentVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentVolumeOutput).ToMessageqDeploymentVolumePtrOutputWithContext(ctx)
+}
+
+// MessageqDeploymentVolumePtrInput is an input type that accepts MessageqDeploymentVolumeArgs, MessageqDeploymentVolumePtr and MessageqDeploymentVolumePtrOutput values.
+// You can construct a concrete instance of `MessageqDeploymentVolumePtrInput` via:
+//
+//	        MessageqDeploymentVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type MessageqDeploymentVolumePtrInput interface {
+	pulumi.Input
+
+	ToMessageqDeploymentVolumePtrOutput() MessageqDeploymentVolumePtrOutput
+	ToMessageqDeploymentVolumePtrOutputWithContext(context.Context) MessageqDeploymentVolumePtrOutput
+}
+
+type messageqDeploymentVolumePtrType MessageqDeploymentVolumeArgs
+
+func MessageqDeploymentVolumePtr(v *MessageqDeploymentVolumeArgs) MessageqDeploymentVolumePtrInput {
+	return (*messageqDeploymentVolumePtrType)(v)
+}
+
+func (*messageqDeploymentVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (i *messageqDeploymentVolumePtrType) ToMessageqDeploymentVolumePtrOutput() MessageqDeploymentVolumePtrOutput {
+	return i.ToMessageqDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *messageqDeploymentVolumePtrType) ToMessageqDeploymentVolumePtrOutputWithContext(ctx context.Context) MessageqDeploymentVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MessageqDeploymentVolumePtrOutput)
+}
+
+type MessageqDeploymentVolumeOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (o MessageqDeploymentVolumeOutput) ToMessageqDeploymentVolumeOutput() MessageqDeploymentVolumeOutput {
+	return o
+}
+
+func (o MessageqDeploymentVolumeOutput) ToMessageqDeploymentVolumeOutputWithContext(ctx context.Context) MessageqDeploymentVolumeOutput {
+	return o
+}
+
+func (o MessageqDeploymentVolumeOutput) ToMessageqDeploymentVolumePtrOutput() MessageqDeploymentVolumePtrOutput {
+	return o.ToMessageqDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (o MessageqDeploymentVolumeOutput) ToMessageqDeploymentVolumePtrOutputWithContext(ctx context.Context) MessageqDeploymentVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MessageqDeploymentVolume) *MessageqDeploymentVolume {
+		return &v
+	}).(MessageqDeploymentVolumePtrOutput)
+}
+
+// Volume size in GB. Can be updated in-place via the Upgrade API.
+func (o MessageqDeploymentVolumeOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v MessageqDeploymentVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+func (o MessageqDeploymentVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v MessageqDeploymentVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type MessageqDeploymentVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (MessageqDeploymentVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (o MessageqDeploymentVolumePtrOutput) ToMessageqDeploymentVolumePtrOutput() MessageqDeploymentVolumePtrOutput {
+	return o
+}
+
+func (o MessageqDeploymentVolumePtrOutput) ToMessageqDeploymentVolumePtrOutputWithContext(ctx context.Context) MessageqDeploymentVolumePtrOutput {
+	return o
+}
+
+func (o MessageqDeploymentVolumePtrOutput) Elem() MessageqDeploymentVolumeOutput {
+	return o.ApplyT(func(v *MessageqDeploymentVolume) MessageqDeploymentVolume {
+		if v != nil {
+			return *v
+		}
+		var ret MessageqDeploymentVolume
+		return ret
+	}).(MessageqDeploymentVolumeOutput)
+}
+
+// Volume size in GB. Can be updated in-place via the Upgrade API.
+func (o MessageqDeploymentVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MessageqDeploymentVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.SizeInGb
+	}).(pulumi.IntPtrOutput)
+}
+
+// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+func (o MessageqDeploymentVolumePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MessageqDeploymentVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type MnqSnsCredentialsPermissions struct {
 	// . Defines whether the user can manage the associated resource(s).
 	CanManage *bool `pulumi:"canManage"`
@@ -20087,6 +20761,103 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.
 		}
 		return &v.Suffix
 	}).(pulumi.StringPtrOutput)
+}
+
+type ProviderEndpoint struct {
+	// Use this to override the default service endpoint URL.
+	S3 *string `pulumi:"s3"`
+}
+
+// ProviderEndpointInput is an input type that accepts ProviderEndpointArgs and ProviderEndpointOutput values.
+// You can construct a concrete instance of `ProviderEndpointInput` via:
+//
+//	ProviderEndpointArgs{...}
+type ProviderEndpointInput interface {
+	pulumi.Input
+
+	ToProviderEndpointOutput() ProviderEndpointOutput
+	ToProviderEndpointOutputWithContext(context.Context) ProviderEndpointOutput
+}
+
+type ProviderEndpointArgs struct {
+	// Use this to override the default service endpoint URL.
+	S3 pulumi.StringPtrInput `pulumi:"s3"`
+}
+
+func (ProviderEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderEndpoint)(nil)).Elem()
+}
+
+func (i ProviderEndpointArgs) ToProviderEndpointOutput() ProviderEndpointOutput {
+	return i.ToProviderEndpointOutputWithContext(context.Background())
+}
+
+func (i ProviderEndpointArgs) ToProviderEndpointOutputWithContext(ctx context.Context) ProviderEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderEndpointOutput)
+}
+
+// ProviderEndpointArrayInput is an input type that accepts ProviderEndpointArray and ProviderEndpointArrayOutput values.
+// You can construct a concrete instance of `ProviderEndpointArrayInput` via:
+//
+//	ProviderEndpointArray{ ProviderEndpointArgs{...} }
+type ProviderEndpointArrayInput interface {
+	pulumi.Input
+
+	ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput
+	ToProviderEndpointArrayOutputWithContext(context.Context) ProviderEndpointArrayOutput
+}
+
+type ProviderEndpointArray []ProviderEndpointInput
+
+func (ProviderEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderEndpoint)(nil)).Elem()
+}
+
+func (i ProviderEndpointArray) ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput {
+	return i.ToProviderEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderEndpointArray) ToProviderEndpointArrayOutputWithContext(ctx context.Context) ProviderEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderEndpointArrayOutput)
+}
+
+type ProviderEndpointOutput struct{ *pulumi.OutputState }
+
+func (ProviderEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderEndpoint)(nil)).Elem()
+}
+
+func (o ProviderEndpointOutput) ToProviderEndpointOutput() ProviderEndpointOutput {
+	return o
+}
+
+func (o ProviderEndpointOutput) ToProviderEndpointOutputWithContext(ctx context.Context) ProviderEndpointOutput {
+	return o
+}
+
+// Use this to override the default service endpoint URL.
+func (o ProviderEndpointOutput) S3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderEndpoint) *string { return v.S3 }).(pulumi.StringPtrOutput)
+}
+
+type ProviderEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderEndpoint)(nil)).Elem()
+}
+
+func (o ProviderEndpointArrayOutput) ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput {
+	return o
+}
+
+func (o ProviderEndpointArrayOutput) ToProviderEndpointArrayOutputWithContext(ctx context.Context) ProviderEndpointArrayOutput {
+	return o
+}
+
+func (o ProviderEndpointArrayOutput) Index(i pulumi.IntInput) ProviderEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderEndpoint {
+		return vs[0].([]ProviderEndpoint)[vs[1].(int)]
+	}).(ProviderEndpointOutput)
 }
 
 type RedisClusterAcl struct {
@@ -25128,7 +25899,7 @@ func (o GetDatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) Get
 type GetDatabaseInstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention int `pulumi:"totalDiskRetention"`
 }
 
@@ -25146,7 +25917,7 @@ type GetDatabaseInstanceLogsPolicyInput interface {
 type GetDatabaseInstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntInput `pulumi:"totalDiskRetention"`
 }
 
@@ -25206,7 +25977,7 @@ func (o GetDatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntOutput 
 	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.MaxAgeRetention }).(pulumi.IntOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o GetDatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.TotalDiskRetention }).(pulumi.IntOutput)
 }
@@ -34155,6 +34926,439 @@ func (o GetLoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLo
 	}).(GetLoadbalancerPrivateNetworkOutput)
 }
 
+type GetMessageqDeploymentEndpoint struct {
+	// The ID of the endpoint.
+	Id string `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (`true`) or private (`false`).
+	Public bool `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services []GetMessageqDeploymentEndpointService `pulumi:"services"`
+}
+
+// GetMessageqDeploymentEndpointInput is an input type that accepts GetMessageqDeploymentEndpointArgs and GetMessageqDeploymentEndpointOutput values.
+// You can construct a concrete instance of `GetMessageqDeploymentEndpointInput` via:
+//
+//	GetMessageqDeploymentEndpointArgs{...}
+type GetMessageqDeploymentEndpointInput interface {
+	pulumi.Input
+
+	ToGetMessageqDeploymentEndpointOutput() GetMessageqDeploymentEndpointOutput
+	ToGetMessageqDeploymentEndpointOutputWithContext(context.Context) GetMessageqDeploymentEndpointOutput
+}
+
+type GetMessageqDeploymentEndpointArgs struct {
+	// The ID of the endpoint.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (`true`) or private (`false`).
+	Public pulumi.BoolInput `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services GetMessageqDeploymentEndpointServiceArrayInput `pulumi:"services"`
+}
+
+func (GetMessageqDeploymentEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i GetMessageqDeploymentEndpointArgs) ToGetMessageqDeploymentEndpointOutput() GetMessageqDeploymentEndpointOutput {
+	return i.ToGetMessageqDeploymentEndpointOutputWithContext(context.Background())
+}
+
+func (i GetMessageqDeploymentEndpointArgs) ToGetMessageqDeploymentEndpointOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqDeploymentEndpointOutput)
+}
+
+// GetMessageqDeploymentEndpointArrayInput is an input type that accepts GetMessageqDeploymentEndpointArray and GetMessageqDeploymentEndpointArrayOutput values.
+// You can construct a concrete instance of `GetMessageqDeploymentEndpointArrayInput` via:
+//
+//	GetMessageqDeploymentEndpointArray{ GetMessageqDeploymentEndpointArgs{...} }
+type GetMessageqDeploymentEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetMessageqDeploymentEndpointArrayOutput() GetMessageqDeploymentEndpointArrayOutput
+	ToGetMessageqDeploymentEndpointArrayOutputWithContext(context.Context) GetMessageqDeploymentEndpointArrayOutput
+}
+
+type GetMessageqDeploymentEndpointArray []GetMessageqDeploymentEndpointInput
+
+func (GetMessageqDeploymentEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i GetMessageqDeploymentEndpointArray) ToGetMessageqDeploymentEndpointArrayOutput() GetMessageqDeploymentEndpointArrayOutput {
+	return i.ToGetMessageqDeploymentEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetMessageqDeploymentEndpointArray) ToGetMessageqDeploymentEndpointArrayOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqDeploymentEndpointArrayOutput)
+}
+
+type GetMessageqDeploymentEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqDeploymentEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o GetMessageqDeploymentEndpointOutput) ToGetMessageqDeploymentEndpointOutput() GetMessageqDeploymentEndpointOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointOutput) ToGetMessageqDeploymentEndpointOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointOutput {
+	return o
+}
+
+// The ID of the endpoint.
+func (o GetMessageqDeploymentEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Private network ID if the endpoint is private.
+func (o GetMessageqDeploymentEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpoint) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+// Whether the endpoint is public (`true`) or private (`false`).
+func (o GetMessageqDeploymentEndpointOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpoint) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+// List of services exposed on the endpoint.
+func (o GetMessageqDeploymentEndpointOutput) Services() GetMessageqDeploymentEndpointServiceArrayOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpoint) []GetMessageqDeploymentEndpointService { return v.Services }).(GetMessageqDeploymentEndpointServiceArrayOutput)
+}
+
+type GetMessageqDeploymentEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqDeploymentEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o GetMessageqDeploymentEndpointArrayOutput) ToGetMessageqDeploymentEndpointArrayOutput() GetMessageqDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointArrayOutput) ToGetMessageqDeploymentEndpointArrayOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointArrayOutput) Index(i pulumi.IntInput) GetMessageqDeploymentEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMessageqDeploymentEndpoint {
+		return vs[0].([]GetMessageqDeploymentEndpoint)[vs[1].(int)]
+	}).(GetMessageqDeploymentEndpointOutput)
+}
+
+type GetMessageqDeploymentEndpointService struct {
+	// The name of the deployment. Only one of `name` and `deploymentId` should be specified.
+	Name string `pulumi:"name"`
+	// Service port.
+	Port int `pulumi:"port"`
+	// Service URL.
+	Url string `pulumi:"url"`
+}
+
+// GetMessageqDeploymentEndpointServiceInput is an input type that accepts GetMessageqDeploymentEndpointServiceArgs and GetMessageqDeploymentEndpointServiceOutput values.
+// You can construct a concrete instance of `GetMessageqDeploymentEndpointServiceInput` via:
+//
+//	GetMessageqDeploymentEndpointServiceArgs{...}
+type GetMessageqDeploymentEndpointServiceInput interface {
+	pulumi.Input
+
+	ToGetMessageqDeploymentEndpointServiceOutput() GetMessageqDeploymentEndpointServiceOutput
+	ToGetMessageqDeploymentEndpointServiceOutputWithContext(context.Context) GetMessageqDeploymentEndpointServiceOutput
+}
+
+type GetMessageqDeploymentEndpointServiceArgs struct {
+	// The name of the deployment. Only one of `name` and `deploymentId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Service port.
+	Port pulumi.IntInput `pulumi:"port"`
+	// Service URL.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetMessageqDeploymentEndpointServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i GetMessageqDeploymentEndpointServiceArgs) ToGetMessageqDeploymentEndpointServiceOutput() GetMessageqDeploymentEndpointServiceOutput {
+	return i.ToGetMessageqDeploymentEndpointServiceOutputWithContext(context.Background())
+}
+
+func (i GetMessageqDeploymentEndpointServiceArgs) ToGetMessageqDeploymentEndpointServiceOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqDeploymentEndpointServiceOutput)
+}
+
+// GetMessageqDeploymentEndpointServiceArrayInput is an input type that accepts GetMessageqDeploymentEndpointServiceArray and GetMessageqDeploymentEndpointServiceArrayOutput values.
+// You can construct a concrete instance of `GetMessageqDeploymentEndpointServiceArrayInput` via:
+//
+//	GetMessageqDeploymentEndpointServiceArray{ GetMessageqDeploymentEndpointServiceArgs{...} }
+type GetMessageqDeploymentEndpointServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetMessageqDeploymentEndpointServiceArrayOutput() GetMessageqDeploymentEndpointServiceArrayOutput
+	ToGetMessageqDeploymentEndpointServiceArrayOutputWithContext(context.Context) GetMessageqDeploymentEndpointServiceArrayOutput
+}
+
+type GetMessageqDeploymentEndpointServiceArray []GetMessageqDeploymentEndpointServiceInput
+
+func (GetMessageqDeploymentEndpointServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i GetMessageqDeploymentEndpointServiceArray) ToGetMessageqDeploymentEndpointServiceArrayOutput() GetMessageqDeploymentEndpointServiceArrayOutput {
+	return i.ToGetMessageqDeploymentEndpointServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetMessageqDeploymentEndpointServiceArray) ToGetMessageqDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqDeploymentEndpointServiceArrayOutput)
+}
+
+type GetMessageqDeploymentEndpointServiceOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqDeploymentEndpointServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o GetMessageqDeploymentEndpointServiceOutput) ToGetMessageqDeploymentEndpointServiceOutput() GetMessageqDeploymentEndpointServiceOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointServiceOutput) ToGetMessageqDeploymentEndpointServiceOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointServiceOutput {
+	return o
+}
+
+// The name of the deployment. Only one of `name` and `deploymentId` should be specified.
+func (o GetMessageqDeploymentEndpointServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpointService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Service port.
+func (o GetMessageqDeploymentEndpointServiceOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpointService) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Service URL.
+func (o GetMessageqDeploymentEndpointServiceOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentEndpointService) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetMessageqDeploymentEndpointServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqDeploymentEndpointServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o GetMessageqDeploymentEndpointServiceArrayOutput) ToGetMessageqDeploymentEndpointServiceArrayOutput() GetMessageqDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointServiceArrayOutput) ToGetMessageqDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) GetMessageqDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentEndpointServiceArrayOutput) Index(i pulumi.IntInput) GetMessageqDeploymentEndpointServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMessageqDeploymentEndpointService {
+		return vs[0].([]GetMessageqDeploymentEndpointService)[vs[1].(int)]
+	}).(GetMessageqDeploymentEndpointServiceOutput)
+}
+
+type GetMessageqDeploymentVolume struct {
+	// Volume size in GB
+	SizeInGb int `pulumi:"sizeInGb"`
+	// Volume type (sbs_5k, sbs_15k)
+	Type string `pulumi:"type"`
+}
+
+// GetMessageqDeploymentVolumeInput is an input type that accepts GetMessageqDeploymentVolumeArgs and GetMessageqDeploymentVolumeOutput values.
+// You can construct a concrete instance of `GetMessageqDeploymentVolumeInput` via:
+//
+//	GetMessageqDeploymentVolumeArgs{...}
+type GetMessageqDeploymentVolumeInput interface {
+	pulumi.Input
+
+	ToGetMessageqDeploymentVolumeOutput() GetMessageqDeploymentVolumeOutput
+	ToGetMessageqDeploymentVolumeOutputWithContext(context.Context) GetMessageqDeploymentVolumeOutput
+}
+
+type GetMessageqDeploymentVolumeArgs struct {
+	// Volume size in GB
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// Volume type (sbs_5k, sbs_15k)
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetMessageqDeploymentVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (i GetMessageqDeploymentVolumeArgs) ToGetMessageqDeploymentVolumeOutput() GetMessageqDeploymentVolumeOutput {
+	return i.ToGetMessageqDeploymentVolumeOutputWithContext(context.Background())
+}
+
+func (i GetMessageqDeploymentVolumeArgs) ToGetMessageqDeploymentVolumeOutputWithContext(ctx context.Context) GetMessageqDeploymentVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqDeploymentVolumeOutput)
+}
+
+type GetMessageqDeploymentVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqDeploymentVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqDeploymentVolume)(nil)).Elem()
+}
+
+func (o GetMessageqDeploymentVolumeOutput) ToGetMessageqDeploymentVolumeOutput() GetMessageqDeploymentVolumeOutput {
+	return o
+}
+
+func (o GetMessageqDeploymentVolumeOutput) ToGetMessageqDeploymentVolumeOutputWithContext(ctx context.Context) GetMessageqDeploymentVolumeOutput {
+	return o
+}
+
+// Volume size in GB
+func (o GetMessageqDeploymentVolumeOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type (sbs_5k, sbs_15k)
+func (o GetMessageqDeploymentVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqDeploymentVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetMessageqNodeTypeAvailableVolumeType struct {
+	// Volume size increment in GB.
+	ChunkSizeInGb int `pulumi:"chunkSizeInGb"`
+	// Volume type description.
+	Description string `pulumi:"description"`
+	// Maximum volume size in GB.
+	MaxSizeInGb int `pulumi:"maxSizeInGb"`
+	// Minimum volume size in GB.
+	MinSizeInGb int `pulumi:"minSizeInGb"`
+	// Volume type.
+	Type string `pulumi:"type"`
+}
+
+// GetMessageqNodeTypeAvailableVolumeTypeInput is an input type that accepts GetMessageqNodeTypeAvailableVolumeTypeArgs and GetMessageqNodeTypeAvailableVolumeTypeOutput values.
+// You can construct a concrete instance of `GetMessageqNodeTypeAvailableVolumeTypeInput` via:
+//
+//	GetMessageqNodeTypeAvailableVolumeTypeArgs{...}
+type GetMessageqNodeTypeAvailableVolumeTypeInput interface {
+	pulumi.Input
+
+	ToGetMessageqNodeTypeAvailableVolumeTypeOutput() GetMessageqNodeTypeAvailableVolumeTypeOutput
+	ToGetMessageqNodeTypeAvailableVolumeTypeOutputWithContext(context.Context) GetMessageqNodeTypeAvailableVolumeTypeOutput
+}
+
+type GetMessageqNodeTypeAvailableVolumeTypeArgs struct {
+	// Volume size increment in GB.
+	ChunkSizeInGb pulumi.IntInput `pulumi:"chunkSizeInGb"`
+	// Volume type description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Maximum volume size in GB.
+	MaxSizeInGb pulumi.IntInput `pulumi:"maxSizeInGb"`
+	// Minimum volume size in GB.
+	MinSizeInGb pulumi.IntInput `pulumi:"minSizeInGb"`
+	// Volume type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetMessageqNodeTypeAvailableVolumeTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (i GetMessageqNodeTypeAvailableVolumeTypeArgs) ToGetMessageqNodeTypeAvailableVolumeTypeOutput() GetMessageqNodeTypeAvailableVolumeTypeOutput {
+	return i.ToGetMessageqNodeTypeAvailableVolumeTypeOutputWithContext(context.Background())
+}
+
+func (i GetMessageqNodeTypeAvailableVolumeTypeArgs) ToGetMessageqNodeTypeAvailableVolumeTypeOutputWithContext(ctx context.Context) GetMessageqNodeTypeAvailableVolumeTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqNodeTypeAvailableVolumeTypeOutput)
+}
+
+// GetMessageqNodeTypeAvailableVolumeTypeArrayInput is an input type that accepts GetMessageqNodeTypeAvailableVolumeTypeArray and GetMessageqNodeTypeAvailableVolumeTypeArrayOutput values.
+// You can construct a concrete instance of `GetMessageqNodeTypeAvailableVolumeTypeArrayInput` via:
+//
+//	GetMessageqNodeTypeAvailableVolumeTypeArray{ GetMessageqNodeTypeAvailableVolumeTypeArgs{...} }
+type GetMessageqNodeTypeAvailableVolumeTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutput() GetMessageqNodeTypeAvailableVolumeTypeArrayOutput
+	ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutputWithContext(context.Context) GetMessageqNodeTypeAvailableVolumeTypeArrayOutput
+}
+
+type GetMessageqNodeTypeAvailableVolumeTypeArray []GetMessageqNodeTypeAvailableVolumeTypeInput
+
+func (GetMessageqNodeTypeAvailableVolumeTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (i GetMessageqNodeTypeAvailableVolumeTypeArray) ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutput() GetMessageqNodeTypeAvailableVolumeTypeArrayOutput {
+	return i.ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetMessageqNodeTypeAvailableVolumeTypeArray) ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutputWithContext(ctx context.Context) GetMessageqNodeTypeAvailableVolumeTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMessageqNodeTypeAvailableVolumeTypeArrayOutput)
+}
+
+type GetMessageqNodeTypeAvailableVolumeTypeOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqNodeTypeAvailableVolumeTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMessageqNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) ToGetMessageqNodeTypeAvailableVolumeTypeOutput() GetMessageqNodeTypeAvailableVolumeTypeOutput {
+	return o
+}
+
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) ToGetMessageqNodeTypeAvailableVolumeTypeOutputWithContext(ctx context.Context) GetMessageqNodeTypeAvailableVolumeTypeOutput {
+	return o
+}
+
+// Volume size increment in GB.
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) ChunkSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMessageqNodeTypeAvailableVolumeType) int { return v.ChunkSizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type description.
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqNodeTypeAvailableVolumeType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Maximum volume size in GB.
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) MaxSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMessageqNodeTypeAvailableVolumeType) int { return v.MaxSizeInGb }).(pulumi.IntOutput)
+}
+
+// Minimum volume size in GB.
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) MinSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMessageqNodeTypeAvailableVolumeType) int { return v.MinSizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type.
+func (o GetMessageqNodeTypeAvailableVolumeTypeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMessageqNodeTypeAvailableVolumeType) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetMessageqNodeTypeAvailableVolumeTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMessageqNodeTypeAvailableVolumeTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMessageqNodeTypeAvailableVolumeType)(nil)).Elem()
+}
+
+func (o GetMessageqNodeTypeAvailableVolumeTypeArrayOutput) ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutput() GetMessageqNodeTypeAvailableVolumeTypeArrayOutput {
+	return o
+}
+
+func (o GetMessageqNodeTypeAvailableVolumeTypeArrayOutput) ToGetMessageqNodeTypeAvailableVolumeTypeArrayOutputWithContext(ctx context.Context) GetMessageqNodeTypeAvailableVolumeTypeArrayOutput {
+	return o
+}
+
+func (o GetMessageqNodeTypeAvailableVolumeTypeArrayOutput) Index(i pulumi.IntInput) GetMessageqNodeTypeAvailableVolumeTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMessageqNodeTypeAvailableVolumeType {
+		return vs[0].([]GetMessageqNodeTypeAvailableVolumeType)[vs[1].(int)]
+	}).(GetMessageqNodeTypeAvailableVolumeTypeOutput)
+}
+
 type GetMongoDbInstancePrivateIp struct {
 	// The private IPv4 address
 	Address string `pulumi:"address"`
@@ -38346,6 +39550,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateIpArrayInput)(nil)).Elem(), LoadbalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkInput)(nil)).Elem(), LoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), LoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MailboxDomainDnsRecordInput)(nil)).Elem(), MailboxDomainDnsRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MailboxDomainDnsRecordArrayInput)(nil)).Elem(), MailboxDomainDnsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentEndpointInput)(nil)).Elem(), MessageqDeploymentEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentEndpointArrayInput)(nil)).Elem(), MessageqDeploymentEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentEndpointServiceInput)(nil)).Elem(), MessageqDeploymentEndpointServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentEndpointServiceArrayInput)(nil)).Elem(), MessageqDeploymentEndpointServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentPrivateNetworkInput)(nil)).Elem(), MessageqDeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentPrivateNetworkPtrInput)(nil)).Elem(), MessageqDeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentVolumeInput)(nil)).Elem(), MessageqDeploymentVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MessageqDeploymentVolumePtrInput)(nil)).Elem(), MessageqDeploymentVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
@@ -38388,6 +39602,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationErrorDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationErrorDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderEndpointInput)(nil)).Elem(), ProviderEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderEndpointArrayInput)(nil)).Elem(), ProviderEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclInput)(nil)).Elem(), RedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclArrayInput)(nil)).Elem(), RedisClusterAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateIpInput)(nil)).Elem(), RedisClusterPrivateIpArgs{})
@@ -38597,6 +39813,13 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateIpArrayInput)(nil)).Elem(), GetLoadbalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqDeploymentEndpointInput)(nil)).Elem(), GetMessageqDeploymentEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqDeploymentEndpointArrayInput)(nil)).Elem(), GetMessageqDeploymentEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqDeploymentEndpointServiceInput)(nil)).Elem(), GetMessageqDeploymentEndpointServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqDeploymentEndpointServiceArrayInput)(nil)).Elem(), GetMessageqDeploymentEndpointServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqDeploymentVolumeInput)(nil)).Elem(), GetMessageqDeploymentVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqNodeTypeAvailableVolumeTypeInput)(nil)).Elem(), GetMessageqNodeTypeAvailableVolumeTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMessageqNodeTypeAvailableVolumeTypeArrayInput)(nil)).Elem(), GetMessageqNodeTypeAvailableVolumeTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateIpInput)(nil)).Elem(), GetMongoDbInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateIpArrayInput)(nil)).Elem(), GetMongoDbInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArgs{})
@@ -38871,6 +40094,16 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(MailboxDomainDnsRecordOutput{})
+	pulumi.RegisterOutputType(MailboxDomainDnsRecordArrayOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentEndpointOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentEndpointArrayOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentEndpointServiceOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentEndpointServiceArrayOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentVolumeOutput{})
+	pulumi.RegisterOutputType(MessageqDeploymentVolumePtrOutput{})
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
@@ -38913,6 +40146,8 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput{})
+	pulumi.RegisterOutputType(ProviderEndpointOutput{})
+	pulumi.RegisterOutputType(ProviderEndpointArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPrivateIpOutput{})
@@ -39122,6 +40357,13 @@ func init() {
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetMessageqDeploymentEndpointOutput{})
+	pulumi.RegisterOutputType(GetMessageqDeploymentEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetMessageqDeploymentEndpointServiceOutput{})
+	pulumi.RegisterOutputType(GetMessageqDeploymentEndpointServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetMessageqDeploymentVolumeOutput{})
+	pulumi.RegisterOutputType(GetMessageqNodeTypeAvailableVolumeTypeOutput{})
+	pulumi.RegisterOutputType(GetMessageqNodeTypeAvailableVolumeTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkOutput{})
