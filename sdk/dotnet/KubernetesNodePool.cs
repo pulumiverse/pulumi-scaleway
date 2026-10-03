@@ -304,6 +304,14 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.KubernetesNodePoolUpgradePolicy> UpgradePolicy { get; private set; } = null!;
 
         /// <summary>
+        /// User data applied and reconciled with the pool, as a map of key to content.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Output("userData")]
+        public Output<ImmutableDictionary<string, string>?> UserData { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
         /// For the field to be properly taken into account, the `UpgradePools` field of the cluster must be set to `False` in order to decouple the version of the pool from the cluster.
         /// 
@@ -548,6 +556,20 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("upgradePolicy")]
         public Input<Inputs.KubernetesNodePoolUpgradePolicyArgs>? UpgradePolicy { get; set; }
+
+        [Input("userData")]
+        private InputMap<string>? _userData;
+
+        /// <summary>
+        /// User data applied and reconciled with the pool, as a map of key to content.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        public InputMap<string> UserData
+        {
+            get => _userData ?? (_userData = new InputMap<string>());
+            set => _userData = value;
+        }
 
         /// <summary>
         /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -797,6 +819,20 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("upgradePolicy")]
         public Input<Inputs.KubernetesNodePoolUpgradePolicyGetArgs>? UpgradePolicy { get; set; }
+
+        [Input("userData")]
+        private InputMap<string>? _userData;
+
+        /// <summary>
+        /// User data applied and reconciled with the pool, as a map of key to content.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        public InputMap<string> UserData
+        {
+            get => _userData ?? (_userData = new InputMap<string>());
+            set => _userData = value;
+        }
 
         /// <summary>
         /// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.

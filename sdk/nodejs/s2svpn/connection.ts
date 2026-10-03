@@ -43,12 +43,19 @@ import * as utilities from "../utilities";
  *     prefixFilterIns: ["10.0.2.0/24"],
  *     prefixFilterOuts: ["10.0.1.0/24"],
  * });
+ * const psk = new scaleway.secrets.Secret("psk", {name: "my-s2s-vpn-psk"});
+ * const pskVersion = new scaleway.secrets.Version("psk", {
+ *     secretId: psk.id,
+ *     data: "your_s2s_vpn.psk",
+ * });
  * const main = new scaleway.s2svpn.Connection("main", {
  *     name: "my-vpn-connection",
  *     vpnGatewayId: gateway.id,
  *     customerGatewayId: customerGw.id,
  *     initiationPolicy: "customer_gateway",
  *     enableRoutePropagation: true,
+ *     secretId: psk.id,
+ *     secretVersion: pskVersion.revision.apply(x =>Number(x)),
  *     bgpConfigIpv4s: [{
  *         routingPolicyId: policy.id,
  *         privateIp: "169.254.0.1/30",
@@ -176,13 +183,13 @@ export class Connection extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly routePropagationEnabled: pulumi.Output<boolean>;
     /**
-     * The ID of the secret containing the pre-shared key (PSK) for the connection.
+     * The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
      */
-    declare public /*out*/ readonly secretId: pulumi.Output<string>;
+    declare public readonly secretId: pulumi.Output<string>;
     /**
-     * The version of the secret containing the PSK.
+     * The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
      */
-    declare public /*out*/ readonly secretVersion: pulumi.Output<number>;
+    declare public readonly secretVersion: pulumi.Output<number>;
     /**
      * The Scaleway Resource Name (SRN) of the connection.
      */
@@ -260,6 +267,8 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
+            resourceInputs["secretId"] = args?.secretId;
+            resourceInputs["secretVersion"] = args?.secretVersion;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["vpnGatewayId"] = args?.vpnGatewayId;
             resourceInputs["bgpSessionIpv4s"] = undefined /*out*/;
@@ -269,8 +278,6 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["routePropagationEnabled"] = undefined /*out*/;
-            resourceInputs["secretId"] = undefined /*out*/;
-            resourceInputs["secretVersion"] = undefined /*out*/;
             resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["tunnelStatus"] = undefined /*out*/;
@@ -358,11 +365,11 @@ export interface ConnectionState {
      */
     routePropagationEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * The ID of the secret containing the pre-shared key (PSK) for the connection.
+     * The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
      */
     secretId?: pulumi.Input<string | undefined>;
     /**
-     * The version of the secret containing the PSK.
+     * The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
      */
     secretVersion?: pulumi.Input<number | undefined>;
     /**
@@ -439,6 +446,14 @@ export interface ConnectionArgs {
      * `region`) The region in which the connection should be created.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+     */
+    secretId?: pulumi.Input<string | undefined>;
+    /**
+     * The version of the secret containing the PSK. Requires `secretId`. If omitted, the latest version is used.
+     */
+    secretVersion?: pulumi.Input<number | undefined>;
     /**
      * The list of tags to apply to the connection.
      */

@@ -70,6 +70,17 @@ namespace Pulumiverse.Scaleway.S2svpn
     ///         },
     ///     });
     /// 
+    ///     var psk = new Scaleway.Secrets.Secret("psk", new()
+    ///     {
+    ///         Name = "my-s2s-vpn-psk",
+    ///     });
+    /// 
+    ///     var pskVersion = new Scaleway.Secrets.Version("psk", new()
+    ///     {
+    ///         SecretId = psk.Id,
+    ///         Data = "your_s2s_vpn.psk",
+    ///     });
+    /// 
     ///     var main = new Scaleway.S2svpn.Connection("main", new()
     ///     {
     ///         Name = "my-vpn-connection",
@@ -77,6 +88,8 @@ namespace Pulumiverse.Scaleway.S2svpn
     ///         CustomerGatewayId = customerGw.Id,
     ///         InitiationPolicy = "customer_gateway",
     ///         EnableRoutePropagation = true,
+    ///         SecretId = psk.Id,
+    ///         SecretVersion = pskVersion.Revision,
     ///         BgpConfigIpv4s = new[]
     ///         {
     ///             new Scaleway.S2svpn.Inputs.ConnectionBgpConfigIpv4Args
@@ -229,13 +242,13 @@ namespace Pulumiverse.Scaleway.S2svpn
         public Output<bool> RoutePropagationEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the secret containing the pre-shared key (PSK) for the connection.
+        /// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
         /// </summary>
         [Output("secretId")]
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the secret containing the PSK.
+        /// The version of the secret containing the PSK. Requires `SecretId`. If omitted, the latest version is used.
         /// </summary>
         [Output("secretVersion")]
         public Output<int> SecretVersion { get; private set; } = null!;
@@ -413,6 +426,18 @@ namespace Pulumiverse.Scaleway.S2svpn
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
+        /// </summary>
+        [Input("secretId")]
+        public Input<string>? SecretId { get; set; }
+
+        /// <summary>
+        /// The version of the secret containing the PSK. Requires `SecretId`. If omitted, the latest version is used.
+        /// </summary>
+        [Input("secretVersion")]
+        public Input<int>? SecretVersion { get; set; }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -584,13 +609,13 @@ namespace Pulumiverse.Scaleway.S2svpn
         public Input<bool>? RoutePropagationEnabled { get; set; }
 
         /// <summary>
-        /// The ID of the secret containing the pre-shared key (PSK) for the connection.
+        /// The ID of a Secret Manager secret containing the pre-shared key (PSK). **Prefer creating a `scaleway.secrets.Secret` and `scaleway.secrets.Version` yourself and passing the ID here**, so Terraform manages the secret's lifecycle.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// The version of the secret containing the PSK.
+        /// The version of the secret containing the PSK. Requires `SecretId`. If omitted, the latest version is used.
         /// </summary>
         [Input("secretVersion")]
         public Input<int>? SecretVersion { get; set; }

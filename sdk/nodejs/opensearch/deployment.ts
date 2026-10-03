@@ -158,7 +158,7 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * List of endpoints for accessing the deployment.
+     * List of all endpoints returned by the API for accessing the deployment (public and private).
      */
     declare public /*out*/ readonly endpoints: pulumi.Output<outputs.opensearch.DeploymentEndpoint[]>;
     /**
@@ -190,7 +190,7 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
@@ -300,7 +300,7 @@ export interface DeploymentState {
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
-     * List of endpoints for accessing the deployment.
+     * List of all endpoints returned by the API for accessing the deployment (public and private).
      */
     endpoints?: pulumi.Input<pulumi.Input<inputs.opensearch.DeploymentEndpoint>[] | undefined>;
     /**
@@ -332,7 +332,7 @@ export interface DeploymentState {
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
@@ -404,7 +404,7 @@ export interface DeploymentArgs {
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+     * > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
      *
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */

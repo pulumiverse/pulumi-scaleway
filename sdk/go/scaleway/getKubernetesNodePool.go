@@ -141,6 +141,8 @@ type LookupKubernetesNodePoolResult struct {
 	// The last update date of the pool.
 	UpdatedAt       string                               `pulumi:"updatedAt"`
 	UpgradePolicies []GetKubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicies"`
+	// The pool's user data, as a map of key to content.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool.
 	Version          string `pulumi:"version"`
 	WaitForPoolReady bool   `pulumi:"waitForPoolReady"`
@@ -316,6 +318,11 @@ func (o LookupKubernetesNodePoolResultOutput) UpdatedAt() pulumi.StringOutput {
 
 func (o LookupKubernetesNodePoolResultOutput) UpgradePolicies() GetKubernetesNodePoolUpgradePolicyArrayOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) []GetKubernetesNodePoolUpgradePolicy { return v.UpgradePolicies }).(GetKubernetesNodePoolUpgradePolicyArrayOutput)
+}
+
+// The pool's user data, as a map of key to content.
+func (o LookupKubernetesNodePoolResultOutput) UserData() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) map[string]string { return v.UserData }).(pulumi.StringMapOutput)
 }
 
 // The version of the pool.

@@ -32,7 +32,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			main, err := billing.NewBudget(ctx, "main", &billing.BudgetArgs{
 //				OrganizationId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				ConsumptionLimit: pulumi.Int(10000),
+//				ConsumptionLimit: pulumi.Int(100),
 //				Enabled:          pulumi.Bool(true),
 //			})
 //			if err != nil {

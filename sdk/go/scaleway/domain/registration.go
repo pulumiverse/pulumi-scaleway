@@ -173,13 +173,27 @@ import (
 //
 // ## Import
 //
-// To import an existing domain registration, use:
+// To import an existing domain registration, use the domain name:
 //
 // ```sh
-// $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
+// $ pulumi import scaleway:domain/registration:Registration test <domain_name>
 // ```
 //
-// You can use the domain.Registration data source to look up the `taskId` and `projectId` by domain name.
+// For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `domainNames` argument in your configuration to avoid a plan diff after import.
+//
+// ```sh
+// $ pulumi import scaleway:domain/registration:Registration test <domain1.com>,<domain2.com>
+// ```
+//
+// Importing by task ID is also supported, as long as the registration task still exists:
+//
+// ```sh
+// $ pulumi import scaleway:domain/registration:Registration test <task_id>
+// ```
+//
+// The `projectId` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `<project_id>/<domain_name>` or `<project_id>/<task_id>` format is still accepted for backward compatibility.
+//
+// You can use the domain.Registration data source to look up the `taskId` by domain name. Registration tasks are archived after some time; once archived, import by domain name instead.
 type Registration struct {
 	pulumi.CustomResourceState
 
@@ -201,7 +215,7 @@ type Registration struct {
 	OwnerContactId pulumi.StringOutput `pulumi:"ownerContactId"`
 	// : The Scaleway project ID.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// ID of the task that created the domain.
+	// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
 	TaskId pulumi.StringOutput `pulumi:"taskId"`
 	// : Technical contact information.
 	TechnicalContacts RegistrationTechnicalContactArrayOutput `pulumi:"technicalContacts"`
@@ -258,7 +272,7 @@ type registrationState struct {
 	OwnerContactId *string `pulumi:"ownerContactId"`
 	// : The Scaleway project ID.
 	ProjectId *string `pulumi:"projectId"`
-	// ID of the task that created the domain.
+	// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
 	TaskId *string `pulumi:"taskId"`
 	// : Technical contact information.
 	TechnicalContacts []RegistrationTechnicalContact `pulumi:"technicalContacts"`
@@ -283,7 +297,7 @@ type RegistrationState struct {
 	OwnerContactId pulumi.StringPtrInput
 	// : The Scaleway project ID.
 	ProjectId pulumi.StringPtrInput
-	// ID of the task that created the domain.
+	// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
 	TaskId pulumi.StringPtrInput
 	// : Technical contact information.
 	TechnicalContacts RegistrationTechnicalContactArrayInput
@@ -460,7 +474,7 @@ func (o RegistrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// ID of the task that created the domain.
+// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
 func (o RegistrationOutput) TaskId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registration) pulumi.StringOutput { return v.TaskId }).(pulumi.StringOutput)
 }

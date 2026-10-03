@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'AclAclRule',
@@ -26,13 +27,19 @@ __all__ = [
     'ReadReplicaDirectAccess',
     'ReadReplicaPrivateNetwork',
     'GetAclAclRuleResult',
+    'GetDatabaseEnginesEngineResult',
+    'GetDatabaseEnginesEngineVersionResult',
     'GetInstanceLoadBalancerResult',
+    'GetInstanceLogsDetailsDetailResult',
+    'GetInstanceLogsInstanceLogResult',
     'GetInstanceLogsPolicyResult',
     'GetInstanceMaintenanceResult',
     'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstanceReadReplicaResult',
     'GetInstanceUpgradableVersionResult',
+    'GetNodeTypesNodeTypeResult',
+    'GetNodeTypesNodeTypeAvailableVolumeTypeResult',
 ]
 
 @pulumi.output_type
@@ -175,7 +182,7 @@ class InstanceLogsPolicy(dict):
                  total_disk_retention: Optional[_builtins.int] = None):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         if max_age_retention is not None:
             pulumi.set(__self__, "max_age_retention", max_age_retention)
@@ -194,7 +201,7 @@ class InstanceLogsPolicy(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> Optional[_builtins.int]:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -853,6 +860,119 @@ class GetAclAclRuleResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseEnginesEngineResult(dict):
+    def __init__(__self__, *,
+                 logo_url: _builtins.str,
+                 name: _builtins.str,
+                 region: _builtins.str,
+                 versions: Sequence['outputs.GetDatabaseEnginesEngineVersionResult']):
+        """
+        :param _builtins.str logo_url: URL of the database engine logo.
+        :param _builtins.str name: Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+        :param _builtins.str region: `region`) The region in which to list database engines.
+        :param Sequence['GetDatabaseEnginesEngineVersionArgs'] versions: Available versions for the database engine.
+        """
+        pulumi.set(__self__, "logo_url", logo_url)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "versions", versions)
+
+    @_builtins.property
+    @pulumi.getter(name="logoUrl")
+    def logo_url(self) -> _builtins.str:
+        """
+        URL of the database engine logo.
+        """
+        return pulumi.get(self, "logo_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`) The region in which to list database engines.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def versions(self) -> Sequence['outputs.GetDatabaseEnginesEngineVersionResult']:
+        """
+        Available versions for the database engine.
+        """
+        return pulumi.get(self, "versions")
+
+
+@pulumi.output_type
+class GetDatabaseEnginesEngineVersionResult(dict):
+    def __init__(__self__, *,
+                 beta: _builtins.bool,
+                 disabled: _builtins.bool,
+                 end_of_life: _builtins.str,
+                 name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.bool beta: Whether the engine version is in beta.
+        :param _builtins.bool disabled: Whether the engine version is disabled and cannot be created.
+        :param _builtins.str end_of_life: End of life date of the engine version (RFC3339).
+        :param _builtins.str name: Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+        :param _builtins.str version: Filter by database engine version (e.g. `16`).
+        """
+        pulumi.set(__self__, "beta", beta)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "end_of_life", end_of_life)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def beta(self) -> _builtins.bool:
+        """
+        Whether the engine version is in beta.
+        """
+        return pulumi.get(self, "beta")
+
+    @_builtins.property
+    @pulumi.getter
+    def disabled(self) -> _builtins.bool:
+        """
+        Whether the engine version is disabled and cannot be created.
+        """
+        return pulumi.get(self, "disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="endOfLife")
+    def end_of_life(self) -> _builtins.str:
+        """
+        End of life date of the engine version (RFC3339).
+        """
+        return pulumi.get(self, "end_of_life")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Filter by database engine version (e.g. `16`).
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetInstanceLoadBalancerResult(dict):
     def __init__(__self__, *,
                  endpoint_id: _builtins.str,
@@ -915,13 +1035,126 @@ class GetInstanceLoadBalancerResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceLogsDetailsDetailResult(dict):
+    def __init__(__self__, *,
+                 log_name: _builtins.str,
+                 size_in_bytes: _builtins.int):
+        """
+        :param _builtins.str log_name: Name of the remote log.
+        :param _builtins.int size_in_bytes: Size of the remote log in bytes.
+        """
+        pulumi.set(__self__, "log_name", log_name)
+        pulumi.set(__self__, "size_in_bytes", size_in_bytes)
+
+    @_builtins.property
+    @pulumi.getter(name="logName")
+    def log_name(self) -> _builtins.str:
+        """
+        Name of the remote log.
+        """
+        return pulumi.get(self, "log_name")
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInBytes")
+    def size_in_bytes(self) -> _builtins.int:
+        """
+        Size of the remote log in bytes.
+        """
+        return pulumi.get(self, "size_in_bytes")
+
+
+@pulumi.output_type
+class GetInstanceLogsInstanceLogResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 download_url: _builtins.str,
+                 expires_at: _builtins.str,
+                 id: _builtins.str,
+                 node_name: _builtins.str,
+                 region: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str created_at: Creation date of the log (RFC 3339 format).
+        :param _builtins.str download_url: (Sensitive) Presigned Object Storage URL to download the log file.
+        :param _builtins.str expires_at: Expiration date of the log (RFC 3339 format).
+        :param _builtins.str id: UUID of the Database Instance log, in the `{region}/{id}` format.
+        :param _builtins.str node_name: Name of the underlying node.
+        :param _builtins.str region: `region`) The region in which the Database Instance exists.
+        :param _builtins.str status: Status of the log (`unknown`, `ready`, `creating`, `error`).
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "download_url", download_url)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Creation date of the log (RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> _builtins.str:
+        """
+        (Sensitive) Presigned Object Storage URL to download the log file.
+        """
+        return pulumi.get(self, "download_url")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        Expiration date of the log (RFC 3339 format).
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        UUID of the Database Instance log, in the `{region}/{id}` format.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> _builtins.str:
+        """
+        Name of the underlying node.
+        """
+        return pulumi.get(self, "node_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        `region`) The region in which the Database Instance exists.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Status of the log (`unknown`, `ready`, `creating`, `error`).
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetInstanceLogsPolicyResult(dict):
     def __init__(__self__, *,
                  max_age_retention: _builtins.int,
                  total_disk_retention: _builtins.int):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         pulumi.set(__self__, "max_age_retention", max_age_retention)
         pulumi.set(__self__, "total_disk_retention", total_disk_retention)
@@ -938,7 +1171,7 @@ class GetInstanceLogsPolicyResult(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> _builtins.int:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -1251,5 +1484,206 @@ class GetInstanceUpgradableVersionResult(dict):
         Version string
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetNodeTypesNodeTypeResult(dict):
+    def __init__(__self__, *,
+                 available_volume_types: Sequence['outputs.GetNodeTypesNodeTypeAvailableVolumeTypeResult'],
+                 beta: _builtins.bool,
+                 description: _builtins.str,
+                 disabled: _builtins.bool,
+                 generation: _builtins.str,
+                 instance_range: _builtins.str,
+                 is_ha_required: _builtins.bool,
+                 memory_size_in_gb: _builtins.int,
+                 name: _builtins.str,
+                 stock_status: _builtins.str,
+                 vcpus: _builtins.int):
+        """
+        :param Sequence['GetNodeTypesNodeTypeAvailableVolumeTypeArgs'] available_volume_types: Available storage options for the node type.
+        :param _builtins.bool beta: Whether the node type is currently in beta.
+        :param _builtins.str description: Description of the volume type.
+        :param _builtins.bool disabled: Whether the node type is currently disabled.
+        :param _builtins.str generation: Generation associated with the node type offer.
+        :param _builtins.str instance_range: Instance range associated with the node type offer.
+        :param _builtins.bool is_ha_required: Whether the node type can only be used with high availability.
+        :param _builtins.int memory_size_in_gb: Amount of memory available in GB.
+        :param _builtins.str name: Name identifier of the node type.
+        :param _builtins.str stock_status: Current stock status for the node type.
+        :param _builtins.int vcpus: Number of virtual CPUs.
+        """
+        pulumi.set(__self__, "available_volume_types", available_volume_types)
+        pulumi.set(__self__, "beta", beta)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "generation", generation)
+        pulumi.set(__self__, "instance_range", instance_range)
+        pulumi.set(__self__, "is_ha_required", is_ha_required)
+        pulumi.set(__self__, "memory_size_in_gb", memory_size_in_gb)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "stock_status", stock_status)
+        pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter(name="availableVolumeTypes")
+    def available_volume_types(self) -> Sequence['outputs.GetNodeTypesNodeTypeAvailableVolumeTypeResult']:
+        """
+        Available storage options for the node type.
+        """
+        return pulumi.get(self, "available_volume_types")
+
+    @_builtins.property
+    @pulumi.getter
+    def beta(self) -> _builtins.bool:
+        """
+        Whether the node type is currently in beta.
+        """
+        return pulumi.get(self, "beta")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Description of the volume type.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def disabled(self) -> _builtins.bool:
+        """
+        Whether the node type is currently disabled.
+        """
+        return pulumi.get(self, "disabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def generation(self) -> _builtins.str:
+        """
+        Generation associated with the node type offer.
+        """
+        return pulumi.get(self, "generation")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceRange")
+    def instance_range(self) -> _builtins.str:
+        """
+        Instance range associated with the node type offer.
+        """
+        return pulumi.get(self, "instance_range")
+
+    @_builtins.property
+    @pulumi.getter(name="isHaRequired")
+    def is_ha_required(self) -> _builtins.bool:
+        """
+        Whether the node type can only be used with high availability.
+        """
+        return pulumi.get(self, "is_ha_required")
+
+    @_builtins.property
+    @pulumi.getter(name="memorySizeInGb")
+    def memory_size_in_gb(self) -> _builtins.int:
+        """
+        Amount of memory available in GB.
+        """
+        return pulumi.get(self, "memory_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name identifier of the node type.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="stockStatus")
+    def stock_status(self) -> _builtins.str:
+        """
+        Current stock status for the node type.
+        """
+        return pulumi.get(self, "stock_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> _builtins.int:
+        """
+        Number of virtual CPUs.
+        """
+        return pulumi.get(self, "vcpus")
+
+
+@pulumi.output_type
+class GetNodeTypesNodeTypeAvailableVolumeTypeResult(dict):
+    def __init__(__self__, *,
+                 chunk_size_in_gb: _builtins.int,
+                 class_: _builtins.str,
+                 description: _builtins.str,
+                 max_size_in_gb: _builtins.int,
+                 min_size_in_gb: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int chunk_size_in_gb: Minimum increment level for a Block Storage volume size in GB.
+        :param _builtins.str class_: Storage class of the volume.
+        :param _builtins.str description: Description of the volume type.
+        :param _builtins.int max_size_in_gb: Maximum volume size in GB.
+        :param _builtins.int min_size_in_gb: Minimum volume size in GB.
+        :param _builtins.str type: Volume type.
+        """
+        pulumi.set(__self__, "chunk_size_in_gb", chunk_size_in_gb)
+        pulumi.set(__self__, "class_", class_)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "max_size_in_gb", max_size_in_gb)
+        pulumi.set(__self__, "min_size_in_gb", min_size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="chunkSizeInGb")
+    def chunk_size_in_gb(self) -> _builtins.int:
+        """
+        Minimum increment level for a Block Storage volume size in GB.
+        """
+        return pulumi.get(self, "chunk_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="class")
+    def class_(self) -> _builtins.str:
+        """
+        Storage class of the volume.
+        """
+        return pulumi.get(self, "class_")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Description of the volume type.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSizeInGb")
+    def max_size_in_gb(self) -> _builtins.int:
+        """
+        Maximum volume size in GB.
+        """
+        return pulumi.get(self, "max_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="minSizeInGb")
+    def min_size_in_gb(self) -> _builtins.int:
+        """
+        Minimum volume size in GB.
+        """
+        return pulumi.get(self, "min_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Volume type.
+        """
+        return pulumi.get(self, "type")
 
 

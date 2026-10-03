@@ -129,6 +129,18 @@ namespace Pulumiverse.Scaleway
         [Input("apiUrl")]
         public Input<string>? ApiUrl { get; set; }
 
+        [Input("endpoints", json: true)]
+        private InputList<Inputs.ProviderEndpointArgs>? _endpoints;
+
+        /// <summary>
+        /// Configuration block for customizing service endpoints.
+        /// </summary>
+        public InputList<Inputs.ProviderEndpointArgs> Endpoints
+        {
+            get => _endpoints ?? (_endpoints = new InputList<Inputs.ProviderEndpointArgs>());
+            set => _endpoints = value;
+        }
+
         /// <summary>
         /// The Scaleway organization ID.
         /// </summary>
@@ -152,6 +164,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Whether to enable the request to use path-style addressing.
+        /// </summary>
+        [Input("s3UsePathStyle", json: true)]
+        public Input<bool>? S3UsePathStyle { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;

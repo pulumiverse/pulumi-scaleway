@@ -537,6 +537,157 @@ func (o GetSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetSnapshotImport
 	}).(GetSnapshotImportOutput)
 }
 
+type GetSnapshotsSnapshot struct {
+	// The ID of the snapshot in the `zone/uuid` format.
+	Id string `pulumi:"id"`
+	// Filter snapshots by their name. Snapshots with a matching name are listed.
+	Name string `pulumi:"name"`
+	// The ID of the Project the snapshots are associated with, used as filter.
+	ProjectId string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn string `pulumi:"srn"`
+	// List of tags used as filter. Snapshots with one or more matching tags are listed.
+	Tags []string `pulumi:"tags"`
+	// The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+	VolumeId string `pulumi:"volumeId"`
+	// `zone`) The zone in which snapshots exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetSnapshotsSnapshotInput is an input type that accepts GetSnapshotsSnapshotArgs and GetSnapshotsSnapshotOutput values.
+// You can construct a concrete instance of `GetSnapshotsSnapshotInput` via:
+//
+//	GetSnapshotsSnapshotArgs{...}
+type GetSnapshotsSnapshotInput interface {
+	pulumi.Input
+
+	ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput
+	ToGetSnapshotsSnapshotOutputWithContext(context.Context) GetSnapshotsSnapshotOutput
+}
+
+type GetSnapshotsSnapshotArgs struct {
+	// The ID of the snapshot in the `zone/uuid` format.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Filter snapshots by their name. Snapshots with a matching name are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the Project the snapshots are associated with, used as filter.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn pulumi.StringInput `pulumi:"srn"`
+	// List of tags used as filter. Snapshots with one or more matching tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+	VolumeId pulumi.StringInput `pulumi:"volumeId"`
+	// `zone`) The zone in which snapshots exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetSnapshotsSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i GetSnapshotsSnapshotArgs) ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput {
+	return i.ToGetSnapshotsSnapshotOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotsSnapshotArgs) ToGetSnapshotsSnapshotOutputWithContext(ctx context.Context) GetSnapshotsSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotsSnapshotOutput)
+}
+
+// GetSnapshotsSnapshotArrayInput is an input type that accepts GetSnapshotsSnapshotArray and GetSnapshotsSnapshotArrayOutput values.
+// You can construct a concrete instance of `GetSnapshotsSnapshotArrayInput` via:
+//
+//	GetSnapshotsSnapshotArray{ GetSnapshotsSnapshotArgs{...} }
+type GetSnapshotsSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput
+	ToGetSnapshotsSnapshotArrayOutputWithContext(context.Context) GetSnapshotsSnapshotArrayOutput
+}
+
+type GetSnapshotsSnapshotArray []GetSnapshotsSnapshotInput
+
+func (GetSnapshotsSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (i GetSnapshotsSnapshotArray) ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput {
+	return i.ToGetSnapshotsSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotsSnapshotArray) ToGetSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) GetSnapshotsSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotsSnapshotArrayOutput)
+}
+
+type GetSnapshotsSnapshotOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotsSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o GetSnapshotsSnapshotOutput) ToGetSnapshotsSnapshotOutput() GetSnapshotsSnapshotOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotOutput) ToGetSnapshotsSnapshotOutputWithContext(ctx context.Context) GetSnapshotsSnapshotOutput {
+	return o
+}
+
+// The ID of the snapshot in the `zone/uuid` format.
+func (o GetSnapshotsSnapshotOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Filter snapshots by their name. Snapshots with a matching name are listed.
+func (o GetSnapshotsSnapshotOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the Project the snapshots are associated with, used as filter.
+func (o GetSnapshotsSnapshotOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the snapshot.
+func (o GetSnapshotsSnapshotOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Srn }).(pulumi.StringOutput)
+}
+
+// List of tags used as filter. Snapshots with one or more matching tags are listed.
+func (o GetSnapshotsSnapshotOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+func (o GetSnapshotsSnapshotOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.VolumeId }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which snapshots exist.
+func (o GetSnapshotsSnapshotOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetSnapshotsSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotsSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotsSnapshot)(nil)).Elem()
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) ToGetSnapshotsSnapshotArrayOutput() GetSnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) ToGetSnapshotsSnapshotArrayOutputWithContext(ctx context.Context) GetSnapshotsSnapshotArrayOutput {
+	return o
+}
+
+func (o GetSnapshotsSnapshotArrayOutput) Index(i pulumi.IntInput) GetSnapshotsSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSnapshotsSnapshot {
+		return vs[0].([]GetSnapshotsSnapshot)[vs[1].(int)]
+	}).(GetSnapshotsSnapshotOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotExportInput)(nil)).Elem(), SnapshotExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotExportPtrInput)(nil)).Elem(), SnapshotExportArgs{})
@@ -546,6 +697,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotExportArrayInput)(nil)).Elem(), GetSnapshotExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportInput)(nil)).Elem(), GetSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportArrayInput)(nil)).Elem(), GetSnapshotImportArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotInput)(nil)).Elem(), GetSnapshotsSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotArrayInput)(nil)).Elem(), GetSnapshotsSnapshotArray{})
 	pulumi.RegisterOutputType(SnapshotExportOutput{})
 	pulumi.RegisterOutputType(SnapshotExportPtrOutput{})
 	pulumi.RegisterOutputType(SnapshotImportOutput{})
@@ -554,4 +707,6 @@ func init() {
 	pulumi.RegisterOutputType(GetSnapshotExportArrayOutput{})
 	pulumi.RegisterOutputType(GetSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetSnapshotImportArrayOutput{})
+	pulumi.RegisterOutputType(GetSnapshotsSnapshotOutput{})
+	pulumi.RegisterOutputType(GetSnapshotsSnapshotArrayOutput{})
 }

@@ -27,7 +27,7 @@ class GetPoolResult:
     """
     A collection of values returned by getPool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, srn=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, srn=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, user_data=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -115,6 +115,9 @@ class GetPoolResult:
         if upgrade_policies and not isinstance(upgrade_policies, list):
             raise TypeError("Expected argument 'upgrade_policies' to be a list")
         pulumi.set(__self__, "upgrade_policies", upgrade_policies)
+        if user_data and not isinstance(user_data, dict):
+            raise TypeError("Expected argument 'user_data' to be a dict")
+        pulumi.set(__self__, "user_data", user_data)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -322,6 +325,14 @@ class GetPoolResult:
         return pulumi.get(self, "upgrade_policies")
 
     @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Mapping[str, _builtins.str]:
+        """
+        The pool's user data, as a map of key to content.
+        """
+        return pulumi.get(self, "user_data")
+
+    @_builtins.property
     @pulumi.getter
     def version(self) -> _builtins.str:
         """
@@ -375,6 +386,7 @@ class AwaitableGetPoolResult(GetPoolResult):
             taints=self.taints,
             updated_at=self.updated_at,
             upgrade_policies=self.upgrade_policies,
+            user_data=self.user_data,
             version=self.version,
             wait_for_pool_ready=self.wait_for_pool_ready,
             zone=self.zone)
@@ -456,6 +468,7 @@ def get_pool(cluster_id: Optional[_builtins.str] = None,
         taints=pulumi.get(__ret__, 'taints'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         upgrade_policies=pulumi.get(__ret__, 'upgrade_policies'),
+        user_data=pulumi.get(__ret__, 'user_data'),
         version=pulumi.get(__ret__, 'version'),
         wait_for_pool_ready=pulumi.get(__ret__, 'wait_for_pool_ready'),
         zone=pulumi.get(__ret__, 'zone'))
@@ -534,6 +547,7 @@ def get_pool_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] 
         taints=pulumi.get(__response__, 'taints'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         upgrade_policies=pulumi.get(__response__, 'upgrade_policies'),
+        user_data=pulumi.get(__response__, 'user_data'),
         version=pulumi.get(__response__, 'version'),
         wait_for_pool_ready=pulumi.get(__response__, 'wait_for_pool_ready'),
         zone=pulumi.get(__response__, 'zone')))

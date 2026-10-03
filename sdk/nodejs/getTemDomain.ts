@@ -66,6 +66,7 @@ export interface GetTemDomainResult {
     readonly lastValidAt: string;
     readonly mxBlackhole: string;
     readonly mxConfig: string;
+    readonly mxPriority: number;
     readonly name?: string;
     readonly nextCheckAt: string;
     readonly projectId?: string;

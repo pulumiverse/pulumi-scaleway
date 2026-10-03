@@ -139,6 +139,8 @@ type LookupPoolResult struct {
 	// The last update date of the pool.
 	UpdatedAt       string                 `pulumi:"updatedAt"`
 	UpgradePolicies []GetPoolUpgradePolicy `pulumi:"upgradePolicies"`
+	// The pool's user data, as a map of key to content.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool.
 	Version          string `pulumi:"version"`
 	WaitForPoolReady bool   `pulumi:"waitForPoolReady"`
@@ -314,6 +316,11 @@ func (o LookupPoolResultOutput) UpdatedAt() pulumi.StringOutput {
 
 func (o LookupPoolResultOutput) UpgradePolicies() GetPoolUpgradePolicyArrayOutput {
 	return o.ApplyT(func(v LookupPoolResult) []GetPoolUpgradePolicy { return v.UpgradePolicies }).(GetPoolUpgradePolicyArrayOutput)
+}
+
+// The pool's user data, as a map of key to content.
+func (o LookupPoolResultOutput) UserData() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupPoolResult) map[string]string { return v.UserData }).(pulumi.StringMapOutput)
 }
 
 // The version of the pool.

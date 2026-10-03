@@ -61,7 +61,7 @@ type LookupBudgetArgs struct {
 // A collection of values returned by getBudget.
 type LookupBudgetResult struct {
 	BudgetId string `pulumi:"budgetId"`
-	// Cost limit for the budget in cents
+	// Cost limit for the budget in euros
 	ConsumptionLimit int `pulumi:"consumptionLimit"`
 	// The date and time of budget creation
 	CreatedAt string `pulumi:"createdAt"`
@@ -110,7 +110,7 @@ func (o LookupBudgetResultOutput) BudgetId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBudgetResult) string { return v.BudgetId }).(pulumi.StringOutput)
 }
 
-// Cost limit for the budget in cents
+// Cost limit for the budget in euros
 func (o LookupBudgetResultOutput) ConsumptionLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBudgetResult) int { return v.ConsumptionLimit }).(pulumi.IntOutput)
 }

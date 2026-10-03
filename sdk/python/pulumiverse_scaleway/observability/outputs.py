@@ -28,6 +28,7 @@ __all__ = [
     'GetConfigProductMetricsRetentionResult',
     'GetExporterDatadogDestinationResult',
     'GetExporterOtlpDestinationResult',
+    'GetGrafanaProductDashboardsDashboardResult',
     'GetInstanceEndpointResult',
     'GetInstancePushUrlResult',
     'GetPreconfiguredAlertAlertResult',
@@ -677,6 +678,68 @@ class GetExporterOtlpDestinationResult(dict):
         Headers to include in requests
         """
         return pulumi.get(self, "headers")
+
+
+@pulumi.output_type
+class GetGrafanaProductDashboardsDashboardResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 tags: Sequence[_builtins.str],
+                 title: _builtins.str,
+                 url: _builtins.str,
+                 variables: Sequence[_builtins.str]):
+        """
+        :param _builtins.str name: Dashboard name.
+        :param Sequence[_builtins.str] tags: Filter dashboards by tags (for example `rdb`, `lb`).
+        :param _builtins.str title: Human-readable dashboard title.
+        :param _builtins.str url: URL to open the dashboard in Grafana.
+        :param Sequence[_builtins.str] variables: Dashboard variables.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "variables", variables)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Dashboard name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        Filter dashboards by tags (for example `rdb`, `lb`).
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def title(self) -> _builtins.str:
+        """
+        Human-readable dashboard title.
+        """
+        return pulumi.get(self, "title")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        URL to open the dashboard in Grafana.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def variables(self) -> Sequence[_builtins.str]:
+        """
+        Dashboard variables.
+        """
+        return pulumi.get(self, "variables")
 
 
 @pulumi.output_type

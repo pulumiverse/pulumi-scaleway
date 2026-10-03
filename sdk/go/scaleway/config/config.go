@@ -29,6 +29,11 @@ func GetApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "scaleway:apiUrl")
 }
 
+// Configuration block for customizing service endpoints.
+func GetEndpoints(ctx *pulumi.Context) string {
+	return config.Get(ctx, "scaleway:endpoints")
+}
+
 // The Scaleway organization ID.
 func GetOrganizationId(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "scaleway:organizationId")
@@ -71,6 +76,11 @@ func GetRegion(ctx *pulumi.Context) string {
 		value = d.(string)
 	}
 	return value
+}
+
+// Whether to enable the request to use path-style addressing.
+func GetS3UsePathStyle(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "scaleway:s3UsePathStyle")
 }
 
 // The Scaleway secret Key.

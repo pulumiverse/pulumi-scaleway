@@ -45,11 +45,6 @@ export type CockpitAlertManager = import("./cockpitAlertManager").CockpitAlertMa
 export const CockpitAlertManager: typeof import("./cockpitAlertManager").CockpitAlertManager = null as any;
 utilities.lazyLoad(exports, ["CockpitAlertManager"], () => require("./cockpitAlertManager"));
 
-export { CockpitGrafanaUserArgs, CockpitGrafanaUserState } from "./cockpitGrafanaUser";
-export type CockpitGrafanaUser = import("./cockpitGrafanaUser").CockpitGrafanaUser;
-export const CockpitGrafanaUser: typeof import("./cockpitGrafanaUser").CockpitGrafanaUser = null as any;
-utilities.lazyLoad(exports, ["CockpitGrafanaUser"], () => require("./cockpitGrafanaUser"));
-
 export { CockpitSourceArgs, CockpitSourceState } from "./cockpitSource";
 export type CockpitSource = import("./cockpitSource").CockpitSource;
 export const CockpitSource: typeof import("./cockpitSource").CockpitSource = null as any;
@@ -530,10 +525,35 @@ export const getLoadbalancerIp: typeof import("./getLoadbalancerIp").getLoadbala
 export const getLoadbalancerIpOutput: typeof import("./getLoadbalancerIp").getLoadbalancerIpOutput = null as any;
 utilities.lazyLoad(exports, ["getLoadbalancerIp","getLoadbalancerIpOutput"], () => require("./getLoadbalancerIp"));
 
+export { GetMailboxArgs, GetMailboxResult, GetMailboxOutputArgs } from "./getMailbox";
+export const getMailbox: typeof import("./getMailbox").getMailbox = null as any;
+export const getMailboxOutput: typeof import("./getMailbox").getMailboxOutput = null as any;
+utilities.lazyLoad(exports, ["getMailbox","getMailboxOutput"], () => require("./getMailbox"));
+
 export { GetMarketplaceImageArgs, GetMarketplaceImageResult, GetMarketplaceImageOutputArgs } from "./getMarketplaceImage";
 export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMarketplaceImage = null as any;
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
 utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
+
+export { GetMessageqCertificateAuthorityArgs, GetMessageqCertificateAuthorityResult, GetMessageqCertificateAuthorityOutputArgs } from "./getMessageqCertificateAuthority";
+export const getMessageqCertificateAuthority: typeof import("./getMessageqCertificateAuthority").getMessageqCertificateAuthority = null as any;
+export const getMessageqCertificateAuthorityOutput: typeof import("./getMessageqCertificateAuthority").getMessageqCertificateAuthorityOutput = null as any;
+utilities.lazyLoad(exports, ["getMessageqCertificateAuthority","getMessageqCertificateAuthorityOutput"], () => require("./getMessageqCertificateAuthority"));
+
+export { GetMessageqDeploymentArgs, GetMessageqDeploymentResult, GetMessageqDeploymentOutputArgs } from "./getMessageqDeployment";
+export const getMessageqDeployment: typeof import("./getMessageqDeployment").getMessageqDeployment = null as any;
+export const getMessageqDeploymentOutput: typeof import("./getMessageqDeployment").getMessageqDeploymentOutput = null as any;
+utilities.lazyLoad(exports, ["getMessageqDeployment","getMessageqDeploymentOutput"], () => require("./getMessageqDeployment"));
+
+export { GetMessageqNodeTypeArgs, GetMessageqNodeTypeResult, GetMessageqNodeTypeOutputArgs } from "./getMessageqNodeType";
+export const getMessageqNodeType: typeof import("./getMessageqNodeType").getMessageqNodeType = null as any;
+export const getMessageqNodeTypeOutput: typeof import("./getMessageqNodeType").getMessageqNodeTypeOutput = null as any;
+utilities.lazyLoad(exports, ["getMessageqNodeType","getMessageqNodeTypeOutput"], () => require("./getMessageqNodeType"));
+
+export { GetMessageqVersionArgs, GetMessageqVersionResult, GetMessageqVersionOutputArgs } from "./getMessageqVersion";
+export const getMessageqVersion: typeof import("./getMessageqVersion").getMessageqVersion = null as any;
+export const getMessageqVersionOutput: typeof import("./getMessageqVersion").getMessageqVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getMessageqVersion","getMessageqVersionOutput"], () => require("./getMessageqVersion"));
 
 export { GetMnqSnsArgs, GetMnqSnsResult, GetMnqSnsOutputArgs } from "./getMnqSns";
 export const getMnqSns: typeof import("./getMnqSns").getMnqSns = null as any;
@@ -839,6 +859,26 @@ export type LoadbalancerRoute = import("./loadbalancerRoute").LoadbalancerRoute;
 export const LoadbalancerRoute: typeof import("./loadbalancerRoute").LoadbalancerRoute = null as any;
 utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
 
+export { MailboxArgs, MailboxState } from "./mailbox";
+export type Mailbox = import("./mailbox").Mailbox;
+export const Mailbox: typeof import("./mailbox").Mailbox = null as any;
+utilities.lazyLoad(exports, ["Mailbox"], () => require("./mailbox"));
+
+export { MailboxDomainArgs, MailboxDomainState } from "./mailboxDomain";
+export type MailboxDomain = import("./mailboxDomain").MailboxDomain;
+export const MailboxDomain: typeof import("./mailboxDomain").MailboxDomain = null as any;
+utilities.lazyLoad(exports, ["MailboxDomain"], () => require("./mailboxDomain"));
+
+export { MessageqDeploymentArgs, MessageqDeploymentState } from "./messageqDeployment";
+export type MessageqDeployment = import("./messageqDeployment").MessageqDeployment;
+export const MessageqDeployment: typeof import("./messageqDeployment").MessageqDeployment = null as any;
+utilities.lazyLoad(exports, ["MessageqDeployment"], () => require("./messageqDeployment"));
+
+export { MessageqUserArgs, MessageqUserState } from "./messageqUser";
+export type MessageqUser = import("./messageqUser").MessageqUser;
+export const MessageqUser: typeof import("./messageqUser").MessageqUser = null as any;
+utilities.lazyLoad(exports, ["MessageqUser"], () => require("./messageqUser"));
+
 export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
 export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
 export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
@@ -923,6 +963,11 @@ export { ObjectItemArgs, ObjectItemState } from "./objectItem";
 export type ObjectItem = import("./objectItem").ObjectItem;
 export const ObjectItem: typeof import("./objectItem").ObjectItem = null as any;
 utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
+
+export { PartnerOrganizationArgs, PartnerOrganizationState } from "./partnerOrganization";
+export type PartnerOrganization = import("./partnerOrganization").PartnerOrganization;
+export const PartnerOrganization: typeof import("./partnerOrganization").PartnerOrganization = null as any;
+utilities.lazyLoad(exports, ["PartnerOrganization"], () => require("./partnerOrganization"));
 
 export * from "./provider";
 import { Provider } from "./provider";
@@ -1137,8 +1182,6 @@ const _module = {
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
                 return new CockpitAlertManager(name, <any>undefined, { urn })
-            case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
-                return new CockpitGrafanaUser(name, <any>undefined, { urn })
             case "scaleway:index/cockpitSource:CockpitSource":
                 return new CockpitSource(name, <any>undefined, { urn })
             case "scaleway:index/cockpitToken:CockpitToken":
@@ -1281,6 +1324,14 @@ const _module = {
                 return new LoadbalancerIp(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
                 return new LoadbalancerRoute(name, <any>undefined, { urn })
+            case "scaleway:index/mailbox:Mailbox":
+                return new Mailbox(name, <any>undefined, { urn })
+            case "scaleway:index/mailboxDomain:MailboxDomain":
+                return new MailboxDomain(name, <any>undefined, { urn })
+            case "scaleway:index/messageqDeployment:MessageqDeployment":
+                return new MessageqDeployment(name, <any>undefined, { urn })
+            case "scaleway:index/messageqUser:MessageqUser":
+                return new MessageqUser(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
                 return new MnqNatsAccount(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
@@ -1315,6 +1366,8 @@ const _module = {
                 return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/objectItem:ObjectItem":
                 return new ObjectItem(name, <any>undefined, { urn })
+            case "scaleway:index/partnerOrganization:PartnerOrganization":
+                return new PartnerOrganization(name, <any>undefined, { urn })
             case "scaleway:index/rdbSnapshot:RdbSnapshot":
                 return new RdbSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
@@ -1368,7 +1421,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitAlertManager", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitSource", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)
@@ -1440,6 +1492,10 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mailbox", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mailboxDomain", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/messageqDeployment", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/messageqUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSns", _module)
@@ -1457,6 +1513,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfigu
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/partnerOrganization", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/rdbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)

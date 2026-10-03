@@ -164,7 +164,7 @@ class _RegistrationState:
         :param pulumi.Input['RegistrationOwnerContactArgs'] owner_contact: : Details of the owner contact.
         :param pulumi.Input[_builtins.str] owner_contact_id: : The ID of an existing owner contact.
         :param pulumi.Input[_builtins.str] project_id: : The Scaleway project ID.
-        :param pulumi.Input[_builtins.str] task_id: ID of the task that created the domain.
+        :param pulumi.Input[_builtins.str] task_id: ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         :param pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactArgs']]] technical_contacts: : Technical contact information.
         """
         if administrative_contacts is not None:
@@ -302,7 +302,7 @@ class _RegistrationState:
     @pulumi.getter(name="taskId")
     def task_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        ID of the task that created the domain.
+        ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         """
         return pulumi.get(self, "task_id")
 
@@ -447,13 +447,27 @@ class Registration(pulumi.CustomResource):
 
         ## Import
 
-        To import an existing domain registration, use:
+        To import an existing domain registration, use the domain name:
 
         ```sh
-        $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
+        $ pulumi import scaleway:domain/registration:Registration test <domain_name>
         ```
 
-        You can use the domain.Registration data source to look up the `task_id` and `project_id` by domain name.
+        For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `domain_names` argument in your configuration to avoid a plan diff after import.
+
+        ```sh
+        $ pulumi import scaleway:domain/registration:Registration test <domain1.com>,<domain2.com>
+        ```
+
+        Importing by task ID is also supported, as long as the registration task still exists:
+
+        ```sh
+        $ pulumi import scaleway:domain/registration:Registration test <task_id>
+        ```
+
+        The `project_id` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `<project_id>/<domain_name>` or `<project_id>/<task_id>` format is still accepted for backward compatibility.
+
+        You can use the domain.Registration data source to look up the `task_id` by domain name. Registration tasks are archived after some time; once archived, import by domain name instead.
 
 
         :param str resource_name: The name of the resource.
@@ -582,13 +596,27 @@ class Registration(pulumi.CustomResource):
 
         ## Import
 
-        To import an existing domain registration, use:
+        To import an existing domain registration, use the domain name:
 
         ```sh
-        $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
+        $ pulumi import scaleway:domain/registration:Registration test <domain_name>
         ```
 
-        You can use the domain.Registration data source to look up the `task_id` and `project_id` by domain name.
+        For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `domain_names` argument in your configuration to avoid a plan diff after import.
+
+        ```sh
+        $ pulumi import scaleway:domain/registration:Registration test <domain1.com>,<domain2.com>
+        ```
+
+        Importing by task ID is also supported, as long as the registration task still exists:
+
+        ```sh
+        $ pulumi import scaleway:domain/registration:Registration test <task_id>
+        ```
+
+        The `project_id` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `<project_id>/<domain_name>` or `<project_id>/<task_id>` format is still accepted for backward compatibility.
+
+        You can use the domain.Registration data source to look up the `task_id` by domain name. Registration tasks are archived after some time; once archived, import by domain name instead.
 
 
         :param str resource_name: The name of the resource.
@@ -672,7 +700,7 @@ class Registration(pulumi.CustomResource):
         :param pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']] owner_contact: : Details of the owner contact.
         :param pulumi.Input[_builtins.str] owner_contact_id: : The ID of an existing owner contact.
         :param pulumi.Input[_builtins.str] project_id: : The Scaleway project ID.
-        :param pulumi.Input[_builtins.str] task_id: ID of the task that created the domain.
+        :param pulumi.Input[_builtins.str] task_id: ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict']]]] technical_contacts: : Technical contact information.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -768,7 +796,7 @@ class Registration(pulumi.CustomResource):
     @pulumi.getter(name="taskId")
     def task_id(self) -> pulumi.Output[_builtins.str]:
         """
-        ID of the task that created the domain.
+        ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         """
         return pulumi.get(self, "task_id")
 

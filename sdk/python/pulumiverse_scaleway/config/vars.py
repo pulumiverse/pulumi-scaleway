@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 import types
 
@@ -33,6 +34,13 @@ class _ExportableConfig(types.ModuleType):
         The Scaleway API URL to use.
         """
         return __config__.get('apiUrl')
+
+    @_builtins.property
+    def endpoints(self) -> Optional[str]:
+        """
+        Configuration block for customizing service endpoints.
+        """
+        return __config__.get('endpoints')
 
     @_builtins.property
     def organization_id(self) -> Optional[str]:
@@ -61,6 +69,13 @@ class _ExportableConfig(types.ModuleType):
         The region you want to attach the resource to
         """
         return __config__.get('region') or _utilities.get_env('SCW_DEFAULT_REGION')
+
+    @_builtins.property
+    def s3_use_path_style(self) -> Optional[bool]:
+        """
+        Whether to enable the request to use path-style addressing.
+        """
+        return __config__.get_bool('s3UsePathStyle')
 
     @_builtins.property
     def secret_key(self) -> Optional[str]:

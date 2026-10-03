@@ -23,6 +23,8 @@ __all__ = [
     'GetClusterPrivateIpResult',
     'GetClusterPrivateNetworkResult',
     'GetClusterPublicNetworkResult',
+    'GetClusterVersionsVersionResult',
+    'GetNodeTypesNodeTypeResult',
 ]
 
 @pulumi.output_type
@@ -462,5 +464,140 @@ class GetClusterPublicNetworkResult(dict):
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetClusterVersionsVersionResult(dict):
+    def __init__(__self__, *,
+                 end_of_life_at: _builtins.str,
+                 logo_url: _builtins.str,
+                 released_at: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str end_of_life_at: End of life date of the version (RFC3339).
+        :param _builtins.str logo_url: URL of the Redis™ logo.
+        :param _builtins.str released_at: Release date of the version (RFC3339).
+        :param _builtins.str version: Filter Redis™ engine versions that match a given name pattern.
+        """
+        pulumi.set(__self__, "end_of_life_at", end_of_life_at)
+        pulumi.set(__self__, "logo_url", logo_url)
+        pulumi.set(__self__, "released_at", released_at)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="endOfLifeAt")
+    def end_of_life_at(self) -> _builtins.str:
+        """
+        End of life date of the version (RFC3339).
+        """
+        return pulumi.get(self, "end_of_life_at")
+
+    @_builtins.property
+    @pulumi.getter(name="logoUrl")
+    def logo_url(self) -> _builtins.str:
+        """
+        URL of the Redis™ logo.
+        """
+        return pulumi.get(self, "logo_url")
+
+    @_builtins.property
+    @pulumi.getter(name="releasedAt")
+    def released_at(self) -> _builtins.str:
+        """
+        Release date of the version (RFC3339).
+        """
+        return pulumi.get(self, "released_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Filter Redis™ engine versions that match a given name pattern.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetNodeTypesNodeTypeResult(dict):
+    def __init__(__self__, *,
+                 beta: _builtins.bool,
+                 description: _builtins.str,
+                 disabled: _builtins.bool,
+                 memory_size_in_gb: _builtins.int,
+                 name: _builtins.str,
+                 stock_status: _builtins.str,
+                 vcpus: _builtins.int):
+        """
+        :param _builtins.bool beta: Whether the node type is currently in beta.
+        :param _builtins.str description: Current specifications of the offer.
+        :param _builtins.bool disabled: Whether the node type is currently disabled.
+        :param _builtins.int memory_size_in_gb: Amount of memory available in GB.
+        :param _builtins.str name: Name of the node type.
+        :param _builtins.str stock_status: Current stock status of the node type.
+        :param _builtins.int vcpus: Number of virtual CPUs.
+        """
+        pulumi.set(__self__, "beta", beta)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "memory_size_in_gb", memory_size_in_gb)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "stock_status", stock_status)
+        pulumi.set(__self__, "vcpus", vcpus)
+
+    @_builtins.property
+    @pulumi.getter
+    def beta(self) -> _builtins.bool:
+        """
+        Whether the node type is currently in beta.
+        """
+        return pulumi.get(self, "beta")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Current specifications of the offer.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def disabled(self) -> _builtins.bool:
+        """
+        Whether the node type is currently disabled.
+        """
+        return pulumi.get(self, "disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="memorySizeInGb")
+    def memory_size_in_gb(self) -> _builtins.int:
+        """
+        Amount of memory available in GB.
+        """
+        return pulumi.get(self, "memory_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of the node type.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="stockStatus")
+    def stock_status(self) -> _builtins.str:
+        """
+        Current stock status of the node type.
+        """
+        return pulumi.get(self, "stock_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def vcpus(self) -> _builtins.int:
+        """
+        Number of virtual CPUs.
+        """
+        return pulumi.get(self, "vcpus")
 
 

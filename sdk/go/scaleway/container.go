@@ -474,6 +474,10 @@ type Container struct {
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
+	// Whether the default publicEndpoint is enabled or not.
+	EnableDefaultPublicEndpoint pulumi.BoolOutput `pulumi:"enableDefaultPublicEndpoint"`
+	// Whether the privateEndpoint is enabled or not.
+	EnablePrivateEndpoint pulumi.BoolOutput `pulumi:"enablePrivateEndpoint"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
 	// The error message of the container.
@@ -524,6 +528,8 @@ type Container struct {
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrOutput `pulumi:"privacy"`
+	// Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+	PrivateEndpoint pulumi.StringOutput `pulumi:"privateEndpoint"`
 	// The ID of the Private Network the container is connected to.
 	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -620,6 +626,10 @@ type containerState struct {
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName *string `pulumi:"domainName"`
+	// Whether the default publicEndpoint is enabled or not.
+	EnableDefaultPublicEndpoint *bool `pulumi:"enableDefaultPublicEndpoint"`
+	// Whether the privateEndpoint is enabled or not.
+	EnablePrivateEndpoint *bool `pulumi:"enablePrivateEndpoint"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
@@ -670,6 +680,8 @@ type containerState struct {
 	Port *int `pulumi:"port"`
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy *string `pulumi:"privacy"`
+	// Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+	PrivateEndpoint *string `pulumi:"privateEndpoint"`
 	// The ID of the Private Network the container is connected to.
 	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -727,6 +739,10 @@ type ContainerState struct {
 	//
 	// Deprecated: This attribute will be removed in the future, please use publicEndpoint instead
 	DomainName pulumi.StringPtrInput
+	// Whether the default publicEndpoint is enabled or not.
+	EnableDefaultPublicEndpoint pulumi.BoolPtrInput
+	// Whether the privateEndpoint is enabled or not.
+	EnablePrivateEndpoint pulumi.BoolPtrInput
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
 	// The error message of the container.
@@ -777,6 +793,8 @@ type ContainerState struct {
 	Port pulumi.IntPtrInput
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 	Privacy pulumi.StringPtrInput
+	// Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+	PrivateEndpoint pulumi.StringPtrInput
 	// The ID of the Private Network the container is connected to.
 	//
 	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -830,6 +848,10 @@ type containerArgs struct {
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
+	// Whether the default publicEndpoint is enabled or not.
+	EnableDefaultPublicEndpoint *bool `pulumi:"enableDefaultPublicEndpoint"`
+	// Whether the privateEndpoint is enabled or not.
+	EnablePrivateEndpoint *bool `pulumi:"enablePrivateEndpoint"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// Health check configuration block of the container.
@@ -924,6 +946,10 @@ type ContainerArgs struct {
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
+	// Whether the default publicEndpoint is enabled or not.
+	EnableDefaultPublicEndpoint pulumi.BoolPtrInput
+	// Whether the privateEndpoint is enabled or not.
+	EnablePrivateEndpoint pulumi.BoolPtrInput
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables pulumi.StringMapInput
 	// Health check configuration block of the container.
@@ -1132,6 +1158,16 @@ func (o ContainerOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.DomainName }).(pulumi.StringOutput)
 }
 
+// Whether the default publicEndpoint is enabled or not.
+func (o ContainerOutput) EnableDefaultPublicEndpoint() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Container) pulumi.BoolOutput { return v.EnableDefaultPublicEndpoint }).(pulumi.BoolOutput)
+}
+
+// Whether the privateEndpoint is enabled or not.
+func (o ContainerOutput) EnablePrivateEndpoint() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Container) pulumi.BoolOutput { return v.EnablePrivateEndpoint }).(pulumi.BoolOutput)
+}
+
 // The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 func (o ContainerOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
@@ -1231,6 +1267,11 @@ func (o ContainerOutput) Port() pulumi.IntOutput {
 // The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 func (o ContainerOutput) Privacy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Privacy }).(pulumi.StringPtrOutput)
+}
+
+// Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+func (o ContainerOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.PrivateEndpoint }).(pulumi.StringOutput)
 }
 
 // The ID of the Private Network the container is connected to.

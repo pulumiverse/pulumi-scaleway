@@ -251,6 +251,12 @@ export class Pool extends pulumi.CustomResource {
      */
     declare public readonly upgradePolicy: pulumi.Output<outputs.kubernetes.PoolUpgradePolicy>;
     /**
+     * User data applied and reconciled with the pool, as a map of key to content.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    declare public readonly userData: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
      * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
      *
@@ -308,6 +314,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["taints"] = state?.taints;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["upgradePolicy"] = state?.upgradePolicy;
+            resourceInputs["userData"] = state?.userData;
             resourceInputs["version"] = state?.version;
             resourceInputs["waitForPoolReady"] = state?.waitForPoolReady;
             resourceInputs["zone"] = state?.zone;
@@ -343,6 +350,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["taints"] = args?.taints;
             resourceInputs["upgradePolicy"] = args?.upgradePolicy;
+            resourceInputs["userData"] = args?.userData;
             resourceInputs["version"] = args?.version;
             resourceInputs["waitForPoolReady"] = args?.waitForPoolReady;
             resourceInputs["zone"] = args?.zone;
@@ -493,6 +501,12 @@ export interface PoolState {
      */
     upgradePolicy?: pulumi.Input<inputs.kubernetes.PoolUpgradePolicy | undefined>;
     /**
+     * User data applied and reconciled with the pool, as a map of key to content.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
      * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
      * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
      *
@@ -619,6 +633,12 @@ export interface PoolArgs {
      * The Pool upgrade policy
      */
     upgradePolicy?: pulumi.Input<inputs.kubernetes.PoolUpgradePolicy | undefined>;
+    /**
+     * User data applied and reconciled with the pool, as a map of key to content.
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    userData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
      * For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.

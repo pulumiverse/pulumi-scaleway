@@ -78,7 +78,7 @@ def get_availability_zones(region: Optional[_builtins.str] = None,
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
     you can choose the location that better fits your need (country, latency, etc.).
 
-    Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+    Refer to the Account [documentation](https://www.scaleway.com/en/product-availability-by-region/) for more information.
 
     ## Retrieve the Availability Zones of a Region
 
@@ -112,7 +112,7 @@ def get_availability_zones_output(region: pulumi.Input[Optional[Optional[_builti
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
     you can choose the location that better fits your need (country, latency, etc.).
 
-    Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+    Refer to the Account [documentation](https://www.scaleway.com/en/product-availability-by-region/) for more information.
 
     ## Retrieve the Availability Zones of a Region
 

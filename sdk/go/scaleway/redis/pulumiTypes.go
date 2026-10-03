@@ -1095,6 +1095,281 @@ func (o GetClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetClusterP
 	}).(GetClusterPublicNetworkOutput)
 }
 
+type GetClusterVersionsVersion struct {
+	// End of life date of the version (RFC3339).
+	EndOfLifeAt string `pulumi:"endOfLifeAt"`
+	// URL of the Redis™ logo.
+	LogoUrl string `pulumi:"logoUrl"`
+	// Release date of the version (RFC3339).
+	ReleasedAt string `pulumi:"releasedAt"`
+	// Filter Redis™ engine versions that match a given name pattern.
+	Version string `pulumi:"version"`
+}
+
+// GetClusterVersionsVersionInput is an input type that accepts GetClusterVersionsVersionArgs and GetClusterVersionsVersionOutput values.
+// You can construct a concrete instance of `GetClusterVersionsVersionInput` via:
+//
+//	GetClusterVersionsVersionArgs{...}
+type GetClusterVersionsVersionInput interface {
+	pulumi.Input
+
+	ToGetClusterVersionsVersionOutput() GetClusterVersionsVersionOutput
+	ToGetClusterVersionsVersionOutputWithContext(context.Context) GetClusterVersionsVersionOutput
+}
+
+type GetClusterVersionsVersionArgs struct {
+	// End of life date of the version (RFC3339).
+	EndOfLifeAt pulumi.StringInput `pulumi:"endOfLifeAt"`
+	// URL of the Redis™ logo.
+	LogoUrl pulumi.StringInput `pulumi:"logoUrl"`
+	// Release date of the version (RFC3339).
+	ReleasedAt pulumi.StringInput `pulumi:"releasedAt"`
+	// Filter Redis™ engine versions that match a given name pattern.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetClusterVersionsVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterVersionsVersion)(nil)).Elem()
+}
+
+func (i GetClusterVersionsVersionArgs) ToGetClusterVersionsVersionOutput() GetClusterVersionsVersionOutput {
+	return i.ToGetClusterVersionsVersionOutputWithContext(context.Background())
+}
+
+func (i GetClusterVersionsVersionArgs) ToGetClusterVersionsVersionOutputWithContext(ctx context.Context) GetClusterVersionsVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterVersionsVersionOutput)
+}
+
+// GetClusterVersionsVersionArrayInput is an input type that accepts GetClusterVersionsVersionArray and GetClusterVersionsVersionArrayOutput values.
+// You can construct a concrete instance of `GetClusterVersionsVersionArrayInput` via:
+//
+//	GetClusterVersionsVersionArray{ GetClusterVersionsVersionArgs{...} }
+type GetClusterVersionsVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterVersionsVersionArrayOutput() GetClusterVersionsVersionArrayOutput
+	ToGetClusterVersionsVersionArrayOutputWithContext(context.Context) GetClusterVersionsVersionArrayOutput
+}
+
+type GetClusterVersionsVersionArray []GetClusterVersionsVersionInput
+
+func (GetClusterVersionsVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterVersionsVersion)(nil)).Elem()
+}
+
+func (i GetClusterVersionsVersionArray) ToGetClusterVersionsVersionArrayOutput() GetClusterVersionsVersionArrayOutput {
+	return i.ToGetClusterVersionsVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterVersionsVersionArray) ToGetClusterVersionsVersionArrayOutputWithContext(ctx context.Context) GetClusterVersionsVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterVersionsVersionArrayOutput)
+}
+
+type GetClusterVersionsVersionOutput struct{ *pulumi.OutputState }
+
+func (GetClusterVersionsVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterVersionsVersion)(nil)).Elem()
+}
+
+func (o GetClusterVersionsVersionOutput) ToGetClusterVersionsVersionOutput() GetClusterVersionsVersionOutput {
+	return o
+}
+
+func (o GetClusterVersionsVersionOutput) ToGetClusterVersionsVersionOutputWithContext(ctx context.Context) GetClusterVersionsVersionOutput {
+	return o
+}
+
+// End of life date of the version (RFC3339).
+func (o GetClusterVersionsVersionOutput) EndOfLifeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterVersionsVersion) string { return v.EndOfLifeAt }).(pulumi.StringOutput)
+}
+
+// URL of the Redis™ logo.
+func (o GetClusterVersionsVersionOutput) LogoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterVersionsVersion) string { return v.LogoUrl }).(pulumi.StringOutput)
+}
+
+// Release date of the version (RFC3339).
+func (o GetClusterVersionsVersionOutput) ReleasedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterVersionsVersion) string { return v.ReleasedAt }).(pulumi.StringOutput)
+}
+
+// Filter Redis™ engine versions that match a given name pattern.
+func (o GetClusterVersionsVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterVersionsVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetClusterVersionsVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterVersionsVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterVersionsVersion)(nil)).Elem()
+}
+
+func (o GetClusterVersionsVersionArrayOutput) ToGetClusterVersionsVersionArrayOutput() GetClusterVersionsVersionArrayOutput {
+	return o
+}
+
+func (o GetClusterVersionsVersionArrayOutput) ToGetClusterVersionsVersionArrayOutputWithContext(ctx context.Context) GetClusterVersionsVersionArrayOutput {
+	return o
+}
+
+func (o GetClusterVersionsVersionArrayOutput) Index(i pulumi.IntInput) GetClusterVersionsVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterVersionsVersion {
+		return vs[0].([]GetClusterVersionsVersion)[vs[1].(int)]
+	}).(GetClusterVersionsVersionOutput)
+}
+
+type GetNodeTypesNodeType struct {
+	// Whether the node type is currently in beta.
+	Beta bool `pulumi:"beta"`
+	// Current specifications of the offer.
+	Description string `pulumi:"description"`
+	// Whether the node type is currently disabled.
+	Disabled bool `pulumi:"disabled"`
+	// Amount of memory available in GB.
+	MemorySizeInGb int `pulumi:"memorySizeInGb"`
+	// Name of the node type.
+	Name string `pulumi:"name"`
+	// Current stock status of the node type.
+	StockStatus string `pulumi:"stockStatus"`
+	// Number of virtual CPUs.
+	Vcpus int `pulumi:"vcpus"`
+}
+
+// GetNodeTypesNodeTypeInput is an input type that accepts GetNodeTypesNodeTypeArgs and GetNodeTypesNodeTypeOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeInput` via:
+//
+//	GetNodeTypesNodeTypeArgs{...}
+type GetNodeTypesNodeTypeInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput
+	ToGetNodeTypesNodeTypeOutputWithContext(context.Context) GetNodeTypesNodeTypeOutput
+}
+
+type GetNodeTypesNodeTypeArgs struct {
+	// Whether the node type is currently in beta.
+	Beta pulumi.BoolInput `pulumi:"beta"`
+	// Current specifications of the offer.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether the node type is currently disabled.
+	Disabled pulumi.BoolInput `pulumi:"disabled"`
+	// Amount of memory available in GB.
+	MemorySizeInGb pulumi.IntInput `pulumi:"memorySizeInGb"`
+	// Name of the node type.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Current stock status of the node type.
+	StockStatus pulumi.StringInput `pulumi:"stockStatus"`
+	// Number of virtual CPUs.
+	Vcpus pulumi.IntInput `pulumi:"vcpus"`
+}
+
+func (GetNodeTypesNodeTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeArgs) ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput {
+	return i.ToGetNodeTypesNodeTypeOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeArgs) ToGetNodeTypesNodeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeOutput)
+}
+
+// GetNodeTypesNodeTypeArrayInput is an input type that accepts GetNodeTypesNodeTypeArray and GetNodeTypesNodeTypeArrayOutput values.
+// You can construct a concrete instance of `GetNodeTypesNodeTypeArrayInput` via:
+//
+//	GetNodeTypesNodeTypeArray{ GetNodeTypesNodeTypeArgs{...} }
+type GetNodeTypesNodeTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput
+	ToGetNodeTypesNodeTypeArrayOutputWithContext(context.Context) GetNodeTypesNodeTypeArrayOutput
+}
+
+type GetNodeTypesNodeTypeArray []GetNodeTypesNodeTypeInput
+
+func (GetNodeTypesNodeTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (i GetNodeTypesNodeTypeArray) ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput {
+	return i.ToGetNodeTypesNodeTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeTypesNodeTypeArray) ToGetNodeTypesNodeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeTypesNodeTypeArrayOutput)
+}
+
+type GetNodeTypesNodeTypeOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeOutput) ToGetNodeTypesNodeTypeOutput() GetNodeTypesNodeTypeOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeOutput) ToGetNodeTypesNodeTypeOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeOutput {
+	return o
+}
+
+// Whether the node type is currently in beta.
+func (o GetNodeTypesNodeTypeOutput) Beta() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) bool { return v.Beta }).(pulumi.BoolOutput)
+}
+
+// Current specifications of the offer.
+func (o GetNodeTypesNodeTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether the node type is currently disabled.
+func (o GetNodeTypesNodeTypeOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// Amount of memory available in GB.
+func (o GetNodeTypesNodeTypeOutput) MemorySizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) int { return v.MemorySizeInGb }).(pulumi.IntOutput)
+}
+
+// Name of the node type.
+func (o GetNodeTypesNodeTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Current stock status of the node type.
+func (o GetNodeTypesNodeTypeOutput) StockStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) string { return v.StockStatus }).(pulumi.StringOutput)
+}
+
+// Number of virtual CPUs.
+func (o GetNodeTypesNodeTypeOutput) Vcpus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeTypesNodeType) int { return v.Vcpus }).(pulumi.IntOutput)
+}
+
+type GetNodeTypesNodeTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeTypesNodeTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeTypesNodeType)(nil)).Elem()
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) ToGetNodeTypesNodeTypeArrayOutput() GetNodeTypesNodeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) ToGetNodeTypesNodeTypeArrayOutputWithContext(ctx context.Context) GetNodeTypesNodeTypeArrayOutput {
+	return o
+}
+
+func (o GetNodeTypesNodeTypeArrayOutput) Index(i pulumi.IntInput) GetNodeTypesNodeTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeTypesNodeType {
+		return vs[0].([]GetNodeTypesNodeType)[vs[1].(int)]
+	}).(GetNodeTypesNodeTypeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAclInput)(nil)).Elem(), ClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAclArrayInput)(nil)).Elem(), ClusterAclArray{})
@@ -1112,6 +1387,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateNetworkArrayInput)(nil)).Elem(), GetClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkInput)(nil)).Elem(), GetClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkArrayInput)(nil)).Elem(), GetClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterVersionsVersionInput)(nil)).Elem(), GetClusterVersionsVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterVersionsVersionArrayInput)(nil)).Elem(), GetClusterVersionsVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeInput)(nil)).Elem(), GetNodeTypesNodeTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeTypesNodeTypeArrayInput)(nil)).Elem(), GetNodeTypesNodeTypeArray{})
 	pulumi.RegisterOutputType(ClusterAclOutput{})
 	pulumi.RegisterOutputType(ClusterAclArrayOutput{})
 	pulumi.RegisterOutputType(ClusterPrivateIpOutput{})
@@ -1128,4 +1407,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterVersionsVersionOutput{})
+	pulumi.RegisterOutputType(GetClusterVersionsVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeOutput{})
+	pulumi.RegisterOutputType(GetNodeTypesNodeTypeArrayOutput{})
 }

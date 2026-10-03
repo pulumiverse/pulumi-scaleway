@@ -492,7 +492,7 @@ export interface DatabaseInstanceLogsPolicy {
      */
     maxAgeRetention?: pulumi.Input<number | undefined>;
     /**
-     * The max disk size of remote logs to keep on the Database Instance.
+     * The max disk size (in bytes) of remote logs to keep on the Database Instance
      */
     totalDiskRetention?: pulumi.Input<number | undefined>;
 }
@@ -2043,6 +2043,85 @@ export interface LoadbalancerPrivateNetwork {
     zone?: pulumi.Input<string | undefined>;
 }
 
+export interface MailboxDomainDnsRecord {
+    /**
+     * Fully qualified name for this record.
+     */
+    dnsName?: pulumi.Input<string | undefined>;
+    /**
+     * Record type (TXT, MX, CNAME, SRV…).
+     */
+    dnsType?: pulumi.Input<string | undefined>;
+    /**
+     * Value to set for this record.
+     */
+    dnsValue?: pulumi.Input<string | undefined>;
+    /**
+     * Error detail when the record is invalid or not found.
+     */
+    error?: pulumi.Input<string | undefined>;
+    /**
+     * Requirement level (`required`, `recommended`, `optional`).
+     */
+    level?: pulumi.Input<string | undefined>;
+    /**
+     * Validation status (`valid`, `invalid`, `notFound`, `validating`).
+     */
+    status?: pulumi.Input<string | undefined>;
+}
+
+export interface MessageqDeploymentEndpoint {
+    /**
+     * The ID of the endpoint.
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * Private network ID if the endpoint is private.
+     */
+    privateNetworkId?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the endpoint is public (`true`) or private (`false`).
+     */
+    public?: pulumi.Input<boolean | undefined>;
+    /**
+     * List of services exposed on the endpoint.
+     */
+    services?: pulumi.Input<pulumi.Input<inputs.MessageqDeploymentEndpointService>[] | undefined>;
+}
+
+export interface MessageqDeploymentEndpointService {
+    /**
+     * Name of the MessageQ deployment. If not specified, a random name will be generated.
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * Service port number.
+     */
+    port?: pulumi.Input<number | undefined>;
+    /**
+     * Full URL to access the service.
+     */
+    url?: pulumi.Input<string | undefined>;
+}
+
+export interface MessageqDeploymentPrivateNetwork {
+    /**
+     * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+     */
+    privateNetworkId: pulumi.Input<string>;
+}
+
+export interface MessageqDeploymentVolume {
+    /**
+     * Volume size in GB. Can be updated in-place via the Upgrade API.
+     */
+    sizeInGb: pulumi.Input<number>;
+    /**
+     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface MnqSnsCredentialsPermissions {
     /**
      * . Defines whether the user can manage the associated resource(s).
@@ -2396,6 +2475,13 @@ export interface ObjectBucketWebsiteConfigurationIndexDocument {
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */
     suffix: pulumi.Input<string>;
+}
+
+export interface ProviderEndpoint {
+    /**
+     * Use this to override the default service endpoint URL.
+     */
+    s3?: pulumi.Input<string | undefined>;
 }
 
 export interface RedisClusterAcl {
@@ -2983,6 +3069,9 @@ export namespace block {
     }
 }
 
+export namespace config {
+}
+
 export namespace containers {
     export interface ContainerHealthCheck {
         /**
@@ -3219,7 +3308,7 @@ export namespace databases {
          */
         maxAgeRetention?: pulumi.Input<number | undefined>;
         /**
-         * The max disk size of remote logs to keep on the Database Instance.
+         * The max disk size (in bytes) of remote logs to keep on the Database Instance
          */
         totalDiskRetention?: pulumi.Input<number | undefined>;
     }
