@@ -316,6 +316,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
         public readonly string UpdatedAt;
         public readonly ImmutableArray<Outputs.GetPoolUpgradePolicyResult> UpgradePolicies;
         /// <summary>
+        /// The pool's user data, as a map of key to content.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> UserData;
+        /// <summary>
         /// The version of the pool.
         /// </summary>
         public readonly string Version;
@@ -382,6 +386,8 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             ImmutableArray<Outputs.GetPoolUpgradePolicyResult> upgradePolicies,
 
+            ImmutableDictionary<string, string> userData,
+
             string version,
 
             bool waitForPoolReady,
@@ -417,6 +423,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
             Taints = taints;
             UpdatedAt = updatedAt;
             UpgradePolicies = upgradePolicies;
+            UserData = userData;
             Version = version;
             WaitForPoolReady = waitForPoolReady;
             Zone = zone;

@@ -201,7 +201,7 @@ class InstanceLogsPolicyArgsDict(TypedDict):
     """
     total_disk_retention: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    The max disk size of remote logs to keep on the Database Instance.
+    The max disk size (in bytes) of remote logs to keep on the Database Instance
     """
 
 @pulumi.input_type
@@ -211,7 +211,7 @@ class InstanceLogsPolicyArgs:
                  total_disk_retention: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param pulumi.Input[_builtins.int] total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param pulumi.Input[_builtins.int] total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         if max_age_retention is not None:
             pulumi.set(__self__, "max_age_retention", max_age_retention)
@@ -234,7 +234,7 @@ class InstanceLogsPolicyArgs:
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 

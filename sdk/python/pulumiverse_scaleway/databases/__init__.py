@@ -12,7 +12,12 @@ from .database_backup import *
 from .get_acl import *
 from .get_database import *
 from .get_database_backup import *
+from .get_database_engines import *
 from .get_instance import *
+from .get_instance_log import *
+from .get_instance_logs import *
+from .get_instance_logs_details import *
+from .get_node_types import *
 from .get_privilege import *
 from .instance import *
 from .privilege import *

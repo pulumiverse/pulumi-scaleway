@@ -37,8 +37,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Cockpit{}
 	case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
 		r = &CockpitAlertManager{}
-	case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
-		r = &CockpitGrafanaUser{}
 	case "scaleway:index/cockpitSource:CockpitSource":
 		r = &CockpitSource{}
 	case "scaleway:index/cockpitToken:CockpitToken":
@@ -181,6 +179,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LoadbalancerIp{}
 	case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
 		r = &LoadbalancerRoute{}
+	case "scaleway:index/mailbox:Mailbox":
+		r = &Mailbox{}
+	case "scaleway:index/mailboxDomain:MailboxDomain":
+		r = &MailboxDomain{}
+	case "scaleway:index/messageqDeployment:MessageqDeployment":
+		r = &MessageqDeployment{}
+	case "scaleway:index/messageqUser:MessageqUser":
+		r = &MessageqUser{}
 	case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
 		r = &MnqNatsAccount{}
 	case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
@@ -215,6 +221,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectBucketWebsiteConfiguration{}
 	case "scaleway:index/objectItem:ObjectItem":
 		r = &ObjectItem{}
+	case "scaleway:index/partnerOrganization:PartnerOrganization":
+		r = &PartnerOrganization{}
 	case "scaleway:index/rdbSnapshot:RdbSnapshot":
 		r = &RdbSnapshot{}
 	case "scaleway:index/redisCluster:RedisCluster":
@@ -324,11 +332,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/cockpitAlertManager",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/cockpitGrafanaUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -688,6 +691,26 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/mailbox",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mailboxDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/messageqDeployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/messageqUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/mnqNatsAccount",
 		&module{version},
 	)
@@ -769,6 +792,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/partnerOrganization",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -19,11 +19,21 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
+        [Input("credentialsFileContent", required: true)]
+        private Input<string>? _credentialsFileContent;
+
         /// <summary>
         /// The content of the NATS credentials file that will be used to authenticate with the NATS server and subscribe to the specified subject.
         /// </summary>
-        [Input("credentialsFileContent", required: true)]
-        public Input<string> CredentialsFileContent { get; set; } = null!;
+        public Input<string>? CredentialsFileContent
+        {
+            get => _credentialsFileContent;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentialsFileContent = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)

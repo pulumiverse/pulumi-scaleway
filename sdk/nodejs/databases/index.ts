@@ -35,10 +35,35 @@ export const getDatabaseBackup: typeof import("./getDatabaseBackup").getDatabase
 export const getDatabaseBackupOutput: typeof import("./getDatabaseBackup").getDatabaseBackupOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabaseBackup","getDatabaseBackupOutput"], () => require("./getDatabaseBackup"));
 
+export { GetDatabaseEnginesArgs, GetDatabaseEnginesResult, GetDatabaseEnginesOutputArgs } from "./getDatabaseEngines";
+export const getDatabaseEngines: typeof import("./getDatabaseEngines").getDatabaseEngines = null as any;
+export const getDatabaseEnginesOutput: typeof import("./getDatabaseEngines").getDatabaseEnginesOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseEngines","getDatabaseEnginesOutput"], () => require("./getDatabaseEngines"));
+
 export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
 export const getInstance: typeof import("./getInstance").getInstance = null as any;
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
 utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
+
+export { GetInstanceLogArgs, GetInstanceLogResult, GetInstanceLogOutputArgs } from "./getInstanceLog";
+export const getInstanceLog: typeof import("./getInstanceLog").getInstanceLog = null as any;
+export const getInstanceLogOutput: typeof import("./getInstanceLog").getInstanceLogOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceLog","getInstanceLogOutput"], () => require("./getInstanceLog"));
+
+export { GetInstanceLogsArgs, GetInstanceLogsResult, GetInstanceLogsOutputArgs } from "./getInstanceLogs";
+export const getInstanceLogs: typeof import("./getInstanceLogs").getInstanceLogs = null as any;
+export const getInstanceLogsOutput: typeof import("./getInstanceLogs").getInstanceLogsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceLogs","getInstanceLogsOutput"], () => require("./getInstanceLogs"));
+
+export { GetInstanceLogsDetailsArgs, GetInstanceLogsDetailsResult, GetInstanceLogsDetailsOutputArgs } from "./getInstanceLogsDetails";
+export const getInstanceLogsDetails: typeof import("./getInstanceLogsDetails").getInstanceLogsDetails = null as any;
+export const getInstanceLogsDetailsOutput: typeof import("./getInstanceLogsDetails").getInstanceLogsDetailsOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceLogsDetails","getInstanceLogsDetailsOutput"], () => require("./getInstanceLogsDetails"));
+
+export { GetNodeTypesArgs, GetNodeTypesResult, GetNodeTypesOutputArgs } from "./getNodeTypes";
+export const getNodeTypes: typeof import("./getNodeTypes").getNodeTypes = null as any;
+export const getNodeTypesOutput: typeof import("./getNodeTypes").getNodeTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodeTypes","getNodeTypesOutput"], () => require("./getNodeTypes"));
 
 export { GetPrivilegeArgs, GetPrivilegeResult, GetPrivilegeOutputArgs } from "./getPrivilege";
 export const getPrivilege: typeof import("./getPrivilege").getPrivilege = null as any;

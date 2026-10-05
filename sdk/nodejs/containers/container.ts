@@ -326,6 +326,14 @@ export class Container extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly domainName: pulumi.Output<string>;
     /**
+     * Whether the default publicEndpoint is enabled or not.
+     */
+    declare public readonly enableDefaultPublicEndpoint: pulumi.Output<boolean>;
+    /**
+     * Whether the privateEndpoint is enabled or not.
+     */
+    declare public readonly enablePrivateEndpoint: pulumi.Output<boolean>;
+    /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
     declare public readonly environmentVariables: pulumi.Output<{[key: string]: string}>;
@@ -410,6 +418,10 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly privacy: pulumi.Output<string | undefined>;
     /**
+     * Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+     */
+    declare public /*out*/ readonly privateEndpoint: pulumi.Output<string>;
+    /**
      * The ID of the Private Network the container is connected to.
      *
      * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -488,6 +500,8 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["deploy"] = state?.deploy;
             resourceInputs["description"] = state?.description;
             resourceInputs["domainName"] = state?.domainName;
+            resourceInputs["enableDefaultPublicEndpoint"] = state?.enableDefaultPublicEndpoint;
+            resourceInputs["enablePrivateEndpoint"] = state?.enablePrivateEndpoint;
             resourceInputs["environmentVariables"] = state?.environmentVariables;
             resourceInputs["errorMessage"] = state?.errorMessage;
             resourceInputs["healthChecks"] = state?.healthChecks;
@@ -505,6 +519,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["namespaceId"] = state?.namespaceId;
             resourceInputs["port"] = state?.port;
             resourceInputs["privacy"] = state?.privacy;
+            resourceInputs["privateEndpoint"] = state?.privateEndpoint;
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
             resourceInputs["protocol"] = state?.protocol;
             resourceInputs["publicEndpoint"] = state?.publicEndpoint;
@@ -528,6 +543,8 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["cpuLimit"] = args?.cpuLimit;
             resourceInputs["deploy"] = args?.deploy;
             resourceInputs["description"] = args?.description;
+            resourceInputs["enableDefaultPublicEndpoint"] = args?.enableDefaultPublicEndpoint;
+            resourceInputs["enablePrivateEndpoint"] = args?.enablePrivateEndpoint;
             resourceInputs["environmentVariables"] = args?.environmentVariables;
             resourceInputs["healthChecks"] = args?.healthChecks;
             resourceInputs["httpOption"] = args?.httpOption;
@@ -558,6 +575,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["cronStatus"] = undefined /*out*/;
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["errorMessage"] = undefined /*out*/;
+            resourceInputs["privateEndpoint"] = undefined /*out*/;
             resourceInputs["publicEndpoint"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -610,6 +628,14 @@ export interface ContainerState {
      * @deprecated This attribute will be removed in the future, please use publicEndpoint instead
      */
     domainName?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the default publicEndpoint is enabled or not.
+     */
+    enableDefaultPublicEndpoint?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the privateEndpoint is enabled or not.
+     */
+    enablePrivateEndpoint?: pulumi.Input<boolean | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
@@ -694,6 +720,10 @@ export interface ContainerState {
      * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     privacy?: pulumi.Input<string | undefined>;
+    /**
+     * Private URL of the container. This endpoint is only accessible from the privateNetwork on which the container is attached.
+     */
+    privateEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The ID of the Private Network the container is connected to.
      *
@@ -782,6 +812,14 @@ export interface ContainerArgs {
      * The description of the container.
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the default publicEndpoint is enabled or not.
+     */
+    enableDefaultPublicEndpoint?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the privateEndpoint is enabled or not.
+     */
+    enablePrivateEndpoint?: pulumi.Input<boolean | undefined>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */

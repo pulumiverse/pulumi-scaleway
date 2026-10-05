@@ -15,6 +15,11 @@ export const getDeployment: typeof import("./getDeployment").getDeployment = nul
 export const getDeploymentOutput: typeof import("./getDeployment").getDeploymentOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployment","getDeploymentOutput"], () => require("./getDeployment"));
 
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -22,9 +27,12 @@ const _module = {
         switch (type) {
             case "scaleway:opensearch/deployment:Deployment":
                 return new Deployment(name, <any>undefined, { urn })
+            case "scaleway:opensearch/user:User":
+                return new User(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "opensearch/deployment", _module)
+pulumi.runtime.registerResourceModule("scaleway", "opensearch/user", _module)

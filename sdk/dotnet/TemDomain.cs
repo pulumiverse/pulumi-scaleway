@@ -73,6 +73,7 @@ namespace Pulumiverse.Scaleway
     ///         DnsZone = domainName,
     ///         Type = "MX",
     ///         Data = main.MxConfig,
+    ///         Priority = main.MxPriority,
     ///     });
     /// 
     ///     var dmarc = new Scaleway.Domain.Record("dmarc", new()
@@ -221,10 +222,16 @@ namespace Pulumiverse.Scaleway
         public Output<string> MxBlackhole { get; private set; } = null!;
 
         /// <summary>
-        /// MX record configuration for the domain blackhole.
+        /// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
         /// </summary>
         [Output("mxConfig")]
         public Output<string> MxConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+        /// </summary>
+        [Output("mxPriority")]
+        public Output<int> MxPriority { get; private set; } = null!;
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
@@ -474,10 +481,16 @@ namespace Pulumiverse.Scaleway
         public Input<string>? MxBlackhole { get; set; }
 
         /// <summary>
-        /// MX record configuration for the domain blackhole.
+        /// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
         /// </summary>
         [Input("mxConfig")]
         public Input<string>? MxConfig { get; set; }
+
+        /// <summary>
+        /// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+        /// </summary>
+        [Input("mxPriority")]
+        public Input<int>? MxPriority { get; set; }
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.

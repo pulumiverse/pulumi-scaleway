@@ -71,6 +71,68 @@ namespace Pulumiverse.Scaleway.Databases
     /// });
     /// ```
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## Example with logs policy
+    ///     var main = new Scaleway.Databases.Instance("main", new()
+    ///     {
+    ///         Name = "test-rdb",
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         LogsPolicy = new Scaleway.Databases.Inputs.InstanceLogsPolicyArgs
+    ///         {
+    ///             MaxAgeRetention = 30,
+    ///             TotalDiskRetention = 100000000,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### 1. Find the instances (CLI)
+    /// 
+    /// If Terraform returned a timeout error after the upgrade started, the error message includes the **new** and **old** instance regional IDs.
+    /// 
+    /// Otherwise, list instances in the same region and project (use the instance `Name` from your Terraform config):
+    /// 
+    /// Identify:
+    /// 
+    /// - **New instance**: target `Engine` (e.g. `PostgreSQL-16`), `Status` is `Ready`, endpoints (load balancer / private network) are attached.
+    /// - **Old instance**: previous `Engine`, often still present as an orphan after a timeout, endpoints usually migrated away.
+    /// 
+    /// You can also compare with the ID stored in Terraform state:
+    /// 
+    /// ### 2. Wait for the upgrade to finish
+    /// 
+    /// Wait until the **new** instance is `Ready` with the expected engine and endpoints before changing Terraform state.
+    /// 
+    /// ### 3. Delete the old instance (CLI)
+    /// 
+    /// Once the new instance is live and endpoints are migrated:
+    /// 
+    /// Replace the instance ID and region with the **old** instance values.
+    /// 
+    /// ### 4. Fix Terraform state
+    /// 
+    /// If Terraform state still points to the **old** instance ID but the **new** instance is the live one:
+    /// 
+    /// If state already references the new instance ID, run `pulumi preview` / `pulumi up` only — you may still need a second apply for dependent resources such as `scaleway.databases.Acl` that reference the instance ID.
+    /// 
+    /// ## Limitations
+    /// 
+    /// The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
+    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+    /// 
     /// ## Import
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -137,6 +199,8 @@ namespace Pulumiverse.Scaleway.Databases
         /// 
         /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
         /// 
+        /// &gt; **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+        /// 
         /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Output("engine")]
@@ -163,7 +227,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<Outputs.InstanceLoadBalancer> LoadBalancer { get; private set; } = null!;
 
         /// <summary>
-        /// Logs policy configuration
+        /// Logs policy configuration for remote logs retention on the Database Instance
         /// </summary>
         [Output("logsPolicy")]
         public Output<Outputs.InstanceLogsPolicy> LogsPolicy { get; private set; } = null!;
@@ -387,6 +451,8 @@ namespace Pulumiverse.Scaleway.Databases
         /// 
         /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
         /// 
+        /// &gt; **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+        /// 
         /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Input("engine")]
@@ -419,7 +485,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<Inputs.InstanceLoadBalancerArgs>? LoadBalancer { get; set; }
 
         /// <summary>
-        /// Logs policy configuration
+        /// Logs policy configuration for remote logs retention on the Database Instance
         /// </summary>
         [Input("logsPolicy")]
         public Input<Inputs.InstanceLogsPolicyArgs>? LogsPolicy { get; set; }
@@ -627,6 +693,8 @@ namespace Pulumiverse.Scaleway.Databases
         /// 
         /// &gt; **Important** Updates to `Engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `UpgradableVersions` computed attribute to check available versions for upgrade.
         /// 
+        /// &gt; **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+        /// 
         /// &gt; **Note** The provider copies instance-level data managed outside `scaleway.databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `scaleway.databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         /// </summary>
         [Input("engine")]
@@ -659,7 +727,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<Inputs.InstanceLoadBalancerGetArgs>? LoadBalancer { get; set; }
 
         /// <summary>
-        /// Logs policy configuration
+        /// Logs policy configuration for remote logs retention on the Database Instance
         /// </summary>
         [Input("logsPolicy")]
         public Input<Inputs.InstanceLogsPolicyGetArgs>? LogsPolicy { get; set; }

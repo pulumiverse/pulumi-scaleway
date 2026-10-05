@@ -12,12 +12,13 @@ from .exporter import *
 from .get_config import *
 from .get_exporter import *
 from .get_grafana import *
+from .get_grafana_product_dashboard import *
+from .get_grafana_product_dashboards import *
 from .get_instance import *
 from .get_preconfigured_alert import *
 from .get_products import *
 from .get_source import *
 from .get_sources import *
-from .grafana_user import *
 from .source import *
 from .token import *
 from ._inputs import *

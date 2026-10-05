@@ -150,7 +150,7 @@ class BudgetAlert(pulumi.CustomResource):
 
         main = scaleway.billing.Budget("main",
             organization_id="11111111-1111-1111-1111-111111111111",
-            consumption_limit=10000,
+            consumption_limit=100,
             enabled=True)
         main_budget_alert = scaleway.billing.BudgetAlert("main",
             budget_id=main.id,
@@ -190,7 +190,7 @@ class BudgetAlert(pulumi.CustomResource):
 
         main = scaleway.billing.Budget("main",
             organization_id="11111111-1111-1111-1111-111111111111",
-            consumption_limit=10000,
+            consumption_limit=100,
             enabled=True)
         main_budget_alert = scaleway.billing.BudgetAlert("main",
             budget_id=main.id,

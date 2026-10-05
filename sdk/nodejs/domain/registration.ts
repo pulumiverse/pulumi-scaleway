@@ -119,13 +119,27 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * To import an existing domain registration, use:
+ * To import an existing domain registration, use the domain name:
  *
  * ```sh
- * $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
+ * $ pulumi import scaleway:domain/registration:Registration test <domain_name>
  * ```
  *
- * You can use the scaleway.domain.Registration data source to look up the `taskId` and `projectId` by domain name.
+ * For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `domainNames` argument in your configuration to avoid a plan diff after import.
+ *
+ * ```sh
+ * $ pulumi import scaleway:domain/registration:Registration test <domain1.com>,<domain2.com>
+ * ```
+ *
+ * Importing by task ID is also supported, as long as the registration task still exists:
+ *
+ * ```sh
+ * $ pulumi import scaleway:domain/registration:Registration test <task_id>
+ * ```
+ *
+ * The `projectId` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `<project_id>/<domain_name>` or `<project_id>/<task_id>` format is still accepted for backward compatibility.
+ *
+ * You can use the scaleway.domain.Registration data source to look up the `taskId` by domain name. Registration tasks are archived after some time; once archived, import by domain name instead.
  */
 export class Registration extends pulumi.CustomResource {
     /**
@@ -192,7 +206,7 @@ export class Registration extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * ID of the task that created the domain.
+     * ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
      */
     declare public /*out*/ readonly taskId: pulumi.Output<string>;
     /**
@@ -287,7 +301,7 @@ export interface RegistrationState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * ID of the task that created the domain.
+     * ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
      */
     taskId?: pulumi.Input<string | undefined>;
     /**

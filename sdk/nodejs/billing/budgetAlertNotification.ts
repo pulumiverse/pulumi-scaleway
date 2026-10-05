@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  *
  * const main = new scaleway.billing.Budget("main", {
  *     organizationId: "11111111-1111-1111-1111-111111111111",
- *     consumptionLimit: 10000,
+ *     consumptionLimit: 100,
  *     enabled: true,
  * });
  * const mainBudgetAlert = new scaleway.billing.BudgetAlert("main", {

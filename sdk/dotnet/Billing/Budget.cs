@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway.Billing
     ///     var main = new Scaleway.Billing.Budget("main", new()
     ///     {
     ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
-    ///         ConsumptionLimit = 10000,
+    ///         ConsumptionLimit = 100,
     ///         Enabled = true,
     ///     });
     /// 
@@ -47,7 +47,7 @@ namespace Pulumiverse.Scaleway.Billing
     public partial class Budget : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Cost limit for the budget in cents.
+        /// Cost limit for the budget in euros.
         /// </summary>
         [Output("consumptionLimit")]
         public Output<int> ConsumptionLimit { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway.Billing
     public sealed class BudgetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Cost limit for the budget in cents.
+        /// Cost limit for the budget in euros.
         /// </summary>
         [Input("consumptionLimit", required: true)]
         public Input<int> ConsumptionLimit { get; set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumiverse.Scaleway.Billing
     public sealed class BudgetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Cost limit for the budget in cents.
+        /// Cost limit for the budget in euros.
         /// </summary>
         [Input("consumptionLimit")]
         public Input<int>? ConsumptionLimit { get; set; }

@@ -212,6 +212,10 @@ type Pool struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -344,6 +348,10 @@ type poolState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -432,6 +440,10 @@ type PoolState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyPtrInput
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -512,6 +524,10 @@ type poolArgs struct {
 	Taints []PoolTaint `pulumi:"taints"`
 	// The Pool upgrade policy
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -589,6 +605,10 @@ type PoolArgs struct {
 	Taints PoolTaintArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyPtrInput
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -842,6 +862,13 @@ func (o PoolOutput) UpdatedAt() pulumi.StringOutput {
 // The Pool upgrade policy
 func (o PoolOutput) UpgradePolicy() PoolUpgradePolicyOutput {
 	return o.ApplyT(func(v *Pool) PoolUpgradePolicyOutput { return v.UpgradePolicy }).(PoolUpgradePolicyOutput)
+}
+
+// User data applied and reconciled with the pool, as a map of key to content.
+//
+// > **Important:** Updates to this field will recreate a new resource.
+func (o PoolOutput) UserData() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringMapOutput { return v.UserData }).(pulumi.StringMapOutput)
 }
 
 // The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.

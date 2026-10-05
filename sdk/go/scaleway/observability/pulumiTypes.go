@@ -1737,6 +1737,139 @@ func (o GetExporterOtlpDestinationArrayOutput) Index(i pulumi.IntInput) GetExpor
 	}).(GetExporterOtlpDestinationOutput)
 }
 
+type GetGrafanaProductDashboardsDashboard struct {
+	// Dashboard name.
+	Name string `pulumi:"name"`
+	// Filter dashboards by tags (for example `rdb`, `lb`).
+	Tags []string `pulumi:"tags"`
+	// Human-readable dashboard title.
+	Title string `pulumi:"title"`
+	// URL to open the dashboard in Grafana.
+	Url string `pulumi:"url"`
+	// Dashboard variables.
+	Variables []string `pulumi:"variables"`
+}
+
+// GetGrafanaProductDashboardsDashboardInput is an input type that accepts GetGrafanaProductDashboardsDashboardArgs and GetGrafanaProductDashboardsDashboardOutput values.
+// You can construct a concrete instance of `GetGrafanaProductDashboardsDashboardInput` via:
+//
+//	GetGrafanaProductDashboardsDashboardArgs{...}
+type GetGrafanaProductDashboardsDashboardInput interface {
+	pulumi.Input
+
+	ToGetGrafanaProductDashboardsDashboardOutput() GetGrafanaProductDashboardsDashboardOutput
+	ToGetGrafanaProductDashboardsDashboardOutputWithContext(context.Context) GetGrafanaProductDashboardsDashboardOutput
+}
+
+type GetGrafanaProductDashboardsDashboardArgs struct {
+	// Dashboard name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Filter dashboards by tags (for example `rdb`, `lb`).
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// Human-readable dashboard title.
+	Title pulumi.StringInput `pulumi:"title"`
+	// URL to open the dashboard in Grafana.
+	Url pulumi.StringInput `pulumi:"url"`
+	// Dashboard variables.
+	Variables pulumi.StringArrayInput `pulumi:"variables"`
+}
+
+func (GetGrafanaProductDashboardsDashboardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGrafanaProductDashboardsDashboard)(nil)).Elem()
+}
+
+func (i GetGrafanaProductDashboardsDashboardArgs) ToGetGrafanaProductDashboardsDashboardOutput() GetGrafanaProductDashboardsDashboardOutput {
+	return i.ToGetGrafanaProductDashboardsDashboardOutputWithContext(context.Background())
+}
+
+func (i GetGrafanaProductDashboardsDashboardArgs) ToGetGrafanaProductDashboardsDashboardOutputWithContext(ctx context.Context) GetGrafanaProductDashboardsDashboardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanaProductDashboardsDashboardOutput)
+}
+
+// GetGrafanaProductDashboardsDashboardArrayInput is an input type that accepts GetGrafanaProductDashboardsDashboardArray and GetGrafanaProductDashboardsDashboardArrayOutput values.
+// You can construct a concrete instance of `GetGrafanaProductDashboardsDashboardArrayInput` via:
+//
+//	GetGrafanaProductDashboardsDashboardArray{ GetGrafanaProductDashboardsDashboardArgs{...} }
+type GetGrafanaProductDashboardsDashboardArrayInput interface {
+	pulumi.Input
+
+	ToGetGrafanaProductDashboardsDashboardArrayOutput() GetGrafanaProductDashboardsDashboardArrayOutput
+	ToGetGrafanaProductDashboardsDashboardArrayOutputWithContext(context.Context) GetGrafanaProductDashboardsDashboardArrayOutput
+}
+
+type GetGrafanaProductDashboardsDashboardArray []GetGrafanaProductDashboardsDashboardInput
+
+func (GetGrafanaProductDashboardsDashboardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGrafanaProductDashboardsDashboard)(nil)).Elem()
+}
+
+func (i GetGrafanaProductDashboardsDashboardArray) ToGetGrafanaProductDashboardsDashboardArrayOutput() GetGrafanaProductDashboardsDashboardArrayOutput {
+	return i.ToGetGrafanaProductDashboardsDashboardArrayOutputWithContext(context.Background())
+}
+
+func (i GetGrafanaProductDashboardsDashboardArray) ToGetGrafanaProductDashboardsDashboardArrayOutputWithContext(ctx context.Context) GetGrafanaProductDashboardsDashboardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGrafanaProductDashboardsDashboardArrayOutput)
+}
+
+type GetGrafanaProductDashboardsDashboardOutput struct{ *pulumi.OutputState }
+
+func (GetGrafanaProductDashboardsDashboardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGrafanaProductDashboardsDashboard)(nil)).Elem()
+}
+
+func (o GetGrafanaProductDashboardsDashboardOutput) ToGetGrafanaProductDashboardsDashboardOutput() GetGrafanaProductDashboardsDashboardOutput {
+	return o
+}
+
+func (o GetGrafanaProductDashboardsDashboardOutput) ToGetGrafanaProductDashboardsDashboardOutputWithContext(ctx context.Context) GetGrafanaProductDashboardsDashboardOutput {
+	return o
+}
+
+// Dashboard name.
+func (o GetGrafanaProductDashboardsDashboardOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrafanaProductDashboardsDashboard) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Filter dashboards by tags (for example `rdb`, `lb`).
+func (o GetGrafanaProductDashboardsDashboardOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGrafanaProductDashboardsDashboard) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// Human-readable dashboard title.
+func (o GetGrafanaProductDashboardsDashboardOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrafanaProductDashboardsDashboard) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// URL to open the dashboard in Grafana.
+func (o GetGrafanaProductDashboardsDashboardOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrafanaProductDashboardsDashboard) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Dashboard variables.
+func (o GetGrafanaProductDashboardsDashboardOutput) Variables() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGrafanaProductDashboardsDashboard) []string { return v.Variables }).(pulumi.StringArrayOutput)
+}
+
+type GetGrafanaProductDashboardsDashboardArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGrafanaProductDashboardsDashboardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGrafanaProductDashboardsDashboard)(nil)).Elem()
+}
+
+func (o GetGrafanaProductDashboardsDashboardArrayOutput) ToGetGrafanaProductDashboardsDashboardArrayOutput() GetGrafanaProductDashboardsDashboardArrayOutput {
+	return o
+}
+
+func (o GetGrafanaProductDashboardsDashboardArrayOutput) ToGetGrafanaProductDashboardsDashboardArrayOutputWithContext(ctx context.Context) GetGrafanaProductDashboardsDashboardArrayOutput {
+	return o
+}
+
+func (o GetGrafanaProductDashboardsDashboardArrayOutput) Index(i pulumi.IntInput) GetGrafanaProductDashboardsDashboardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGrafanaProductDashboardsDashboard {
+		return vs[0].([]GetGrafanaProductDashboardsDashboard)[vs[1].(int)]
+	}).(GetGrafanaProductDashboardsDashboardOutput)
+}
+
 type GetInstanceEndpoint struct {
 	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
@@ -2510,6 +2643,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterDatadogDestinationArrayInput)(nil)).Elem(), GetExporterDatadogDestinationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterOtlpDestinationInput)(nil)).Elem(), GetExporterOtlpDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterOtlpDestinationArrayInput)(nil)).Elem(), GetExporterOtlpDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanaProductDashboardsDashboardInput)(nil)).Elem(), GetGrafanaProductDashboardsDashboardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGrafanaProductDashboardsDashboardArrayInput)(nil)).Elem(), GetGrafanaProductDashboardsDashboardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointInput)(nil)).Elem(), GetInstanceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointArrayInput)(nil)).Elem(), GetInstanceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlInput)(nil)).Elem(), GetInstancePushUrlArgs{})
@@ -2546,6 +2681,8 @@ func init() {
 	pulumi.RegisterOutputType(GetExporterDatadogDestinationArrayOutput{})
 	pulumi.RegisterOutputType(GetExporterOtlpDestinationOutput{})
 	pulumi.RegisterOutputType(GetExporterOtlpDestinationArrayOutput{})
+	pulumi.RegisterOutputType(GetGrafanaProductDashboardsDashboardOutput{})
+	pulumi.RegisterOutputType(GetGrafanaProductDashboardsDashboardArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceEndpointOutput{})
 	pulumi.RegisterOutputType(GetInstanceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlOutput{})

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -71,10 +73,12 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["accessKey"] = (args?.accessKey ? pulumi.secret(args.accessKey) : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
             resourceInputs["apiUrl"] = args?.apiUrl;
+            resourceInputs["endpoints"] = pulumi.output(args?.endpoints).apply(JSON.stringify);
             resourceInputs["organizationId"] = (args?.organizationId) ?? utilities.getEnv("SCW_ORGANIZATION_ID");
             resourceInputs["profile"] = args?.profile;
             resourceInputs["projectId"] = (args?.projectId) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
             resourceInputs["region"] = (args?.region) ?? utilities.getEnv("SCW_DEFAULT_REGION");
+            resourceInputs["s3UsePathStyle"] = pulumi.output(args?.s3UsePathStyle).apply(JSON.stringify);
             resourceInputs["secretKey"] = (args?.secretKey ? pulumi.secret(args.secretKey) : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
             resourceInputs["zone"] = (args?.zone) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
         }
@@ -107,6 +111,10 @@ export interface ProviderArgs {
      */
     apiUrl?: pulumi.Input<string | undefined>;
     /**
+     * Configuration block for customizing service endpoints.
+     */
+    endpoints?: pulumi.Input<pulumi.Input<inputs.ProviderEndpoint>[] | undefined>;
+    /**
      * The Scaleway organization ID.
      */
     organizationId?: pulumi.Input<string | undefined>;
@@ -122,6 +130,10 @@ export interface ProviderArgs {
      * The region you want to attach the resource to
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * Whether to enable the request to use path-style addressing.
+     */
+    s3UsePathStyle?: pulumi.Input<boolean | undefined>;
     /**
      * The Scaleway secret Key.
      */

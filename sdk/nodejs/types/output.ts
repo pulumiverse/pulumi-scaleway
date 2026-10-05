@@ -492,7 +492,7 @@ export interface DatabaseInstanceLogsPolicy {
      */
     maxAgeRetention: number;
     /**
-     * The max disk size of remote logs to keep on the Database Instance.
+     * The max disk size (in bytes) of remote logs to keep on the Database Instance
      */
     totalDiskRetention: number;
 }
@@ -1390,7 +1390,7 @@ export interface GetDatabaseInstanceLogsPolicy {
      */
     maxAgeRetention: number;
     /**
-     * The max disk size of remote logs to keep on the Database Instance.
+     * The max disk size (in bytes) of remote logs to keep on the Database Instance
      */
     totalDiskRetention: number;
 }
@@ -2955,6 +2955,74 @@ export interface GetLoadbalancerPrivateNetwork {
      * (Optional, Computed, Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone: string;
+}
+
+export interface GetMessageqDeploymentEndpoint {
+    /**
+     * The ID of the endpoint.
+     */
+    id: string;
+    /**
+     * Private network ID if the endpoint is private.
+     */
+    privateNetworkId: string;
+    /**
+     * Whether the endpoint is public (`true`) or private (`false`).
+     */
+    public: boolean;
+    /**
+     * List of services exposed on the endpoint.
+     */
+    services: outputs.GetMessageqDeploymentEndpointService[];
+}
+
+export interface GetMessageqDeploymentEndpointService {
+    /**
+     * The name of the deployment. Only one of `name` and `deploymentId` should be specified.
+     */
+    name: string;
+    /**
+     * Service port.
+     */
+    port: number;
+    /**
+     * Service URL.
+     */
+    url: string;
+}
+
+export interface GetMessageqDeploymentVolume {
+    /**
+     * Volume size in GB
+     */
+    sizeInGb: number;
+    /**
+     * Volume type (sbs_5k, sbs_15k)
+     */
+    type: string;
+}
+
+export interface GetMessageqNodeTypeAvailableVolumeType {
+    /**
+     * Volume size increment in GB.
+     */
+    chunkSizeInGb: number;
+    /**
+     * Volume type description.
+     */
+    description: string;
+    /**
+     * Maximum volume size in GB.
+     */
+    maxSizeInGb: number;
+    /**
+     * Minimum volume size in GB.
+     */
+    minSizeInGb: number;
+    /**
+     * Volume type.
+     */
+    type: string;
 }
 
 export interface GetMongoDbInstancePrivateIp {
@@ -4689,6 +4757,85 @@ export interface LoadbalancerPrivateNetwork {
     zone: string;
 }
 
+export interface MailboxDomainDnsRecord {
+    /**
+     * Fully qualified name for this record.
+     */
+    dnsName: string;
+    /**
+     * Record type (TXT, MX, CNAME, SRV…).
+     */
+    dnsType: string;
+    /**
+     * Value to set for this record.
+     */
+    dnsValue: string;
+    /**
+     * Error detail when the record is invalid or not found.
+     */
+    error: string;
+    /**
+     * Requirement level (`required`, `recommended`, `optional`).
+     */
+    level: string;
+    /**
+     * Validation status (`valid`, `invalid`, `notFound`, `validating`).
+     */
+    status: string;
+}
+
+export interface MessageqDeploymentEndpoint {
+    /**
+     * The ID of the endpoint.
+     */
+    id: string;
+    /**
+     * Private network ID if the endpoint is private.
+     */
+    privateNetworkId: string;
+    /**
+     * Whether the endpoint is public (`true`) or private (`false`).
+     */
+    public: boolean;
+    /**
+     * List of services exposed on the endpoint.
+     */
+    services: outputs.MessageqDeploymentEndpointService[];
+}
+
+export interface MessageqDeploymentEndpointService {
+    /**
+     * Name of the MessageQ deployment. If not specified, a random name will be generated.
+     */
+    name: string;
+    /**
+     * Service port number.
+     */
+    port: number;
+    /**
+     * Full URL to access the service.
+     */
+    url: string;
+}
+
+export interface MessageqDeploymentPrivateNetwork {
+    /**
+     * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+     */
+    privateNetworkId: string;
+}
+
+export interface MessageqDeploymentVolume {
+    /**
+     * Volume size in GB. Can be updated in-place via the Upgrade API.
+     */
+    sizeInGb: number;
+    /**
+     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+     */
+    type: string;
+}
+
 export interface MnqSnsCredentialsPermissions {
     /**
      * . Defines whether the user can manage the associated resource(s).
@@ -5896,6 +6043,37 @@ export namespace block {
         key: string;
     }
 
+    export interface GetSnapshotsSnapshot {
+        /**
+         * The ID of the snapshot in the `zone/uuid` format.
+         */
+        id: string;
+        /**
+         * Filter snapshots by their name. Snapshots with a matching name are listed.
+         */
+        name: string;
+        /**
+         * The ID of the Project the snapshots are associated with, used as filter.
+         */
+        projectId: string;
+        /**
+         * The Scaleway Resource Name (SRN) of the snapshot.
+         */
+        srn: string;
+        /**
+         * List of tags used as filter. Snapshots with one or more matching tags are listed.
+         */
+        tags: string[];
+        /**
+         * The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+         */
+        volumeId: string;
+        /**
+         * `zone`) The zone in which snapshots exist.
+         */
+        zone: string;
+    }
+
     export interface SnapshotExport {
         /**
          * The name of the bucket where the QCOW file will be saved.
@@ -5916,6 +6094,16 @@ export namespace block {
          * The key of the QCOW file within the bucket.
          */
         key: string;
+    }
+
+}
+
+export namespace config {
+    export interface Endpoints {
+        /**
+         * Use this to override the default service endpoint URL.
+         */
+        s3?: string;
     }
 
 }
@@ -6240,6 +6428,48 @@ export namespace databases {
         ip: string;
     }
 
+    export interface GetDatabaseEnginesEngine {
+        /**
+         * URL of the database engine logo.
+         */
+        logoUrl: string;
+        /**
+         * Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+         */
+        name: string;
+        /**
+         * `region`) The region in which to list database engines.
+         */
+        region: string;
+        /**
+         * Available versions for the database engine.
+         */
+        versions: outputs.databases.GetDatabaseEnginesEngineVersion[];
+    }
+
+    export interface GetDatabaseEnginesEngineVersion {
+        /**
+         * Whether the engine version is in beta.
+         */
+        beta: boolean;
+        /**
+         * Whether the engine version is disabled and cannot be created.
+         */
+        disabled: boolean;
+        /**
+         * End of life date of the engine version (RFC3339).
+         */
+        endOfLife: string;
+        /**
+         * Filter by database engine name (e.g. `PostgreSQL`, `MySQL`).
+         */
+        name: string;
+        /**
+         * Filter by database engine version (e.g. `16`).
+         */
+        version: string;
+    }
+
     export interface GetInstanceLoadBalancer {
         /**
          * The endpoint ID
@@ -6263,13 +6493,55 @@ export namespace databases {
         port: number;
     }
 
+    export interface GetInstanceLogsDetailsDetail {
+        /**
+         * Name of the remote log.
+         */
+        logName: string;
+        /**
+         * Size of the remote log in bytes.
+         */
+        sizeInBytes: number;
+    }
+
+    export interface GetInstanceLogsInstanceLog {
+        /**
+         * Creation date of the log (RFC 3339 format).
+         */
+        createdAt: string;
+        /**
+         * (Sensitive) Presigned Object Storage URL to download the log file.
+         */
+        downloadUrl: string;
+        /**
+         * Expiration date of the log (RFC 3339 format).
+         */
+        expiresAt: string;
+        /**
+         * UUID of the Database Instance log, in the `{region}/{id}` format.
+         */
+        id: string;
+        /**
+         * Name of the underlying node.
+         */
+        nodeName: string;
+        /**
+         * `region`) The region in which the Database Instance exists.
+         */
+        region: string;
+        /**
+         * Status of the log (`unknown`, `ready`, `creating`, `error`).
+         */
+        status: string;
+    }
+
     export interface GetInstanceLogsPolicy {
         /**
          * The max age (in days) of remote logs to keep on the Database Instance
          */
         maxAgeRetention: number;
         /**
-         * The max disk size of remote logs to keep on the Database Instance.
+         * The max disk size (in bytes) of remote logs to keep on the Database Instance
          */
         totalDiskRetention: number;
     }
@@ -6389,6 +6661,80 @@ export namespace databases {
         version: string;
     }
 
+    export interface GetNodeTypesNodeType {
+        /**
+         * Available storage options for the node type.
+         */
+        availableVolumeTypes: outputs.databases.GetNodeTypesNodeTypeAvailableVolumeType[];
+        /**
+         * Whether the node type is currently in beta.
+         */
+        beta: boolean;
+        /**
+         * Description of the volume type.
+         */
+        description: string;
+        /**
+         * Whether the node type is currently disabled.
+         */
+        disabled: boolean;
+        /**
+         * Generation associated with the node type offer.
+         */
+        generation: string;
+        /**
+         * Instance range associated with the node type offer.
+         */
+        instanceRange: string;
+        /**
+         * Whether the node type can only be used with high availability.
+         */
+        isHaRequired: boolean;
+        /**
+         * Amount of memory available in GB.
+         */
+        memorySizeInGb: number;
+        /**
+         * Name identifier of the node type.
+         */
+        name: string;
+        /**
+         * Current stock status for the node type.
+         */
+        stockStatus: string;
+        /**
+         * Number of virtual CPUs.
+         */
+        vcpus: number;
+    }
+
+    export interface GetNodeTypesNodeTypeAvailableVolumeType {
+        /**
+         * Minimum increment level for a Block Storage volume size in GB.
+         */
+        chunkSizeInGb: number;
+        /**
+         * Storage class of the volume.
+         */
+        class: string;
+        /**
+         * Description of the volume type.
+         */
+        description: string;
+        /**
+         * Maximum volume size in GB.
+         */
+        maxSizeInGb: number;
+        /**
+         * Minimum volume size in GB.
+         */
+        minSizeInGb: number;
+        /**
+         * Volume type.
+         */
+        type: string;
+    }
+
     export interface InstanceLoadBalancer {
         /**
          * The ID of the endpoint.
@@ -6418,7 +6764,7 @@ export namespace databases {
          */
         maxAgeRetention: number;
         /**
-         * The max disk size of remote logs to keep on the Database Instance.
+         * The max disk size (in bytes) of remote logs to keep on the Database Instance
          */
         totalDiskRetention: number;
     }
@@ -13031,6 +13377,29 @@ export namespace observability {
         headers: {[key: string]: string};
     }
 
+    export interface GetGrafanaProductDashboardsDashboard {
+        /**
+         * Dashboard name.
+         */
+        name: string;
+        /**
+         * Filter dashboards by tags (for example `rdb`, `lb`).
+         */
+        tags: string[];
+        /**
+         * Human-readable dashboard title.
+         */
+        title: string;
+        /**
+         * URL to open the dashboard in Grafana.
+         */
+        url: string;
+        /**
+         * Dashboard variables.
+         */
+        variables: string[];
+    }
+
     export interface GetInstanceEndpoint {
         /**
          * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
@@ -13487,6 +13856,56 @@ export namespace redis {
          * TCP port of the endpoint.
          */
         port: number;
+    }
+
+    export interface GetClusterVersionsVersion {
+        /**
+         * End of life date of the version (RFC3339).
+         */
+        endOfLifeAt: string;
+        /**
+         * URL of the Redis™ logo.
+         */
+        logoUrl: string;
+        /**
+         * Release date of the version (RFC3339).
+         */
+        releasedAt: string;
+        /**
+         * Filter Redis™ engine versions that match a given name pattern.
+         */
+        version: string;
+    }
+
+    export interface GetNodeTypesNodeType {
+        /**
+         * Whether the node type is currently in beta.
+         */
+        beta: boolean;
+        /**
+         * Current specifications of the offer.
+         */
+        description: string;
+        /**
+         * Whether the node type is currently disabled.
+         */
+        disabled: boolean;
+        /**
+         * Amount of memory available in GB.
+         */
+        memorySizeInGb: number;
+        /**
+         * Name of the node type.
+         */
+        name: string;
+        /**
+         * Current stock status of the node type.
+         */
+        stockStatus: string;
+        /**
+         * Number of virtual CPUs.
+         */
+        vcpus: number;
     }
 
 }

@@ -26,8 +26,6 @@ namespace Pulumiverse.Scaleway
     /// &gt; **Note:**
     /// From January 1st 2025, Cockpit plans have been deprecated. You can now edit the retention period for all your datasources (metrics, logs, and traces) separately. Refer to our product documentation for more information on [possible retention values](https://www.scaleway.com/en/docs/cockpit/concepts/#retention) and [pricing](https://www.scaleway.com/en/docs/cockpit/faq/#how-am-i-billed-for-increasing-data-retention-period).
     /// 
-    /// &gt; **Note:** The `scaleway.observability.GrafanaUser` resource is deprecated. Use the `scaleway.observability.getGrafana` data source to retrieve the Grafana URL and authenticate using your Scaleway IAM credentials.
-    /// 
     /// The `scaleway.observability.Cockpit` resource allows you to create and manage Scaleway Cockpit instances.
     /// 
     /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
@@ -88,9 +86,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Use the Grafana Terraform provider (Deprecated)
-    /// 
-    /// &gt; **Note:** This example is deprecated. Use the `scaleway.observability.getGrafana` data source with IAM authentication instead.
+    /// ### Use the Grafana Terraform provider
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -100,18 +96,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Old approach (deprecated) - Using scaleway_cockpit_grafana_user
-    ///     // resource "scaleway_cockpit_grafana_user" "main" {
-    ///     //   project_id = scaleway_cockpit.main.project_id
-    ///     //   login      = "example"
-    ///     //   role       = "editor"
-    ///     // }
-    ///     //
-    ///     // provider "grafana" {
-    ///     //   url  = scaleway_cockpit.main.endpoints.0.grafana_url
-    ///     //   auth = "${scaleway_cockpit_grafana_user.main.login}:${scaleway_cockpit_grafana_user.main.password}"
-    ///     // }
-    ///     // New approach - Use scaleway_cockpit_grafana data source with IAM auth
     ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
     ///     {
     ///         ProjectId = mainScalewayCockpit.ProjectId,
