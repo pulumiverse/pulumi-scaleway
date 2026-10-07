@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<int>? MaxAgeRetention { get; set; }
 
         /// <summary>
-        /// The max disk size of remote logs to keep on the Database Instance.
+        /// The max disk size (in bytes) of remote logs to keep on the Database Instance
         /// </summary>
         [Input("totalDiskRetention")]
         public Input<int>? TotalDiskRetention { get; set; }

@@ -21,6 +21,7 @@ export function getOfferSubscription(args?: GetOfferSubscriptionArgs, opts?: pul
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:tem/getOfferSubscription:getOfferSubscription", {
+        "organizationId": args.organizationId,
         "projectId": args.projectId,
         "region": args.region,
     }, opts);
@@ -31,7 +32,11 @@ export function getOfferSubscription(args?: GetOfferSubscriptionArgs, opts?: pul
  */
 export interface GetOfferSubscriptionArgs {
     /**
-     * `projectId`) The ID of the project the offer subscription is associated with.
+     * The ID of the organization the offer subscription is associated with. Conflicts with `projectId`.
+     */
+    organizationId?: string;
+    /**
+     * `projectId`) The ID of the project the offer subscription is associated with. Conflicts with `organizationId`.
      */
     projectId?: string;
     /**
@@ -76,6 +81,7 @@ export interface GetOfferSubscriptionResult {
      * The name of the offer associated with the subscription (e.g., `scale`).
      */
     readonly offerName: string;
+    readonly organizationId: string;
     readonly projectId: string;
     readonly region: string;
     /**
@@ -104,6 +110,7 @@ export function getOfferSubscriptionOutput(args?: GetOfferSubscriptionOutputArgs
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:tem/getOfferSubscription:getOfferSubscription", {
+        "organizationId": args.organizationId,
         "projectId": args.projectId,
         "region": args.region,
     }, opts);
@@ -114,7 +121,11 @@ export function getOfferSubscriptionOutput(args?: GetOfferSubscriptionOutputArgs
  */
 export interface GetOfferSubscriptionOutputArgs {
     /**
-     * `projectId`) The ID of the project the offer subscription is associated with.
+     * The ID of the organization the offer subscription is associated with. Conflicts with `projectId`.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
+    /**
+     * `projectId`) The ID of the project the offer subscription is associated with. Conflicts with `organizationId`.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**

@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetWafStageResult',
@@ -26,13 +27,16 @@ class GetWafStageResult:
     """
     A collection of values returned by getWafStage.
     """
-    def __init__(__self__, backend_stage_id=None, created_at=None, id=None, mode=None, paranoia_level=None, pipeline_id=None, project_id=None, updated_at=None, waf_stage_id=None):
+    def __init__(__self__, backend_stage_id=None, created_at=None, exclusion_rules=None, id=None, mode=None, paranoia_level=None, pipeline_id=None, project_id=None, updated_at=None, waf_stage_id=None):
         if backend_stage_id and not isinstance(backend_stage_id, str):
             raise TypeError("Expected argument 'backend_stage_id' to be a str")
         pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if exclusion_rules and not isinstance(exclusion_rules, list):
+            raise TypeError("Expected argument 'exclusion_rules' to be a list")
+        pulumi.set(__self__, "exclusion_rules", exclusion_rules)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -64,6 +68,11 @@ class GetWafStageResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="exclusionRules")
+    def exclusion_rules(self) -> Sequence['outputs.GetWafStageExclusionRuleResult']:
+        return pulumi.get(self, "exclusion_rules")
 
     @_builtins.property
     @pulumi.getter
@@ -112,6 +121,7 @@ class AwaitableGetWafStageResult(GetWafStageResult):
         return GetWafStageResult(
             backend_stage_id=self.backend_stage_id,
             created_at=self.created_at,
+            exclusion_rules=self.exclusion_rules,
             id=self.id,
             mode=self.mode,
             paranoia_level=self.paranoia_level,
@@ -162,6 +172,7 @@ def get_waf_stage(pipeline_id: Optional[_builtins.str] = None,
     return AwaitableGetWafStageResult(
         backend_stage_id=pulumi.get(__ret__, 'backend_stage_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
+        exclusion_rules=pulumi.get(__ret__, 'exclusion_rules'),
         id=pulumi.get(__ret__, 'id'),
         mode=pulumi.get(__ret__, 'mode'),
         paranoia_level=pulumi.get(__ret__, 'paranoia_level'),
@@ -209,6 +220,7 @@ def get_waf_stage_output(pipeline_id: pulumi.Input[Optional[Optional[_builtins.s
     return __ret__.apply(lambda __response__: GetWafStageResult(
         backend_stage_id=pulumi.get(__response__, 'backend_stage_id'),
         created_at=pulumi.get(__response__, 'created_at'),
+        exclusion_rules=pulumi.get(__response__, 'exclusion_rules'),
         id=pulumi.get(__response__, 'id'),
         mode=pulumi.get(__response__, 'mode'),
         paranoia_level=pulumi.get(__response__, 'paranoia_level'),

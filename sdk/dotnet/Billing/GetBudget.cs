@@ -144,7 +144,7 @@ namespace Pulumiverse.Scaleway.Billing
     {
         public readonly string BudgetId;
         /// <summary>
-        /// Cost limit for the budget in cents
+        /// Cost limit for the budget in euros
         /// </summary>
         public readonly int ConsumptionLimit;
         /// <summary>

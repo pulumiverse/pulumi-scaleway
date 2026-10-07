@@ -437,6 +437,20 @@ namespace Pulumiverse.Scaleway
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the default PublicEndpoint is enabled or not (default: true).
+        /// </summary>
+        [Output("enableDefaultPublicEndpoint")]
+        public Output<bool> EnableDefaultPublicEndpoint { get; private set; } = null!;
+
+        /// <summary>
+        /// Where the PrivateEndpoint is enabled or not (default: false).
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Output("enablePrivateEndpoint")]
+        public Output<bool> EnablePrivateEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         /// </summary>
         [Output("environmentVariables")]
@@ -547,9 +561,13 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Privacy { get; private set; } = null!;
 
         /// <summary>
+        /// Private URL of the container. This endpoint is only accessible from the PrivateNetwork on which the container is attached.
+        /// </summary>
+        [Output("privateEndpoint")]
+        public Output<string> PrivateEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the Private Network the container is connected to.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -723,6 +741,20 @@ namespace Pulumiverse.Scaleway
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Whether the default PublicEndpoint is enabled or not (default: true).
+        /// </summary>
+        [Input("enableDefaultPublicEndpoint")]
+        public Input<bool>? EnableDefaultPublicEndpoint { get; set; }
+
+        /// <summary>
+        /// Where the PrivateEndpoint is enabled or not (default: false).
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Input("enablePrivateEndpoint")]
+        public Input<bool>? EnablePrivateEndpoint { get; set; }
+
         [Input("environmentVariables")]
         private InputMap<string>? _environmentVariables;
 
@@ -842,8 +874,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the Private Network the container is connected to.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -996,6 +1026,20 @@ namespace Pulumiverse.Scaleway
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
 
+        /// <summary>
+        /// Whether the default PublicEndpoint is enabled or not (default: true).
+        /// </summary>
+        [Input("enableDefaultPublicEndpoint")]
+        public Input<bool>? EnableDefaultPublicEndpoint { get; set; }
+
+        /// <summary>
+        /// Where the PrivateEndpoint is enabled or not (default: false).
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        /// </summary>
+        [Input("enablePrivateEndpoint")]
+        public Input<bool>? EnablePrivateEndpoint { get; set; }
+
         [Input("environmentVariables")]
         private InputMap<string>? _environmentVariables;
 
@@ -1120,9 +1164,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
+        /// Private URL of the container. This endpoint is only accessible from the PrivateNetwork on which the container is attached.
+        /// </summary>
+        [Input("privateEndpoint")]
+        public Input<string>? PrivateEndpoint { get; set; }
+
+        /// <summary>
         /// The ID of the Private Network the container is connected to.
-        /// 
-        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

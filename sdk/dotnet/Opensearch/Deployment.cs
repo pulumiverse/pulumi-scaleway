@@ -156,6 +156,10 @@ namespace Pulumiverse.Scaleway.Opensearch
     /// 
     /// ## Upgrade Notes
     /// 
+    /// ### In-place node count upgrade
+    /// 
+    /// Changing `NodeCount` (the number of nodes) upgrades the deployment **in place** via the SearchDB upgrade API — no recreation, no data loss.
+    /// 
     /// ### Changing Resources
     /// 
     /// Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
@@ -183,7 +187,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// List of endpoints for accessing the deployment.
+        /// List of all endpoints returned by the API for accessing the deployment (public and private).
         /// </summary>
         [Output("endpoints")]
         public Output<ImmutableArray<Outputs.DeploymentEndpoint>> Endpoints { get; private set; } = null!;
@@ -201,7 +205,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Output<int?> NodeAmount { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
         /// </summary>
         [Output("nodeCount")]
         public Output<int?> NodeCount { get; private set; } = null!;
@@ -227,7 +231,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `PrivateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`). Adding `PrivateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `Endpoints` lists every endpoint returned by the API.
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>
@@ -346,7 +350,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Input<int>? NodeAmount { get; set; }
 
         /// <summary>
-        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
         /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
@@ -382,7 +386,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `PrivateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`). Adding `PrivateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `Endpoints` lists every endpoint returned by the API.
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>
@@ -443,7 +447,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         private InputList<Inputs.DeploymentEndpointGetArgs>? _endpoints;
 
         /// <summary>
-        /// List of endpoints for accessing the deployment.
+        /// List of all endpoints returned by the API for accessing the deployment (public and private).
         /// </summary>
         public InputList<Inputs.DeploymentEndpointGetArgs> Endpoints
         {
@@ -464,7 +468,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Input<int>? NodeAmount { get; set; }
 
         /// <summary>
-        /// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+        /// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
         /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
@@ -500,7 +504,7 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `PrivateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`).
+        /// &gt; **Note:** Without `PrivateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `PrivateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `PublicDashboardUrl`). Adding `PrivateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `Endpoints` lists every endpoint returned by the API.
         /// 
         /// &gt; **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         /// </summary>

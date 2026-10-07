@@ -1229,7 +1229,7 @@ class GetBucketLifecycleRuleExpirationResult(dict):
         """
         :param _builtins.str date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect
-        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         pulumi.set(__self__, "date", date)
         pulumi.set(__self__, "days", days)
@@ -1255,7 +1255,7 @@ class GetBucketLifecycleRuleExpirationResult(dict):
     @pulumi.getter(name="expiredObjectDeleteMarker")
     def expired_object_delete_marker(self) -> _builtins.bool:
         """
-        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         return pulumi.get(self, "expired_object_delete_marker")
 

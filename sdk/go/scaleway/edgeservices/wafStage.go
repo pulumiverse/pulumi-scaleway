@@ -44,6 +44,42 @@ import (
 //
 // ```
 //
+// ### Exclude CRS rules
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := edgeservices.NewWafStage(ctx, "main", &edgeservices.WafStageArgs{
+//				PipelineId:    pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
+//				Mode:          pulumi.String("enable"),
+//				ParanoiaLevel: pulumi.Int(3),
+//				ExclusionRules: edgeservices.WafStageExclusionRuleArray{
+//					&edgeservices.WafStageExclusionRuleArgs{
+//						RuleId: pulumi.Int(942100),
+//					},
+//					&edgeservices.WafStageExclusionRuleArgs{
+//						RuleId: pulumi.Int(920350),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // WAF stages can be imported using the `{id}`, e.g.
@@ -58,6 +94,8 @@ type WafStage struct {
 	BackendStageId pulumi.StringOutput `pulumi:"backendStageId"`
 	// The date and time of the creation of the WAF stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// List of OWASP CRS rule IDs excluded from the WAF.
+	ExclusionRules WafStageExclusionRuleArrayOutput `pulumi:"exclusionRules"`
 	// The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
 	Mode pulumi.StringOutput `pulumi:"mode"`
 	// The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
@@ -116,6 +154,8 @@ type wafStageState struct {
 	BackendStageId *string `pulumi:"backendStageId"`
 	// The date and time of the creation of the WAF stage.
 	CreatedAt *string `pulumi:"createdAt"`
+	// List of OWASP CRS rule IDs excluded from the WAF.
+	ExclusionRules []WafStageExclusionRule `pulumi:"exclusionRules"`
 	// The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
 	Mode *string `pulumi:"mode"`
 	// The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
@@ -133,6 +173,8 @@ type WafStageState struct {
 	BackendStageId pulumi.StringPtrInput
 	// The date and time of the creation of the WAF stage.
 	CreatedAt pulumi.StringPtrInput
+	// List of OWASP CRS rule IDs excluded from the WAF.
+	ExclusionRules WafStageExclusionRuleArrayInput
 	// The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
 	Mode pulumi.StringPtrInput
 	// The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
@@ -152,6 +194,8 @@ func (WafStageState) ElementType() reflect.Type {
 type wafStageArgs struct {
 	// The ID of the backend stage to forward requests to after the WAF stage.
 	BackendStageId *string `pulumi:"backendStageId"`
+	// List of OWASP CRS rule IDs excluded from the WAF.
+	ExclusionRules []WafStageExclusionRule `pulumi:"exclusionRules"`
 	// The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
 	Mode *string `pulumi:"mode"`
 	// The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
@@ -166,6 +210,8 @@ type wafStageArgs struct {
 type WafStageArgs struct {
 	// The ID of the backend stage to forward requests to after the WAF stage.
 	BackendStageId pulumi.StringPtrInput
+	// List of OWASP CRS rule IDs excluded from the WAF.
+	ExclusionRules WafStageExclusionRuleArrayInput
 	// The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
 	Mode pulumi.StringPtrInput
 	// The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
@@ -271,6 +317,11 @@ func (o WafStageOutput) BackendStageId() pulumi.StringOutput {
 // The date and time of the creation of the WAF stage.
 func (o WafStageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *WafStage) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// List of OWASP CRS rule IDs excluded from the WAF.
+func (o WafStageOutput) ExclusionRules() WafStageExclusionRuleArrayOutput {
+	return o.ApplyT(func(v *WafStage) WafStageExclusionRuleArrayOutput { return v.ExclusionRules }).(WafStageExclusionRuleArrayOutput)
 }
 
 // The mode defining WAF behavior (`disable`/`logOnly`/`enable`).

@@ -49,7 +49,9 @@ func GetOfferSubscription(ctx *pulumi.Context, args *GetOfferSubscriptionArgs, o
 
 // A collection of arguments for invoking getOfferSubscription.
 type GetOfferSubscriptionArgs struct {
-	// `projectId`) The ID of the project the offer subscription is associated with.
+	// The ID of the organization the offer subscription is associated with. Conflicts with `projectId`.
+	OrganizationId *string `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the offer subscription is associated with. Conflicts with `organizationId`.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region where the offer subscription exists.
 	Region *string `pulumi:"region"`
@@ -72,9 +74,10 @@ type GetOfferSubscriptionResult struct {
 	// The maximum number of webhooks that can be associated with the offer subscription per domain.
 	MaxWebhooksPerDomain int `pulumi:"maxWebhooksPerDomain"`
 	// The name of the offer associated with the subscription (e.g., `scale`).
-	OfferName string `pulumi:"offerName"`
-	ProjectId string `pulumi:"projectId"`
-	Region    string `pulumi:"region"`
+	OfferName      string `pulumi:"offerName"`
+	OrganizationId string `pulumi:"organizationId"`
+	ProjectId      string `pulumi:"projectId"`
+	Region         string `pulumi:"region"`
 	// The Service Level Agreement (SLA) percentage of the offer subscription.
 	Sla float64 `pulumi:"sla"`
 	// The date and time of the subscription.
@@ -88,7 +91,9 @@ func GetOfferSubscriptionOutput(ctx *pulumi.Context, args GetOfferSubscriptionOu
 
 // A collection of arguments for invoking getOfferSubscription.
 type GetOfferSubscriptionOutputArgs struct {
-	// `projectId`) The ID of the project the offer subscription is associated with.
+	// The ID of the organization the offer subscription is associated with. Conflicts with `projectId`.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// `projectId`) The ID of the project the offer subscription is associated with. Conflicts with `organizationId`.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region where the offer subscription exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -151,6 +156,10 @@ func (o GetOfferSubscriptionResultOutput) MaxWebhooksPerDomain() pulumi.IntOutpu
 // The name of the offer associated with the subscription (e.g., `scale`).
 func (o GetOfferSubscriptionResultOutput) OfferName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.OfferName }).(pulumi.StringOutput)
+}
+
+func (o GetOfferSubscriptionResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
 func (o GetOfferSubscriptionResultOutput) ProjectId() pulumi.StringOutput {

@@ -27,6 +27,7 @@ __all__ = [
     'RouteStageRuleRuleHttpMatchHostFilter',
     'RouteStageRuleRuleHttpMatchPathFilter',
     'TlsStageSecret',
+    'WafStageExclusionRule',
     'GetBackendStageContainerBackendConfigResult',
     'GetBackendStageFunctionBackendConfigResult',
     'GetBackendStageLbBackendConfigResult',
@@ -38,6 +39,7 @@ __all__ = [
     'GetRouteStageRuleRuleHttpMatchHostFilterResult',
     'GetRouteStageRuleRuleHttpMatchPathFilterResult',
     'GetTlsStageSecretResult',
+    'GetWafStageExclusionRuleResult',
 ]
 
 @pulumi.output_type
@@ -665,6 +667,41 @@ class TlsStageSecret(dict):
 
 
 @pulumi.output_type
+class WafStageExclusionRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WafStageExclusionRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WafStageExclusionRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WafStageExclusionRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 rule_id: _builtins.int):
+        """
+        :param _builtins.int rule_id: OWASP CRS rule ID excluded from the WAF.
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> _builtins.int:
+        """
+        OWASP CRS rule ID excluded from the WAF.
+        """
+        return pulumi.get(self, "rule_id")
+
+
+@pulumi.output_type
 class GetBackendStageContainerBackendConfigResult(dict):
     def __init__(__self__, *,
                  container_id: _builtins.str,
@@ -1058,5 +1095,23 @@ class GetTlsStageSecretResult(dict):
         Secret ID to filter for.
         """
         return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class GetWafStageExclusionRuleResult(dict):
+    def __init__(__self__, *,
+                 rule_id: _builtins.int):
+        """
+        :param _builtins.int rule_id: OWASP CRS rule ID excluded from the WAF
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> _builtins.int:
+        """
+        OWASP CRS rule ID excluded from the WAF
+        """
+        return pulumi.get(self, "rule_id")
 
 

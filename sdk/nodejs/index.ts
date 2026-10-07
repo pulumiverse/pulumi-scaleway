@@ -45,11 +45,6 @@ export type CockpitAlertManager = import("./cockpitAlertManager").CockpitAlertMa
 export const CockpitAlertManager: typeof import("./cockpitAlertManager").CockpitAlertManager = null as any;
 utilities.lazyLoad(exports, ["CockpitAlertManager"], () => require("./cockpitAlertManager"));
 
-export { CockpitGrafanaUserArgs, CockpitGrafanaUserState } from "./cockpitGrafanaUser";
-export type CockpitGrafanaUser = import("./cockpitGrafanaUser").CockpitGrafanaUser;
-export const CockpitGrafanaUser: typeof import("./cockpitGrafanaUser").CockpitGrafanaUser = null as any;
-utilities.lazyLoad(exports, ["CockpitGrafanaUser"], () => require("./cockpitGrafanaUser"));
-
 export { CockpitSourceArgs, CockpitSourceState } from "./cockpitSource";
 export type CockpitSource = import("./cockpitSource").CockpitSource;
 export const CockpitSource: typeof import("./cockpitSource").CockpitSource = null as any;
@@ -1061,12 +1056,15 @@ import * as kafka from "./kafka";
 import * as keymanager from "./keymanager";
 import * as kubernetes from "./kubernetes";
 import * as loadbalancers from "./loadbalancers";
+import * as mailbox from "./mailbox";
+import * as messageq from "./messageq";
 import * as mnq from "./mnq";
 import * as mongodb from "./mongodb";
 import * as network from "./network";
 import * as object from "./object";
 import * as observability from "./observability";
 import * as opensearch from "./opensearch";
+import * as partner from "./partner";
 import * as redis from "./redis";
 import * as registry from "./registry";
 import * as s2svpn from "./s2svpn";
@@ -1103,12 +1101,15 @@ export {
     keymanager,
     kubernetes,
     loadbalancers,
+    mailbox,
+    messageq,
     mnq,
     mongodb,
     network,
     object,
     observability,
     opensearch,
+    partner,
     redis,
     registry,
     s2svpn,
@@ -1137,8 +1138,6 @@ const _module = {
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
                 return new CockpitAlertManager(name, <any>undefined, { urn })
-            case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
-                return new CockpitGrafanaUser(name, <any>undefined, { urn })
             case "scaleway:index/cockpitSource:CockpitSource":
                 return new CockpitSource(name, <any>undefined, { urn })
             case "scaleway:index/cockpitToken:CockpitToken":
@@ -1368,7 +1367,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitAlertManager", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitSource", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/container", _module)

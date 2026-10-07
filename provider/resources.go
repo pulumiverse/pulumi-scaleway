@@ -70,10 +70,13 @@ const (
 	keymanagerMod    = "keymanager"
 	kubernetesMod    = "kubernetes"
 	loadbalancersMod = "loadbalancers"
+	mailboxMod       = "mailbox"
+	messageqMod      = "messageq"
 	mnqMod           = "mnq"
 	mongodbMod       = "mongodb"
 	objectMod        = "object"
 	opensearchMod    = "opensearch"
+	partnerMod       = "partner"
 	redisMod         = "redis"
 	registryMod      = "registry"
 	s2sVpnMod        = "s2svpn"
@@ -223,6 +226,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "lb.md",
 				},
 			},
+			"scaleway_mailbox": {
+				Tok: scalewayResource(mailboxMod, "Mailbox"),
+			},
 			"scaleway_object": {
 				Tok: scalewayResource(objectMod, "Item"),
 			},
@@ -295,6 +301,9 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{
 					Source: "lbs.md",
 				},
+			},
+			"scaleway_mailbox": {
+				Tok: scalewayDataSource(mailboxMod, "getMailbox"),
 			},
 			"scaleway_secret": {
 				Tok: scalewayDataSource(secretsMod, "getSecret"),
@@ -384,10 +393,13 @@ func Provider() tfbridge.ProviderInfo {
 				"key_manager":   keymanagerMod,
 				"k8s":           kubernetesMod,
 				"lb":            loadbalancersMod,
+				"mailbox":       mailboxMod,
+				"messageq":      messageqMod,
 				"mnq":           mnqMod,
 				"mongodb":       mongodbMod,
 				"object":        objectMod,
 				"opensearch":    opensearchMod,
+				"partner":       partnerMod,
 				"rdb":           databasesMod,
 				"redis":         redisMod,
 				"registry":      registryMod,

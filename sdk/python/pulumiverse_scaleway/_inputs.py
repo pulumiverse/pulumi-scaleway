@@ -117,6 +117,8 @@ __all__ = [
     'EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict',
     'EdgeServicesTlsStageSecretArgs',
     'EdgeServicesTlsStageSecretArgsDict',
+    'EdgeServicesWafStageExclusionRuleArgs',
+    'EdgeServicesWafStageExclusionRuleArgsDict',
     'FunctionTriggerNatsArgs',
     'FunctionTriggerNatsArgsDict',
     'FunctionTriggerSqsArgs',
@@ -273,6 +275,8 @@ __all__ = [
     'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict',
     'ObjectBucketWebsiteConfigurationIndexDocumentArgs',
     'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict',
+    'ProviderEndpointArgs',
+    'ProviderEndpointArgsDict',
     'RedisClusterAclArgs',
     'RedisClusterAclArgsDict',
     'RedisClusterPrivateIpArgs',
@@ -2522,7 +2526,7 @@ class DatabaseInstanceLogsPolicyArgsDict(TypedDict):
     """
     total_disk_retention: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    The max disk size of remote logs to keep on the Database Instance.
+    The max disk size (in bytes) of remote logs to keep on the Database Instance
     """
 
 @pulumi.input_type
@@ -2532,7 +2536,7 @@ class DatabaseInstanceLogsPolicyArgs:
                  total_disk_retention: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param pulumi.Input[_builtins.int] total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param pulumi.Input[_builtins.int] total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         if max_age_retention is not None:
             pulumi.set(__self__, "max_age_retention", max_age_retention)
@@ -2555,7 +2559,7 @@ class DatabaseInstanceLogsPolicyArgs:
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -4377,6 +4381,34 @@ class EdgeServicesTlsStageSecretArgs:
     @secret_id.setter
     def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
+
+
+class EdgeServicesWafStageExclusionRuleArgsDict(TypedDict):
+    rule_id: pulumi.Input[_builtins.int]
+    """
+    OWASP CRS rule ID excluded from the WAF.
+    """
+
+@pulumi.input_type
+class EdgeServicesWafStageExclusionRuleArgs:
+    def __init__(__self__, *,
+                 rule_id: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] rule_id: OWASP CRS rule ID excluded from the WAF.
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> pulumi.Input[_builtins.int]:
+        """
+        OWASP CRS rule ID excluded from the WAF.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @rule_id.setter
+    def rule_id(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "rule_id", value)
 
 
 class FunctionTriggerNatsArgsDict(TypedDict):
@@ -10858,6 +10890,35 @@ class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
     @suffix.setter
     def suffix(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "suffix", value)
+
+
+class ProviderEndpointArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Use this to override the default service endpoint URL.
+    """
+
+@pulumi.input_type
+class ProviderEndpointArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] s3: Use this to override the default service endpoint URL.
+        """
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Use this to override the default service endpoint URL.
+        """
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "s3", value)
 
 
 class RedisClusterAclArgsDict(TypedDict):

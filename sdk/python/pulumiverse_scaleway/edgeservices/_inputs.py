@@ -37,6 +37,8 @@ __all__ = [
     'RouteStageRuleRuleHttpMatchPathFilterArgsDict',
     'TlsStageSecretArgs',
     'TlsStageSecretArgsDict',
+    'WafStageExclusionRuleArgs',
+    'WafStageExclusionRuleArgsDict',
 ]
 
 class BackendStageContainerBackendConfigArgsDict(TypedDict):
@@ -710,5 +712,33 @@ class TlsStageSecretArgs:
     @secret_id.setter
     def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
+
+
+class WafStageExclusionRuleArgsDict(TypedDict):
+    rule_id: pulumi.Input[_builtins.int]
+    """
+    OWASP CRS rule ID excluded from the WAF.
+    """
+
+@pulumi.input_type
+class WafStageExclusionRuleArgs:
+    def __init__(__self__, *,
+                 rule_id: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] rule_id: OWASP CRS rule ID excluded from the WAF.
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> pulumi.Input[_builtins.int]:
+        """
+        OWASP CRS rule ID excluded from the WAF.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @rule_id.setter
+    def rule_id(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "rule_id", value)
 
 

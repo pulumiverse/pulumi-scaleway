@@ -8,5 +8,7 @@ import typing
 # Export this package's modules as members:
 from .cluster import *
 from .get_cluster import *
+from .get_cluster_versions import *
+from .get_node_types import *
 from ._inputs import *
 from . import outputs

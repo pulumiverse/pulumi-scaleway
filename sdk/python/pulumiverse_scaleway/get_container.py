@@ -29,7 +29,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, https_connections_only=None, id=None, image=None, liveness_probes=None, local_storage_limit=None, local_storage_limit_bytes=None, max_scale=None, memory_limit=None, memory_limit_bytes=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_network_id=None, project_id=None, protocol=None, public_endpoint=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, startup_probes=None, status=None, tags=None, timeout=None):
+    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, enable_default_public_endpoint=None, enable_private_endpoint=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, https_connections_only=None, id=None, image=None, liveness_probes=None, local_storage_limit=None, local_storage_limit_bytes=None, max_scale=None, memory_limit=None, memory_limit_bytes=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_endpoint=None, private_network_id=None, project_id=None, protocol=None, public_endpoint=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, startup_probes=None, status=None, tags=None, timeout=None):
         if args and not isinstance(args, list):
             raise TypeError("Expected argument 'args' to be a list")
         pulumi.set(__self__, "args", args)
@@ -54,6 +54,12 @@ class GetContainerResult:
         if domain_name and not isinstance(domain_name, str):
             raise TypeError("Expected argument 'domain_name' to be a str")
         pulumi.set(__self__, "domain_name", domain_name)
+        if enable_default_public_endpoint and not isinstance(enable_default_public_endpoint, bool):
+            raise TypeError("Expected argument 'enable_default_public_endpoint' to be a bool")
+        pulumi.set(__self__, "enable_default_public_endpoint", enable_default_public_endpoint)
+        if enable_private_endpoint and not isinstance(enable_private_endpoint, bool):
+            raise TypeError("Expected argument 'enable_private_endpoint' to be a bool")
+        pulumi.set(__self__, "enable_private_endpoint", enable_private_endpoint)
         if environment_variables and not isinstance(environment_variables, dict):
             raise TypeError("Expected argument 'environment_variables' to be a dict")
         pulumi.set(__self__, "environment_variables", environment_variables)
@@ -108,6 +114,9 @@ class GetContainerResult:
         if privacy and not isinstance(privacy, str):
             raise TypeError("Expected argument 'privacy' to be a str")
         pulumi.set(__self__, "privacy", privacy)
+        if private_endpoint and not isinstance(private_endpoint, str):
+            raise TypeError("Expected argument 'private_endpoint' to be a str")
+        pulumi.set(__self__, "private_endpoint", private_endpoint)
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -208,6 +217,16 @@ class GetContainerResult:
         The native domain name of the container
         """
         return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="enableDefaultPublicEndpoint")
+    def enable_default_public_endpoint(self) -> _builtins.bool:
+        return pulumi.get(self, "enable_default_public_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="enablePrivateEndpoint")
+    def enable_private_endpoint(self) -> _builtins.bool:
+        return pulumi.get(self, "enable_private_endpoint")
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
@@ -348,6 +367,11 @@ class GetContainerResult:
         return pulumi.get(self, "privacy")
 
     @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> _builtins.str:
+        return pulumi.get(self, "private_endpoint")
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> _builtins.str:
         """
@@ -468,6 +492,8 @@ class AwaitableGetContainerResult(GetContainerResult):
             deploy=self.deploy,
             description=self.description,
             domain_name=self.domain_name,
+            enable_default_public_endpoint=self.enable_default_public_endpoint,
+            enable_private_endpoint=self.enable_private_endpoint,
             environment_variables=self.environment_variables,
             error_message=self.error_message,
             health_checks=self.health_checks,
@@ -486,6 +512,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             namespace_id=self.namespace_id,
             port=self.port,
             privacy=self.privacy,
+            private_endpoint=self.private_endpoint,
             private_network_id=self.private_network_id,
             project_id=self.project_id,
             protocol=self.protocol,
@@ -573,6 +600,8 @@ def get_container(container_id: Optional[_builtins.str] = None,
         deploy=pulumi.get(__ret__, 'deploy'),
         description=pulumi.get(__ret__, 'description'),
         domain_name=pulumi.get(__ret__, 'domain_name'),
+        enable_default_public_endpoint=pulumi.get(__ret__, 'enable_default_public_endpoint'),
+        enable_private_endpoint=pulumi.get(__ret__, 'enable_private_endpoint'),
         environment_variables=pulumi.get(__ret__, 'environment_variables'),
         error_message=pulumi.get(__ret__, 'error_message'),
         health_checks=pulumi.get(__ret__, 'health_checks'),
@@ -591,6 +620,7 @@ def get_container(container_id: Optional[_builtins.str] = None,
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
         port=pulumi.get(__ret__, 'port'),
         privacy=pulumi.get(__ret__, 'privacy'),
+        private_endpoint=pulumi.get(__ret__, 'private_endpoint'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
@@ -675,6 +705,8 @@ def get_container_output(container_id: pulumi.Input[Optional[Optional[_builtins.
         deploy=pulumi.get(__response__, 'deploy'),
         description=pulumi.get(__response__, 'description'),
         domain_name=pulumi.get(__response__, 'domain_name'),
+        enable_default_public_endpoint=pulumi.get(__response__, 'enable_default_public_endpoint'),
+        enable_private_endpoint=pulumi.get(__response__, 'enable_private_endpoint'),
         environment_variables=pulumi.get(__response__, 'environment_variables'),
         error_message=pulumi.get(__response__, 'error_message'),
         health_checks=pulumi.get(__response__, 'health_checks'),
@@ -693,6 +725,7 @@ def get_container_output(container_id: pulumi.Input[Optional[Optional[_builtins.
         namespace_id=pulumi.get(__response__, 'namespace_id'),
         port=pulumi.get(__response__, 'port'),
         privacy=pulumi.get(__response__, 'privacy'),
+        private_endpoint=pulumi.get(__response__, 'private_endpoint'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         protocol=pulumi.get(__response__, 'protocol'),

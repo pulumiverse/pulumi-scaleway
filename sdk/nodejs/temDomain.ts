@@ -51,6 +51,7 @@ import * as utilities from "./utilities";
  *     dnsZone: domainName,
  *     type: "MX",
  *     data: main.mxConfig,
+ *     priority: main.mxPriority,
  * });
  * const dmarc = new scaleway.domain.Record("dmarc", {
  *     dnsZone: domainName,
@@ -184,9 +185,13 @@ export class TemDomain extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly mxBlackhole: pulumi.Output<string>;
     /**
-     * MX record configuration for the domain blackhole.
+     * MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
      */
     declare public /*out*/ readonly mxConfig: pulumi.Output<string>;
+    /**
+     * MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+     */
+    declare public /*out*/ readonly mxPriority: pulumi.Output<number>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
@@ -281,6 +286,7 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["lastValidAt"] = state?.lastValidAt;
             resourceInputs["mxBlackhole"] = state?.mxBlackhole;
             resourceInputs["mxConfig"] = state?.mxConfig;
+            resourceInputs["mxPriority"] = state?.mxPriority;
             resourceInputs["name"] = state?.name;
             resourceInputs["nextCheckAt"] = state?.nextCheckAt;
             resourceInputs["projectId"] = state?.projectId;
@@ -316,6 +322,7 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["lastValidAt"] = undefined /*out*/;
             resourceInputs["mxBlackhole"] = undefined /*out*/;
             resourceInputs["mxConfig"] = undefined /*out*/;
+            resourceInputs["mxPriority"] = undefined /*out*/;
             resourceInputs["nextCheckAt"] = undefined /*out*/;
             resourceInputs["reputations"] = undefined /*out*/;
             resourceInputs["revokedAt"] = undefined /*out*/;
@@ -383,9 +390,13 @@ export interface TemDomainState {
      */
     mxBlackhole?: pulumi.Input<string | undefined>;
     /**
-     * MX record configuration for the domain blackhole.
+     * MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
      */
     mxConfig?: pulumi.Input<string | undefined>;
+    /**
+     * MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+     */
+    mxPriority?: pulumi.Input<number | undefined>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.

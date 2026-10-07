@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  *
  * const main = new scaleway.billing.Budget("main", {
  *     organizationId: "11111111-1111-1111-1111-111111111111",
- *     consumptionLimit: 10000,
+ *     consumptionLimit: 100,
  *     enabled: true,
  * });
  * ```
@@ -59,7 +59,7 @@ export class Budget extends pulumi.CustomResource {
     }
 
     /**
-     * Cost limit for the budget in cents.
+     * Cost limit for the budget in euros.
      */
     declare public readonly consumptionLimit: pulumi.Output<number>;
     /**
@@ -118,7 +118,7 @@ export class Budget extends pulumi.CustomResource {
  */
 export interface BudgetState {
     /**
-     * Cost limit for the budget in cents.
+     * Cost limit for the budget in euros.
      */
     consumptionLimit?: pulumi.Input<number | undefined>;
     /**
@@ -144,7 +144,7 @@ export interface BudgetState {
  */
 export interface BudgetArgs {
     /**
-     * Cost limit for the budget in cents.
+     * Cost limit for the budget in euros.
      */
     consumptionLimit: pulumi.Input<number>;
     /**

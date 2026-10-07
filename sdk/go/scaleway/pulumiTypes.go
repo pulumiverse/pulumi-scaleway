@@ -4147,7 +4147,7 @@ func (o DatabaseInstanceLoadBalancerPtrOutput) Port() pulumi.IntPtrOutput {
 type DatabaseInstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention *int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention *int `pulumi:"totalDiskRetention"`
 }
 
@@ -4165,7 +4165,7 @@ type DatabaseInstanceLogsPolicyInput interface {
 type DatabaseInstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntPtrInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntPtrInput `pulumi:"totalDiskRetention"`
 }
 
@@ -4251,7 +4251,7 @@ func (o DatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.MaxAgeRetention }).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o DatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceLogsPolicy) *int { return v.TotalDiskRetention }).(pulumi.IntPtrOutput)
 }
@@ -4290,7 +4290,7 @@ func (o DatabaseInstanceLogsPolicyPtrOutput) MaxAgeRetention() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstanceLogsPolicy) *int {
 		if v == nil {
@@ -7915,6 +7915,103 @@ func (o EdgeServicesTlsStageSecretArrayOutput) Index(i pulumi.IntInput) EdgeServ
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesTlsStageSecret {
 		return vs[0].([]EdgeServicesTlsStageSecret)[vs[1].(int)]
 	}).(EdgeServicesTlsStageSecretOutput)
+}
+
+type EdgeServicesWafStageExclusionRule struct {
+	// OWASP CRS rule ID excluded from the WAF.
+	RuleId int `pulumi:"ruleId"`
+}
+
+// EdgeServicesWafStageExclusionRuleInput is an input type that accepts EdgeServicesWafStageExclusionRuleArgs and EdgeServicesWafStageExclusionRuleOutput values.
+// You can construct a concrete instance of `EdgeServicesWafStageExclusionRuleInput` via:
+//
+//	EdgeServicesWafStageExclusionRuleArgs{...}
+type EdgeServicesWafStageExclusionRuleInput interface {
+	pulumi.Input
+
+	ToEdgeServicesWafStageExclusionRuleOutput() EdgeServicesWafStageExclusionRuleOutput
+	ToEdgeServicesWafStageExclusionRuleOutputWithContext(context.Context) EdgeServicesWafStageExclusionRuleOutput
+}
+
+type EdgeServicesWafStageExclusionRuleArgs struct {
+	// OWASP CRS rule ID excluded from the WAF.
+	RuleId pulumi.IntInput `pulumi:"ruleId"`
+}
+
+func (EdgeServicesWafStageExclusionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesWafStageExclusionRule)(nil)).Elem()
+}
+
+func (i EdgeServicesWafStageExclusionRuleArgs) ToEdgeServicesWafStageExclusionRuleOutput() EdgeServicesWafStageExclusionRuleOutput {
+	return i.ToEdgeServicesWafStageExclusionRuleOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesWafStageExclusionRuleArgs) ToEdgeServicesWafStageExclusionRuleOutputWithContext(ctx context.Context) EdgeServicesWafStageExclusionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesWafStageExclusionRuleOutput)
+}
+
+// EdgeServicesWafStageExclusionRuleArrayInput is an input type that accepts EdgeServicesWafStageExclusionRuleArray and EdgeServicesWafStageExclusionRuleArrayOutput values.
+// You can construct a concrete instance of `EdgeServicesWafStageExclusionRuleArrayInput` via:
+//
+//	EdgeServicesWafStageExclusionRuleArray{ EdgeServicesWafStageExclusionRuleArgs{...} }
+type EdgeServicesWafStageExclusionRuleArrayInput interface {
+	pulumi.Input
+
+	ToEdgeServicesWafStageExclusionRuleArrayOutput() EdgeServicesWafStageExclusionRuleArrayOutput
+	ToEdgeServicesWafStageExclusionRuleArrayOutputWithContext(context.Context) EdgeServicesWafStageExclusionRuleArrayOutput
+}
+
+type EdgeServicesWafStageExclusionRuleArray []EdgeServicesWafStageExclusionRuleInput
+
+func (EdgeServicesWafStageExclusionRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesWafStageExclusionRule)(nil)).Elem()
+}
+
+func (i EdgeServicesWafStageExclusionRuleArray) ToEdgeServicesWafStageExclusionRuleArrayOutput() EdgeServicesWafStageExclusionRuleArrayOutput {
+	return i.ToEdgeServicesWafStageExclusionRuleArrayOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesWafStageExclusionRuleArray) ToEdgeServicesWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) EdgeServicesWafStageExclusionRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesWafStageExclusionRuleArrayOutput)
+}
+
+type EdgeServicesWafStageExclusionRuleOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesWafStageExclusionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesWafStageExclusionRule)(nil)).Elem()
+}
+
+func (o EdgeServicesWafStageExclusionRuleOutput) ToEdgeServicesWafStageExclusionRuleOutput() EdgeServicesWafStageExclusionRuleOutput {
+	return o
+}
+
+func (o EdgeServicesWafStageExclusionRuleOutput) ToEdgeServicesWafStageExclusionRuleOutputWithContext(ctx context.Context) EdgeServicesWafStageExclusionRuleOutput {
+	return o
+}
+
+// OWASP CRS rule ID excluded from the WAF.
+func (o EdgeServicesWafStageExclusionRuleOutput) RuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v EdgeServicesWafStageExclusionRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+type EdgeServicesWafStageExclusionRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesWafStageExclusionRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesWafStageExclusionRule)(nil)).Elem()
+}
+
+func (o EdgeServicesWafStageExclusionRuleArrayOutput) ToEdgeServicesWafStageExclusionRuleArrayOutput() EdgeServicesWafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o EdgeServicesWafStageExclusionRuleArrayOutput) ToEdgeServicesWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) EdgeServicesWafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o EdgeServicesWafStageExclusionRuleArrayOutput) Index(i pulumi.IntInput) EdgeServicesWafStageExclusionRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesWafStageExclusionRule {
+		return vs[0].([]EdgeServicesWafStageExclusionRule)[vs[1].(int)]
+	}).(EdgeServicesWafStageExclusionRuleOutput)
 }
 
 type FunctionTriggerNats struct {
@@ -20089,6 +20186,103 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProviderEndpoint struct {
+	// Use this to override the default service endpoint URL.
+	S3 *string `pulumi:"s3"`
+}
+
+// ProviderEndpointInput is an input type that accepts ProviderEndpointArgs and ProviderEndpointOutput values.
+// You can construct a concrete instance of `ProviderEndpointInput` via:
+//
+//	ProviderEndpointArgs{...}
+type ProviderEndpointInput interface {
+	pulumi.Input
+
+	ToProviderEndpointOutput() ProviderEndpointOutput
+	ToProviderEndpointOutputWithContext(context.Context) ProviderEndpointOutput
+}
+
+type ProviderEndpointArgs struct {
+	// Use this to override the default service endpoint URL.
+	S3 pulumi.StringPtrInput `pulumi:"s3"`
+}
+
+func (ProviderEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderEndpoint)(nil)).Elem()
+}
+
+func (i ProviderEndpointArgs) ToProviderEndpointOutput() ProviderEndpointOutput {
+	return i.ToProviderEndpointOutputWithContext(context.Background())
+}
+
+func (i ProviderEndpointArgs) ToProviderEndpointOutputWithContext(ctx context.Context) ProviderEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderEndpointOutput)
+}
+
+// ProviderEndpointArrayInput is an input type that accepts ProviderEndpointArray and ProviderEndpointArrayOutput values.
+// You can construct a concrete instance of `ProviderEndpointArrayInput` via:
+//
+//	ProviderEndpointArray{ ProviderEndpointArgs{...} }
+type ProviderEndpointArrayInput interface {
+	pulumi.Input
+
+	ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput
+	ToProviderEndpointArrayOutputWithContext(context.Context) ProviderEndpointArrayOutput
+}
+
+type ProviderEndpointArray []ProviderEndpointInput
+
+func (ProviderEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderEndpoint)(nil)).Elem()
+}
+
+func (i ProviderEndpointArray) ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput {
+	return i.ToProviderEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderEndpointArray) ToProviderEndpointArrayOutputWithContext(ctx context.Context) ProviderEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderEndpointArrayOutput)
+}
+
+type ProviderEndpointOutput struct{ *pulumi.OutputState }
+
+func (ProviderEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderEndpoint)(nil)).Elem()
+}
+
+func (o ProviderEndpointOutput) ToProviderEndpointOutput() ProviderEndpointOutput {
+	return o
+}
+
+func (o ProviderEndpointOutput) ToProviderEndpointOutputWithContext(ctx context.Context) ProviderEndpointOutput {
+	return o
+}
+
+// Use this to override the default service endpoint URL.
+func (o ProviderEndpointOutput) S3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderEndpoint) *string { return v.S3 }).(pulumi.StringPtrOutput)
+}
+
+type ProviderEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderEndpoint)(nil)).Elem()
+}
+
+func (o ProviderEndpointArrayOutput) ToProviderEndpointArrayOutput() ProviderEndpointArrayOutput {
+	return o
+}
+
+func (o ProviderEndpointArrayOutput) ToProviderEndpointArrayOutputWithContext(ctx context.Context) ProviderEndpointArrayOutput {
+	return o
+}
+
+func (o ProviderEndpointArrayOutput) Index(i pulumi.IntInput) ProviderEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderEndpoint {
+		return vs[0].([]ProviderEndpoint)[vs[1].(int)]
+	}).(ProviderEndpointOutput)
+}
+
 type RedisClusterAcl struct {
 	// A text describing this rule. Default description: `Allow IP`
 	//
@@ -25128,7 +25322,7 @@ func (o GetDatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) Get
 type GetDatabaseInstanceLogsPolicy struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention int `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention int `pulumi:"totalDiskRetention"`
 }
 
@@ -25146,7 +25340,7 @@ type GetDatabaseInstanceLogsPolicyInput interface {
 type GetDatabaseInstanceLogsPolicyArgs struct {
 	// The max age (in days) of remote logs to keep on the Database Instance
 	MaxAgeRetention pulumi.IntInput `pulumi:"maxAgeRetention"`
-	// The max disk size of remote logs to keep on the Database Instance.
+	// The max disk size (in bytes) of remote logs to keep on the Database Instance
 	TotalDiskRetention pulumi.IntInput `pulumi:"totalDiskRetention"`
 }
 
@@ -25206,7 +25400,7 @@ func (o GetDatabaseInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntOutput 
 	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.MaxAgeRetention }).(pulumi.IntOutput)
 }
 
-// The max disk size of remote logs to keep on the Database Instance.
+// The max disk size (in bytes) of remote logs to keep on the Database Instance
 func (o GetDatabaseInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDatabaseInstanceLogsPolicy) int { return v.TotalDiskRetention }).(pulumi.IntOutput)
 }
@@ -34838,7 +35032,7 @@ type GetObjectBucketLifecycleRuleExpiration struct {
 	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 	ExpiredObjectDeleteMarker bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -34858,7 +35052,7 @@ type GetObjectBucketLifecycleRuleExpirationArgs struct {
 	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 	ExpiredObjectDeleteMarker pulumi.BoolInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -34923,7 +35117,7 @@ func (o GetObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 func (o GetObjectBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRuleExpiration) bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolOutput)
 }
@@ -38234,6 +38428,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesTlsStageSecretInput)(nil)).Elem(), EdgeServicesTlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesTlsStageSecretArrayInput)(nil)).Elem(), EdgeServicesTlsStageSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesWafStageExclusionRuleInput)(nil)).Elem(), EdgeServicesWafStageExclusionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesWafStageExclusionRuleArrayInput)(nil)).Elem(), EdgeServicesWafStageExclusionRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsPtrInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
@@ -38388,6 +38584,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationErrorDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationErrorDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderEndpointInput)(nil)).Elem(), ProviderEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderEndpointArrayInput)(nil)).Elem(), ProviderEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclInput)(nil)).Elem(), RedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclArrayInput)(nil)).Elem(), RedisClusterAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateIpInput)(nil)).Elem(), RedisClusterPrivateIpArgs{})
@@ -38759,6 +38957,8 @@ func init() {
 	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(EdgeServicesTlsStageSecretOutput{})
 	pulumi.RegisterOutputType(EdgeServicesTlsStageSecretArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesWafStageExclusionRuleOutput{})
+	pulumi.RegisterOutputType(EdgeServicesWafStageExclusionRuleArrayOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerNatsOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerSqsOutput{})
@@ -38913,6 +39113,8 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput{})
+	pulumi.RegisterOutputType(ProviderEndpointOutput{})
+	pulumi.RegisterOutputType(ProviderEndpointArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPrivateIpOutput{})

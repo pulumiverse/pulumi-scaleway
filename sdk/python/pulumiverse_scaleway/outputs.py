@@ -67,6 +67,7 @@ __all__ = [
     'EdgeServicesRouteStageRuleRuleHttpMatchHostFilter',
     'EdgeServicesRouteStageRuleRuleHttpMatchPathFilter',
     'EdgeServicesTlsStageSecret',
+    'EdgeServicesWafStageExclusionRule',
     'FunctionTriggerNats',
     'FunctionTriggerSqs',
     'IamPolicyRule',
@@ -1955,7 +1956,7 @@ class DatabaseInstanceLogsPolicy(dict):
                  total_disk_retention: Optional[_builtins.int] = None):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         if max_age_retention is not None:
             pulumi.set(__self__, "max_age_retention", max_age_retention)
@@ -1974,7 +1975,7 @@ class DatabaseInstanceLogsPolicy(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> Optional[_builtins.int]:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -3425,6 +3426,41 @@ class EdgeServicesTlsStageSecret(dict):
         The ID of the Secret
         """
         return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class EdgeServicesWafStageExclusionRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EdgeServicesWafStageExclusionRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EdgeServicesWafStageExclusionRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EdgeServicesWafStageExclusionRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 rule_id: _builtins.int):
+        """
+        :param _builtins.int rule_id: OWASP CRS rule ID excluded from the WAF.
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> _builtins.int:
+        """
+        OWASP CRS rule ID excluded from the WAF.
+        """
+        return pulumi.get(self, "rule_id")
 
 
 @pulumi.output_type
@@ -10680,7 +10716,7 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
                  total_disk_retention: _builtins.int):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         pulumi.set(__self__, "max_age_retention", max_age_retention)
         pulumi.set(__self__, "total_disk_retention", total_disk_retention)
@@ -10697,7 +10733,7 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> _builtins.int:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -15237,7 +15273,7 @@ class GetObjectBucketLifecycleRuleExpirationResult(dict):
         """
         :param _builtins.str date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect
-        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         pulumi.set(__self__, "date", date)
         pulumi.set(__self__, "days", days)
@@ -15263,7 +15299,7 @@ class GetObjectBucketLifecycleRuleExpirationResult(dict):
     @pulumi.getter(name="expiredObjectDeleteMarker")
     def expired_object_delete_marker(self) -> _builtins.bool:
         """
-        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         return pulumi.get(self, "expired_object_delete_marker")
 

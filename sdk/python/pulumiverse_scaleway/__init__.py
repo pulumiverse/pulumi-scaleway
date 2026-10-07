@@ -14,7 +14,6 @@ from .block_snapshot import *
 from .block_volume import *
 from .cockpit import *
 from .cockpit_alert_manager import *
-from .cockpit_grafana_user import *
 from .cockpit_source import *
 from .cockpit_token import *
 from .container import *
@@ -273,6 +272,10 @@ if typing.TYPE_CHECKING:
     kubernetes = __kubernetes
     import pulumiverse_scaleway.loadbalancers as __loadbalancers
     loadbalancers = __loadbalancers
+    import pulumiverse_scaleway.mailbox as __mailbox
+    mailbox = __mailbox
+    import pulumiverse_scaleway.messageq as __messageq
+    messageq = __messageq
     import pulumiverse_scaleway.mnq as __mnq
     mnq = __mnq
     import pulumiverse_scaleway.mongodb as __mongodb
@@ -285,6 +288,8 @@ if typing.TYPE_CHECKING:
     observability = __observability
     import pulumiverse_scaleway.opensearch as __opensearch
     opensearch = __opensearch
+    import pulumiverse_scaleway.partner as __partner
+    partner = __partner
     import pulumiverse_scaleway.redis as __redis
     redis = __redis
     import pulumiverse_scaleway.registry as __registry
@@ -324,12 +329,15 @@ else:
     keymanager = _utilities.lazy_import('pulumiverse_scaleway.keymanager')
     kubernetes = _utilities.lazy_import('pulumiverse_scaleway.kubernetes')
     loadbalancers = _utilities.lazy_import('pulumiverse_scaleway.loadbalancers')
+    mailbox = _utilities.lazy_import('pulumiverse_scaleway.mailbox')
+    messageq = _utilities.lazy_import('pulumiverse_scaleway.messageq')
     mnq = _utilities.lazy_import('pulumiverse_scaleway.mnq')
     mongodb = _utilities.lazy_import('pulumiverse_scaleway.mongodb')
     network = _utilities.lazy_import('pulumiverse_scaleway.network')
     object = _utilities.lazy_import('pulumiverse_scaleway.object')
     observability = _utilities.lazy_import('pulumiverse_scaleway.observability')
     opensearch = _utilities.lazy_import('pulumiverse_scaleway.opensearch')
+    partner = _utilities.lazy_import('pulumiverse_scaleway.partner')
     redis = _utilities.lazy_import('pulumiverse_scaleway.redis')
     registry = _utilities.lazy_import('pulumiverse_scaleway.registry')
     s2svpn = _utilities.lazy_import('pulumiverse_scaleway.s2svpn')
@@ -945,14 +953,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/cockpitAlertManager:CockpitAlertManager": "CockpitAlertManager"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/cockpitGrafanaUser",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": "CockpitGrafanaUser"
   }
  },
  {
@@ -2117,6 +2117,38 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "mailbox/domain",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mailbox/mailbox",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/mailbox:Mailbox": "Mailbox"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "messageq/deployment",
+  "fqn": "pulumiverse_scaleway.messageq",
+  "classes": {
+   "scaleway:messageq/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "messageq/user",
+  "fqn": "pulumiverse_scaleway.messageq",
+  "classes": {
+   "scaleway:messageq/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "mnq/natsAccount",
   "fqn": "pulumiverse_scaleway.mnq",
   "classes": {
@@ -2397,14 +2429,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "observability/grafanaUser",
-  "fqn": "pulumiverse_scaleway.observability",
-  "classes": {
-   "scaleway:observability/grafanaUser:GrafanaUser": "GrafanaUser"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "observability/source",
   "fqn": "pulumiverse_scaleway.observability",
   "classes": {
@@ -2425,6 +2449,22 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.opensearch",
   "classes": {
    "scaleway:opensearch/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "opensearch/user",
+  "fqn": "pulumiverse_scaleway.opensearch",
+  "classes": {
+   "scaleway:opensearch/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "partner/organization",
+  "fqn": "pulumiverse_scaleway.partner",
+  "classes": {
+   "scaleway:partner/organization:Organization": "Organization"
   }
  },
  {

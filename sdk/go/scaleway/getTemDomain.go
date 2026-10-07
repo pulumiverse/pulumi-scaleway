@@ -54,6 +54,7 @@ type LookupTemDomainResult struct {
 	LastValidAt          string                   `pulumi:"lastValidAt"`
 	MxBlackhole          string                   `pulumi:"mxBlackhole"`
 	MxConfig             string                   `pulumi:"mxConfig"`
+	MxPriority           int                      `pulumi:"mxPriority"`
 	Name                 *string                  `pulumi:"name"`
 	NextCheckAt          string                   `pulumi:"nextCheckAt"`
 	ProjectId            *string                  `pulumi:"projectId"`
@@ -161,6 +162,10 @@ func (o LookupTemDomainResultOutput) MxBlackhole() pulumi.StringOutput {
 
 func (o LookupTemDomainResultOutput) MxConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.MxConfig }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) MxPriority() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) int { return v.MxPriority }).(pulumi.IntOutput)
 }
 
 func (o LookupTemDomainResultOutput) Name() pulumi.StringPtrOutput {

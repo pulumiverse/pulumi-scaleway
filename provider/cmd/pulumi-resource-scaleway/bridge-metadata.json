@@ -306,17 +306,6 @@
                     }
                 }
             },
-            "scaleway_cockpit_grafana_user": {
-                "current": "scaleway:observability/grafanaUser:GrafanaUser",
-                "past": [
-                    {
-                        "name": "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser",
-                        "inCodegen": true,
-                        "majorVersion": 1
-                    }
-                ],
-                "majorVersion": 1
-            },
             "scaleway_cockpit_source": {
                 "current": "scaleway:observability/source:Source",
                 "past": [
@@ -899,7 +888,12 @@
                         "majorVersion": 1
                     }
                 ],
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "exclusion_rules": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_file_filesystem": {
                 "current": "scaleway:index/fileFilesystem:FileFilesystem",
@@ -1988,6 +1982,42 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_mailbox": {
+                "current": "scaleway:mailbox/mailbox:Mailbox",
+                "majorVersion": 1
+            },
+            "scaleway_mailbox_domain": {
+                "current": "scaleway:mailbox/domain:Domain",
+                "majorVersion": 1,
+                "fields": {
+                    "dns_records": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_messageq_deployment": {
+                "current": "scaleway:messageq/deployment:Deployment",
+                "majorVersion": 1,
+                "fields": {
+                    "endpoints": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_messageq_user": {
+                "current": "scaleway:messageq/user:User",
+                "majorVersion": 1
+            },
             "scaleway_mnq_nats_account": {
                 "current": "scaleway:mnq/natsAccount:NatsAccount",
                 "past": [
@@ -2348,6 +2378,14 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "scaleway_opensearch_user": {
+                "current": "scaleway:opensearch/user:User",
+                "majorVersion": 1
+            },
+            "scaleway_partner_organization": {
+                "current": "scaleway:partner/organization:Organization",
+                "majorVersion": 1
             },
             "scaleway_rdb_acl": {
                 "current": "scaleway:databases/acl:Acl",
@@ -3182,6 +3220,25 @@
                     }
                 }
             },
+            "scaleway_block_snapshots": {
+                "current": "scaleway:block/getSnapshots:getSnapshots",
+                "majorVersion": 1,
+                "fields": {
+                    "snapshots": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_block_volume": {
                 "current": "scaleway:block/getVolume:getVolume",
                 "past": [
@@ -3256,6 +3313,43 @@
             "scaleway_cockpit_grafana": {
                 "current": "scaleway:observability/getGrafana:getGrafana",
                 "majorVersion": 1
+            },
+            "scaleway_cockpit_grafana_product_dashboard": {
+                "current": "scaleway:observability/getGrafanaProductDashboard:getGrafanaProductDashboard",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "variables": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_cockpit_grafana_product_dashboards": {
+                "current": "scaleway:observability/getGrafanaProductDashboards:getGrafanaProductDashboards",
+                "majorVersion": 1,
+                "fields": {
+                    "dashboards": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                },
+                                "variables": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "names": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_cockpit_preconfigured_alert": {
                 "current": "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert",
@@ -3700,7 +3794,12 @@
             },
             "scaleway_edge_services_waf_stage": {
                 "current": "scaleway:edgeservices/getWafStage:getWafStage",
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "exclusion_rules": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_flexible_ip": {
                 "current": "scaleway:elasticmetal/getIp:getIp",
@@ -4826,8 +4925,48 @@
                     }
                 }
             },
+            "scaleway_mailbox": {
+                "current": "scaleway:mailbox/getMailbox:getMailbox",
+                "majorVersion": 1
+            },
             "scaleway_marketplace_image": {
                 "current": "scaleway:index/getMarketplaceImage:getMarketplaceImage",
+                "majorVersion": 1
+            },
+            "scaleway_messageq_certificate_authority": {
+                "current": "scaleway:messageq/getCertificateAuthority:getCertificateAuthority",
+                "majorVersion": 1
+            },
+            "scaleway_messageq_deployment": {
+                "current": "scaleway:messageq/getDeployment:getDeployment",
+                "majorVersion": 1,
+                "fields": {
+                    "endpoints": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_messageq_node_type": {
+                "current": "scaleway:messageq/getNodeType:getNodeType",
+                "majorVersion": 1,
+                "fields": {
+                    "available_volume_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_messageq_version": {
+                "current": "scaleway:messageq/getVersion:getVersion",
                 "majorVersion": 1
             },
             "scaleway_mnq_sns": {
@@ -5044,6 +5183,22 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_rdb_database_engines": {
+                "current": "scaleway:databases/getDatabaseEngines:getDatabaseEngines",
+                "majorVersion": 1,
+                "fields": {
+                    "engines": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "versions": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_rdb_instance": {
                 "current": "scaleway:databases/getInstance:getInstance",
                 "past": [
@@ -5078,6 +5233,44 @@
                     },
                     "upgradable_versions": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_rdb_instance_log": {
+                "current": "scaleway:databases/getInstanceLog:getInstanceLog",
+                "majorVersion": 1
+            },
+            "scaleway_rdb_instance_logs": {
+                "current": "scaleway:databases/getInstanceLogs:getInstanceLogs",
+                "majorVersion": 1,
+                "fields": {
+                    "instance_logs": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_rdb_instance_logs_details": {
+                "current": "scaleway:databases/getInstanceLogsDetails:getInstanceLogsDetails",
+                "majorVersion": 1,
+                "fields": {
+                    "details": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_rdb_node_types": {
+                "current": "scaleway:databases/getNodeTypes:getNodeTypes",
+                "majorVersion": 1,
+                "fields": {
+                    "node_types": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "available_volume_types": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -5133,6 +5326,24 @@
                         }
                     },
                     "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_redis_cluster_versions": {
+                "current": "scaleway:redis/getClusterVersions:getClusterVersions",
+                "majorVersion": 1,
+                "fields": {
+                    "versions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_redis_node_types": {
+                "current": "scaleway:redis/getNodeTypes:getNodeTypes",
+                "majorVersion": 1,
+                "fields": {
+                    "node_types": {
                         "maxItemsOne": false
                     }
                 }
@@ -5614,11 +5825,6 @@
             "scaleway_cockpit_alert_manager": {
                 "aliases": [
                     "scaleway:index/cockpitAlertManager:CockpitAlertManager"
-                ]
-            },
-            "scaleway_cockpit_grafana_user": {
-                "aliases": [
-                    "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser"
                 ]
             },
             "scaleway_cockpit_source": {
@@ -6599,12 +6805,18 @@
             "scaleway_billing_budget_alert": {},
             "scaleway_billing_budget_alert_notification": {},
             "scaleway_datalab": {},
+            "scaleway_file_filesystem": {},
             "scaleway_iam_saml": {},
             "scaleway_iam_saml_certificate": {},
             "scaleway_iam_scim": {},
             "scaleway_iam_scim_token": {},
             "scaleway_instance_template": {},
-            "scaleway_key_manager_key_material": {}
+            "scaleway_key_manager_key_material": {},
+            "scaleway_mailbox": {},
+            "scaleway_mailbox_domain": {},
+            "scaleway_messageq_deployment": {},
+            "scaleway_messageq_user": {},
+            "scaleway_partner_organization": {}
         }
     },
     "mux": {
@@ -6685,7 +6897,6 @@
             "scaleway:index/blockVolume:BlockVolume": 0,
             "scaleway:index/cockpit:Cockpit": 0,
             "scaleway:index/cockpitAlertManager:CockpitAlertManager": 0,
-            "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": 0,
             "scaleway:index/cockpitSource:CockpitSource": 0,
             "scaleway:index/cockpitToken:CockpitToken": 0,
             "scaleway:index/container:Container": 0,
@@ -6712,7 +6923,7 @@
             "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage": 0,
             "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage": 0,
             "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage": 0,
-            "scaleway:index/fileFilesystem:FileFilesystem": 0,
+            "scaleway:index/fileFilesystem:FileFilesystem": 1,
             "scaleway:index/flexibleIp:FlexibleIp": 0,
             "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress": 0,
             "scaleway:index/function:Function": 0,
@@ -6831,6 +7042,10 @@
             "scaleway:loadbalancers/loadBalancer:LoadBalancer": 0,
             "scaleway:loadbalancers/privateNetwork:PrivateNetwork": 0,
             "scaleway:loadbalancers/route:Route": 0,
+            "scaleway:mailbox/domain:Domain": 1,
+            "scaleway:mailbox/mailbox:Mailbox": 1,
+            "scaleway:messageq/deployment:Deployment": 1,
+            "scaleway:messageq/user:User": 1,
             "scaleway:mnq/natsAccount:NatsAccount": 0,
             "scaleway:mnq/natsCredentials:NatsCredentials": 0,
             "scaleway:mnq/sns:Sns": 0,
@@ -6866,10 +7081,11 @@
             "scaleway:observability/alertManager:AlertManager": 0,
             "scaleway:observability/cockpit:Cockpit": 0,
             "scaleway:observability/exporter:Exporter": 0,
-            "scaleway:observability/grafanaUser:GrafanaUser": 0,
             "scaleway:observability/source:Source": 0,
             "scaleway:observability/token:Token": 0,
             "scaleway:opensearch/deployment:Deployment": 0,
+            "scaleway:opensearch/user:User": 0,
+            "scaleway:partner/organization:Organization": 1,
             "scaleway:redis/cluster:Cluster": 0,
             "scaleway:registry/namespace:Namespace": 0,
             "scaleway:s2svpn/connection:Connection": 0,
@@ -6901,13 +7117,19 @@
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,
+            "scaleway:block/getSnapshots:getSnapshots": 1,
             "scaleway:block/getVolume:getVolume": 0,
             "scaleway:containers/getContainer:getContainer": 0,
             "scaleway:containers/getNamespace:getNamespace": 0,
             "scaleway:databases/getAcl:getAcl": 0,
             "scaleway:databases/getDatabase:getDatabase": 0,
             "scaleway:databases/getDatabaseBackup:getDatabaseBackup": 0,
+            "scaleway:databases/getDatabaseEngines:getDatabaseEngines": 0,
             "scaleway:databases/getInstance:getInstance": 0,
+            "scaleway:databases/getInstanceLog:getInstanceLog": 1,
+            "scaleway:databases/getInstanceLogs:getInstanceLogs": 1,
+            "scaleway:databases/getInstanceLogsDetails:getInstanceLogsDetails": 1,
+            "scaleway:databases/getNodeTypes:getNodeTypes": 0,
             "scaleway:databases/getPrivilege:getPrivilege": 0,
             "scaleway:datalab/getDatalab:getDatalab": 1,
             "scaleway:datalab/getDatalabs:getDatalabs": 1,
@@ -7071,6 +7293,11 @@
             "scaleway:loadbalancers/getLoadBalancers:getLoadBalancers": 0,
             "scaleway:loadbalancers/getRoute:getRoute": 0,
             "scaleway:loadbalancers/getRoutes:getRoutes": 0,
+            "scaleway:mailbox/getMailbox:getMailbox": 1,
+            "scaleway:messageq/getCertificateAuthority:getCertificateAuthority": 1,
+            "scaleway:messageq/getDeployment:getDeployment": 1,
+            "scaleway:messageq/getNodeType:getNodeType": 1,
+            "scaleway:messageq/getVersion:getVersion": 1,
             "scaleway:mnq/getSns:getSns": 0,
             "scaleway:mnq/getSqs:getSqs": 0,
             "scaleway:mongodb/getDatabases:getDatabases": 0,
@@ -7096,6 +7323,8 @@
             "scaleway:observability/getConfig:getConfig": 0,
             "scaleway:observability/getExporter:getExporter": 0,
             "scaleway:observability/getGrafana:getGrafana": 0,
+            "scaleway:observability/getGrafanaProductDashboard:getGrafanaProductDashboard": 1,
+            "scaleway:observability/getGrafanaProductDashboards:getGrafanaProductDashboards": 1,
             "scaleway:observability/getInstance:getInstance": 0,
             "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert": 0,
             "scaleway:observability/getProducts:getProducts": 0,
@@ -7103,6 +7332,8 @@
             "scaleway:observability/getSources:getSources": 0,
             "scaleway:opensearch/getDeployment:getDeployment": 0,
             "scaleway:redis/getCluster:getCluster": 0,
+            "scaleway:redis/getClusterVersions:getClusterVersions": 0,
+            "scaleway:redis/getNodeTypes:getNodeTypes": 0,
             "scaleway:registry/getImage:getImage": 0,
             "scaleway:registry/getImageTag:getImageTag": 0,
             "scaleway:registry/getNamespace:getNamespace": 0,
@@ -7131,6 +7362,7 @@
             "scaleway:iam/policy:Policy": 1,
             "scaleway:iam/sshKey:SshKey": 1,
             "scaleway:iam/user:User": 1,
+            "scaleway:index/fileFilesystem:FileFilesystem": 1,
             "scaleway:ipam/ip:Ip": 1,
             "scaleway:keymanager/key:Key": 1,
             "scaleway:loadbalancers/backend:Backend": 1,
@@ -7145,6 +7377,7 @@
             "scaleway:network/vpc:Vpc": 1,
             "scaleway:object/bucket:Bucket": 1,
             "scaleway:opensearch/deployment:Deployment": 1,
+            "scaleway:partner/organization:Organization": 1,
             "scaleway:redis/cluster:Cluster": 1,
             "scaleway:secrets/secret:Secret": 1,
             "scaleway:secrets/version:Version": 1

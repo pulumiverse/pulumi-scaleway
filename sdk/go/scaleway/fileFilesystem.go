@@ -177,6 +177,8 @@ func (FileFilesystemState) ElementType() reflect.Type {
 type fileFilesystemArgs struct {
 	// The name of the filesystem. If not provided, a random name will be generated.
 	Name *string `pulumi:"name"`
+	// `organizationId`) The ID of the organization the user is associated with.
+	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -194,6 +196,8 @@ type fileFilesystemArgs struct {
 type FileFilesystemArgs struct {
 	// The name of the filesystem. If not provided, a random name will be generated.
 	Name pulumi.StringPtrInput
+	// `organizationId`) The ID of the organization the user is associated with.
+	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput

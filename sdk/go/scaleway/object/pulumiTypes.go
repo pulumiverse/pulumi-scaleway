@@ -2983,7 +2983,7 @@ type GetBucketLifecycleRuleExpiration struct {
 	Date string `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days int `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 	ExpiredObjectDeleteMarker bool `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -3003,7 +3003,7 @@ type GetBucketLifecycleRuleExpirationArgs struct {
 	Date pulumi.StringInput `pulumi:"date"`
 	// Specifies the number of days after object creation when the specific rule action takes effect
 	Days pulumi.IntInput `pulumi:"days"`
-	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+	// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 	ExpiredObjectDeleteMarker pulumi.BoolInput `pulumi:"expiredObjectDeleteMarker"`
 }
 
@@ -3068,7 +3068,7 @@ func (o GetBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
 }
 
-// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
 func (o GetBucketLifecycleRuleExpirationOutput) ExpiredObjectDeleteMarker() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetBucketLifecycleRuleExpiration) bool { return v.ExpiredObjectDeleteMarker }).(pulumi.BoolOutput)
 }

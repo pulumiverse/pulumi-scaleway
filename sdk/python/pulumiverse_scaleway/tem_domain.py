@@ -126,6 +126,7 @@ class _TemDomainState:
                  last_valid_at: pulumi.Input[Optional[_builtins.str]] = None,
                  mx_blackhole: pulumi.Input[Optional[_builtins.str]] = None,
                  mx_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 mx_priority: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -156,7 +157,8 @@ class _TemDomainState:
         :param pulumi.Input[_builtins.str] last_error: (Deprecated) The error message if the last check failed.
         :param pulumi.Input[_builtins.str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[_builtins.str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
-        :param pulumi.Input[_builtins.str] mx_config: MX record configuration for the domain blackhole.
+        :param pulumi.Input[_builtins.str] mx_config: MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
+        :param pulumi.Input[_builtins.int] mx_priority: MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
         :param pulumi.Input[_builtins.str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[_builtins.str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
@@ -201,6 +203,8 @@ class _TemDomainState:
             pulumi.set(__self__, "mx_blackhole", mx_blackhole)
         if mx_config is not None:
             pulumi.set(__self__, "mx_config", mx_config)
+        if mx_priority is not None:
+            pulumi.set(__self__, "mx_priority", mx_priority)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if next_check_at is not None:
@@ -360,13 +364,25 @@ class _TemDomainState:
     @pulumi.getter(name="mxConfig")
     def mx_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        MX record configuration for the domain blackhole.
+        MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
         """
         return pulumi.get(self, "mx_config")
 
     @mx_config.setter
     def mx_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mx_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mxPriority")
+    def mx_priority(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+        """
+        return pulumi.get(self, "mx_priority")
+
+    @mx_priority.setter
+    def mx_priority(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "mx_priority", value)
 
     @_builtins.property
     @pulumi.getter
@@ -620,7 +636,8 @@ class TemDomain(pulumi.CustomResource):
         mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
-            data=main.mx_config)
+            data=main.mx_config,
+            priority=main.mx_priority)
         dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=main.dmarc_name,
@@ -729,7 +746,8 @@ class TemDomain(pulumi.CustomResource):
         mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
-            data=main.mx_config)
+            data=main.mx_config,
+            priority=main.mx_priority)
         dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=main.dmarc_name,
@@ -827,6 +845,7 @@ class TemDomain(pulumi.CustomResource):
             __props__.__dict__["last_valid_at"] = None
             __props__.__dict__["mx_blackhole"] = None
             __props__.__dict__["mx_config"] = None
+            __props__.__dict__["mx_priority"] = None
             __props__.__dict__["next_check_at"] = None
             __props__.__dict__["reputations"] = None
             __props__.__dict__["revoked_at"] = None
@@ -861,6 +880,7 @@ class TemDomain(pulumi.CustomResource):
             last_valid_at: pulumi.Input[Optional[_builtins.str]] = None,
             mx_blackhole: pulumi.Input[Optional[_builtins.str]] = None,
             mx_config: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_priority: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -895,7 +915,8 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] last_error: (Deprecated) The error message if the last check failed.
         :param pulumi.Input[_builtins.str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[_builtins.str] mx_blackhole: The Scaleway's blackhole MX server to use if you do not have one.
-        :param pulumi.Input[_builtins.str] mx_config: MX record configuration for the domain blackhole.
+        :param pulumi.Input[_builtins.str] mx_config: MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
+        :param pulumi.Input[_builtins.int] mx_priority: MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
         :param pulumi.Input[_builtins.str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[_builtins.str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
@@ -930,6 +951,7 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["last_valid_at"] = last_valid_at
         __props__.__dict__["mx_blackhole"] = mx_blackhole
         __props__.__dict__["mx_config"] = mx_config
+        __props__.__dict__["mx_priority"] = mx_priority
         __props__.__dict__["name"] = name
         __props__.__dict__["next_check_at"] = next_check_at
         __props__.__dict__["project_id"] = project_id
@@ -1034,9 +1056,17 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="mxConfig")
     def mx_config(self) -> pulumi.Output[_builtins.str]:
         """
-        MX record configuration for the domain blackhole.
+        MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
         """
         return pulumi.get(self, "mx_config")
+
+    @_builtins.property
+    @pulumi.getter(name="mxPriority")
+    def mx_priority(self) -> pulumi.Output[_builtins.int]:
+        """
+        MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+        """
+        return pulumi.get(self, "mx_priority")
 
     @_builtins.property
     @pulumi.getter

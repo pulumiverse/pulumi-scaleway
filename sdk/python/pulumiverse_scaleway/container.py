@@ -27,6 +27,8 @@ class ContainerArgs:
                  cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
                  deploy: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_public_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_private_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
@@ -64,6 +66,10 @@ class ContainerArgs:
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
+        :param pulumi.Input[_builtins.bool] enable_default_public_endpoint: Whether the default public_endpoint is enabled or not (default: true).
+        :param pulumi.Input[_builtins.bool] enable_private_endpoint: Where the private_endpoint is enabled or not (default: false).
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
@@ -88,8 +94,6 @@ class ContainerArgs:
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
@@ -117,6 +121,10 @@ class ContainerArgs:
             pulumi.set(__self__, "deploy", deploy)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_default_public_endpoint is not None:
+            pulumi.set(__self__, "enable_default_public_endpoint", enable_default_public_endpoint)
+        if enable_private_endpoint is not None:
+            pulumi.set(__self__, "enable_private_endpoint", enable_private_endpoint)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if health_checks is not None:
@@ -259,6 +267,32 @@ class ContainerArgs:
     @description.setter
     def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableDefaultPublicEndpoint")
+    def enable_default_public_endpoint(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the default public_endpoint is enabled or not (default: true).
+        """
+        return pulumi.get(self, "enable_default_public_endpoint")
+
+    @enable_default_public_endpoint.setter
+    def enable_default_public_endpoint(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_default_public_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enablePrivateEndpoint")
+    def enable_private_endpoint(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Where the private_endpoint is enabled or not (default: false).
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "enable_private_endpoint")
+
+    @enable_private_endpoint.setter
+    def enable_private_endpoint(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_private_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
@@ -457,8 +491,6 @@ class ContainerArgs:
     def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the container is connected to.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -600,6 +632,8 @@ class _ContainerState:
                  deploy: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_public_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_private_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  error_message: pulumi.Input[Optional[_builtins.str]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerHealthCheckArgs']]]] = None,
@@ -617,6 +651,7 @@ class _ContainerState:
                  namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
                  port: pulumi.Input[Optional[_builtins.int]] = None,
                  privacy: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  public_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
@@ -642,6 +677,10 @@ class _ContainerState:
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container.
+        :param pulumi.Input[_builtins.bool] enable_default_public_endpoint: Whether the default public_endpoint is enabled or not (default: true).
+        :param pulumi.Input[_builtins.bool] enable_private_endpoint: Where the private_endpoint is enabled or not (default: false).
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerHealthCheckArgs']]] health_checks: Health check configuration block of the container.
@@ -667,9 +706,8 @@ class _ContainerState:
         :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[_builtins.str] private_endpoint: Private URL of the container. This endpoint is only accessible from the private_network on which the container is attached.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
@@ -708,6 +746,10 @@ class _ContainerState:
             pulumi.log.warn("""domain_name is deprecated: This attribute will be removed in the future, please use public_endpoint instead""")
         if domain_name is not None:
             pulumi.set(__self__, "domain_name", domain_name)
+        if enable_default_public_endpoint is not None:
+            pulumi.set(__self__, "enable_default_public_endpoint", enable_default_public_endpoint)
+        if enable_private_endpoint is not None:
+            pulumi.set(__self__, "enable_private_endpoint", enable_private_endpoint)
         if environment_variables is not None:
             pulumi.set(__self__, "environment_variables", environment_variables)
         if error_message is not None:
@@ -754,6 +796,8 @@ class _ContainerState:
             pulumi.set(__self__, "port", port)
         if privacy is not None:
             pulumi.set(__self__, "privacy", privacy)
+        if private_endpoint is not None:
+            pulumi.set(__self__, "private_endpoint", private_endpoint)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if protocol is not None:
@@ -872,6 +916,32 @@ class _ContainerState:
     @domain_name.setter
     def domain_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableDefaultPublicEndpoint")
+    def enable_default_public_endpoint(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the default public_endpoint is enabled or not (default: true).
+        """
+        return pulumi.get(self, "enable_default_public_endpoint")
+
+    @enable_default_public_endpoint.setter
+    def enable_default_public_endpoint(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_default_public_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enablePrivateEndpoint")
+    def enable_private_endpoint(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Where the private_endpoint is enabled or not (default: false).
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "enable_private_endpoint")
+
+    @enable_private_endpoint.setter
+    def enable_private_endpoint(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_private_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
@@ -1090,12 +1160,22 @@ class _ContainerState:
         pulumi.set(self, "privacy", value)
 
     @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Private URL of the container. This endpoint is only accessible from the private_network on which the container is attached.
+        """
+        return pulumi.get(self, "private_endpoint")
+
+    @private_endpoint.setter
+    def private_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_endpoint", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Private Network the container is connected to.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -1267,6 +1347,8 @@ class Container(pulumi.CustomResource):
                  cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
                  deploy: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_public_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_private_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1549,6 +1631,10 @@ class Container(pulumi.CustomResource):
                
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
+        :param pulumi.Input[_builtins.bool] enable_default_public_endpoint: Whether the default public_endpoint is enabled or not (default: true).
+        :param pulumi.Input[_builtins.bool] enable_private_endpoint: Where the private_endpoint is enabled or not (default: false).
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
         :param pulumi.Input[_builtins.str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
@@ -1574,8 +1660,6 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
         :param pulumi.Input[_builtins.str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
@@ -1860,6 +1944,8 @@ class Container(pulumi.CustomResource):
                  cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
                  deploy: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_default_public_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_private_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
                  http_option: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1902,6 +1988,8 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["cpu_limit"] = cpu_limit
             __props__.__dict__["deploy"] = deploy
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_default_public_endpoint"] = enable_default_public_endpoint
+            __props__.__dict__["enable_private_endpoint"] = enable_private_endpoint
             __props__.__dict__["environment_variables"] = environment_variables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["http_option"] = http_option
@@ -1934,6 +2022,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["cron_status"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["error_message"] = None
+            __props__.__dict__["private_endpoint"] = None
             __props__.__dict__["public_endpoint"] = None
             __props__.__dict__["status"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
@@ -1955,6 +2044,8 @@ class Container(pulumi.CustomResource):
             deploy: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_default_public_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_private_endpoint: pulumi.Input[Optional[_builtins.bool]] = None,
             environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             error_message: pulumi.Input[Optional[_builtins.str]] = None,
             health_checks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]]] = None,
@@ -1972,6 +2063,7 @@ class Container(pulumi.CustomResource):
             namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
             port: pulumi.Input[Optional[_builtins.int]] = None,
             privacy: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             public_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2001,6 +2093,10 @@ class Container(pulumi.CustomResource):
                > **Important:** Containers are now automatically deployed and redeployed; setting this attribute will not have any effect.
         :param pulumi.Input[_builtins.str] description: The description of the container.
         :param pulumi.Input[_builtins.str] domain_name: The native domain name of the container.
+        :param pulumi.Input[_builtins.bool] enable_default_public_endpoint: Whether the default public_endpoint is enabled or not (default: true).
+        :param pulumi.Input[_builtins.bool] enable_private_endpoint: Where the private_endpoint is enabled or not (default: false).
+               
+               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[_builtins.str] error_message: The error message of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerHealthCheckArgs', 'ContainerHealthCheckArgsDict']]]] health_checks: Health check configuration block of the container.
@@ -2026,9 +2122,8 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] namespace_id: The Containers namespace ID of the container.
         :param pulumi.Input[_builtins.int] port: The port to expose the container.
         :param pulumi.Input[_builtins.str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[_builtins.str] private_endpoint: Private URL of the container. This endpoint is only accessible from the private_network on which the container is attached.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network the container is connected to.
-               
-               Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[_builtins.str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[_builtins.str] public_endpoint: The scheme and domain of the container (e.g., `https://example.com`).
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the container was created.
@@ -2055,6 +2150,8 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["deploy"] = deploy
         __props__.__dict__["description"] = description
         __props__.__dict__["domain_name"] = domain_name
+        __props__.__dict__["enable_default_public_endpoint"] = enable_default_public_endpoint
+        __props__.__dict__["enable_private_endpoint"] = enable_private_endpoint
         __props__.__dict__["environment_variables"] = environment_variables
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["health_checks"] = health_checks
@@ -2072,6 +2169,7 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["namespace_id"] = namespace_id
         __props__.__dict__["port"] = port
         __props__.__dict__["privacy"] = privacy
+        __props__.__dict__["private_endpoint"] = private_endpoint
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["public_endpoint"] = public_endpoint
@@ -2147,6 +2245,24 @@ class Container(pulumi.CustomResource):
         The native domain name of the container.
         """
         return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="enableDefaultPublicEndpoint")
+    def enable_default_public_endpoint(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the default public_endpoint is enabled or not (default: true).
+        """
+        return pulumi.get(self, "enable_default_public_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="enablePrivateEndpoint")
+    def enable_private_endpoint(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Where the private_endpoint is enabled or not (default: false).
+
+        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
+        """
+        return pulumi.get(self, "enable_private_endpoint")
 
     @_builtins.property
     @pulumi.getter(name="environmentVariables")
@@ -2297,12 +2413,18 @@ class Container(pulumi.CustomResource):
         return pulumi.get(self, "privacy")
 
     @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> pulumi.Output[_builtins.str]:
+        """
+        Private URL of the container. This endpoint is only accessible from the private_network on which the container is attached.
+        """
+        return pulumi.get(self, "private_endpoint")
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The ID of the Private Network the container is connected to.
-
-        Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
         return pulumi.get(self, "private_network_id")
 

@@ -157,6 +157,10 @@ export interface GetPoolResult {
     readonly updatedAt: string;
     readonly upgradePolicies: outputs.kubernetes.GetPoolUpgradePolicy[];
     /**
+     * The pool's user data, as a map of key to content.
+     */
+    readonly userData: {[key: string]: string};
+    /**
      * The version of the pool.
      */
     readonly version: string;

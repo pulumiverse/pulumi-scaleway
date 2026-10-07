@@ -66,13 +66,15 @@ class DatabaseInstanceArgs:
                
                > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
                
+               > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+               
                > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input['DatabaseInstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
+        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -232,6 +234,8 @@ class DatabaseInstanceArgs:
 
         > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
 
+        > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+
         > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
@@ -282,7 +286,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="logsPolicy")
     def logs_policy(self) -> pulumi.Input[Optional['DatabaseInstanceLogsPolicyArgs']]:
         """
-        Logs policy configuration
+        Logs policy configuration for remote logs retention on the Database Instance
         """
         return pulumi.get(self, "logs_policy")
 
@@ -518,13 +522,15 @@ class _DatabaseInstanceState:
                
                > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
                
+               > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+               
                > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input['DatabaseInstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
+        :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceMaintenanceArgs']]] maintenances: List of scheduled maintenance events on the Database Instance.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -736,6 +742,8 @@ class _DatabaseInstanceState:
 
         > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
 
+        > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+
         > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
@@ -786,7 +794,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="logsPolicy")
     def logs_policy(self) -> pulumi.Input[Optional['DatabaseInstanceLogsPolicyArgs']]:
         """
-        Logs policy configuration
+        Logs policy configuration for remote logs retention on the Database Instance
         """
         return pulumi.get(self, "logs_policy")
 
@@ -1114,6 +1122,59 @@ class DatabaseInstance(pulumi.CustomResource):
         pulumi.export("upgradableVersions", main.upgradable_versions)
         ```
 
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Example with logs policy
+        main = scaleway.databases.Instance("main",
+            name="test-rdb",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            logs_policy={
+                "max_age_retention": 30,
+                "total_disk_retention": 100000000,
+            })
+        ```
+
+        ### 1. Find the instances (CLI)
+
+        If Terraform returned a timeout error after the upgrade started, the error message includes the **new** and **old** instance regional IDs.
+
+        Otherwise, list instances in the same region and project (use the instance `name` from your Terraform config):
+
+        Identify:
+
+        - **New instance**: target `engine` (e.g. `PostgreSQL-16`), `status` is `ready`, endpoints (load balancer / private network) are attached.
+        - **Old instance**: previous `engine`, often still present as an orphan after a timeout, endpoints usually migrated away.
+
+        You can also compare with the ID stored in Terraform state:
+
+        ### 2. Wait for the upgrade to finish
+
+        Wait until the **new** instance is `ready` with the expected engine and endpoints before changing Terraform state.
+
+        ### 3. Delete the old instance (CLI)
+
+        Once the new instance is live and endpoints are migrated:
+
+        Replace the instance ID and region with the **old** instance values.
+
+        ### 4. Fix Terraform state
+
+        If Terraform state still points to the **old** instance ID but the **new** instance is the live one:
+
+        If state already references the new instance ID, run `pulumi preview` / `pulumi up` only — you may still need a second apply for dependent resources such as `databases.Acl` that reference the instance ID.
+
+        ## Limitations
+
+        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+
         ## Import
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -1136,13 +1197,15 @@ class DatabaseInstance(pulumi.CustomResource):
                
                > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
                
+               > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+               
                > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1218,6 +1281,59 @@ class DatabaseInstance(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         pulumi.export("upgradableVersions", main.upgradable_versions)
         ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Example with logs policy
+        main = scaleway.databases.Instance("main",
+            name="test-rdb",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            logs_policy={
+                "max_age_retention": 30,
+                "total_disk_retention": 100000000,
+            })
+        ```
+
+        ### 1. Find the instances (CLI)
+
+        If Terraform returned a timeout error after the upgrade started, the error message includes the **new** and **old** instance regional IDs.
+
+        Otherwise, list instances in the same region and project (use the instance `name` from your Terraform config):
+
+        Identify:
+
+        - **New instance**: target `engine` (e.g. `PostgreSQL-16`), `status` is `ready`, endpoints (load balancer / private network) are attached.
+        - **Old instance**: previous `engine`, often still present as an orphan after a timeout, endpoints usually migrated away.
+
+        You can also compare with the ID stored in Terraform state:
+
+        ### 2. Wait for the upgrade to finish
+
+        Wait until the **new** instance is `ready` with the expected engine and endpoints before changing Terraform state.
+
+        ### 3. Delete the old instance (CLI)
+
+        Once the new instance is live and endpoints are migrated:
+
+        Replace the instance ID and region with the **old** instance values.
+
+        ### 4. Fix Terraform state
+
+        If Terraform state still points to the **old** instance ID but the **new** instance is the live one:
+
+        If state already references the new instance ID, run `pulumi preview` / `pulumi up` only — you may still need a second apply for dependent resources such as `databases.Acl` that reference the instance ID.
+
+        ## Limitations
+
+        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
         ## Import
 
@@ -1377,13 +1493,15 @@ class DatabaseInstance(pulumi.CustomResource):
                
                > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
                
+               > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+               
                > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict']]]] maintenances: List of scheduled maintenance events on the Database Instance.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -1530,6 +1648,8 @@ class DatabaseInstance(pulumi.CustomResource):
 
         > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradable_versions` computed attribute to check available versions for upgrade.
 
+        > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+
         > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
         """
         return pulumi.get(self, "engine")
@@ -1564,7 +1684,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="logsPolicy")
     def logs_policy(self) -> pulumi.Output['outputs.DatabaseInstanceLogsPolicy']:
         """
-        Logs policy configuration
+        Logs policy configuration for remote logs retention on the Database Instance
         """
         return pulumi.get(self, "logs_policy")
 

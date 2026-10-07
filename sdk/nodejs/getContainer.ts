@@ -110,6 +110,8 @@ export interface GetContainerResult {
      * The native domain name of the container
      */
     readonly domainName: string;
+    readonly enableDefaultPublicEndpoint: boolean;
+    readonly enablePrivateEndpoint: boolean;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
@@ -176,6 +178,7 @@ export interface GetContainerResult {
      * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
     readonly privacy: string;
+    readonly privateEndpoint: string;
     /**
      * The ID of the Private Network the container is connected to.
      */
