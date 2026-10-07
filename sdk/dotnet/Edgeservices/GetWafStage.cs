@@ -196,6 +196,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
     {
         public readonly string BackendStageId;
         public readonly string CreatedAt;
+        public readonly ImmutableArray<Outputs.GetWafStageExclusionRuleResult> ExclusionRules;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -213,6 +214,8 @@ namespace Pulumiverse.Scaleway.Edgeservices
 
             string createdAt,
 
+            ImmutableArray<Outputs.GetWafStageExclusionRuleResult> exclusionRules,
+
             string id,
 
             string mode,
@@ -229,6 +232,7 @@ namespace Pulumiverse.Scaleway.Edgeservices
         {
             BackendStageId = backendStageId;
             CreatedAt = createdAt;
+            ExclusionRules = exclusionRules;
             Id = id;
             Mode = mode;
             ParanoiaLevel = paranoiaLevel;

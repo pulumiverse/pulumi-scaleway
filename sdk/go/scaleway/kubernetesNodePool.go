@@ -214,6 +214,10 @@ type KubernetesNodePool struct {
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -340,6 +344,10 @@ type kubernetesNodePoolState struct {
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -428,6 +436,10 @@ type KubernetesNodePoolState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -508,6 +520,10 @@ type kubernetesNodePoolArgs struct {
 	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 	// The Pool upgrade policy
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -585,6 +601,10 @@ type KubernetesNodePoolArgs struct {
 	Taints KubernetesNodePoolTaintArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
+	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
 	// For the field to be properly taken into account, the `upgradePools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
 	//
@@ -838,6 +858,13 @@ func (o KubernetesNodePoolOutput) UpdatedAt() pulumi.StringOutput {
 // The Pool upgrade policy
 func (o KubernetesNodePoolOutput) UpgradePolicy() KubernetesNodePoolUpgradePolicyOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) KubernetesNodePoolUpgradePolicyOutput { return v.UpgradePolicy }).(KubernetesNodePoolUpgradePolicyOutput)
+}
+
+// User data applied and reconciled with the pool, as a map of key to content.
+//
+// > **Important:** Updates to this field will recreate a new resource.
+func (o KubernetesNodePoolOutput) UserData() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringMapOutput { return v.UserData }).(pulumi.StringMapOutput)
 }
 
 // The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.

@@ -85,6 +85,75 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			//## Example with logs policy
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
+//				Name:        pulumi.String("test-rdb"),
+//				NodeType:    pulumi.String("DB-DEV-S"),
+//				Engine:      pulumi.String("PostgreSQL-15"),
+//				IsHaCluster: pulumi.Bool(true),
+//				UserName:    pulumi.String("my_initial_user"),
+//				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
+//				LogsPolicy: &databases.InstanceLogsPolicyArgs{
+//					MaxAgeRetention:    pulumi.Int(30),
+//					TotalDiskRetention: pulumi.Int(100000000),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### 1. Find the instances (CLI)
+//
+// If Terraform returned a timeout error after the upgrade started, the error message includes the **new** and **old** instance regional IDs.
+//
+// Otherwise, list instances in the same region and project (use the instance `name` from your Terraform config):
+//
+// Identify:
+//
+// - **New instance**: target `engine` (e.g. `PostgreSQL-16`), `status` is `ready`, endpoints (load balancer / private network) are attached.
+// - **Old instance**: previous `engine`, often still present as an orphan after a timeout, endpoints usually migrated away.
+//
+// You can also compare with the ID stored in Terraform state:
+//
+// ### 2. Wait for the upgrade to finish
+//
+// Wait until the **new** instance is `ready` with the expected engine and endpoints before changing Terraform state.
+//
+// ### 3. Delete the old instance (CLI)
+//
+// Once the new instance is live and endpoints are migrated:
+//
+// Replace the instance ID and region with the **old** instance values.
+//
+// ### 4. Fix Terraform state
+//
+// If Terraform state still points to the **old** instance ID but the **new** instance is the live one:
+//
+// If state already references the new instance ID, run `pulumi preview` / `pulumi up` only — you may still need a second apply for dependent resources such as `databases.Acl` that reference the instance ID.
+//
+// ## Limitations
+//
+// The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -121,6 +190,8 @@ type Instance struct {
 	//
 	// > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 	//
+	// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+	//
 	// > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
@@ -131,7 +202,7 @@ type Instance struct {
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer InstanceLoadBalancerOutput `pulumi:"loadBalancer"`
-	// Logs policy configuration
+	// Logs policy configuration for remote logs retention on the Database Instance
 	LogsPolicy InstanceLogsPolicyOutput `pulumi:"logsPolicy"`
 	// List of scheduled maintenance events on the Database Instance.
 	Maintenances InstanceMaintenanceArrayOutput `pulumi:"maintenances"`
@@ -261,6 +332,8 @@ type instanceState struct {
 	//
 	// > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 	//
+	// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+	//
 	// > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
@@ -271,7 +344,7 @@ type instanceState struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer *InstanceLoadBalancer `pulumi:"loadBalancer"`
-	// Logs policy configuration
+	// Logs policy configuration for remote logs retention on the Database Instance
 	LogsPolicy *InstanceLogsPolicy `pulumi:"logsPolicy"`
 	// List of scheduled maintenance events on the Database Instance.
 	Maintenances []InstanceMaintenance `pulumi:"maintenances"`
@@ -352,6 +425,8 @@ type InstanceState struct {
 	//
 	// > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 	//
+	// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+	//
 	// > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
@@ -362,7 +437,7 @@ type InstanceState struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer InstanceLoadBalancerPtrInput
-	// Logs policy configuration
+	// Logs policy configuration for remote logs retention on the Database Instance
 	LogsPolicy InstanceLogsPolicyPtrInput
 	// List of scheduled maintenance events on the Database Instance.
 	Maintenances InstanceMaintenanceArrayInput
@@ -437,6 +512,8 @@ type instanceArgs struct {
 	//
 	// > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 	//
+	// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+	//
 	// > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
@@ -447,7 +524,7 @@ type instanceArgs struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer *InstanceLoadBalancer `pulumi:"loadBalancer"`
-	// Logs policy configuration
+	// Logs policy configuration for remote logs retention on the Database Instance
 	LogsPolicy *InstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
@@ -511,6 +588,8 @@ type InstanceArgs struct {
 	//
 	// > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 	//
+	// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+	//
 	// > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
@@ -521,7 +600,7 @@ type InstanceArgs struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer InstanceLoadBalancerPtrInput
-	// Logs policy configuration
+	// Logs policy configuration for remote logs retention on the Database Instance
 	LogsPolicy InstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
@@ -704,6 +783,8 @@ func (o InstanceOutput) EndpointPort() pulumi.IntOutput {
 //
 // > **Important** Updates to `engine` will perform a blue/green upgrade using `MajorUpgradeWorkflow`. This creates a new instance from a snapshot, migrates endpoints automatically, and updates the Terraform state with the new instance ID. The upgrade ensures minimal downtime but **any writes between the snapshot and the endpoint migration will be lost**. Use the `upgradableVersions` computed attribute to check available versions for upgrade.
 //
+// > **Note** Major engine upgrades (especially with HA) can take longer than other updates. The default `timeouts.update` for this resource is **60 minutes** — increase it further for large databases if needed. If Terraform times out, the Scaleway blue/green workflow may still continue in the background. See Engine upgrade timeout recovery below.
+//
 // > **Note** The provider copies instance-level data managed outside `databases.Instance`, such as ACL rules, to the upgraded instance during the engine upgrade. However, Terraform plans dependent resources before the blue/green upgrade returns the new instance ID. As a result, resources that reference the previous instance ID, such as `databases.Acl`, may require a second `pulumi up` to fully reconcile their Terraform state with the upgraded instance.
 func (o InstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
@@ -726,7 +807,7 @@ func (o InstanceOutput) LoadBalancer() InstanceLoadBalancerOutput {
 	return o.ApplyT(func(v *Instance) InstanceLoadBalancerOutput { return v.LoadBalancer }).(InstanceLoadBalancerOutput)
 }
 
-// Logs policy configuration
+// Logs policy configuration for remote logs retention on the Database Instance
 func (o InstanceOutput) LogsPolicy() InstanceLogsPolicyOutput {
 	return o.ApplyT(func(v *Instance) InstanceLogsPolicyOutput { return v.LogsPolicy }).(InstanceLogsPolicyOutput)
 }

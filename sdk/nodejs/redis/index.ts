@@ -15,6 +15,16 @@ export const getCluster: typeof import("./getCluster").getCluster = null as any;
 export const getClusterOutput: typeof import("./getCluster").getClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getCluster","getClusterOutput"], () => require("./getCluster"));
 
+export { GetClusterVersionsArgs, GetClusterVersionsResult, GetClusterVersionsOutputArgs } from "./getClusterVersions";
+export const getClusterVersions: typeof import("./getClusterVersions").getClusterVersions = null as any;
+export const getClusterVersionsOutput: typeof import("./getClusterVersions").getClusterVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getClusterVersions","getClusterVersionsOutput"], () => require("./getClusterVersions"));
+
+export { GetNodeTypesArgs, GetNodeTypesResult, GetNodeTypesOutputArgs } from "./getNodeTypes";
+export const getNodeTypes: typeof import("./getNodeTypes").getNodeTypes = null as any;
+export const getNodeTypesOutput: typeof import("./getNodeTypes").getNodeTypesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodeTypes","getNodeTypesOutput"], () => require("./getNodeTypes"));
+
 
 const _module = {
     version: utilities.getVersion(),

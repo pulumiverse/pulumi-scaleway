@@ -109,7 +109,9 @@ type LookupContainerResult struct {
 	// The description of the container.
 	Description string `pulumi:"description"`
 	// The native domain name of the container
-	DomainName string `pulumi:"domainName"`
+	DomainName                  string `pulumi:"domainName"`
+	EnableDefaultPublicEndpoint bool   `pulumi:"enableDefaultPublicEndpoint"`
+	EnablePrivateEndpoint       bool   `pulumi:"enablePrivateEndpoint"`
 	// The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
 	// The error message of the container.
@@ -143,7 +145,8 @@ type LookupContainerResult struct {
 	// The port to expose the container.
 	Port int `pulumi:"port"`
 	// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
-	Privacy string `pulumi:"privacy"`
+	Privacy         string `pulumi:"privacy"`
+	PrivateEndpoint string `pulumi:"privateEndpoint"`
 	// The ID of the Private Network the container is connected to.
 	PrivateNetworkId string  `pulumi:"privateNetworkId"`
 	ProjectId        *string `pulumi:"projectId"`
@@ -244,6 +247,14 @@ func (o LookupContainerResultOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.DomainName }).(pulumi.StringOutput)
 }
 
+func (o LookupContainerResultOutput) EnableDefaultPublicEndpoint() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupContainerResult) bool { return v.EnableDefaultPublicEndpoint }).(pulumi.BoolOutput)
+}
+
+func (o LookupContainerResultOutput) EnablePrivateEndpoint() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupContainerResult) bool { return v.EnablePrivateEndpoint }).(pulumi.BoolOutput)
+}
+
 // The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
 func (o LookupContainerResultOutput) EnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerResult) map[string]string { return v.EnvironmentVariables }).(pulumi.StringMapOutput)
@@ -330,6 +341,10 @@ func (o LookupContainerResultOutput) Port() pulumi.IntOutput {
 // The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
 func (o LookupContainerResultOutput) Privacy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerResult) string { return v.Privacy }).(pulumi.StringOutput)
+}
+
+func (o LookupContainerResultOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupContainerResult) string { return v.PrivateEndpoint }).(pulumi.StringOutput)
 }
 
 // The ID of the Private Network the container is connected to.

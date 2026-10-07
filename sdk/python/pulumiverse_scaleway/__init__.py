@@ -14,7 +14,6 @@ from .block_snapshot import *
 from .block_volume import *
 from .cockpit import *
 from .cockpit_alert_manager import *
-from .cockpit_grafana_user import *
 from .cockpit_source import *
 from .cockpit_token import *
 from .container import *
@@ -111,7 +110,12 @@ from .get_lbs import *
 from .get_loadbalancer import *
 from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
+from .get_mailbox import *
 from .get_marketplace_image import *
+from .get_messageq_certificate_authority import *
+from .get_messageq_deployment import *
+from .get_messageq_node_type import *
+from .get_messageq_version import *
 from .get_mnq_sns import *
 from .get_mnq_sqs import *
 from .get_mongo_db_instance import *
@@ -173,6 +177,10 @@ from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
+from .mailbox import *
+from .mailbox_domain import *
+from .messageq_deployment import *
+from .messageq_user import *
 from .mnq_nats_account import *
 from .mnq_nats_credentials import *
 from .mnq_sns import *
@@ -190,6 +198,7 @@ from .object_bucket_lock_configuration import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .object_item import *
+from .partner_organization import *
 from .provider import *
 from .rdb_snapshot import *
 from .redis_cluster import *
@@ -949,14 +958,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/cockpitGrafanaUser",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": "CockpitGrafanaUser"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/cockpitSource",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -1525,6 +1526,38 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/mailbox",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mailbox:Mailbox": "Mailbox"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mailboxDomain",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/mailboxDomain:MailboxDomain": "MailboxDomain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/messageqDeployment",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/messageqDeployment:MessageqDeployment": "MessageqDeployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/messageqUser",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/messageqUser:MessageqUser": "MessageqUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/mnqNatsAccount",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -1657,6 +1690,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/objectItem:ObjectItem": "ObjectItem"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/partnerOrganization",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/partnerOrganization:PartnerOrganization": "PartnerOrganization"
   }
  },
  {
@@ -2397,14 +2438,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "observability/grafanaUser",
-  "fqn": "pulumiverse_scaleway.observability",
-  "classes": {
-   "scaleway:observability/grafanaUser:GrafanaUser": "GrafanaUser"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "observability/source",
   "fqn": "pulumiverse_scaleway.observability",
   "classes": {
@@ -2425,6 +2458,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.opensearch",
   "classes": {
    "scaleway:opensearch/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "opensearch/user",
+  "fqn": "pulumiverse_scaleway.opensearch",
+  "classes": {
+   "scaleway:opensearch/user:User": "User"
   }
  },
  {

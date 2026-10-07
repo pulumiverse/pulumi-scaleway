@@ -83,7 +83,13 @@ namespace Pulumiverse.Scaleway.Tem
     public sealed class GetOfferSubscriptionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `ProjectId`) The ID of the project the offer subscription is associated with.
+        /// The ID of the organization the offer subscription is associated with. Conflicts with `ProjectId`.
+        /// </summary>
+        [Input("organizationId")]
+        public string? OrganizationId { get; set; }
+
+        /// <summary>
+        /// `ProjectId`) The ID of the project the offer subscription is associated with. Conflicts with `OrganizationId`.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -103,7 +109,13 @@ namespace Pulumiverse.Scaleway.Tem
     public sealed class GetOfferSubscriptionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `ProjectId`) The ID of the project the offer subscription is associated with.
+        /// The ID of the organization the offer subscription is associated with. Conflicts with `ProjectId`.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// `ProjectId`) The ID of the project the offer subscription is associated with. Conflicts with `OrganizationId`.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -156,6 +168,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// The name of the offer associated with the subscription (e.g., `Scale`).
         /// </summary>
         public readonly string OfferName;
+        public readonly string OrganizationId;
         public readonly string ProjectId;
         public readonly string Region;
         /// <summary>
@@ -185,6 +198,8 @@ namespace Pulumiverse.Scaleway.Tem
 
             string offerName,
 
+            string organizationId,
+
             string projectId,
 
             string region,
@@ -201,6 +216,7 @@ namespace Pulumiverse.Scaleway.Tem
             MaxDomains = maxDomains;
             MaxWebhooksPerDomain = maxWebhooksPerDomain;
             OfferName = offerName;
+            OrganizationId = organizationId;
             ProjectId = projectId;
             Region = region;
             Sla = sla;

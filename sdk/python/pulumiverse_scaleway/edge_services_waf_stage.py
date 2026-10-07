@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['EdgeServicesWafStageArgs', 'EdgeServicesWafStage']
 
@@ -22,6 +24,7 @@ class EdgeServicesWafStageArgs:
                  paranoia_level: pulumi.Input[_builtins.int],
                  pipeline_id: pulumi.Input[_builtins.str],
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusion_rules: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]] = None,
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -30,6 +33,7 @@ class EdgeServicesWafStageArgs:
         :param pulumi.Input[_builtins.int] paranoia_level: The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
+        :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]] exclusion_rules: List of OWASP CRS rule IDs excluded from the WAF.
         :param pulumi.Input[_builtins.str] mode: The mode defining WAF behavior (`disable`/`log_only`/`enable`).
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the WAF stage is associated with.
         """
@@ -37,6 +41,8 @@ class EdgeServicesWafStageArgs:
         pulumi.set(__self__, "pipeline_id", pipeline_id)
         if backend_stage_id is not None:
             pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        if exclusion_rules is not None:
+            pulumi.set(__self__, "exclusion_rules", exclusion_rules)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if project_id is not None:
@@ -79,6 +85,18 @@ class EdgeServicesWafStageArgs:
         pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="exclusionRules")
+    def exclusion_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]]:
+        """
+        List of OWASP CRS rule IDs excluded from the WAF.
+        """
+        return pulumi.get(self, "exclusion_rules")
+
+    @exclusion_rules.setter
+    def exclusion_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]]):
+        pulumi.set(self, "exclusion_rules", value)
+
+    @_builtins.property
     @pulumi.getter
     def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -108,6 +126,7 @@ class _EdgeServicesWafStageState:
     def __init__(__self__, *,
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusion_rules: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]] = None,
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  paranoia_level: pulumi.Input[Optional[_builtins.int]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -118,6 +137,7 @@ class _EdgeServicesWafStageState:
 
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the WAF stage.
+        :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]] exclusion_rules: List of OWASP CRS rule IDs excluded from the WAF.
         :param pulumi.Input[_builtins.str] mode: The mode defining WAF behavior (`disable`/`log_only`/`enable`).
         :param pulumi.Input[_builtins.int] paranoia_level: The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -128,6 +148,8 @@ class _EdgeServicesWafStageState:
             pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if exclusion_rules is not None:
+            pulumi.set(__self__, "exclusion_rules", exclusion_rules)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if paranoia_level is not None:
@@ -162,6 +184,18 @@ class _EdgeServicesWafStageState:
     @created_at.setter
     def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="exclusionRules")
+    def exclusion_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]]:
+        """
+        List of OWASP CRS rule IDs excluded from the WAF.
+        """
+        return pulumi.get(self, "exclusion_rules")
+
+    @exclusion_rules.setter
+    def exclusion_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['EdgeServicesWafStageExclusionRuleArgs']]]]):
+        pulumi.set(self, "exclusion_rules", value)
 
     @_builtins.property
     @pulumi.getter
@@ -236,6 +270,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusion_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesWafStageExclusionRuleArgs', 'EdgeServicesWafStageExclusionRuleArgsDict']]]]] = None,
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  paranoia_level: pulumi.Input[Optional[_builtins.int]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -258,6 +293,26 @@ class EdgeServicesWafStage(pulumi.CustomResource):
             paranoia_level=3)
         ```
 
+        ### Exclude CRS rules
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.WafStage("main",
+            pipeline_id=main_scaleway_edge_services_pipeline["id"],
+            mode="enable",
+            paranoia_level=3,
+            exclusion_rules=[
+                {
+                    "rule_id": 942100,
+                },
+                {
+                    "rule_id": 920350,
+                },
+            ])
+        ```
+
         ## Import
 
         WAF stages can be imported using the `{id}`, e.g.
@@ -270,6 +325,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesWafStageExclusionRuleArgs', 'EdgeServicesWafStageExclusionRuleArgsDict']]]] exclusion_rules: List of OWASP CRS rule IDs excluded from the WAF.
         :param pulumi.Input[_builtins.str] mode: The mode defining WAF behavior (`disable`/`log_only`/`enable`).
         :param pulumi.Input[_builtins.int] paranoia_level: The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -298,6 +354,26 @@ class EdgeServicesWafStage(pulumi.CustomResource):
             paranoia_level=3)
         ```
 
+        ### Exclude CRS rules
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.WafStage("main",
+            pipeline_id=main_scaleway_edge_services_pipeline["id"],
+            mode="enable",
+            paranoia_level=3,
+            exclusion_rules=[
+                {
+                    "rule_id": 942100,
+                },
+                {
+                    "rule_id": 920350,
+                },
+            ])
+        ```
+
         ## Import
 
         WAF stages can be imported using the `{id}`, e.g.
@@ -323,6 +399,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusion_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesWafStageExclusionRuleArgs', 'EdgeServicesWafStageExclusionRuleArgsDict']]]]] = None,
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  paranoia_level: pulumi.Input[Optional[_builtins.int]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -338,6 +415,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
             __props__ = EdgeServicesWafStageArgs.__new__(EdgeServicesWafStageArgs)
 
             __props__.__dict__["backend_stage_id"] = backend_stage_id
+            __props__.__dict__["exclusion_rules"] = exclusion_rules
             __props__.__dict__["mode"] = mode
             if paranoia_level is None and not opts.urn:
                 raise TypeError("Missing required property 'paranoia_level'")
@@ -360,6 +438,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            exclusion_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesWafStageExclusionRuleArgs', 'EdgeServicesWafStageExclusionRuleArgsDict']]]]] = None,
             mode: pulumi.Input[Optional[_builtins.str]] = None,
             paranoia_level: pulumi.Input[Optional[_builtins.int]] = None,
             pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -374,6 +453,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage to forward requests to after the WAF stage.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the WAF stage.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesWafStageExclusionRuleArgs', 'EdgeServicesWafStageExclusionRuleArgsDict']]]] exclusion_rules: List of OWASP CRS rule IDs excluded from the WAF.
         :param pulumi.Input[_builtins.str] mode: The mode defining WAF behavior (`disable`/`log_only`/`enable`).
         :param pulumi.Input[_builtins.int] paranoia_level: The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
@@ -386,6 +466,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
 
         __props__.__dict__["backend_stage_id"] = backend_stage_id
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["exclusion_rules"] = exclusion_rules
         __props__.__dict__["mode"] = mode
         __props__.__dict__["paranoia_level"] = paranoia_level
         __props__.__dict__["pipeline_id"] = pipeline_id
@@ -408,6 +489,14 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         The date and time of the creation of the WAF stage.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="exclusionRules")
+    def exclusion_rules(self) -> pulumi.Output[Optional[Sequence['outputs.EdgeServicesWafStageExclusionRule']]]:
+        """
+        List of OWASP CRS rule IDs excluded from the WAF.
+        """
+        return pulumi.get(self, "exclusion_rules")
 
     @_builtins.property
     @pulumi.getter

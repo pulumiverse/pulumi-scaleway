@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -19,6 +21,27 @@ import * as utilities from "../utilities";
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     mode: "enable",
  *     paranoiaLevel: 3,
+ * });
+ * ```
+ *
+ * ### Exclude CRS rules
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.edgeservices.WafStage("main", {
+ *     pipelineId: mainScalewayEdgeServicesPipeline.id,
+ *     mode: "enable",
+ *     paranoiaLevel: 3,
+ *     exclusionRules: [
+ *         {
+ *             ruleId: 942100,
+ *         },
+ *         {
+ *             ruleId: 920350,
+ *         },
+ *     ],
  * });
  * ```
  *
@@ -67,6 +90,10 @@ export class WafStage extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
+     * List of OWASP CRS rule IDs excluded from the WAF.
+     */
+    declare public readonly exclusionRules: pulumi.Output<outputs.edgeservices.WafStageExclusionRule[] | undefined>;
+    /**
      * The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
      */
     declare public readonly mode: pulumi.Output<string>;
@@ -102,6 +129,7 @@ export class WafStage extends pulumi.CustomResource {
             const state = argsOrState as WafStageState | undefined;
             resourceInputs["backendStageId"] = state?.backendStageId;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["exclusionRules"] = state?.exclusionRules;
             resourceInputs["mode"] = state?.mode;
             resourceInputs["paranoiaLevel"] = state?.paranoiaLevel;
             resourceInputs["pipelineId"] = state?.pipelineId;
@@ -116,6 +144,7 @@ export class WafStage extends pulumi.CustomResource {
                 throw new Error("Missing required property 'pipelineId'");
             }
             resourceInputs["backendStageId"] = args?.backendStageId;
+            resourceInputs["exclusionRules"] = args?.exclusionRules;
             resourceInputs["mode"] = args?.mode;
             resourceInputs["paranoiaLevel"] = args?.paranoiaLevel;
             resourceInputs["pipelineId"] = args?.pipelineId;
@@ -142,6 +171,10 @@ export interface WafStageState {
      * The date and time of the creation of the WAF stage.
      */
     createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * List of OWASP CRS rule IDs excluded from the WAF.
+     */
+    exclusionRules?: pulumi.Input<pulumi.Input<inputs.edgeservices.WafStageExclusionRule>[] | undefined>;
     /**
      * The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
      */
@@ -172,6 +205,10 @@ export interface WafStageArgs {
      * The ID of the backend stage to forward requests to after the WAF stage.
      */
     backendStageId?: pulumi.Input<string | undefined>;
+    /**
+     * List of OWASP CRS rule IDs excluded from the WAF.
+     */
+    exclusionRules?: pulumi.Input<pulumi.Input<inputs.edgeservices.WafStageExclusionRule>[] | undefined>;
     /**
      * The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
      */

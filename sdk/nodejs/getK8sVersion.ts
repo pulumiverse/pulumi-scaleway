@@ -67,6 +67,8 @@ export interface GetK8sVersionResult {
     readonly availableCnis: string[];
     /**
      * The list of supported container runtimes for this version.
+     *
+     * @deprecated deprecated
      */
     readonly availableContainerRuntimes: string[];
     /**

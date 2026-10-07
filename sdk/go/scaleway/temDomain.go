@@ -87,9 +87,10 @@ import (
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
-//				DnsZone: pulumi.String(domainName),
-//				Type:    pulumi.String("MX"),
-//				Data:    main.MxConfig,
+//				DnsZone:  pulumi.String(domainName),
+//				Type:     pulumi.String("MX"),
+//				Data:     main.MxConfig,
+//				Priority: main.MxPriority,
 //			})
 //			if err != nil {
 //				return err
@@ -226,8 +227,10 @@ type TemDomain struct {
 	LastValidAt pulumi.StringOutput `pulumi:"lastValidAt"`
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole pulumi.StringOutput `pulumi:"mxBlackhole"`
-	// MX record configuration for the domain blackhole.
+	// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
 	MxConfig pulumi.StringOutput `pulumi:"mxConfig"`
+	// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+	MxPriority pulumi.IntOutput `pulumi:"mxPriority"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -320,8 +323,10 @@ type temDomainState struct {
 	LastValidAt *string `pulumi:"lastValidAt"`
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole *string `pulumi:"mxBlackhole"`
-	// MX record configuration for the domain blackhole.
+	// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
 	MxConfig *string `pulumi:"mxConfig"`
+	// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+	MxPriority *int `pulumi:"mxPriority"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
@@ -382,8 +387,10 @@ type TemDomainState struct {
 	LastValidAt pulumi.StringPtrInput
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole pulumi.StringPtrInput
-	// MX record configuration for the domain blackhole.
+	// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
 	MxConfig pulumi.StringPtrInput
+	// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+	MxPriority pulumi.IntPtrInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
@@ -597,9 +604,14 @@ func (o TemDomainOutput) MxBlackhole() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.MxBlackhole }).(pulumi.StringOutput)
 }
 
-// MX record configuration for the domain blackhole.
+// MX exchange hostname for the domain blackhole (without priority), suitable for `scaleway_domain_record.data`.
 func (o TemDomainOutput) MxConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.MxConfig }).(pulumi.StringOutput)
+}
+
+// MX priority for the domain blackhole, suitable for `scaleway_domain_record.priority`.
+func (o TemDomainOutput) MxPriority() pulumi.IntOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.MxPriority }).(pulumi.IntOutput)
 }
 
 // The domain name, must not be used in another Transactional Email Domain.

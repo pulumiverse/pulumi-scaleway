@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway.Billing
     ///     var main = new Scaleway.Billing.Budget("main", new()
     ///     {
     ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
-    ///         ConsumptionLimit = 10000,
+    ///         ConsumptionLimit = 100,
     ///         Enabled = true,
     ///     });
     /// 

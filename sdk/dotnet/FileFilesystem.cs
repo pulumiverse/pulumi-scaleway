@@ -170,6 +170,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// `OrganizationId`) The ID of the organization the user is associated with.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>

@@ -91,6 +91,8 @@ type GetVersionResult struct {
 	// The list of supported Container Network Interface (CNI) plugins for this version.
 	AvailableCnis []string `pulumi:"availableCnis"`
 	// The list of supported container runtimes for this version.
+	//
+	// Deprecated: deprecated
 	AvailableContainerRuntimes []string `pulumi:"availableContainerRuntimes"`
 	// The list of supported feature gates for this version.
 	AvailableFeatureGates []string `pulumi:"availableFeatureGates"`
@@ -141,6 +143,8 @@ func (o GetVersionResultOutput) AvailableCnis() pulumi.StringArrayOutput {
 }
 
 // The list of supported container runtimes for this version.
+//
+// Deprecated: deprecated
 func (o GetVersionResultOutput) AvailableContainerRuntimes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVersionResult) []string { return v.AvailableContainerRuntimes }).(pulumi.StringArrayOutput)
 }

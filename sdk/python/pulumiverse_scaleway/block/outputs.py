@@ -19,6 +19,7 @@ __all__ = [
     'SnapshotImport',
     'GetSnapshotExportResult',
     'GetSnapshotImportResult',
+    'GetSnapshotsSnapshotResult',
 ]
 
 @pulumi.output_type
@@ -135,5 +136,89 @@ class GetSnapshotImportResult(dict):
         Key of the qcow file in the specified bucket
         """
         return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class GetSnapshotsSnapshotResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 srn: _builtins.str,
+                 tags: Sequence[_builtins.str],
+                 volume_id: _builtins.str,
+                 zone: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the snapshot in the `zone/uuid` format.
+        :param _builtins.str name: Filter snapshots by their name. Snapshots with a matching name are listed.
+        :param _builtins.str project_id: The ID of the Project the snapshots are associated with, used as filter.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the snapshot.
+        :param Sequence[_builtins.str] tags: List of tags used as filter. Snapshots with one or more matching tags are listed.
+        :param _builtins.str volume_id: The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+        :param _builtins.str zone: `zone`) The zone in which snapshots exist.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "srn", srn)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "volume_id", volume_id)
+        pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the snapshot in the `zone/uuid` format.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Filter snapshots by their name. Snapshots with a matching name are listed.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The ID of the Project the snapshots are associated with, used as filter.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the snapshot.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        List of tags used as filter. Snapshots with one or more matching tags are listed.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> _builtins.str:
+        """
+        The ID of the volume the snapshots were created from, used as filter. Can be a bare UUID or a zoned ID (`zone/uuid`).
+        """
+        return pulumi.get(self, "volume_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def zone(self) -> _builtins.str:
+        """
+        `zone`) The zone in which snapshots exist.
+        """
+        return pulumi.get(self, "zone")
 
 

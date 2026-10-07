@@ -35,6 +35,37 @@ namespace Pulumiverse.Scaleway.Edgeservices
     /// });
     /// ```
     /// 
+    /// ### Exclude CRS rules
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Edgeservices.WafStage("main", new()
+    ///     {
+    ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
+    ///         Mode = "enable",
+    ///         ParanoiaLevel = 3,
+    ///         ExclusionRules = new[]
+    ///         {
+    ///             new Scaleway.Edgeservices.Inputs.WafStageExclusionRuleArgs
+    ///             {
+    ///                 RuleId = 942100,
+    ///             },
+    ///             new Scaleway.Edgeservices.Inputs.WafStageExclusionRuleArgs
+    ///             {
+    ///                 RuleId = 920350,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// WAF stages can be imported using the `{id}`, e.g.
@@ -57,6 +88,12 @@ namespace Pulumiverse.Scaleway.Edgeservices
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// List of OWASP CRS rule IDs excluded from the WAF.
+        /// </summary>
+        [Output("exclusionRules")]
+        public Output<ImmutableArray<Outputs.WafStageExclusionRule>> ExclusionRules { get; private set; } = null!;
 
         /// <summary>
         /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).
@@ -145,6 +182,18 @@ namespace Pulumiverse.Scaleway.Edgeservices
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
 
+        [Input("exclusionRules")]
+        private InputList<Inputs.WafStageExclusionRuleArgs>? _exclusionRules;
+
+        /// <summary>
+        /// List of OWASP CRS rule IDs excluded from the WAF.
+        /// </summary>
+        public InputList<Inputs.WafStageExclusionRuleArgs> ExclusionRules
+        {
+            get => _exclusionRules ?? (_exclusionRules = new InputList<Inputs.WafStageExclusionRuleArgs>());
+            set => _exclusionRules = value;
+        }
+
         /// <summary>
         /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).
         /// </summary>
@@ -188,6 +237,18 @@ namespace Pulumiverse.Scaleway.Edgeservices
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        [Input("exclusionRules")]
+        private InputList<Inputs.WafStageExclusionRuleGetArgs>? _exclusionRules;
+
+        /// <summary>
+        /// List of OWASP CRS rule IDs excluded from the WAF.
+        /// </summary>
+        public InputList<Inputs.WafStageExclusionRuleGetArgs> ExclusionRules
+        {
+            get => _exclusionRules ?? (_exclusionRules = new InputList<Inputs.WafStageExclusionRuleGetArgs>());
+            set => _exclusionRules = value;
+        }
 
         /// <summary>
         /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).

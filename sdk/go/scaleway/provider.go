@@ -98,6 +98,8 @@ type providerArgs struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// The Scaleway API URL to use.
 	ApiUrl *string `pulumi:"apiUrl"`
+	// Configuration block for customizing service endpoints.
+	Endpoints []ProviderEndpoint `pulumi:"endpoints"`
 	// The Scaleway organization ID.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The Scaleway profile to use.
@@ -106,6 +108,8 @@ type providerArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
+	// Whether to enable the request to use path-style addressing.
+	S3UsePathStyle *bool `pulumi:"s3UsePathStyle"`
 	// The Scaleway secret Key.
 	SecretKey *string `pulumi:"secretKey"`
 	// The zone you want to attach the resource to
@@ -118,6 +122,8 @@ type ProviderArgs struct {
 	AccessKey pulumi.StringPtrInput
 	// The Scaleway API URL to use.
 	ApiUrl pulumi.StringPtrInput
+	// Configuration block for customizing service endpoints.
+	Endpoints ProviderEndpointArrayInput
 	// The Scaleway organization ID.
 	OrganizationId pulumi.StringPtrInput
 	// The Scaleway profile to use.
@@ -126,6 +132,8 @@ type ProviderArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
+	// Whether to enable the request to use path-style addressing.
+	S3UsePathStyle pulumi.BoolPtrInput
 	// The Scaleway secret Key.
 	SecretKey pulumi.StringPtrInput
 	// The zone you want to attach the resource to

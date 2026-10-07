@@ -88,8 +88,9 @@ type LookupWafStageArgs struct {
 
 // A collection of values returned by getWafStage.
 type LookupWafStageResult struct {
-	BackendStageId string `pulumi:"backendStageId"`
-	CreatedAt      string `pulumi:"createdAt"`
+	BackendStageId string                     `pulumi:"backendStageId"`
+	CreatedAt      string                     `pulumi:"createdAt"`
+	ExclusionRules []GetWafStageExclusionRule `pulumi:"exclusionRules"`
 	// The provider-assigned unique ID for this managed resource.
 	Id            string  `pulumi:"id"`
 	Mode          string  `pulumi:"mode"`
@@ -140,6 +141,10 @@ func (o LookupWafStageResultOutput) BackendStageId() pulumi.StringOutput {
 
 func (o LookupWafStageResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWafStageResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupWafStageResultOutput) ExclusionRules() GetWafStageExclusionRuleArrayOutput {
+	return o.ApplyT(func(v LookupWafStageResult) []GetWafStageExclusionRule { return v.ExclusionRules }).(GetWafStageExclusionRuleArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

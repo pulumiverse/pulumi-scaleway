@@ -1652,6 +1652,103 @@ func (o TlsStageSecretArrayOutput) Index(i pulumi.IntInput) TlsStageSecretOutput
 	}).(TlsStageSecretOutput)
 }
 
+type WafStageExclusionRule struct {
+	// OWASP CRS rule ID excluded from the WAF.
+	RuleId int `pulumi:"ruleId"`
+}
+
+// WafStageExclusionRuleInput is an input type that accepts WafStageExclusionRuleArgs and WafStageExclusionRuleOutput values.
+// You can construct a concrete instance of `WafStageExclusionRuleInput` via:
+//
+//	WafStageExclusionRuleArgs{...}
+type WafStageExclusionRuleInput interface {
+	pulumi.Input
+
+	ToWafStageExclusionRuleOutput() WafStageExclusionRuleOutput
+	ToWafStageExclusionRuleOutputWithContext(context.Context) WafStageExclusionRuleOutput
+}
+
+type WafStageExclusionRuleArgs struct {
+	// OWASP CRS rule ID excluded from the WAF.
+	RuleId pulumi.IntInput `pulumi:"ruleId"`
+}
+
+func (WafStageExclusionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WafStageExclusionRule)(nil)).Elem()
+}
+
+func (i WafStageExclusionRuleArgs) ToWafStageExclusionRuleOutput() WafStageExclusionRuleOutput {
+	return i.ToWafStageExclusionRuleOutputWithContext(context.Background())
+}
+
+func (i WafStageExclusionRuleArgs) ToWafStageExclusionRuleOutputWithContext(ctx context.Context) WafStageExclusionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WafStageExclusionRuleOutput)
+}
+
+// WafStageExclusionRuleArrayInput is an input type that accepts WafStageExclusionRuleArray and WafStageExclusionRuleArrayOutput values.
+// You can construct a concrete instance of `WafStageExclusionRuleArrayInput` via:
+//
+//	WafStageExclusionRuleArray{ WafStageExclusionRuleArgs{...} }
+type WafStageExclusionRuleArrayInput interface {
+	pulumi.Input
+
+	ToWafStageExclusionRuleArrayOutput() WafStageExclusionRuleArrayOutput
+	ToWafStageExclusionRuleArrayOutputWithContext(context.Context) WafStageExclusionRuleArrayOutput
+}
+
+type WafStageExclusionRuleArray []WafStageExclusionRuleInput
+
+func (WafStageExclusionRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WafStageExclusionRule)(nil)).Elem()
+}
+
+func (i WafStageExclusionRuleArray) ToWafStageExclusionRuleArrayOutput() WafStageExclusionRuleArrayOutput {
+	return i.ToWafStageExclusionRuleArrayOutputWithContext(context.Background())
+}
+
+func (i WafStageExclusionRuleArray) ToWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) WafStageExclusionRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WafStageExclusionRuleArrayOutput)
+}
+
+type WafStageExclusionRuleOutput struct{ *pulumi.OutputState }
+
+func (WafStageExclusionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WafStageExclusionRule)(nil)).Elem()
+}
+
+func (o WafStageExclusionRuleOutput) ToWafStageExclusionRuleOutput() WafStageExclusionRuleOutput {
+	return o
+}
+
+func (o WafStageExclusionRuleOutput) ToWafStageExclusionRuleOutputWithContext(ctx context.Context) WafStageExclusionRuleOutput {
+	return o
+}
+
+// OWASP CRS rule ID excluded from the WAF.
+func (o WafStageExclusionRuleOutput) RuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v WafStageExclusionRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+type WafStageExclusionRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (WafStageExclusionRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WafStageExclusionRule)(nil)).Elem()
+}
+
+func (o WafStageExclusionRuleArrayOutput) ToWafStageExclusionRuleArrayOutput() WafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o WafStageExclusionRuleArrayOutput) ToWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) WafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o WafStageExclusionRuleArrayOutput) Index(i pulumi.IntInput) WafStageExclusionRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafStageExclusionRule {
+		return vs[0].([]WafStageExclusionRule)[vs[1].(int)]
+	}).(WafStageExclusionRuleOutput)
+}
+
 type GetBackendStageContainerBackendConfig struct {
 	// ID of the Serverless Container
 	ContainerId string `pulumi:"containerId"`
@@ -2885,6 +2982,103 @@ func (o GetTlsStageSecretArrayOutput) Index(i pulumi.IntInput) GetTlsStageSecret
 	}).(GetTlsStageSecretOutput)
 }
 
+type GetWafStageExclusionRule struct {
+	// OWASP CRS rule ID excluded from the WAF
+	RuleId int `pulumi:"ruleId"`
+}
+
+// GetWafStageExclusionRuleInput is an input type that accepts GetWafStageExclusionRuleArgs and GetWafStageExclusionRuleOutput values.
+// You can construct a concrete instance of `GetWafStageExclusionRuleInput` via:
+//
+//	GetWafStageExclusionRuleArgs{...}
+type GetWafStageExclusionRuleInput interface {
+	pulumi.Input
+
+	ToGetWafStageExclusionRuleOutput() GetWafStageExclusionRuleOutput
+	ToGetWafStageExclusionRuleOutputWithContext(context.Context) GetWafStageExclusionRuleOutput
+}
+
+type GetWafStageExclusionRuleArgs struct {
+	// OWASP CRS rule ID excluded from the WAF
+	RuleId pulumi.IntInput `pulumi:"ruleId"`
+}
+
+func (GetWafStageExclusionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafStageExclusionRule)(nil)).Elem()
+}
+
+func (i GetWafStageExclusionRuleArgs) ToGetWafStageExclusionRuleOutput() GetWafStageExclusionRuleOutput {
+	return i.ToGetWafStageExclusionRuleOutputWithContext(context.Background())
+}
+
+func (i GetWafStageExclusionRuleArgs) ToGetWafStageExclusionRuleOutputWithContext(ctx context.Context) GetWafStageExclusionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWafStageExclusionRuleOutput)
+}
+
+// GetWafStageExclusionRuleArrayInput is an input type that accepts GetWafStageExclusionRuleArray and GetWafStageExclusionRuleArrayOutput values.
+// You can construct a concrete instance of `GetWafStageExclusionRuleArrayInput` via:
+//
+//	GetWafStageExclusionRuleArray{ GetWafStageExclusionRuleArgs{...} }
+type GetWafStageExclusionRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetWafStageExclusionRuleArrayOutput() GetWafStageExclusionRuleArrayOutput
+	ToGetWafStageExclusionRuleArrayOutputWithContext(context.Context) GetWafStageExclusionRuleArrayOutput
+}
+
+type GetWafStageExclusionRuleArray []GetWafStageExclusionRuleInput
+
+func (GetWafStageExclusionRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWafStageExclusionRule)(nil)).Elem()
+}
+
+func (i GetWafStageExclusionRuleArray) ToGetWafStageExclusionRuleArrayOutput() GetWafStageExclusionRuleArrayOutput {
+	return i.ToGetWafStageExclusionRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetWafStageExclusionRuleArray) ToGetWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) GetWafStageExclusionRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWafStageExclusionRuleArrayOutput)
+}
+
+type GetWafStageExclusionRuleOutput struct{ *pulumi.OutputState }
+
+func (GetWafStageExclusionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWafStageExclusionRule)(nil)).Elem()
+}
+
+func (o GetWafStageExclusionRuleOutput) ToGetWafStageExclusionRuleOutput() GetWafStageExclusionRuleOutput {
+	return o
+}
+
+func (o GetWafStageExclusionRuleOutput) ToGetWafStageExclusionRuleOutputWithContext(ctx context.Context) GetWafStageExclusionRuleOutput {
+	return o
+}
+
+// OWASP CRS rule ID excluded from the WAF
+func (o GetWafStageExclusionRuleOutput) RuleId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWafStageExclusionRule) int { return v.RuleId }).(pulumi.IntOutput)
+}
+
+type GetWafStageExclusionRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWafStageExclusionRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWafStageExclusionRule)(nil)).Elem()
+}
+
+func (o GetWafStageExclusionRuleArrayOutput) ToGetWafStageExclusionRuleArrayOutput() GetWafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o GetWafStageExclusionRuleArrayOutput) ToGetWafStageExclusionRuleArrayOutputWithContext(ctx context.Context) GetWafStageExclusionRuleArrayOutput {
+	return o
+}
+
+func (o GetWafStageExclusionRuleArrayOutput) Index(i pulumi.IntInput) GetWafStageExclusionRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWafStageExclusionRule {
+		return vs[0].([]GetWafStageExclusionRule)[vs[1].(int)]
+	}).(GetWafStageExclusionRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageContainerBackendConfigInput)(nil)).Elem(), BackendStageContainerBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageContainerBackendConfigPtrInput)(nil)).Elem(), BackendStageContainerBackendConfigArgs{})
@@ -2908,6 +3102,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretInput)(nil)).Elem(), TlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretArrayInput)(nil)).Elem(), TlsStageSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafStageExclusionRuleInput)(nil)).Elem(), WafStageExclusionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafStageExclusionRuleArrayInput)(nil)).Elem(), WafStageExclusionRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageContainerBackendConfigInput)(nil)).Elem(), GetBackendStageContainerBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageContainerBackendConfigArrayInput)(nil)).Elem(), GetBackendStageContainerBackendConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageFunctionBackendConfigInput)(nil)).Elem(), GetBackendStageFunctionBackendConfigArgs{})
@@ -2930,6 +3126,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretInput)(nil)).Elem(), GetTlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretArrayInput)(nil)).Elem(), GetTlsStageSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWafStageExclusionRuleInput)(nil)).Elem(), GetWafStageExclusionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWafStageExclusionRuleArrayInput)(nil)).Elem(), GetWafStageExclusionRuleArray{})
 	pulumi.RegisterOutputType(BackendStageContainerBackendConfigOutput{})
 	pulumi.RegisterOutputType(BackendStageContainerBackendConfigPtrOutput{})
 	pulumi.RegisterOutputType(BackendStageFunctionBackendConfigOutput{})
@@ -2952,6 +3150,8 @@ func init() {
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretArrayOutput{})
+	pulumi.RegisterOutputType(WafStageExclusionRuleOutput{})
+	pulumi.RegisterOutputType(WafStageExclusionRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendStageContainerBackendConfigOutput{})
 	pulumi.RegisterOutputType(GetBackendStageContainerBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendStageFunctionBackendConfigOutput{})
@@ -2974,4 +3174,6 @@ func init() {
 	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsStageSecretOutput{})
 	pulumi.RegisterOutputType(GetTlsStageSecretArrayOutput{})
+	pulumi.RegisterOutputType(GetWafStageExclusionRuleOutput{})
+	pulumi.RegisterOutputType(GetWafStageExclusionRuleArrayOutput{})
 }

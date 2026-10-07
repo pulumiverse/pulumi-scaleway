@@ -58,7 +58,7 @@ class GetBudgetResult:
     @pulumi.getter(name="consumptionLimit")
     def consumption_limit(self) -> _builtins.int:
         """
-        Cost limit for the budget in cents
+        Cost limit for the budget in euros
         """
         return pulumi.get(self, "consumption_limit")
 

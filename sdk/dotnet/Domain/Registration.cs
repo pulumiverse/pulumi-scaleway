@@ -154,13 +154,27 @@ namespace Pulumiverse.Scaleway.Domain
     /// 
     /// ## Import
     /// 
-    /// To import an existing domain registration, use:
+    /// To import an existing domain registration, use the domain name:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:domain/registration:Registration test &lt;project_id&gt;/&lt;task_id&gt;
+    /// $ pulumi import scaleway:domain/registration:Registration test &lt;domain_name&gt;
     /// ```
     /// 
-    /// You can use the scaleway.domain.Registration data source to look up the `TaskId` and `ProjectId` by domain name.
+    /// For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `DomainNames` argument in your configuration to avoid a plan diff after import.
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:domain/registration:Registration test &lt;domain1.com&gt;,&lt;domain2.com&gt;
+    /// ```
+    /// 
+    /// Importing by task ID is also supported, as long as the registration task still exists:
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:domain/registration:Registration test &lt;task_id&gt;
+    /// ```
+    /// 
+    /// The `ProjectId` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `&lt;project_id&gt;/&lt;domain_name&gt;` or `&lt;project_id&gt;/&lt;task_id&gt;` format is still accepted for backward compatibility.
+    /// 
+    /// You can use the scaleway.domain.Registration data source to look up the `TaskId` by domain name. Registration tasks are archived after some time; once archived, import by domain name instead.
     /// </summary>
     [ScalewayResourceType("scaleway:domain/registration:Registration")]
     public partial class Registration : global::Pulumi.CustomResource
@@ -220,7 +234,7 @@ namespace Pulumiverse.Scaleway.Domain
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the task that created the domain.
+        /// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         /// </summary>
         [Output("taskId")]
         public Output<string> TaskId { get; private set; } = null!;
@@ -407,7 +421,7 @@ namespace Pulumiverse.Scaleway.Domain
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// ID of the task that created the domain.
+        /// ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
         /// </summary>
         [Input("taskId")]
         public Input<string>? TaskId { get; set; }

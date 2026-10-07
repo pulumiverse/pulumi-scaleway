@@ -48,7 +48,7 @@ export interface GetBudgetArgs {
 export interface GetBudgetResult {
     readonly budgetId: string;
     /**
-     * Cost limit for the budget in cents
+     * Cost limit for the budget in euros
      */
     readonly consumptionLimit: number;
     /**

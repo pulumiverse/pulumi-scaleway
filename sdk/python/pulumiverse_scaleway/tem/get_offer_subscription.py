@@ -26,7 +26,7 @@ class GetOfferSubscriptionResult:
     """
     A collection of values returned by getOfferSubscription.
     """
-    def __init__(__self__, cancellation_available_at=None, id=None, included_monthly_emails=None, max_custom_blocklists_per_domain=None, max_dedicated_ips=None, max_domains=None, max_webhooks_per_domain=None, offer_name=None, project_id=None, region=None, sla=None, subscribed_at=None):
+    def __init__(__self__, cancellation_available_at=None, id=None, included_monthly_emails=None, max_custom_blocklists_per_domain=None, max_dedicated_ips=None, max_domains=None, max_webhooks_per_domain=None, offer_name=None, organization_id=None, project_id=None, region=None, sla=None, subscribed_at=None):
         if cancellation_available_at and not isinstance(cancellation_available_at, str):
             raise TypeError("Expected argument 'cancellation_available_at' to be a str")
         pulumi.set(__self__, "cancellation_available_at", cancellation_available_at)
@@ -51,6 +51,9 @@ class GetOfferSubscriptionResult:
         if offer_name and not isinstance(offer_name, str):
             raise TypeError("Expected argument 'offer_name' to be a str")
         pulumi.set(__self__, "offer_name", offer_name)
+        if organization_id and not isinstance(organization_id, str):
+            raise TypeError("Expected argument 'organization_id' to be a str")
+        pulumi.set(__self__, "organization_id", organization_id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -129,6 +132,11 @@ class GetOfferSubscriptionResult:
         return pulumi.get(self, "offer_name")
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> _builtins.str:
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
@@ -169,13 +177,15 @@ class AwaitableGetOfferSubscriptionResult(GetOfferSubscriptionResult):
             max_domains=self.max_domains,
             max_webhooks_per_domain=self.max_webhooks_per_domain,
             offer_name=self.offer_name,
+            organization_id=self.organization_id,
             project_id=self.project_id,
             region=self.region,
             sla=self.sla,
             subscribed_at=self.subscribed_at)
 
 
-def get_offer_subscription(project_id: Optional[_builtins.str] = None,
+def get_offer_subscription(organization_id: Optional[_builtins.str] = None,
+                           project_id: Optional[_builtins.str] = None,
                            region: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOfferSubscriptionResult:
     """
@@ -192,10 +202,12 @@ def get_offer_subscription(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: `project_id`) The ID of the project the offer subscription is associated with.
+    :param _builtins.str organization_id: The ID of the organization the offer subscription is associated with. Conflicts with `project_id`.
+    :param _builtins.str project_id: `project_id`) The ID of the project the offer subscription is associated with. Conflicts with `organization_id`.
     :param _builtins.str region: `region`) The region where the offer subscription exists.
     """
     __args__ = dict()
+    __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -210,11 +222,13 @@ def get_offer_subscription(project_id: Optional[_builtins.str] = None,
         max_domains=pulumi.get(__ret__, 'max_domains'),
         max_webhooks_per_domain=pulumi.get(__ret__, 'max_webhooks_per_domain'),
         offer_name=pulumi.get(__ret__, 'offer_name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         sla=pulumi.get(__ret__, 'sla'),
         subscribed_at=pulumi.get(__ret__, 'subscribed_at'))
-def get_offer_subscription_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+def get_offer_subscription_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOfferSubscriptionResult]:
     """
@@ -231,10 +245,12 @@ def get_offer_subscription_output(project_id: pulumi.Input[Optional[Optional[_bu
     ```
 
 
-    :param _builtins.str project_id: `project_id`) The ID of the project the offer subscription is associated with.
+    :param _builtins.str organization_id: The ID of the organization the offer subscription is associated with. Conflicts with `project_id`.
+    :param _builtins.str project_id: `project_id`) The ID of the project the offer subscription is associated with. Conflicts with `organization_id`.
     :param _builtins.str region: `region`) The region where the offer subscription exists.
     """
     __args__ = dict()
+    __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -248,6 +264,7 @@ def get_offer_subscription_output(project_id: pulumi.Input[Optional[Optional[_bu
         max_domains=pulumi.get(__response__, 'max_domains'),
         max_webhooks_per_domain=pulumi.get(__response__, 'max_webhooks_per_domain'),
         offer_name=pulumi.get(__response__, 'offer_name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
         sla=pulumi.get(__response__, 'sla'),

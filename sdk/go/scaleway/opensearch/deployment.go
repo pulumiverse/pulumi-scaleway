@@ -184,6 +184,10 @@ import (
 //
 // ## Upgrade Notes
 //
+// ### In-place node count upgrade
+//
+// Changing `nodeCount` (the number of nodes) upgrades the deployment **in place** via the SearchDB upgrade API — no recreation, no data loss.
+//
 // ### Changing Resources
 //
 // Most attribute changes require recreating the deployment due to API limitations. Plan accordingly:
@@ -205,7 +209,7 @@ type Deployment struct {
 
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// List of endpoints for accessing the deployment.
+	// List of all endpoints returned by the API for accessing the deployment (public and private).
 	Endpoints DeploymentEndpointArrayOutput `pulumi:"endpoints"`
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -213,7 +217,7 @@ type Deployment struct {
 	//
 	// Deprecated: Please use nodeCount instead
 	NodeAmount pulumi.IntPtrOutput `pulumi:"nodeAmount"`
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 	NodeCount pulumi.IntPtrOutput `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
@@ -223,7 +227,7 @@ type Deployment struct {
 	PrivateNetwork DeploymentPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -290,7 +294,7 @@ func GetDeployment(ctx *pulumi.Context,
 type deploymentState struct {
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// List of endpoints for accessing the deployment.
+	// List of all endpoints returned by the API for accessing the deployment (public and private).
 	Endpoints []DeploymentEndpoint `pulumi:"endpoints"`
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name *string `pulumi:"name"`
@@ -298,7 +302,7 @@ type deploymentState struct {
 	//
 	// Deprecated: Please use nodeCount instead
 	NodeAmount *int `pulumi:"nodeAmount"`
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 	NodeCount *int `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType *string `pulumi:"nodeType"`
@@ -308,7 +312,7 @@ type deploymentState struct {
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId *string `pulumi:"projectId"`
@@ -333,7 +337,7 @@ type deploymentState struct {
 type DeploymentState struct {
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// List of endpoints for accessing the deployment.
+	// List of all endpoints returned by the API for accessing the deployment (public and private).
 	Endpoints DeploymentEndpointArrayInput
 	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
 	Name pulumi.StringPtrInput
@@ -341,7 +345,7 @@ type DeploymentState struct {
 	//
 	// Deprecated: Please use nodeCount instead
 	NodeAmount pulumi.IntPtrInput
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 	NodeCount pulumi.IntPtrInput
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringPtrInput
@@ -351,7 +355,7 @@ type DeploymentState struct {
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringPtrInput
@@ -384,7 +388,7 @@ type deploymentArgs struct {
 	//
 	// Deprecated: Please use nodeCount instead
 	NodeAmount *int `pulumi:"nodeAmount"`
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 	NodeCount *int `pulumi:"nodeCount"`
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType string `pulumi:"nodeType"`
@@ -394,7 +398,7 @@ type deploymentArgs struct {
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId *string `pulumi:"projectId"`
@@ -418,7 +422,7 @@ type DeploymentArgs struct {
 	//
 	// Deprecated: Please use nodeCount instead
 	NodeAmount pulumi.IntPtrInput
-	// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+	// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 	NodeCount pulumi.IntPtrInput
 	// Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
 	NodeType pulumi.StringInput
@@ -428,7 +432,7 @@ type DeploymentArgs struct {
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+	// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringPtrInput
@@ -536,7 +540,7 @@ func (o DeploymentOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// List of endpoints for accessing the deployment.
+// List of all endpoints returned by the API for accessing the deployment (public and private).
 func (o DeploymentOutput) Endpoints() DeploymentEndpointArrayOutput {
 	return o.ApplyT(func(v *Deployment) DeploymentEndpointArrayOutput { return v.Endpoints }).(DeploymentEndpointArrayOutput)
 }
@@ -553,7 +557,7 @@ func (o DeploymentOutput) NodeAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.NodeAmount }).(pulumi.IntPtrOutput)
 }
 
-// Number of nodes in the cluster. Changing this forces recreation of the deployment.
+// Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
 func (o DeploymentOutput) NodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.NodeCount }).(pulumi.IntPtrOutput)
 }
@@ -575,7 +579,7 @@ func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
 
 // `projectId`) The ID of the project the deployment is associated with.
 //
-// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. With `privateNetwork`, the API is exposed on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`).
+// > **Note:** Without `privateNetwork`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `privateNetwork` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `publicDashboardUrl`). Adding `privateNetwork` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
 //
 // > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {

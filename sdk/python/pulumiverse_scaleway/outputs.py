@@ -67,6 +67,7 @@ __all__ = [
     'EdgeServicesRouteStageRuleRuleHttpMatchHostFilter',
     'EdgeServicesRouteStageRuleRuleHttpMatchPathFilter',
     'EdgeServicesTlsStageSecret',
+    'EdgeServicesWafStageExclusionRule',
     'FunctionTriggerNats',
     'FunctionTriggerSqs',
     'IamPolicyRule',
@@ -124,6 +125,11 @@ __all__ = [
     'LoadbalancerFrontendAclMatch',
     'LoadbalancerPrivateIp',
     'LoadbalancerPrivateNetwork',
+    'MailboxDomainDnsRecord',
+    'MessageqDeploymentEndpoint',
+    'MessageqDeploymentEndpointService',
+    'MessageqDeploymentPrivateNetwork',
+    'MessageqDeploymentVolume',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
     'MnqSqsQueueDeadLetterQueue',
@@ -250,6 +256,10 @@ __all__ = [
     'GetLoadbalancerCertificateLetsencryptResult',
     'GetLoadbalancerPrivateIpResult',
     'GetLoadbalancerPrivateNetworkResult',
+    'GetMessageqDeploymentEndpointResult',
+    'GetMessageqDeploymentEndpointServiceResult',
+    'GetMessageqDeploymentVolumeResult',
+    'GetMessageqNodeTypeAvailableVolumeTypeResult',
     'GetMongoDbInstancePrivateIpResult',
     'GetMongoDbInstancePrivateNetworkResult',
     'GetMongoDbInstancePublicNetworkResult',
@@ -1955,7 +1965,7 @@ class DatabaseInstanceLogsPolicy(dict):
                  total_disk_retention: Optional[_builtins.int] = None):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         if max_age_retention is not None:
             pulumi.set(__self__, "max_age_retention", max_age_retention)
@@ -1974,7 +1984,7 @@ class DatabaseInstanceLogsPolicy(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> Optional[_builtins.int]:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -3425,6 +3435,41 @@ class EdgeServicesTlsStageSecret(dict):
         The ID of the Secret
         """
         return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class EdgeServicesWafStageExclusionRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EdgeServicesWafStageExclusionRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EdgeServicesWafStageExclusionRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EdgeServicesWafStageExclusionRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 rule_id: _builtins.int):
+        """
+        :param _builtins.int rule_id: OWASP CRS rule ID excluded from the WAF.
+        """
+        pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> _builtins.int:
+        """
+        OWASP CRS rule ID excluded from the WAF.
+        """
+        return pulumi.get(self, "rule_id")
 
 
 @pulumi.output_type
@@ -7178,6 +7223,302 @@ class LoadbalancerPrivateNetwork(dict):
 
 
 @pulumi.output_type
+class MailboxDomainDnsRecord(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dnsName":
+            suggest = "dns_name"
+        elif key == "dnsType":
+            suggest = "dns_type"
+        elif key == "dnsValue":
+            suggest = "dns_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MailboxDomainDnsRecord. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MailboxDomainDnsRecord.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MailboxDomainDnsRecord.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dns_name: Optional[_builtins.str] = None,
+                 dns_type: Optional[_builtins.str] = None,
+                 dns_value: Optional[_builtins.str] = None,
+                 error: Optional[_builtins.str] = None,
+                 level: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str dns_name: Fully qualified name for this record.
+        :param _builtins.str dns_type: Record type (TXT, MX, CNAME, SRV…).
+        :param _builtins.str dns_value: Value to set for this record.
+        :param _builtins.str error: Error detail when the record is invalid or not found.
+        :param _builtins.str level: Requirement level (`required`, `recommended`, `optional`).
+        :param _builtins.str status: Validation status (`valid`, `invalid`, `not_found`, `validating`).
+        """
+        if dns_name is not None:
+            pulumi.set(__self__, "dns_name", dns_name)
+        if dns_type is not None:
+            pulumi.set(__self__, "dns_type", dns_type)
+        if dns_value is not None:
+            pulumi.set(__self__, "dns_value", dns_value)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> Optional[_builtins.str]:
+        """
+        Fully qualified name for this record.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsType")
+    def dns_type(self) -> Optional[_builtins.str]:
+        """
+        Record type (TXT, MX, CNAME, SRV…).
+        """
+        return pulumi.get(self, "dns_type")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsValue")
+    def dns_value(self) -> Optional[_builtins.str]:
+        """
+        Value to set for this record.
+        """
+        return pulumi.get(self, "dns_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def error(self) -> Optional[_builtins.str]:
+        """
+        Error detail when the record is invalid or not found.
+        """
+        return pulumi.get(self, "error")
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> Optional[_builtins.str]:
+        """
+        Requirement level (`required`, `recommended`, `optional`).
+        """
+        return pulumi.get(self, "level")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        Validation status (`valid`, `invalid`, `not_found`, `validating`).
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class MessageqDeploymentEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateNetworkId":
+            suggest = "private_network_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MessageqDeploymentEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MessageqDeploymentEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MessageqDeploymentEndpoint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 private_network_id: Optional[_builtins.str] = None,
+                 public: Optional[_builtins.bool] = None,
+                 services: Optional[Sequence['outputs.MessageqDeploymentEndpointService']] = None):
+        """
+        :param _builtins.str id: The ID of the endpoint.
+        :param _builtins.str private_network_id: Private network ID if the endpoint is private.
+        :param _builtins.bool public: Whether the endpoint is public (`true`) or private (`false`).
+        :param Sequence['MessageqDeploymentEndpointServiceArgs'] services: List of services exposed on the endpoint.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if public is not None:
+            pulumi.set(__self__, "public", public)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[_builtins.str]:
+        """
+        Private network ID if the endpoint is private.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> Optional[_builtins.bool]:
+        """
+        Whether the endpoint is public (`true`) or private (`false`).
+        """
+        return pulumi.get(self, "public")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[Sequence['outputs.MessageqDeploymentEndpointService']]:
+        """
+        List of services exposed on the endpoint.
+        """
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class MessageqDeploymentEndpointService(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None,
+                 url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Name of the MessageQ deployment. If not specified, a random name will be generated.
+        :param _builtins.int port: Service port number.
+        :param _builtins.str url: Full URL to access the service.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Name of the MessageQ deployment. If not specified, a random name will be generated.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        Service port number.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        Full URL to access the service.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class MessageqDeploymentPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateNetworkId":
+            suggest = "private_network_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MessageqDeploymentPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MessageqDeploymentPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MessageqDeploymentPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 private_network_id: _builtins.str):
+        """
+        :param _builtins.str private_network_id: The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+        """
+        pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        """
+        The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+        """
+        return pulumi.get(self, "private_network_id")
+
+
+@pulumi.output_type
+class MessageqDeploymentVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sizeInGb":
+            suggest = "size_in_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MessageqDeploymentVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MessageqDeploymentVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MessageqDeploymentVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 size_in_gb: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int size_in_gb: Volume size in GB. Can be updated in-place via the Upgrade API.
+        :param _builtins.str type: Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> _builtins.int:
+        """
+        Volume size in GB. Can be updated in-place via the Upgrade API.
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class MnqSnsCredentialsPermissions(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -10680,7 +11021,7 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
                  total_disk_retention: _builtins.int):
         """
         :param _builtins.int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
-        :param _builtins.int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        :param _builtins.int total_disk_retention: The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         pulumi.set(__self__, "max_age_retention", max_age_retention)
         pulumi.set(__self__, "total_disk_retention", total_disk_retention)
@@ -10697,7 +11038,7 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
     @pulumi.getter(name="totalDiskRetention")
     def total_disk_retention(self) -> _builtins.int:
         """
-        The max disk size of remote logs to keep on the Database Instance.
+        The max disk size (in bytes) of remote logs to keep on the Database Instance
         """
         return pulumi.get(self, "total_disk_retention")
 
@@ -14908,6 +15249,188 @@ class GetLoadbalancerPrivateNetworkResult(dict):
 
 
 @pulumi.output_type
+class GetMessageqDeploymentEndpointResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 private_network_id: _builtins.str,
+                 public: _builtins.bool,
+                 services: Sequence['outputs.GetMessageqDeploymentEndpointServiceResult']):
+        """
+        :param _builtins.str id: The ID of the endpoint.
+        :param _builtins.str private_network_id: Private network ID if the endpoint is private.
+        :param _builtins.bool public: Whether the endpoint is public (`true`) or private (`false`).
+        :param Sequence['GetMessageqDeploymentEndpointServiceArgs'] services: List of services exposed on the endpoint.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        """
+        Private network ID if the endpoint is private.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> _builtins.bool:
+        """
+        Whether the endpoint is public (`true`) or private (`false`).
+        """
+        return pulumi.get(self, "public")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Sequence['outputs.GetMessageqDeploymentEndpointServiceResult']:
+        """
+        List of services exposed on the endpoint.
+        """
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class GetMessageqDeploymentEndpointServiceResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 port: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str name: The name of the deployment. Only one of `name` and `deployment_id` should be specified.
+        :param _builtins.int port: Service port.
+        :param _builtins.str url: Service URL.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the deployment. Only one of `name` and `deployment_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        Service port.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Service URL.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetMessageqDeploymentVolumeResult(dict):
+    def __init__(__self__, *,
+                 size_in_gb: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int size_in_gb: Volume size in GB
+        :param _builtins.str type: Volume type (sbs_5k, sbs_15k)
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> _builtins.int:
+        """
+        Volume size in GB
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Volume type (sbs_5k, sbs_15k)
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetMessageqNodeTypeAvailableVolumeTypeResult(dict):
+    def __init__(__self__, *,
+                 chunk_size_in_gb: _builtins.int,
+                 description: _builtins.str,
+                 max_size_in_gb: _builtins.int,
+                 min_size_in_gb: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int chunk_size_in_gb: Volume size increment in GB.
+        :param _builtins.str description: Volume type description.
+        :param _builtins.int max_size_in_gb: Maximum volume size in GB.
+        :param _builtins.int min_size_in_gb: Minimum volume size in GB.
+        :param _builtins.str type: Volume type.
+        """
+        pulumi.set(__self__, "chunk_size_in_gb", chunk_size_in_gb)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "max_size_in_gb", max_size_in_gb)
+        pulumi.set(__self__, "min_size_in_gb", min_size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="chunkSizeInGb")
+    def chunk_size_in_gb(self) -> _builtins.int:
+        """
+        Volume size increment in GB.
+        """
+        return pulumi.get(self, "chunk_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Volume type description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="maxSizeInGb")
+    def max_size_in_gb(self) -> _builtins.int:
+        """
+        Maximum volume size in GB.
+        """
+        return pulumi.get(self, "max_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="minSizeInGb")
+    def min_size_in_gb(self) -> _builtins.int:
+        """
+        Minimum volume size in GB.
+        """
+        return pulumi.get(self, "min_size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Volume type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetMongoDbInstancePrivateIpResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
@@ -15237,7 +15760,7 @@ class GetObjectBucketLifecycleRuleExpirationResult(dict):
         """
         :param _builtins.str date: Specifies the date the object is to be moved or deleted. The date value must be in RFC3339 full-date format e.g. `2023-08-22`
         :param _builtins.int days: Specifies the number of days after object creation when the specific rule action takes effect
-        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        :param _builtins.bool expired_object_delete_marker: Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         pulumi.set(__self__, "date", date)
         pulumi.set(__self__, "days", days)
@@ -15263,7 +15786,7 @@ class GetObjectBucketLifecycleRuleExpirationResult(dict):
     @pulumi.getter(name="expiredObjectDeleteMarker")
     def expired_object_delete_marker(self) -> _builtins.bool:
         """
-        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action
+        Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `true`, the delete marker will be expired; if set to `false` the policy takes no action, and is counted as empty by Terraform.
         """
         return pulumi.get(self, "expired_object_delete_marker")
 

@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Object.Outputs
         /// </summary>
         public readonly int Days;
         /// <summary>
-        /// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `True`, the delete marker will be expired; if set to `False` the policy takes no action
+        /// Specifies whether Scaleway Object will remove a delete marker with no noncurrent versions. If set to `True`, the delete marker will be expired; if set to `False` the policy takes no action, and is counted as empty by Terraform.
         /// </summary>
         public readonly bool ExpiredObjectDeleteMarker;
 

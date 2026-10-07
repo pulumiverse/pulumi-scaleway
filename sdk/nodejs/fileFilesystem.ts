@@ -74,7 +74,7 @@ export class FileFilesystem extends pulumi.CustomResource {
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
-    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
+    declare public readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
@@ -137,13 +137,13 @@ export class FileFilesystem extends pulumi.CustomResource {
                 throw new Error("Missing required property 'sizeInGb'");
             }
             resourceInputs["name"] = args?.name;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["sizeInGb"] = args?.sizeInGb;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["numberOfAttachments"] = undefined /*out*/;
-            resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -214,6 +214,10 @@ export interface FileFilesystemArgs {
      * The name of the filesystem. If not provided, a random name will be generated.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * `organizationId`) The ID of the organization the user is associated with.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
