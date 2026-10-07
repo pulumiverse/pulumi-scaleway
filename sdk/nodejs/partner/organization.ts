@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Create and manage partner organizations in Scaleway. Partner organizations allow you to manage customer organizations through the Scaleway Partner program. This resource enables partners to create, update, and manage organization details including owner information, contact details, and customer identifiers.
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.PartnerOrganization("main", {
+ * const main = new scaleway.partner.Organization("main", {
  *     email: "contact@example.com",
  *     organizationName: "My Organization",
  *     partnerId: "11111111-1111-1111-1111-111111111111",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const minimal = new scaleway.PartnerOrganization("minimal", {
+ * const minimal = new scaleway.partner.Organization("minimal", {
  *     email: "contact@example.com",
  *     organizationName: "Minimal Organization",
  *     partnerId: "11111111-1111-1111-1111-111111111111",
@@ -45,12 +45,12 @@ import * as utilities from "./utilities";
  * Partner organizations can be imported using their `id`.
  *
  * ```sh
- * $ pulumi import scaleway:index/partnerOrganization:PartnerOrganization main <id>
+ * $ pulumi import scaleway:partner/organization:Organization main <id>
  * ```
  */
-export class PartnerOrganization extends pulumi.CustomResource {
+export class Organization extends pulumi.CustomResource {
     /**
-     * Get an existing PartnerOrganization resource's state with the given name, ID, and optional extra
+     * Get an existing Organization resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -58,22 +58,22 @@ export class PartnerOrganization extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PartnerOrganizationState, opts?: pulumi.CustomResourceOptions): PartnerOrganization {
-        return new PartnerOrganization(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OrganizationState, opts?: pulumi.CustomResourceOptions): Organization {
+        return new Organization(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/partnerOrganization:PartnerOrganization';
+    public static readonly __pulumiType = 'scaleway:partner/organization:Organization';
 
     /**
-     * Returns true if the given object is an instance of PartnerOrganization.  This is designed to work even
+     * Returns true if the given object is an instance of Organization.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is PartnerOrganization {
+    public static isInstance(obj: any): obj is Organization {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === PartnerOrganization.__pulumiType;
+        return obj['__pulumiType'] === Organization.__pulumiType;
     }
 
     /**
@@ -126,18 +126,18 @@ export class PartnerOrganization extends pulumi.CustomResource {
     declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
-     * Create a PartnerOrganization resource with the given unique name, arguments, and options.
+     * Create a Organization resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: PartnerOrganizationArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: PartnerOrganizationArgs | PartnerOrganizationState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: OrganizationArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: OrganizationArgs | OrganizationState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as PartnerOrganizationState | undefined;
+            const state = argsOrState as OrganizationState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["customerId"] = state?.customerId;
             resourceInputs["email"] = state?.email;
@@ -151,7 +151,7 @@ export class PartnerOrganization extends pulumi.CustomResource {
             resourceInputs["phoneNumber"] = state?.phoneNumber;
             resourceInputs["status"] = state?.status;
         } else {
-            const args = argsOrState as PartnerOrganizationArgs | undefined;
+            const args = argsOrState as OrganizationArgs | undefined;
             if (args?.customerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'customerId'");
             }
@@ -181,14 +181,14 @@ export class PartnerOrganization extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(PartnerOrganization.__pulumiType, name, resourceInputs, opts);
+        super(Organization.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering PartnerOrganization resources.
+ * Input properties used for looking up and filtering Organization resources.
  */
-export interface PartnerOrganizationState {
+export interface OrganizationState {
     /**
      * Date of organization creation.
      */
@@ -240,9 +240,9 @@ export interface PartnerOrganizationState {
 }
 
 /**
- * The set of arguments for constructing a PartnerOrganization resource.
+ * The set of arguments for constructing a Organization resource.
  */
-export interface PartnerOrganizationArgs {
+export interface OrganizationArgs {
     /**
      * A custom ID for the customer in your own infrastructure.
      */

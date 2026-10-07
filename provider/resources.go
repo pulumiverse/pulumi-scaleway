@@ -76,6 +76,7 @@ const (
 	mongodbMod       = "mongodb"
 	objectMod        = "object"
 	opensearchMod    = "opensearch"
+	partnerMod       = "partner"
 	redisMod         = "redis"
 	registryMod      = "registry"
 	s2sVpnMod        = "s2svpn"
@@ -398,6 +399,7 @@ func Provider() tfbridge.ProviderInfo {
 				"mongodb":       mongodbMod,
 				"object":        objectMod,
 				"opensearch":    opensearchMod,
+				"partner":       partnerMod,
 				"rdb":           databasesMod,
 				"redis":         redisMod,
 				"registry":      registryMod,

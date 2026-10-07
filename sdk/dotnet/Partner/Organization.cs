@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Scaleway
+namespace Pulumiverse.Scaleway.Partner
 {
     /// <summary>
     /// Create and manage partner organizations in Scaleway. Partner organizations allow you to manage customer organizations through the Scaleway Partner program. This resource enables partners to create, update, and manage organization details including owner information, contact details, and customer identifiers.
@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.PartnerOrganization("main", new()
+    ///     var main = new Scaleway.Partner.Organization("main", new()
     ///     {
     ///         Email = "contact@example.com",
     ///         OrganizationName = "My Organization",
@@ -47,7 +47,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var minimal = new Scaleway.PartnerOrganization("minimal", new()
+    ///     var minimal = new Scaleway.Partner.Organization("minimal", new()
     ///     {
     ///         Email = "contact@example.com",
     ///         OrganizationName = "Minimal Organization",
@@ -65,11 +65,11 @@ namespace Pulumiverse.Scaleway
     /// Partner organizations can be imported using their `Id`.
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/partnerOrganization:PartnerOrganization main &lt;id&gt;
+    /// $ pulumi import scaleway:partner/organization:Organization main &lt;id&gt;
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/partnerOrganization:PartnerOrganization")]
-    public partial class PartnerOrganization : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:partner/organization:Organization")]
+    public partial class Organization : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Date of organization creation.
@@ -145,19 +145,19 @@ namespace Pulumiverse.Scaleway
 
 
         /// <summary>
-        /// Create a PartnerOrganization resource with the given unique name, arguments, and options.
+        /// Create a Organization resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public PartnerOrganization(string name, PartnerOrganizationArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/partnerOrganization:PartnerOrganization", name, args ?? new PartnerOrganizationArgs(), MakeResourceOptions(options, ""))
+        public Organization(string name, OrganizationArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:partner/organization:Organization", name, args ?? new OrganizationArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private PartnerOrganization(string name, Input<string> id, PartnerOrganizationState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/partnerOrganization:PartnerOrganization", name, state, MakeResourceOptions(options, id))
+        private Organization(string name, Input<string> id, OrganizationState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:partner/organization:Organization", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -174,7 +174,7 @@ namespace Pulumiverse.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing PartnerOrganization resource's state with the given name, ID, and optional extra
+        /// Get an existing Organization resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -182,13 +182,13 @@ namespace Pulumiverse.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static PartnerOrganization Get(string name, Input<string> id, PartnerOrganizationState? state = null, CustomResourceOptions? options = null)
+        public static Organization Get(string name, Input<string> id, OrganizationState? state = null, CustomResourceOptions? options = null)
         {
-            return new PartnerOrganization(name, id, state, options);
+            return new Organization(name, id, state, options);
         }
     }
 
-    public sealed class PartnerOrganizationArgs : global::Pulumi.ResourceArgs
+    public sealed class OrganizationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A custom ID for the customer in your own infrastructure.
@@ -232,13 +232,13 @@ namespace Pulumiverse.Scaleway
         [Input("phoneNumber")]
         public Input<string>? PhoneNumber { get; set; }
 
-        public PartnerOrganizationArgs()
+        public OrganizationArgs()
         {
         }
-        public static new PartnerOrganizationArgs Empty => new PartnerOrganizationArgs();
+        public static new OrganizationArgs Empty => new OrganizationArgs();
     }
 
-    public sealed class PartnerOrganizationState : global::Pulumi.ResourceArgs
+    public sealed class OrganizationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Date of organization creation.
@@ -312,9 +312,9 @@ namespace Pulumiverse.Scaleway
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        public PartnerOrganizationState()
+        public OrganizationState()
         {
         }
-        public static new PartnerOrganizationState Empty => new PartnerOrganizationState();
+        public static new OrganizationState Empty => new OrganizationState();
     }
 }

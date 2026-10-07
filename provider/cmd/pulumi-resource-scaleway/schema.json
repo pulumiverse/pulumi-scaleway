@@ -49598,193 +49598,6 @@
             },
             "deprecationMessage": "scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item"
         },
-        "scaleway:index/partnerOrganization:PartnerOrganization": {
-            "description": "Create and manage partner organizations in Scaleway. Partner organizations allow you to manage customer organizations through the Scaleway Partner program. This resource enables partners to create, update, and manage organization details including owner information, contact details, and customer identifiers.\n\nRefer to the Scaleway [Partner documentation](https://www.scaleway.com/en/docs/partner-space/) and [API documentation](https://www.scaleway.com/en/developers/api/partner-api/) for more information.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.PartnerOrganization(\"main\", {\n    email: \"contact@example.com\",\n    organizationName: \"My Organization\",\n    partnerId: \"11111111-1111-1111-1111-111111111111\",\n    ownerFirstname: \"John\",\n    ownerLastname: \"Doe\",\n    customerId: \"customer-123\",\n    phoneNumber: \"+33123456789\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.PartnerOrganization(\"main\",\n    email=\"contact@example.com\",\n    organization_name=\"My Organization\",\n    partner_id=\"11111111-1111-1111-1111-111111111111\",\n    owner_firstname=\"John\",\n    owner_lastname=\"Doe\",\n    customer_id=\"customer-123\",\n    phone_number=\"+33123456789\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.PartnerOrganization(\"main\", new()\n    {\n        Email = \"contact@example.com\",\n        OrganizationName = \"My Organization\",\n        PartnerId = \"11111111-1111-1111-1111-111111111111\",\n        OwnerFirstname = \"John\",\n        OwnerLastname = \"Doe\",\n        CustomerId = \"customer-123\",\n        PhoneNumber = \"+33123456789\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewPartnerOrganization(ctx, \"main\", \u0026scaleway.PartnerOrganizationArgs{\n\t\t\tEmail:            pulumi.String(\"contact@example.com\"),\n\t\t\tOrganizationName: pulumi.String(\"My Organization\"),\n\t\t\tPartnerId:        pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tOwnerFirstname:   pulumi.String(\"John\"),\n\t\t\tOwnerLastname:    pulumi.String(\"Doe\"),\n\t\t\tCustomerId:       pulumi.String(\"customer-123\"),\n\t\t\tPhoneNumber:      pulumi.String(\"+33123456789\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_partnerorganization\" \"main\" {\n  email             = \"contact@example.com\"\n  organization_name = \"My Organization\"\n  partner_id        = \"11111111-1111-1111-1111-111111111111\"\n  owner_firstname   = \"John\"\n  owner_lastname    = \"Doe\"\n  customer_id       = \"customer-123\"\n  phone_number      = \"+33123456789\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.PartnerOrganization;\nimport com.pulumi.scaleway.PartnerOrganizationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new PartnerOrganization(\"main\", PartnerOrganizationArgs.builder()\n            .email(\"contact@example.com\")\n            .organizationName(\"My Organization\")\n            .partnerId(\"11111111-1111-1111-1111-111111111111\")\n            .ownerFirstname(\"John\")\n            .ownerLastname(\"Doe\")\n            .customerId(\"customer-123\")\n            .phoneNumber(\"+33123456789\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:PartnerOrganization\n    properties:\n      email: contact@example.com\n      organizationName: My Organization\n      partnerId: 11111111-1111-1111-1111-111111111111\n      ownerFirstname: John\n      ownerLastname: Doe\n      customerId: customer-123\n      phoneNumber: '+33123456789'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst minimal = new scaleway.PartnerOrganization(\"minimal\", {\n    email: \"contact@example.com\",\n    organizationName: \"Minimal Organization\",\n    partnerId: \"11111111-1111-1111-1111-111111111111\",\n    ownerFirstname: \"John\",\n    ownerLastname: \"Doe\",\n    customerId: \"customer-minimal\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nminimal = scaleway.PartnerOrganization(\"minimal\",\n    email=\"contact@example.com\",\n    organization_name=\"Minimal Organization\",\n    partner_id=\"11111111-1111-1111-1111-111111111111\",\n    owner_firstname=\"John\",\n    owner_lastname=\"Doe\",\n    customer_id=\"customer-minimal\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var minimal = new Scaleway.PartnerOrganization(\"minimal\", new()\n    {\n        Email = \"contact@example.com\",\n        OrganizationName = \"Minimal Organization\",\n        PartnerId = \"11111111-1111-1111-1111-111111111111\",\n        OwnerFirstname = \"John\",\n        OwnerLastname = \"Doe\",\n        CustomerId = \"customer-minimal\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewPartnerOrganization(ctx, \"minimal\", \u0026scaleway.PartnerOrganizationArgs{\n\t\t\tEmail:            pulumi.String(\"contact@example.com\"),\n\t\t\tOrganizationName: pulumi.String(\"Minimal Organization\"),\n\t\t\tPartnerId:        pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tOwnerFirstname:   pulumi.String(\"John\"),\n\t\t\tOwnerLastname:    pulumi.String(\"Doe\"),\n\t\t\tCustomerId:       pulumi.String(\"customer-minimal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_partnerorganization\" \"minimal\" {\n  email             = \"contact@example.com\"\n  organization_name = \"Minimal Organization\"\n  partner_id        = \"11111111-1111-1111-1111-111111111111\"\n  owner_firstname   = \"John\"\n  owner_lastname    = \"Doe\"\n  customer_id       = \"customer-minimal\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.PartnerOrganization;\nimport com.pulumi.scaleway.PartnerOrganizationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var minimal = new PartnerOrganization(\"minimal\", PartnerOrganizationArgs.builder()\n            .email(\"contact@example.com\")\n            .organizationName(\"Minimal Organization\")\n            .partnerId(\"11111111-1111-1111-1111-111111111111\")\n            .ownerFirstname(\"John\")\n            .ownerLastname(\"Doe\")\n            .customerId(\"customer-minimal\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  minimal:\n    type: scaleway:PartnerOrganization\n    properties:\n      email: contact@example.com\n      organizationName: Minimal Organization\n      partnerId: 11111111-1111-1111-1111-111111111111\n      ownerFirstname: John\n      ownerLastname: Doe\n      customerId: customer-minimal\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nPartner organizations can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e.\n\n```sh\n$ pulumi import scaleway:index/partnerOrganization:PartnerOrganization main \u003cid\u003e\n```\n\n",
-            "properties": {
-                "createdAt": {
-                    "type": "string",
-                    "description": "Date of organization creation.\n"
-                },
-                "customerId": {
-                    "type": "string",
-                    "description": "A custom ID for the customer in your own infrastructure.\n"
-                },
-                "email": {
-                    "type": "string",
-                    "description": "The email of the new organization owner.\n"
-                },
-                "lockReasonMessage": {
-                    "type": "string",
-                    "description": "Human-readable reason if the organization is locked.\n"
-                },
-                "lockedAt": {
-                    "type": "string",
-                    "description": "Date of lock.\n"
-                },
-                "lockedBy": {
-                    "type": "string",
-                    "description": "Originator of the lock (partner or scaleway).\n"
-                },
-                "organizationName": {
-                    "type": "string",
-                    "description": "The name of the organization you want to create. Usually the company name.\n"
-                },
-                "ownerFirstname": {
-                    "type": "string",
-                    "description": "The first name of the new organization owner.\n"
-                },
-                "ownerLastname": {
-                    "type": "string",
-                    "description": "The last name of the new organization owner.\n"
-                },
-                "partnerId": {
-                    "type": "string",
-                    "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
-                },
-                "phoneNumber": {
-                    "type": "string",
-                    "description": "The phone number of the new organization owner.\n"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "The current status of the organization.\n"
-                }
-            },
-            "required": [
-                "createdAt",
-                "customerId",
-                "email",
-                "lockReasonMessage",
-                "lockedAt",
-                "lockedBy",
-                "organizationName",
-                "ownerFirstname",
-                "ownerLastname",
-                "partnerId",
-                "phoneNumber",
-                "status"
-            ],
-            "inputProperties": {
-                "customerId": {
-                    "type": "string",
-                    "description": "A custom ID for the customer in your own infrastructure.\n"
-                },
-                "email": {
-                    "type": "string",
-                    "description": "The email of the new organization owner.\n"
-                },
-                "organizationName": {
-                    "type": "string",
-                    "description": "The name of the organization you want to create. Usually the company name.\n"
-                },
-                "ownerFirstname": {
-                    "type": "string",
-                    "description": "The first name of the new organization owner.\n"
-                },
-                "ownerLastname": {
-                    "type": "string",
-                    "description": "The last name of the new organization owner.\n"
-                },
-                "partnerId": {
-                    "type": "string",
-                    "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
-                },
-                "phoneNumber": {
-                    "type": "string",
-                    "description": "The phone number of the new organization owner.\n"
-                }
-            },
-            "requiredInputs": [
-                "customerId",
-                "email",
-                "organizationName",
-                "ownerFirstname",
-                "ownerLastname"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering PartnerOrganization resources.\n",
-                "properties": {
-                    "createdAt": {
-                        "type": "string",
-                        "description": "Date of organization creation.\n"
-                    },
-                    "customerId": {
-                        "type": "string",
-                        "description": "A custom ID for the customer in your own infrastructure.\n"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "The email of the new organization owner.\n"
-                    },
-                    "lockReasonMessage": {
-                        "type": "string",
-                        "description": "Human-readable reason if the organization is locked.\n"
-                    },
-                    "lockedAt": {
-                        "type": "string",
-                        "description": "Date of lock.\n"
-                    },
-                    "lockedBy": {
-                        "type": "string",
-                        "description": "Originator of the lock (partner or scaleway).\n"
-                    },
-                    "organizationName": {
-                        "type": "string",
-                        "description": "The name of the organization you want to create. Usually the company name.\n"
-                    },
-                    "ownerFirstname": {
-                        "type": "string",
-                        "description": "The first name of the new organization owner.\n"
-                    },
-                    "ownerLastname": {
-                        "type": "string",
-                        "description": "The last name of the new organization owner.\n"
-                    },
-                    "partnerId": {
-                        "type": "string",
-                        "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
-                    },
-                    "phoneNumber": {
-                        "type": "string",
-                        "description": "The phone number of the new organization owner.\n"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "The current status of the organization.\n"
-                    }
-                },
-                "type": "object"
-            },
-            "listInputs": {
-                "properties": {
-                    "customerId": {
-                        "type": "string",
-                        "description": "Filter by customer ID\n"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "Filter by email\n"
-                    },
-                    "lockedBy": {
-                        "type": "string",
-                        "description": "Filter by \u003cspan pulumi-lang-nodejs=\"`lockedBy`\" pulumi-lang-dotnet=\"`LockedBy`\" pulumi-lang-go=\"`lockedBy`\" pulumi-lang-python=\"`locked_by`\" pulumi-lang-yaml=\"`lockedBy`\" pulumi-lang-java=\"`lockedBy`\" pulumi-lang-hcl=\"`locked_by`\"\u003e`lockedBy`\u003c/span\u003e. Can be \u003cspan pulumi-lang-nodejs=\"`unknownLockedBy`\" pulumi-lang-dotnet=\"`UnknownLockedBy`\" pulumi-lang-go=\"`unknownLockedBy`\" pulumi-lang-python=\"`unknown_locked_by`\" pulumi-lang-yaml=\"`unknownLockedBy`\" pulumi-lang-java=\"`unknownLockedBy`\" pulumi-lang-hcl=\"`unknown_locked_by`\"\u003e`unknownLockedBy`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`partner`\" pulumi-lang-dotnet=\"`Partner`\" pulumi-lang-go=\"`partner`\" pulumi-lang-python=\"`partner`\" pulumi-lang-yaml=\"`partner`\" pulumi-lang-java=\"`partner`\" pulumi-lang-hcl=\"`partner`\"\u003e`partner`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`scaleway`\" pulumi-lang-dotnet=\"`Scaleway`\" pulumi-lang-go=\"`scaleway`\" pulumi-lang-python=\"`scaleway`\" pulumi-lang-yaml=\"`scaleway`\" pulumi-lang-java=\"`scaleway`\" pulumi-lang-hcl=\"`scaleway`\"\u003e`scaleway`\u003c/span\u003e.\n"
-                    },
-                    "orderBy": {
-                        "type": "string",
-                        "description": "Order by field. Can be \u003cspan pulumi-lang-nodejs=\"`createdAtAsc`\" pulumi-lang-dotnet=\"`CreatedAtAsc`\" pulumi-lang-go=\"`createdAtAsc`\" pulumi-lang-python=\"`created_at_asc`\" pulumi-lang-yaml=\"`createdAtAsc`\" pulumi-lang-java=\"`createdAtAsc`\" pulumi-lang-hcl=\"`created_at_asc`\"\u003e`createdAtAsc`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`createdAtDesc`\" pulumi-lang-dotnet=\"`CreatedAtDesc`\" pulumi-lang-go=\"`createdAtDesc`\" pulumi-lang-python=\"`created_at_desc`\" pulumi-lang-yaml=\"`createdAtDesc`\" pulumi-lang-java=\"`createdAtDesc`\" pulumi-lang-hcl=\"`created_at_desc`\"\u003e`createdAtDesc`\u003c/span\u003e.\n"
-                    },
-                    "partnerId": {
-                        "type": "string",
-                        "description": "Your personal partner_id. This is the same as your Organization ID.\n"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "Filter by status. Can be \u003cspan pulumi-lang-nodejs=\"`unknownStatus`\" pulumi-lang-dotnet=\"`UnknownStatus`\" pulumi-lang-go=\"`unknownStatus`\" pulumi-lang-python=\"`unknown_status`\" pulumi-lang-yaml=\"`unknownStatus`\" pulumi-lang-java=\"`unknownStatus`\" pulumi-lang-hcl=\"`unknown_status`\"\u003e`unknownStatus`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`opened`\" pulumi-lang-dotnet=\"`Opened`\" pulumi-lang-go=\"`opened`\" pulumi-lang-python=\"`opened`\" pulumi-lang-yaml=\"`opened`\" pulumi-lang-java=\"`opened`\" pulumi-lang-hcl=\"`opened`\"\u003e`opened`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`locked`\" pulumi-lang-dotnet=\"`Locked`\" pulumi-lang-go=\"`locked`\" pulumi-lang-python=\"`locked`\" pulumi-lang-yaml=\"`locked`\" pulumi-lang-java=\"`locked`\" pulumi-lang-hcl=\"`locked`\"\u003e`locked`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`closed`\" pulumi-lang-dotnet=\"`Closed`\" pulumi-lang-go=\"`closed`\" pulumi-lang-python=\"`closed`\" pulumi-lang-yaml=\"`closed`\" pulumi-lang-java=\"`closed`\" pulumi-lang-hcl=\"`closed`\"\u003e`closed`\u003c/span\u003e.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "scaleway:index/rdbSnapshot:RdbSnapshot": {
             "description": "Creates and manages Scaleway RDB (Relational Database) Snapshots.\nSnapshots are point-in-time backups of a database instance that can be used for recovery or duplication.\nFor more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).\n\n## Example Usage\n\n### Example Basic Snapshot\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.databases.Instance(\"main\", {\n    name: \"test-rdb-instance\",\n    nodeType: \"db-dev-s\",\n    engine: \"PostgreSQL-15\",\n    isHaCluster: false,\n    disableBackup: true,\n    userName: \"my_initial_user\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"terraform-test\",\n        \"scaleway_rdb_instance\",\n        \"minimal\",\n    ],\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n});\nconst test = new scaleway.databases.Snapshot(\"test\", {\n    name: \"initial-snapshot\",\n    instanceId: main.id,\n}, {\n    dependsOn: [main],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.databases.Instance(\"main\",\n    name=\"test-rdb-instance\",\n    node_type=\"db-dev-s\",\n    engine=\"PostgreSQL-15\",\n    is_ha_cluster=False,\n    disable_backup=True,\n    user_name=\"my_initial_user\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"terraform-test\",\n        \"scaleway_rdb_instance\",\n        \"minimal\",\n    ],\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10)\ntest = scaleway.databases.Snapshot(\"test\",\n    name=\"initial-snapshot\",\n    instance_id=main.id,\n    opts = pulumi.ResourceOptions(depends_on=[main]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Databases.Instance(\"main\", new()\n    {\n        Name = \"test-rdb-instance\",\n        NodeType = \"db-dev-s\",\n        Engine = \"PostgreSQL-15\",\n        IsHaCluster = false,\n        DisableBackup = true,\n        UserName = \"my_initial_user\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"terraform-test\",\n            \"scaleway_rdb_instance\",\n            \"minimal\",\n        },\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n    });\n\n    var test = new Scaleway.Databases.Snapshot(\"test\", new()\n    {\n        Name = \"initial-snapshot\",\n        InstanceId = main.Id,\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            main,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := databases.NewInstance(ctx, \"main\", \u0026databases.InstanceArgs{\n\t\t\tName:          pulumi.String(\"test-rdb-instance\"),\n\t\t\tNodeType:      pulumi.String(\"db-dev-s\"),\n\t\t\tEngine:        pulumi.String(\"PostgreSQL-15\"),\n\t\t\tIsHaCluster:   pulumi.Bool(false),\n\t\t\tDisableBackup: pulumi.Bool(true),\n\t\t\tUserName:      pulumi.String(\"my_initial_user\"),\n\t\t\tPassword:      pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform-test\"),\n\t\t\t\tpulumi.String(\"scaleway_rdb_instance\"),\n\t\t\t\tpulumi.String(\"minimal\"),\n\t\t\t},\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = databases.NewSnapshot(ctx, \"test\", \u0026databases.SnapshotArgs{\n\t\t\tName:       pulumi.String(\"initial-snapshot\"),\n\t\t\tInstanceId: main.ID().ToIDOutput().ToStringOutput(),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmain,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_databases_instance\" \"main\" {\n  name              = \"test-rdb-instance\"\n  node_type         = \"db-dev-s\"\n  engine            = \"PostgreSQL-15\"\n  is_ha_cluster     = false\n  disable_backup    = true\n  user_name         = \"my_initial_user\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  tags              = [\"terraform-test\", \"scaleway_rdb_instance\", \"minimal\"]\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n}\nresource \"scaleway_databases_snapshot\" \"test\" {\n  depends_on  = [scaleway_databases_instance.main]\n  name        = \"initial-snapshot\"\n  instance_id = scaleway_databases_instance.main.id\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.databases.Instance;\nimport com.pulumi.scaleway.databases.InstanceArgs;\nimport com.pulumi.scaleway.databases.Snapshot;\nimport com.pulumi.scaleway.databases.SnapshotArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Instance(\"main\", InstanceArgs.builder()\n            .name(\"test-rdb-instance\")\n            .nodeType(\"db-dev-s\")\n            .engine(\"PostgreSQL-15\")\n            .isHaCluster(false)\n            .disableBackup(true)\n            .userName(\"my_initial_user\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"terraform-test\",\n                \"scaleway_rdb_instance\",\n                \"minimal\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .build());\n\n        var test = new Snapshot(\"test\", SnapshotArgs.builder()\n            .name(\"initial-snapshot\")\n            .instanceId(main.id())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(main)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:databases:Instance\n    properties:\n      name: test-rdb-instance\n      nodeType: db-dev-s\n      engine: PostgreSQL-15\n      isHaCluster: false\n      disableBackup: true\n      userName: my_initial_user\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - terraform-test\n        - scaleway_rdb_instance\n        - minimal\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n  test:\n    type: scaleway:databases:Snapshot\n    properties:\n      name: initial-snapshot\n      instanceId: ${main.id}\n    options:\n      dependsOn:\n        - ${main}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example with Expiration\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst snapshotWithExpiration = new scaleway.databases.Snapshot(\"snapshot_with_expiration\", {\n    name: \"snapshot-with-expiration\",\n    instanceId: main.id,\n    expiresAt: \"2025-01-31T00:00:00Z\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nsnapshot_with_expiration = scaleway.databases.Snapshot(\"snapshot_with_expiration\",\n    name=\"snapshot-with-expiration\",\n    instance_id=main[\"id\"],\n    expires_at=\"2025-01-31T00:00:00Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var snapshotWithExpiration = new Scaleway.Databases.Snapshot(\"snapshot_with_expiration\", new()\n    {\n        Name = \"snapshot-with-expiration\",\n        InstanceId = main.Id,\n        ExpiresAt = \"2025-01-31T00:00:00Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := databases.NewSnapshot(ctx, \"snapshot_with_expiration\", \u0026databases.SnapshotArgs{\n\t\t\tName:       pulumi.String(\"snapshot-with-expiration\"),\n\t\t\tInstanceId: pulumi.Any(main.Id),\n\t\t\tExpiresAt:  pulumi.String(\"2025-01-31T00:00:00Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_databases_snapshot\" \"snapshot_with_expiration\" {\n  name        = \"snapshot-with-expiration\"\n  instance_id = main.id\n  expires_at  = \"2025-01-31T00:00:00Z\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.databases.Snapshot;\nimport com.pulumi.scaleway.databases.SnapshotArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var snapshotWithExpiration = new Snapshot(\"snapshotWithExpiration\", SnapshotArgs.builder()\n            .name(\"snapshot-with-expiration\")\n            .instanceId(main.id())\n            .expiresAt(\"2025-01-31T00:00:00Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  snapshotWithExpiration:\n    type: scaleway:databases:Snapshot\n    name: snapshot_with_expiration\n    properties:\n      name: snapshot-with-expiration\n      instanceId: ${main.id}\n      expiresAt: 2025-01-31T00:00:00Z\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Example with Multiple Snapshots\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst snapshotA = new scaleway.databases.Snapshot(\"snapshot_a\", {\n    name: \"snapshot_a\",\n    instanceId: main.id,\n}, {\n    dependsOn: [main],\n});\nconst snapshotB = new scaleway.databases.Snapshot(\"snapshot_b\", {\n    name: \"snapshot_b\",\n    instanceId: main.id,\n    expiresAt: \"2025-02-07T00:00:00Z\",\n}, {\n    dependsOn: [main],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nsnapshot_a = scaleway.databases.Snapshot(\"snapshot_a\",\n    name=\"snapshot_a\",\n    instance_id=main[\"id\"],\n    opts = pulumi.ResourceOptions(depends_on=[main]))\nsnapshot_b = scaleway.databases.Snapshot(\"snapshot_b\",\n    name=\"snapshot_b\",\n    instance_id=main[\"id\"],\n    expires_at=\"2025-02-07T00:00:00Z\",\n    opts = pulumi.ResourceOptions(depends_on=[main]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var snapshotA = new Scaleway.Databases.Snapshot(\"snapshot_a\", new()\n    {\n        Name = \"snapshot_a\",\n        InstanceId = main.Id,\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            main,\n        },\n    });\n\n    var snapshotB = new Scaleway.Databases.Snapshot(\"snapshot_b\", new()\n    {\n        Name = \"snapshot_b\",\n        InstanceId = main.Id,\n        ExpiresAt = \"2025-02-07T00:00:00Z\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            main,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := databases.NewSnapshot(ctx, \"snapshot_a\", \u0026databases.SnapshotArgs{\n\t\t\tName:       pulumi.String(\"snapshot_a\"),\n\t\t\tInstanceId: pulumi.Any(main.Id),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmain,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = databases.NewSnapshot(ctx, \"snapshot_b\", \u0026databases.SnapshotArgs{\n\t\t\tName:       pulumi.String(\"snapshot_b\"),\n\t\t\tInstanceId: pulumi.Any(main.Id),\n\t\t\tExpiresAt:  pulumi.String(\"2025-02-07T00:00:00Z\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmain,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_databases_snapshot\" \"snapshot_a\" {\n  depends_on  = [main]\n  name        = \"snapshot_a\"\n  instance_id = main.id\n}\nresource \"scaleway_databases_snapshot\" \"snapshot_b\" {\n  depends_on  = [main]\n  name        = \"snapshot_b\"\n  instance_id = main.id\n  expires_at  = \"2025-02-07T00:00:00Z\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.databases.Snapshot;\nimport com.pulumi.scaleway.databases.SnapshotArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var snapshotA = new Snapshot(\"snapshotA\", SnapshotArgs.builder()\n            .name(\"snapshot_a\")\n            .instanceId(main.id())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(main)\n                .build());\n\n        var snapshotB = new Snapshot(\"snapshotB\", SnapshotArgs.builder()\n            .name(\"snapshot_b\")\n            .instanceId(main.id())\n            .expiresAt(\"2025-02-07T00:00:00Z\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(main)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  snapshotA:\n    type: scaleway:databases:Snapshot\n    name: snapshot_a\n    properties:\n      name: snapshot_a\n      instanceId: ${main.id}\n    options:\n      dependsOn:\n        - ${main}\n  snapshotB:\n    type: scaleway:databases:Snapshot\n    name: snapshot_b\n    properties:\n      name: snapshot_b\n      instanceId: ${main.id}\n      expiresAt: 2025-02-07T00:00:00Z\n    options:\n      dependsOn:\n        - ${main}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Limitations\n\n- Snapshots are tied to the database instance and region where they are created.\n- Expired snapshots are automatically deleted and cannot be restored.\n\n## Notes\n\n- Ensure the \u003cspan pulumi-lang-nodejs=\"`instanceId`\" pulumi-lang-dotnet=\"`InstanceId`\" pulumi-lang-go=\"`instanceId`\" pulumi-lang-python=\"`instance_id`\" pulumi-lang-yaml=\"`instanceId`\" pulumi-lang-java=\"`instanceId`\" pulumi-lang-hcl=\"`instance_id`\"\u003e`instanceId`\u003c/span\u003e corresponds to an existing database instance.\n- Use the \u003cspan pulumi-lang-nodejs=\"`dependsOn`\" pulumi-lang-dotnet=\"`DependsOn`\" pulumi-lang-go=\"`dependsOn`\" pulumi-lang-python=\"`depends_on`\" pulumi-lang-yaml=\"`dependsOn`\" pulumi-lang-java=\"`dependsOn`\" pulumi-lang-hcl=\"`depends_on`\"\u003e`dependsOn`\u003c/span\u003e argument when creating snapshots right after creating an instance to ensure proper dependency management.\n\n## Import\n\nRDB Snapshots can be imported using the `{region}/{snapshot_id}` format.\n\n",
             "properties": {
@@ -67717,6 +67530,193 @@
                         "type": "string",
                         "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which the user should be created.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:partner/organization:Organization": {
+            "description": "Create and manage partner organizations in Scaleway. Partner organizations allow you to manage customer organizations through the Scaleway Partner program. This resource enables partners to create, update, and manage organization details including owner information, contact details, and customer identifiers.\n\nRefer to the Scaleway [Partner documentation](https://www.scaleway.com/en/docs/partner-space/) and [API documentation](https://www.scaleway.com/en/developers/api/partner-api/) for more information.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.partner.Organization(\"main\", {\n    email: \"contact@example.com\",\n    organizationName: \"My Organization\",\n    partnerId: \"11111111-1111-1111-1111-111111111111\",\n    ownerFirstname: \"John\",\n    ownerLastname: \"Doe\",\n    customerId: \"customer-123\",\n    phoneNumber: \"+33123456789\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.partner.Organization(\"main\",\n    email=\"contact@example.com\",\n    organization_name=\"My Organization\",\n    partner_id=\"11111111-1111-1111-1111-111111111111\",\n    owner_firstname=\"John\",\n    owner_lastname=\"Doe\",\n    customer_id=\"customer-123\",\n    phone_number=\"+33123456789\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Partner.Organization(\"main\", new()\n    {\n        Email = \"contact@example.com\",\n        OrganizationName = \"My Organization\",\n        PartnerId = \"11111111-1111-1111-1111-111111111111\",\n        OwnerFirstname = \"John\",\n        OwnerLastname = \"Doe\",\n        CustomerId = \"customer-123\",\n        PhoneNumber = \"+33123456789\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/partner\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := partner.NewOrganization(ctx, \"main\", \u0026partner.OrganizationArgs{\n\t\t\tEmail:            pulumi.String(\"contact@example.com\"),\n\t\t\tOrganizationName: pulumi.String(\"My Organization\"),\n\t\t\tPartnerId:        pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tOwnerFirstname:   pulumi.String(\"John\"),\n\t\t\tOwnerLastname:    pulumi.String(\"Doe\"),\n\t\t\tCustomerId:       pulumi.String(\"customer-123\"),\n\t\t\tPhoneNumber:      pulumi.String(\"+33123456789\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_partner_organization\" \"main\" {\n  email             = \"contact@example.com\"\n  organization_name = \"My Organization\"\n  partner_id        = \"11111111-1111-1111-1111-111111111111\"\n  owner_firstname   = \"John\"\n  owner_lastname    = \"Doe\"\n  customer_id       = \"customer-123\"\n  phone_number      = \"+33123456789\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.partner.Organization;\nimport com.pulumi.scaleway.partner.OrganizationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Organization(\"main\", OrganizationArgs.builder()\n            .email(\"contact@example.com\")\n            .organizationName(\"My Organization\")\n            .partnerId(\"11111111-1111-1111-1111-111111111111\")\n            .ownerFirstname(\"John\")\n            .ownerLastname(\"Doe\")\n            .customerId(\"customer-123\")\n            .phoneNumber(\"+33123456789\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:partner:Organization\n    properties:\n      email: contact@example.com\n      organizationName: My Organization\n      partnerId: 11111111-1111-1111-1111-111111111111\n      ownerFirstname: John\n      ownerLastname: Doe\n      customerId: customer-123\n      phoneNumber: '+33123456789'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst minimal = new scaleway.partner.Organization(\"minimal\", {\n    email: \"contact@example.com\",\n    organizationName: \"Minimal Organization\",\n    partnerId: \"11111111-1111-1111-1111-111111111111\",\n    ownerFirstname: \"John\",\n    ownerLastname: \"Doe\",\n    customerId: \"customer-minimal\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nminimal = scaleway.partner.Organization(\"minimal\",\n    email=\"contact@example.com\",\n    organization_name=\"Minimal Organization\",\n    partner_id=\"11111111-1111-1111-1111-111111111111\",\n    owner_firstname=\"John\",\n    owner_lastname=\"Doe\",\n    customer_id=\"customer-minimal\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var minimal = new Scaleway.Partner.Organization(\"minimal\", new()\n    {\n        Email = \"contact@example.com\",\n        OrganizationName = \"Minimal Organization\",\n        PartnerId = \"11111111-1111-1111-1111-111111111111\",\n        OwnerFirstname = \"John\",\n        OwnerLastname = \"Doe\",\n        CustomerId = \"customer-minimal\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/partner\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := partner.NewOrganization(ctx, \"minimal\", \u0026partner.OrganizationArgs{\n\t\t\tEmail:            pulumi.String(\"contact@example.com\"),\n\t\t\tOrganizationName: pulumi.String(\"Minimal Organization\"),\n\t\t\tPartnerId:        pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tOwnerFirstname:   pulumi.String(\"John\"),\n\t\t\tOwnerLastname:    pulumi.String(\"Doe\"),\n\t\t\tCustomerId:       pulumi.String(\"customer-minimal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_partner_organization\" \"minimal\" {\n  email             = \"contact@example.com\"\n  organization_name = \"Minimal Organization\"\n  partner_id        = \"11111111-1111-1111-1111-111111111111\"\n  owner_firstname   = \"John\"\n  owner_lastname    = \"Doe\"\n  customer_id       = \"customer-minimal\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.partner.Organization;\nimport com.pulumi.scaleway.partner.OrganizationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var minimal = new Organization(\"minimal\", OrganizationArgs.builder()\n            .email(\"contact@example.com\")\n            .organizationName(\"Minimal Organization\")\n            .partnerId(\"11111111-1111-1111-1111-111111111111\")\n            .ownerFirstname(\"John\")\n            .ownerLastname(\"Doe\")\n            .customerId(\"customer-minimal\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  minimal:\n    type: scaleway:partner:Organization\n    properties:\n      email: contact@example.com\n      organizationName: Minimal Organization\n      partnerId: 11111111-1111-1111-1111-111111111111\n      ownerFirstname: John\n      ownerLastname: Doe\n      customerId: customer-minimal\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nPartner organizations can be imported using their \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e.\n\n```sh\n$ pulumi import scaleway:partner/organization:Organization main \u003cid\u003e\n```\n\n",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date of organization creation.\n"
+                },
+                "customerId": {
+                    "type": "string",
+                    "description": "A custom ID for the customer in your own infrastructure.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email of the new organization owner.\n"
+                },
+                "lockReasonMessage": {
+                    "type": "string",
+                    "description": "Human-readable reason if the organization is locked.\n"
+                },
+                "lockedAt": {
+                    "type": "string",
+                    "description": "Date of lock.\n"
+                },
+                "lockedBy": {
+                    "type": "string",
+                    "description": "Originator of the lock (partner or scaleway).\n"
+                },
+                "organizationName": {
+                    "type": "string",
+                    "description": "The name of the organization you want to create. Usually the company name.\n"
+                },
+                "ownerFirstname": {
+                    "type": "string",
+                    "description": "The first name of the new organization owner.\n"
+                },
+                "ownerLastname": {
+                    "type": "string",
+                    "description": "The last name of the new organization owner.\n"
+                },
+                "partnerId": {
+                    "type": "string",
+                    "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "The phone number of the new organization owner.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The current status of the organization.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "customerId",
+                "email",
+                "lockReasonMessage",
+                "lockedAt",
+                "lockedBy",
+                "organizationName",
+                "ownerFirstname",
+                "ownerLastname",
+                "partnerId",
+                "phoneNumber",
+                "status"
+            ],
+            "inputProperties": {
+                "customerId": {
+                    "type": "string",
+                    "description": "A custom ID for the customer in your own infrastructure.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email of the new organization owner.\n"
+                },
+                "organizationName": {
+                    "type": "string",
+                    "description": "The name of the organization you want to create. Usually the company name.\n"
+                },
+                "ownerFirstname": {
+                    "type": "string",
+                    "description": "The first name of the new organization owner.\n"
+                },
+                "ownerLastname": {
+                    "type": "string",
+                    "description": "The last name of the new organization owner.\n"
+                },
+                "partnerId": {
+                    "type": "string",
+                    "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "The phone number of the new organization owner.\n"
+                }
+            },
+            "requiredInputs": [
+                "customerId",
+                "email",
+                "organizationName",
+                "ownerFirstname",
+                "ownerLastname"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Organization resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date of organization creation.\n"
+                    },
+                    "customerId": {
+                        "type": "string",
+                        "description": "A custom ID for the customer in your own infrastructure.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email of the new organization owner.\n"
+                    },
+                    "lockReasonMessage": {
+                        "type": "string",
+                        "description": "Human-readable reason if the organization is locked.\n"
+                    },
+                    "lockedAt": {
+                        "type": "string",
+                        "description": "Date of lock.\n"
+                    },
+                    "lockedBy": {
+                        "type": "string",
+                        "description": "Originator of the lock (partner or scaleway).\n"
+                    },
+                    "organizationName": {
+                        "type": "string",
+                        "description": "The name of the organization you want to create. Usually the company name.\n"
+                    },
+                    "ownerFirstname": {
+                        "type": "string",
+                        "description": "The first name of the new organization owner.\n"
+                    },
+                    "ownerLastname": {
+                        "type": "string",
+                        "description": "The last name of the new organization owner.\n"
+                    },
+                    "partnerId": {
+                        "type": "string",
+                        "description": "Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.\n"
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "description": "The phone number of the new organization owner.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The current status of the organization.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "listInputs": {
+                "properties": {
+                    "customerId": {
+                        "type": "string",
+                        "description": "Filter by customer ID\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Filter by email\n"
+                    },
+                    "lockedBy": {
+                        "type": "string",
+                        "description": "Filter by \u003cspan pulumi-lang-nodejs=\"`lockedBy`\" pulumi-lang-dotnet=\"`LockedBy`\" pulumi-lang-go=\"`lockedBy`\" pulumi-lang-python=\"`locked_by`\" pulumi-lang-yaml=\"`lockedBy`\" pulumi-lang-java=\"`lockedBy`\" pulumi-lang-hcl=\"`locked_by`\"\u003e`lockedBy`\u003c/span\u003e. Can be \u003cspan pulumi-lang-nodejs=\"`unknownLockedBy`\" pulumi-lang-dotnet=\"`UnknownLockedBy`\" pulumi-lang-go=\"`unknownLockedBy`\" pulumi-lang-python=\"`unknown_locked_by`\" pulumi-lang-yaml=\"`unknownLockedBy`\" pulumi-lang-java=\"`unknownLockedBy`\" pulumi-lang-hcl=\"`unknown_locked_by`\"\u003e`unknownLockedBy`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`partner`\" pulumi-lang-dotnet=\"`Partner`\" pulumi-lang-go=\"`partner`\" pulumi-lang-python=\"`partner`\" pulumi-lang-yaml=\"`partner`\" pulumi-lang-java=\"`partner`\" pulumi-lang-hcl=\"`partner`\"\u003e`partner`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`scaleway`\" pulumi-lang-dotnet=\"`Scaleway`\" pulumi-lang-go=\"`scaleway`\" pulumi-lang-python=\"`scaleway`\" pulumi-lang-yaml=\"`scaleway`\" pulumi-lang-java=\"`scaleway`\" pulumi-lang-hcl=\"`scaleway`\"\u003e`scaleway`\u003c/span\u003e.\n"
+                    },
+                    "orderBy": {
+                        "type": "string",
+                        "description": "Order by field. Can be \u003cspan pulumi-lang-nodejs=\"`createdAtAsc`\" pulumi-lang-dotnet=\"`CreatedAtAsc`\" pulumi-lang-go=\"`createdAtAsc`\" pulumi-lang-python=\"`created_at_asc`\" pulumi-lang-yaml=\"`createdAtAsc`\" pulumi-lang-java=\"`createdAtAsc`\" pulumi-lang-hcl=\"`created_at_asc`\"\u003e`createdAtAsc`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`createdAtDesc`\" pulumi-lang-dotnet=\"`CreatedAtDesc`\" pulumi-lang-go=\"`createdAtDesc`\" pulumi-lang-python=\"`created_at_desc`\" pulumi-lang-yaml=\"`createdAtDesc`\" pulumi-lang-java=\"`createdAtDesc`\" pulumi-lang-hcl=\"`created_at_desc`\"\u003e`createdAtDesc`\u003c/span\u003e.\n"
+                    },
+                    "partnerId": {
+                        "type": "string",
+                        "description": "Your personal partner_id. This is the same as your Organization ID.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Filter by status. Can be \u003cspan pulumi-lang-nodejs=\"`unknownStatus`\" pulumi-lang-dotnet=\"`UnknownStatus`\" pulumi-lang-go=\"`unknownStatus`\" pulumi-lang-python=\"`unknown_status`\" pulumi-lang-yaml=\"`unknownStatus`\" pulumi-lang-java=\"`unknownStatus`\" pulumi-lang-hcl=\"`unknown_status`\"\u003e`unknownStatus`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`opened`\" pulumi-lang-dotnet=\"`Opened`\" pulumi-lang-go=\"`opened`\" pulumi-lang-python=\"`opened`\" pulumi-lang-yaml=\"`opened`\" pulumi-lang-java=\"`opened`\" pulumi-lang-hcl=\"`opened`\"\u003e`opened`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`locked`\" pulumi-lang-dotnet=\"`Locked`\" pulumi-lang-go=\"`locked`\" pulumi-lang-python=\"`locked`\" pulumi-lang-yaml=\"`locked`\" pulumi-lang-java=\"`locked`\" pulumi-lang-hcl=\"`locked`\"\u003e`locked`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`closed`\" pulumi-lang-dotnet=\"`Closed`\" pulumi-lang-go=\"`closed`\" pulumi-lang-python=\"`closed`\" pulumi-lang-yaml=\"`closed`\" pulumi-lang-java=\"`closed`\" pulumi-lang-hcl=\"`closed`\"\u003e`closed`\u003c/span\u003e.\n"
                     }
                 },
                 "type": "object"

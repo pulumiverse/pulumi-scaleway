@@ -12,12 +12,12 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
-__all__ = ['PartnerOrganizationArgs', 'PartnerOrganization']
+__all__ = ['OrganizationArgs', 'Organization']
 
 @pulumi.input_type
-class PartnerOrganizationArgs:
+class OrganizationArgs:
     def __init__(__self__, *,
                  customer_id: pulumi.Input[_builtins.str],
                  email: pulumi.Input[_builtins.str],
@@ -27,7 +27,7 @@ class PartnerOrganizationArgs:
                  partner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  phone_number: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        The set of arguments for constructing a PartnerOrganization resource.
+        The set of arguments for constructing a Organization resource.
 
         :param pulumi.Input[_builtins.str] customer_id: A custom ID for the customer in your own infrastructure.
         :param pulumi.Input[_builtins.str] email: The email of the new organization owner.
@@ -133,7 +133,7 @@ class PartnerOrganizationArgs:
 
 
 @pulumi.input_type
-class _PartnerOrganizationState:
+class _OrganizationState:
     def __init__(__self__, *,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -148,7 +148,7 @@ class _PartnerOrganizationState:
                  phone_number: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering PartnerOrganization resources.
+        Input properties used for looking up and filtering Organization resources.
 
         :param pulumi.Input[_builtins.str] created_at: Date of organization creation.
         :param pulumi.Input[_builtins.str] customer_id: A custom ID for the customer in your own infrastructure.
@@ -333,8 +333,8 @@ class _PartnerOrganizationState:
         pulumi.set(self, "status", value)
 
 
-@pulumi.type_token("scaleway:index/partnerOrganization:PartnerOrganization")
-class PartnerOrganization(pulumi.CustomResource):
+@pulumi.type_token("scaleway:partner/organization:Organization")
+class Organization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -358,7 +358,7 @@ class PartnerOrganization(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.PartnerOrganization("main",
+        main = scaleway.partner.Organization("main",
             email="contact@example.com",
             organization_name="My Organization",
             partner_id="11111111-1111-1111-1111-111111111111",
@@ -372,7 +372,7 @@ class PartnerOrganization(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        minimal = scaleway.PartnerOrganization("minimal",
+        minimal = scaleway.partner.Organization("minimal",
             email="contact@example.com",
             organization_name="Minimal Organization",
             partner_id="11111111-1111-1111-1111-111111111111",
@@ -386,7 +386,7 @@ class PartnerOrganization(pulumi.CustomResource):
         Partner organizations can be imported using their `id`.
 
         ```sh
-        $ pulumi import scaleway:index/partnerOrganization:PartnerOrganization main <id>
+        $ pulumi import scaleway:partner/organization:Organization main <id>
         ```
 
 
@@ -404,7 +404,7 @@ class PartnerOrganization(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: PartnerOrganizationArgs,
+                 args: OrganizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create and manage partner organizations in Scaleway. Partner organizations allow you to manage customer organizations through the Scaleway Partner program. This resource enables partners to create, update, and manage organization details including owner information, contact details, and customer identifiers.
@@ -417,7 +417,7 @@ class PartnerOrganization(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.PartnerOrganization("main",
+        main = scaleway.partner.Organization("main",
             email="contact@example.com",
             organization_name="My Organization",
             partner_id="11111111-1111-1111-1111-111111111111",
@@ -431,7 +431,7 @@ class PartnerOrganization(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        minimal = scaleway.PartnerOrganization("minimal",
+        minimal = scaleway.partner.Organization("minimal",
             email="contact@example.com",
             organization_name="Minimal Organization",
             partner_id="11111111-1111-1111-1111-111111111111",
@@ -445,17 +445,17 @@ class PartnerOrganization(pulumi.CustomResource):
         Partner organizations can be imported using their `id`.
 
         ```sh
-        $ pulumi import scaleway:index/partnerOrganization:PartnerOrganization main <id>
+        $ pulumi import scaleway:partner/organization:Organization main <id>
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param PartnerOrganizationArgs args: The arguments to use to populate this resource's properties.
+        :param OrganizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(PartnerOrganizationArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(OrganizationArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -478,7 +478,7 @@ class PartnerOrganization(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = PartnerOrganizationArgs.__new__(PartnerOrganizationArgs)
+            __props__ = OrganizationArgs.__new__(OrganizationArgs)
 
             if customer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'customer_id'")
@@ -502,8 +502,8 @@ class PartnerOrganization(pulumi.CustomResource):
             __props__.__dict__["locked_at"] = None
             __props__.__dict__["locked_by"] = None
             __props__.__dict__["status"] = None
-        super(PartnerOrganization, __self__).__init__(
-            'scaleway:index/partnerOrganization:PartnerOrganization',
+        super(Organization, __self__).__init__(
+            'scaleway:partner/organization:Organization',
             resource_name,
             __props__,
             opts)
@@ -523,9 +523,9 @@ class PartnerOrganization(pulumi.CustomResource):
             owner_lastname: pulumi.Input[Optional[_builtins.str]] = None,
             partner_id: pulumi.Input[Optional[_builtins.str]] = None,
             phone_number: pulumi.Input[Optional[_builtins.str]] = None,
-            status: pulumi.Input[Optional[_builtins.str]] = None) -> 'PartnerOrganization':
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Organization':
         """
-        Get an existing PartnerOrganization resource's state with the given name, id, and optional extra
+        Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -546,7 +546,7 @@ class PartnerOrganization(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _PartnerOrganizationState.__new__(_PartnerOrganizationState)
+        __props__ = _OrganizationState.__new__(_OrganizationState)
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["customer_id"] = customer_id
@@ -560,7 +560,7 @@ class PartnerOrganization(pulumi.CustomResource):
         __props__.__dict__["partner_id"] = partner_id
         __props__.__dict__["phone_number"] = phone_number
         __props__.__dict__["status"] = status
-        return PartnerOrganization(resource_name, opts=opts, __props__=__props__)
+        return Organization(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

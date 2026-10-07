@@ -2384,7 +2384,7 @@
                 "majorVersion": 1
             },
             "scaleway_partner_organization": {
-                "current": "scaleway:index/partnerOrganization:PartnerOrganization",
+                "current": "scaleway:partner/organization:Organization",
                 "majorVersion": 1
             },
             "scaleway_rdb_acl": {
@@ -6985,7 +6985,6 @@
             "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": 0,
             "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration": 0,
             "scaleway:index/objectItem:ObjectItem": 0,
-            "scaleway:index/partnerOrganization:PartnerOrganization": 1,
             "scaleway:index/rdbSnapshot:RdbSnapshot": 0,
             "scaleway:index/redisCluster:RedisCluster": 0,
             "scaleway:index/registryNamespace:RegistryNamespace": 0,
@@ -7086,6 +7085,7 @@
             "scaleway:observability/token:Token": 0,
             "scaleway:opensearch/deployment:Deployment": 0,
             "scaleway:opensearch/user:User": 0,
+            "scaleway:partner/organization:Organization": 1,
             "scaleway:redis/cluster:Cluster": 0,
             "scaleway:registry/namespace:Namespace": 0,
             "scaleway:s2svpn/connection:Connection": 0,
@@ -7363,7 +7363,6 @@
             "scaleway:iam/sshKey:SshKey": 1,
             "scaleway:iam/user:User": 1,
             "scaleway:index/fileFilesystem:FileFilesystem": 1,
-            "scaleway:index/partnerOrganization:PartnerOrganization": 1,
             "scaleway:ipam/ip:Ip": 1,
             "scaleway:keymanager/key:Key": 1,
             "scaleway:loadbalancers/backend:Backend": 1,
@@ -7378,6 +7377,7 @@
             "scaleway:network/vpc:Vpc": 1,
             "scaleway:object/bucket:Bucket": 1,
             "scaleway:opensearch/deployment:Deployment": 1,
+            "scaleway:partner/organization:Organization": 1,
             "scaleway:redis/cluster:Cluster": 1,
             "scaleway:secrets/secret:Secret": 1,
             "scaleway:secrets/version:Version": 1

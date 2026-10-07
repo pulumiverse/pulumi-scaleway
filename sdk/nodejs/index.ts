@@ -919,11 +919,6 @@ export type ObjectItem = import("./objectItem").ObjectItem;
 export const ObjectItem: typeof import("./objectItem").ObjectItem = null as any;
 utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
 
-export { PartnerOrganizationArgs, PartnerOrganizationState } from "./partnerOrganization";
-export type PartnerOrganization = import("./partnerOrganization").PartnerOrganization;
-export const PartnerOrganization: typeof import("./partnerOrganization").PartnerOrganization = null as any;
-utilities.lazyLoad(exports, ["PartnerOrganization"], () => require("./partnerOrganization"));
-
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -1069,6 +1064,7 @@ import * as network from "./network";
 import * as object from "./object";
 import * as observability from "./observability";
 import * as opensearch from "./opensearch";
+import * as partner from "./partner";
 import * as redis from "./redis";
 import * as registry from "./registry";
 import * as s2svpn from "./s2svpn";
@@ -1113,6 +1109,7 @@ export {
     object,
     observability,
     opensearch,
+    partner,
     redis,
     registry,
     s2svpn,
@@ -1317,8 +1314,6 @@ const _module = {
                 return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/objectItem:ObjectItem":
                 return new ObjectItem(name, <any>undefined, { urn })
-            case "scaleway:index/partnerOrganization:PartnerOrganization":
-                return new PartnerOrganization(name, <any>undefined, { urn })
             case "scaleway:index/rdbSnapshot:RdbSnapshot":
                 return new RdbSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
@@ -1460,7 +1455,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfigu
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/partnerOrganization", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/rdbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)

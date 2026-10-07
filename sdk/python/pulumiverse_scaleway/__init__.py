@@ -189,7 +189,6 @@ from .object_bucket_lock_configuration import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .object_item import *
-from .partner_organization import *
 from .provider import *
 from .rdb_snapshot import *
 from .redis_cluster import *
@@ -289,6 +288,8 @@ if typing.TYPE_CHECKING:
     observability = __observability
     import pulumiverse_scaleway.opensearch as __opensearch
     opensearch = __opensearch
+    import pulumiverse_scaleway.partner as __partner
+    partner = __partner
     import pulumiverse_scaleway.redis as __redis
     redis = __redis
     import pulumiverse_scaleway.registry as __registry
@@ -336,6 +337,7 @@ else:
     object = _utilities.lazy_import('pulumiverse_scaleway.object')
     observability = _utilities.lazy_import('pulumiverse_scaleway.observability')
     opensearch = _utilities.lazy_import('pulumiverse_scaleway.opensearch')
+    partner = _utilities.lazy_import('pulumiverse_scaleway.partner')
     redis = _utilities.lazy_import('pulumiverse_scaleway.redis')
     registry = _utilities.lazy_import('pulumiverse_scaleway.registry')
     s2svpn = _utilities.lazy_import('pulumiverse_scaleway.s2svpn')
@@ -1659,14 +1661,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/partnerOrganization",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/partnerOrganization:PartnerOrganization": "PartnerOrganization"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/rdbSnapshot",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -2463,6 +2457,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.opensearch",
   "classes": {
    "scaleway:opensearch/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "partner/organization",
+  "fqn": "pulumiverse_scaleway.partner",
+  "classes": {
+   "scaleway:partner/organization:Organization": "Organization"
   }
  },
  {
