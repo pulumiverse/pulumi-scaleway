@@ -525,35 +525,10 @@ export const getLoadbalancerIp: typeof import("./getLoadbalancerIp").getLoadbala
 export const getLoadbalancerIpOutput: typeof import("./getLoadbalancerIp").getLoadbalancerIpOutput = null as any;
 utilities.lazyLoad(exports, ["getLoadbalancerIp","getLoadbalancerIpOutput"], () => require("./getLoadbalancerIp"));
 
-export { GetMailboxArgs, GetMailboxResult, GetMailboxOutputArgs } from "./getMailbox";
-export const getMailbox: typeof import("./getMailbox").getMailbox = null as any;
-export const getMailboxOutput: typeof import("./getMailbox").getMailboxOutput = null as any;
-utilities.lazyLoad(exports, ["getMailbox","getMailboxOutput"], () => require("./getMailbox"));
-
 export { GetMarketplaceImageArgs, GetMarketplaceImageResult, GetMarketplaceImageOutputArgs } from "./getMarketplaceImage";
 export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMarketplaceImage = null as any;
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
 utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
-
-export { GetMessageqCertificateAuthorityArgs, GetMessageqCertificateAuthorityResult, GetMessageqCertificateAuthorityOutputArgs } from "./getMessageqCertificateAuthority";
-export const getMessageqCertificateAuthority: typeof import("./getMessageqCertificateAuthority").getMessageqCertificateAuthority = null as any;
-export const getMessageqCertificateAuthorityOutput: typeof import("./getMessageqCertificateAuthority").getMessageqCertificateAuthorityOutput = null as any;
-utilities.lazyLoad(exports, ["getMessageqCertificateAuthority","getMessageqCertificateAuthorityOutput"], () => require("./getMessageqCertificateAuthority"));
-
-export { GetMessageqDeploymentArgs, GetMessageqDeploymentResult, GetMessageqDeploymentOutputArgs } from "./getMessageqDeployment";
-export const getMessageqDeployment: typeof import("./getMessageqDeployment").getMessageqDeployment = null as any;
-export const getMessageqDeploymentOutput: typeof import("./getMessageqDeployment").getMessageqDeploymentOutput = null as any;
-utilities.lazyLoad(exports, ["getMessageqDeployment","getMessageqDeploymentOutput"], () => require("./getMessageqDeployment"));
-
-export { GetMessageqNodeTypeArgs, GetMessageqNodeTypeResult, GetMessageqNodeTypeOutputArgs } from "./getMessageqNodeType";
-export const getMessageqNodeType: typeof import("./getMessageqNodeType").getMessageqNodeType = null as any;
-export const getMessageqNodeTypeOutput: typeof import("./getMessageqNodeType").getMessageqNodeTypeOutput = null as any;
-utilities.lazyLoad(exports, ["getMessageqNodeType","getMessageqNodeTypeOutput"], () => require("./getMessageqNodeType"));
-
-export { GetMessageqVersionArgs, GetMessageqVersionResult, GetMessageqVersionOutputArgs } from "./getMessageqVersion";
-export const getMessageqVersion: typeof import("./getMessageqVersion").getMessageqVersion = null as any;
-export const getMessageqVersionOutput: typeof import("./getMessageqVersion").getMessageqVersionOutput = null as any;
-utilities.lazyLoad(exports, ["getMessageqVersion","getMessageqVersionOutput"], () => require("./getMessageqVersion"));
 
 export { GetMnqSnsArgs, GetMnqSnsResult, GetMnqSnsOutputArgs } from "./getMnqSns";
 export const getMnqSns: typeof import("./getMnqSns").getMnqSns = null as any;
@@ -859,26 +834,6 @@ export type LoadbalancerRoute = import("./loadbalancerRoute").LoadbalancerRoute;
 export const LoadbalancerRoute: typeof import("./loadbalancerRoute").LoadbalancerRoute = null as any;
 utilities.lazyLoad(exports, ["LoadbalancerRoute"], () => require("./loadbalancerRoute"));
 
-export { MailboxArgs, MailboxState } from "./mailbox";
-export type Mailbox = import("./mailbox").Mailbox;
-export const Mailbox: typeof import("./mailbox").Mailbox = null as any;
-utilities.lazyLoad(exports, ["Mailbox"], () => require("./mailbox"));
-
-export { MailboxDomainArgs, MailboxDomainState } from "./mailboxDomain";
-export type MailboxDomain = import("./mailboxDomain").MailboxDomain;
-export const MailboxDomain: typeof import("./mailboxDomain").MailboxDomain = null as any;
-utilities.lazyLoad(exports, ["MailboxDomain"], () => require("./mailboxDomain"));
-
-export { MessageqDeploymentArgs, MessageqDeploymentState } from "./messageqDeployment";
-export type MessageqDeployment = import("./messageqDeployment").MessageqDeployment;
-export const MessageqDeployment: typeof import("./messageqDeployment").MessageqDeployment = null as any;
-utilities.lazyLoad(exports, ["MessageqDeployment"], () => require("./messageqDeployment"));
-
-export { MessageqUserArgs, MessageqUserState } from "./messageqUser";
-export type MessageqUser = import("./messageqUser").MessageqUser;
-export const MessageqUser: typeof import("./messageqUser").MessageqUser = null as any;
-utilities.lazyLoad(exports, ["MessageqUser"], () => require("./messageqUser"));
-
 export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
 export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
 export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
@@ -1106,6 +1061,8 @@ import * as kafka from "./kafka";
 import * as keymanager from "./keymanager";
 import * as kubernetes from "./kubernetes";
 import * as loadbalancers from "./loadbalancers";
+import * as mailbox from "./mailbox";
+import * as messageq from "./messageq";
 import * as mnq from "./mnq";
 import * as mongodb from "./mongodb";
 import * as network from "./network";
@@ -1148,6 +1105,8 @@ export {
     keymanager,
     kubernetes,
     loadbalancers,
+    mailbox,
+    messageq,
     mnq,
     mongodb,
     network,
@@ -1324,14 +1283,6 @@ const _module = {
                 return new LoadbalancerIp(name, <any>undefined, { urn })
             case "scaleway:index/loadbalancerRoute:LoadbalancerRoute":
                 return new LoadbalancerRoute(name, <any>undefined, { urn })
-            case "scaleway:index/mailbox:Mailbox":
-                return new Mailbox(name, <any>undefined, { urn })
-            case "scaleway:index/mailboxDomain:MailboxDomain":
-                return new MailboxDomain(name, <any>undefined, { urn })
-            case "scaleway:index/messageqDeployment:MessageqDeployment":
-                return new MessageqDeployment(name, <any>undefined, { urn })
-            case "scaleway:index/messageqUser:MessageqUser":
-                return new MessageqUser(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
                 return new MnqNatsAccount(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
@@ -1492,10 +1443,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerCertificate
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerFrontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancerRoute", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mailbox", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mailboxDomain", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/messageqDeployment", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/messageqUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSns", _module)

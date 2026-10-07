@@ -2964,74 +2964,6 @@ export interface GetLoadbalancerPrivateNetwork {
     zone: string;
 }
 
-export interface GetMessageqDeploymentEndpoint {
-    /**
-     * The ID of the endpoint.
-     */
-    id: string;
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId: string;
-    /**
-     * Whether the endpoint is public (`true`) or private (`false`).
-     */
-    public: boolean;
-    /**
-     * List of services exposed on the endpoint.
-     */
-    services: outputs.GetMessageqDeploymentEndpointService[];
-}
-
-export interface GetMessageqDeploymentEndpointService {
-    /**
-     * The name of the deployment. Only one of `name` and `deploymentId` should be specified.
-     */
-    name: string;
-    /**
-     * Service port.
-     */
-    port: number;
-    /**
-     * Service URL.
-     */
-    url: string;
-}
-
-export interface GetMessageqDeploymentVolume {
-    /**
-     * Volume size in GB
-     */
-    sizeInGb: number;
-    /**
-     * Volume type (sbs_5k, sbs_15k)
-     */
-    type: string;
-}
-
-export interface GetMessageqNodeTypeAvailableVolumeType {
-    /**
-     * Volume size increment in GB.
-     */
-    chunkSizeInGb: number;
-    /**
-     * Volume type description.
-     */
-    description: string;
-    /**
-     * Maximum volume size in GB.
-     */
-    maxSizeInGb: number;
-    /**
-     * Minimum volume size in GB.
-     */
-    minSizeInGb: number;
-    /**
-     * Volume type.
-     */
-    type: string;
-}
-
 export interface GetMongoDbInstancePrivateIp {
     /**
      * The private IPv4 address
@@ -4762,85 +4694,6 @@ export interface LoadbalancerPrivateNetwork {
      * `zone`) The zone of the Load Balancer.
      */
     zone: string;
-}
-
-export interface MailboxDomainDnsRecord {
-    /**
-     * Fully qualified name for this record.
-     */
-    dnsName: string;
-    /**
-     * Record type (TXT, MX, CNAME, SRV…).
-     */
-    dnsType: string;
-    /**
-     * Value to set for this record.
-     */
-    dnsValue: string;
-    /**
-     * Error detail when the record is invalid or not found.
-     */
-    error: string;
-    /**
-     * Requirement level (`required`, `recommended`, `optional`).
-     */
-    level: string;
-    /**
-     * Validation status (`valid`, `invalid`, `notFound`, `validating`).
-     */
-    status: string;
-}
-
-export interface MessageqDeploymentEndpoint {
-    /**
-     * The ID of the endpoint.
-     */
-    id: string;
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId: string;
-    /**
-     * Whether the endpoint is public (`true`) or private (`false`).
-     */
-    public: boolean;
-    /**
-     * List of services exposed on the endpoint.
-     */
-    services: outputs.MessageqDeploymentEndpointService[];
-}
-
-export interface MessageqDeploymentEndpointService {
-    /**
-     * Name of the MessageQ deployment. If not specified, a random name will be generated.
-     */
-    name: string;
-    /**
-     * Service port number.
-     */
-    port: number;
-    /**
-     * Full URL to access the service.
-     */
-    url: string;
-}
-
-export interface MessageqDeploymentPrivateNetwork {
-    /**
-     * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
-     */
-    privateNetworkId: string;
-}
-
-export interface MessageqDeploymentVolume {
-    /**
-     * Volume size in GB. Can be updated in-place via the Upgrade API.
-     */
-    sizeInGb: number;
-    /**
-     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
-     */
-    type: string;
 }
 
 export interface MnqSnsCredentialsPermissions {
@@ -12262,6 +12115,159 @@ export namespace loadbalancers {
          * `zone`) The zone of the Load Balancer.
          */
         zone: string;
+    }
+
+}
+
+export namespace mailbox {
+    export interface DomainDnsRecord {
+        /**
+         * Fully qualified name for this record.
+         */
+        dnsName: string;
+        /**
+         * Record type (TXT, MX, CNAME, SRV…).
+         */
+        dnsType: string;
+        /**
+         * Value to set for this record.
+         */
+        dnsValue: string;
+        /**
+         * Error detail when the record is invalid or not found.
+         */
+        error: string;
+        /**
+         * Requirement level (`required`, `recommended`, `optional`).
+         */
+        level: string;
+        /**
+         * Validation status (`valid`, `invalid`, `notFound`, `validating`).
+         */
+        status: string;
+    }
+
+}
+
+export namespace messageq {
+    export interface DeploymentEndpoint {
+        /**
+         * The ID of the endpoint.
+         */
+        id: string;
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: string;
+        /**
+         * Whether the endpoint is public (`true`) or private (`false`).
+         */
+        public: boolean;
+        /**
+         * List of services exposed on the endpoint.
+         */
+        services: outputs.messageq.DeploymentEndpointService[];
+    }
+
+    export interface DeploymentEndpointService {
+        /**
+         * Name of the MessageQ deployment. If not specified, a random name will be generated.
+         */
+        name: string;
+        /**
+         * Service port number.
+         */
+        port: number;
+        /**
+         * Full URL to access the service.
+         */
+        url: string;
+    }
+
+    export interface DeploymentPrivateNetwork {
+        /**
+         * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+         */
+        privateNetworkId: string;
+    }
+
+    export interface DeploymentVolume {
+        /**
+         * Volume size in GB. Can be updated in-place via the Upgrade API.
+         */
+        sizeInGb: number;
+        /**
+         * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+         */
+        type: string;
+    }
+
+    export interface GetDeploymentEndpoint {
+        /**
+         * The ID of the endpoint.
+         */
+        id: string;
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: string;
+        /**
+         * Whether the endpoint is public (`true`) or private (`false`).
+         */
+        public: boolean;
+        /**
+         * List of services exposed on the endpoint.
+         */
+        services: outputs.messageq.GetDeploymentEndpointService[];
+    }
+
+    export interface GetDeploymentEndpointService {
+        /**
+         * The name of the deployment. Only one of `name` and `deploymentId` should be specified.
+         */
+        name: string;
+        /**
+         * Service port.
+         */
+        port: number;
+        /**
+         * Service URL.
+         */
+        url: string;
+    }
+
+    export interface GetDeploymentVolume {
+        /**
+         * Volume size in GB
+         */
+        sizeInGb: number;
+        /**
+         * Volume type (sbs_5k, sbs_15k)
+         */
+        type: string;
+    }
+
+    export interface GetNodeTypeAvailableVolumeType {
+        /**
+         * Volume size increment in GB.
+         */
+        chunkSizeInGb: number;
+        /**
+         * Volume type description.
+         */
+        description: string;
+        /**
+         * Maximum volume size in GB.
+         */
+        maxSizeInGb: number;
+        /**
+         * Minimum volume size in GB.
+         */
+        minSizeInGb: number;
+        /**
+         * Volume type.
+         */
+        type: string;
     }
 
 }

@@ -1983,11 +1983,11 @@
                 "majorVersion": 1
             },
             "scaleway_mailbox": {
-                "current": "scaleway:index/mailbox:Mailbox",
+                "current": "scaleway:mailbox/mailbox:Mailbox",
                 "majorVersion": 1
             },
             "scaleway_mailbox_domain": {
-                "current": "scaleway:index/mailboxDomain:MailboxDomain",
+                "current": "scaleway:mailbox/domain:Domain",
                 "majorVersion": 1,
                 "fields": {
                     "dns_records": {
@@ -1996,7 +1996,7 @@
                 }
             },
             "scaleway_messageq_deployment": {
-                "current": "scaleway:index/messageqDeployment:MessageqDeployment",
+                "current": "scaleway:messageq/deployment:Deployment",
                 "majorVersion": 1,
                 "fields": {
                     "endpoints": {
@@ -2015,7 +2015,7 @@
                 }
             },
             "scaleway_messageq_user": {
-                "current": "scaleway:index/messageqUser:MessageqUser",
+                "current": "scaleway:messageq/user:User",
                 "majorVersion": 1
             },
             "scaleway_mnq_nats_account": {
@@ -4926,7 +4926,7 @@
                 }
             },
             "scaleway_mailbox": {
-                "current": "scaleway:index/getMailbox:getMailbox",
+                "current": "scaleway:mailbox/getMailbox:getMailbox",
                 "majorVersion": 1
             },
             "scaleway_marketplace_image": {
@@ -4934,11 +4934,11 @@
                 "majorVersion": 1
             },
             "scaleway_messageq_certificate_authority": {
-                "current": "scaleway:index/getMessageqCertificateAuthority:getMessageqCertificateAuthority",
+                "current": "scaleway:messageq/getCertificateAuthority:getCertificateAuthority",
                 "majorVersion": 1
             },
             "scaleway_messageq_deployment": {
-                "current": "scaleway:index/getMessageqDeployment:getMessageqDeployment",
+                "current": "scaleway:messageq/getDeployment:getDeployment",
                 "majorVersion": 1,
                 "fields": {
                     "endpoints": {
@@ -4957,7 +4957,7 @@
                 }
             },
             "scaleway_messageq_node_type": {
-                "current": "scaleway:index/getMessageqNodeType:getMessageqNodeType",
+                "current": "scaleway:messageq/getNodeType:getNodeType",
                 "majorVersion": 1,
                 "fields": {
                     "available_volume_types": {
@@ -4966,7 +4966,7 @@
                 }
             },
             "scaleway_messageq_version": {
-                "current": "scaleway:index/getMessageqVersion:getMessageqVersion",
+                "current": "scaleway:messageq/getVersion:getVersion",
                 "majorVersion": 1
             },
             "scaleway_mnq_sns": {
@@ -6968,10 +6968,6 @@
             "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend": 0,
             "scaleway:index/loadbalancerIp:LoadbalancerIp": 0,
             "scaleway:index/loadbalancerRoute:LoadbalancerRoute": 0,
-            "scaleway:index/mailbox:Mailbox": 1,
-            "scaleway:index/mailboxDomain:MailboxDomain": 1,
-            "scaleway:index/messageqDeployment:MessageqDeployment": 1,
-            "scaleway:index/messageqUser:MessageqUser": 1,
             "scaleway:index/mnqNatsAccount:MnqNatsAccount": 0,
             "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": 0,
             "scaleway:index/mnqSns:MnqSns": 0,
@@ -7047,6 +7043,10 @@
             "scaleway:loadbalancers/loadBalancer:LoadBalancer": 0,
             "scaleway:loadbalancers/privateNetwork:PrivateNetwork": 0,
             "scaleway:loadbalancers/route:Route": 0,
+            "scaleway:mailbox/domain:Domain": 1,
+            "scaleway:mailbox/mailbox:Mailbox": 1,
+            "scaleway:messageq/deployment:Deployment": 1,
+            "scaleway:messageq/user:User": 1,
             "scaleway:mnq/natsAccount:NatsAccount": 0,
             "scaleway:mnq/natsCredentials:NatsCredentials": 0,
             "scaleway:mnq/sns:Sns": 0,
@@ -7225,12 +7225,7 @@
             "scaleway:index/getLoadbalancer:getLoadbalancer": 0,
             "scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate": 0,
             "scaleway:index/getLoadbalancerIp:getLoadbalancerIp": 0,
-            "scaleway:index/getMailbox:getMailbox": 1,
             "scaleway:index/getMarketplaceImage:getMarketplaceImage": 0,
-            "scaleway:index/getMessageqCertificateAuthority:getMessageqCertificateAuthority": 1,
-            "scaleway:index/getMessageqDeployment:getMessageqDeployment": 1,
-            "scaleway:index/getMessageqNodeType:getMessageqNodeType": 1,
-            "scaleway:index/getMessageqVersion:getMessageqVersion": 1,
             "scaleway:index/getMnqSns:getMnqSns": 0,
             "scaleway:index/getMnqSqs:getMnqSqs": 0,
             "scaleway:index/getMongoDbInstance:getMongoDbInstance": 0,
@@ -7298,6 +7293,11 @@
             "scaleway:loadbalancers/getLoadBalancers:getLoadBalancers": 0,
             "scaleway:loadbalancers/getRoute:getRoute": 0,
             "scaleway:loadbalancers/getRoutes:getRoutes": 0,
+            "scaleway:mailbox/getMailbox:getMailbox": 1,
+            "scaleway:messageq/getCertificateAuthority:getCertificateAuthority": 1,
+            "scaleway:messageq/getDeployment:getDeployment": 1,
+            "scaleway:messageq/getNodeType:getNodeType": 1,
+            "scaleway:messageq/getVersion:getVersion": 1,
             "scaleway:mnq/getSns:getSns": 0,
             "scaleway:mnq/getSqs:getSqs": 0,
             "scaleway:mongodb/getDatabases:getDatabases": 0,

@@ -110,12 +110,7 @@ from .get_lbs import *
 from .get_loadbalancer import *
 from .get_loadbalancer_certificate import *
 from .get_loadbalancer_ip import *
-from .get_mailbox import *
 from .get_marketplace_image import *
-from .get_messageq_certificate_authority import *
-from .get_messageq_deployment import *
-from .get_messageq_node_type import *
-from .get_messageq_version import *
 from .get_mnq_sns import *
 from .get_mnq_sqs import *
 from .get_mongo_db_instance import *
@@ -177,10 +172,6 @@ from .loadbalancer_certificate import *
 from .loadbalancer_frontend import *
 from .loadbalancer_ip import *
 from .loadbalancer_route import *
-from .mailbox import *
-from .mailbox_domain import *
-from .messageq_deployment import *
-from .messageq_user import *
 from .mnq_nats_account import *
 from .mnq_nats_credentials import *
 from .mnq_sns import *
@@ -282,6 +273,10 @@ if typing.TYPE_CHECKING:
     kubernetes = __kubernetes
     import pulumiverse_scaleway.loadbalancers as __loadbalancers
     loadbalancers = __loadbalancers
+    import pulumiverse_scaleway.mailbox as __mailbox
+    mailbox = __mailbox
+    import pulumiverse_scaleway.messageq as __messageq
+    messageq = __messageq
     import pulumiverse_scaleway.mnq as __mnq
     mnq = __mnq
     import pulumiverse_scaleway.mongodb as __mongodb
@@ -333,6 +328,8 @@ else:
     keymanager = _utilities.lazy_import('pulumiverse_scaleway.keymanager')
     kubernetes = _utilities.lazy_import('pulumiverse_scaleway.kubernetes')
     loadbalancers = _utilities.lazy_import('pulumiverse_scaleway.loadbalancers')
+    mailbox = _utilities.lazy_import('pulumiverse_scaleway.mailbox')
+    messageq = _utilities.lazy_import('pulumiverse_scaleway.messageq')
     mnq = _utilities.lazy_import('pulumiverse_scaleway.mnq')
     mongodb = _utilities.lazy_import('pulumiverse_scaleway.mongodb')
     network = _utilities.lazy_import('pulumiverse_scaleway.network')
@@ -1526,38 +1523,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/mailbox",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/mailbox:Mailbox": "Mailbox"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/mailboxDomain",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/mailboxDomain:MailboxDomain": "MailboxDomain"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/messageqDeployment",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/messageqDeployment:MessageqDeployment": "MessageqDeployment"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/messageqUser",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/messageqUser:MessageqUser": "MessageqUser"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/mnqNatsAccount",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -2154,6 +2119,38 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.loadbalancers",
   "classes": {
    "scaleway:loadbalancers/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mailbox/domain",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mailbox/mailbox",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/mailbox:Mailbox": "Mailbox"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "messageq/deployment",
+  "fqn": "pulumiverse_scaleway.messageq",
+  "classes": {
+   "scaleway:messageq/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "messageq/user",
+  "fqn": "pulumiverse_scaleway.messageq",
+  "classes": {
+   "scaleway:messageq/user:User": "User"
   }
  },
  {
