@@ -41,7 +41,7 @@ func GetOrganizationId(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := internal.GetEnvOrDefault(nil, nil, "SCW_ORGANIZATION_ID"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "SCW_DEFAULT_ORGANIZATION_ID"); d != nil {
 		value = d.(string)
 	}
 	return value

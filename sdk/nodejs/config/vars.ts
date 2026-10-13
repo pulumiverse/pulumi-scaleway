@@ -48,7 +48,7 @@ Object.defineProperty(exports, "endpoints", {
 export declare const organizationId: string | undefined;
 Object.defineProperty(exports, "organizationId", {
     get() {
-        return __config.get("organizationId") ?? utilities.getEnv("SCW_ORGANIZATION_ID");
+        return __config.get("organizationId") ?? utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
     },
     enumerable: true,
 });

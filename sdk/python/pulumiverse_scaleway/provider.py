@@ -53,7 +53,7 @@ class ProviderArgs:
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
         if organization_id is None:
-            organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
+            organization_id = _utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if profile is not None:
@@ -288,7 +288,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["api_url"] = api_url
             __props__.__dict__["endpoints"] = pulumi.Output.from_input(endpoints).apply(pulumi.runtime.to_json) if endpoints is not None else None
             if organization_id is None:
-                organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
+                organization_id = _utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["profile"] = profile
             if project_id is None:
