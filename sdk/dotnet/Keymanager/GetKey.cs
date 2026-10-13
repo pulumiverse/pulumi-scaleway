@@ -15,14 +15,9 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// Gets information about a Key Manager Key. For more information, refer to the [Key Manager API documentation](https://www.scaleway.com/en/developers/api/key-manager/#path-keys-get-key-metadata).
         /// 
+        /// 
+        /// 
         /// ## Example Usage
-        /// 
-        /// ### Create a key and get its information
-        /// 
-        /// The following commands allow you to:
-        /// 
-        /// - create a key named `my-kms-key`
-        /// - retrieve the key's information using the key's ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,7 +27,8 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Create a key
+        ///     // Create a key and get its information.
+        ///     // In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
         ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
@@ -53,7 +49,6 @@ namespace Pulumiverse.Scaleway.Keymanager
         ///         },
         ///     });
         /// 
-        ///     // Get the key information by its ID
         ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
@@ -68,14 +63,9 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// Gets information about a Key Manager Key. For more information, refer to the [Key Manager API documentation](https://www.scaleway.com/en/developers/api/key-manager/#path-keys-get-key-metadata).
         /// 
+        /// 
+        /// 
         /// ## Example Usage
-        /// 
-        /// ### Create a key and get its information
-        /// 
-        /// The following commands allow you to:
-        /// 
-        /// - create a key named `my-kms-key`
-        /// - retrieve the key's information using the key's ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -85,7 +75,8 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Create a key
+        ///     // Create a key and get its information.
+        ///     // In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
         ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
@@ -106,7 +97,6 @@ namespace Pulumiverse.Scaleway.Keymanager
         ///         },
         ///     });
         /// 
-        ///     // Get the key information by its ID
         ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
@@ -121,14 +111,9 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// <summary>
         /// Gets information about a Key Manager Key. For more information, refer to the [Key Manager API documentation](https://www.scaleway.com/en/developers/api/key-manager/#path-keys-get-key-metadata).
         /// 
+        /// 
+        /// 
         /// ## Example Usage
-        /// 
-        /// ### Create a key and get its information
-        /// 
-        /// The following commands allow you to:
-        /// 
-        /// - create a key named `my-kms-key`
-        /// - retrieve the key's information using the key's ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -138,7 +123,8 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Create a key
+        ///     // Create a key and get its information.
+        ///     // In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
         ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
@@ -159,7 +145,6 @@ namespace Pulumiverse.Scaleway.Keymanager
         ///         },
         ///     });
         /// 
-        ///     // Get the key information by its ID
         ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
@@ -227,6 +212,7 @@ namespace Pulumiverse.Scaleway.Keymanager
         public readonly string Origin;
         public readonly string ProjectId;
         public readonly bool Protected;
+        public readonly string ProtectionLevel;
         public readonly string? Region;
         public readonly string RotatedAt;
         public readonly int RotationCount;
@@ -260,6 +246,8 @@ namespace Pulumiverse.Scaleway.Keymanager
 
             bool @protected,
 
+            string protectionLevel,
+
             string? region,
 
             string rotatedAt,
@@ -290,6 +278,7 @@ namespace Pulumiverse.Scaleway.Keymanager
             Origin = origin;
             ProjectId = projectId;
             Protected = @protected;
+            ProtectionLevel = protectionLevel;
             Region = region;
             RotatedAt = rotatedAt;
             RotationCount = rotationCount;

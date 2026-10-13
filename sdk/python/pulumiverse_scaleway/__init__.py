@@ -12,7 +12,6 @@ from .apple_silicon_server import *
 from .baremetal_server import *
 from .block_snapshot import *
 from .block_volume import *
-from .cockpit import *
 from .cockpit_alert_manager import *
 from .cockpit_source import *
 from .cockpit_token import *
@@ -60,7 +59,6 @@ from .get_billing_consumptions import *
 from .get_billing_invoices import *
 from .get_block_snapshot import *
 from .get_block_volume import *
-from .get_cockpit import *
 from .get_cockpit_source import *
 from .get_config import *
 from .get_container import *
@@ -120,6 +118,7 @@ from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_image_tag import *
 from .get_registry_namespace import *
+from .get_sdb_sql_versions import *
 from .get_secret import *
 from .get_secret_version import *
 from .get_tem_domain import *
@@ -937,14 +936,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/blockVolume:BlockVolume": "BlockVolume"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/cockpit",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/cockpit:Cockpit": "Cockpit"
   }
  },
  {
@@ -2409,14 +2400,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.observability",
   "classes": {
    "scaleway:observability/alertManager:AlertManager": "AlertManager"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "observability/cockpit",
-  "fqn": "pulumiverse_scaleway.observability",
-  "classes": {
-   "scaleway:observability/cockpit:Cockpit": "Cockpit"
   }
  },
  {

@@ -305,6 +305,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// User data applied and reconciled with the pool, as a map of key to content.
         /// 
+        /// key - The user data key. The cloud-init key is reserved, please use CloudInit attribute instead.
+        /// 
+        /// value - The user data content.
+        /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("userData")]
@@ -565,6 +569,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
         /// <summary>
         /// User data applied and reconciled with the pool, as a map of key to content.
+        /// 
+        /// key - The user data key. The cloud-init key is reserved, please use CloudInit attribute instead.
+        /// 
+        /// value - The user data content.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -828,6 +836,10 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
         /// <summary>
         /// User data applied and reconciled with the pool, as a map of key to content.
+        /// 
+        /// key - The user data key. The cloud-init key is reserved, please use CloudInit attribute instead.
+        /// 
+        /// value - The user data content.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>

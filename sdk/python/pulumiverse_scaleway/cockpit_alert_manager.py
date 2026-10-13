@@ -254,10 +254,9 @@ class CockpitAlertManager(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.account.Project("project", name="my-observability-project")
-        main = scaleway.observability.Cockpit("main", project_id=project.id)
-        all = scaleway.observability.get_preconfigured_alert_output(project_id=main.project_id)
-        main_alert_manager = scaleway.observability.AlertManager("main",
-            project_id=main.project_id,
+        all = scaleway.observability.get_preconfigured_alert_output(project_id=project.id)
+        main = scaleway.observability.AlertManager("main",
+            project_id=project.id,
             preconfigured_alert_ids=all.apply(lambda all: [alert.preconfigured_rule_id for alert in all.alerts if alert.product_name == "instance"]),
             contact_points=[{
                 "email": "alerts@example.com",
@@ -340,10 +339,9 @@ class CockpitAlertManager(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.account.Project("project", name="my-observability-project")
-        main = scaleway.observability.Cockpit("main", project_id=project.id)
-        all = scaleway.observability.get_preconfigured_alert_output(project_id=main.project_id)
-        main_alert_manager = scaleway.observability.AlertManager("main",
-            project_id=main.project_id,
+        all = scaleway.observability.get_preconfigured_alert_output(project_id=project.id)
+        main = scaleway.observability.AlertManager("main",
+            project_id=project.id,
             preconfigured_alert_ids=all.apply(lambda all: [alert.preconfigured_rule_id for alert in all.alerts if alert.product_name == "instance"]),
             contact_points=[{
                 "email": "alerts@example.com",

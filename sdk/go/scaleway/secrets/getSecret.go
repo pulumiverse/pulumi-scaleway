@@ -101,6 +101,7 @@ type LookupSecretResult struct {
 	EphemeralPolicies []GetSecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string             `pulumi:"id"`
+	KeyId          string             `pulumi:"keyId"`
 	Name           *string            `pulumi:"name"`
 	OrganizationId string             `pulumi:"organizationId"`
 	Path           *string            `pulumi:"path"`
@@ -176,6 +177,10 @@ func (o LookupSecretResultOutput) EphemeralPolicies() GetSecretEphemeralPolicyAr
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSecretResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretResultOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.KeyId }).(pulumi.StringOutput)
 }
 
 func (o LookupSecretResultOutput) Name() pulumi.StringPtrOutput {

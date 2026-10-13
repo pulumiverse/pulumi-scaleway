@@ -27,8 +27,6 @@ __all__ = [
     'BlockSnapshotExport',
     'BlockSnapshotImport',
     'CockpitAlertManagerContactPoint',
-    'CockpitEndpoint',
-    'CockpitPushUrl',
     'CockpitTokenScopes',
     'ContainerHealthCheck',
     'ContainerHealthCheckHttp',
@@ -174,8 +172,6 @@ __all__ = [
     'GetBillingInvoicesInvoiceResult',
     'GetBlockSnapshotExportResult',
     'GetBlockSnapshotImportResult',
-    'GetCockpitEndpointResult',
-    'GetCockpitPushUrlResult',
     'GetContainerHealthCheckResult',
     'GetContainerHealthCheckHttpResult',
     'GetContainerLivenessProbeResult',
@@ -265,6 +261,7 @@ __all__ = [
     'GetRedisClusterPrivateIpResult',
     'GetRedisClusterPrivateNetworkResult',
     'GetRedisClusterPublicNetworkResult',
+    'GetSdbSqlVersionsVersionResult',
     'GetSecretEphemeralPolicyResult',
     'GetSecretVersionResult',
     'GetTemDomainReputationResult',
@@ -856,148 +853,6 @@ class CockpitAlertManagerContactPoint(dict):
         Email addresses for the alert receivers
         """
         return pulumi.get(self, "email")
-
-
-@pulumi.output_type
-class CockpitEndpoint(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "alertmanagerUrl":
-            suggest = "alertmanager_url"
-        elif key == "grafanaUrl":
-            suggest = "grafana_url"
-        elif key == "logsUrl":
-            suggest = "logs_url"
-        elif key == "metricsUrl":
-            suggest = "metrics_url"
-        elif key == "tracesUrl":
-            suggest = "traces_url"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CockpitEndpoint. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        CockpitEndpoint.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        CockpitEndpoint.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 alertmanager_url: Optional[_builtins.str] = None,
-                 grafana_url: Optional[_builtins.str] = None,
-                 logs_url: Optional[_builtins.str] = None,
-                 metrics_url: Optional[_builtins.str] = None,
-                 traces_url: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str alertmanager_url: (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        :param _builtins.str grafana_url: (Deprecated) URL for Grafana.
-        :param _builtins.str logs_url: (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        :param _builtins.str metrics_url: (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        :param _builtins.str traces_url: (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        if alertmanager_url is not None:
-            pulumi.set(__self__, "alertmanager_url", alertmanager_url)
-        if grafana_url is not None:
-            pulumi.set(__self__, "grafana_url", grafana_url)
-        if logs_url is not None:
-            pulumi.set(__self__, "logs_url", logs_url)
-        if metrics_url is not None:
-            pulumi.set(__self__, "metrics_url", metrics_url)
-        if traces_url is not None:
-            pulumi.set(__self__, "traces_url", traces_url)
-
-    @_builtins.property
-    @pulumi.getter(name="alertmanagerUrl")
-    def alertmanager_url(self) -> Optional[_builtins.str]:
-        """
-        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        """
-        return pulumi.get(self, "alertmanager_url")
-
-    @_builtins.property
-    @pulumi.getter(name="grafanaUrl")
-    def grafana_url(self) -> Optional[_builtins.str]:
-        """
-        (Deprecated) URL for Grafana.
-        """
-        return pulumi.get(self, "grafana_url")
-
-    @_builtins.property
-    @pulumi.getter(name="logsUrl")
-    def logs_url(self) -> Optional[_builtins.str]:
-        """
-        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        return pulumi.get(self, "logs_url")
-
-    @_builtins.property
-    @pulumi.getter(name="metricsUrl")
-    def metrics_url(self) -> Optional[_builtins.str]:
-        """
-        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        return pulumi.get(self, "metrics_url")
-
-    @_builtins.property
-    @pulumi.getter(name="tracesUrl")
-    def traces_url(self) -> Optional[_builtins.str]:
-        """
-        (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        return pulumi.get(self, "traces_url")
-
-
-@pulumi.output_type
-class CockpitPushUrl(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "pushLogsUrl":
-            suggest = "push_logs_url"
-        elif key == "pushMetricsUrl":
-            suggest = "push_metrics_url"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CockpitPushUrl. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        CockpitPushUrl.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        CockpitPushUrl.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 push_logs_url: Optional[_builtins.str] = None,
-                 push_metrics_url: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str push_logs_url: Push URL for logs (Grafana Loki)
-        :param _builtins.str push_metrics_url: Push URL for metrics (Grafana Mimir)
-        """
-        if push_logs_url is not None:
-            pulumi.set(__self__, "push_logs_url", push_logs_url)
-        if push_metrics_url is not None:
-            pulumi.set(__self__, "push_metrics_url", push_metrics_url)
-
-    @_builtins.property
-    @pulumi.getter(name="pushLogsUrl")
-    def push_logs_url(self) -> Optional[_builtins.str]:
-        """
-        Push URL for logs (Grafana Loki)
-        """
-        return pulumi.get(self, "push_logs_url")
-
-    @_builtins.property
-    @pulumi.getter(name="pushMetricsUrl")
-    def push_metrics_url(self) -> Optional[_builtins.str]:
-        """
-        Push URL for metrics (Grafana Mimir)
-        """
-        return pulumi.get(self, "push_metrics_url")
 
 
 @pulumi.output_type
@@ -10259,97 +10114,6 @@ class GetBlockSnapshotImportResult(dict):
 
 
 @pulumi.output_type
-class GetCockpitEndpointResult(dict):
-    def __init__(__self__, *,
-                 alertmanager_url: _builtins.str,
-                 grafana_url: _builtins.str,
-                 logs_url: _builtins.str,
-                 metrics_url: _builtins.str,
-                 traces_url: _builtins.str):
-        """
-        :param _builtins.str alertmanager_url: (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        :param _builtins.str grafana_url: (Deprecated) URL for Grafana.
-        :param _builtins.str logs_url: (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        :param _builtins.str metrics_url: (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        :param _builtins.str traces_url: The traces URL.
-        """
-        pulumi.set(__self__, "alertmanager_url", alertmanager_url)
-        pulumi.set(__self__, "grafana_url", grafana_url)
-        pulumi.set(__self__, "logs_url", logs_url)
-        pulumi.set(__self__, "metrics_url", metrics_url)
-        pulumi.set(__self__, "traces_url", traces_url)
-
-    @_builtins.property
-    @pulumi.getter(name="alertmanagerUrl")
-    def alertmanager_url(self) -> _builtins.str:
-        """
-        (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-        """
-        return pulumi.get(self, "alertmanager_url")
-
-    @_builtins.property
-    @pulumi.getter(name="grafanaUrl")
-    def grafana_url(self) -> _builtins.str:
-        """
-        (Deprecated) URL for Grafana.
-        """
-        return pulumi.get(self, "grafana_url")
-
-    @_builtins.property
-    @pulumi.getter(name="logsUrl")
-    def logs_url(self) -> _builtins.str:
-        """
-        (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        return pulumi.get(self, "logs_url")
-
-    @_builtins.property
-    @pulumi.getter(name="metricsUrl")
-    def metrics_url(self) -> _builtins.str:
-        """
-        (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-        """
-        return pulumi.get(self, "metrics_url")
-
-    @_builtins.property
-    @pulumi.getter(name="tracesUrl")
-    def traces_url(self) -> _builtins.str:
-        """
-        The traces URL.
-        """
-        return pulumi.get(self, "traces_url")
-
-
-@pulumi.output_type
-class GetCockpitPushUrlResult(dict):
-    def __init__(__self__, *,
-                 push_logs_url: _builtins.str,
-                 push_metrics_url: _builtins.str):
-        """
-        :param _builtins.str push_logs_url: Push URL for logs (Grafana Loki)
-        :param _builtins.str push_metrics_url: Push URL for metrics (Grafana Mimir)
-        """
-        pulumi.set(__self__, "push_logs_url", push_logs_url)
-        pulumi.set(__self__, "push_metrics_url", push_metrics_url)
-
-    @_builtins.property
-    @pulumi.getter(name="pushLogsUrl")
-    def push_logs_url(self) -> _builtins.str:
-        """
-        Push URL for logs (Grafana Loki)
-        """
-        return pulumi.get(self, "push_logs_url")
-
-    @_builtins.property
-    @pulumi.getter(name="pushMetricsUrl")
-    def push_metrics_url(self) -> _builtins.str:
-        """
-        Push URL for metrics (Grafana Mimir)
-        """
-        return pulumi.get(self, "push_metrics_url")
-
-
-@pulumi.output_type
 class GetContainerHealthCheckResult(dict):
     def __init__(__self__, *,
                  failure_threshold: _builtins.int,
@@ -15611,6 +15375,46 @@ class GetRedisClusterPublicNetworkResult(dict):
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetSdbSqlVersionsVersionResult(dict):
+    def __init__(__self__, *,
+                 end_of_life_at: _builtins.str,
+                 name: _builtins.str,
+                 srn: _builtins.str):
+        """
+        :param _builtins.str end_of_life_at: End of life date of the version (RFC3339).
+        :param _builtins.str name: Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the version.
+        """
+        pulumi.set(__self__, "end_of_life_at", end_of_life_at)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "srn", srn)
+
+    @_builtins.property
+    @pulumi.getter(name="endOfLifeAt")
+    def end_of_life_at(self) -> _builtins.str:
+        """
+        End of life date of the version (RFC3339).
+        """
+        return pulumi.get(self, "end_of_life_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the version.
+        """
+        return pulumi.get(self, "srn")
 
 
 @pulumi.output_type

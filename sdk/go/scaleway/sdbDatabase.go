@@ -45,6 +45,33 @@ import (
 //
 // ```
 //
+// ### With a specific PostgreSQL version
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := databases.NewServerlessDatabase(ctx, "database", &databases.ServerlessDatabaseArgs{
+//				Name:    pulumi.String("my-database"),
+//				Version: pulumi.String("16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### With IAM Application
 //
 // This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
@@ -152,6 +179,13 @@ type SdbDatabase struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn pulumi.StringOutput `pulumi:"srn"`
+	// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+	// > **Important:** Updates to the `version` argument will recreate the database.
+	Version pulumi.StringOutput `pulumi:"version"`
+	// The end of life date of the database version (RFC3339).
+	VersionEndOfLifeAt pulumi.StringOutput `pulumi:"versionEndOfLifeAt"`
 }
 
 // NewSdbDatabase registers a new resource with the given unique name, arguments, and options.
@@ -197,6 +231,13 @@ type sdbDatabaseState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn *string `pulumi:"srn"`
+	// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+	// > **Important:** Updates to the `version` argument will recreate the database.
+	Version *string `pulumi:"version"`
+	// The end of life date of the database version (RFC3339).
+	VersionEndOfLifeAt *string `pulumi:"versionEndOfLifeAt"`
 }
 
 type SdbDatabaseState struct {
@@ -213,6 +254,13 @@ type SdbDatabaseState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the database.
+	Srn pulumi.StringPtrInput
+	// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+	// > **Important:** Updates to the `version` argument will recreate the database.
+	Version pulumi.StringPtrInput
+	// The end of life date of the database version (RFC3339).
+	VersionEndOfLifeAt pulumi.StringPtrInput
 }
 
 func (SdbDatabaseState) ElementType() reflect.Type {
@@ -231,6 +279,9 @@ type sdbDatabaseArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
+	// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+	// > **Important:** Updates to the `version` argument will recreate the database.
+	Version *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a SdbDatabase resource.
@@ -246,6 +297,9 @@ type SdbDatabaseArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
+	// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+	// > **Important:** Updates to the `version` argument will recreate the database.
+	Version pulumi.StringPtrInput
 }
 
 func (SdbDatabaseArgs) ElementType() reflect.Type {
@@ -364,6 +418,22 @@ func (o SdbDatabaseOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region in which the resource exists.
 func (o SdbDatabaseOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the database.
+func (o SdbDatabaseOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
+// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+// > **Important:** Updates to the `version` argument will recreate the database.
+func (o SdbDatabaseOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
+}
+
+// The end of life date of the database version (RFC3339).
+func (o SdbDatabaseOutput) VersionEndOfLifeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.VersionEndOfLifeAt }).(pulumi.StringOutput)
 }
 
 type SdbDatabaseArrayOutput struct{ *pulumi.OutputState }

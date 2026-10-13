@@ -7,17 +7,58 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Scaleway Key Manager Key resource.\
- * This resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
+ * The `scaleway.keymanager.Key` resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
  *
  * ## Example Usage
- *
- * ### Symmetric Encryption Key
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Create an asymmetric encryption key with RSA-4096.
+ * const rsa4096 = new scaleway.keymanager.Key("rsa_4096", {
+ *     name: "rsa-4096-key",
+ *     region: "fr-par",
+ *     usage: "asymmetric_encryption",
+ *     algorithm: "rsa_oaep_4096_sha256",
+ *     description: "Key for encrypting large files with RSA-4096",
+ *     unprotected: true,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Create an asymmetric signing key.
+ * const signing = new scaleway.keymanager.Key("signing", {
+ *     name: "signing-key",
+ *     region: "fr-par",
+ *     usage: "asymmetric_signing",
+ *     algorithm: "rsa_pss_2048_sha256",
+ *     description: "Key for signing documents",
+ *     unprotected: true,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Create a basic key
+ * const main = new scaleway.keymanager.Key("main", {
+ *     name: "my-kms-key",
+ *     usage: "symmetric_encryption",
+ *     algorithm: "aes_256_gcm",
+ *     unprotected: true,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Create a symmetric encryption key with a rotation policy of 30 days.
  * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
@@ -36,34 +77,17 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Asymmetric Encryption Key with RSA-4096
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const rsa4096 = new scaleway.keymanager.Key("rsa_4096", {
- *     name: "rsa-4096-key",
- *     region: "fr-par",
- *     usage: "asymmetric_encryption",
- *     algorithm: "rsa_oaep_4096_sha256",
- *     description: "Key for encrypting large files with RSA-4096",
- *     unprotected: true,
- * });
- * ```
- *
- * ### Asymmetric Signing Key
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const signing = new scaleway.keymanager.Key("signing", {
- *     name: "signing-key",
- *     region: "fr-par",
- *     usage: "asymmetric_signing",
- *     algorithm: "rsa_pss_2048_sha256",
- *     description: "Key for signing documents",
+ * // Create a key with a dedicated protection level.
+ * // In the example below, the key's cryptographic operations are performed within a dedicated Hardware Security Module (HSM).
+ * const hsm = new scaleway.keymanager.Key("hsm", {
+ *     name: "my-kms-key-hsm",
+ *     usage: "symmetric_encryption",
+ *     algorithm: "aes_256_gcm",
+ *     protectionLevel: "hsm",
  *     unprotected: true,
  * });
  * ```
@@ -153,6 +177,10 @@ export class KeyManagerKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly protected: pulumi.Output<boolean>;
     /**
+     * – The protection level of the key. Valid values are:
+     */
+    declare public readonly protectionLevel: pulumi.Output<string>;
+    /**
      * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */
     declare public readonly region: pulumi.Output<string>;
@@ -217,6 +245,7 @@ export class KeyManagerKey extends pulumi.CustomResource {
             resourceInputs["origin"] = state?.origin;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["protected"] = state?.protected;
+            resourceInputs["protectionLevel"] = state?.protectionLevel;
             resourceInputs["region"] = state?.region;
             resourceInputs["rotatedAt"] = state?.rotatedAt;
             resourceInputs["rotationCount"] = state?.rotationCount;
@@ -240,6 +269,7 @@ export class KeyManagerKey extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["origin"] = args?.origin;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protectionLevel"] = args?.protectionLevel;
             resourceInputs["region"] = args?.region;
             resourceInputs["rotationPolicy"] = args?.rotationPolicy;
             resourceInputs["tags"] = args?.tags;
@@ -298,6 +328,10 @@ export interface KeyManagerKeyState {
      * Whether the key is protected from deletion.
      */
     protected?: pulumi.Input<boolean | undefined>;
+    /**
+     * – The protection level of the key. Valid values are:
+     */
+    protectionLevel?: pulumi.Input<string | undefined>;
     /**
      * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */
@@ -367,6 +401,10 @@ export interface KeyManagerKeyArgs {
      * **Key Usage and Algorithm (both required):**
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * – The protection level of the key. Valid values are:
+     */
+    protectionLevel?: pulumi.Input<string | undefined>;
     /**
      * – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
      */

@@ -56,8 +56,8 @@ import (
 //				return err
 //			}
 //			_, err = annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
-//				Srn:     main.Srn,
-//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
+//				TargetSrn: main.Srn,
+//				ValueId:   production.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -80,8 +80,10 @@ type Binding struct {
 
 	// ID of the key associated to the binding.
 	KeyId pulumi.StringOutput `pulumi:"keyId"`
-	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	// The Scaleway Resource Number (SRN) of the binding.
 	Srn pulumi.StringOutput `pulumi:"srn"`
+	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	TargetSrn pulumi.StringOutput `pulumi:"targetSrn"`
 	// ID of the value to associate. Changing this forces a new resource to be created.
 	ValueId pulumi.StringOutput `pulumi:"valueId"`
 }
@@ -93,8 +95,8 @@ func NewBinding(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Srn == nil {
-		return nil, errors.New("invalid value for required argument 'Srn'")
+	if args.TargetSrn == nil {
+		return nil, errors.New("invalid value for required argument 'TargetSrn'")
 	}
 	if args.ValueId == nil {
 		return nil, errors.New("invalid value for required argument 'ValueId'")
@@ -124,8 +126,10 @@ func GetBinding(ctx *pulumi.Context,
 type bindingState struct {
 	// ID of the key associated to the binding.
 	KeyId *string `pulumi:"keyId"`
-	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	// The Scaleway Resource Number (SRN) of the binding.
 	Srn *string `pulumi:"srn"`
+	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	TargetSrn *string `pulumi:"targetSrn"`
 	// ID of the value to associate. Changing this forces a new resource to be created.
 	ValueId *string `pulumi:"valueId"`
 }
@@ -133,8 +137,10 @@ type bindingState struct {
 type BindingState struct {
 	// ID of the key associated to the binding.
 	KeyId pulumi.StringPtrInput
-	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	// The Scaleway Resource Number (SRN) of the binding.
 	Srn pulumi.StringPtrInput
+	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+	TargetSrn pulumi.StringPtrInput
 	// ID of the value to associate. Changing this forces a new resource to be created.
 	ValueId pulumi.StringPtrInput
 }
@@ -145,7 +151,7 @@ func (BindingState) ElementType() reflect.Type {
 
 type bindingArgs struct {
 	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
-	Srn string `pulumi:"srn"`
+	TargetSrn string `pulumi:"targetSrn"`
 	// ID of the value to associate. Changing this forces a new resource to be created.
 	ValueId string `pulumi:"valueId"`
 }
@@ -153,7 +159,7 @@ type bindingArgs struct {
 // The set of arguments for constructing a Binding resource.
 type BindingArgs struct {
 	// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
-	Srn pulumi.StringInput
+	TargetSrn pulumi.StringInput
 	// ID of the value to associate. Changing this forces a new resource to be created.
 	ValueId pulumi.StringInput
 }
@@ -250,9 +256,14 @@ func (o BindingOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+// The Scaleway Resource Number (SRN) of the binding.
 func (o BindingOutput) Srn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
+}
+
+// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+func (o BindingOutput) TargetSrn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.TargetSrn }).(pulumi.StringOutput)
 }
 
 // ID of the value to associate. Changing this forces a new resource to be created.

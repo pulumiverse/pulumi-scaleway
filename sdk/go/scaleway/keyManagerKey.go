@@ -12,12 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Provides a Scaleway Key Manager Key resource.\
-// This resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
+// The `keymanager.Key` resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
 //
 // ## Example Usage
-//
-// ### Symmetric Encryption Key
 //
 // ```go
 // package main
@@ -31,6 +28,95 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create an asymmetric encryption key with RSA-4096.
+//			_, err := keymanager.NewKey(ctx, "rsa_4096", &keymanager.KeyArgs{
+//				Name:        pulumi.String("rsa-4096-key"),
+//				Region:      pulumi.String("fr-par"),
+//				Usage:       pulumi.String("asymmetric_encryption"),
+//				Algorithm:   pulumi.String("rsa_oaep_4096_sha256"),
+//				Description: pulumi.String("Key for encrypting large files with RSA-4096"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create an asymmetric signing key.
+//			_, err := keymanager.NewKey(ctx, "signing", &keymanager.KeyArgs{
+//				Name:        pulumi.String("signing-key"),
+//				Region:      pulumi.String("fr-par"),
+//				Usage:       pulumi.String("asymmetric_signing"),
+//				Algorithm:   pulumi.String("rsa_pss_2048_sha256"),
+//				Description: pulumi.String("Key for signing documents"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a basic key
+//			_, err := keymanager.NewKey(ctx, "main", &keymanager.KeyArgs{
+//				Name:        pulumi.String("my-kms-key"),
+//				Usage:       pulumi.String("symmetric_encryption"),
+//				Algorithm:   pulumi.String("aes_256_gcm"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a symmetric encryption key with a rotation policy of 30 days.
 //			_, err := keymanager.NewKey(ctx, "symmetric", &keymanager.KeyArgs{
 //				Name:        pulumi.String("my-kms-key"),
 //				Region:      pulumi.String("fr-par"),
@@ -56,8 +142,6 @@ import (
 //
 // ```
 //
-// ### Asymmetric Encryption Key with RSA-4096
-//
 // ```go
 // package main
 //
@@ -70,44 +154,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keymanager.NewKey(ctx, "rsa_4096", &keymanager.KeyArgs{
-//				Name:        pulumi.String("rsa-4096-key"),
-//				Region:      pulumi.String("fr-par"),
-//				Usage:       pulumi.String("asymmetric_encryption"),
-//				Algorithm:   pulumi.String("rsa_oaep_4096_sha256"),
-//				Description: pulumi.String("Key for encrypting large files with RSA-4096"),
-//				Unprotected: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Asymmetric Signing Key
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keymanager.NewKey(ctx, "signing", &keymanager.KeyArgs{
-//				Name:        pulumi.String("signing-key"),
-//				Region:      pulumi.String("fr-par"),
-//				Usage:       pulumi.String("asymmetric_signing"),
-//				Algorithm:   pulumi.String("rsa_pss_2048_sha256"),
-//				Description: pulumi.String("Key for signing documents"),
-//				Unprotected: pulumi.Bool(true),
+//			// Create a key with a dedicated protection level.
+//			// In the example below, the key's cryptographic operations are performed within a dedicated Hardware Security Module (HSM).
+//			_, err := keymanager.NewKey(ctx, "hsm", &keymanager.KeyArgs{
+//				Name:            pulumi.String("my-kms-key-hsm"),
+//				Usage:           pulumi.String("symmetric_encryption"),
+//				Algorithm:       pulumi.String("aes_256_gcm"),
+//				ProtectionLevel: pulumi.String("hsm"),
+//				Unprotected:     pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -159,6 +213,8 @@ type KeyManagerKey struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolOutput `pulumi:"protected"`
+	// – The protection level of the key. Valid values are:
+	ProtectionLevel pulumi.StringOutput `pulumi:"protectionLevel"`
 	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The date and time when the key was last rotated.
@@ -236,6 +292,8 @@ type keyManagerKeyState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected *bool `pulumi:"protected"`
+	// – The protection level of the key. Valid values are:
+	ProtectionLevel *string `pulumi:"protectionLevel"`
 	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region *string `pulumi:"region"`
 	// The date and time when the key was last rotated.
@@ -278,6 +336,8 @@ type KeyManagerKeyState struct {
 	ProjectId pulumi.StringPtrInput
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolPtrInput
+	// – The protection level of the key. Valid values are:
+	ProtectionLevel pulumi.StringPtrInput
 	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region pulumi.StringPtrInput
 	// The date and time when the key was last rotated.
@@ -318,6 +378,8 @@ type keyManagerKeyArgs struct {
 	//
 	// **Key Usage and Algorithm (both required):**
 	ProjectId *string `pulumi:"projectId"`
+	// – The protection level of the key. Valid values are:
+	ProtectionLevel *string `pulumi:"protectionLevel"`
 	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region *string `pulumi:"region"`
 	// – Rotation policy for the key:
@@ -345,6 +407,8 @@ type KeyManagerKeyArgs struct {
 	//
 	// **Key Usage and Algorithm (both required):**
 	ProjectId pulumi.StringPtrInput
+	// – The protection level of the key. Valid values are:
+	ProtectionLevel pulumi.StringPtrInput
 	// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
 	Region pulumi.StringPtrInput
 	// – Rotation policy for the key:
@@ -485,6 +549,11 @@ func (o KeyManagerKeyOutput) ProjectId() pulumi.StringOutput {
 // Whether the key is protected from deletion.
 func (o KeyManagerKeyOutput) Protected() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.BoolOutput { return v.Protected }).(pulumi.BoolOutput)
+}
+
+// – The protection level of the key. Valid values are:
+func (o KeyManagerKeyOutput) ProtectionLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.ProtectionLevel }).(pulumi.StringOutput)
 }
 
 // – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.

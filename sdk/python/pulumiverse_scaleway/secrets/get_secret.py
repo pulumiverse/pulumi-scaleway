@@ -27,7 +27,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, srn=None, status=None, tags=None, type=None, updated_at=None, version_count=None, versions=None):
+    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, key_id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, srn=None, status=None, tags=None, type=None, updated_at=None, version_count=None, versions=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -40,6 +40,9 @@ class GetSecretResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if key_id and not isinstance(key_id, str):
+            raise TypeError("Expected argument 'key_id' to be a str")
+        pulumi.set(__self__, "key_id", key_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -105,6 +108,11 @@ class GetSecretResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> _builtins.str:
+        return pulumi.get(self, "key_id")
 
     @_builtins.property
     @pulumi.getter
@@ -187,6 +195,7 @@ class AwaitableGetSecretResult(GetSecretResult):
             description=self.description,
             ephemeral_policies=self.ephemeral_policies,
             id=self.id,
+            key_id=self.key_id,
             name=self.name,
             organization_id=self.organization_id,
             path=self.path,
@@ -267,6 +276,7 @@ def get_secret(name: Optional[_builtins.str] = None,
         description=pulumi.get(__ret__, 'description'),
         ephemeral_policies=pulumi.get(__ret__, 'ephemeral_policies'),
         id=pulumi.get(__ret__, 'id'),
+        key_id=pulumi.get(__ret__, 'key_id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         path=pulumi.get(__ret__, 'path'),
@@ -344,6 +354,7 @@ def get_secret_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         description=pulumi.get(__response__, 'description'),
         ephemeral_policies=pulumi.get(__response__, 'ephemeral_policies'),
         id=pulumi.get(__response__, 'id'),
+        key_id=pulumi.get(__response__, 'key_id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         path=pulumi.get(__response__, 'path'),

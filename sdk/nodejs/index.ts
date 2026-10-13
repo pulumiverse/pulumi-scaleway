@@ -35,11 +35,6 @@ export type BlockVolume = import("./blockVolume").BlockVolume;
 export const BlockVolume: typeof import("./blockVolume").BlockVolume = null as any;
 utilities.lazyLoad(exports, ["BlockVolume"], () => require("./blockVolume"));
 
-export { CockpitArgs, CockpitState } from "./cockpit";
-export type Cockpit = import("./cockpit").Cockpit;
-export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
-utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
-
 export { CockpitAlertManagerArgs, CockpitAlertManagerState } from "./cockpitAlertManager";
 export type CockpitAlertManager = import("./cockpitAlertManager").CockpitAlertManager;
 export const CockpitAlertManager: typeof import("./cockpitAlertManager").CockpitAlertManager = null as any;
@@ -274,11 +269,6 @@ export { GetBlockVolumeArgs, GetBlockVolumeResult, GetBlockVolumeOutputArgs } fr
 export const getBlockVolume: typeof import("./getBlockVolume").getBlockVolume = null as any;
 export const getBlockVolumeOutput: typeof import("./getBlockVolume").getBlockVolumeOutput = null as any;
 utilities.lazyLoad(exports, ["getBlockVolume","getBlockVolumeOutput"], () => require("./getBlockVolume"));
-
-export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
-export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
-export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
-utilities.lazyLoad(exports, ["getCockpit","getCockpitOutput"], () => require("./getCockpit"));
 
 export { GetCockpitSourceArgs, GetCockpitSourceResult, GetCockpitSourceOutputArgs } from "./getCockpitSource";
 export const getCockpitSource: typeof import("./getCockpitSource").getCockpitSource = null as any;
@@ -574,6 +564,11 @@ export { GetRegistryNamespaceArgs, GetRegistryNamespaceResult, GetRegistryNamesp
 export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRegistryNamespace = null as any;
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
+
+export { GetSdbSqlVersionsArgs, GetSdbSqlVersionsResult, GetSdbSqlVersionsOutputArgs } from "./getSdbSqlVersions";
+export const getSdbSqlVersions: typeof import("./getSdbSqlVersions").getSdbSqlVersions = null as any;
+export const getSdbSqlVersionsOutput: typeof import("./getSdbSqlVersions").getSdbSqlVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getSdbSqlVersions","getSdbSqlVersionsOutput"], () => require("./getSdbSqlVersions"));
 
 export { GetSecretArgs, GetSecretResult, GetSecretOutputArgs } from "./getSecret";
 export const getSecret: typeof import("./getSecret").getSecret = null as any;
@@ -1134,8 +1129,6 @@ const _module = {
                 return new BlockSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/blockVolume:BlockVolume":
                 return new BlockVolume(name, <any>undefined, { urn })
-            case "scaleway:index/cockpit:Cockpit":
-                return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
                 return new CockpitAlertManager(name, <any>undefined, { urn })
             case "scaleway:index/cockpitSource:CockpitSource":
@@ -1365,7 +1358,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/appleSiliconServer", _m
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitAlertManager", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitSource", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)

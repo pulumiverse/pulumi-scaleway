@@ -55,8 +55,8 @@ import (
 //				return err
 //			}
 //			mainBinding, err := annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
-//				Srn:     mainKey.Srn,
-//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
+//				TargetSrn: mainKey.Srn,
+//				ValueId:   production.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -92,8 +92,10 @@ type LookupBindingResult struct {
 	Id string `pulumi:"id"`
 	// ID of the key associated to the binding
 	KeyId string `pulumi:"keyId"`
-	// Scaleway Resource Number associated to the binding
+	// The Scaleway Resource Number (SRN) of the binding.
 	Srn string `pulumi:"srn"`
+	// Scaleway Resource Number associated to the binding.
+	TargetSrn string `pulumi:"targetSrn"`
 	// ID of the value associated to the binding
 	ValueId string `pulumi:"valueId"`
 }
@@ -142,9 +144,14 @@ func (o LookupBindingResultOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBindingResult) string { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// Scaleway Resource Number associated to the binding
+// The Scaleway Resource Number (SRN) of the binding.
 func (o LookupBindingResultOutput) Srn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBindingResult) string { return v.Srn }).(pulumi.StringOutput)
+}
+
+// Scaleway Resource Number associated to the binding.
+func (o LookupBindingResultOutput) TargetSrn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBindingResult) string { return v.TargetSrn }).(pulumi.StringOutput)
 }
 
 // ID of the value associated to the binding

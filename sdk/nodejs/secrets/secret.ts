@@ -13,14 +13,11 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Create a secret
- *
- * The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Create a secret
  * const main = new scaleway.secrets.Secret("main", {
  *     name: "foo",
  *     description: "barr",
@@ -31,16 +28,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Apply the ephemeral policy on a secret
- *
- * The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
- *
- * In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Apply an ephemeral policy on your secret named `foo`.
+ * // In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
  * const ephemeral = new scaleway.secrets.Secret("ephemeral", {
  *     name: "foo",
  *     ephemeralPolicies: [{
@@ -48,6 +41,23 @@ import * as utilities from "../utilities";
  *         expiresOnceAccessed: true,
  *         action: "disable",
  *     }],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Create a secret with your own Key Manager encryption key
+ * const main = new scaleway.keymanager.Key("main", {
+ *     name: "my-kms-key",
+ *     usage: "symmetric_encryption",
+ *     algorithm: "aes_256_gcm",
+ *     unprotected: true,
+ * });
+ * const kms = new scaleway.secrets.Secret("kms", {
+ *     name: "foo",
+ *     keyId: main.id,
  * });
  * ```
  *
@@ -96,9 +106,13 @@ export class Secret extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+     * [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
     declare public readonly ephemeralPolicies: pulumi.Output<outputs.secrets.SecretEphemeralPolicy[] | undefined>;
+    /**
+     * ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+     */
+    declare public readonly keyId: pulumi.Output<string | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */
@@ -165,6 +179,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["description"] = state?.description;
             resourceInputs["ephemeralPolicies"] = state?.ephemeralPolicies;
+            resourceInputs["keyId"] = state?.keyId;
             resourceInputs["name"] = state?.name;
             resourceInputs["path"] = state?.path;
             resourceInputs["projectId"] = state?.projectId;
@@ -181,6 +196,7 @@ export class Secret extends pulumi.CustomResource {
             const args = argsOrState as SecretArgs | undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["ephemeralPolicies"] = args?.ephemeralPolicies;
+            resourceInputs["keyId"] = args?.keyId;
             resourceInputs["name"] = args?.name;
             resourceInputs["path"] = args?.path;
             resourceInputs["projectId"] = args?.projectId;
@@ -215,9 +231,13 @@ export interface SecretState {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+     * [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
     ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.secrets.SecretEphemeralPolicy>[] | undefined>;
+    /**
+     * ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+     */
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */
@@ -278,9 +298,13 @@ export interface SecretArgs {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+     * [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
     ephemeralPolicies?: pulumi.Input<pulumi.Input<inputs.secrets.SecretEphemeralPolicy>[] | undefined>;
+    /**
+     * ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+     */
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */

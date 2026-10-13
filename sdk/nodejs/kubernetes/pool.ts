@@ -253,6 +253,10 @@ export class Pool extends pulumi.CustomResource {
     /**
      * User data applied and reconciled with the pool, as a map of key to content.
      *
+     * key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+     *
+     * value - The user data content.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     declare public readonly userData: pulumi.Output<{[key: string]: string} | undefined>;
@@ -503,6 +507,10 @@ export interface PoolState {
     /**
      * User data applied and reconciled with the pool, as a map of key to content.
      *
+     * key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+     *
+     * value - The user data content.
+     *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     userData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
@@ -635,6 +643,10 @@ export interface PoolArgs {
     upgradePolicy?: pulumi.Input<inputs.kubernetes.PoolUpgradePolicy | undefined>;
     /**
      * User data applied and reconciled with the pool, as a map of key to content.
+     *
+     * key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+     *
+     * value - The user data content.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */

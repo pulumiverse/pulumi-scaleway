@@ -15,13 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Create a key and get its information
-//
-// The following commands allow you to:
-//
-// - create a key named `my-kms-key`
-// - retrieve the key's information using the key's ID
-//
 // ```go
 // package main
 //
@@ -34,7 +27,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Create a key
+//			// Create a key and get its information.
+//			// In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
 //			_, err := keymanager.NewKey(ctx, "symmetric", &keymanager.KeyArgs{
 //				Name:        pulumi.String("my-kms-key"),
 //				Region:      pulumi.String("fr-par"),
@@ -54,7 +48,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Get the key information by its ID
 //			_, err = keymanager.LookupKey(ctx, &keymanager.LookupKeyArgs{
 //				KeyId: "11111111-1111-1111-1111-111111111111",
 //			}, nil)
@@ -98,6 +91,7 @@ type LookupKeyManagerKeyResult struct {
 	Origin           string                           `pulumi:"origin"`
 	ProjectId        string                           `pulumi:"projectId"`
 	Protected        bool                             `pulumi:"protected"`
+	ProtectionLevel  string                           `pulumi:"protectionLevel"`
 	Region           *string                          `pulumi:"region"`
 	RotatedAt        string                           `pulumi:"rotatedAt"`
 	RotationCount    int                              `pulumi:"rotationCount"`
@@ -180,6 +174,10 @@ func (o LookupKeyManagerKeyResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o LookupKeyManagerKeyResultOutput) Protected() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKeyManagerKeyResult) bool { return v.Protected }).(pulumi.BoolOutput)
+}
+
+func (o LookupKeyManagerKeyResultOutput) ProtectionLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKeyManagerKeyResult) string { return v.ProtectionLevel }).(pulumi.StringOutput)
 }
 
 func (o LookupKeyManagerKeyResultOutput) Region() pulumi.StringPtrOutput {

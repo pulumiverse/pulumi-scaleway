@@ -216,6 +216,10 @@ type KubernetesNodePool struct {
 	UpgradePolicy KubernetesNodePoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -346,6 +350,10 @@ type kubernetesNodePoolState struct {
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -438,6 +446,10 @@ type KubernetesNodePoolState struct {
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -522,6 +534,10 @@ type kubernetesNodePoolArgs struct {
 	UpgradePolicy *KubernetesNodePoolUpgradePolicy `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -602,6 +618,10 @@ type KubernetesNodePoolArgs struct {
 	// The Pool upgrade policy
 	UpgradePolicy KubernetesNodePoolUpgradePolicyPtrInput
 	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapInput
@@ -861,6 +881,10 @@ func (o KubernetesNodePoolOutput) UpgradePolicy() KubernetesNodePoolUpgradePolic
 }
 
 // User data applied and reconciled with the pool, as a map of key to content.
+//
+// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+//
+// value - The user data content.
 //
 // > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) UserData() pulumi.StringMapOutput {

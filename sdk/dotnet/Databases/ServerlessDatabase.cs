@@ -37,6 +37,25 @@ namespace Pulumiverse.Scaleway.Databases
     /// });
     /// ```
     /// 
+    /// ### With a specific PostgreSQL version
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var database = new Scaleway.Databases.ServerlessDatabase("database", new()
+    ///     {
+    ///         Name = "my-database",
+    ///         Version = "16",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### With IAM Application
     /// 
     /// This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
@@ -163,6 +182,25 @@ namespace Pulumiverse.Scaleway.Databases
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the database.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
+        /// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        /// &gt; **Important:** Updates to the `Version` argument will recreate the database.
+        /// </summary>
+        [Output("version")]
+        public Output<string> Version { get; private set; } = null!;
+
+        /// <summary>
+        /// The end of life date of the database version (RFC3339).
+        /// </summary>
+        [Output("versionEndOfLifeAt")]
+        public Output<string> VersionEndOfLifeAt { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ServerlessDatabase resource with the given unique name, arguments, and options.
@@ -245,6 +283,13 @@ namespace Pulumiverse.Scaleway.Databases
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        /// &gt; **Important:** Updates to the `Version` argument will recreate the database.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
         public ServerlessDatabaseArgs()
         {
         }
@@ -289,6 +334,25 @@ namespace Pulumiverse.Scaleway.Databases
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the database.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
+
+        /// <summary>
+        /// The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        /// &gt; **Important:** Updates to the `Version` argument will recreate the database.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        /// <summary>
+        /// The end of life date of the database version (RFC3339).
+        /// </summary>
+        [Input("versionEndOfLifeAt")]
+        public Input<string>? VersionEndOfLifeAt { get; set; }
 
         public ServerlessDatabaseState()
         {

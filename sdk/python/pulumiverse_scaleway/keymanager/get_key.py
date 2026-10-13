@@ -27,7 +27,7 @@ class GetKeyResult:
     """
     A collection of values returned by getKey.
     """
-    def __init__(__self__, algorithm=None, created_at=None, description=None, id=None, key_id=None, locked=None, name=None, origin=None, project_id=None, protected=None, region=None, rotated_at=None, rotation_count=None, rotation_policies=None, srn=None, state=None, tags=None, unprotected=None, updated_at=None, usage=None):
+    def __init__(__self__, algorithm=None, created_at=None, description=None, id=None, key_id=None, locked=None, name=None, origin=None, project_id=None, protected=None, protection_level=None, region=None, rotated_at=None, rotation_count=None, rotation_policies=None, srn=None, state=None, tags=None, unprotected=None, updated_at=None, usage=None):
         if algorithm and not isinstance(algorithm, str):
             raise TypeError("Expected argument 'algorithm' to be a str")
         pulumi.set(__self__, "algorithm", algorithm)
@@ -58,6 +58,9 @@ class GetKeyResult:
         if protected and not isinstance(protected, bool):
             raise TypeError("Expected argument 'protected' to be a bool")
         pulumi.set(__self__, "protected", protected)
+        if protection_level and not isinstance(protection_level, str):
+            raise TypeError("Expected argument 'protection_level' to be a str")
+        pulumi.set(__self__, "protection_level", protection_level)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -140,6 +143,11 @@ class GetKeyResult:
         return pulumi.get(self, "protected")
 
     @_builtins.property
+    @pulumi.getter(name="protectionLevel")
+    def protection_level(self) -> _builtins.str:
+        return pulumi.get(self, "protection_level")
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "region")
@@ -206,6 +214,7 @@ class AwaitableGetKeyResult(GetKeyResult):
             origin=self.origin,
             project_id=self.project_id,
             protected=self.protected,
+            protection_level=self.protection_level,
             region=self.region,
             rotated_at=self.rotated_at,
             rotation_count=self.rotation_count,
@@ -226,19 +235,13 @@ def get_key(key_id: Optional[_builtins.str] = None,
 
     ## Example Usage
 
-    ### Create a key and get its information
-
-    The following commands allow you to:
-
-    - create a key named `my-kms-key`
-    - retrieve the key's information using the key's ID
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    # Create a key
+    # Create a key and get its information.
+    # In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
     symmetric = scaleway.keymanager.Key("symmetric",
         name="my-kms-key",
         region="fr-par",
@@ -254,7 +257,6 @@ def get_key(key_id: Optional[_builtins.str] = None,
         rotation_policy={
             "rotation_period": "720h",
         })
-    # Get the key information by its ID
     by_id = scaleway.keymanager.get_key(key_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -279,6 +281,7 @@ def get_key(key_id: Optional[_builtins.str] = None,
         origin=pulumi.get(__ret__, 'origin'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protected=pulumi.get(__ret__, 'protected'),
+        protection_level=pulumi.get(__ret__, 'protection_level'),
         region=pulumi.get(__ret__, 'region'),
         rotated_at=pulumi.get(__ret__, 'rotated_at'),
         rotation_count=pulumi.get(__ret__, 'rotation_count'),
@@ -297,19 +300,13 @@ def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
 
     ## Example Usage
 
-    ### Create a key and get its information
-
-    The following commands allow you to:
-
-    - create a key named `my-kms-key`
-    - retrieve the key's information using the key's ID
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    # Create a key
+    # Create a key and get its information.
+    # In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
     symmetric = scaleway.keymanager.Key("symmetric",
         name="my-kms-key",
         region="fr-par",
@@ -325,7 +322,6 @@ def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
         rotation_policy={
             "rotation_period": "720h",
         })
-    # Get the key information by its ID
     by_id = scaleway.keymanager.get_key(key_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -349,6 +345,7 @@ def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
         origin=pulumi.get(__response__, 'origin'),
         project_id=pulumi.get(__response__, 'project_id'),
         protected=pulumi.get(__response__, 'protected'),
+        protection_level=pulumi.get(__response__, 'protection_level'),
         region=pulumi.get(__response__, 'region'),
         rotated_at=pulumi.get(__response__, 'rotated_at'),
         rotation_count=pulumi.get(__response__, 'rotation_count'),

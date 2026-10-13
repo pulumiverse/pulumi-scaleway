@@ -110,8 +110,7 @@ def get_grafana(project_id: Optional[_builtins.str] = None,
     import pulumiverse_scaleway as scaleway
 
     project = scaleway.account.Project("project", name="my-observability-project")
-    main_cockpit = scaleway.observability.Cockpit("main", project_id=project.id)
-    main = scaleway.observability.get_grafana_output(project_id=main_cockpit.project_id)
+    main = scaleway.observability.get_grafana_output(project_id=project.id)
     pulumi.export("grafanaConnectionInfo", {
         "url": main.grafana_url,
         "projectId": main.project_id,
@@ -196,8 +195,7 @@ def get_grafana_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]
     import pulumiverse_scaleway as scaleway
 
     project = scaleway.account.Project("project", name="my-observability-project")
-    main_cockpit = scaleway.observability.Cockpit("main", project_id=project.id)
-    main = scaleway.observability.get_grafana_output(project_id=main_cockpit.project_id)
+    main = scaleway.observability.get_grafana_output(project_id=project.id)
     pulumi.export("grafanaConnectionInfo", {
         "url": main.grafana_url,
         "projectId": main.project_id,

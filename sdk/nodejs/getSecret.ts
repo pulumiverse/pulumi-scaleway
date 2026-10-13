@@ -100,6 +100,7 @@ export interface GetSecretResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly keyId: string;
     readonly name?: string;
     readonly organizationId: string;
     readonly path?: string;

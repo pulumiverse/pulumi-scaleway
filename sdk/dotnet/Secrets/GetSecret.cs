@@ -265,6 +265,7 @@ namespace Pulumiverse.Scaleway.Secrets
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string KeyId;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string? Path;
@@ -289,6 +290,8 @@ namespace Pulumiverse.Scaleway.Secrets
             ImmutableArray<Outputs.GetSecretEphemeralPolicyResult> ephemeralPolicies,
 
             string id,
+
+            string keyId,
 
             string? name,
 
@@ -322,6 +325,7 @@ namespace Pulumiverse.Scaleway.Secrets
             Description = description;
             EphemeralPolicies = ephemeralPolicies;
             Id = id;
+            KeyId = keyId;
             Name = name;
             OrganizationId = organizationId;
             Path = path;

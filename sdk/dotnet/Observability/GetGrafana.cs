@@ -78,14 +78,9 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///     });
-        /// 
         ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
         ///     {
-        ///         ProjectId = mainCockpit.ProjectId,
+        ///         ProjectId = project.Id,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
@@ -203,14 +198,9 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///     });
-        /// 
         ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
         ///     {
-        ///         ProjectId = mainCockpit.ProjectId,
+        ///         ProjectId = project.Id,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
@@ -328,14 +318,9 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var mainCockpit = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///     });
-        /// 
         ///     var main = Scaleway.Observability.GetGrafana.Invoke(new()
         ///     {
-        ///         ProjectId = mainCockpit.ProjectId,
+        ///         ProjectId = project.Id,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
