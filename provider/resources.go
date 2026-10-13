@@ -164,7 +164,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"organization_id": {
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"SCW_ORGANIZATION_ID"},
+					EnvVars: []string{"SCW_DEFAULT_ORGANIZATION_ID"},
 				},
 			},
 			"project_id": {

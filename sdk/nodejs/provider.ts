@@ -74,7 +74,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["accessKey"] = (args?.accessKey ? pulumi.secret(args.accessKey) : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
             resourceInputs["apiUrl"] = args?.apiUrl;
             resourceInputs["endpoints"] = pulumi.output(args?.endpoints).apply(JSON.stringify);
-            resourceInputs["organizationId"] = (args?.organizationId) ?? utilities.getEnv("SCW_ORGANIZATION_ID");
+            resourceInputs["organizationId"] = (args?.organizationId) ?? utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
             resourceInputs["profile"] = args?.profile;
             resourceInputs["projectId"] = (args?.projectId) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
             resourceInputs["region"] = (args?.region) ?? utilities.getEnv("SCW_DEFAULT_REGION");
