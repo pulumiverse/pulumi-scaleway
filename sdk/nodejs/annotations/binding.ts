@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     unprotected: true,
  * });
  * const mainBinding = new scaleway.annotations.Binding("main", {
- *     srn: main.srn,
+ *     targetSrn: main.srn,
  *     valueId: production.id,
  * });
  * ```
@@ -77,9 +77,13 @@ export class Binding extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly keyId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Number (SRN) of the binding.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * Scaleway Resource Number to associate. Changing this forces a new resource to be created.
      */
-    declare public readonly srn: pulumi.Output<string>;
+    declare public readonly targetSrn: pulumi.Output<string>;
     /**
      * ID of the value to associate. Changing this forces a new resource to be created.
      */
@@ -100,18 +104,20 @@ export class Binding extends pulumi.CustomResource {
             const state = argsOrState as BindingState | undefined;
             resourceInputs["keyId"] = state?.keyId;
             resourceInputs["srn"] = state?.srn;
+            resourceInputs["targetSrn"] = state?.targetSrn;
             resourceInputs["valueId"] = state?.valueId;
         } else {
             const args = argsOrState as BindingArgs | undefined;
-            if (args?.srn === undefined && !opts.urn) {
-                throw new Error("Missing required property 'srn'");
+            if (args?.targetSrn === undefined && !opts.urn) {
+                throw new Error("Missing required property 'targetSrn'");
             }
             if (args?.valueId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'valueId'");
             }
-            resourceInputs["srn"] = args?.srn;
+            resourceInputs["targetSrn"] = args?.targetSrn;
             resourceInputs["valueId"] = args?.valueId;
             resourceInputs["keyId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Binding.__pulumiType, name, resourceInputs, opts);
@@ -127,9 +133,13 @@ export interface BindingState {
      */
     keyId?: pulumi.Input<string | undefined>;
     /**
-     * Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+     * The Scaleway Resource Number (SRN) of the binding.
      */
     srn?: pulumi.Input<string | undefined>;
+    /**
+     * Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+     */
+    targetSrn?: pulumi.Input<string | undefined>;
     /**
      * ID of the value to associate. Changing this forces a new resource to be created.
      */
@@ -143,7 +153,7 @@ export interface BindingArgs {
     /**
      * Scaleway Resource Number to associate. Changing this forces a new resource to be created.
      */
-    srn: pulumi.Input<string>;
+    targetSrn: pulumi.Input<string>;
     /**
      * ID of the value to associate. Changing this forces a new resource to be created.
      */

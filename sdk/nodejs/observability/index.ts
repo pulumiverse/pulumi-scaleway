@@ -10,11 +10,6 @@ export type AlertManager = import("./alertManager").AlertManager;
 export const AlertManager: typeof import("./alertManager").AlertManager = null as any;
 utilities.lazyLoad(exports, ["AlertManager"], () => require("./alertManager"));
 
-export { CockpitArgs, CockpitState } from "./cockpit";
-export type Cockpit = import("./cockpit").Cockpit;
-export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
-utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
-
 export { ExporterArgs, ExporterState } from "./exporter";
 export type Exporter = import("./exporter").Exporter;
 export const Exporter: typeof import("./exporter").Exporter = null as any;
@@ -44,11 +39,6 @@ export { GetGrafanaProductDashboardsArgs, GetGrafanaProductDashboardsResult, Get
 export const getGrafanaProductDashboards: typeof import("./getGrafanaProductDashboards").getGrafanaProductDashboards = null as any;
 export const getGrafanaProductDashboardsOutput: typeof import("./getGrafanaProductDashboards").getGrafanaProductDashboardsOutput = null as any;
 utilities.lazyLoad(exports, ["getGrafanaProductDashboards","getGrafanaProductDashboardsOutput"], () => require("./getGrafanaProductDashboards"));
-
-export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
-export const getInstance: typeof import("./getInstance").getInstance = null as any;
-export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
-utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
 
 export { GetPreconfiguredAlertArgs, GetPreconfiguredAlertResult, GetPreconfiguredAlertOutputArgs } from "./getPreconfiguredAlert";
 export const getPreconfiguredAlert: typeof import("./getPreconfiguredAlert").getPreconfiguredAlert = null as any;
@@ -87,8 +77,6 @@ const _module = {
         switch (type) {
             case "scaleway:observability/alertManager:AlertManager":
                 return new AlertManager(name, <any>undefined, { urn })
-            case "scaleway:observability/cockpit:Cockpit":
-                return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:observability/exporter:Exporter":
                 return new Exporter(name, <any>undefined, { urn })
             case "scaleway:observability/source:Source":
@@ -101,7 +89,6 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "observability/alertManager", _module)
-pulumi.runtime.registerResourceModule("scaleway", "observability/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/exporter", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/source", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/token", _module)

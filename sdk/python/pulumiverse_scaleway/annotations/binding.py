@@ -19,28 +19,28 @@ __all__ = ['BindingArgs', 'Binding']
 @pulumi.input_type
 class BindingArgs:
     def __init__(__self__, *,
-                 srn: pulumi.Input[_builtins.str],
+                 target_srn: pulumi.Input[_builtins.str],
                  value_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a Binding resource.
 
-        :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        :param pulumi.Input[_builtins.str] target_srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.str] value_id: ID of the value to associate. Changing this forces a new resource to be created.
         """
-        pulumi.set(__self__, "srn", srn)
+        pulumi.set(__self__, "target_srn", target_srn)
         pulumi.set(__self__, "value_id", value_id)
 
     @_builtins.property
-    @pulumi.getter
-    def srn(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="targetSrn")
+    def target_srn(self) -> pulumi.Input[_builtins.str]:
         """
         Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         """
-        return pulumi.get(self, "srn")
+        return pulumi.get(self, "target_srn")
 
-    @srn.setter
-    def srn(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "srn", value)
+    @target_srn.setter
+    def target_srn(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "target_srn", value)
 
     @_builtins.property
     @pulumi.getter(name="valueId")
@@ -60,18 +60,22 @@ class _BindingState:
     def __init__(__self__, *,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  srn: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_srn: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Binding resources.
 
         :param pulumi.Input[_builtins.str] key_id: ID of the key associated to the binding.
-        :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Number (SRN) of the binding.
+        :param pulumi.Input[_builtins.str] target_srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.str] value_id: ID of the value to associate. Changing this forces a new resource to be created.
         """
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
         if srn is not None:
             pulumi.set(__self__, "srn", srn)
+        if target_srn is not None:
+            pulumi.set(__self__, "target_srn", target_srn)
         if value_id is not None:
             pulumi.set(__self__, "value_id", value_id)
 
@@ -91,13 +95,25 @@ class _BindingState:
     @pulumi.getter
     def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        The Scaleway Resource Number (SRN) of the binding.
         """
         return pulumi.get(self, "srn")
 
     @srn.setter
     def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetSrn")
+    def target_srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "target_srn")
+
+    @target_srn.setter
+    def target_srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "target_srn", value)
 
     @_builtins.property
     @pulumi.getter(name="valueId")
@@ -118,7 +134,7 @@ class Binding(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 srn: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_srn: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -145,7 +161,7 @@ class Binding(pulumi.CustomResource):
             description="Example key for binding",
             unprotected=True)
         main_binding = scaleway.annotations.Binding("main",
-            srn=main.srn,
+            target_srn=main.srn,
             value_id=production.id)
         ```
 
@@ -160,7 +176,7 @@ class Binding(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        :param pulumi.Input[_builtins.str] target_srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.str] value_id: ID of the value to associate. Changing this forces a new resource to be created.
         """
         ...
@@ -193,7 +209,7 @@ class Binding(pulumi.CustomResource):
             description="Example key for binding",
             unprotected=True)
         main_binding = scaleway.annotations.Binding("main",
-            srn=main.srn,
+            target_srn=main.srn,
             value_id=production.id)
         ```
 
@@ -221,7 +237,7 @@ class Binding(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 srn: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_srn: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -232,13 +248,14 @@ class Binding(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BindingArgs.__new__(BindingArgs)
 
-            if srn is None and not opts.urn:
-                raise TypeError("Missing required property 'srn'")
-            __props__.__dict__["srn"] = srn
+            if target_srn is None and not opts.urn:
+                raise TypeError("Missing required property 'target_srn'")
+            __props__.__dict__["target_srn"] = target_srn
             if value_id is None and not opts.urn:
                 raise TypeError("Missing required property 'value_id'")
             __props__.__dict__["value_id"] = value_id
             __props__.__dict__["key_id"] = None
+            __props__.__dict__["srn"] = None
         super(Binding, __self__).__init__(
             'scaleway:annotations/binding:Binding',
             resource_name,
@@ -251,6 +268,7 @@ class Binding(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             key_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
+            target_srn: pulumi.Input[Optional[_builtins.str]] = None,
             value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Binding':
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
@@ -260,7 +278,8 @@ class Binding(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] key_id: ID of the key associated to the binding.
-        :param pulumi.Input[_builtins.str] srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Number (SRN) of the binding.
+        :param pulumi.Input[_builtins.str] target_srn: Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         :param pulumi.Input[_builtins.str] value_id: ID of the value to associate. Changing this forces a new resource to be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -269,6 +288,7 @@ class Binding(pulumi.CustomResource):
 
         __props__.__dict__["key_id"] = key_id
         __props__.__dict__["srn"] = srn
+        __props__.__dict__["target_srn"] = target_srn
         __props__.__dict__["value_id"] = value_id
         return Binding(resource_name, opts=opts, __props__=__props__)
 
@@ -284,9 +304,17 @@ class Binding(pulumi.CustomResource):
     @pulumi.getter
     def srn(self) -> pulumi.Output[_builtins.str]:
         """
-        Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        The Scaleway Resource Number (SRN) of the binding.
         """
         return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter(name="targetSrn")
+    def target_srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        """
+        return pulumi.get(self, "target_srn")
 
     @_builtins.property
     @pulumi.getter(name="valueId")

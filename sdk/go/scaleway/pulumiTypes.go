@@ -1414,245 +1414,6 @@ func (o CockpitAlertManagerContactPointArrayOutput) Index(i pulumi.IntInput) Coc
 	}).(CockpitAlertManagerContactPointOutput)
 }
 
-type CockpitEndpoint struct {
-	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
-	// (Deprecated) URL for Grafana.
-	GrafanaUrl *string `pulumi:"grafanaUrl"`
-	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	LogsUrl *string `pulumi:"logsUrl"`
-	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	MetricsUrl *string `pulumi:"metricsUrl"`
-	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	TracesUrl *string `pulumi:"tracesUrl"`
-}
-
-// CockpitEndpointInput is an input type that accepts CockpitEndpointArgs and CockpitEndpointOutput values.
-// You can construct a concrete instance of `CockpitEndpointInput` via:
-//
-//	CockpitEndpointArgs{...}
-type CockpitEndpointInput interface {
-	pulumi.Input
-
-	ToCockpitEndpointOutput() CockpitEndpointOutput
-	ToCockpitEndpointOutputWithContext(context.Context) CockpitEndpointOutput
-}
-
-type CockpitEndpointArgs struct {
-	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-	AlertmanagerUrl pulumi.StringPtrInput `pulumi:"alertmanagerUrl"`
-	// (Deprecated) URL for Grafana.
-	GrafanaUrl pulumi.StringPtrInput `pulumi:"grafanaUrl"`
-	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	LogsUrl pulumi.StringPtrInput `pulumi:"logsUrl"`
-	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	MetricsUrl pulumi.StringPtrInput `pulumi:"metricsUrl"`
-	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	TracesUrl pulumi.StringPtrInput `pulumi:"tracesUrl"`
-}
-
-func (CockpitEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*CockpitEndpoint)(nil)).Elem()
-}
-
-func (i CockpitEndpointArgs) ToCockpitEndpointOutput() CockpitEndpointOutput {
-	return i.ToCockpitEndpointOutputWithContext(context.Background())
-}
-
-func (i CockpitEndpointArgs) ToCockpitEndpointOutputWithContext(ctx context.Context) CockpitEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CockpitEndpointOutput)
-}
-
-// CockpitEndpointArrayInput is an input type that accepts CockpitEndpointArray and CockpitEndpointArrayOutput values.
-// You can construct a concrete instance of `CockpitEndpointArrayInput` via:
-//
-//	CockpitEndpointArray{ CockpitEndpointArgs{...} }
-type CockpitEndpointArrayInput interface {
-	pulumi.Input
-
-	ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput
-	ToCockpitEndpointArrayOutputWithContext(context.Context) CockpitEndpointArrayOutput
-}
-
-type CockpitEndpointArray []CockpitEndpointInput
-
-func (CockpitEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CockpitEndpoint)(nil)).Elem()
-}
-
-func (i CockpitEndpointArray) ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput {
-	return i.ToCockpitEndpointArrayOutputWithContext(context.Background())
-}
-
-func (i CockpitEndpointArray) ToCockpitEndpointArrayOutputWithContext(ctx context.Context) CockpitEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CockpitEndpointArrayOutput)
-}
-
-type CockpitEndpointOutput struct{ *pulumi.OutputState }
-
-func (CockpitEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CockpitEndpoint)(nil)).Elem()
-}
-
-func (o CockpitEndpointOutput) ToCockpitEndpointOutput() CockpitEndpointOutput {
-	return o
-}
-
-func (o CockpitEndpointOutput) ToCockpitEndpointOutputWithContext(ctx context.Context) CockpitEndpointOutput {
-	return o
-}
-
-// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-func (o CockpitEndpointOutput) AlertmanagerUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitEndpoint) *string { return v.AlertmanagerUrl }).(pulumi.StringPtrOutput)
-}
-
-// (Deprecated) URL for Grafana.
-func (o CockpitEndpointOutput) GrafanaUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitEndpoint) *string { return v.GrafanaUrl }).(pulumi.StringPtrOutput)
-}
-
-// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-func (o CockpitEndpointOutput) LogsUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitEndpoint) *string { return v.LogsUrl }).(pulumi.StringPtrOutput)
-}
-
-// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-func (o CockpitEndpointOutput) MetricsUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitEndpoint) *string { return v.MetricsUrl }).(pulumi.StringPtrOutput)
-}
-
-// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-func (o CockpitEndpointOutput) TracesUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitEndpoint) *string { return v.TracesUrl }).(pulumi.StringPtrOutput)
-}
-
-type CockpitEndpointArrayOutput struct{ *pulumi.OutputState }
-
-func (CockpitEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CockpitEndpoint)(nil)).Elem()
-}
-
-func (o CockpitEndpointArrayOutput) ToCockpitEndpointArrayOutput() CockpitEndpointArrayOutput {
-	return o
-}
-
-func (o CockpitEndpointArrayOutput) ToCockpitEndpointArrayOutputWithContext(ctx context.Context) CockpitEndpointArrayOutput {
-	return o
-}
-
-func (o CockpitEndpointArrayOutput) Index(i pulumi.IntInput) CockpitEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitEndpoint {
-		return vs[0].([]CockpitEndpoint)[vs[1].(int)]
-	}).(CockpitEndpointOutput)
-}
-
-type CockpitPushUrl struct {
-	// Push URL for logs (Grafana Loki)
-	PushLogsUrl *string `pulumi:"pushLogsUrl"`
-	// Push URL for metrics (Grafana Mimir)
-	PushMetricsUrl *string `pulumi:"pushMetricsUrl"`
-}
-
-// CockpitPushUrlInput is an input type that accepts CockpitPushUrlArgs and CockpitPushUrlOutput values.
-// You can construct a concrete instance of `CockpitPushUrlInput` via:
-//
-//	CockpitPushUrlArgs{...}
-type CockpitPushUrlInput interface {
-	pulumi.Input
-
-	ToCockpitPushUrlOutput() CockpitPushUrlOutput
-	ToCockpitPushUrlOutputWithContext(context.Context) CockpitPushUrlOutput
-}
-
-type CockpitPushUrlArgs struct {
-	// Push URL for logs (Grafana Loki)
-	PushLogsUrl pulumi.StringPtrInput `pulumi:"pushLogsUrl"`
-	// Push URL for metrics (Grafana Mimir)
-	PushMetricsUrl pulumi.StringPtrInput `pulumi:"pushMetricsUrl"`
-}
-
-func (CockpitPushUrlArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*CockpitPushUrl)(nil)).Elem()
-}
-
-func (i CockpitPushUrlArgs) ToCockpitPushUrlOutput() CockpitPushUrlOutput {
-	return i.ToCockpitPushUrlOutputWithContext(context.Background())
-}
-
-func (i CockpitPushUrlArgs) ToCockpitPushUrlOutputWithContext(ctx context.Context) CockpitPushUrlOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CockpitPushUrlOutput)
-}
-
-// CockpitPushUrlArrayInput is an input type that accepts CockpitPushUrlArray and CockpitPushUrlArrayOutput values.
-// You can construct a concrete instance of `CockpitPushUrlArrayInput` via:
-//
-//	CockpitPushUrlArray{ CockpitPushUrlArgs{...} }
-type CockpitPushUrlArrayInput interface {
-	pulumi.Input
-
-	ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput
-	ToCockpitPushUrlArrayOutputWithContext(context.Context) CockpitPushUrlArrayOutput
-}
-
-type CockpitPushUrlArray []CockpitPushUrlInput
-
-func (CockpitPushUrlArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CockpitPushUrl)(nil)).Elem()
-}
-
-func (i CockpitPushUrlArray) ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput {
-	return i.ToCockpitPushUrlArrayOutputWithContext(context.Background())
-}
-
-func (i CockpitPushUrlArray) ToCockpitPushUrlArrayOutputWithContext(ctx context.Context) CockpitPushUrlArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CockpitPushUrlArrayOutput)
-}
-
-type CockpitPushUrlOutput struct{ *pulumi.OutputState }
-
-func (CockpitPushUrlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CockpitPushUrl)(nil)).Elem()
-}
-
-func (o CockpitPushUrlOutput) ToCockpitPushUrlOutput() CockpitPushUrlOutput {
-	return o
-}
-
-func (o CockpitPushUrlOutput) ToCockpitPushUrlOutputWithContext(ctx context.Context) CockpitPushUrlOutput {
-	return o
-}
-
-// Push URL for logs (Grafana Loki)
-func (o CockpitPushUrlOutput) PushLogsUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitPushUrl) *string { return v.PushLogsUrl }).(pulumi.StringPtrOutput)
-}
-
-// Push URL for metrics (Grafana Mimir)
-func (o CockpitPushUrlOutput) PushMetricsUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CockpitPushUrl) *string { return v.PushMetricsUrl }).(pulumi.StringPtrOutput)
-}
-
-type CockpitPushUrlArrayOutput struct{ *pulumi.OutputState }
-
-func (CockpitPushUrlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CockpitPushUrl)(nil)).Elem()
-}
-
-func (o CockpitPushUrlArrayOutput) ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput {
-	return o
-}
-
-func (o CockpitPushUrlArrayOutput) ToCockpitPushUrlArrayOutputWithContext(ctx context.Context) CockpitPushUrlArrayOutput {
-	return o
-}
-
-func (o CockpitPushUrlArrayOutput) Index(i pulumi.IntInput) CockpitPushUrlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitPushUrl {
-		return vs[0].([]CockpitPushUrl)[vs[1].(int)]
-	}).(CockpitPushUrlOutput)
-}
-
 type CockpitTokenScopes struct {
 	// Permission to query logs.
 	QueryLogs *bool `pulumi:"queryLogs"`
@@ -24045,245 +23806,6 @@ func (o GetBlockSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetBlockSnap
 	}).(GetBlockSnapshotImportOutput)
 }
 
-type GetCockpitEndpoint struct {
-	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
-	// (Deprecated) URL for Grafana.
-	GrafanaUrl string `pulumi:"grafanaUrl"`
-	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	LogsUrl string `pulumi:"logsUrl"`
-	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	MetricsUrl string `pulumi:"metricsUrl"`
-	// The traces URL.
-	TracesUrl string `pulumi:"tracesUrl"`
-}
-
-// GetCockpitEndpointInput is an input type that accepts GetCockpitEndpointArgs and GetCockpitEndpointOutput values.
-// You can construct a concrete instance of `GetCockpitEndpointInput` via:
-//
-//	GetCockpitEndpointArgs{...}
-type GetCockpitEndpointInput interface {
-	pulumi.Input
-
-	ToGetCockpitEndpointOutput() GetCockpitEndpointOutput
-	ToGetCockpitEndpointOutputWithContext(context.Context) GetCockpitEndpointOutput
-}
-
-type GetCockpitEndpointArgs struct {
-	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-	AlertmanagerUrl pulumi.StringInput `pulumi:"alertmanagerUrl"`
-	// (Deprecated) URL for Grafana.
-	GrafanaUrl pulumi.StringInput `pulumi:"grafanaUrl"`
-	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	LogsUrl pulumi.StringInput `pulumi:"logsUrl"`
-	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-	MetricsUrl pulumi.StringInput `pulumi:"metricsUrl"`
-	// The traces URL.
-	TracesUrl pulumi.StringInput `pulumi:"tracesUrl"`
-}
-
-func (GetCockpitEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCockpitEndpoint)(nil)).Elem()
-}
-
-func (i GetCockpitEndpointArgs) ToGetCockpitEndpointOutput() GetCockpitEndpointOutput {
-	return i.ToGetCockpitEndpointOutputWithContext(context.Background())
-}
-
-func (i GetCockpitEndpointArgs) ToGetCockpitEndpointOutputWithContext(ctx context.Context) GetCockpitEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitEndpointOutput)
-}
-
-// GetCockpitEndpointArrayInput is an input type that accepts GetCockpitEndpointArray and GetCockpitEndpointArrayOutput values.
-// You can construct a concrete instance of `GetCockpitEndpointArrayInput` via:
-//
-//	GetCockpitEndpointArray{ GetCockpitEndpointArgs{...} }
-type GetCockpitEndpointArrayInput interface {
-	pulumi.Input
-
-	ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput
-	ToGetCockpitEndpointArrayOutputWithContext(context.Context) GetCockpitEndpointArrayOutput
-}
-
-type GetCockpitEndpointArray []GetCockpitEndpointInput
-
-func (GetCockpitEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCockpitEndpoint)(nil)).Elem()
-}
-
-func (i GetCockpitEndpointArray) ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput {
-	return i.ToGetCockpitEndpointArrayOutputWithContext(context.Background())
-}
-
-func (i GetCockpitEndpointArray) ToGetCockpitEndpointArrayOutputWithContext(ctx context.Context) GetCockpitEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitEndpointArrayOutput)
-}
-
-type GetCockpitEndpointOutput struct{ *pulumi.OutputState }
-
-func (GetCockpitEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCockpitEndpoint)(nil)).Elem()
-}
-
-func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutput() GetCockpitEndpointOutput {
-	return o
-}
-
-func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutputWithContext(ctx context.Context) GetCockpitEndpointOutput {
-	return o
-}
-
-// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-func (o GetCockpitEndpointOutput) AlertmanagerUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.AlertmanagerUrl }).(pulumi.StringOutput)
-}
-
-// (Deprecated) URL for Grafana.
-func (o GetCockpitEndpointOutput) GrafanaUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.GrafanaUrl }).(pulumi.StringOutput)
-}
-
-// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-func (o GetCockpitEndpointOutput) LogsUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.LogsUrl }).(pulumi.StringOutput)
-}
-
-// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-func (o GetCockpitEndpointOutput) MetricsUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.MetricsUrl }).(pulumi.StringOutput)
-}
-
-// The traces URL.
-func (o GetCockpitEndpointOutput) TracesUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.TracesUrl }).(pulumi.StringOutput)
-}
-
-type GetCockpitEndpointArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCockpitEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCockpitEndpoint)(nil)).Elem()
-}
-
-func (o GetCockpitEndpointArrayOutput) ToGetCockpitEndpointArrayOutput() GetCockpitEndpointArrayOutput {
-	return o
-}
-
-func (o GetCockpitEndpointArrayOutput) ToGetCockpitEndpointArrayOutputWithContext(ctx context.Context) GetCockpitEndpointArrayOutput {
-	return o
-}
-
-func (o GetCockpitEndpointArrayOutput) Index(i pulumi.IntInput) GetCockpitEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitEndpoint {
-		return vs[0].([]GetCockpitEndpoint)[vs[1].(int)]
-	}).(GetCockpitEndpointOutput)
-}
-
-type GetCockpitPushUrl struct {
-	// Push URL for logs (Grafana Loki)
-	PushLogsUrl string `pulumi:"pushLogsUrl"`
-	// Push URL for metrics (Grafana Mimir)
-	PushMetricsUrl string `pulumi:"pushMetricsUrl"`
-}
-
-// GetCockpitPushUrlInput is an input type that accepts GetCockpitPushUrlArgs and GetCockpitPushUrlOutput values.
-// You can construct a concrete instance of `GetCockpitPushUrlInput` via:
-//
-//	GetCockpitPushUrlArgs{...}
-type GetCockpitPushUrlInput interface {
-	pulumi.Input
-
-	ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput
-	ToGetCockpitPushUrlOutputWithContext(context.Context) GetCockpitPushUrlOutput
-}
-
-type GetCockpitPushUrlArgs struct {
-	// Push URL for logs (Grafana Loki)
-	PushLogsUrl pulumi.StringInput `pulumi:"pushLogsUrl"`
-	// Push URL for metrics (Grafana Mimir)
-	PushMetricsUrl pulumi.StringInput `pulumi:"pushMetricsUrl"`
-}
-
-func (GetCockpitPushUrlArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCockpitPushUrl)(nil)).Elem()
-}
-
-func (i GetCockpitPushUrlArgs) ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput {
-	return i.ToGetCockpitPushUrlOutputWithContext(context.Background())
-}
-
-func (i GetCockpitPushUrlArgs) ToGetCockpitPushUrlOutputWithContext(ctx context.Context) GetCockpitPushUrlOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitPushUrlOutput)
-}
-
-// GetCockpitPushUrlArrayInput is an input type that accepts GetCockpitPushUrlArray and GetCockpitPushUrlArrayOutput values.
-// You can construct a concrete instance of `GetCockpitPushUrlArrayInput` via:
-//
-//	GetCockpitPushUrlArray{ GetCockpitPushUrlArgs{...} }
-type GetCockpitPushUrlArrayInput interface {
-	pulumi.Input
-
-	ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput
-	ToGetCockpitPushUrlArrayOutputWithContext(context.Context) GetCockpitPushUrlArrayOutput
-}
-
-type GetCockpitPushUrlArray []GetCockpitPushUrlInput
-
-func (GetCockpitPushUrlArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCockpitPushUrl)(nil)).Elem()
-}
-
-func (i GetCockpitPushUrlArray) ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput {
-	return i.ToGetCockpitPushUrlArrayOutputWithContext(context.Background())
-}
-
-func (i GetCockpitPushUrlArray) ToGetCockpitPushUrlArrayOutputWithContext(ctx context.Context) GetCockpitPushUrlArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitPushUrlArrayOutput)
-}
-
-type GetCockpitPushUrlOutput struct{ *pulumi.OutputState }
-
-func (GetCockpitPushUrlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCockpitPushUrl)(nil)).Elem()
-}
-
-func (o GetCockpitPushUrlOutput) ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput {
-	return o
-}
-
-func (o GetCockpitPushUrlOutput) ToGetCockpitPushUrlOutputWithContext(ctx context.Context) GetCockpitPushUrlOutput {
-	return o
-}
-
-// Push URL for logs (Grafana Loki)
-func (o GetCockpitPushUrlOutput) PushLogsUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitPushUrl) string { return v.PushLogsUrl }).(pulumi.StringOutput)
-}
-
-// Push URL for metrics (Grafana Mimir)
-func (o GetCockpitPushUrlOutput) PushMetricsUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCockpitPushUrl) string { return v.PushMetricsUrl }).(pulumi.StringOutput)
-}
-
-type GetCockpitPushUrlArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCockpitPushUrlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCockpitPushUrl)(nil)).Elem()
-}
-
-func (o GetCockpitPushUrlArrayOutput) ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput {
-	return o
-}
-
-func (o GetCockpitPushUrlArrayOutput) ToGetCockpitPushUrlArrayOutputWithContext(ctx context.Context) GetCockpitPushUrlArrayOutput {
-	return o
-}
-
-func (o GetCockpitPushUrlArrayOutput) Index(i pulumi.IntInput) GetCockpitPushUrlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitPushUrl {
-		return vs[0].([]GetCockpitPushUrl)[vs[1].(int)]
-	}).(GetCockpitPushUrlOutput)
-}
-
 type GetContainerHealthCheck struct {
 	// Number of consecutive failures before considering the container has to be restarted.
 	FailureThreshold int `pulumi:"failureThreshold"`
@@ -36053,6 +35575,121 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetSdbSqlVersionsVersion struct {
+	// End of life date of the version (RFC3339).
+	EndOfLifeAt string `pulumi:"endOfLifeAt"`
+	// Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+	Name string `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the version.
+	Srn string `pulumi:"srn"`
+}
+
+// GetSdbSqlVersionsVersionInput is an input type that accepts GetSdbSqlVersionsVersionArgs and GetSdbSqlVersionsVersionOutput values.
+// You can construct a concrete instance of `GetSdbSqlVersionsVersionInput` via:
+//
+//	GetSdbSqlVersionsVersionArgs{...}
+type GetSdbSqlVersionsVersionInput interface {
+	pulumi.Input
+
+	ToGetSdbSqlVersionsVersionOutput() GetSdbSqlVersionsVersionOutput
+	ToGetSdbSqlVersionsVersionOutputWithContext(context.Context) GetSdbSqlVersionsVersionOutput
+}
+
+type GetSdbSqlVersionsVersionArgs struct {
+	// End of life date of the version (RFC3339).
+	EndOfLifeAt pulumi.StringInput `pulumi:"endOfLifeAt"`
+	// Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the version.
+	Srn pulumi.StringInput `pulumi:"srn"`
+}
+
+func (GetSdbSqlVersionsVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdbSqlVersionsVersion)(nil)).Elem()
+}
+
+func (i GetSdbSqlVersionsVersionArgs) ToGetSdbSqlVersionsVersionOutput() GetSdbSqlVersionsVersionOutput {
+	return i.ToGetSdbSqlVersionsVersionOutputWithContext(context.Background())
+}
+
+func (i GetSdbSqlVersionsVersionArgs) ToGetSdbSqlVersionsVersionOutputWithContext(ctx context.Context) GetSdbSqlVersionsVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdbSqlVersionsVersionOutput)
+}
+
+// GetSdbSqlVersionsVersionArrayInput is an input type that accepts GetSdbSqlVersionsVersionArray and GetSdbSqlVersionsVersionArrayOutput values.
+// You can construct a concrete instance of `GetSdbSqlVersionsVersionArrayInput` via:
+//
+//	GetSdbSqlVersionsVersionArray{ GetSdbSqlVersionsVersionArgs{...} }
+type GetSdbSqlVersionsVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetSdbSqlVersionsVersionArrayOutput() GetSdbSqlVersionsVersionArrayOutput
+	ToGetSdbSqlVersionsVersionArrayOutputWithContext(context.Context) GetSdbSqlVersionsVersionArrayOutput
+}
+
+type GetSdbSqlVersionsVersionArray []GetSdbSqlVersionsVersionInput
+
+func (GetSdbSqlVersionsVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdbSqlVersionsVersion)(nil)).Elem()
+}
+
+func (i GetSdbSqlVersionsVersionArray) ToGetSdbSqlVersionsVersionArrayOutput() GetSdbSqlVersionsVersionArrayOutput {
+	return i.ToGetSdbSqlVersionsVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetSdbSqlVersionsVersionArray) ToGetSdbSqlVersionsVersionArrayOutputWithContext(ctx context.Context) GetSdbSqlVersionsVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSdbSqlVersionsVersionArrayOutput)
+}
+
+type GetSdbSqlVersionsVersionOutput struct{ *pulumi.OutputState }
+
+func (GetSdbSqlVersionsVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSdbSqlVersionsVersion)(nil)).Elem()
+}
+
+func (o GetSdbSqlVersionsVersionOutput) ToGetSdbSqlVersionsVersionOutput() GetSdbSqlVersionsVersionOutput {
+	return o
+}
+
+func (o GetSdbSqlVersionsVersionOutput) ToGetSdbSqlVersionsVersionOutputWithContext(ctx context.Context) GetSdbSqlVersionsVersionOutput {
+	return o
+}
+
+// End of life date of the version (RFC3339).
+func (o GetSdbSqlVersionsVersionOutput) EndOfLifeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSdbSqlVersionsVersion) string { return v.EndOfLifeAt }).(pulumi.StringOutput)
+}
+
+// Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+func (o GetSdbSqlVersionsVersionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSdbSqlVersionsVersion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the version.
+func (o GetSdbSqlVersionsVersionOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSdbSqlVersionsVersion) string { return v.Srn }).(pulumi.StringOutput)
+}
+
+type GetSdbSqlVersionsVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSdbSqlVersionsVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSdbSqlVersionsVersion)(nil)).Elem()
+}
+
+func (o GetSdbSqlVersionsVersionArrayOutput) ToGetSdbSqlVersionsVersionArrayOutput() GetSdbSqlVersionsVersionArrayOutput {
+	return o
+}
+
+func (o GetSdbSqlVersionsVersionArrayOutput) ToGetSdbSqlVersionsVersionArrayOutputWithContext(ctx context.Context) GetSdbSqlVersionsVersionArrayOutput {
+	return o
+}
+
+func (o GetSdbSqlVersionsVersionArrayOutput) Index(i pulumi.IntInput) GetSdbSqlVersionsVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSdbSqlVersionsVersion {
+		return vs[0].([]GetSdbSqlVersionsVersion)[vs[1].(int)]
+	}).(GetSdbSqlVersionsVersionOutput)
+}
+
 type GetSecretEphemeralPolicy struct {
 	// Action to perform when the version of a secret expires.
 	Action string `pulumi:"action"`
@@ -38348,10 +37985,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotImportPtrInput)(nil)).Elem(), BlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointArrayInput)(nil)).Elem(), CockpitAlertManagerContactPointArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlInput)(nil)).Elem(), CockpitPushUrlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlArrayInput)(nil)).Elem(), CockpitPushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerHealthCheckInput)(nil)).Elem(), ContainerHealthCheckArgs{})
@@ -38641,10 +38274,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotExportArrayInput)(nil)).Elem(), GetBlockSnapshotExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportInput)(nil)).Elem(), GetBlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportArrayInput)(nil)).Elem(), GetBlockSnapshotImportArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlInput)(nil)).Elem(), GetCockpitPushUrlArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlArrayInput)(nil)).Elem(), GetCockpitPushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckInput)(nil)).Elem(), GetContainerHealthCheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckArrayInput)(nil)).Elem(), GetContainerHealthCheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerHealthCheckHttpInput)(nil)).Elem(), GetContainerHealthCheckHttpArgs{})
@@ -38823,6 +38452,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdbSqlVersionsVersionInput)(nil)).Elem(), GetSdbSqlVersionsVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSdbSqlVersionsVersionArrayInput)(nil)).Elem(), GetSdbSqlVersionsVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyInput)(nil)).Elem(), GetSecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyArrayInput)(nil)).Elem(), GetSecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionTypeInput)(nil)).Elem(), GetSecretVersionTypeArgs{})
@@ -38877,10 +38508,6 @@ func init() {
 	pulumi.RegisterOutputType(BlockSnapshotImportPtrOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointArrayOutput{})
-	pulumi.RegisterOutputType(CockpitEndpointOutput{})
-	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
-	pulumi.RegisterOutputType(CockpitPushUrlOutput{})
-	pulumi.RegisterOutputType(CockpitPushUrlArrayOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
 	pulumi.RegisterOutputType(ContainerHealthCheckOutput{})
@@ -39170,10 +38797,6 @@ func init() {
 	pulumi.RegisterOutputType(GetBlockSnapshotExportArrayOutput{})
 	pulumi.RegisterOutputType(GetBlockSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetBlockSnapshotImportArrayOutput{})
-	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})
-	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
-	pulumi.RegisterOutputType(GetCockpitPushUrlOutput{})
-	pulumi.RegisterOutputType(GetCockpitPushUrlArrayOutput{})
 	pulumi.RegisterOutputType(GetContainerHealthCheckOutput{})
 	pulumi.RegisterOutputType(GetContainerHealthCheckArrayOutput{})
 	pulumi.RegisterOutputType(GetContainerHealthCheckHttpOutput{})
@@ -39352,6 +38975,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetSdbSqlVersionsVersionOutput{})
+	pulumi.RegisterOutputType(GetSdbSqlVersionsVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretVersionTypeOutput{})

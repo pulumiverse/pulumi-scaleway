@@ -23,7 +23,8 @@ class ServerlessDatabaseArgs:
                  min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 region: pulumi.Input[Optional[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServerlessDatabase resource.
 
@@ -33,6 +34,8 @@ class ServerlessDatabaseArgs:
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.str] version: The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+               > **Important:** Updates to the `version` argument will recreate the database.
         """
         if max_cpu is not None:
             pulumi.set(__self__, "max_cpu", max_cpu)
@@ -44,6 +47,8 @@ class ServerlessDatabaseArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @_builtins.property
     @pulumi.getter(name="maxCpu")
@@ -106,6 +111,19 @@ class ServerlessDatabaseArgs:
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        > **Important:** Updates to the `version` argument will recreate the database.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
 
 @pulumi.input_type
 class _ServerlessDatabaseState:
@@ -115,7 +133,10 @@ class _ServerlessDatabaseState:
                  min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 region: pulumi.Input[Optional[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
+                 version_end_of_life_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServerlessDatabase resources.
 
@@ -126,6 +147,10 @@ class _ServerlessDatabaseState:
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the database.
+        :param pulumi.Input[_builtins.str] version: The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+               > **Important:** Updates to the `version` argument will recreate the database.
+        :param pulumi.Input[_builtins.str] version_end_of_life_at: The end of life date of the database version (RFC3339).
         """
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
@@ -139,6 +164,12 @@ class _ServerlessDatabaseState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if version_end_of_life_at is not None:
+            pulumi.set(__self__, "version_end_of_life_at", version_end_of_life_at)
 
     @_builtins.property
     @pulumi.getter
@@ -213,6 +244,43 @@ class _ServerlessDatabaseState:
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the database.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        > **Important:** Updates to the `version` argument will recreate the database.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="versionEndOfLifeAt")
+    def version_end_of_life_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The end of life date of the database version (RFC3339).
+        """
+        return pulumi.get(self, "version_end_of_life_at")
+
+    @version_end_of_life_at.setter
+    def version_end_of_life_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "version_end_of_life_at", value)
+
 
 @pulumi.type_token("scaleway:databases/serverlessDatabase:ServerlessDatabase")
 class ServerlessDatabase(pulumi.CustomResource):
@@ -225,6 +293,7 @@ class ServerlessDatabase(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The `databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
@@ -243,6 +312,17 @@ class ServerlessDatabase(pulumi.CustomResource):
             name="my-database",
             min_cpu=0,
             max_cpu=8)
+        ```
+
+        ### With a specific PostgreSQL version
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        database = scaleway.databases.ServerlessDatabase("database",
+            name="my-database",
+            version="16")
         ```
 
         ### With IAM Application
@@ -298,6 +378,8 @@ class ServerlessDatabase(pulumi.CustomResource):
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.str] version: The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+               > **Important:** Updates to the `version` argument will recreate the database.
         """
         ...
     @overload
@@ -322,6 +404,17 @@ class ServerlessDatabase(pulumi.CustomResource):
             name="my-database",
             min_cpu=0,
             max_cpu=8)
+        ```
+
+        ### With a specific PostgreSQL version
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        database = scaleway.databases.ServerlessDatabase("database",
+            name="my-database",
+            version="16")
         ```
 
         ### With IAM Application
@@ -389,6 +482,7 @@ class ServerlessDatabase(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -403,7 +497,10 @@ class ServerlessDatabase(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["version"] = version
             __props__.__dict__["endpoint"] = None
+            __props__.__dict__["srn"] = None
+            __props__.__dict__["version_end_of_life_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/sdbDatabase:SdbDatabase")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(ServerlessDatabase, __self__).__init__(
@@ -421,7 +518,10 @@ class ServerlessDatabase(pulumi.CustomResource):
             min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            region: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServerlessDatabase':
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            version_end_of_life_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServerlessDatabase':
         """
         Get an existing ServerlessDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -436,6 +536,10 @@ class ServerlessDatabase(pulumi.CustomResource):
                > **Important:** Updates to the `name` argument will recreate the database.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the database.
+        :param pulumi.Input[_builtins.str] version: The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+               > **Important:** Updates to the `version` argument will recreate the database.
+        :param pulumi.Input[_builtins.str] version_end_of_life_at: The end of life date of the database version (RFC3339).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -447,6 +551,9 @@ class ServerlessDatabase(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
+        __props__.__dict__["version"] = version
+        __props__.__dict__["version_end_of_life_at"] = version_end_of_life_at
         return ServerlessDatabase(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -497,4 +604,29 @@ class ServerlessDatabase(pulumi.CustomResource):
         `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the database.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Output[_builtins.str]:
+        """
+        The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+        > **Important:** Updates to the `version` argument will recreate the database.
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter(name="versionEndOfLifeAt")
+    def version_end_of_life_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The end of life date of the database version (RFC3339).
+        """
+        return pulumi.get(self, "version_end_of_life_at")
 

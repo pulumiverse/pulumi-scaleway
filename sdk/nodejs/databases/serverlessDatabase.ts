@@ -24,6 +24,18 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With a specific PostgreSQL version
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const database = new scaleway.databases.ServerlessDatabase("database", {
+ *     name: "my-database",
+ *     version: "16",
+ * });
+ * ```
+ *
  * ### With IAM Application
  *
  * This example creates an [IAM application](https://www.scaleway.com/en/docs/iam/concepts/#application) and an [API secret key](https://www.scaleway.com/en/docs/iam/how-to/create-api-keys/) used to connect to the database.
@@ -128,6 +140,19 @@ export class ServerlessDatabase extends pulumi.CustomResource {
      * `region`) The region in which the resource exists.
      */
     declare public readonly region: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the database.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
+     * The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+     * > **Important:** Updates to the `version` argument will recreate the database.
+     */
+    declare public readonly version: pulumi.Output<string>;
+    /**
+     * The end of life date of the database version (RFC3339).
+     */
+    declare public /*out*/ readonly versionEndOfLifeAt: pulumi.Output<string>;
 
     /**
      * Create a ServerlessDatabase resource with the given unique name, arguments, and options.
@@ -148,6 +173,9 @@ export class ServerlessDatabase extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
+            resourceInputs["version"] = state?.version;
+            resourceInputs["versionEndOfLifeAt"] = state?.versionEndOfLifeAt;
         } else {
             const args = argsOrState as ServerlessDatabaseArgs | undefined;
             resourceInputs["maxCpu"] = args?.maxCpu;
@@ -155,7 +183,10 @@ export class ServerlessDatabase extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
+            resourceInputs["version"] = args?.version;
             resourceInputs["endpoint"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
+            resourceInputs["versionEndOfLifeAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/sdbDatabase:SdbDatabase" }] };
@@ -193,6 +224,19 @@ export interface ServerlessDatabaseState {
      * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the database.
+     */
+    srn?: pulumi.Input<string | undefined>;
+    /**
+     * The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+     * > **Important:** Updates to the `version` argument will recreate the database.
+     */
+    version?: pulumi.Input<string | undefined>;
+    /**
+     * The end of life date of the database version (RFC3339).
+     */
+    versionEndOfLifeAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -220,4 +264,9 @@ export interface ServerlessDatabaseArgs {
      * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The major version of the PostgreSQL engine (e.g. `16`). If not specified, the default version is used.
+     * > **Important:** Updates to the `version` argument will recreate the database.
+     */
+    version?: pulumi.Input<string | undefined>;
 }

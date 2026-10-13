@@ -11,12 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Keymanager
 {
     /// <summary>
-    /// Provides a Scaleway Key Manager Key resource.\
-    /// This resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
+    /// The `scaleway.keymanager.Key` resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Symmetric Encryption Key
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -26,6 +23,71 @@ namespace Pulumiverse.Scaleway.Keymanager
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Create an asymmetric encryption key with RSA-4096.
+    ///     var rsa4096 = new Scaleway.Keymanager.Key("rsa_4096", new()
+    ///     {
+    ///         Name = "rsa-4096-key",
+    ///         Region = "fr-par",
+    ///         Usage = "asymmetric_encryption",
+    ///         Algorithm = "rsa_oaep_4096_sha256",
+    ///         Description = "Key for encrypting large files with RSA-4096",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create an asymmetric signing key.
+    ///     var signing = new Scaleway.Keymanager.Key("signing", new()
+    ///     {
+    ///         Name = "signing-key",
+    ///         Region = "fr-par",
+    ///         Usage = "asymmetric_signing",
+    ///         Algorithm = "rsa_pss_2048_sha256",
+    ///         Description = "Key for signing documents",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create a basic key
+    ///     var main = new Scaleway.Keymanager.Key("main", new()
+    ///     {
+    ///         Name = "my-kms-key",
+    ///         Usage = "symmetric_encryption",
+    ///         Algorithm = "aes_256_gcm",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create a symmetric encryption key with a rotation policy of 30 days.
     ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
     ///     {
     ///         Name = "my-kms-key",
@@ -49,8 +111,6 @@ namespace Pulumiverse.Scaleway.Keymanager
     /// });
     /// ```
     /// 
-    /// ### Asymmetric Encryption Key with RSA-4096
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -59,36 +119,14 @@ namespace Pulumiverse.Scaleway.Keymanager
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rsa4096 = new Scaleway.Keymanager.Key("rsa_4096", new()
+    ///     // Create a key with a dedicated protection level.
+    ///     // In the example below, the key's cryptographic operations are performed within a dedicated Hardware Security Module (HSM).
+    ///     var hsm = new Scaleway.Keymanager.Key("hsm", new()
     ///     {
-    ///         Name = "rsa-4096-key",
-    ///         Region = "fr-par",
-    ///         Usage = "asymmetric_encryption",
-    ///         Algorithm = "rsa_oaep_4096_sha256",
-    ///         Description = "Key for encrypting large files with RSA-4096",
-    ///         Unprotected = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Asymmetric Signing Key
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var signing = new Scaleway.Keymanager.Key("signing", new()
-    ///     {
-    ///         Name = "signing-key",
-    ///         Region = "fr-par",
-    ///         Usage = "asymmetric_signing",
-    ///         Algorithm = "rsa_pss_2048_sha256",
-    ///         Description = "Key for signing documents",
+    ///         Name = "my-kms-key-hsm",
+    ///         Usage = "symmetric_encryption",
+    ///         Algorithm = "aes_256_gcm",
+    ///         ProtectionLevel = "hsm",
     ///         Unprotected = true,
     ///     });
     /// 
@@ -166,6 +204,12 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// </summary>
         [Output("protected")]
         public Output<bool> Protected { get; private set; } = null!;
+
+        /// <summary>
+        /// – The protection level of the key. Valid values are:
+        /// </summary>
+        [Output("protectionLevel")]
+        public Output<string> ProtectionLevel { get; private set; } = null!;
 
         /// <summary>
         /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
@@ -312,6 +356,12 @@ namespace Pulumiverse.Scaleway.Keymanager
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// – The protection level of the key. Valid values are:
+        /// </summary>
+        [Input("protectionLevel")]
+        public Input<string>? ProtectionLevel { get; set; }
+
+        /// <summary>
         /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         /// </summary>
         [Input("region")]
@@ -405,6 +455,12 @@ namespace Pulumiverse.Scaleway.Keymanager
         /// </summary>
         [Input("protected")]
         public Input<bool>? Protected { get; set; }
+
+        /// <summary>
+        /// – The protection level of the key. Valid values are:
+        /// </summary>
+        [Input("protectionLevel")]
+        public Input<string>? ProtectionLevel { get; set; }
 
         /// <summary>
         /// – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.

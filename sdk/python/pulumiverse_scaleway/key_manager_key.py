@@ -27,6 +27,7 @@ class KeyManagerKeyArgs:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  origin: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_policy: pulumi.Input[Optional['KeyManagerKeyRotationPolicyArgs']] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -43,6 +44,7 @@ class KeyManagerKeyArgs:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
                
                **Key Usage and Algorithm (both required):**
+        :param pulumi.Input[_builtins.str] protection_level: – The protection level of the key. Valid values are:
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input['KeyManagerKeyRotationPolicyArgs'] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
@@ -58,6 +60,8 @@ class KeyManagerKeyArgs:
             pulumi.set(__self__, "origin", origin)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protection_level is not None:
+            pulumi.set(__self__, "protection_level", protection_level)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if rotation_policy is not None:
@@ -143,6 +147,18 @@ class KeyManagerKeyArgs:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="protectionLevel")
+    def protection_level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        – The protection level of the key. Valid values are:
+        """
+        return pulumi.get(self, "protection_level")
+
+    @protection_level.setter
+    def protection_level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "protection_level", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -202,6 +218,7 @@ class _KeyManagerKeyState:
                  origin: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected: pulumi.Input[Optional[_builtins.bool]] = None,
+                 protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -226,6 +243,7 @@ class _KeyManagerKeyState:
                
                **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
+        :param pulumi.Input[_builtins.str] protection_level: – The protection level of the key. Valid values are:
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
@@ -253,6 +271,8 @@ class _KeyManagerKeyState:
             pulumi.set(__self__, "project_id", project_id)
         if protected is not None:
             pulumi.set(__self__, "protected", protected)
+        if protection_level is not None:
+            pulumi.set(__self__, "protection_level", protection_level)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if rotated_at is not None:
@@ -372,6 +392,18 @@ class _KeyManagerKeyState:
     @protected.setter
     def protected(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "protected", value)
+
+    @_builtins.property
+    @pulumi.getter(name="protectionLevel")
+    def protection_level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        – The protection level of the key. Valid values are:
+        """
+        return pulumi.get(self, "protection_level")
+
+    @protection_level.setter
+    def protection_level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "protection_level", value)
 
     @_builtins.property
     @pulumi.getter
@@ -510,6 +542,7 @@ class KeyManagerKey(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  origin: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -517,17 +550,55 @@ class KeyManagerKey(pulumi.CustomResource):
                  usage: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Provides a Scaleway Key Manager Key resource.\\
-        This resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
+        The `keymanager.Key` resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
 
         ## Example Usage
-
-        ### Symmetric Encryption Key
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Create an asymmetric encryption key with RSA-4096.
+        rsa4096 = scaleway.keymanager.Key("rsa_4096",
+            name="rsa-4096-key",
+            region="fr-par",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            description="Key for encrypting large files with RSA-4096",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create an asymmetric signing key.
+        signing = scaleway.keymanager.Key("signing",
+            name="signing-key",
+            region="fr-par",
+            usage="asymmetric_signing",
+            algorithm="rsa_pss_2048_sha256",
+            description="Key for signing documents",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a basic key
+        main = scaleway.keymanager.Key("main",
+            name="my-kms-key",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a symmetric encryption key with a rotation policy of 30 days.
         symmetric = scaleway.keymanager.Key("symmetric",
             name="my-kms-key",
             region="fr-par",
@@ -545,33 +616,17 @@ class KeyManagerKey(pulumi.CustomResource):
             })
         ```
 
-        ### Asymmetric Encryption Key with RSA-4096
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        rsa4096 = scaleway.keymanager.Key("rsa_4096",
-            name="rsa-4096-key",
-            region="fr-par",
-            usage="asymmetric_encryption",
-            algorithm="rsa_oaep_4096_sha256",
-            description="Key for encrypting large files with RSA-4096",
-            unprotected=True)
-        ```
-
-        ### Asymmetric Signing Key
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        signing = scaleway.keymanager.Key("signing",
-            name="signing-key",
-            region="fr-par",
-            usage="asymmetric_signing",
-            algorithm="rsa_pss_2048_sha256",
-            description="Key for signing documents",
+        # Create a key with a dedicated protection level.
+        # In the example below, the key's cryptographic operations are performed within a dedicated Hardware Security Module (HSM).
+        hsm = scaleway.keymanager.Key("hsm",
+            name="my-kms-key-hsm",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            protection_level="hsm",
             unprotected=True)
         ```
 
@@ -604,6 +659,7 @@ class KeyManagerKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
                
                **Key Usage and Algorithm (both required):**
+        :param pulumi.Input[_builtins.str] protection_level: – The protection level of the key. Valid values are:
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
@@ -617,17 +673,55 @@ class KeyManagerKey(pulumi.CustomResource):
                  args: KeyManagerKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a Scaleway Key Manager Key resource.\\
-        This resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
+        The `keymanager.Key` resource allows you to create and manage cryptographic keys in Scaleway Key Manager (KMS).
 
         ## Example Usage
-
-        ### Symmetric Encryption Key
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Create an asymmetric encryption key with RSA-4096.
+        rsa4096 = scaleway.keymanager.Key("rsa_4096",
+            name="rsa-4096-key",
+            region="fr-par",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            description="Key for encrypting large files with RSA-4096",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create an asymmetric signing key.
+        signing = scaleway.keymanager.Key("signing",
+            name="signing-key",
+            region="fr-par",
+            usage="asymmetric_signing",
+            algorithm="rsa_pss_2048_sha256",
+            description="Key for signing documents",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a basic key
+        main = scaleway.keymanager.Key("main",
+            name="my-kms-key",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            unprotected=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a symmetric encryption key with a rotation policy of 30 days.
         symmetric = scaleway.keymanager.Key("symmetric",
             name="my-kms-key",
             region="fr-par",
@@ -645,33 +739,17 @@ class KeyManagerKey(pulumi.CustomResource):
             })
         ```
 
-        ### Asymmetric Encryption Key with RSA-4096
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        rsa4096 = scaleway.keymanager.Key("rsa_4096",
-            name="rsa-4096-key",
-            region="fr-par",
-            usage="asymmetric_encryption",
-            algorithm="rsa_oaep_4096_sha256",
-            description="Key for encrypting large files with RSA-4096",
-            unprotected=True)
-        ```
-
-        ### Asymmetric Signing Key
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        signing = scaleway.keymanager.Key("signing",
-            name="signing-key",
-            region="fr-par",
-            usage="asymmetric_signing",
-            algorithm="rsa_pss_2048_sha256",
-            description="Key for signing documents",
+        # Create a key with a dedicated protection level.
+        # In the example below, the key's cryptographic operations are performed within a dedicated Hardware Security Module (HSM).
+        hsm = scaleway.keymanager.Key("hsm",
+            name="my-kms-key-hsm",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            protection_level="hsm",
             unprotected=True)
         ```
 
@@ -714,6 +792,7 @@ class KeyManagerKey(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  origin: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -736,6 +815,7 @@ class KeyManagerKey(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["origin"] = origin
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["protection_level"] = protection_level
             __props__.__dict__["region"] = region
             __props__.__dict__["rotation_policy"] = rotation_policy
             __props__.__dict__["tags"] = tags
@@ -769,6 +849,7 @@ class KeyManagerKey(pulumi.CustomResource):
             origin: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             protected: pulumi.Input[Optional[_builtins.bool]] = None,
+            protection_level: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -797,6 +878,7 @@ class KeyManagerKey(pulumi.CustomResource):
                
                **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
+        :param pulumi.Input[_builtins.str] protection_level: – The protection level of the key. Valid values are:
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
@@ -820,6 +902,7 @@ class KeyManagerKey(pulumi.CustomResource):
         __props__.__dict__["origin"] = origin
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["protected"] = protected
+        __props__.__dict__["protection_level"] = protection_level
         __props__.__dict__["region"] = region
         __props__.__dict__["rotated_at"] = rotated_at
         __props__.__dict__["rotation_count"] = rotation_count
@@ -898,6 +981,14 @@ class KeyManagerKey(pulumi.CustomResource):
         Whether the key is protected from deletion.
         """
         return pulumi.get(self, "protected")
+
+    @_builtins.property
+    @pulumi.getter(name="protectionLevel")
+    def protection_level(self) -> pulumi.Output[_builtins.str]:
+        """
+        – The protection level of the key. Valid values are:
+        """
+        return pulumi.get(self, "protection_level")
 
     @_builtins.property
     @pulumi.getter

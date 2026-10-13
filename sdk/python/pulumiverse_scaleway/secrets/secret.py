@@ -23,6 +23,7 @@ class SecretArgs:
     def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  ephemeral_policies: pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -34,7 +35,8 @@ class SecretArgs:
         The set of arguments for constructing a Secret resource.
 
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
-        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[_builtins.str] key_id: ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
@@ -48,6 +50,8 @@ class SecretArgs:
             pulumi.set(__self__, "description", description)
         if ephemeral_policies is not None:
             pulumi.set(__self__, "ephemeral_policies", ephemeral_policies)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
@@ -79,13 +83,25 @@ class SecretArgs:
     @pulumi.getter(name="ephemeralPolicies")
     def ephemeral_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]:
         """
-        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         """
         return pulumi.get(self, "ephemeral_policies")
 
     @ephemeral_policies.setter
     def ephemeral_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]):
         pulumi.set(self, "ephemeral_policies", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -179,6 +195,7 @@ class _SecretState:
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  ephemeral_policies: pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -196,7 +213,8 @@ class _SecretState:
 
         :param pulumi.Input[_builtins.str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
-        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]] ephemeral_policies: [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[_builtins.str] key_id: ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
@@ -217,6 +235,8 @@ class _SecretState:
             pulumi.set(__self__, "description", description)
         if ephemeral_policies is not None:
             pulumi.set(__self__, "ephemeral_policies", ephemeral_policies)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if path is not None:
@@ -270,13 +290,25 @@ class _SecretState:
     @pulumi.getter(name="ephemeralPolicies")
     def ephemeral_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]:
         """
-        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         """
         return pulumi.get(self, "ephemeral_policies")
 
     @ephemeral_policies.setter
     def ephemeral_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretEphemeralPolicyArgs']]]]):
         pulumi.set(self, "ephemeral_policies", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -432,6 +464,7 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  ephemeral_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -447,14 +480,11 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Create a secret
-
-        The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Create a secret
         main = scaleway.secrets.Secret("main",
             name="foo",
             description="barr",
@@ -464,16 +494,12 @@ class Secret(pulumi.CustomResource):
             ])
         ```
 
-        ### Apply the ephemeral policy on a secret
-
-        The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
-
-        In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Apply an ephemeral policy on your secret named `foo`.
+        # In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
         ephemeral = scaleway.secrets.Secret("ephemeral",
             name="foo",
             ephemeral_policies=[{
@@ -481,6 +507,21 @@ class Secret(pulumi.CustomResource):
                 "expires_once_accessed": True,
                 "action": "disable",
             }])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a secret with your own Key Manager encryption key
+        main = scaleway.keymanager.Key("main",
+            name="my-kms-key",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            unprotected=True)
+        kms = scaleway.secrets.Secret("kms",
+            name="foo",
+            key_id=main.id)
         ```
 
         ## Import
@@ -495,7 +536,8 @@ class Secret(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[_builtins.str] key_id: ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
@@ -518,14 +560,11 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Create a secret
-
-        The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Create a secret
         main = scaleway.secrets.Secret("main",
             name="foo",
             description="barr",
@@ -535,16 +574,12 @@ class Secret(pulumi.CustomResource):
             ])
         ```
 
-        ### Apply the ephemeral policy on a secret
-
-        The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
-
-        In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Apply an ephemeral policy on your secret named `foo`.
+        # In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
         ephemeral = scaleway.secrets.Secret("ephemeral",
             name="foo",
             ephemeral_policies=[{
@@ -552,6 +587,21 @@ class Secret(pulumi.CustomResource):
                 "expires_once_accessed": True,
                 "action": "disable",
             }])
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Create a secret with your own Key Manager encryption key
+        main = scaleway.keymanager.Key("main",
+            name="my-kms-key",
+            usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
+            unprotected=True)
+        kms = scaleway.secrets.Secret("kms",
+            name="foo",
+            key_id=main.id)
         ```
 
         ## Import
@@ -580,6 +630,7 @@ class Secret(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  ephemeral_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -598,6 +649,7 @@ class Secret(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["ephemeral_policies"] = ephemeral_policies
+            __props__.__dict__["key_id"] = key_id
             __props__.__dict__["name"] = name
             __props__.__dict__["path"] = path
             __props__.__dict__["project_id"] = project_id
@@ -626,6 +678,7 @@ class Secret(pulumi.CustomResource):
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             ephemeral_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -647,7 +700,8 @@ class Secret(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of the secret's creation (in RFC 3339 format).
         :param pulumi.Input[_builtins.str] description: Description of the secret (e.g. `my-new-description`).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretEphemeralPolicyArgs', 'SecretEphemeralPolicyArgsDict']]]] ephemeral_policies: [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        :param pulumi.Input[_builtins.str] key_id: ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
         :param pulumi.Input[_builtins.str] name: Name of the secret (e.g. `my-secret`).
         :param pulumi.Input[_builtins.str] path: Path of the secret, defaults to `/`.
         :param pulumi.Input[_builtins.str] project_id: The project ID containing is the secret.
@@ -669,6 +723,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["ephemeral_policies"] = ephemeral_policies
+        __props__.__dict__["key_id"] = key_id
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
         __props__.__dict__["project_id"] = project_id
@@ -703,9 +758,17 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="ephemeralPolicies")
     def ephemeral_policies(self) -> pulumi.Output[Optional[Sequence['outputs.SecretEphemeralPolicy']]]:
         """
-        Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         """
         return pulumi.get(self, "ephemeral_policies")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        """
+        return pulumi.get(self, "key_id")
 
     @_builtins.property
     @pulumi.getter

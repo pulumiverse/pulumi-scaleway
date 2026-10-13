@@ -33,8 +33,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BlockSnapshot{}
 	case "scaleway:index/blockVolume:BlockVolume":
 		r = &BlockVolume{}
-	case "scaleway:index/cockpit:Cockpit":
-		r = &Cockpit{}
 	case "scaleway:index/cockpitAlertManager:CockpitAlertManager":
 		r = &CockpitAlertManager{}
 	case "scaleway:index/cockpitSource:CockpitSource":
@@ -312,11 +310,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/blockVolume",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/cockpit",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

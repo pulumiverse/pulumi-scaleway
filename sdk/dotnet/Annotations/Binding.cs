@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway.Annotations
     /// 
     ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
     ///     {
-    ///         Srn = main.Srn,
+    ///         TargetSrn = main.Srn,
     ///         ValueId = production.Id,
     ///     });
     /// 
@@ -73,10 +73,16 @@ namespace Pulumiverse.Scaleway.Annotations
         public Output<string> KeyId { get; private set; } = null!;
 
         /// <summary>
-        /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        /// The Scaleway Resource Number (SRN) of the binding.
         /// </summary>
         [Output("srn")]
         public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
+        /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        /// </summary>
+        [Output("targetSrn")]
+        public Output<string> TargetSrn { get; private set; } = null!;
 
         /// <summary>
         /// ID of the value to associate. Changing this forces a new resource to be created.
@@ -134,8 +140,8 @@ namespace Pulumiverse.Scaleway.Annotations
         /// <summary>
         /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
         /// </summary>
-        [Input("srn", required: true)]
-        public Input<string> Srn { get; set; } = null!;
+        [Input("targetSrn", required: true)]
+        public Input<string> TargetSrn { get; set; } = null!;
 
         /// <summary>
         /// ID of the value to associate. Changing this forces a new resource to be created.
@@ -158,10 +164,16 @@ namespace Pulumiverse.Scaleway.Annotations
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        /// The Scaleway Resource Number (SRN) of the binding.
         /// </summary>
         [Input("srn")]
         public Input<string>? Srn { get; set; }
+
+        /// <summary>
+        /// Scaleway Resource Number to associate. Changing this forces a new resource to be created.
+        /// </summary>
+        [Input("targetSrn")]
+        public Input<string>? TargetSrn { get; set; }
 
         /// <summary>
         /// ID of the value to associate. Changing this forces a new resource to be created.

@@ -11,18 +11,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Create a key and get its information
- *
- * The following commands allow you to:
- *
- * - create a key named `my-kms-key`
- * - retrieve the key's information using the key's ID
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Create a key
+ * // Create a key and get its information.
+ * // In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
  * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
@@ -39,7 +33,6 @@ import * as utilities from "../utilities";
  *         rotationPeriod: "720h",
  *     },
  * });
- * // Get the key information by its ID
  * const byID = scaleway.keymanager.getKey({
  *     keyId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -81,6 +74,7 @@ export interface GetKeyResult {
     readonly origin: string;
     readonly projectId: string;
     readonly protected: boolean;
+    readonly protectionLevel: string;
     readonly region?: string;
     readonly rotatedAt: string;
     readonly rotationCount: number;
@@ -97,18 +91,12 @@ export interface GetKeyResult {
  *
  * ## Example Usage
  *
- * ### Create a key and get its information
- *
- * The following commands allow you to:
- *
- * - create a key named `my-kms-key`
- * - retrieve the key's information using the key's ID
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Create a key
+ * // Create a key and get its information.
+ * // In the example below, a key named `my-kms-key` is created, and its information is retrieved using the key's ID.
  * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
@@ -125,7 +113,6 @@ export interface GetKeyResult {
  *         rotationPeriod: "720h",
  *     },
  * });
- * // Get the key information by its ID
  * const byID = scaleway.keymanager.getKey({
  *     keyId: "11111111-1111-1111-1111-111111111111",
  * });

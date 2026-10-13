@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     unprotected: true,
  * });
  * const mainBinding = new scaleway.annotations.Binding("main", {
- *     srn: mainKey.srn,
+ *     targetSrn: mainKey.srn,
  *     valueId: production.id,
  * });
  * const main = scaleway.annotations.getBindingOutput({
@@ -70,9 +70,13 @@ export interface GetBindingResult {
      */
     readonly keyId: string;
     /**
-     * Scaleway Resource Number associated to the binding
+     * The Scaleway Resource Number (SRN) of the binding.
      */
     readonly srn: string;
+    /**
+     * Scaleway Resource Number associated to the binding.
+     */
+    readonly targetSrn: string;
     /**
      * ID of the value associated to the binding
      */
@@ -105,7 +109,7 @@ export interface GetBindingResult {
  *     unprotected: true,
  * });
  * const mainBinding = new scaleway.annotations.Binding("main", {
- *     srn: mainKey.srn,
+ *     targetSrn: mainKey.srn,
  *     valueId: production.id,
  * });
  * const main = scaleway.annotations.getBindingOutput({

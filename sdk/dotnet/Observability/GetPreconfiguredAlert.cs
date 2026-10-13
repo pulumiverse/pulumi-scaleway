@@ -84,19 +84,14 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
+        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
         ///     {
         ///         ProjectId = project.Id,
         ///     });
         /// 
-        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
+        ///     var main = new Scaleway.Observability.AlertManager("main", new()
         ///     {
-        ///         ProjectId = main.ProjectId,
-        ///     });
-        /// 
-        ///     var mainAlertManager = new Scaleway.Observability.AlertManager("main", new()
-        ///     {
-        ///         ProjectId = main.ProjectId,
+        ///         ProjectId = project.Id,
         ///         PreconfiguredAlertIds = .Where(alert =&gt; alert.ProductName == "instance" &amp;&amp; alert.RuleStatus == "disabled").Select(alert =&gt; 
         ///         {
         ///             return alert.PreconfiguredRuleId;
@@ -188,19 +183,14 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
+        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
         ///     {
         ///         ProjectId = project.Id,
         ///     });
         /// 
-        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
+        ///     var main = new Scaleway.Observability.AlertManager("main", new()
         ///     {
-        ///         ProjectId = main.ProjectId,
-        ///     });
-        /// 
-        ///     var mainAlertManager = new Scaleway.Observability.AlertManager("main", new()
-        ///     {
-        ///         ProjectId = main.ProjectId,
+        ///         ProjectId = project.Id,
         ///         PreconfiguredAlertIds = .Where(alert =&gt; alert.ProductName == "instance" &amp;&amp; alert.RuleStatus == "disabled").Select(alert =&gt; 
         ///         {
         ///             return alert.PreconfiguredRuleId;
@@ -292,19 +282,14 @@ namespace Pulumiverse.Scaleway.Observability
         ///         Name = "my-observability-project",
         ///     });
         /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
+        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
         ///     {
         ///         ProjectId = project.Id,
         ///     });
         /// 
-        ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
+        ///     var main = new Scaleway.Observability.AlertManager("main", new()
         ///     {
-        ///         ProjectId = main.ProjectId,
-        ///     });
-        /// 
-        ///     var mainAlertManager = new Scaleway.Observability.AlertManager("main", new()
-        ///     {
-        ///         ProjectId = main.ProjectId,
+        ///         ProjectId = project.Id,
         ///         PreconfiguredAlertIds = .Where(alert =&gt; alert.ProductName == "instance" &amp;&amp; alert.RuleStatus == "disabled").Select(alert =&gt; 
         ///         {
         ///             return alert.PreconfiguredRuleId;

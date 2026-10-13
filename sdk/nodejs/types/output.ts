@@ -186,40 +186,6 @@ export interface CockpitAlertManagerContactPoint {
     email?: string;
 }
 
-export interface CockpitEndpoint {
-    /**
-     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-     */
-    alertmanagerUrl: string;
-    /**
-     * (Deprecated) URL for Grafana.
-     */
-    grafanaUrl: string;
-    /**
-     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    logsUrl: string;
-    /**
-     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    metricsUrl: string;
-    /**
-     * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    tracesUrl: string;
-}
-
-export interface CockpitPushUrl {
-    /**
-     * Push URL for logs (Grafana Loki)
-     */
-    pushLogsUrl: string;
-    /**
-     * Push URL for metrics (Grafana Mimir)
-     */
-    pushMetricsUrl: string;
-}
-
 export interface CockpitTokenScopes {
     /**
      * Permission to query logs.
@@ -1220,40 +1186,6 @@ export interface GetBlockSnapshotImport {
      * Key of the qcow file in the specified bucket
      */
     key: string;
-}
-
-export interface GetCockpitEndpoint {
-    /**
-     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-     */
-    alertmanagerUrl: string;
-    /**
-     * (Deprecated) URL for Grafana.
-     */
-    grafanaUrl: string;
-    /**
-     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    logsUrl: string;
-    /**
-     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    metricsUrl: string;
-    /**
-     * The traces URL.
-     */
-    tracesUrl: string;
-}
-
-export interface GetCockpitPushUrl {
-    /**
-     * Push URL for logs (Grafana Loki)
-     */
-    pushLogsUrl: string;
-    /**
-     * Push URL for metrics (Grafana Mimir)
-     */
-    pushMetricsUrl: string;
 }
 
 export interface GetContainerHealthCheck {
@@ -3212,6 +3144,21 @@ export interface GetRedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface GetSdbSqlVersionsVersion {
+    /**
+     * End of life date of the version (RFC3339).
+     */
+    endOfLifeAt: string;
+    /**
+     * Filter Serverless SQL Database versions that match a given name pattern (e.g. `16`).
+     */
+    name: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the version.
+     */
+    srn: string;
 }
 
 export interface GetSecretEphemeralPolicy {
@@ -13251,40 +13198,6 @@ export namespace observability {
         email?: string;
     }
 
-    export interface CockpitEndpoint {
-        /**
-         * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-         */
-        alertmanagerUrl: string;
-        /**
-         * (Deprecated) URL for Grafana.
-         */
-        grafanaUrl: string;
-        /**
-         * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        logsUrl: string;
-        /**
-         * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        metricsUrl: string;
-        /**
-         * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        tracesUrl: string;
-    }
-
-    export interface CockpitPushUrl {
-        /**
-         * Push URL for logs (Grafana Loki)
-         */
-        pushLogsUrl: string;
-        /**
-         * Push URL for metrics (Grafana Mimir)
-         */
-        pushMetricsUrl: string;
-    }
-
     export interface ExporterDatadogDestination {
         /**
          * Datadog API key. Sensitive.
@@ -13425,40 +13338,6 @@ export namespace observability {
          * Dashboard variables.
          */
         variables: string[];
-    }
-
-    export interface GetInstanceEndpoint {
-        /**
-         * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-         */
-        alertmanagerUrl: string;
-        /**
-         * (Deprecated) URL for Grafana.
-         */
-        grafanaUrl: string;
-        /**
-         * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        logsUrl: string;
-        /**
-         * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        metricsUrl: string;
-        /**
-         * The traces URL.
-         */
-        tracesUrl: string;
-    }
-
-    export interface GetInstancePushUrl {
-        /**
-         * Push URL for logs (Grafana Loki)
-         */
-        pushLogsUrl: string;
-        /**
-         * Push URL for metrics (Grafana Mimir)
-         */
-        pushMetricsUrl: string;
     }
 
     export interface GetPreconfiguredAlertAlert {

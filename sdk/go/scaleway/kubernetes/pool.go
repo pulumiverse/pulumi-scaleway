@@ -214,6 +214,10 @@ type Pool struct {
 	UpgradePolicy PoolUpgradePolicyOutput `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -350,6 +354,10 @@ type poolState struct {
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -442,6 +450,10 @@ type PoolState struct {
 	UpgradePolicy PoolUpgradePolicyPtrInput
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapInput
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -526,6 +538,10 @@ type poolArgs struct {
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
 	// User data applied and reconciled with the pool, as a map of key to content.
 	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
+	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData map[string]string `pulumi:"userData"`
 	// The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -606,6 +622,10 @@ type PoolArgs struct {
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyPtrInput
 	// User data applied and reconciled with the pool, as a map of key to content.
+	//
+	// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+	//
+	// value - The user data content.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	UserData pulumi.StringMapInput
@@ -865,6 +885,10 @@ func (o PoolOutput) UpgradePolicy() PoolUpgradePolicyOutput {
 }
 
 // User data applied and reconciled with the pool, as a map of key to content.
+//
+// key - The user data key. The cloud-init key is reserved, please use cloudInit attribute instead.
+//
+// value - The user data content.
 //
 // > **Important:** Updates to this field will recreate a new resource.
 func (o PoolOutput) UserData() pulumi.StringMapOutput {

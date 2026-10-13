@@ -253,25 +253,6 @@
                     }
                 }
             },
-            "scaleway_cockpit": {
-                "current": "scaleway:observability/cockpit:Cockpit",
-                "past": [
-                    {
-                        "name": "scaleway:index/cockpit:Cockpit",
-                        "inCodegen": true,
-                        "majorVersion": 1
-                    }
-                ],
-                "majorVersion": 1,
-                "fields": {
-                    "endpoints": {
-                        "maxItemsOne": false
-                    },
-                    "push_url": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "scaleway_cockpit_alert_manager": {
                 "current": "scaleway:observability/alertManager:AlertManager",
                 "past": [
@@ -3255,25 +3236,6 @@
                     }
                 }
             },
-            "scaleway_cockpit": {
-                "current": "scaleway:observability/getInstance:getInstance",
-                "past": [
-                    {
-                        "name": "scaleway:index/getCockpit:getCockpit",
-                        "inCodegen": true,
-                        "majorVersion": 1
-                    }
-                ],
-                "majorVersion": 1,
-                "fields": {
-                    "endpoints": {
-                        "maxItemsOne": false
-                    },
-                    "push_url": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "scaleway_cockpit_config": {
                 "current": "scaleway:observability/getConfig:getConfig",
                 "majorVersion": 1,
@@ -5449,6 +5411,15 @@
                     }
                 }
             },
+            "scaleway_sdb_sql_versions": {
+                "current": "scaleway:index/getSdbSqlVersions:getSdbSqlVersions",
+                "majorVersion": 1,
+                "fields": {
+                    "versions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_secret": {
                 "current": "scaleway:secrets/getSecret:getSecret",
                 "past": [
@@ -5815,11 +5786,6 @@
             "scaleway_block_volume": {
                 "aliases": [
                     "scaleway:index/blockVolume:BlockVolume"
-                ]
-            },
-            "scaleway_cockpit": {
-                "aliases": [
-                    "scaleway:index/cockpit:Cockpit"
                 ]
             },
             "scaleway_cockpit_alert_manager": {
@@ -6428,11 +6394,6 @@
                     "scaleway:index/getBlockVolume:getBlockVolume"
                 ]
             },
-            "scaleway_cockpit": {
-                "renames": [
-                    "scaleway:index/getCockpit:getCockpit"
-                ]
-            },
             "scaleway_cockpit_source": {
                 "renames": [
                     "scaleway:index/getCockpitSource:getCockpitSource"
@@ -6895,7 +6856,6 @@
             "scaleway:index/baremetalServer:BaremetalServer": 0,
             "scaleway:index/blockSnapshot:BlockSnapshot": 0,
             "scaleway:index/blockVolume:BlockVolume": 0,
-            "scaleway:index/cockpit:Cockpit": 0,
             "scaleway:index/cockpitAlertManager:CockpitAlertManager": 0,
             "scaleway:index/cockpitSource:CockpitSource": 0,
             "scaleway:index/cockpitToken:CockpitToken": 0,
@@ -7079,7 +7039,6 @@
             "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration": 0,
             "scaleway:object/item:Item": 0,
             "scaleway:observability/alertManager:AlertManager": 0,
-            "scaleway:observability/cockpit:Cockpit": 0,
             "scaleway:observability/exporter:Exporter": 0,
             "scaleway:observability/source:Source": 0,
             "scaleway:observability/token:Token": 0,
@@ -7175,7 +7134,6 @@
             "scaleway:index/getBillingInvoices:getBillingInvoices": 0,
             "scaleway:index/getBlockSnapshot:getBlockSnapshot": 0,
             "scaleway:index/getBlockVolume:getBlockVolume": 0,
-            "scaleway:index/getCockpit:getCockpit": 0,
             "scaleway:index/getCockpitSource:getCockpitSource": 0,
             "scaleway:index/getConfig:getConfig": 0,
             "scaleway:index/getContainer:getContainer": 0,
@@ -7235,6 +7193,7 @@
             "scaleway:index/getRegistryImage:getRegistryImage": 0,
             "scaleway:index/getRegistryImageTag:getRegistryImageTag": 0,
             "scaleway:index/getRegistryNamespace:getRegistryNamespace": 0,
+            "scaleway:index/getSdbSqlVersions:getSdbSqlVersions": 0,
             "scaleway:index/getSecret:getSecret": 0,
             "scaleway:index/getSecretVersion:getSecretVersion": 0,
             "scaleway:index/getTemDomain:getTemDomain": 0,
@@ -7325,7 +7284,6 @@
             "scaleway:observability/getGrafana:getGrafana": 0,
             "scaleway:observability/getGrafanaProductDashboard:getGrafanaProductDashboard": 1,
             "scaleway:observability/getGrafanaProductDashboards:getGrafanaProductDashboards": 1,
-            "scaleway:observability/getInstance:getInstance": 0,
             "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert": 0,
             "scaleway:observability/getProducts:getProducts": 0,
             "scaleway:observability/getSource:getSource": 0,

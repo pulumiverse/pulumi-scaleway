@@ -43,9 +43,8 @@ import * as utilities from "../utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const project = new scaleway.account.Project("project", {name: "my-observability-project"});
- * const mainCockpit = new scaleway.observability.Cockpit("main", {projectId: project.id});
  * const main = scaleway.observability.getGrafanaOutput({
- *     projectId: mainCockpit.projectId,
+ *     projectId: project.id,
  * });
  * export const grafanaConnectionInfo = {
  *     url: main.grafanaUrl,
@@ -152,9 +151,8 @@ export interface GetGrafanaResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const project = new scaleway.account.Project("project", {name: "my-observability-project"});
- * const mainCockpit = new scaleway.observability.Cockpit("main", {projectId: project.id});
  * const main = scaleway.observability.getGrafanaOutput({
- *     projectId: mainCockpit.projectId,
+ *     projectId: project.id,
  * });
  * export const grafanaConnectionInfo = {
  *     url: main.grafanaUrl,

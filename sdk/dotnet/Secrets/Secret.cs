@@ -17,10 +17,6 @@ namespace Pulumiverse.Scaleway.Secrets
     /// 
     /// ## Example Usage
     /// 
-    /// ### Create a secret
-    /// 
-    /// The following command allows you to create a secret named `Foo` with a description (`Barr`), and tags (`Foo` and `Terraform`).
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,6 +25,7 @@ namespace Pulumiverse.Scaleway.Secrets
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Create a secret
     ///     var main = new Scaleway.Secrets.Secret("main", new()
     ///     {
     ///         Name = "foo",
@@ -43,12 +40,6 @@ namespace Pulumiverse.Scaleway.Secrets
     /// });
     /// ```
     /// 
-    /// ### Apply the ephemeral policy on a secret
-    /// 
-    /// The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `Foo`.
-    /// 
-    /// In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,6 +48,8 @@ namespace Pulumiverse.Scaleway.Secrets
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Apply an ephemeral policy on your secret named `foo`.
+    ///     // In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
     ///     var ephemeral = new Scaleway.Secrets.Secret("ephemeral", new()
     ///     {
     ///         Name = "foo",
@@ -69,6 +62,32 @@ namespace Pulumiverse.Scaleway.Secrets
     ///                 Action = "disable",
     ///             },
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create a secret with your own Key Manager encryption key
+    ///     var main = new Scaleway.Keymanager.Key("main", new()
+    ///     {
+    ///         Name = "my-kms-key",
+    ///         Usage = "symmetric_encryption",
+    ///         Algorithm = "aes_256_gcm",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    ///     var kms = new Scaleway.Secrets.Secret("kms", new()
+    ///     {
+    ///         Name = "foo",
+    ///         KeyId = main.Id,
     ///     });
     /// 
     /// });
@@ -98,10 +117,16 @@ namespace Pulumiverse.Scaleway.Secrets
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         /// </summary>
         [Output("ephemeralPolicies")]
         public Output<ImmutableArray<Outputs.SecretEphemeralPolicy>> EphemeralPolicies { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        /// </summary>
+        [Output("keyId")]
+        public Output<string?> KeyId { get; private set; } = null!;
 
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).
@@ -237,13 +262,19 @@ namespace Pulumiverse.Scaleway.Secrets
         private InputList<Inputs.SecretEphemeralPolicyArgs>? _ephemeralPolicies;
 
         /// <summary>
-        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         /// </summary>
         public InputList<Inputs.SecretEphemeralPolicyArgs> EphemeralPolicies
         {
             get => _ephemeralPolicies ?? (_ephemeralPolicies = new InputList<Inputs.SecretEphemeralPolicyArgs>());
             set => _ephemeralPolicies = value;
         }
+
+        /// <summary>
+        /// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        /// </summary>
+        [Input("keyId")]
+        public Input<string>? KeyId { get; set; }
 
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).
@@ -318,13 +349,19 @@ namespace Pulumiverse.Scaleway.Secrets
         private InputList<Inputs.SecretEphemeralPolicyGetArgs>? _ephemeralPolicies;
 
         /// <summary>
-        /// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+        /// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
         /// </summary>
         public InputList<Inputs.SecretEphemeralPolicyGetArgs> EphemeralPolicies
         {
             get => _ephemeralPolicies ?? (_ephemeralPolicies = new InputList<Inputs.SecretEphemeralPolicyGetArgs>());
             set => _ephemeralPolicies = value;
         }
+
+        /// <summary>
+        /// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+        /// </summary>
+        [Input("keyId")]
+        public Input<string>? KeyId { get; set; }
 
         /// <summary>
         /// Name of the secret (e.g. `my-secret`).

@@ -184,9 +184,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"scaleway_cockpit": {
-				Tok: scalewayResource(cockpitMod, "Cockpit"),
-			},
 			"scaleway_container": {
 				Tok: scalewayResource(containersMod, "Container"),
 			},
@@ -268,9 +265,6 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{
 					Source: "billing_consumption.md",
 				},
-			},
-			"scaleway_cockpit": {
-				Tok: scalewayDataSource(cockpitMod, "getInstance"),
 			},
 			"scaleway_config": {
 				Docs: &tfbridge.DocInfo{

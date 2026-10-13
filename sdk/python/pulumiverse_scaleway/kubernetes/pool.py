@@ -92,6 +92,10 @@ class PoolArgs:
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
                
+               key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+               
+               value - The user data content.
+               
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
                For the field to be properly taken into account, the `upgrade_pools` field of the cluster must be set to `false` in order to decouple the version of the pool from the cluster.
@@ -428,6 +432,10 @@ class PoolArgs:
         """
         User data applied and reconciled with the pool, as a map of key to content.
 
+        key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+
+        value - The user data content.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "user_data")
@@ -563,6 +571,10 @@ class _PoolState:
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+               
+               value - The user data content.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -987,6 +999,10 @@ class _PoolState:
         """
         User data applied and reconciled with the pool, as a map of key to content.
 
+        key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+
+        value - The user data content.
+
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "user_data")
@@ -1198,6 +1214,10 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['PoolTaintArgs', 'PoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+               
+               value - The user data content.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -1484,6 +1504,10 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
+               
+               key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+               
+               value - The user data content.
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.str] version: The version of the pool. If not explicitly set, the version of the pool will be equal to the version of the cluster.
@@ -1773,6 +1797,10 @@ class Pool(pulumi.CustomResource):
     def user_data(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
         User data applied and reconciled with the pool, as a map of key to content.
+
+        key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
+
+        value - The user data content.
 
         > **Important:** Updates to this field will recreate a new resource.
         """

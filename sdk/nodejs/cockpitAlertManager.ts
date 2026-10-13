@@ -22,12 +22,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const project = new scaleway.account.Project("project", {name: "my-observability-project"});
- * const main = new scaleway.observability.Cockpit("main", {projectId: project.id});
  * const all = scaleway.observability.getPreconfiguredAlertOutput({
- *     projectId: main.projectId,
+ *     projectId: project.id,
  * });
- * const mainAlertManager = new scaleway.observability.AlertManager("main", {
- *     projectId: main.projectId,
+ * const main = new scaleway.observability.AlertManager("main", {
+ *     projectId: project.id,
  *     preconfiguredAlertIds: all.apply(all => .filter(alert => alert.productName == "instance").map(alert => (alert.preconfiguredRuleId))),
  *     contactPoints: [{
  *         email: "alerts@example.com",

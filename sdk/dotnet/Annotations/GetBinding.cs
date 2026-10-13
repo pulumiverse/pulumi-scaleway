@@ -52,7 +52,7 @@ namespace Pulumiverse.Scaleway.Annotations
         /// 
         ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
-        ///         Srn = mainKey.Srn,
+        ///         TargetSrn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
@@ -107,7 +107,7 @@ namespace Pulumiverse.Scaleway.Annotations
         /// 
         ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
-        ///         Srn = mainKey.Srn,
+        ///         TargetSrn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
@@ -162,7 +162,7 @@ namespace Pulumiverse.Scaleway.Annotations
         /// 
         ///     var mainBinding = new Scaleway.Annotations.Binding("main", new()
         ///     {
-        ///         Srn = mainKey.Srn,
+        ///         TargetSrn = mainKey.Srn,
         ///         ValueId = production.Id,
         ///     });
         /// 
@@ -221,9 +221,13 @@ namespace Pulumiverse.Scaleway.Annotations
         /// </summary>
         public readonly string KeyId;
         /// <summary>
-        /// Scaleway Resource Number associated to the binding
+        /// The Scaleway Resource Number (SRN) of the binding.
         /// </summary>
         public readonly string Srn;
+        /// <summary>
+        /// Scaleway Resource Number associated to the binding.
+        /// </summary>
+        public readonly string TargetSrn;
         /// <summary>
         /// ID of the value associated to the binding
         /// </summary>
@@ -239,12 +243,15 @@ namespace Pulumiverse.Scaleway.Annotations
 
             string srn,
 
+            string targetSrn,
+
             string valueId)
         {
             BindingId = bindingId;
             Id = id;
             KeyId = keyId;
             Srn = srn;
+            TargetSrn = targetSrn;
             ValueId = valueId;
         }
     }

@@ -17,10 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Create a secret
-//
-// The following command allows you to create a secret named `foo` with a description (`barr`), and tags (`foo` and `terraform`).
-//
 // ```go
 // package main
 //
@@ -33,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a secret
 //			_, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
 //				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
@@ -50,12 +47,6 @@ import (
 //
 // ```
 //
-// ### Apply the ephemeral policy on a secret
-//
-// The following command shows you how to apply the [ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) on your secret named `foo`.
-//
-// In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
-//
 // ```go
 // package main
 //
@@ -68,6 +59,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Apply an ephemeral policy on your secret named `foo`.
+//			// In the example below, your secret's lifetime is of 24 hours, your secret versions will expire once they are accessed, and they are disabled after being accessed.
 //			_, err := secrets.NewSecret(ctx, "ephemeral", &secrets.SecretArgs{
 //				Name: pulumi.String("foo"),
 //				EphemeralPolicies: secrets.SecretEphemeralPolicyArray{
@@ -77,6 +70,42 @@ import (
 //						Action:              pulumi.String("disable"),
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a secret with your own Key Manager encryption key
+//			main, err := keymanager.NewKey(ctx, "main", &keymanager.KeyArgs{
+//				Name:        pulumi.String("my-kms-key"),
+//				Usage:       pulumi.String("symmetric_encryption"),
+//				Algorithm:   pulumi.String("aes_256_gcm"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSecret(ctx, "kms", &secrets.SecretArgs{
+//				Name:  pulumi.String("foo"),
+//				KeyId: main.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -103,8 +132,10 @@ type Secret struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 	EphemeralPolicies SecretEphemeralPolicyArrayOutput `pulumi:"ephemeralPolicies"`
+	// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+	KeyId pulumi.StringPtrOutput `pulumi:"keyId"`
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
@@ -166,8 +197,10 @@ type secretState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the secret (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
-	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 	EphemeralPolicies []SecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
+	// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+	KeyId *string `pulumi:"keyId"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
@@ -200,8 +233,10 @@ type SecretState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
-	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 	EphemeralPolicies SecretEphemeralPolicyArrayInput
+	// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+	KeyId pulumi.StringPtrInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
 	// Path of the secret, defaults to `/`.
@@ -236,8 +271,10 @@ func (SecretState) ElementType() reflect.Type {
 type secretArgs struct {
 	// Description of the secret (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
-	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 	EphemeralPolicies []SecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
+	// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+	KeyId *string `pulumi:"keyId"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
 	// Path of the secret, defaults to `/`.
@@ -259,8 +296,10 @@ type secretArgs struct {
 type SecretArgs struct {
 	// Description of the secret (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
-	// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+	// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 	EphemeralPolicies SecretEphemeralPolicyArrayInput
+	// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+	KeyId pulumi.StringPtrInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
 	// Path of the secret, defaults to `/`.
@@ -375,9 +414,14 @@ func (o SecretOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
+// [Ephemeral policy](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/concepts/#ephemeral-policy) of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
 func (o SecretOutput) EphemeralPolicies() SecretEphemeralPolicyArrayOutput {
 	return o.ApplyT(func(v *Secret) SecretEphemeralPolicyArrayOutput { return v.EphemeralPolicies }).(SecretEphemeralPolicyArrayOutput)
+}
+
+// ID of the [Key Manager](https://www.scaleway.com/en/docs/key-manager/) key used to encrypt and decrypt the secret's versions. Can be a UUID or a localized ID (`region/UUID`). If not set, Secret Manager uses a Key Manager internal key.
+func (o SecretOutput) KeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.KeyId }).(pulumi.StringPtrOutput)
 }
 
 // Name of the secret (e.g. `my-secret`).

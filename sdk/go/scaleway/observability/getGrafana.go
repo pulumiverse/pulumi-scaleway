@@ -93,14 +93,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainCockpit, err := observability.NewCockpit(ctx, "main", &observability.CockpitArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			main := observability.GetGrafanaOutput(ctx, observability.GetGrafanaOutputArgs{
-//				ProjectId: mainCockpit.ProjectId,
+//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			ctx.Export("grafanaConnectionInfo", pulumi.StringMap{
 //				"url":       main.GrafanaUrl(),

@@ -186,40 +186,6 @@ export interface CockpitAlertManagerContactPoint {
     email?: pulumi.Input<string | undefined>;
 }
 
-export interface CockpitEndpoint {
-    /**
-     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-     */
-    alertmanagerUrl?: pulumi.Input<string | undefined>;
-    /**
-     * (Deprecated) URL for Grafana.
-     */
-    grafanaUrl?: pulumi.Input<string | undefined>;
-    /**
-     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    logsUrl?: pulumi.Input<string | undefined>;
-    /**
-     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    metricsUrl?: pulumi.Input<string | undefined>;
-    /**
-     * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-     */
-    tracesUrl?: pulumi.Input<string | undefined>;
-}
-
-export interface CockpitPushUrl {
-    /**
-     * Push URL for logs (Grafana Loki)
-     */
-    pushLogsUrl?: pulumi.Input<string | undefined>;
-    /**
-     * Push URL for metrics (Grafana Mimir)
-     */
-    pushMetricsUrl?: pulumi.Input<string | undefined>;
-}
-
 export interface CockpitTokenScopes {
     /**
      * Permission to query logs.
@@ -6472,40 +6438,6 @@ export namespace observability {
          * Email addresses for the alert receivers
          */
         email?: pulumi.Input<string | undefined>;
-    }
-
-    export interface CockpitEndpoint {
-        /**
-         * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
-         */
-        alertmanagerUrl?: pulumi.Input<string | undefined>;
-        /**
-         * (Deprecated) URL for Grafana.
-         */
-        grafanaUrl?: pulumi.Input<string | undefined>;
-        /**
-         * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        logsUrl?: pulumi.Input<string | undefined>;
-        /**
-         * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        metricsUrl?: pulumi.Input<string | undefined>;
-        /**
-         * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
-         */
-        tracesUrl?: pulumi.Input<string | undefined>;
-    }
-
-    export interface CockpitPushUrl {
-        /**
-         * Push URL for logs (Grafana Loki)
-         */
-        pushLogsUrl?: pulumi.Input<string | undefined>;
-        /**
-         * Push URL for metrics (Grafana Mimir)
-         */
-        pushMetricsUrl?: pulumi.Input<string | undefined>;
     }
 
     export interface ExporterDatadogDestination {
