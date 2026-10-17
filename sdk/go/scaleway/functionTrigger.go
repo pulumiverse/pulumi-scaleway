@@ -106,6 +106,8 @@ type FunctionTrigger struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrOutput `pulumi:"sqs"`
+	// The Scaleway Resource Name (SRN) of the function trigger.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewFunctionTrigger registers a new resource with the given unique name, arguments, and options.
@@ -153,6 +155,8 @@ type functionTriggerState struct {
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *FunctionTriggerSqs `pulumi:"sqs"`
+	// The Scaleway Resource Name (SRN) of the function trigger.
+	Srn *string `pulumi:"srn"`
 }
 
 type FunctionTriggerState struct {
@@ -168,6 +172,8 @@ type FunctionTriggerState struct {
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrInput
+	// The Scaleway Resource Name (SRN) of the function trigger.
+	Srn pulumi.StringPtrInput
 }
 
 func (FunctionTriggerState) ElementType() reflect.Type {
@@ -320,6 +326,11 @@ func (o FunctionTriggerOutput) Region() pulumi.StringOutput {
 // The configuration of the Scaleway SQS queue used by the trigger
 func (o FunctionTriggerOutput) Sqs() FunctionTriggerSqsPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerSqsPtrOutput { return v.Sqs }).(FunctionTriggerSqsPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the function trigger.
+func (o FunctionTriggerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type FunctionTriggerArrayOutput struct{ *pulumi.OutputState }

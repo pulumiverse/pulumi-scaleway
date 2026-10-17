@@ -111,6 +111,7 @@ namespace Pulumiverse.Scaleway.Account
         public readonly string? Name;
         public readonly string? OrganizationId;
         public readonly string ProjectId;
+        public readonly string Srn;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -127,6 +128,8 @@ namespace Pulumiverse.Scaleway.Account
 
             string projectId,
 
+            string srn,
+
             string updatedAt)
         {
             CreatedAt = createdAt;
@@ -135,6 +138,7 @@ namespace Pulumiverse.Scaleway.Account
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;
+            Srn = srn;
             UpdatedAt = updatedAt;
         }
     }

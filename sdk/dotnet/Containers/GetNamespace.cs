@@ -226,6 +226,10 @@ namespace Pulumiverse.Scaleway.Containers
         /// </summary>
         public readonly string RegistryNamespaceId;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container namespace.
+        /// </summary>
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
@@ -254,6 +258,8 @@ namespace Pulumiverse.Scaleway.Containers
 
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
+            string srn,
+
             ImmutableArray<string> tags)
         {
             Description = description;
@@ -268,6 +274,7 @@ namespace Pulumiverse.Scaleway.Containers
             RegistryEndpoint = registryEndpoint;
             RegistryNamespaceId = registryNamespaceId;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Srn = srn;
             Tags = tags;
         }
     }

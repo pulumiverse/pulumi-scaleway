@@ -100,6 +100,12 @@ namespace Pulumiverse.Scaleway.Account
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the project.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The last update time of the Project.
         /// </summary>
         [Output("updatedAt")]
@@ -205,6 +211,12 @@ namespace Pulumiverse.Scaleway.Account
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the project.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The last update time of the Project.

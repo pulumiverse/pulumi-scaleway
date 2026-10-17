@@ -26,7 +26,7 @@ class GetValueResult:
     """
     A collection of values returned by getValue.
     """
-    def __init__(__self__, description=None, id=None, key_id=None, name=None, value_id=None):
+    def __init__(__self__, description=None, id=None, key_id=None, name=None, srn=None, value_id=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -39,6 +39,9 @@ class GetValueResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if value_id and not isinstance(value_id, str):
             raise TypeError("Expected argument 'value_id' to be a str")
         pulumi.set(__self__, "value_id", value_id)
@@ -76,6 +79,14 @@ class GetValueResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the annotation value
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="valueId")
     def value_id(self) -> _builtins.str:
         return pulumi.get(self, "value_id")
@@ -91,6 +102,7 @@ class AwaitableGetValueResult(GetValueResult):
             id=self.id,
             key_id=self.key_id,
             name=self.name,
+            srn=self.srn,
             value_id=self.value_id)
 
 
@@ -129,6 +141,7 @@ def get_value(value_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         key_id=pulumi.get(__ret__, 'key_id'),
         name=pulumi.get(__ret__, 'name'),
+        srn=pulumi.get(__ret__, 'srn'),
         value_id=pulumi.get(__ret__, 'value_id'))
 def get_value_output(value_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetValueResult]:
@@ -164,4 +177,5 @@ def get_value_output(value_id: pulumi.Input[Optional[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         key_id=pulumi.get(__response__, 'key_id'),
         name=pulumi.get(__response__, 'name'),
+        srn=pulumi.get(__response__, 'srn'),
         value_id=pulumi.get(__response__, 'value_id')))

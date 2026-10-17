@@ -138,6 +138,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// For the `Tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        /// </summary>
+        [Output("moveFactor")]
+        public Output<double> MoveFactor { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the Data Warehouse deployment.
         /// </summary>
         [Output("name")]
@@ -305,6 +311,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Input<int> CpuMin { get; set; } = null!;
 
         /// <summary>
+        /// For the `Tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        /// </summary>
+        [Input("moveFactor")]
+        public Input<double>? MoveFactor { get; set; }
+
+        /// <summary>
         /// Name of the Data Warehouse deployment.
         /// </summary>
         [Input("name")]
@@ -446,6 +458,12 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// For the `Tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        /// </summary>
+        [Input("moveFactor")]
+        public Input<double>? MoveFactor { get; set; }
 
         /// <summary>
         /// Name of the Data Warehouse deployment.

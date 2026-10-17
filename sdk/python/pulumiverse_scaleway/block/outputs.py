@@ -17,8 +17,6 @@ from .. import _utilities
 __all__ = [
     'SnapshotExport',
     'SnapshotImport',
-    'GetSnapshotExportResult',
-    'GetSnapshotImportResult',
     'GetSnapshotsSnapshotResult',
 ]
 
@@ -76,64 +74,6 @@ class SnapshotImport(dict):
     def key(self) -> _builtins.str:
         """
         The key of the QCOW file within the bucket.
-        """
-        return pulumi.get(self, "key")
-
-
-@pulumi.output_type
-class GetSnapshotExportResult(dict):
-    def __init__(__self__, *,
-                 bucket: _builtins.str,
-                 key: _builtins.str):
-        """
-        :param _builtins.str bucket: Bucket containing qcow
-        :param _builtins.str key: Key of the qcow file in the specified bucket
-        """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "key", key)
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> _builtins.str:
-        """
-        Bucket containing qcow
-        """
-        return pulumi.get(self, "bucket")
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        Key of the qcow file in the specified bucket
-        """
-        return pulumi.get(self, "key")
-
-
-@pulumi.output_type
-class GetSnapshotImportResult(dict):
-    def __init__(__self__, *,
-                 bucket: _builtins.str,
-                 key: _builtins.str):
-        """
-        :param _builtins.str bucket: Bucket containing qcow
-        :param _builtins.str key: Key of the qcow file in the specified bucket
-        """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "key", key)
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> _builtins.str:
-        """
-        Bucket containing qcow
-        """
-        return pulumi.get(self, "bucket")
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        Key of the qcow file in the specified bucket
         """
         return pulumi.get(self, "key")
 

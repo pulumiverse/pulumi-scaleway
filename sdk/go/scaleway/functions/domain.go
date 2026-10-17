@@ -82,6 +82,8 @@ type Domain struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the function domain.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The URL used to query the function.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -138,6 +140,8 @@ type domainState struct {
 	Hostname *string `pulumi:"hostname"`
 	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the function domain.
+	Srn *string `pulumi:"srn"`
 	// The URL used to query the function.
 	Url *string `pulumi:"url"`
 }
@@ -153,6 +157,8 @@ type DomainState struct {
 	Hostname pulumi.StringPtrInput
 	// (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the function domain.
+	Srn pulumi.StringPtrInput
 	// The URL used to query the function.
 	Url pulumi.StringPtrInput
 }
@@ -292,6 +298,11 @@ func (o DomainOutput) Hostname() pulumi.StringOutput {
 // (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
 func (o DomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the function domain.
+func (o DomainOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The URL used to query the function.

@@ -13,7 +13,6 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
-from . import outputs
 
 __all__ = [
     'GetBlockSnapshotResult',
@@ -29,16 +28,10 @@ class GetBlockSnapshotResult:
     """
     A collection of values returned by getBlockSnapshot.
     """
-    def __init__(__self__, exports=None, id=None, imports=None, name=None, project_id=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
-        if exports and not isinstance(exports, list):
-            raise TypeError("Expected argument 'exports' to be a list")
-        pulumi.set(__self__, "exports", exports)
+    def __init__(__self__, id=None, name=None, project_id=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if imports and not isinstance(imports, list):
-            raise TypeError("Expected argument 'imports' to be a list")
-        pulumi.set(__self__, "imports", imports)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -63,30 +56,17 @@ class GetBlockSnapshotResult:
 
     @_builtins.property
     @pulumi.getter
-    def exports(self) -> Sequence['outputs.GetBlockSnapshotExportResult']:
-        return pulumi.get(self, "exports")
-
-    @_builtins.property
-    @pulumi.getter
     def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
-    def imports(self) -> Sequence['outputs.GetBlockSnapshotImportResult']:
-        return pulumi.get(self, "imports")
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> Optional[_builtins.str]:
+    def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[_builtins.str]:
+    def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
@@ -106,12 +86,12 @@ class GetBlockSnapshotResult:
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[_builtins.str]:
+    def volume_id(self) -> _builtins.str:
         return pulumi.get(self, "volume_id")
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         return pulumi.get(self, "zone")
 
 
@@ -121,9 +101,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
         if False:
             yield self
         return GetBlockSnapshotResult(
-            exports=self.exports,
             id=self.id,
-            imports=self.imports,
             name=self.name,
             project_id=self.project_id,
             snapshot_id=self.snapshot_id,
@@ -162,9 +140,7 @@ def get_block_snapshot(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult).value
 
     return AwaitableGetBlockSnapshotResult(
-        exports=pulumi.get(__ret__, 'exports'),
         id=pulumi.get(__ret__, 'id'),
-        imports=pulumi.get(__ret__, 'imports'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
@@ -200,9 +176,7 @@ def get_block_snapshot_output(name: pulumi.Input[Optional[Optional[_builtins.str
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
     return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
-        exports=pulumi.get(__response__, 'exports'),
         id=pulumi.get(__response__, 'id'),
-        imports=pulumi.get(__response__, 'imports'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),

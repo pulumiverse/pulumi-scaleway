@@ -113,6 +113,10 @@ export class ContainerNamespace extends pulumi.CustomResource {
      */
     declare public readonly secretEnvironmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the container namespace.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The list of tags associated with the namespace.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -143,6 +147,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["registryEndpoint"] = state?.registryEndpoint;
             resourceInputs["registryNamespaceId"] = state?.registryNamespaceId;
             resourceInputs["secretEnvironmentVariables"] = state?.secretEnvironmentVariables;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as ContainerNamespaceArgs | undefined;
@@ -157,6 +162,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
@@ -217,6 +223,10 @@ export interface ContainerNamespaceState {
      * The secret environment variables of the namespace.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the container namespace.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The list of tags associated with the namespace.
      */

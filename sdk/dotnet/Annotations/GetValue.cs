@@ -179,6 +179,10 @@ namespace Pulumiverse.Scaleway.Annotations
         /// Name of the annotation value
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation value
+        /// </summary>
+        public readonly string Srn;
         public readonly string ValueId;
 
         [OutputConstructor]
@@ -191,12 +195,15 @@ namespace Pulumiverse.Scaleway.Annotations
 
             string name,
 
+            string srn,
+
             string valueId)
         {
             Description = description;
             Id = id;
             KeyId = keyId;
             Name = name;
+            Srn = srn;
             ValueId = valueId;
         }
     }

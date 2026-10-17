@@ -256,7 +256,7 @@ type EdgeServicesBackendStage struct {
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
 	//
-	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrOutput `pulumi:"s3BackendConfig"`
@@ -309,7 +309,7 @@ type edgeServicesBackendStageState struct {
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
 	//
-	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig *EdgeServicesBackendStageS3BackendConfig `pulumi:"s3BackendConfig"`
@@ -330,7 +330,7 @@ type EdgeServicesBackendStageState struct {
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the backend stage is associated with.
 	//
-	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrInput
@@ -353,7 +353,7 @@ type edgeServicesBackendStageArgs struct {
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the backend stage is associated with.
 	//
-	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig *EdgeServicesBackendStageS3BackendConfig `pulumi:"s3BackendConfig"`
@@ -371,7 +371,7 @@ type EdgeServicesBackendStageArgs struct {
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the backend stage is associated with.
 	//
-	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+	// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
 	S3BackendConfig EdgeServicesBackendStageS3BackendConfigPtrInput
@@ -497,7 +497,7 @@ func (o EdgeServicesBackendStageOutput) PipelineId() pulumi.StringOutput {
 
 // `projectId`) The ID of the project the backend stage is associated with.
 //
-// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+// > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
 func (o EdgeServicesBackendStageOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesBackendStage) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

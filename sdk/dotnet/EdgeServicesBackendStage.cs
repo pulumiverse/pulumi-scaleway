@@ -238,7 +238,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
         /// 
-        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -335,7 +335,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
         /// 
-        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -393,7 +393,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// `ProjectId`) The ID of the project the backend stage is associated with.
         /// 
-        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive.
+        /// &gt; **Important:** `S3BackendConfig`, `LbBackendConfig`, `ContainerBackendConfig` and `FunctionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

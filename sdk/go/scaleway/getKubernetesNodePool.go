@@ -123,6 +123,7 @@ type LookupKubernetesNodePoolResult struct {
 	// [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
 	PlacementGroupId   string  `pulumi:"placementGroupId"`
 	PoolId             *string `pulumi:"poolId"`
+	PrivateNetworkId   string  `pulumi:"privateNetworkId"`
 	PublicIpDisabled   bool    `pulumi:"publicIpDisabled"`
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
@@ -261,6 +262,10 @@ func (o LookupKubernetesNodePoolResultOutput) PlacementGroupId() pulumi.StringOu
 
 func (o LookupKubernetesNodePoolResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupKubernetesNodePoolResultOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 func (o LookupKubernetesNodePoolResultOutput) PublicIpDisabled() pulumi.BoolOutput {

@@ -107,6 +107,10 @@ export class Trigger extends pulumi.CustomResource {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     declare public readonly sqs: pulumi.Output<outputs.functions.TriggerSqs | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the function trigger.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
 
     /**
      * Create a Trigger resource with the given unique name, arguments, and options.
@@ -127,6 +131,7 @@ export class Trigger extends pulumi.CustomResource {
             resourceInputs["nats"] = state?.nats;
             resourceInputs["region"] = state?.region;
             resourceInputs["sqs"] = state?.sqs;
+            resourceInputs["srn"] = state?.srn;
         } else {
             const args = argsOrState as TriggerArgs | undefined;
             if (args?.functionId === undefined && !opts.urn) {
@@ -138,6 +143,7 @@ export class Trigger extends pulumi.CustomResource {
             resourceInputs["nats"] = args?.nats;
             resourceInputs["region"] = args?.region;
             resourceInputs["sqs"] = args?.sqs;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/functionTrigger:FunctionTrigger" }] };
@@ -174,6 +180,10 @@ export interface TriggerState {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.functions.TriggerSqs | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the function trigger.
+     */
+    srn?: pulumi.Input<string | undefined>;
 }
 
 /**

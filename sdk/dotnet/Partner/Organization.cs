@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Partner
     /// Partner organizations can be imported using their `Id`.
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:partner/organization:Organization main &lt;id&gt;
+    /// $ pulumi import scaleway:partner/organization:Organization main ID
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:partner/organization:Organization")]

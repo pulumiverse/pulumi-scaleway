@@ -56,6 +56,7 @@ export interface GetAccountProjectResult {
     readonly name?: string;
     readonly organizationId?: string;
     readonly projectId: string;
+    readonly srn: string;
     readonly updatedAt: string;
 }
 /**

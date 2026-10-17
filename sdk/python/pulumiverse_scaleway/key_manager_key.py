@@ -35,7 +35,7 @@ class KeyManagerKeyArgs:
         """
         The set of arguments for constructing a KeyManagerKey resource.
 
-        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
         :param pulumi.Input[_builtins.str] description: – A description for the key.
@@ -75,7 +75,7 @@ class KeyManagerKeyArgs:
     @pulumi.getter
     def algorithm(self) -> pulumi.Input[_builtins.str]:
         """
-        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         - For `symmetric_encryption`:
         """
         return pulumi.get(self, "algorithm")
@@ -232,7 +232,7 @@ class _KeyManagerKeyState:
         """
         Input properties used for looking up and filtering KeyManagerKey resources.
 
-        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] created_at: The date and time when the key was created.
         :param pulumi.Input[_builtins.str] description: – A description for the key.
@@ -298,7 +298,7 @@ class _KeyManagerKeyState:
     @pulumi.getter
     def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         - For `symmetric_encryption`:
         """
         return pulumi.get(self, "algorithm")
@@ -638,7 +638,7 @@ class KeyManagerKey(pulumi.CustomResource):
           If you set `next_rotation_at` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `next_rotation_at`, so the configured value becomes stale: update or remove it from the configuration (or use `ignore_changes`) to avoid a permanent diff.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
-        - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
+        - **Algorithm Validation**: The provider checks at plan time that the specified `algorithm` is one of the algorithms known to the Key Manager API and is compatible with the `usage` type (a warning is emitted for unrecognized values).
 
         ## Import
 
@@ -651,7 +651,7 @@ class KeyManagerKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] description: – A description for the key.
         :param pulumi.Input[_builtins.str] name: The name of the key.
@@ -761,7 +761,7 @@ class KeyManagerKey(pulumi.CustomResource):
           If you set `next_rotation_at` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `next_rotation_at`, so the configured value becomes stale: update or remove it from the configuration (or use `ignore_changes`) to avoid a permanent diff.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
-        - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
+        - **Algorithm Validation**: The provider checks at plan time that the specified `algorithm` is one of the algorithms known to the Key Manager API and is compatible with the `usage` type (a warning is emitted for unrecognized values).
 
         ## Import
 
@@ -867,7 +867,7 @@ class KeyManagerKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
                - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] created_at: The date and time when the key was created.
         :param pulumi.Input[_builtins.str] description: – A description for the key.
@@ -919,7 +919,7 @@ class KeyManagerKey(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[_builtins.str]:
         """
-        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         - For `symmetric_encryption`:
         """
         return pulumi.get(self, "algorithm")

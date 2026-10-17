@@ -467,6 +467,10 @@ export class Container extends pulumi.CustomResource {
      */
     declare public readonly secretEnvironmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the container.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * Defines how to check if the container has started successfully.
      */
     declare public readonly startupProbe: pulumi.Output<outputs.ContainerStartupProbe | undefined>;
@@ -535,6 +539,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["sandbox"] = state?.sandbox;
             resourceInputs["scalingOptions"] = state?.scalingOptions;
             resourceInputs["secretEnvironmentVariables"] = state?.secretEnvironmentVariables;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["startupProbe"] = state?.startupProbe;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -583,6 +588,7 @@ export class Container extends pulumi.CustomResource {
             resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["privateEndpoint"] = undefined /*out*/;
             resourceInputs["publicEndpoint"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -770,6 +776,10 @@ export interface ContainerState {
      * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the container.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Defines how to check if the container has started successfully.
      */

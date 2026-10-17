@@ -64,6 +64,10 @@ export interface GetValueResult {
      * Name of the annotation value
      */
     readonly name: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the annotation value
+     */
+    readonly srn: string;
     readonly valueId: string;
 }
 /**

@@ -214,6 +214,10 @@ export interface GetContainerResult {
      */
     readonly secretEnvironmentVariables: {[key: string]: string};
     /**
+     * The Scaleway Resource Name (SRN) of the container.
+     */
+    readonly srn: string;
+    /**
      * Defines how to check if the container has started successfully.
      */
     readonly startupProbes: outputs.GetContainerStartupProbe[];

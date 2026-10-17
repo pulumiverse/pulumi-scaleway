@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:mailbox/alias:Alias":
+		r = &Alias{}
 	case "scaleway:mailbox/domain:Domain":
 		r = &Domain{}
 	case "scaleway:mailbox/mailbox:Mailbox":
@@ -38,6 +40,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"mailbox/alias",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"mailbox/domain",

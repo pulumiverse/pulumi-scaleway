@@ -121,6 +121,7 @@ type LookupPoolResult struct {
 	// [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
 	PlacementGroupId   string  `pulumi:"placementGroupId"`
 	PoolId             *string `pulumi:"poolId"`
+	PrivateNetworkId   string  `pulumi:"privateNetworkId"`
 	PublicIpDisabled   bool    `pulumi:"publicIpDisabled"`
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
@@ -259,6 +260,10 @@ func (o LookupPoolResultOutput) PlacementGroupId() pulumi.StringOutput {
 
 func (o LookupPoolResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupPoolResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPoolResultOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPoolResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 func (o LookupPoolResultOutput) PublicIpDisabled() pulumi.BoolOutput {

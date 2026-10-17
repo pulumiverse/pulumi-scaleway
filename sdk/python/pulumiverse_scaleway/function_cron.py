@@ -112,6 +112,7 @@ class _FunctionCronState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionCron resources.
@@ -122,6 +123,7 @@ class _FunctionCronState:
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the function was created.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function cron.
         :param pulumi.Input[_builtins.str] status: The CRON status.
         """
         if args is not None:
@@ -134,6 +136,8 @@ class _FunctionCronState:
             pulumi.set(__self__, "region", region)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -197,6 +201,18 @@ class _FunctionCronState:
     @schedule.setter
     def schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schedule", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the function cron.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -374,6 +390,7 @@ class FunctionCron(pulumi.CustomResource):
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
         super(FunctionCron, __self__).__init__(
             'scaleway:index/functionCron:FunctionCron',
@@ -390,6 +407,7 @@ class FunctionCron(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None) -> 'FunctionCron':
         """
         Get an existing FunctionCron resource's state with the given name, id, and optional extra
@@ -404,6 +422,7 @@ class FunctionCron(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the function was created.
         :param pulumi.Input[_builtins.str] schedule: CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function cron.
         :param pulumi.Input[_builtins.str] status: The CRON status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -415,6 +434,7 @@ class FunctionCron(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
         __props__.__dict__["schedule"] = schedule
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         return FunctionCron(resource_name, opts=opts, __props__=__props__)
 
@@ -458,6 +478,14 @@ class FunctionCron(pulumi.CustomResource):
         CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
         """
         return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the function cron.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -65,6 +65,7 @@ type LookupFunctionResult struct {
 	Runtime                    string            `pulumi:"runtime"`
 	Sandbox                    string            `pulumi:"sandbox"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Srn                        string            `pulumi:"srn"`
 	Tags                       []string          `pulumi:"tags"`
 	Timeout                    int               `pulumi:"timeout"`
 	ZipFile                    string            `pulumi:"zipFile"`
@@ -196,6 +197,10 @@ func (o LookupFunctionResultOutput) Sandbox() pulumi.StringOutput {
 
 func (o LookupFunctionResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupFunctionResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+func (o LookupFunctionResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFunctionResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupFunctionResultOutput) Tags() pulumi.StringArrayOutput {

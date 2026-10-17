@@ -661,6 +661,7 @@ class _ContainerState:
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input['ContainerScalingOptionArgs']]]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  startup_probe: pulumi.Input[Optional['ContainerStartupProbeArgs']] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -718,6 +719,7 @@ class _ContainerState:
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input['ContainerScalingOptionArgs']]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container.
         :param pulumi.Input['ContainerStartupProbeArgs'] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[_builtins.str] status: The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
@@ -819,6 +821,8 @@ class _ContainerState:
             pulumi.set(__self__, "scaling_options", scaling_options)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if startup_probe is not None:
             pulumi.set(__self__, "startup_probe", startup_probe)
         if status is not None:
@@ -1281,6 +1285,18 @@ class _ContainerState:
     @secret_environment_variables.setter
     def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the container.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="startupProbe")
@@ -2024,6 +2040,7 @@ class Container(pulumi.CustomResource):
             __props__.__dict__["error_message"] = None
             __props__.__dict__["private_endpoint"] = None
             __props__.__dict__["public_endpoint"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -2073,6 +2090,7 @@ class Container(pulumi.CustomResource):
             sandbox: pulumi.Input[Optional[_builtins.str]] = None,
             scaling_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]]] = None,
             secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             startup_probe: pulumi.Input[Optional[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2134,6 +2152,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the container.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ContainerScalingOptionArgs', 'ContainerScalingOptionArgsDict']]]] scaling_options: Configuration block used to decide when to scale up or down. Possible values:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container.
         :param pulumi.Input[Union['ContainerStartupProbeArgs', 'ContainerStartupProbeArgsDict']] startup_probe: Defines how to check if the container has started successfully.
         :param pulumi.Input[_builtins.str] status: The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the container.
@@ -2179,6 +2198,7 @@ class Container(pulumi.CustomResource):
         __props__.__dict__["sandbox"] = sandbox
         __props__.__dict__["scaling_options"] = scaling_options
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["startup_probe"] = startup_probe
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -2494,6 +2514,14 @@ class Container(pulumi.CustomResource):
         The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the container.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="startupProbe")

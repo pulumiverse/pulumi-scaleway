@@ -16,6 +16,8 @@ import (
 //
 // Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 //
+// ## Example Usage
+//
 // ## Placement Group
 //
 // If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
@@ -180,6 +182,11 @@ type KubernetesNodePool struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
+	// The ID of the private network to which the nodes of the pool will be attached.
+	// The private network needs to be in the same VPC as the API server/the cluster.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
+	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -314,6 +321,11 @@ type kubernetesNodePoolState struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// The ID of the private network to which the nodes of the pool will be attached.
+	// The private network needs to be in the same VPC as the API server/the cluster.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -410,6 +422,11 @@ type KubernetesNodePoolState struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// The ID of the private network to which the nodes of the pool will be attached.
+	// The private network needs to be in the same VPC as the API server/the cluster.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
+	PrivateNetworkId pulumi.StringPtrInput
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -504,6 +521,11 @@ type kubernetesNodePoolArgs struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// The ID of the private network to which the nodes of the pool will be attached.
+	// The private network needs to be in the same VPC as the API server/the cluster.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -589,6 +611,11 @@ type KubernetesNodePoolArgs struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// The ID of the private network to which the nodes of the pool will be attached.
+	// The private network needs to be in the same VPC as the API server/the cluster.
+	//
+	// > **Important:** Updates to this field will recreate the resource.
+	PrivateNetworkId pulumi.StringPtrInput
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
@@ -805,6 +832,14 @@ func (o KubernetesNodePoolOutput) Nodes() KubernetesNodePoolNodeArrayOutput {
 // > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network to which the nodes of the pool will be attached.
+// The private network needs to be in the same VPC as the API server/the cluster.
+//
+// > **Important:** Updates to this field will recreate the resource.
+func (o KubernetesNodePoolOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 // Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.

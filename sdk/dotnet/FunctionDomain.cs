@@ -89,6 +89,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function domain.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The URL used to query the function.
         /// </summary>
         [Output("url")]
@@ -192,6 +198,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function domain.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The URL used to query the function.

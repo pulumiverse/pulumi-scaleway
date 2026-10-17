@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway
     ///   If you set `NextRotationAt` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `NextRotationAt`, so the configured value becomes stale: update or remove it from the configuration (or use `IgnoreChanges`) to avoid a permanent diff.
     /// - **Origin**: The `Origin` argument is optional and defaults to `ScalewayKms`. Use `External` if you want to import an external key (see Scaleway documentation for details).
     /// - **Project and Region**: If not specified, `ProjectId` and `Region` will default to the provider configuration.
-    /// - **Algorithm Validation**: The provider validates that the specified `Algorithm` is compatible with the `Usage` type at plan time, providing early feedback on configuration errors.
+    /// - **Algorithm Validation**: The provider checks at plan time that the specified `Algorithm` is one of the algorithms known to the Key Manager API and is compatible with the `Usage` type (a warning is emitted for unrecognized values).
     /// 
     /// ## Import
     /// 
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway
     public partial class KeyManagerKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// – The cryptographic algorithm to use. The valid algorithms depend on the `Usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         /// - For `SymmetricEncryption`:
         /// </summary>
         [Output("algorithm")]
@@ -320,7 +320,7 @@ namespace Pulumiverse.Scaleway
     public sealed class KeyManagerKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// – The cryptographic algorithm to use. The valid algorithms depend on the `Usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         /// - For `SymmetricEncryption`:
         /// </summary>
         [Input("algorithm", required: true)]
@@ -403,7 +403,7 @@ namespace Pulumiverse.Scaleway
     public sealed class KeyManagerKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// – The cryptographic algorithm to use. The valid algorithms depend on the `Usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
         /// - For `SymmetricEncryption`:
         /// </summary>
         [Input("algorithm")]

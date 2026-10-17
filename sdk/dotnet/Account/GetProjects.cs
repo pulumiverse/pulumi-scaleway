@@ -264,6 +264,7 @@ namespace Pulumiverse.Scaleway.Account
         /// (Computed) A list of projects. Each project has the following attributes:
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectsProjectResult> Projects;
+        public readonly string Srn;
         /// <summary>
         /// (Computed) The date and time when the project was updated.
         /// </summary>
@@ -283,6 +284,8 @@ namespace Pulumiverse.Scaleway.Account
 
             ImmutableArray<Outputs.GetProjectsProjectResult> projects,
 
+            string srn,
+
             string updatedAt)
         {
             CreatedAt = createdAt;
@@ -291,6 +294,7 @@ namespace Pulumiverse.Scaleway.Account
             Name = name;
             OrganizationId = organizationId;
             Projects = projects;
+            Srn = srn;
             UpdatedAt = updatedAt;
         }
     }

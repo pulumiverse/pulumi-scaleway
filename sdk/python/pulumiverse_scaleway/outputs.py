@@ -170,8 +170,6 @@ __all__ = [
     'GetBaremetalServerPrivateNetworkResult',
     'GetBillingConsumptionsConsumptionResult',
     'GetBillingInvoicesInvoiceResult',
-    'GetBlockSnapshotExportResult',
-    'GetBlockSnapshotImportResult',
     'GetContainerHealthCheckResult',
     'GetContainerHealthCheckHttpResult',
     'GetContainerLivenessProbeResult',
@@ -10053,64 +10051,6 @@ class GetBillingInvoicesInvoiceResult(dict):
         The total amount, untaxed.
         """
         return pulumi.get(self, "total_untaxed")
-
-
-@pulumi.output_type
-class GetBlockSnapshotExportResult(dict):
-    def __init__(__self__, *,
-                 bucket: _builtins.str,
-                 key: _builtins.str):
-        """
-        :param _builtins.str bucket: Bucket containing qcow
-        :param _builtins.str key: Key of the qcow file in the specified bucket
-        """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "key", key)
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> _builtins.str:
-        """
-        Bucket containing qcow
-        """
-        return pulumi.get(self, "bucket")
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        Key of the qcow file in the specified bucket
-        """
-        return pulumi.get(self, "key")
-
-
-@pulumi.output_type
-class GetBlockSnapshotImportResult(dict):
-    def __init__(__self__, *,
-                 bucket: _builtins.str,
-                 key: _builtins.str):
-        """
-        :param _builtins.str bucket: Bucket containing qcow
-        :param _builtins.str key: Key of the qcow file in the specified bucket
-        """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "key", key)
-
-    @_builtins.property
-    @pulumi.getter
-    def bucket(self) -> _builtins.str:
-        """
-        Bucket containing qcow
-        """
-        return pulumi.get(self, "bucket")
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        Key of the qcow file in the specified bucket
-        """
-        return pulumi.get(self, "key")
 
 
 @pulumi.output_type

@@ -33,6 +33,7 @@ class KubernetesNodePoolArgs:
                  min_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -75,6 +76,10 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network to which the nodes of the pool will be attached.
+               The private network needs to be in the same VPC as the API server/the cluster.
+               
+               > **Important:** Updates to this field will recreate the resource.
         :param pulumi.Input[_builtins.bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -127,6 +132,8 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "name", name)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if public_ip_disabled is not None:
             pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
         if region is not None:
@@ -311,6 +318,21 @@ class KubernetesNodePoolArgs:
     @placement_group_id.setter
     def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the private network to which the nodes of the pool will be attached.
+        The private network needs to be in the same VPC as the API server/the cluster.
+
+        > **Important:** Updates to this field will recreate the resource.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
@@ -503,6 +525,7 @@ class _KubernetesNodePoolState:
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  nodes: pulumi.Input[Optional[Sequence[pulumi.Input['KubernetesNodePoolNodeArgs']]]] = None,
                  placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -549,6 +572,10 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network to which the nodes of the pool will be attached.
+               The private network needs to be in the same VPC as the API server/the cluster.
+               
+               > **Important:** Updates to this field will recreate the resource.
         :param pulumi.Input[_builtins.bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -614,6 +641,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "nodes", nodes)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if public_ip_disabled is not None:
             pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
         if region is not None:
@@ -828,6 +857,21 @@ class _KubernetesNodePoolState:
     @placement_group_id.setter
     def placement_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the private network to which the nodes of the pool will be attached.
+        The private network needs to be in the same VPC as the API server/the cluster.
+
+        > **Important:** Updates to this field will recreate the resource.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_network_id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
@@ -1075,6 +1119,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1094,6 +1139,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         The `kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
 
         Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+        ## Example Usage
 
         ## Placement Group
 
@@ -1200,6 +1247,10 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network to which the nodes of the pool will be attached.
+               The private network needs to be in the same VPC as the API server/the cluster.
+               
+               > **Important:** Updates to this field will recreate the resource.
         :param pulumi.Input[_builtins.bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -1244,6 +1295,8 @@ class KubernetesNodePool(pulumi.CustomResource):
         The `kubernetes.Pool` resource allows you to create and manage Scaleway Kubernetes cluster pools.
 
         Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+        ## Example Usage
 
         ## Placement Group
 
@@ -1351,6 +1404,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1390,6 +1444,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["placement_group_id"] = placement_group_id
+            __props__.__dict__["private_network_id"] = private_network_id
             __props__.__dict__["public_ip_disabled"] = public_ip_disabled
             __props__.__dict__["region"] = region
             __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
@@ -1436,6 +1491,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict']]]]] = None,
             placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1486,6 +1542,10 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network to which the nodes of the pool will be attached.
+               The private network needs to be in the same VPC as the API server/the cluster.
+               
+               > **Important:** Updates to this field will recreate the resource.
         :param pulumi.Input[_builtins.bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -1541,6 +1601,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["placement_group_id"] = placement_group_id
+        __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["public_ip_disabled"] = public_ip_disabled
         __props__.__dict__["region"] = region
         __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
@@ -1683,6 +1744,17 @@ class KubernetesNodePool(pulumi.CustomResource):
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the private network to which the nodes of the pool will be attached.
+        The private network needs to be in the same VPC as the API server/the cluster.
+
+        > **Important:** Updates to this field will recreate the resource.
+        """
+        return pulumi.get(self, "private_network_id")
 
     @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
