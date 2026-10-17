@@ -29,7 +29,7 @@ class GetKubernetesNodePoolResult:
     """
     A collection of values returned by getKubernetesNodePool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, srn=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, user_data=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, labels=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, private_network_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, srn=None, startup_taints=None, status=None, tags=None, taints=None, updated_at=None, upgrade_policies=None, user_data=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -78,6 +78,9 @@ class GetKubernetesNodePoolResult:
         if pool_id and not isinstance(pool_id, str):
             raise TypeError("Expected argument 'pool_id' to be a str")
         pulumi.set(__self__, "pool_id", pool_id)
+        if private_network_id and not isinstance(private_network_id, str):
+            raise TypeError("Expected argument 'private_network_id' to be a str")
+        pulumi.set(__self__, "private_network_id", private_network_id)
         if public_ip_disabled and not isinstance(public_ip_disabled, bool):
             raise TypeError("Expected argument 'public_ip_disabled' to be a bool")
         pulumi.set(__self__, "public_ip_disabled", public_ip_disabled)
@@ -247,6 +250,11 @@ class GetKubernetesNodePoolResult:
         return pulumi.get(self, "pool_id")
 
     @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        return pulumi.get(self, "private_network_id")
+
+    @_builtins.property
     @pulumi.getter(name="publicIpDisabled")
     def public_ip_disabled(self) -> _builtins.bool:
         return pulumi.get(self, "public_ip_disabled")
@@ -375,6 +383,7 @@ class AwaitableGetKubernetesNodePoolResult(GetKubernetesNodePoolResult):
             nodes=self.nodes,
             placement_group_id=self.placement_group_id,
             pool_id=self.pool_id,
+            private_network_id=self.private_network_id,
             public_ip_disabled=self.public_ip_disabled,
             region=self.region,
             root_volume_size_in_gb=self.root_volume_size_in_gb,
@@ -458,6 +467,7 @@ def get_kubernetes_node_pool(cluster_id: Optional[_builtins.str] = None,
         nodes=pulumi.get(__ret__, 'nodes'),
         placement_group_id=pulumi.get(__ret__, 'placement_group_id'),
         pool_id=pulumi.get(__ret__, 'pool_id'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
         public_ip_disabled=pulumi.get(__ret__, 'public_ip_disabled'),
         region=pulumi.get(__ret__, 'region'),
         root_volume_size_in_gb=pulumi.get(__ret__, 'root_volume_size_in_gb'),
@@ -538,6 +548,7 @@ def get_kubernetes_node_pool_output(cluster_id: pulumi.Input[Optional[Optional[_
         nodes=pulumi.get(__response__, 'nodes'),
         placement_group_id=pulumi.get(__response__, 'placement_group_id'),
         pool_id=pulumi.get(__response__, 'pool_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
         public_ip_disabled=pulumi.get(__response__, 'public_ip_disabled'),
         region=pulumi.get(__response__, 'region'),
         root_volume_size_in_gb=pulumi.get(__response__, 'root_volume_size_in_gb'),

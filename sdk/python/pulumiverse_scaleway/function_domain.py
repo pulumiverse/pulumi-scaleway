@@ -85,6 +85,7 @@ class _FunctionDomainState:
                  function_id: pulumi.Input[Optional[_builtins.str]] = None,
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionDomain resources.
@@ -96,6 +97,7 @@ class _FunctionDomainState:
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function domain.
         :param pulumi.Input[_builtins.str] url: The URL used to query the function.
         """
         if function_id is not None:
@@ -104,6 +106,8 @@ class _FunctionDomainState:
             pulumi.set(__self__, "hostname", hostname)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -146,6 +150,18 @@ class _FunctionDomainState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the function domain.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -298,6 +314,7 @@ class FunctionDomain(pulumi.CustomResource):
                 raise TypeError("Missing required property 'hostname'")
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["region"] = region
+            __props__.__dict__["srn"] = None
             __props__.__dict__["url"] = None
         super(FunctionDomain, __self__).__init__(
             'scaleway:index/functionDomain:FunctionDomain',
@@ -312,6 +329,7 @@ class FunctionDomain(pulumi.CustomResource):
             function_id: pulumi.Input[Optional[_builtins.str]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None) -> 'FunctionDomain':
         """
         Get an existing FunctionDomain resource's state with the given name, id, and optional extra
@@ -327,6 +345,7 @@ class FunctionDomain(pulumi.CustomResource):
                
                > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
         :param pulumi.Input[_builtins.str] region: (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function domain.
         :param pulumi.Input[_builtins.str] url: The URL used to query the function.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -336,6 +355,7 @@ class FunctionDomain(pulumi.CustomResource):
         __props__.__dict__["function_id"] = function_id
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["url"] = url
         return FunctionDomain(resource_name, opts=opts, __props__=__props__)
 
@@ -366,6 +386,14 @@ class FunctionDomain(pulumi.CustomResource):
         (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the function domain.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

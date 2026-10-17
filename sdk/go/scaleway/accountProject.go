@@ -102,6 +102,8 @@ type AccountProject struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the project.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The last update time of the Project.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -144,6 +146,8 @@ type accountProjectState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the project.
+	Srn *string `pulumi:"srn"`
 	// The last update time of the Project.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -157,6 +161,8 @@ type AccountProjectState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 	OrganizationId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the project.
+	Srn pulumi.StringPtrInput
 	// The last update time of the Project.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -289,6 +295,11 @@ func (o AccountProjectOutput) Name() pulumi.StringOutput {
 // `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
 func (o AccountProjectOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the project.
+func (o AccountProjectOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The last update time of the Project.

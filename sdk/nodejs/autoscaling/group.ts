@@ -127,7 +127,7 @@ import * as utilities from "../utilities";
  * AutoScaling Groups can be imported using their `id`:
  *
  * ```sh
- * $ pulumi import scaleway:autoscaling/group:Group main <group_id>
+ * $ pulumi import scaleway:autoscaling/group:Group main GROUP_ID
  * ```
  */
 export class Group extends pulumi.CustomResource {
@@ -185,6 +185,10 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly scalingPolicy: pulumi.Output<outputs.autoscaling.GroupScalingPolicy>;
     /**
+     * The Scaleway Resource Name (SRN) of the AutoScaling Group.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The current status of the AutoScaling Group.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -223,6 +227,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["scalingPolicy"] = state?.scalingPolicy;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["templateId"] = state?.templateId;
@@ -244,6 +249,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["templateId"] = args?.templateId;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -282,6 +288,10 @@ export interface GroupState {
      * > The `scalingPolicy` block contains:
      */
     scalingPolicy?: pulumi.Input<inputs.autoscaling.GroupScalingPolicy | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the AutoScaling Group.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The current status of the AutoScaling Group.
      */

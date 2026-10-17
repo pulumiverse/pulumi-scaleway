@@ -2108,6 +2108,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "mailbox/alias",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/alias:Alias": "Alias"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "mailbox/domain",
   "fqn": "pulumiverse_scaleway.mailbox",
   "classes": {

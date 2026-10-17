@@ -108,6 +108,12 @@ namespace Pulumiverse.Scaleway.Functions
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function namespace.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The list of tags associated with the namespace.
         /// </summary>
         [Output("tags")]
@@ -313,6 +319,12 @@ namespace Pulumiverse.Scaleway.Functions
                 _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function namespace.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

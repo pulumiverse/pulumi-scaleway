@@ -73,7 +73,7 @@ import (
 // Annotation bindings can be imported using their `id`:
 //
 // ```sh
-// $ pulumi import scaleway:annotations/binding:Binding main <binding_id>
+// $ pulumi import scaleway:annotations/binding:Binding main BINDING_ID
 // ```
 type Binding struct {
 	pulumi.CustomResourceState

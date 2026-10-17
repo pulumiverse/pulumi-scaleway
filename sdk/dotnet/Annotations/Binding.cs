@@ -60,7 +60,7 @@ namespace Pulumiverse.Scaleway.Annotations
     /// Annotation bindings can be imported using their `Id`:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:annotations/binding:Binding main &lt;binding_id&gt;
+    /// $ pulumi import scaleway:annotations/binding:Binding main BINDING_ID
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:annotations/binding:Binding")]

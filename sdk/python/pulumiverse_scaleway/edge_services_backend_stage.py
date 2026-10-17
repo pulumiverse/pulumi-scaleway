@@ -36,7 +36,7 @@ class EdgeServicesBackendStageArgs:
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesBackendStageLbBackendConfigArgs']]] lb_backend_configs: The Scaleway Load Balancer linked to the backend stage.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
                
-               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         :param pulumi.Input['EdgeServicesBackendStageS3BackendConfigArgs'] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
@@ -105,7 +105,7 @@ class EdgeServicesBackendStageArgs:
         """
         `project_id`) The ID of the project the backend stage is associated with.
 
-        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         """
         return pulumi.get(self, "project_id")
 
@@ -147,7 +147,7 @@ class _EdgeServicesBackendStageState:
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
                
-               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         :param pulumi.Input['EdgeServicesBackendStageS3BackendConfigArgs'] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the backend stage.
         """
@@ -234,7 +234,7 @@ class _EdgeServicesBackendStageState:
         """
         `project_id`) The ID of the project the backend stage is associated with.
 
-        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         """
         return pulumi.get(self, "project_id")
 
@@ -399,7 +399,7 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
                
-               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         :param pulumi.Input[Union['EdgeServicesBackendStageS3BackendConfigArgs', 'EdgeServicesBackendStageS3BackendConfigArgsDict']] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         """
         ...
@@ -587,7 +587,7 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the backend stage is associated with.
                
-               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+               > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         :param pulumi.Input[Union['EdgeServicesBackendStageS3BackendConfigArgs', 'EdgeServicesBackendStageS3BackendConfigArgsDict']] s3_backend_config: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the backend stage.
         """
@@ -651,7 +651,7 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
         """
         `project_id`) The ID of the project the backend stage is associated with.
 
-        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive.
+        > **Important:** `s3_backend_config`, `lb_backend_config`, `container_backend_config` and `function_backend_config` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
         """
         return pulumi.get(self, "project_id")
 

@@ -97,6 +97,10 @@ export interface GetNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    /**
+     * The Scaleway Resource Name (SRN) of the container namespace.
+     */
+    readonly srn: string;
     readonly tags: string[];
 }
 /**

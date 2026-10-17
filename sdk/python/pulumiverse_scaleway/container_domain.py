@@ -77,6 +77,7 @@ class _ContainerDomainState:
                  container_id: pulumi.Input[Optional[_builtins.str]] = None,
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ContainerDomain resources.
@@ -84,6 +85,7 @@ class _ContainerDomainState:
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the container exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container domain.
         :param pulumi.Input[_builtins.str] url: (Deprecated) The URL used to query the container.
         """
         if container_id is not None:
@@ -92,6 +94,8 @@ class _ContainerDomainState:
             pulumi.set(__self__, "hostname", hostname)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if url is not None:
             warnings.warn("""URL won't be displayed on v1""", DeprecationWarning)
             pulumi.log.warn("""url is deprecated: URL won't be displayed on v1""")
@@ -133,6 +137,18 @@ class _ContainerDomainState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the container domain.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -334,6 +350,7 @@ class ContainerDomain(pulumi.CustomResource):
                 raise TypeError("Missing required property 'hostname'")
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["region"] = region
+            __props__.__dict__["srn"] = None
             __props__.__dict__["url"] = None
         super(ContainerDomain, __self__).__init__(
             'scaleway:index/containerDomain:ContainerDomain',
@@ -348,6 +365,7 @@ class ContainerDomain(pulumi.CustomResource):
             container_id: pulumi.Input[Optional[_builtins.str]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None) -> 'ContainerDomain':
         """
         Get an existing ContainerDomain resource's state with the given name, id, and optional extra
@@ -359,6 +377,7 @@ class ContainerDomain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container.
         :param pulumi.Input[_builtins.str] hostname: The hostname with a CNAME record.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the container exists.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container domain.
         :param pulumi.Input[_builtins.str] url: (Deprecated) The URL used to query the container.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -368,6 +387,7 @@ class ContainerDomain(pulumi.CustomResource):
         __props__.__dict__["container_id"] = container_id
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["url"] = url
         return ContainerDomain(resource_name, opts=opts, __props__=__props__)
 
@@ -394,6 +414,14 @@ class ContainerDomain(pulumi.CustomResource):
         `region`) The region in which the container exists.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the container domain.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

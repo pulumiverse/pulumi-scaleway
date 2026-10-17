@@ -95,6 +95,7 @@ export interface GetProjectsResult {
      * (Computed) A list of projects. Each project has the following attributes:
      */
     readonly projects: outputs.account.GetProjectsProject[];
+    readonly srn: string;
     /**
      * (Computed) The date and time when the project was updated.
      */

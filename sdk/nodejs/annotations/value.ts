@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  * Annotation values can be imported using their `id`:
  *
  * ```sh
- * $ pulumi import scaleway:annotations/value:Value main <value_id>
+ * $ pulumi import scaleway:annotations/value:Value main VALUE_ID
  * ```
  */
 export class Value extends pulumi.CustomResource {
@@ -73,6 +73,10 @@ export class Value extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the annotation value.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The ID of the annotation value.
      */
     declare public /*out*/ readonly valueId: pulumi.Output<string>;
@@ -93,6 +97,7 @@ export class Value extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["keyId"] = state?.keyId;
             resourceInputs["name"] = state?.name;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["valueId"] = state?.valueId;
         } else {
             const args = argsOrState as ValueArgs | undefined;
@@ -102,6 +107,7 @@ export class Value extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["keyId"] = args?.keyId;
             resourceInputs["name"] = args?.name;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["valueId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -125,6 +131,10 @@ export interface ValueState {
      * Name of the annotation value.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the annotation value.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The ID of the annotation value.
      */

@@ -180,7 +180,7 @@ import (
 //     If you set `nextRotationAt` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `nextRotationAt`, so the configured value becomes stale: update or remove it from the configuration (or use `ignoreChanges`) to avoid a permanent diff.
 //   - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
 //   - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
-//   - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
+//   - **Algorithm Validation**: The provider checks at plan time that the specified `algorithm` is one of the algorithms known to the Key Manager API and is compatible with the `usage` type (a warning is emitted for unrecognized values).
 //
 // ## Import
 //
@@ -194,7 +194,7 @@ import (
 type KeyManagerKey struct {
 	pulumi.CustomResourceState
 
-	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:
 	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
 	// The date and time when the key was created.
@@ -273,7 +273,7 @@ func GetKeyManagerKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyManagerKey resources.
 type keyManagerKeyState struct {
-	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:
 	Algorithm *string `pulumi:"algorithm"`
 	// The date and time when the key was created.
@@ -317,7 +317,7 @@ type keyManagerKeyState struct {
 }
 
 type KeyManagerKeyState struct {
-	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:
 	Algorithm pulumi.StringPtrInput
 	// The date and time when the key was created.
@@ -365,7 +365,7 @@ func (KeyManagerKeyState) ElementType() reflect.Type {
 }
 
 type keyManagerKeyArgs struct {
-	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:
 	Algorithm string `pulumi:"algorithm"`
 	// – A description for the key.
@@ -394,7 +394,7 @@ type keyManagerKeyArgs struct {
 
 // The set of arguments for constructing a KeyManagerKey resource.
 type KeyManagerKeyArgs struct {
-	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:
 	Algorithm pulumi.StringInput
 	// – A description for the key.
@@ -508,7 +508,7 @@ func (o KeyManagerKeyOutput) ToKeyManagerKeyOutputWithContext(ctx context.Contex
 	return o
 }
 
-// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 // - For `symmetricEncryption`:
 func (o KeyManagerKeyOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)

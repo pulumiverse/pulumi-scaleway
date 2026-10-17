@@ -387,6 +387,10 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Defines how to check if the container has started successfully.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetContainerStartupProbeResult> StartupProbes;
@@ -483,6 +487,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
+            string srn,
+
             ImmutableArray<Outputs.GetContainerStartupProbeResult> startupProbes,
 
             string status,
@@ -530,6 +536,7 @@ namespace Pulumiverse.Scaleway
             Sandbox = sandbox;
             ScalingOptions = scalingOptions;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Srn = srn;
             StartupProbes = startupProbes;
             Status = status;
             Tags = tags;

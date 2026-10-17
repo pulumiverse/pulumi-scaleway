@@ -214,7 +214,7 @@ import (
 // AutoScaling Groups can be imported using their `id`:
 //
 // ```sh
-// $ pulumi import scaleway:autoscaling/group:Group main <group_id>
+// $ pulumi import scaleway:autoscaling/group:Group main GROUP_ID
 // ```
 type Group struct {
 	pulumi.CustomResourceState
@@ -235,6 +235,8 @@ type Group struct {
 	//
 	// > The `scalingPolicy` block contains:
 	ScalingPolicy GroupScalingPolicyOutput `pulumi:"scalingPolicy"`
+	// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The current status of the AutoScaling Group.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the AutoScaling Group.
@@ -299,6 +301,8 @@ type groupState struct {
 	//
 	// > The `scalingPolicy` block contains:
 	ScalingPolicy *GroupScalingPolicy `pulumi:"scalingPolicy"`
+	// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+	Srn *string `pulumi:"srn"`
 	// The current status of the AutoScaling Group.
 	Status *string `pulumi:"status"`
 	// The tags associated with the AutoScaling Group.
@@ -328,6 +332,8 @@ type GroupState struct {
 	//
 	// > The `scalingPolicy` block contains:
 	ScalingPolicy GroupScalingPolicyPtrInput
+	// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+	Srn pulumi.StringPtrInput
 	// The current status of the AutoScaling Group.
 	Status pulumi.StringPtrInput
 	// The tags associated with the AutoScaling Group.
@@ -507,6 +513,11 @@ func (o GroupOutput) ProjectId() pulumi.StringOutput {
 // > The `scalingPolicy` block contains:
 func (o GroupOutput) ScalingPolicy() GroupScalingPolicyOutput {
 	return o.ApplyT(func(v *Group) GroupScalingPolicyOutput { return v.ScalingPolicy }).(GroupScalingPolicyOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+func (o GroupOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The current status of the AutoScaling Group.

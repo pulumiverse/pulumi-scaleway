@@ -157,6 +157,7 @@ class _GroupState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scaling_policy: pulumi.Input[Optional['GroupScalingPolicyArgs']] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -176,6 +177,7 @@ class _GroupState:
         :param pulumi.Input['GroupScalingPolicyArgs'] scaling_policy: The scaling policy configuration.
                
                > The `scaling_policy` block contains:
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the AutoScaling Group.
         :param pulumi.Input[_builtins.str] status: The current status of the AutoScaling Group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the AutoScaling Group.
         :param pulumi.Input[_builtins.str] template_id: The ID of the Instance Template used to create instances in this group.
@@ -192,6 +194,8 @@ class _GroupState:
             pulumi.set(__self__, "project_id", project_id)
         if scaling_policy is not None:
             pulumi.set(__self__, "scaling_policy", scaling_policy)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -268,6 +272,18 @@ class _GroupState:
     @scaling_policy.setter
     def scaling_policy(self, value: pulumi.Input[Optional['GroupScalingPolicyArgs']]):
         pulumi.set(self, "scaling_policy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the AutoScaling Group.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -459,7 +475,7 @@ class Group(pulumi.CustomResource):
         AutoScaling Groups can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:autoscaling/group:Group main <group_id>
+        $ pulumi import scaleway:autoscaling/group:Group main GROUP_ID
         ```
 
 
@@ -600,7 +616,7 @@ class Group(pulumi.CustomResource):
         AutoScaling Groups can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:autoscaling/group:Group main <group_id>
+        $ pulumi import scaleway:autoscaling/group:Group main GROUP_ID
         ```
 
 
@@ -647,6 +663,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["template_id"] = template_id
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Group, __self__).__init__(
@@ -664,6 +681,7 @@ class Group(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             template_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -687,6 +705,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']] scaling_policy: The scaling policy configuration.
                
                > The `scaling_policy` block contains:
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the AutoScaling Group.
         :param pulumi.Input[_builtins.str] status: The current status of the AutoScaling Group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the AutoScaling Group.
         :param pulumi.Input[_builtins.str] template_id: The ID of the Instance Template used to create instances in this group.
@@ -702,6 +721,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["scaling_policy"] = scaling_policy
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["template_id"] = template_id
@@ -754,6 +774,14 @@ class Group(pulumi.CustomResource):
         > The `scaling_policy` block contains:
         """
         return pulumi.get(self, "scaling_policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the AutoScaling Group.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -384,6 +384,7 @@ class _FunctionState:
                  runtime: pulumi.Input[Optional[_builtins.str]] = None,
                  sandbox: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  zip_file: pulumi.Input[Optional[_builtins.str]] = None,
@@ -413,6 +414,7 @@ class _FunctionState:
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
@@ -458,6 +460,8 @@ class _FunctionState:
             pulumi.set(__self__, "sandbox", sandbox)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if timeout is not None:
@@ -708,6 +712,18 @@ class _FunctionState:
     @secret_environment_variables.setter
     def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the function.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1099,6 +1115,7 @@ class Function(pulumi.CustomResource):
             __props__.__dict__["cpu_limit"] = None
             __props__.__dict__["domain_name"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Function, __self__).__init__(
@@ -1131,6 +1148,7 @@ class Function(pulumi.CustomResource):
             runtime: pulumi.Input[Optional[_builtins.str]] = None,
             sandbox: pulumi.Input[Optional[_builtins.str]] = None,
             secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             timeout: pulumi.Input[Optional[_builtins.int]] = None,
             zip_file: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1164,6 +1182,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
         :param pulumi.Input[_builtins.str] sandbox: Execution environment of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the function.
         :param pulumi.Input[_builtins.int] timeout: The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
         :param pulumi.Input[_builtins.str] zip_file: Path to the zip file containing your function sources to upload.
@@ -1193,6 +1212,7 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["runtime"] = runtime
         __props__.__dict__["sandbox"] = sandbox
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["zip_file"] = zip_file
@@ -1360,6 +1380,14 @@ class Function(pulumi.CustomResource):
         The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
         """
         return pulumi.get(self, "secret_environment_variables")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the function.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

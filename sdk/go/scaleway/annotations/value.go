@@ -54,7 +54,7 @@ import (
 // Annotation values can be imported using their `id`:
 //
 // ```sh
-// $ pulumi import scaleway:annotations/value:Value main <value_id>
+// $ pulumi import scaleway:annotations/value:Value main VALUE_ID
 // ```
 type Value struct {
 	pulumi.CustomResourceState
@@ -65,6 +65,8 @@ type Value struct {
 	KeyId pulumi.StringOutput `pulumi:"keyId"`
 	// Name of the annotation value.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the annotation value.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The ID of the annotation value.
 	ValueId pulumi.StringOutput `pulumi:"valueId"`
 }
@@ -108,6 +110,8 @@ type valueState struct {
 	KeyId *string `pulumi:"keyId"`
 	// Name of the annotation value.
 	Name *string `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the annotation value.
+	Srn *string `pulumi:"srn"`
 	// The ID of the annotation value.
 	ValueId *string `pulumi:"valueId"`
 }
@@ -119,6 +123,8 @@ type ValueState struct {
 	KeyId pulumi.StringPtrInput
 	// Name of the annotation value.
 	Name pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the annotation value.
+	Srn pulumi.StringPtrInput
 	// The ID of the annotation value.
 	ValueId pulumi.StringPtrInput
 }
@@ -246,6 +252,11 @@ func (o ValueOutput) KeyId() pulumi.StringOutput {
 // Name of the annotation value.
 func (o ValueOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Value) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the annotation value.
+func (o ValueOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Value) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The ID of the annotation value.

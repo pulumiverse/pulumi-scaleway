@@ -29,7 +29,7 @@ class GetContainerResult:
     """
     A collection of values returned by getContainer.
     """
-    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, enable_default_public_endpoint=None, enable_private_endpoint=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, https_connections_only=None, id=None, image=None, liveness_probes=None, local_storage_limit=None, local_storage_limit_bytes=None, max_scale=None, memory_limit=None, memory_limit_bytes=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_endpoint=None, private_network_id=None, project_id=None, protocol=None, public_endpoint=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, startup_probes=None, status=None, tags=None, timeout=None):
+    def __init__(__self__, args=None, commands=None, container_id=None, cpu_limit=None, cron_status=None, deploy=None, description=None, domain_name=None, enable_default_public_endpoint=None, enable_private_endpoint=None, environment_variables=None, error_message=None, health_checks=None, http_option=None, https_connections_only=None, id=None, image=None, liveness_probes=None, local_storage_limit=None, local_storage_limit_bytes=None, max_scale=None, memory_limit=None, memory_limit_bytes=None, min_scale=None, name=None, namespace_id=None, port=None, privacy=None, private_endpoint=None, private_network_id=None, project_id=None, protocol=None, public_endpoint=None, region=None, registry_image=None, registry_sha256=None, sandbox=None, scaling_options=None, secret_environment_variables=None, srn=None, startup_probes=None, status=None, tags=None, timeout=None):
         if args and not isinstance(args, list):
             raise TypeError("Expected argument 'args' to be a list")
         pulumi.set(__self__, "args", args)
@@ -147,6 +147,9 @@ class GetContainerResult:
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if startup_probes and not isinstance(startup_probes, list):
             raise TypeError("Expected argument 'startup_probes' to be a list")
         pulumi.set(__self__, "startup_probes", startup_probes)
@@ -446,6 +449,14 @@ class GetContainerResult:
         return pulumi.get(self, "secret_environment_variables")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the container.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="startupProbes")
     def startup_probes(self) -> Sequence['outputs.GetContainerStartupProbeResult']:
         """
@@ -523,6 +534,7 @@ class AwaitableGetContainerResult(GetContainerResult):
             sandbox=self.sandbox,
             scaling_options=self.scaling_options,
             secret_environment_variables=self.secret_environment_variables,
+            srn=self.srn,
             startup_probes=self.startup_probes,
             status=self.status,
             tags=self.tags,
@@ -631,6 +643,7 @@ def get_container(container_id: Optional[_builtins.str] = None,
         sandbox=pulumi.get(__ret__, 'sandbox'),
         scaling_options=pulumi.get(__ret__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        srn=pulumi.get(__ret__, 'srn'),
         startup_probes=pulumi.get(__ret__, 'startup_probes'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -736,6 +749,7 @@ def get_container_output(container_id: pulumi.Input[Optional[Optional[_builtins.
         sandbox=pulumi.get(__response__, 'sandbox'),
         scaling_options=pulumi.get(__response__, 'scaling_options'),
         secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        srn=pulumi.get(__response__, 'srn'),
         startup_probes=pulumi.get(__response__, 'startup_probes'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),

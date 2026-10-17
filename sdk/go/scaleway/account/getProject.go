@@ -47,6 +47,7 @@ type LookupProjectResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId *string `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
+	Srn            string  `pulumi:"srn"`
 	UpdatedAt      string  `pulumi:"updatedAt"`
 }
 
@@ -111,6 +112,10 @@ func (o LookupProjectResultOutput) OrganizationId() pulumi.StringPtrOutput {
 
 func (o LookupProjectResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupProjectResultOutput) UpdatedAt() pulumi.StringOutput {

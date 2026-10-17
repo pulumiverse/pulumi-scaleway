@@ -174,7 +174,7 @@ export class EdgeServicesBackendStage extends pulumi.CustomResource {
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      *
-     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -256,7 +256,7 @@ export interface EdgeServicesBackendStageState {
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      *
-     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
@@ -292,7 +292,7 @@ export interface EdgeServicesBackendStageArgs {
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      *
-     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive.
+     * > **Important:** `s3BackendConfig`, `lbBackendConfig`, `containerBackendConfig` and `functionBackendConfig` are mutually exclusive. Changing the backend type forces the backend stage to be replaced.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**

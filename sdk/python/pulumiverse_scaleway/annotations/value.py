@@ -78,6 +78,7 @@ class _ValueState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  value_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Value resources.
@@ -85,6 +86,7 @@ class _ValueState:
         :param pulumi.Input[_builtins.str] description: Description of the annotation value.
         :param pulumi.Input[_builtins.str] key_id: ID of the key the value is associated to.
         :param pulumi.Input[_builtins.str] name: Name of the annotation value.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the annotation value.
         :param pulumi.Input[_builtins.str] value_id: The ID of the annotation value.
         """
         if description is not None:
@@ -93,6 +95,8 @@ class _ValueState:
             pulumi.set(__self__, "key_id", key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if value_id is not None:
             pulumi.set(__self__, "value_id", value_id)
 
@@ -131,6 +135,18 @@ class _ValueState:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the annotation value.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="valueId")
@@ -178,7 +194,7 @@ class Value(pulumi.CustomResource):
         Annotation values can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:annotations/value:Value main <value_id>
+        $ pulumi import scaleway:annotations/value:Value main VALUE_ID
         ```
 
 
@@ -217,7 +233,7 @@ class Value(pulumi.CustomResource):
         Annotation values can be imported using their `id`:
 
         ```sh
-        $ pulumi import scaleway:annotations/value:Value main <value_id>
+        $ pulumi import scaleway:annotations/value:Value main VALUE_ID
         ```
 
 
@@ -253,6 +269,7 @@ class Value(pulumi.CustomResource):
                 raise TypeError("Missing required property 'key_id'")
             __props__.__dict__["key_id"] = key_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["srn"] = None
             __props__.__dict__["value_id"] = None
         super(Value, __self__).__init__(
             'scaleway:annotations/value:Value',
@@ -267,6 +284,7 @@ class Value(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             value_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Value':
         """
         Get an existing Value resource's state with the given name, id, and optional extra
@@ -278,6 +296,7 @@ class Value(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the annotation value.
         :param pulumi.Input[_builtins.str] key_id: ID of the key the value is associated to.
         :param pulumi.Input[_builtins.str] name: Name of the annotation value.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the annotation value.
         :param pulumi.Input[_builtins.str] value_id: The ID of the annotation value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -287,6 +306,7 @@ class Value(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["key_id"] = key_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["value_id"] = value_id
         return Value(resource_name, opts=opts, __props__=__props__)
 
@@ -313,6 +333,14 @@ class Value(pulumi.CustomResource):
         Name of the annotation value.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the annotation value.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="valueId")

@@ -150,6 +150,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Runtime;
         public readonly string Sandbox;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly int Timeout;
         public readonly string ZipFile;
@@ -201,6 +202,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             int timeout,
@@ -231,6 +234,7 @@ namespace Pulumiverse.Scaleway
             Runtime = runtime;
             Sandbox = sandbox;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Srn = srn;
             Tags = tags;
             Timeout = timeout;
             ZipFile = zipFile;

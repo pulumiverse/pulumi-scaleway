@@ -176,19 +176,19 @@ import (
 // To import an existing domain registration, use the domain name:
 //
 // ```sh
-// $ pulumi import scaleway:domain/registration:Registration test <domain_name>
+// $ pulumi import scaleway:domain/registration:Registration test DOMAIN_NAME
 // ```
 //
 // For a multi-domain registration, list every domain name separated by commas. The order matters: use the same order as the `domainNames` argument in your configuration to avoid a plan diff after import.
 //
 // ```sh
-// $ pulumi import scaleway:domain/registration:Registration test <domain1.com>,<domain2.com>
+// $ pulumi import scaleway:domain/registration:Registration test DOMAIN1,DOMAIN2
 // ```
 //
 // Importing by task ID is also supported, as long as the registration task still exists:
 //
 // ```sh
-// $ pulumi import scaleway:domain/registration:Registration test <task_id>
+// $ pulumi import scaleway:domain/registration:Registration test TASK_ID
 // ```
 //
 // The `projectId` is resolved automatically from the API and does not need to be provided in the import ID. A legacy `<project_id>/<domain_name>` or `<project_id>/<task_id>` format is still accepted for backward compatibility.

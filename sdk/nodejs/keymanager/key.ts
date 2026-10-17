@@ -100,7 +100,7 @@ import * as utilities from "../utilities";
  *   If you set `nextRotationAt` explicitly, it must be in the future (the API rejects past dates). Once the scheduled rotation occurs, the API computes a new `nextRotationAt`, so the configured value becomes stale: update or remove it from the configuration (or use `ignoreChanges`) to avoid a permanent diff.
  * - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
  * - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
- * - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
+ * - **Algorithm Validation**: The provider checks at plan time that the specified `algorithm` is one of the algorithms known to the Key Manager API and is compatible with the `usage` type (a warning is emitted for unrecognized values).
  *
  * ## Import
  *
@@ -139,7 +139,7 @@ export class Key extends pulumi.CustomResource {
     }
 
     /**
-     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
      * - For `symmetricEncryption`:
      */
     declare public readonly algorithm: pulumi.Output<string>;
@@ -290,7 +290,7 @@ export class Key extends pulumi.CustomResource {
  */
 export interface KeyState {
     /**
-     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
      * - For `symmetricEncryption`:
      */
     algorithm?: pulumi.Input<string | undefined>;
@@ -375,7 +375,7 @@ export interface KeyState {
  */
 export interface KeyArgs {
     /**
-     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
      * - For `symmetricEncryption`:
      */
     algorithm: pulumi.Input<string>;

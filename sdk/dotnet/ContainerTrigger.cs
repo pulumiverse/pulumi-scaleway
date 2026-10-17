@@ -181,6 +181,12 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.ContainerTriggerSqs?> Sqs { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container trigger.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The list of tags associated with the trigger.
         /// </summary>
         [Output("tags")]
@@ -352,6 +358,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.ContainerTriggerSqsGetArgs>? Sqs { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container trigger.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

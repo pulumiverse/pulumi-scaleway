@@ -1166,28 +1166,6 @@ export interface GetBillingInvoicesInvoice {
     totalUntaxed: string;
 }
 
-export interface GetBlockSnapshotExport {
-    /**
-     * Bucket containing qcow
-     */
-    bucket: string;
-    /**
-     * Key of the qcow file in the specified bucket
-     */
-    key: string;
-}
-
-export interface GetBlockSnapshotImport {
-    /**
-     * Bucket containing qcow
-     */
-    bucket: string;
-    /**
-     * Key of the qcow file in the specified bucket
-     */
-    key: string;
-}
-
 export interface GetContainerHealthCheck {
     /**
      * Number of consecutive failures before considering the container has to be restarted.
@@ -5828,28 +5806,6 @@ export namespace billing {
 }
 
 export namespace block {
-    export interface GetSnapshotExport {
-        /**
-         * Bucket containing qcow
-         */
-        bucket: string;
-        /**
-         * Key of the qcow file in the specified bucket
-         */
-        key: string;
-    }
-
-    export interface GetSnapshotImport {
-        /**
-         * Bucket containing qcow
-         */
-        bucket: string;
-        /**
-         * Key of the qcow file in the specified bucket
-         */
-        key: string;
-    }
-
     export interface GetSnapshotsSnapshot {
         /**
          * The ID of the snapshot in the `zone/uuid` format.

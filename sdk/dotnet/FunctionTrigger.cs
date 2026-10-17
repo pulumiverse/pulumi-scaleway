@@ -115,6 +115,12 @@ namespace Pulumiverse.Scaleway
         [Output("sqs")]
         public Output<Outputs.FunctionTriggerSqs?> Sqs { get; private set; } = null!;
 
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function trigger.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a FunctionTrigger resource with the given unique name, arguments, and options.
@@ -241,6 +247,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("sqs")]
         public Input<Inputs.FunctionTriggerSqsGetArgs>? Sqs { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function trigger.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         public FunctionTriggerState()
         {

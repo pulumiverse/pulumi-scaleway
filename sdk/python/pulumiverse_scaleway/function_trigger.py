@@ -130,7 +130,8 @@ class _FunctionTriggerState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  nats: pulumi.Input[Optional['FunctionTriggerNatsArgs']] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 sqs: pulumi.Input[Optional['FunctionTriggerSqsArgs']] = None):
+                 sqs: pulumi.Input[Optional['FunctionTriggerSqsArgs']] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FunctionTrigger resources.
 
@@ -140,6 +141,7 @@ class _FunctionTriggerState:
         :param pulumi.Input['FunctionTriggerNatsArgs'] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input['FunctionTriggerSqsArgs'] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function trigger.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -153,6 +155,8 @@ class _FunctionTriggerState:
             pulumi.set(__self__, "region", region)
         if sqs is not None:
             pulumi.set(__self__, "sqs", sqs)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -225,6 +229,18 @@ class _FunctionTriggerState:
     @sqs.setter
     def sqs(self, value: pulumi.Input[Optional['FunctionTriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the function trigger.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
 
 warnings.warn("""scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger""", DeprecationWarning)
@@ -395,6 +411,7 @@ class FunctionTrigger(pulumi.CustomResource):
             __props__.__dict__["nats"] = nats
             __props__.__dict__["region"] = region
             __props__.__dict__["sqs"] = sqs
+            __props__.__dict__["srn"] = None
         super(FunctionTrigger, __self__).__init__(
             'scaleway:index/functionTrigger:FunctionTrigger',
             resource_name,
@@ -410,7 +427,8 @@ class FunctionTrigger(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             nats: pulumi.Input[Optional[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            sqs: pulumi.Input[Optional[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None) -> 'FunctionTrigger':
+            sqs: pulumi.Input[Optional[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None) -> 'FunctionTrigger':
         """
         Get an existing FunctionTrigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -424,6 +442,7 @@ class FunctionTrigger(pulumi.CustomResource):
         :param pulumi.Input[Union['FunctionTriggerNatsArgs', 'FunctionTriggerNatsArgsDict']] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function trigger.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -435,6 +454,7 @@ class FunctionTrigger(pulumi.CustomResource):
         __props__.__dict__["nats"] = nats
         __props__.__dict__["region"] = region
         __props__.__dict__["sqs"] = sqs
+        __props__.__dict__["srn"] = srn
         return FunctionTrigger(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -484,4 +504,12 @@ class FunctionTrigger(pulumi.CustomResource):
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the function trigger.
+        """
+        return pulumi.get(self, "srn")
 

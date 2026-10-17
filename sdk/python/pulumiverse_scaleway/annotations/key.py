@@ -78,13 +78,15 @@ class _KeyState:
     def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 organization_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Key resources.
 
         :param pulumi.Input[_builtins.str] description: Description of the annotation key.
         :param pulumi.Input[_builtins.str] name: Name of the annotation key.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The organization ID to create the key in.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the annotation key.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -92,6 +94,8 @@ class _KeyState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -129,6 +133,18 @@ class _KeyState:
     def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the annotation key.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
+
 
 @pulumi.type_token("scaleway:annotations/key:Key")
 class Key(pulumi.CustomResource):
@@ -159,11 +175,11 @@ class Key(pulumi.CustomResource):
         Annotation keys can be imported using their `key_id` and optionally the `organization_id`. If no `organization_id` is specified, the default provider `organization_id` will be used.
 
         ```sh
-        $ pulumi import scaleway:annotations/key:Key main <key_id>
+        $ pulumi import scaleway:annotations/key:Key main KEY_ID
         ```
 
         ```sh
-        $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
+        $ pulumi import scaleway:annotations/key:Key main ORGANIZATION_ID/KEY_ID
         ```
 
 
@@ -198,11 +214,11 @@ class Key(pulumi.CustomResource):
         Annotation keys can be imported using their `key_id` and optionally the `organization_id`. If no `organization_id` is specified, the default provider `organization_id` will be used.
 
         ```sh
-        $ pulumi import scaleway:annotations/key:Key main <key_id>
+        $ pulumi import scaleway:annotations/key:Key main KEY_ID
         ```
 
         ```sh
-        $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
+        $ pulumi import scaleway:annotations/key:Key main ORGANIZATION_ID/KEY_ID
         ```
 
 
@@ -236,6 +252,7 @@ class Key(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
+            __props__.__dict__["srn"] = None
         super(Key, __self__).__init__(
             'scaleway:annotations/key:Key',
             resource_name,
@@ -248,7 +265,8 @@ class Key(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            organization_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Key':
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None) -> 'Key':
         """
         Get an existing Key resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -259,6 +277,7 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the annotation key.
         :param pulumi.Input[_builtins.str] name: Name of the annotation key.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The organization ID to create the key in.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the annotation key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -267,6 +286,7 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["srn"] = srn
         return Key(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -292,4 +312,12 @@ class Key(pulumi.CustomResource):
         `organization_id`) The organization ID to create the key in.
         """
         return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the annotation key.
+        """
+        return pulumi.get(self, "srn")
 

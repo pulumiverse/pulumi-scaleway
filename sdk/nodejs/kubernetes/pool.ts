@@ -11,6 +11,8 @@ import * as utilities from "../utilities";
  *
  * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
  *
+ * ## Example Usage
+ *
  * ## Placement Group
  *
  * If you are working with cluster type `multicloud` please set the `zone` where your placement group is e.g:
@@ -191,6 +193,13 @@ export class Pool extends pulumi.CustomResource {
      */
     declare public readonly placementGroupId: pulumi.Output<string | undefined>;
     /**
+     * The ID of the private network to which the nodes of the pool will be attached.
+     * The private network needs to be in the same VPC as the API server/the cluster.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
+     */
+    declare public readonly privateNetworkId: pulumi.Output<string>;
+    /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
      * > **Important:** Updates to this field will recreate a new resource.
@@ -305,6 +314,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["nodes"] = state?.nodes;
             resourceInputs["placementGroupId"] = state?.placementGroupId;
+            resourceInputs["privateNetworkId"] = state?.privateNetworkId;
             resourceInputs["publicIpDisabled"] = state?.publicIpDisabled;
             resourceInputs["region"] = state?.region;
             resourceInputs["rootVolumeSizeInGb"] = state?.rootVolumeSizeInGb;
@@ -344,6 +354,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["placementGroupId"] = args?.placementGroupId;
+            resourceInputs["privateNetworkId"] = args?.privateNetworkId;
             resourceInputs["publicIpDisabled"] = args?.publicIpDisabled;
             resourceInputs["region"] = args?.region;
             resourceInputs["rootVolumeSizeInGb"] = args?.rootVolumeSizeInGb;
@@ -444,6 +455,13 @@ export interface PoolState {
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the private network to which the nodes of the pool will be attached.
+     * The private network needs to be in the same VPC as the API server/the cluster.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
+     */
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
@@ -593,6 +611,13 @@ export interface PoolArgs {
      * > **Important:** Updates to this field will recreate a new resource.
      */
     placementGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the private network to which the nodes of the pool will be attached.
+     * The private network needs to be in the same VPC as the API server/the cluster.
+     *
+     * > **Important:** Updates to this field will recreate the resource.
+     */
+    privateNetworkId?: pulumi.Input<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
