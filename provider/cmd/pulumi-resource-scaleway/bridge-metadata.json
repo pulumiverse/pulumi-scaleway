@@ -1967,6 +1967,10 @@
                 "current": "scaleway:mailbox/mailbox:Mailbox",
                 "majorVersion": 1
             },
+            "scaleway_mailbox_alias": {
+                "current": "scaleway:mailbox/alias:Alias",
+                "majorVersion": 1
+            },
             "scaleway_mailbox_domain": {
                 "current": "scaleway:mailbox/domain:Domain",
                 "majorVersion": 1,
@@ -3190,12 +3194,6 @@
                 ],
                 "majorVersion": 1,
                 "fields": {
-                    "export": {
-                        "maxItemsOne": false
-                    },
-                    "import": {
-                        "maxItemsOne": false
-                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -6765,6 +6763,7 @@
             "scaleway_billing_budget": {},
             "scaleway_billing_budget_alert": {},
             "scaleway_billing_budget_alert_notification": {},
+            "scaleway_block_snapshot": {},
             "scaleway_datalab": {},
             "scaleway_file_filesystem": {},
             "scaleway_iam_saml": {},
@@ -6774,6 +6773,7 @@
             "scaleway_instance_template": {},
             "scaleway_key_manager_key_material": {},
             "scaleway_mailbox": {},
+            "scaleway_mailbox_alias": {},
             "scaleway_mailbox_domain": {},
             "scaleway_messageq_deployment": {},
             "scaleway_messageq_user": {},
@@ -6796,7 +6796,7 @@
             "scaleway:billing/budget:Budget": 1,
             "scaleway:billing/budgetAlert:BudgetAlert": 1,
             "scaleway:billing/budgetAlertNotification:BudgetAlertNotification": 1,
-            "scaleway:block/snapshot:Snapshot": 0,
+            "scaleway:block/snapshot:Snapshot": 1,
             "scaleway:block/volume:Volume": 0,
             "scaleway:containers/container:Container": 0,
             "scaleway:containers/cron:Cron": 0,
@@ -6854,7 +6854,7 @@
             "scaleway:index/accountSshKey:AccountSshKey": 0,
             "scaleway:index/appleSiliconServer:AppleSiliconServer": 0,
             "scaleway:index/baremetalServer:BaremetalServer": 0,
-            "scaleway:index/blockSnapshot:BlockSnapshot": 0,
+            "scaleway:index/blockSnapshot:BlockSnapshot": 1,
             "scaleway:index/blockVolume:BlockVolume": 0,
             "scaleway:index/cockpitAlertManager:CockpitAlertManager": 0,
             "scaleway:index/cockpitSource:CockpitSource": 0,
@@ -7002,6 +7002,7 @@
             "scaleway:loadbalancers/loadBalancer:LoadBalancer": 0,
             "scaleway:loadbalancers/privateNetwork:PrivateNetwork": 0,
             "scaleway:loadbalancers/route:Route": 0,
+            "scaleway:mailbox/alias:Alias": 1,
             "scaleway:mailbox/domain:Domain": 1,
             "scaleway:mailbox/mailbox:Mailbox": 1,
             "scaleway:messageq/deployment:Deployment": 1,
@@ -7075,7 +7076,7 @@
             "scaleway:billing/getBudgetAlertNotification:getBudgetAlertNotification": 1,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
-            "scaleway:block/getSnapshot:getSnapshot": 0,
+            "scaleway:block/getSnapshot:getSnapshot": 1,
             "scaleway:block/getSnapshots:getSnapshots": 1,
             "scaleway:block/getVolume:getVolume": 0,
             "scaleway:containers/getContainer:getContainer": 0,
@@ -7132,7 +7133,7 @@
             "scaleway:index/getBaremetalServer:getBaremetalServer": 0,
             "scaleway:index/getBillingConsumptions:getBillingConsumptions": 0,
             "scaleway:index/getBillingInvoices:getBillingInvoices": 0,
-            "scaleway:index/getBlockSnapshot:getBlockSnapshot": 0,
+            "scaleway:index/getBlockSnapshot:getBlockSnapshot": 1,
             "scaleway:index/getBlockVolume:getBlockVolume": 0,
             "scaleway:index/getCockpitSource:getCockpitSource": 0,
             "scaleway:index/getConfig:getConfig": 0,
