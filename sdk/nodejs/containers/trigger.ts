@@ -154,6 +154,10 @@ export class Trigger extends pulumi.CustomResource {
      */
     declare public readonly sqs: pulumi.Output<outputs.containers.TriggerSqs | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the container trigger.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The list of tags associated with the trigger.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -179,6 +183,7 @@ export class Trigger extends pulumi.CustomResource {
             resourceInputs["nats"] = state?.nats;
             resourceInputs["region"] = state?.region;
             resourceInputs["sqs"] = state?.sqs;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as TriggerArgs | undefined;
@@ -197,6 +202,7 @@ export class Trigger extends pulumi.CustomResource {
             resourceInputs["region"] = args?.region;
             resourceInputs["sqs"] = args?.sqs;
             resourceInputs["tags"] = args?.tags;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/containerTrigger:ContainerTrigger" }] };
@@ -243,6 +249,10 @@ export interface TriggerState {
      * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.containers.TriggerSqs | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the container trigger.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The list of tags associated with the trigger.
      */

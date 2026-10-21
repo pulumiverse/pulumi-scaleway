@@ -184,6 +184,7 @@ class _TriggerState:
                  nats: pulumi.Input[Optional['TriggerNatsArgs']] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  sqs: pulumi.Input[Optional['TriggerSqsArgs']] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Trigger resources.
@@ -198,6 +199,7 @@ class _TriggerState:
         :param pulumi.Input['TriggerNatsArgs'] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input['TriggerSqsArgs'] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container trigger.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the trigger.
         """
         if container_id is not None:
@@ -216,6 +218,8 @@ class _TriggerState:
             pulumi.set(__self__, "region", region)
         if sqs is not None:
             pulumi.set(__self__, "sqs", sqs)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -316,6 +320,18 @@ class _TriggerState:
     @sqs.setter
     def sqs(self, value: pulumi.Input[Optional['TriggerSqsArgs']]):
         pulumi.set(self, "sqs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the container trigger.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -578,6 +594,7 @@ class Trigger(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["sqs"] = sqs
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["srn"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/containerTrigger:ContainerTrigger")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Trigger, __self__).__init__(
@@ -598,6 +615,7 @@ class Trigger(pulumi.CustomResource):
             nats: pulumi.Input[Optional[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             sqs: pulumi.Input[Optional[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Trigger':
         """
         Get an existing Trigger resource's state with the given name, id, and optional extra
@@ -616,6 +634,7 @@ class Trigger(pulumi.CustomResource):
         :param pulumi.Input[Union['TriggerNatsArgs', 'TriggerNatsArgsDict']] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[Union['TriggerSqsArgs', 'TriggerSqsArgsDict']] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container trigger.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the trigger.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -630,6 +649,7 @@ class Trigger(pulumi.CustomResource):
         __props__.__dict__["nats"] = nats
         __props__.__dict__["region"] = region
         __props__.__dict__["sqs"] = sqs
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         return Trigger(resource_name, opts=opts, __props__=__props__)
 
@@ -698,6 +718,14 @@ class Trigger(pulumi.CustomResource):
         The configuration of the Scaleway SQS queue used by the trigger
         """
         return pulumi.get(self, "sqs")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the container trigger.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

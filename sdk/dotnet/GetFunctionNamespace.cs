@@ -136,6 +136,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string RegistryNamespaceId;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
@@ -162,6 +163,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
+            string srn,
+
             ImmutableArray<string> tags)
         {
             Description = description;
@@ -175,6 +178,7 @@ namespace Pulumiverse.Scaleway
             RegistryEndpoint = registryEndpoint;
             RegistryNamespaceId = registryNamespaceId;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Srn = srn;
             Tags = tags;
         }
     }

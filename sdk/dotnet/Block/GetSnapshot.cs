@@ -118,31 +118,22 @@ namespace Pulumiverse.Scaleway.Block
     [OutputType]
     public sealed class GetSnapshotResult
     {
-        public readonly ImmutableArray<Outputs.GetSnapshotExportResult> Exports;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
-        public readonly ImmutableArray<Outputs.GetSnapshotImportResult> Imports;
-        public readonly string? Name;
-        public readonly string? ProjectId;
+        public readonly string Name;
+        public readonly string ProjectId;
         public readonly string? SnapshotId;
         public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
-        public readonly string? VolumeId;
-        public readonly string? Zone;
+        public readonly string VolumeId;
+        public readonly string Zone;
 
         [OutputConstructor]
         private GetSnapshotResult(
-            ImmutableArray<Outputs.GetSnapshotExportResult> exports,
-
             string id,
 
-            ImmutableArray<Outputs.GetSnapshotImportResult> imports,
+            string name,
 
-            string? name,
-
-            string? projectId,
+            string projectId,
 
             string? snapshotId,
 
@@ -150,13 +141,11 @@ namespace Pulumiverse.Scaleway.Block
 
             ImmutableArray<string> tags,
 
-            string? volumeId,
+            string volumeId,
 
-            string? zone)
+            string zone)
         {
-            Exports = exports;
             Id = id;
-            Imports = imports;
             Name = name;
             ProjectId = projectId;
             SnapshotId = snapshotId;

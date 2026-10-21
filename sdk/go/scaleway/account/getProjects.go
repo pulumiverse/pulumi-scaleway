@@ -118,6 +118,7 @@ type GetProjectsResult struct {
 	OrganizationId string `pulumi:"organizationId"`
 	// (Computed) A list of projects. Each project has the following attributes:
 	Projects []GetProjectsProject `pulumi:"projects"`
+	Srn      string               `pulumi:"srn"`
 	// (Computed) The date and time when the project was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -181,6 +182,10 @@ func (o GetProjectsResultOutput) OrganizationId() pulumi.StringOutput {
 // (Computed) A list of projects. Each project has the following attributes:
 func (o GetProjectsResultOutput) Projects() GetProjectsProjectArrayOutput {
 	return o.ApplyT(func(v GetProjectsResult) []GetProjectsProject { return v.Projects }).(GetProjectsProjectArrayOutput)
+}
+
+func (o GetProjectsResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // (Computed) The date and time when the project was updated.

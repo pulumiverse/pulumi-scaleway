@@ -87,6 +87,10 @@ export class Domain extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the function domain.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The URL used to query the function.
      */
     declare public /*out*/ readonly url: pulumi.Output<string>;
@@ -107,6 +111,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["functionId"] = state?.functionId;
             resourceInputs["hostname"] = state?.hostname;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as DomainArgs | undefined;
@@ -119,6 +124,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["functionId"] = args?.functionId;
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["region"] = args?.region;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -148,6 +154,10 @@ export interface DomainState {
      * (Optional, Computed, Defaults to provider `region`) The region in which the domain was created.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the function domain.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The URL used to query the function.
      */

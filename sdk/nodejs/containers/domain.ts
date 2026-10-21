@@ -110,6 +110,10 @@ export class Domain extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the container domain.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * (Deprecated) The URL used to query the container.
      *
      * @deprecated URL won't be displayed on v1
@@ -132,6 +136,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["containerId"] = state?.containerId;
             resourceInputs["hostname"] = state?.hostname;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as DomainArgs | undefined;
@@ -144,6 +149,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["containerId"] = args?.containerId;
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["region"] = args?.region;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -169,6 +175,10 @@ export interface DomainState {
      * `region`) The region in which the container exists.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the container domain.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * (Deprecated) The URL used to query the container.
      *

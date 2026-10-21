@@ -155,6 +155,10 @@ namespace Pulumiverse.Scaleway.Annotations
         /// Name of the annotation key
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation key
+        /// </summary>
+        public readonly string Srn;
 
         [OutputConstructor]
         private GetKeyResult(
@@ -164,12 +168,15 @@ namespace Pulumiverse.Scaleway.Annotations
 
             string keyId,
 
-            string name)
+            string name,
+
+            string srn)
         {
             Description = description;
             Id = id;
             KeyId = keyId;
             Name = name;
+            Srn = srn;
         }
     }
 }

@@ -24,11 +24,11 @@ import * as utilities from "../utilities";
  * Annotation keys can be imported using their `keyId` and optionally the `organizationId`. If no `organizationId` is specified, the default provider `organizationId` will be used.
  *
  * ```sh
- * $ pulumi import scaleway:annotations/key:Key main <key_id>
+ * $ pulumi import scaleway:annotations/key:Key main KEY_ID
  * ```
  *
  * ```sh
- * $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
+ * $ pulumi import scaleway:annotations/key:Key main ORGANIZATION_ID/KEY_ID
  * ```
  */
 export class Key extends pulumi.CustomResource {
@@ -71,6 +71,10 @@ export class Key extends pulumi.CustomResource {
      * `organizationId`) The organization ID to create the key in.
      */
     declare public readonly organizationId: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the annotation key.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
 
     /**
      * Create a Key resource with the given unique name, arguments, and options.
@@ -88,11 +92,13 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["srn"] = state?.srn;
         } else {
             const args = argsOrState as KeyArgs | undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Key.__pulumiType, name, resourceInputs, opts);
@@ -115,6 +121,10 @@ export interface KeyState {
      * `organizationId`) The organization ID to create the key in.
      */
     organizationId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the annotation key.
+     */
+    srn?: pulumi.Input<string | undefined>;
 }
 
 /**

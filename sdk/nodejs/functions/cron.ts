@@ -100,6 +100,10 @@ export class Cron extends pulumi.CustomResource {
      */
     declare public readonly schedule: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the function cron.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The CRON status.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -122,6 +126,7 @@ export class Cron extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["region"] = state?.region;
             resourceInputs["schedule"] = state?.schedule;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as CronArgs | undefined;
@@ -139,6 +144,7 @@ export class Cron extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["region"] = args?.region;
             resourceInputs["schedule"] = args?.schedule;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -173,6 +179,10 @@ export interface CronState {
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
      */
     schedule?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the function cron.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The CRON status.
      */

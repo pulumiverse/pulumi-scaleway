@@ -40,17 +40,14 @@ type LookupSnapshotArgs struct {
 
 // A collection of values returned by getSnapshot.
 type LookupSnapshotResult struct {
-	Exports []GetSnapshotExport `pulumi:"exports"`
-	// The provider-assigned unique ID for this managed resource.
-	Id         string              `pulumi:"id"`
-	Imports    []GetSnapshotImport `pulumi:"imports"`
-	Name       *string             `pulumi:"name"`
-	ProjectId  *string             `pulumi:"projectId"`
-	SnapshotId *string             `pulumi:"snapshotId"`
-	Srn        string              `pulumi:"srn"`
-	Tags       []string            `pulumi:"tags"`
-	VolumeId   *string             `pulumi:"volumeId"`
-	Zone       *string             `pulumi:"zone"`
+	Id         string   `pulumi:"id"`
+	Name       string   `pulumi:"name"`
+	ProjectId  string   `pulumi:"projectId"`
+	SnapshotId *string  `pulumi:"snapshotId"`
+	Srn        string   `pulumi:"srn"`
+	Tags       []string `pulumi:"tags"`
+	VolumeId   string   `pulumi:"volumeId"`
+	Zone       string   `pulumi:"zone"`
 }
 
 func LookupSnapshotOutput(ctx *pulumi.Context, args LookupSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupSnapshotResultOutput {
@@ -91,25 +88,16 @@ func (o LookupSnapshotResultOutput) ToLookupSnapshotResultOutputWithContext(ctx 
 	return o
 }
 
-func (o LookupSnapshotResultOutput) Exports() GetSnapshotExportArrayOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) []GetSnapshotExport { return v.Exports }).(GetSnapshotExportArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
 func (o LookupSnapshotResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupSnapshotResultOutput) Imports() GetSnapshotImportArrayOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) []GetSnapshotImport { return v.Imports }).(GetSnapshotImportArrayOutput)
+func (o LookupSnapshotResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupSnapshotResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-func (o LookupSnapshotResultOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o LookupSnapshotResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o LookupSnapshotResultOutput) SnapshotId() pulumi.StringPtrOutput {
@@ -124,12 +112,12 @@ func (o LookupSnapshotResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupSnapshotResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupSnapshotResultOutput) VolumeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
+func (o LookupSnapshotResultOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.VolumeId }).(pulumi.StringOutput)
 }
 
-func (o LookupSnapshotResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o LookupSnapshotResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

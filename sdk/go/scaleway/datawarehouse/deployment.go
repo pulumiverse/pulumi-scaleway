@@ -150,6 +150,8 @@ type Deployment struct {
 	CpuMin pulumi.IntOutput `pulumi:"cpuMin"`
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+	MoveFactor pulumi.Float64Output `pulumi:"moveFactor"`
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
@@ -249,6 +251,8 @@ type deploymentState struct {
 	CpuMin *int `pulumi:"cpuMin"`
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
+	// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+	MoveFactor *float64 `pulumi:"moveFactor"`
 	// Name of the Data Warehouse deployment.
 	Name *string `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
@@ -293,6 +297,8 @@ type DeploymentState struct {
 	CpuMin pulumi.IntPtrInput
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
+	// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+	MoveFactor pulumi.Float64PtrInput
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringPtrInput
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
@@ -339,6 +345,8 @@ type deploymentArgs struct {
 	CpuMax int `pulumi:"cpuMax"`
 	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin int `pulumi:"cpuMin"`
+	// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+	MoveFactor *float64 `pulumi:"moveFactor"`
 	// Name of the Data Warehouse deployment.
 	Name *string `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
@@ -376,6 +384,8 @@ type DeploymentArgs struct {
 	CpuMax pulumi.IntInput
 	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin pulumi.IntInput
+	// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+	MoveFactor pulumi.Float64PtrInput
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringPtrInput
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
@@ -507,6 +517,11 @@ func (o DeploymentOutput) CpuMin() pulumi.IntOutput {
 // Date and time of deployment creation (RFC 3339 format).
 func (o DeploymentOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+func (o DeploymentOutput) MoveFactor() pulumi.Float64Output {
+	return o.ApplyT(func(v *Deployment) pulumi.Float64Output { return v.MoveFactor }).(pulumi.Float64Output)
 }
 
 // Name of the Data Warehouse deployment.

@@ -94,6 +94,10 @@ export class AccountProject extends pulumi.CustomResource {
      */
     declare public readonly organizationId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the project.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The last update time of the Project.
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
@@ -118,6 +122,7 @@ export class AccountProject extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as AccountProjectArgs | undefined;
@@ -125,6 +130,7 @@ export class AccountProject extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -152,6 +158,10 @@ export interface AccountProjectState {
      * `organizationId`)The organization ID the Project is associated with. Any change made to the `organizationId` will recreate the resource.
      */
     organizationId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the project.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The last update time of the Project.
      */

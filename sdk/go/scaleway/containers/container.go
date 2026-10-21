@@ -552,6 +552,8 @@ type Container struct {
 	ScalingOptions ContainerScalingOptionArrayOutput `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the container.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Defines how to check if the container has started successfully.
 	StartupProbe ContainerStartupProbePtrOutput `pulumi:"startupProbe"`
 	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
@@ -710,6 +712,8 @@ type containerState struct {
 	ScalingOptions []ContainerScalingOption `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the container.
+	Srn *string `pulumi:"srn"`
 	// Defines how to check if the container has started successfully.
 	StartupProbe *ContainerStartupProbe `pulumi:"startupProbe"`
 	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
@@ -823,6 +827,8 @@ type ContainerState struct {
 	ScalingOptions ContainerScalingOptionArrayInput
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// The Scaleway Resource Name (SRN) of the container.
+	Srn pulumi.StringPtrInput
 	// Defines how to check if the container has started successfully.
 	StartupProbe ContainerStartupProbePtrInput
 	// The container status. In case the status is different from `ready`, a warning will be displayed when Terraform reads the resource.
@@ -1327,6 +1333,11 @@ func (o ContainerOutput) ScalingOptions() ContainerScalingOptionArrayOutput {
 // The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 func (o ContainerOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the container.
+func (o ContainerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Defines how to check if the container has started successfully.

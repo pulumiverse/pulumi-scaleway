@@ -56,6 +56,10 @@ export interface GetKeyResult {
      * Name of the annotation key
      */
     readonly name: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the annotation key
+     */
+    readonly srn: string;
 }
 /**
  * Retrieves information about an existing annotation key using its ID.

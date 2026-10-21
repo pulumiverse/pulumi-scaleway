@@ -165,6 +165,8 @@ type LookupContainerResult struct {
 	ScalingOptions []GetContainerScalingOption `pulumi:"scalingOptions"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the container.
+	Srn string `pulumi:"srn"`
 	// Defines how to check if the container has started successfully.
 	StartupProbes []GetContainerStartupProbe `pulumi:"startupProbes"`
 	// The container status.
@@ -393,6 +395,11 @@ func (o LookupContainerResultOutput) ScalingOptions() GetContainerScalingOptionA
 // The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
 func (o LookupContainerResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the container.
+func (o LookupContainerResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupContainerResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Defines how to check if the container has started successfully.

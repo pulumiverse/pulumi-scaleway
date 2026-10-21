@@ -165,6 +165,8 @@ type ContainerTrigger struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs ContainerTriggerSqsPtrOutput `pulumi:"sqs"`
+	// The Scaleway Resource Name (SRN) of the container trigger.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of tags associated with the trigger.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
@@ -223,6 +225,8 @@ type containerTriggerState struct {
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs *ContainerTriggerSqs `pulumi:"sqs"`
+	// The Scaleway Resource Name (SRN) of the container trigger.
+	Srn *string `pulumi:"srn"`
 	// The list of tags associated with the trigger.
 	Tags []string `pulumi:"tags"`
 }
@@ -246,6 +250,8 @@ type ContainerTriggerState struct {
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs ContainerTriggerSqsPtrInput
+	// The Scaleway Resource Name (SRN) of the container trigger.
+	Srn pulumi.StringPtrInput
 	// The list of tags associated with the trigger.
 	Tags pulumi.StringArrayInput
 }
@@ -428,6 +434,11 @@ func (o ContainerTriggerOutput) Region() pulumi.StringOutput {
 // The configuration of the Scaleway SQS queue used by the trigger
 func (o ContainerTriggerOutput) Sqs() ContainerTriggerSqsPtrOutput {
 	return o.ApplyT(func(v *ContainerTrigger) ContainerTriggerSqsPtrOutput { return v.Sqs }).(ContainerTriggerSqsPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the container trigger.
+func (o ContainerTriggerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *ContainerTrigger) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of tags associated with the trigger.

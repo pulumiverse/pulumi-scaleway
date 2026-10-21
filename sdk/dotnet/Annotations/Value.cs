@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway.Annotations
     /// Annotation values can be imported using their `Id`:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:annotations/value:Value main &lt;value_id&gt;
+    /// $ pulumi import scaleway:annotations/value:Value main VALUE_ID
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:annotations/value:Value")]
@@ -67,6 +67,12 @@ namespace Pulumiverse.Scaleway.Annotations
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation value.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the annotation value.
@@ -164,6 +170,12 @@ namespace Pulumiverse.Scaleway.Annotations
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation value.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The ID of the annotation value.

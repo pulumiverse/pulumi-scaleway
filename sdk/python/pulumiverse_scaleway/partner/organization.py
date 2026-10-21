@@ -386,7 +386,7 @@ class Organization(pulumi.CustomResource):
         Partner organizations can be imported using their `id`.
 
         ```sh
-        $ pulumi import scaleway:partner/organization:Organization main <id>
+        $ pulumi import scaleway:partner/organization:Organization main ID
         ```
 
 
@@ -445,7 +445,7 @@ class Organization(pulumi.CustomResource):
         Partner organizations can be imported using their `id`.
 
         ```sh
-        $ pulumi import scaleway:partner/organization:Organization main <id>
+        $ pulumi import scaleway:partner/organization:Organization main ID
         ```
 
 

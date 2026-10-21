@@ -288,6 +288,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string PlacementGroupId;
         public readonly string? PoolId;
+        public readonly string PrivateNetworkId;
         public readonly bool PublicIpDisabled;
         public readonly string? Region;
         public readonly int RootVolumeSizeInGb;
@@ -361,6 +362,8 @@ namespace Pulumiverse.Scaleway
 
             string? poolId,
 
+            string privateNetworkId,
+
             bool publicIpDisabled,
 
             string? region,
@@ -411,6 +414,7 @@ namespace Pulumiverse.Scaleway
             Nodes = nodes;
             PlacementGroupId = placementGroupId;
             PoolId = poolId;
+            PrivateNetworkId = privateNetworkId;
             PublicIpDisabled = publicIpDisabled;
             Region = region;
             RootVolumeSizeInGb = rootVolumeSizeInGb;

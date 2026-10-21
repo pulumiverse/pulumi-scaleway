@@ -254,6 +254,8 @@ type Function struct {
 	Sandbox pulumi.StringOutput `pulumi:"sandbox"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the function.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of tags associated with the function.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
@@ -355,6 +357,8 @@ type functionState struct {
 	Sandbox *string `pulumi:"sandbox"`
 	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the function.
+	Srn *string `pulumi:"srn"`
 	// The list of tags associated with the function.
 	Tags []string `pulumi:"tags"`
 	// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
@@ -408,6 +412,8 @@ type FunctionState struct {
 	Sandbox pulumi.StringPtrInput
 	// The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// The Scaleway Resource Name (SRN) of the function.
+	Srn pulumi.StringPtrInput
 	// The list of tags associated with the function.
 	Tags pulumi.StringArrayInput
 	// The maximum amount of time your function can spend processing a request before being stopped. Defaults to 300s.
@@ -704,6 +710,11 @@ func (o FunctionOutput) Sandbox() pulumi.StringOutput {
 // The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
 func (o FunctionOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the function.
+func (o FunctionOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of tags associated with the function.

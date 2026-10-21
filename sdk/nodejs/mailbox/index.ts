@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AliasArgs, AliasState } from "./alias";
+export type Alias = import("./alias").Alias;
+export const Alias: typeof import("./alias").Alias = null as any;
+utilities.lazyLoad(exports, ["Alias"], () => require("./alias"));
+
 export { DomainArgs, DomainState } from "./domain";
 export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
@@ -25,6 +30,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:mailbox/alias:Alias":
+                return new Alias(name, <any>undefined, { urn })
             case "scaleway:mailbox/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
             case "scaleway:mailbox/mailbox:Mailbox":
@@ -34,5 +41,6 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "mailbox/alias", _module)
 pulumi.runtime.registerResourceModule("scaleway", "mailbox/domain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "mailbox/mailbox", _module)

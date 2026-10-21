@@ -37,11 +37,11 @@ namespace Pulumiverse.Scaleway.Annotations
     /// Annotation keys can be imported using their `KeyId` and optionally the `OrganizationId`. If no `OrganizationId` is specified, the default provider `OrganizationId` will be used.
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:annotations/key:Key main &lt;key_id&gt;
+    /// $ pulumi import scaleway:annotations/key:Key main KEY_ID
     /// ```
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:annotations/key:Key main &lt;organization_id&gt;/&lt;key_id&gt;
+    /// $ pulumi import scaleway:annotations/key:Key main ORGANIZATION_ID/KEY_ID
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:annotations/key:Key")]
@@ -64,6 +64,12 @@ namespace Pulumiverse.Scaleway.Annotations
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation key.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
 
         /// <summary>
@@ -155,6 +161,12 @@ namespace Pulumiverse.Scaleway.Annotations
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the annotation key.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         public KeyState()
         {

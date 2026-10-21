@@ -75,6 +75,7 @@ export interface GetNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly srn: string;
     readonly tags: string[];
 }
 /**

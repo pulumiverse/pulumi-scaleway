@@ -28,7 +28,7 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, http_option=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, private_network_id=None, project_id=None, region=None, runtime=None, sandbox=None, secret_environment_variables=None, tags=None, timeout=None, zip_file=None, zip_hash=None):
+    def __init__(__self__, cpu_limit=None, deploy=None, description=None, domain_name=None, environment_variables=None, function_id=None, handler=None, http_option=None, id=None, max_scale=None, memory_limit=None, min_scale=None, name=None, namespace_id=None, organization_id=None, privacy=None, private_network_id=None, project_id=None, region=None, runtime=None, sandbox=None, secret_environment_variables=None, srn=None, tags=None, timeout=None, zip_file=None, zip_hash=None):
         if cpu_limit and not isinstance(cpu_limit, int):
             raise TypeError("Expected argument 'cpu_limit' to be a int")
         pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -95,6 +95,9 @@ class GetFunctionResult:
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -223,6 +226,11 @@ class GetFunctionResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -270,6 +278,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             runtime=self.runtime,
             sandbox=self.sandbox,
             secret_environment_variables=self.secret_environment_variables,
+            srn=self.srn,
             tags=self.tags,
             timeout=self.timeout,
             zip_file=self.zip_file,
@@ -329,6 +338,7 @@ def get_function(function_id: Optional[_builtins.str] = None,
         runtime=pulumi.get(__ret__, 'runtime'),
         sandbox=pulumi.get(__ret__, 'sandbox'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         timeout=pulumi.get(__ret__, 'timeout'),
         zip_file=pulumi.get(__ret__, 'zip_file'),
@@ -385,6 +395,7 @@ def get_function_output(function_id: pulumi.Input[Optional[Optional[_builtins.st
         runtime=pulumi.get(__response__, 'runtime'),
         sandbox=pulumi.get(__response__, 'sandbox'),
         secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         timeout=pulumi.get(__response__, 'timeout'),
         zip_file=pulumi.get(__response__, 'zip_file'),
