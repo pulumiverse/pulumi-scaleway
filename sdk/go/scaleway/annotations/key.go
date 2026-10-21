@@ -45,11 +45,11 @@ import (
 // Annotation keys can be imported using their `keyId` and optionally the `organizationId`. If no `organizationId` is specified, the default provider `organizationId` will be used.
 //
 // ```sh
-// $ pulumi import scaleway:annotations/key:Key main <key_id>
+// $ pulumi import scaleway:annotations/key:Key main KEY_ID
 // ```
 //
 // ```sh
-// $ pulumi import scaleway:annotations/key:Key main <organization_id>/<key_id>
+// $ pulumi import scaleway:annotations/key:Key main ORGANIZATION_ID/KEY_ID
 // ```
 type Key struct {
 	pulumi.CustomResourceState
@@ -60,6 +60,8 @@ type Key struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The organization ID to create the key in.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the annotation key.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewKey registers a new resource with the given unique name, arguments, and options.
@@ -98,6 +100,8 @@ type keyState struct {
 	Name *string `pulumi:"name"`
 	// `organizationId`) The organization ID to create the key in.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The Scaleway Resource Name (SRN) of the annotation key.
+	Srn *string `pulumi:"srn"`
 }
 
 type KeyState struct {
@@ -107,6 +111,8 @@ type KeyState struct {
 	Name pulumi.StringPtrInput
 	// `organizationId`) The organization ID to create the key in.
 	OrganizationId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the annotation key.
+	Srn pulumi.StringPtrInput
 }
 
 func (KeyState) ElementType() reflect.Type {
@@ -232,6 +238,11 @@ func (o KeyOutput) Name() pulumi.StringOutput {
 // `organizationId`) The organization ID to create the key in.
 func (o KeyOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the annotation key.
+func (o KeyOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type KeyArrayOutput struct{ *pulumi.OutputState }

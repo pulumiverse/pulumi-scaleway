@@ -108,6 +108,8 @@ type Cron struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
+	// The Scaleway Resource Name (SRN) of the function cron.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The CRON status.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -168,6 +170,8 @@ type cronState struct {
 	Region *string `pulumi:"region"`
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 	Schedule *string `pulumi:"schedule"`
+	// The Scaleway Resource Name (SRN) of the function cron.
+	Srn *string `pulumi:"srn"`
 	// The CRON status.
 	Status *string `pulumi:"status"`
 }
@@ -184,6 +188,8 @@ type CronState struct {
 	Region pulumi.StringPtrInput
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the function cron.
+	Srn pulumi.StringPtrInput
 	// The CRON status.
 	Status pulumi.StringPtrInput
 }
@@ -332,6 +338,11 @@ func (o CronOutput) Region() pulumi.StringOutput {
 // CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 func (o CronOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cron) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the function cron.
+func (o CronOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cron) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The CRON status.

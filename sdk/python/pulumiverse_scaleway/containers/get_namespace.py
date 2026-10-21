@@ -26,7 +26,7 @@ class GetNamespaceResult:
     """
     A collection of values returned by getNamespace.
     """
-    def __init__(__self__, description=None, destroy_registry=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, tags=None):
+    def __init__(__self__, description=None, destroy_registry=None, environment_variables=None, id=None, name=None, namespace_id=None, organization_id=None, project_id=None, region=None, registry_endpoint=None, registry_namespace_id=None, secret_environment_variables=None, srn=None, tags=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -63,6 +63,9 @@ class GetNamespaceResult:
         if secret_environment_variables and not isinstance(secret_environment_variables, dict):
             raise TypeError("Expected argument 'secret_environment_variables' to be a dict")
         pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -147,6 +150,14 @@ class GetNamespaceResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the container namespace.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -169,6 +180,7 @@ class AwaitableGetNamespaceResult(GetNamespaceResult):
             registry_endpoint=self.registry_endpoint,
             registry_namespace_id=self.registry_namespace_id,
             secret_environment_variables=self.secret_environment_variables,
+            srn=self.srn,
             tags=self.tags)
 
 
@@ -226,6 +238,7 @@ def get_namespace(name: Optional[_builtins.str] = None,
         registry_endpoint=pulumi.get(__ret__, 'registry_endpoint'),
         registry_namespace_id=pulumi.get(__ret__, 'registry_namespace_id'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'))
 def get_namespace_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          namespace_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -280,4 +293,5 @@ def get_namespace_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] =
         registry_endpoint=pulumi.get(__response__, 'registry_endpoint'),
         registry_namespace_id=pulumi.get(__response__, 'registry_namespace_id'),
         secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags')))

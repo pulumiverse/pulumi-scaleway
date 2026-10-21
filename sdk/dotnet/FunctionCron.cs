@@ -110,6 +110,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Schedule { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function cron.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The CRON status.
         /// </summary>
         [Output("status")]
@@ -231,6 +237,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the function cron.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The CRON status.

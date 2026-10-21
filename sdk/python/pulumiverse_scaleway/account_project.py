@@ -80,6 +80,7 @@ class _AccountProjectState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AccountProject resources.
@@ -88,6 +89,7 @@ class _AccountProjectState:
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the project.
         :param pulumi.Input[_builtins.str] updated_at: The last update time of the Project.
         """
         if created_at is not None:
@@ -98,6 +100,8 @@ class _AccountProjectState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
@@ -148,6 +152,18 @@ class _AccountProjectState:
     @organization_id.setter
     def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the project.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -305,6 +321,7 @@ class AccountProject(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(AccountProject, __self__).__init__(
             'scaleway:index/accountProject:AccountProject',
@@ -320,6 +337,7 @@ class AccountProject(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'AccountProject':
         """
         Get an existing AccountProject resource's state with the given name, id, and optional extra
@@ -332,6 +350,7 @@ class AccountProject(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the project.
         :param pulumi.Input[_builtins.str] updated_at: The last update time of the Project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -342,6 +361,7 @@ class AccountProject(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["updated_at"] = updated_at
         return AccountProject(resource_name, opts=opts, __props__=__props__)
 
@@ -376,6 +396,14 @@ class AccountProject(pulumi.CustomResource):
         `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
         return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the project.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

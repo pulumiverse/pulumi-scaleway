@@ -26,6 +26,7 @@ class DeploymentArgs:
                  ram_per_cpu: pulumi.Input[_builtins.int],
                  replica_count: pulumi.Input[_builtins.int],
                  version: pulumi.Input[_builtins.str],
+                 move_factor: pulumi.Input[Optional[_builtins.float]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -45,6 +46,7 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
         :param pulumi.Input[_builtins.str] version: ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.float] move_factor: For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -63,6 +65,8 @@ class DeploymentArgs:
         pulumi.set(__self__, "ram_per_cpu", ram_per_cpu)
         pulumi.set(__self__, "replica_count", replica_count)
         pulumi.set(__self__, "version", version)
+        if move_factor is not None:
+            pulumi.set(__self__, "move_factor", move_factor)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -145,6 +149,18 @@ class DeploymentArgs:
     @version.setter
     def version(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="moveFactor")
+    def move_factor(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        """
+        return pulumi.get(self, "move_factor")
+
+    @move_factor.setter
+    def move_factor(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "move_factor", value)
 
     @_builtins.property
     @pulumi.getter
@@ -286,6 +302,7 @@ class _DeploymentState:
                  cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 move_factor: pulumi.Input[Optional[_builtins.float]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -309,6 +326,7 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
+        :param pulumi.Input[_builtins.float] move_factor: For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -334,6 +352,8 @@ class _DeploymentState:
             pulumi.set(__self__, "cpu_min", cpu_min)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if move_factor is not None:
+            pulumi.set(__self__, "move_factor", move_factor)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -404,6 +424,18 @@ class _DeploymentState:
     @created_at.setter
     def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="moveFactor")
+    def move_factor(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        """
+        return pulumi.get(self, "move_factor")
+
+    @move_factor.setter
+    def move_factor(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "move_factor", value)
 
     @_builtins.property
     @pulumi.getter
@@ -619,6 +651,7 @@ class Deployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 move_factor: pulumi.Input[Optional[_builtins.float]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -712,6 +745,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
+        :param pulumi.Input[_builtins.float] move_factor: For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -825,6 +859,7 @@ class Deployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 move_factor: pulumi.Input[Optional[_builtins.float]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -854,6 +889,7 @@ class Deployment(pulumi.CustomResource):
             if cpu_min is None and not opts.urn:
                 raise TypeError("Missing required property 'cpu_min'")
             __props__.__dict__["cpu_min"] = cpu_min
+            __props__.__dict__["move_factor"] = move_factor
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
@@ -893,6 +929,7 @@ class Deployment(pulumi.CustomResource):
             cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
             cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            move_factor: pulumi.Input[Optional[_builtins.float]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -920,6 +957,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] cpu_max: Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpu_min`. Can be updated in place.
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpu_max`. Can be updated in place.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
+        :param pulumi.Input[_builtins.float] move_factor: For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `password_wo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -946,6 +984,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["cpu_max"] = cpu_max
         __props__.__dict__["cpu_min"] = cpu_min
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["move_factor"] = move_factor
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
         __props__.__dict__["password_wo"] = password_wo
@@ -988,6 +1027,14 @@ class Deployment(pulumi.CustomResource):
         Date and time of deployment creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="moveFactor")
+    def move_factor(self) -> pulumi.Output[_builtins.float]:
+        """
+        For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+        """
+        return pulumi.get(self, "move_factor")
 
     @_builtins.property
     @pulumi.getter

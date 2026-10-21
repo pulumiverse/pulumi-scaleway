@@ -75,7 +75,9 @@ type LookupValueResult struct {
 	// ID of the key the value is associated to
 	KeyId string `pulumi:"keyId"`
 	// Name of the annotation value
-	Name    string `pulumi:"name"`
+	Name string `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the annotation value
+	Srn     string `pulumi:"srn"`
 	ValueId string `pulumi:"valueId"`
 }
 
@@ -127,6 +129,11 @@ func (o LookupValueResultOutput) KeyId() pulumi.StringOutput {
 // Name of the annotation value
 func (o LookupValueResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupValueResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the annotation value
+func (o LookupValueResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupValueResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupValueResultOutput) ValueId() pulumi.StringOutput {

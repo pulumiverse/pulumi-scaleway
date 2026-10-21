@@ -139,6 +139,8 @@ type Domain struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the container domain.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// (Deprecated) The URL used to query the container.
 	//
 	// Deprecated: URL won't be displayed on v1
@@ -193,6 +195,8 @@ type domainState struct {
 	Hostname *string `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the container domain.
+	Srn *string `pulumi:"srn"`
 	// (Deprecated) The URL used to query the container.
 	//
 	// Deprecated: URL won't be displayed on v1
@@ -206,6 +210,8 @@ type DomainState struct {
 	Hostname pulumi.StringPtrInput
 	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the container domain.
+	Srn pulumi.StringPtrInput
 	// (Deprecated) The URL used to query the container.
 	//
 	// Deprecated: URL won't be displayed on v1
@@ -335,6 +341,11 @@ func (o DomainOutput) Hostname() pulumi.StringOutput {
 // `region`) The region in which the container exists.
 func (o DomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the container domain.
+func (o DomainOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domain) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // (Deprecated) The URL used to query the container.

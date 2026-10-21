@@ -79,6 +79,8 @@ type FunctionNamespace struct {
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the function namespace.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The list of tags associated with the namespace.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
@@ -140,6 +142,8 @@ type functionNamespaceState struct {
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// The Scaleway Resource Name (SRN) of the function namespace.
+	Srn *string `pulumi:"srn"`
 	// The list of tags associated with the namespace.
 	Tags []string `pulumi:"tags"`
 }
@@ -165,6 +169,8 @@ type FunctionNamespaceState struct {
 	RegistryNamespaceId pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// The Scaleway Resource Name (SRN) of the function namespace.
+	Srn pulumi.StringPtrInput
 	// The list of tags associated with the namespace.
 	Tags pulumi.StringArrayInput
 }
@@ -344,6 +350,11 @@ func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 // The secret environment variables of the namespace.
 func (o FunctionNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the function namespace.
+func (o FunctionNamespaceOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The list of tags associated with the namespace.

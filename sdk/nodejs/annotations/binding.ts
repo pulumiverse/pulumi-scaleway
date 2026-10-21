@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * Annotation bindings can be imported using their `id`:
  *
  * ```sh
- * $ pulumi import scaleway:annotations/binding:Binding main <binding_id>
+ * $ pulumi import scaleway:annotations/binding:Binding main BINDING_ID
  * ```
  */
 export class Binding extends pulumi.CustomResource {

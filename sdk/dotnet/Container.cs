@@ -623,6 +623,12 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// Defines how to check if the container has started successfully.
         /// </summary>
         [Output("startupProbe")]
@@ -1240,6 +1246,12 @@ namespace Pulumiverse.Scaleway
                 _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the container.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// Defines how to check if the container has started successfully.

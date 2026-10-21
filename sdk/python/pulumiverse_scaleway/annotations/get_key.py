@@ -26,7 +26,7 @@ class GetKeyResult:
     """
     A collection of values returned by getKey.
     """
-    def __init__(__self__, description=None, id=None, key_id=None, name=None):
+    def __init__(__self__, description=None, id=None, key_id=None, name=None, srn=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -39,6 +39,9 @@ class GetKeyResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -69,6 +72,14 @@ class GetKeyResult:
         """
         return pulumi.get(self, "name")
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the annotation key
+        """
+        return pulumi.get(self, "srn")
+
 
 class AwaitableGetKeyResult(GetKeyResult):
     # pylint: disable=using-constant-test
@@ -79,7 +90,8 @@ class AwaitableGetKeyResult(GetKeyResult):
             description=self.description,
             id=self.id,
             key_id=self.key_id,
-            name=self.name)
+            name=self.name,
+            srn=self.srn)
 
 
 def get_key(key_id: Optional[_builtins.str] = None,
@@ -112,7 +124,8 @@ def get_key(key_id: Optional[_builtins.str] = None,
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         key_id=pulumi.get(__ret__, 'key_id'),
-        name=pulumi.get(__ret__, 'name'))
+        name=pulumi.get(__ret__, 'name'),
+        srn=pulumi.get(__ret__, 'srn'))
 def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyResult]:
     """
@@ -142,4 +155,5 @@ def get_key_output(key_id: pulumi.Input[Optional[_builtins.str]] = None,
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         key_id=pulumi.get(__response__, 'key_id'),
-        name=pulumi.get(__response__, 'name')))
+        name=pulumi.get(__response__, 'name'),
+        srn=pulumi.get(__response__, 'srn')))

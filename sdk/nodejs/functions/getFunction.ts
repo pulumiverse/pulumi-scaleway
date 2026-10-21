@@ -77,6 +77,7 @@ export interface GetFunctionResult {
     readonly runtime: string;
     readonly sandbox: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly srn: string;
     readonly tags: string[];
     readonly timeout: number;
     readonly zipFile: string;

@@ -26,7 +26,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, project_id=None, updated_at=None):
+    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, project_id=None, srn=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -45,6 +45,9 @@ class GetProjectResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -83,6 +86,11 @@ class GetProjectResult:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         return pulumi.get(self, "updated_at")
@@ -100,6 +108,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             name=self.name,
             organization_id=self.organization_id,
             project_id=self.project_id,
+            srn=self.srn,
             updated_at=self.updated_at)
 
 
@@ -135,6 +144,7 @@ def get_project(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -167,4 +177,5 @@ def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),
+        srn=pulumi.get(__response__, 'srn'),
         updated_at=pulumi.get(__response__, 'updated_at')))

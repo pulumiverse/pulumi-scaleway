@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * Partner organizations can be imported using their `id`.
  *
  * ```sh
- * $ pulumi import scaleway:partner/organization:Organization main <id>
+ * $ pulumi import scaleway:partner/organization:Organization main ID
  * ```
  */
 export class Organization extends pulumi.CustomResource {

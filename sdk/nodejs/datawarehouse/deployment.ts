@@ -124,6 +124,10 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
+     * For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+     */
+    declare public readonly moveFactor: pulumi.Output<number>;
+    /**
      * Name of the Data Warehouse deployment.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -209,6 +213,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["cpuMax"] = state?.cpuMax;
             resourceInputs["cpuMin"] = state?.cpuMin;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["moveFactor"] = state?.moveFactor;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
             resourceInputs["passwordWo"] = state?.passwordWo;
@@ -245,6 +250,7 @@ export class Deployment extends pulumi.CustomResource {
             }
             resourceInputs["cpuMax"] = args?.cpuMax;
             resourceInputs["cpuMin"] = args?.cpuMin;
+            resourceInputs["moveFactor"] = args?.moveFactor;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
@@ -287,6 +293,10 @@ export interface DeploymentState {
      * Date and time of deployment creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+     */
+    moveFactor?: pulumi.Input<number | undefined>;
     /**
      * Name of the Data Warehouse deployment.
      */
@@ -370,6 +380,10 @@ export interface DeploymentArgs {
      * Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
      */
     cpuMin: pulumi.Input<number>;
+    /**
+     * For the `tiered` storage policy, fraction of free space on the hot volume (Block Storage) below which data is moved to the cold volume (Object Storage). Value between 0 and 1 (API default 0.1). Can be updated in place.
+     */
+    moveFactor?: pulumi.Input<number | undefined>;
     /**
      * Name of the Data Warehouse deployment.
      */

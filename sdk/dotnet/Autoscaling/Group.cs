@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
     /// AutoScaling Groups can be imported using their `Id`:
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:autoscaling/group:Group main &lt;group_id&gt;
+    /// $ pulumi import scaleway:autoscaling/group:Group main GROUP_ID
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:autoscaling/group:Group")]
@@ -227,6 +227,12 @@ namespace Pulumiverse.Scaleway.Autoscaling
         /// </summary>
         [Output("scalingPolicy")]
         public Output<Outputs.GroupScalingPolicy> ScalingPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
 
         /// <summary>
         /// The current status of the AutoScaling Group.
@@ -402,6 +408,12 @@ namespace Pulumiverse.Scaleway.Autoscaling
         /// </summary>
         [Input("scalingPolicy")]
         public Input<Inputs.GroupScalingPolicyGetArgs>? ScalingPolicy { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the AutoScaling Group.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The current status of the AutoScaling Group.

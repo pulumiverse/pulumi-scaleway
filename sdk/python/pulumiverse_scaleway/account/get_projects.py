@@ -27,7 +27,7 @@ class GetProjectsResult:
     """
     A collection of values returned by getProjects.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, projects=None, updated_at=None):
+    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, projects=None, srn=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -46,6 +46,9 @@ class GetProjectsResult:
         if projects and not isinstance(projects, list):
             raise TypeError("Expected argument 'projects' to be a list")
         pulumi.set(__self__, "projects", projects)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -99,6 +102,11 @@ class GetProjectsResult:
         return pulumi.get(self, "projects")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
@@ -119,6 +127,7 @@ class AwaitableGetProjectsResult(GetProjectsResult):
             name=self.name,
             organization_id=self.organization_id,
             projects=self.projects,
+            srn=self.srn,
             updated_at=self.updated_at)
 
 
@@ -181,6 +190,7 @@ def get_projects(organization_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         projects=pulumi.get(__ret__, 'projects'),
+        srn=pulumi.get(__ret__, 'srn'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_projects_output(organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
@@ -240,4 +250,5 @@ def get_projects_output(organization_id: pulumi.Input[Optional[Optional[_builtin
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         projects=pulumi.get(__response__, 'projects'),
+        srn=pulumi.get(__response__, 'srn'),
         updated_at=pulumi.get(__response__, 'updated_at')))

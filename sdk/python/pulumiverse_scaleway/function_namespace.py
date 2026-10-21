@@ -153,6 +153,7 @@ class _FunctionNamespaceState:
                  registry_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
                  registry_namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering FunctionNamespace resources.
@@ -168,6 +169,7 @@ class _FunctionNamespaceState:
         :param pulumi.Input[_builtins.str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[_builtins.str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
         if description is not None:
@@ -188,6 +190,8 @@ class _FunctionNamespaceState:
             pulumi.set(__self__, "registry_namespace_id", registry_namespace_id)
         if secret_environment_variables is not None:
             pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -300,6 +304,18 @@ class _FunctionNamespaceState:
     @secret_environment_variables.setter
     def secret_environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secret_environment_variables", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the function namespace.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -453,6 +469,7 @@ class FunctionNamespace(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["registry_endpoint"] = None
             __props__.__dict__["registry_namespace_id"] = None
+            __props__.__dict__["srn"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretEnvironmentVariables"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(FunctionNamespace, __self__).__init__(
@@ -474,6 +491,7 @@ class FunctionNamespace(pulumi.CustomResource):
             registry_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             registry_namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
             secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'FunctionNamespace':
         """
         Get an existing FunctionNamespace resource's state with the given name, id, and optional extra
@@ -493,6 +511,7 @@ class FunctionNamespace(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[_builtins.str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the function namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -508,6 +527,7 @@ class FunctionNamespace(pulumi.CustomResource):
         __props__.__dict__["registry_endpoint"] = registry_endpoint
         __props__.__dict__["registry_namespace_id"] = registry_namespace_id
         __props__.__dict__["secret_environment_variables"] = secret_environment_variables
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         return FunctionNamespace(resource_name, opts=opts, __props__=__props__)
 
@@ -584,6 +604,14 @@ class FunctionNamespace(pulumi.CustomResource):
         The secret environment variables of the namespace.
         """
         return pulumi.get(self, "secret_environment_variables")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the function namespace.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -227,6 +227,10 @@ export class Function extends pulumi.CustomResource {
      */
     declare public readonly secretEnvironmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the function.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The list of tags associated with the function.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -279,6 +283,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["runtime"] = state?.runtime;
             resourceInputs["sandbox"] = state?.sandbox;
             resourceInputs["secretEnvironmentVariables"] = state?.secretEnvironmentVariables;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["timeout"] = state?.timeout;
             resourceInputs["zipFile"] = state?.zipFile;
@@ -321,6 +326,7 @@ export class Function extends pulumi.CustomResource {
             resourceInputs["cpuLimit"] = undefined /*out*/;
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secretEnvironmentVariables"] };
@@ -415,6 +421,10 @@ export interface FunctionState {
      * The [secret environment variables](https://www.scaleway.com/en/docs/compute/functions/concepts/#secrets) of the function.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the function.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The list of tags associated with the function.
      */

@@ -67,6 +67,8 @@ type LookupKeyResult struct {
 	KeyId string `pulumi:"keyId"`
 	// Name of the annotation key
 	Name string `pulumi:"name"`
+	// The Scaleway Resource Name (SRN) of the annotation key
+	Srn string `pulumi:"srn"`
 }
 
 func LookupKeyOutput(ctx *pulumi.Context, args LookupKeyOutputArgs, opts ...pulumi.InvokeOption) LookupKeyResultOutput {
@@ -116,6 +118,11 @@ func (o LookupKeyResultOutput) KeyId() pulumi.StringOutput {
 // Name of the annotation key
 func (o LookupKeyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKeyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the annotation key
+func (o LookupKeyResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKeyResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func init() {

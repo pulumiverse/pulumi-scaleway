@@ -424,6 +424,7 @@
         "loadbalancers/loadBalancer.ts",
         "loadbalancers/privateNetwork.ts",
         "loadbalancers/route.ts",
+        "mailbox/alias.ts",
         "mailbox/domain.ts",
         "mailbox/getMailbox.ts",
         "mailbox/index.ts",

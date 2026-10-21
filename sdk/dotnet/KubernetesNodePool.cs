@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
     /// 
+    /// ## Example Usage
+    /// 
     /// ## Placement Group
     /// 
     /// If you are working with cluster type `Multicloud` please set the `Zone` where your placement group is e.g:
@@ -216,6 +218,15 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("placementGroupId")]
         public Output<string?> PlacementGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the private network to which the nodes of the pool will be attached.
+        /// The private network needs to be in the same VPC as the API server/the cluster.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
+        /// </summary>
+        [Output("privateNetworkId")]
+        public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -476,6 +487,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
+        /// The ID of the private network to which the nodes of the pool will be attached.
+        /// The private network needs to be in the same VPC as the API server/the cluster.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
+
+        /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
@@ -723,6 +743,15 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
+
+        /// <summary>
+        /// The ID of the private network to which the nodes of the pool will be attached.
+        /// The private network needs to be in the same VPC as the API server/the cluster.
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate the resource.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
