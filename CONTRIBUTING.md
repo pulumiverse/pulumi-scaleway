@@ -1,3 +1,0 @@
-# Contributing
-
-## Committing Generated Code
