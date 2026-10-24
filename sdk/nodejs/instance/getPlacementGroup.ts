@@ -64,6 +64,10 @@ export interface GetPlacementGroupResult {
     readonly policyType: string;
     readonly projectId: string;
     /**
+     * The Scaleway Resource Name (SRN) of the placement group.
+     */
+    readonly srn: string;
+    /**
      * A list of tags to apply to the placement group.
      */
     readonly tags: string[];

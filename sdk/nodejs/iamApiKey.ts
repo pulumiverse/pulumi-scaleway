@@ -49,6 +49,22 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With secret (secret_key stored in Secret Manager)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.secrets.Secret("main", {name: "My secret"});
+ * const ciCd = new scaleway.iam.Application("ci_cd", {name: "My application"});
+ * const mainApiKey = new scaleway.iam.ApiKey("main", {
+ *     applicationId: mainScalewayIamApplication.id,
+ *     secretId: main.id,
+ * });
+ * ```
+ *
+ * The `secretKey` is then not stored in the Terraform state and can be retrieved with the `scaleway.secrets.Version` ephemeral resource:
+ *
  * ## Import
  *
  * Api keys can be imported using the `{id}`, e.g.
@@ -124,7 +140,11 @@ export class IamApiKey extends pulumi.CustomResource {
      */
     declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
-     * The secret Key of the IAM API key.
+     * ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+     */
+    declare public readonly secretId: pulumi.Output<string | undefined>;
+    /**
+     * The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `scaleway.secrets.Version` ephemeral resource.
      */
     declare public /*out*/ readonly secretKey: pulumi.Output<string>;
     /**
@@ -165,6 +185,7 @@ export class IamApiKey extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["editable"] = state?.editable;
             resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["secretId"] = state?.secretId;
             resourceInputs["secretKey"] = state?.secretKey;
             resourceInputs["srn"] = state?.srn;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -175,6 +196,7 @@ export class IamApiKey extends pulumi.CustomResource {
             resourceInputs["defaultProjectId"] = args?.defaultProjectId;
             resourceInputs["description"] = args?.description;
             resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["secretId"] = args?.secretId;
             resourceInputs["userId"] = args?.userId;
             resourceInputs["accessKey"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -229,7 +251,11 @@ export interface IamApiKeyState {
      */
     expiresAt?: pulumi.Input<string | undefined>;
     /**
-     * The secret Key of the IAM API key.
+     * ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+     */
+    secretId?: pulumi.Input<string | undefined>;
+    /**
+     * The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `scaleway.secrets.Version` ephemeral resource.
      */
     secretKey?: pulumi.Input<string | undefined>;
     /**
@@ -268,6 +294,10 @@ export interface IamApiKeyArgs {
      * the resource will be recreated.
      */
     expiresAt?: pulumi.Input<string | undefined>;
+    /**
+     * ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+     */
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * ID of the user attached to the API key.
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.

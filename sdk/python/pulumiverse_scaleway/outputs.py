@@ -26,6 +26,7 @@ __all__ = [
     'BaremetalServerPrivateNetwork',
     'BlockSnapshotExport',
     'BlockSnapshotImport',
+    'BlockSnapshotTimeouts',
     'CockpitAlertManagerContactPoint',
     'CockpitTokenScopes',
     'ContainerHealthCheck',
@@ -832,6 +833,95 @@ class BlockSnapshotImport(dict):
         The key of the QCOW file within the bucket.
         """
         return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class BlockSnapshotTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 read: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: Duration to wait for the snapshot to be created.
+        :param _builtins.str delete: Duration to wait for the snapshot to be deleted.
+               
+               ```python
+               import pulumi
+               import pulumiverse_scaleway as scaleway
+               
+               block_volume = scaleway.block.Volume("block_volume",
+                   iops=5000,
+                   name="some-volume-name",
+                   size_in_gb=20)
+               block_snapshot = scaleway.block.Snapshot("block_snapshot",
+                   name="some-snapshot-name",
+                   volume_id=block_volume.id,
+                   timeouts={
+                       "create": "10m",
+                       "read": "10m",
+                   })
+               ```
+        :param _builtins.str read: Duration to wait for the snapshot to be read.
+        :param _builtins.str update: Duration to wait for the snapshot to be updated.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        Duration to wait for the snapshot to be created.
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        Duration to wait for the snapshot to be deleted.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        block_volume = scaleway.block.Volume("block_volume",
+            iops=5000,
+            name="some-volume-name",
+            size_in_gb=20)
+        block_snapshot = scaleway.block.Snapshot("block_snapshot",
+            name="some-snapshot-name",
+            volume_id=block_volume.id,
+            timeouts={
+                "create": "10m",
+                "read": "10m",
+            })
+        ```
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> Optional[_builtins.str]:
+        """
+        Duration to wait for the snapshot to be read.
+        """
+        return pulumi.get(self, "read")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        Duration to wait for the snapshot to be updated.
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type

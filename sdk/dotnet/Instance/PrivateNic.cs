@@ -178,6 +178,12 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the private network interface.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the private NIC.
         /// </summary>
         [Output("tags")]
@@ -381,6 +387,12 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the private network interface.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

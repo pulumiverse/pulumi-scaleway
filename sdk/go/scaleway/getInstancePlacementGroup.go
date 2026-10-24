@@ -49,6 +49,8 @@ type LookupInstancePlacementGroupResult struct {
 	// The [policy type](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) of the placement group.
 	PolicyType string `pulumi:"policyType"`
 	ProjectId  string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the placement group.
+	Srn string `pulumi:"srn"`
 	// A list of tags to apply to the placement group.
 	Tags []string `pulumi:"tags"`
 	Zone *string  `pulumi:"zone"`
@@ -120,6 +122,11 @@ func (o LookupInstancePlacementGroupResultOutput) PolicyType() pulumi.StringOutp
 
 func (o LookupInstancePlacementGroupResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstancePlacementGroupResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the placement group.
+func (o LookupInstancePlacementGroupResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstancePlacementGroupResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the placement group.

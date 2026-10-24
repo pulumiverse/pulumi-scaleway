@@ -370,6 +370,7 @@ class _RedisClusterState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_network: pulumi.Input[Optional['RedisClusterPublicNetworkArgs']] = None,
                  settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -416,6 +417,7 @@ class _RedisClusterState:
         :param pulumi.Input['RedisClusterPublicNetworkArgs'] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Redis™ cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
         :param pulumi.Input[_builtins.bool] tls_enabled: Whether TLS is enabled or not.
                
@@ -459,6 +461,8 @@ class _RedisClusterState:
             pulumi.set(__self__, "public_network", public_network)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if tls_enabled is not None:
@@ -673,6 +677,18 @@ class _RedisClusterState:
     @settings.setter
     def settings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "settings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the Redis™ cluster.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -986,6 +1002,7 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["connection_string"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["connectionString", "password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -1014,6 +1031,7 @@ class RedisCluster(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
             settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1064,6 +1082,7 @@ class RedisCluster(pulumi.CustomResource):
         :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Redis™ cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
         :param pulumi.Input[_builtins.bool] tls_enabled: Whether TLS is enabled or not.
                
@@ -1096,6 +1115,7 @@ class RedisCluster(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_network"] = public_network
         __props__.__dict__["settings"] = settings
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["tls_enabled"] = tls_enabled
         __props__.__dict__["updated_at"] = updated_at
@@ -1245,6 +1265,14 @@ class RedisCluster(pulumi.CustomResource):
         with scaleway API or CLI
         """
         return pulumi.get(self, "settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the Redis™ cluster.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

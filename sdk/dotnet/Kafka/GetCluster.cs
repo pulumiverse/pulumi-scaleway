@@ -103,6 +103,8 @@ namespace Pulumiverse.Scaleway.Kafka
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string MonoAzZone;
+        public readonly bool MultiAz;
         /// <summary>
         /// Name of the Kafka cluster
         /// </summary>
@@ -172,6 +174,10 @@ namespace Pulumiverse.Scaleway.Kafka
 
             string id,
 
+            string monoAzZone,
+
+            bool multiAz,
+
             string? name,
 
             int nodeAmount,
@@ -205,6 +211,8 @@ namespace Pulumiverse.Scaleway.Kafka
             ClusterId = clusterId;
             CreatedAt = createdAt;
             Id = id;
+            MonoAzZone = monoAzZone;
+            MultiAz = multiAz;
             Name = name;
             NodeAmount = nodeAmount;
             NodeType = nodeType;

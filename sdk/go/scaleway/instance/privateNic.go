@@ -180,6 +180,8 @@ type PrivateNic struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The ID of the server associated with.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
+	// The Scaleway Resource Name (SRN) of the private network interface.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the private NIC.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
@@ -244,6 +246,8 @@ type privateNicState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The ID of the server associated with.
 	ServerId *string `pulumi:"serverId"`
+	// The Scaleway Resource Name (SRN) of the private network interface.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the private NIC.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
@@ -267,6 +271,8 @@ type PrivateNicState struct {
 	ProjectId pulumi.StringPtrInput
 	// The ID of the server associated with.
 	ServerId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the private network interface.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the private NIC.
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the server must be created.
@@ -442,6 +448,11 @@ func (o PrivateNicOutput) ProjectId() pulumi.StringOutput {
 // The ID of the server associated with.
 func (o PrivateNicOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateNic) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the private network interface.
+func (o PrivateNicOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateNic) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the private NIC.

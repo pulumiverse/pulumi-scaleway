@@ -26,7 +26,7 @@ class GetPlacementGroupResult:
     """
     A collection of values returned by getPlacementGroup.
     """
-    def __init__(__self__, id=None, name=None, placement_group_id=None, policy_mode=None, policy_respected=None, policy_type=None, project_id=None, tags=None, zone=None):
+    def __init__(__self__, id=None, name=None, placement_group_id=None, policy_mode=None, policy_respected=None, policy_type=None, project_id=None, srn=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,6 +48,9 @@ class GetPlacementGroupResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -104,6 +107,14 @@ class GetPlacementGroupResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the placement group.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         A list of tags to apply to the placement group.
@@ -129,6 +140,7 @@ class AwaitableGetPlacementGroupResult(GetPlacementGroupResult):
             policy_respected=self.policy_respected,
             policy_type=self.policy_type,
             project_id=self.project_id,
+            srn=self.srn,
             tags=self.tags,
             zone=self.zone)
 
@@ -163,6 +175,7 @@ def get_placement_group(name: Optional[_builtins.str] = None,
         policy_respected=pulumi.get(__ret__, 'policy_respected'),
         policy_type=pulumi.get(__ret__, 'policy_type'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
 def get_placement_group_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -194,5 +207,6 @@ def get_placement_group_output(name: pulumi.Input[Optional[Optional[_builtins.st
         policy_respected=pulumi.get(__response__, 'policy_respected'),
         policy_type=pulumi.get(__response__, 'policy_type'),
         project_id=pulumi.get(__response__, 'project_id'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         zone=pulumi.get(__response__, 'zone')))

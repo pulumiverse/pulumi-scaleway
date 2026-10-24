@@ -171,6 +171,10 @@ type Snapshot struct {
 	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+	//
+	// The following arguments are specific to the `timeouts` block:
+	Timeouts SnapshotTimeoutsPtrOutput `pulumi:"timeouts"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
@@ -225,6 +229,10 @@ type snapshotState struct {
 	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
+	// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+	//
+	// The following arguments are specific to the `timeouts` block:
+	Timeouts *SnapshotTimeouts `pulumi:"timeouts"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
@@ -244,6 +252,10 @@ type SnapshotState struct {
 	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
+	// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+	//
+	// The following arguments are specific to the `timeouts` block:
+	Timeouts SnapshotTimeoutsPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
 	// ). The zone in which the snapshot should be created.
@@ -265,6 +277,10 @@ type snapshotArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
+	// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+	//
+	// The following arguments are specific to the `timeouts` block:
+	Timeouts *SnapshotTimeouts `pulumi:"timeouts"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
@@ -283,6 +299,10 @@ type SnapshotArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
+	// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+	//
+	// The following arguments are specific to the `timeouts` block:
+	Timeouts SnapshotTimeoutsPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
 	// ). The zone in which the snapshot should be created.
@@ -404,6 +424,13 @@ func (o SnapshotOutput) Srn() pulumi.StringOutput {
 // A list of tags to apply to the snapshot.
 func (o SnapshotOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+//
+// The following arguments are specific to the `timeouts` block:
+func (o SnapshotOutput) Timeouts() SnapshotTimeoutsPtrOutput {
+	return o.ApplyT(func(v *Snapshot) SnapshotTimeoutsPtrOutput { return v.Timeouts }).(SnapshotTimeoutsPtrOutput)
 }
 
 // The ID of the volume to take a snapshot from.

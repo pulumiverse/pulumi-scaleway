@@ -90,7 +90,7 @@ type MongoDbInstance struct {
 	PublicNetwork MongoDbInstancePublicNetworkOutput `pulumi:"publicNetwork"`
 	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Map of settings to define for the instance.
+	// Map of engine settings applied to the instance (read-only).
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
@@ -192,7 +192,7 @@ type mongoDbInstanceState struct {
 	PublicNetwork *MongoDbInstancePublicNetwork `pulumi:"publicNetwork"`
 	// `region`) The region in which the MongoDB® instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of settings to define for the instance.
+	// Map of engine settings applied to the instance (read-only).
 	Settings map[string]string `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -248,7 +248,7 @@ type MongoDbInstanceState struct {
 	PublicNetwork MongoDbInstancePublicNetworkPtrInput
 	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of settings to define for the instance.
+	// Map of engine settings applied to the instance (read-only).
 	Settings pulumi.StringMapInput
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrInput
@@ -306,8 +306,6 @@ type mongoDbInstanceArgs struct {
 	PublicNetwork *MongoDbInstancePublicNetwork `pulumi:"publicNetwork"`
 	// `region`) The region in which the MongoDB® instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of settings to define for the instance.
-	Settings map[string]string `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// Snapshot schedule frequency in hours.
@@ -357,8 +355,6 @@ type MongoDbInstanceArgs struct {
 	PublicNetwork MongoDbInstancePublicNetworkPtrInput
 	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of settings to define for the instance.
-	Settings pulumi.StringMapInput
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrInput
 	// Snapshot schedule frequency in hours.
@@ -534,7 +530,7 @@ func (o MongoDbInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Map of settings to define for the instance.
+// Map of engine settings applied to the instance (read-only).
 func (o MongoDbInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }

@@ -63,6 +63,8 @@ type InstancePlacementGroup struct {
 	PolicyType pulumi.StringPtrOutput `pulumi:"policyType"`
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the placement group.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the placement group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the placement group should be created.
@@ -113,6 +115,8 @@ type instancePlacementGroupState struct {
 	PolicyType *string `pulumi:"policyType"`
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the placement group.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the placement group.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the placement group should be created.
@@ -134,6 +138,8 @@ type InstancePlacementGroupState struct {
 	PolicyType pulumi.StringPtrInput
 	// `projectId`) The ID of the project the placement group is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the placement group.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the placement group.
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the placement group should be created.
@@ -293,6 +299,11 @@ func (o InstancePlacementGroupOutput) PolicyType() pulumi.StringPtrOutput {
 // `projectId`) The ID of the project the placement group is associated with.
 func (o InstancePlacementGroupOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the placement group.
+func (o InstancePlacementGroupOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstancePlacementGroup) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the placement group.

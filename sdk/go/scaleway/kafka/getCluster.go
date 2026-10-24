@@ -40,7 +40,9 @@ type LookupClusterResult struct {
 	// Date and time of cluster creation (RFC 3339 format)
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id         string `pulumi:"id"`
+	MonoAzZone string `pulumi:"monoAzZone"`
+	MultiAz    bool   `pulumi:"multiAz"`
 	// Name of the Kafka cluster
 	Name *string `pulumi:"name"`
 	// Number of nodes in the cluster
@@ -122,6 +124,14 @@ func (o LookupClusterResultOutput) CreatedAt() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClusterResultOutput) MonoAzZone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.MonoAzZone }).(pulumi.StringOutput)
+}
+
+func (o LookupClusterResultOutput) MultiAz() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.MultiAz }).(pulumi.BoolOutput)
 }
 
 // Name of the Kafka cluster

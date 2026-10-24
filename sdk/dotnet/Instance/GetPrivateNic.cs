@@ -244,6 +244,7 @@ namespace Pulumiverse.Scaleway.Instance
         public readonly string? PrivateNicId;
         public readonly string ProjectId;
         public readonly string ServerId;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string? Zone;
 
@@ -267,6 +268,8 @@ namespace Pulumiverse.Scaleway.Instance
 
             string serverId,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string? zone)
@@ -280,6 +283,7 @@ namespace Pulumiverse.Scaleway.Instance
             PrivateNicId = privateNicId;
             ProjectId = projectId;
             ServerId = serverId;
+            Srn = srn;
             Tags = tags;
             Zone = zone;
         }

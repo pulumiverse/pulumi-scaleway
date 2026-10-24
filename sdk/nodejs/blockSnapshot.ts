@@ -139,6 +139,12 @@ export class BlockSnapshot extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
+     * The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+     *
+     * The following arguments are specific to the `timeouts` block:
+     */
+    declare public readonly timeouts: pulumi.Output<outputs.BlockSnapshotTimeouts | undefined>;
+    /**
      * The ID of the volume to take a snapshot from.
      */
     declare public readonly volumeId: pulumi.Output<string | undefined>;
@@ -169,6 +175,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
+            resourceInputs["timeouts"] = state?.timeouts;
             resourceInputs["volumeId"] = state?.volumeId;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -178,6 +185,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["tags"] = args?.tags;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["volumeId"] = args?.volumeId;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["srn"] = undefined /*out*/;
@@ -216,6 +224,12 @@ export interface BlockSnapshotState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+     *
+     * The following arguments are specific to the `timeouts` block:
+     */
+    timeouts?: pulumi.Input<inputs.BlockSnapshotTimeouts | undefined>;
+    /**
      * The ID of the volume to take a snapshot from.
      */
     volumeId?: pulumi.Input<string | undefined>;
@@ -249,6 +263,12 @@ export interface BlockSnapshotArgs {
      * A list of tags to apply to the snapshot.
      */
     tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+     *
+     * The following arguments are specific to the `timeouts` block:
+     */
+    timeouts?: pulumi.Input<inputs.BlockSnapshotTimeouts | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */

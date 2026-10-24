@@ -133,6 +133,7 @@ class _InstancePlacementGroupState:
                  policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
                  policy_type: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -143,6 +144,7 @@ class _InstancePlacementGroupState:
         :param pulumi.Input[_builtins.bool] policy_respected: Is true when the policy is respected.
         :param pulumi.Input[_builtins.str] policy_type: The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the placement group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the placement group.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the placement group should be created.
         """
@@ -162,6 +164,8 @@ class _InstancePlacementGroupState:
             pulumi.set(__self__, "policy_type", policy_type)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -228,6 +232,18 @@ class _InstancePlacementGroupState:
     @project_id.setter
     def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the placement group.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -367,6 +383,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["policy_respected"] = None
+            __props__.__dict__["srn"] = None
         super(InstancePlacementGroup, __self__).__init__(
             'scaleway:index/instancePlacementGroup:InstancePlacementGroup',
             resource_name,
@@ -382,6 +399,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
             policy_respected: pulumi.Input[Optional[_builtins.bool]] = None,
             policy_type: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstancePlacementGroup':
         """
@@ -396,6 +414,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] policy_respected: Is true when the policy is respected.
         :param pulumi.Input[_builtins.str] policy_type: The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the placement group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the placement group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the placement group.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the placement group should be created.
         """
@@ -408,6 +427,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         __props__.__dict__["policy_respected"] = policy_respected
         __props__.__dict__["policy_type"] = policy_type
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return InstancePlacementGroup(resource_name, opts=opts, __props__=__props__)
@@ -453,6 +473,14 @@ class InstancePlacementGroup(pulumi.CustomResource):
         `project_id`) The ID of the project the placement group is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the placement group.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

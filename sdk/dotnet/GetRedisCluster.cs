@@ -159,6 +159,10 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly ImmutableDictionary<string, string> Settings;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the Redis Cluster.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// The tags associated with the Redis Cluster.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
@@ -216,6 +220,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableDictionary<string, string> settings,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             bool tlsEnabled,
@@ -245,6 +251,7 @@ namespace Pulumiverse.Scaleway
             ProjectId = projectId;
             PublicNetworks = publicNetworks;
             Settings = settings;
+            Srn = srn;
             Tags = tags;
             TlsEnabled = tlsEnabled;
             UpdatedAt = updatedAt;

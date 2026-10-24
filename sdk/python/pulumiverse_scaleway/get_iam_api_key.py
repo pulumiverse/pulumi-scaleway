@@ -28,7 +28,7 @@ class GetIamApiKeyResult:
     """
     A collection of values returned by getIamApiKey.
     """
-    def __init__(__self__, access_key=None, application_id=None, created_at=None, creation_ip=None, default_project_id=None, description=None, editable=None, expires_at=None, id=None, srn=None, updated_at=None, user_id=None):
+    def __init__(__self__, access_key=None, application_id=None, created_at=None, creation_ip=None, default_project_id=None, description=None, editable=None, expires_at=None, id=None, secret_id=None, srn=None, updated_at=None, user_id=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -56,6 +56,9 @@ class GetIamApiKeyResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if secret_id and not isinstance(secret_id, str):
+            raise TypeError("Expected argument 'secret_id' to be a str")
+        pulumi.set(__self__, "secret_id", secret_id)
         if srn and not isinstance(srn, str):
             raise TypeError("Expected argument 'srn' to be a str")
         pulumi.set(__self__, "srn", srn)
@@ -115,6 +118,11 @@ class GetIamApiKeyResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        return pulumi.get(self, "secret_id")
+
+    @_builtins.property
     @pulumi.getter
     def srn(self) -> _builtins.str:
         return pulumi.get(self, "srn")
@@ -145,6 +153,7 @@ class AwaitableGetIamApiKeyResult(GetIamApiKeyResult):
             editable=self.editable,
             expires_at=self.expires_at,
             id=self.id,
+            secret_id=self.secret_id,
             srn=self.srn,
             updated_at=self.updated_at,
             user_id=self.user_id)
@@ -184,6 +193,7 @@ def get_iam_api_key(access_key: Optional[_builtins.str] = None,
         editable=pulumi.get(__ret__, 'editable'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
         id=pulumi.get(__ret__, 'id'),
+        secret_id=pulumi.get(__ret__, 'secret_id'),
         srn=pulumi.get(__ret__, 'srn'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_id=pulumi.get(__ret__, 'user_id'))
@@ -220,6 +230,7 @@ def get_iam_api_key_output(access_key: pulumi.Input[Optional[_builtins.str]] = N
         editable=pulumi.get(__response__, 'editable'),
         expires_at=pulumi.get(__response__, 'expires_at'),
         id=pulumi.get(__response__, 'id'),
+        secret_id=pulumi.get(__response__, 'secret_id'),
         srn=pulumi.get(__response__, 'srn'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         user_id=pulumi.get(__response__, 'user_id')))

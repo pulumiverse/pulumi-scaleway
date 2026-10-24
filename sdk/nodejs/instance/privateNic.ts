@@ -144,6 +144,10 @@ export class PrivateNic extends pulumi.CustomResource {
      */
     declare public readonly serverId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the private network interface.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the private NIC.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -172,6 +176,7 @@ export class PrivateNic extends pulumi.CustomResource {
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -191,6 +196,7 @@ export class PrivateNic extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/instancePrivateNic:InstancePrivateNic" }] };
@@ -233,6 +239,10 @@ export interface PrivateNicState {
      * The ID of the server associated with.
      */
     serverId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the private network interface.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the private NIC.
      */

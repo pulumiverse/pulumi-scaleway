@@ -268,6 +268,7 @@ class _TemplateState:
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
                  volumes: pulumi.Input[Optional[Sequence[pulumi.Input['TemplateVolumeArgs']]]] = None,
@@ -287,6 +288,7 @@ class _TemplateState:
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group to attach to the servers created using the template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_tags: A list of tags to apply to the servers created from the template.
         :param pulumi.Input[_builtins.str] server_type: The commercial type of the server defined in the template.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Instance template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the template.
         :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the Instance template.
         :param pulumi.Input[Sequence[pulumi.Input['TemplateVolumeArgs']]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
@@ -317,6 +319,8 @@ class _TemplateState:
             pulumi.set(__self__, "server_tags", server_tags)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -459,6 +463,18 @@ class _TemplateState:
     @server_type.setter
     def server_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the Instance template.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -880,6 +896,7 @@ class Template(pulumi.CustomResource):
             __props__.__dict__["windows_rdp_ssh_key_id"] = windows_rdp_ssh_key_id
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["updated_at"] = None
         super(Template, __self__).__init__(
             'scaleway:instance/template:Template',
@@ -902,6 +919,7 @@ class Template(pulumi.CustomResource):
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
             server_tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             server_type: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]]] = None,
@@ -925,6 +943,7 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group to attach to the servers created using the template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_tags: A list of tags to apply to the servers created from the template.
         :param pulumi.Input[_builtins.str] server_type: The commercial type of the server defined in the template.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Instance template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the template.
         :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the Instance template.
         :param pulumi.Input[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
@@ -948,6 +967,7 @@ class Template(pulumi.CustomResource):
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["server_tags"] = server_tags
         __props__.__dict__["server_type"] = server_type
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["volumes"] = volumes
@@ -1042,6 +1062,14 @@ class Template(pulumi.CustomResource):
         The commercial type of the server defined in the template.
         """
         return pulumi.get(self, "server_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the Instance template.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

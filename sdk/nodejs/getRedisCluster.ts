@@ -100,6 +100,10 @@ export interface GetRedisClusterResult {
      */
     readonly settings: {[key: string]: string};
     /**
+     * The Scaleway Resource Name (SRN) of the Redis Cluster.
+     */
+    readonly srn: string;
+    /**
      * The tags associated with the Redis Cluster.
      */
     readonly tags: string[];

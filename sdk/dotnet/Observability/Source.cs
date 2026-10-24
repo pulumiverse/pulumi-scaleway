@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
         /// </summary>
         [Output("retentionDays")]
         public Output<int> RetentionDays { get; private set; } = null!;
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
         /// </summary>
         [Input("retentionDays", required: true)]
         public Input<int> RetentionDays { get; set; } = null!;
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+        /// The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
         /// </summary>
         [Input("retentionDays")]
         public Input<int>? RetentionDays { get; set; }

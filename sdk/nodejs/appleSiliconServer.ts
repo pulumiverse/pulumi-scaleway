@@ -167,6 +167,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     declare public readonly runnerIds: pulumi.Output<string[]>;
     /**
+     * The Scaleway Resource Name (SRN) of the server.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The state of the server.
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
@@ -228,6 +232,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicBandwidth"] = state?.publicBandwidth;
             resourceInputs["runnerIds"] = state?.runnerIds;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["state"] = state?.state;
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -256,6 +261,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["ip"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["password"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
@@ -330,6 +336,10 @@ export interface AppleSiliconServerState {
      * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
      */
     runnerIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the server.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The state of the server.
      */

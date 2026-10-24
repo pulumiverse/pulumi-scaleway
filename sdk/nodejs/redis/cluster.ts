@@ -158,6 +158,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly settings: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the Redis™ cluster.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The tags associated with the Redis™ cluster.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -216,6 +220,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicNetwork"] = state?.publicNetwork;
             resourceInputs["settings"] = state?.settings;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["tlsEnabled"] = state?.tlsEnabled;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -253,6 +258,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["connectionString"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -350,6 +356,10 @@ export interface ClusterState {
      * with scaleway API or CLI
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the Redis™ cluster.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the Redis™ cluster.
      */

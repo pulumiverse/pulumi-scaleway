@@ -19,6 +19,8 @@ __all__ = [
     'SnapshotExportArgsDict',
     'SnapshotImportArgs',
     'SnapshotImportArgsDict',
+    'SnapshotTimeoutsArgs',
+    'SnapshotTimeoutsArgsDict',
 ]
 
 class SnapshotExportArgsDict(TypedDict):
@@ -113,5 +115,145 @@ class SnapshotImportArgs:
     @key.setter
     def key(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "key", value)
+
+
+class SnapshotTimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Duration to wait for the snapshot to be created.
+    """
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Duration to wait for the snapshot to be deleted.
+
+    ```python
+    import pulumi
+    import pulumiverse_scaleway as scaleway
+
+    block_volume = scaleway.block.Volume("block_volume",
+        iops=5000,
+        name="some-volume-name",
+        size_in_gb=20)
+    block_snapshot = scaleway.block.Snapshot("block_snapshot",
+        name="some-snapshot-name",
+        volume_id=block_volume.id,
+        timeouts={
+            "create": "10m",
+            "read": "10m",
+        })
+    ```
+    """
+    read: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Duration to wait for the snapshot to be read.
+    """
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Duration to wait for the snapshot to be updated.
+    """
+
+@pulumi.input_type
+class SnapshotTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 read: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: Duration to wait for the snapshot to be created.
+        :param pulumi.Input[_builtins.str] delete: Duration to wait for the snapshot to be deleted.
+               
+               ```python
+               import pulumi
+               import pulumiverse_scaleway as scaleway
+               
+               block_volume = scaleway.block.Volume("block_volume",
+                   iops=5000,
+                   name="some-volume-name",
+                   size_in_gb=20)
+               block_snapshot = scaleway.block.Snapshot("block_snapshot",
+                   name="some-snapshot-name",
+                   volume_id=block_volume.id,
+                   timeouts={
+                       "create": "10m",
+                       "read": "10m",
+                   })
+               ```
+        :param pulumi.Input[_builtins.str] read: Duration to wait for the snapshot to be read.
+        :param pulumi.Input[_builtins.str] update: Duration to wait for the snapshot to be updated.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Duration to wait for the snapshot to be created.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Duration to wait for the snapshot to be deleted.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        block_volume = scaleway.block.Volume("block_volume",
+            iops=5000,
+            name="some-volume-name",
+            size_in_gb=20)
+        block_snapshot = scaleway.block.Snapshot("block_snapshot",
+            name="some-snapshot-name",
+            volume_id=block_volume.id,
+            timeouts={
+                "create": "10m",
+                "read": "10m",
+            })
+        ```
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Duration to wait for the snapshot to be read.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "read", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Duration to wait for the snapshot to be updated.
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "update", value)
 
 

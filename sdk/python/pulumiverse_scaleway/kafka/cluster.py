@@ -26,6 +26,8 @@ class ClusterArgs:
                  version: pulumi.Input[_builtins.str],
                  volume_size_in_gb: pulumi.Input[_builtins.int],
                  volume_type: pulumi.Input[_builtins.str],
+                 mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network: pulumi.Input[Optional['ClusterPrivateNetworkArgs']] = None,
@@ -41,6 +43,8 @@ class ClusterArgs:
         :param pulumi.Input[_builtins.str] version: Kafka version to use (e.g., "4.1.1"). Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] volume_type: Type of volume where data is stored (e.g., "sbs_5k", "sbs_15k"). Changing this forces recreation of the cluster.
+        :param pulumi.Input[_builtins.str] mono_az_zone: Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        :param pulumi.Input[_builtins.bool] multi_az: Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
         :param pulumi.Input[_builtins.str] password: Password for the Kafka user. Required if `user_name` is specified. Changing this forces recreation of the cluster.
         :param pulumi.Input['ClusterPrivateNetworkArgs'] private_network: Private network endpoint information.
@@ -54,6 +58,10 @@ class ClusterArgs:
         pulumi.set(__self__, "version", version)
         pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         pulumi.set(__self__, "volume_type", volume_type)
+        if mono_az_zone is not None:
+            pulumi.set(__self__, "mono_az_zone", mono_az_zone)
+        if multi_az is not None:
+            pulumi.set(__self__, "multi_az", multi_az)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -128,6 +136,30 @@ class ClusterArgs:
     @volume_type.setter
     def volume_type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "volume_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="monoAzZone")
+    def mono_az_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        """
+        return pulumi.get(self, "mono_az_zone")
+
+    @mono_az_zone.setter
+    def mono_az_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mono_az_zone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
+        """
+        return pulumi.get(self, "multi_az")
+
+    @multi_az.setter
+    def multi_az(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "multi_az", value)
 
     @_builtins.property
     @pulumi.getter
@@ -218,6 +250,8 @@ class ClusterArgs:
 class _ClusterState:
     def __init__(__self__, *,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -237,6 +271,8 @@ class _ClusterState:
         Input properties used for looking up and filtering Cluster resources.
 
         :param pulumi.Input[_builtins.str] created_at: Date and time of cluster creation (RFC 3339 format).
+        :param pulumi.Input[_builtins.str] mono_az_zone: Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        :param pulumi.Input[_builtins.bool] multi_az: Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
@@ -255,6 +291,10 @@ class _ClusterState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if mono_az_zone is not None:
+            pulumi.set(__self__, "mono_az_zone", mono_az_zone)
+        if multi_az is not None:
+            pulumi.set(__self__, "multi_az", multi_az)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_amount is not None:
@@ -297,6 +337,30 @@ class _ClusterState:
     @created_at.setter
     def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="monoAzZone")
+    def mono_az_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        """
+        return pulumi.get(self, "mono_az_zone")
+
+    @mono_az_zone.setter
+    def mono_az_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mono_az_zone", value)
+
+    @_builtins.property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
+        """
+        return pulumi.get(self, "multi_az")
+
+    @multi_az.setter
+    def multi_az(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "multi_az", value)
 
     @_builtins.property
     @pulumi.getter
@@ -485,6 +549,8 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -564,6 +630,34 @@ class Cluster(pulumi.CustomResource):
             })
         ```
 
+        ### Multi-AZ
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main",
+            region="fr-par",
+            name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            region="fr-par",
+            vpc_id=main.id)
+        main_cluster = scaleway.kafka.Cluster("main",
+            name="my-kafka-multi-az",
+            version="4.1.1",
+            node_amount=3,
+            node_type="KAFK-PLAY-NANO",
+            volume_type="sbs_5k",
+            volume_size_in_gb=10,
+            multi_az=True,
+            user_name="admin",
+            password="thiZ_is_v&ry_s3cret",
+            private_network={
+                "pn_id": pn.id,
+            })
+        ```
+
         ## Import
 
         Kafka clusters can be imported using the `{region}/{id}`, e.g.
@@ -575,6 +669,8 @@ class Cluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] mono_az_zone: Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        :param pulumi.Input[_builtins.bool] multi_az: Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
@@ -660,6 +756,34 @@ class Cluster(pulumi.CustomResource):
             })
         ```
 
+        ### Multi-AZ
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main",
+            region="fr-par",
+            name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            region="fr-par",
+            vpc_id=main.id)
+        main_cluster = scaleway.kafka.Cluster("main",
+            name="my-kafka-multi-az",
+            version="4.1.1",
+            node_amount=3,
+            node_type="KAFK-PLAY-NANO",
+            volume_type="sbs_5k",
+            volume_size_in_gb=10,
+            multi_az=True,
+            user_name="admin",
+            password="thiZ_is_v&ry_s3cret",
+            private_network={
+                "pn_id": pn.id,
+            })
+        ```
+
         ## Import
 
         Kafka clusters can be imported using the `{region}/{id}`, e.g.
@@ -684,6 +808,8 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -705,6 +831,8 @@ class Cluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ClusterArgs.__new__(ClusterArgs)
 
+            __props__.__dict__["mono_az_zone"] = mono_az_zone
+            __props__.__dict__["multi_az"] = multi_az
             __props__.__dict__["name"] = name
             if node_amount is None and not opts.urn:
                 raise TypeError("Missing required property 'node_amount'")
@@ -744,6 +872,8 @@ class Cluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_amount: pulumi.Input[Optional[_builtins.int]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -767,6 +897,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of cluster creation (RFC 3339 format).
+        :param pulumi.Input[_builtins.str] mono_az_zone: Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        :param pulumi.Input[_builtins.bool] multi_az: Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
         :param pulumi.Input[_builtins.str] name: Name of the Kafka cluster.
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
@@ -788,6 +920,8 @@ class Cluster(pulumi.CustomResource):
         __props__ = _ClusterState.__new__(_ClusterState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["mono_az_zone"] = mono_az_zone
+        __props__.__dict__["multi_az"] = multi_az
         __props__.__dict__["name"] = name
         __props__.__dict__["node_amount"] = node_amount
         __props__.__dict__["node_type"] = node_type
@@ -812,6 +946,22 @@ class Cluster(pulumi.CustomResource):
         Date and time of cluster creation (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="monoAzZone")
+    def mono_az_zone(self) -> pulumi.Output[_builtins.str]:
+        """
+        Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multi_az`. When unset, defaults to the provider default zone.
+        """
+        return pulumi.get(self, "mono_az_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Deploy the cluster across multiple availability zones. Conflicts with `mono_az_zone`. When unset, defaults to mono-AZ on the provider default `zone`.
+        """
+        return pulumi.get(self, "multi_az")
 
     @_builtins.property
     @pulumi.getter

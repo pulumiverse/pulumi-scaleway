@@ -46,38 +46,6 @@ import (
 //
 // ```
 //
-// ### Enable routing
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
-//				Name: pulumi.String("my-vpc"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("demo"),
-//					pulumi.String("terraform"),
-//					pulumi.String("routing"),
-//				},
-//				EnableRouting: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // VPCs can be imported using `{region}/{id}`, e.g.
@@ -92,9 +60,13 @@ type Vpc struct {
 
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableCustomRoutesPropagation pulumi.BoolOutput `pulumi:"enableCustomRoutesPropagation"`
-	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableRouting pulumi.BoolOutput `pulumi:"enableRouting"`
 	// Enable packets from peered VPCs to transit through this VPC.
 	EnableTransitivity pulumi.BoolOutput `pulumi:"enableTransitivity"`
@@ -148,9 +120,13 @@ func GetVpc(ctx *pulumi.Context,
 type vpcState struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableCustomRoutesPropagation *bool `pulumi:"enableCustomRoutesPropagation"`
-	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableRouting *bool `pulumi:"enableRouting"`
 	// Enable packets from peered VPCs to transit through this VPC.
 	EnableTransitivity *bool `pulumi:"enableTransitivity"`
@@ -175,9 +151,13 @@ type vpcState struct {
 type VpcState struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableCustomRoutesPropagation pulumi.BoolPtrInput
-	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableRouting pulumi.BoolPtrInput
 	// Enable packets from peered VPCs to transit through this VPC.
 	EnableTransitivity pulumi.BoolPtrInput
@@ -204,9 +184,13 @@ func (VpcState) ElementType() reflect.Type {
 }
 
 type vpcArgs struct {
-	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableCustomRoutesPropagation *bool `pulumi:"enableCustomRoutesPropagation"`
-	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableRouting *bool `pulumi:"enableRouting"`
 	// Enable packets from peered VPCs to transit through this VPC.
 	EnableTransitivity *bool `pulumi:"enableTransitivity"`
@@ -222,9 +206,13 @@ type vpcArgs struct {
 
 // The set of arguments for constructing a Vpc resource.
 type VpcArgs struct {
-	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableCustomRoutesPropagation pulumi.BoolPtrInput
-	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+	// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+	//
+	// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 	EnableRouting pulumi.BoolPtrInput
 	// Enable packets from peered VPCs to transit through this VPC.
 	EnableTransitivity pulumi.BoolPtrInput
@@ -330,12 +318,16 @@ func (o VpcOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+//
+// Deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 func (o VpcOutput) EnableCustomRoutesPropagation() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableCustomRoutesPropagation }).(pulumi.BoolOutput)
 }
 
-// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+//
+// Deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
 func (o VpcOutput) EnableRouting() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableRouting }).(pulumi.BoolOutput)
 }

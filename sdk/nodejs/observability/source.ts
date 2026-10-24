@@ -89,7 +89,7 @@ export class Source extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
-     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
      */
     declare public readonly retentionDays: pulumi.Output<number>;
     /**
@@ -186,7 +186,7 @@ export interface SourceState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
      */
     retentionDays?: pulumi.Input<number | undefined>;
     /**
@@ -224,7 +224,7 @@ export interface SourceArgs {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.
+     * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
      */
     retentionDays: pulumi.Input<number>;
     /**

@@ -210,6 +210,12 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> RunnerIds { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the server.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The state of the server.
         /// </summary>
         [Output("state")]
@@ -513,6 +519,12 @@ namespace Pulumiverse.Scaleway
             get => _runnerIds ?? (_runnerIds = new InputList<string>());
             set => _runnerIds = value;
         }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the server.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The state of the server.
